@@ -1,0 +1,70 @@
+android_app {
+    name: "AxionParts",
+    manifest: "AndroidManifest.xml",
+
+    defaults: [
+        "platform_app_defaults",
+    ],
+
+    srcs: [
+        "src/**/*.kt",
+    ],
+    resource_dirs: ["res"],
+
+    certificate: "platform",
+    platform_apis: true,
+    privileged: true,
+    system_ext_specific: true,
+
+    required: [
+        "privapp-permissions-axionparts",
+    ],
+
+    optimize: {
+        enabled: true,
+    },
+    
+    use_embedded_native_libs: true,
+
+    static_libs: [
+        "androidx.activity_activity-compose",
+        "androidx.core_core-ktx",
+        "androidx.appcompat_appcompat",
+        "com.google.android.material_material",
+        "androidx.compose.animation_animation-core",
+        "androidx.compose.animation_animation-graphics",
+        "androidx.compose.foundation_foundation",
+        "androidx.compose.material3_material3",
+        "androidx.compose.material3_material3-window-size-class",
+        "androidx.compose.material_material-icons-core",
+        "androidx.compose.material_material-icons-extended",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.datastore_datastore",
+        "androidx.datastore_datastore-core",
+        "androidx.datastore_datastore-preferences",
+        "androidx.datastore_datastore-preferences-core",
+        "androidx.navigation_navigation-compose",
+        "androidx.lifecycle_lifecycle-viewmodel-compose",
+        "androidx.lifecycle_lifecycle-runtime-compose",
+        "kotlinx-coroutines-core",
+        "kotlin-parcelize-runtime",
+        "gson-prebuilt-jar-2.9.1",
+    ],
+
+    kotlincflags: [
+        "-Xjvm-default=all",
+        "-opt-in=kotlin.RequiresOptIn",
+        "-P plugin:androidx.compose.compiler.plugins.kotlin:sourceInformation=true",
+    ],
+
+    kotlin_plugins: ["kotlin-parcelize-compiler-plugin"],
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-axionparts",
+    system_ext_specific: true,
+    src: "privapp-permissions-axionparts.xml",
+    sub_dir: "permissions",
+    filename_from_src: true,
+}
