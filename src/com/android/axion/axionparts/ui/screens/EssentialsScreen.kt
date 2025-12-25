@@ -28,6 +28,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Fingerprint
+import androidx.compose.material.icons.filled.Gamepad
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.SportsEsports
@@ -57,7 +58,8 @@ fun EssentialsScreen(
     showTopBar: Boolean = true,
     onNavigateToAppPicker: (selectedApps: Set<String>) -> Unit = {},
     onNavigateToTrickyStore: () -> Unit = {},
-    onNavigateToPlayIntegrityFix: () -> Unit = {}
+    onNavigateToPlayIntegrityFix: () -> Unit = {},
+    onNavigateToGameSpoofing: () -> Unit = {}
 ) {
     if (showTopBar) {
         Scaffold(
@@ -92,7 +94,8 @@ fun EssentialsScreen(
                 modifier = Modifier.padding(innerPadding),
                 onNavigateToAppPicker = onNavigateToAppPicker,
                 onNavigateToTrickyStore = onNavigateToTrickyStore,
-                onNavigateToPlayIntegrityFix = onNavigateToPlayIntegrityFix
+                onNavigateToPlayIntegrityFix = onNavigateToPlayIntegrityFix,
+                onNavigateToGameSpoofing = onNavigateToGameSpoofing
             )
         }
     } else {
@@ -100,7 +103,8 @@ fun EssentialsScreen(
             modifier = Modifier,
             onNavigateToAppPicker = onNavigateToAppPicker,
             onNavigateToTrickyStore = onNavigateToTrickyStore,
-            onNavigateToPlayIntegrityFix = onNavigateToPlayIntegrityFix
+            onNavigateToPlayIntegrityFix = onNavigateToPlayIntegrityFix,
+            onNavigateToGameSpoofing = onNavigateToGameSpoofing
         )
     }
 }
@@ -110,7 +114,8 @@ fun EssentialsContent(
     modifier: Modifier = Modifier,
     onNavigateToAppPicker: (selectedApps: Set<String>) -> Unit = {},
     onNavigateToTrickyStore: () -> Unit = {},
-    onNavigateToPlayIntegrityFix: () -> Unit = {}
+    onNavigateToPlayIntegrityFix: () -> Unit = {},
+    onNavigateToGameSpoofing: () -> Unit = {}
 ) {
     val context = LocalContext.current
     
@@ -149,6 +154,7 @@ fun EssentialsContent(
                 title = "GameSpace",
                 summary = "Optimize your gaming experience with GameSpace features",
                 icon = Icons.Default.SportsEsports,
+                position = PreferencePosition.Top,
                 showExternalIcon = true,
                 onClick = {
                     val intent = Intent().apply {
@@ -160,6 +166,14 @@ fun EssentialsContent(
                     }
                     context.startActivity(intent)
                 }
+            )
+            
+            ClickablePreference(
+                title = "Game Spoofing",
+                summary = "Spoof device properties for specific games",
+                icon = Icons.Default.Gamepad,
+                position = PreferencePosition.Bottom,
+                onClick = onNavigateToGameSpoofing
             )
         }
         

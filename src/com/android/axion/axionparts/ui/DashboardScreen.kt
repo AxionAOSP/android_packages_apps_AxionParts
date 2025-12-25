@@ -64,6 +64,7 @@ import com.android.axion.axionparts.ui.screens.UIFeaturesScreen
 import com.android.axion.axionparts.ui.screens.MultitaskingContent
 import com.android.axion.axionparts.ui.screens.PerformanceContent
 import com.android.axion.axionparts.ui.screens.PlayIntegrityFixScreen
+import com.android.axion.axionparts.ui.screens.GameSpoofingScreen
 import com.android.axion.axionparts.ui.screens.TrickyStoreScreen
 
 val navItems = listOf(
@@ -105,6 +106,7 @@ fun DashboardScreen() {
     var showSoundFeatures by rememberSaveable { mutableStateOf(false) }
     var showTrickyStore by rememberSaveable { mutableStateOf(false) }
     var showPlayIntegrityFix by rememberSaveable { mutableStateOf(false) }
+    var showGameSpoofing by rememberSaveable { mutableStateOf(false) }
     
     val context = LocalContext.current
     val contentResolver = context.contentResolver
@@ -144,6 +146,7 @@ fun DashboardScreen() {
         showSoundFeatures -> "sound"
         showTrickyStore -> "trickystore"
         showPlayIntegrityFix -> "playintegrityfix"
+        showGameSpoofing -> "gamespoofing"
         else -> "none"
     }
     
@@ -193,6 +196,12 @@ fun DashboardScreen() {
                 BackHandler { showPlayIntegrityFix = false }
                 PlayIntegrityFixScreen(
                     onBackClick = { showPlayIntegrityFix = false }
+                )
+            }
+            "gamespoofing" -> {
+                BackHandler { showGameSpoofing = false }
+                GameSpoofingScreen(
+                    onBackClick = { showGameSpoofing = false }
                 )
             }
             else -> {
@@ -282,7 +291,8 @@ fun DashboardScreen() {
                                     showAppPicker = true
                                 },
                                 onNavigateToTrickyStore = { showTrickyStore = true },
-                                onNavigateToPlayIntegrityFix = { showPlayIntegrityFix = true }
+                                onNavigateToPlayIntegrityFix = { showPlayIntegrityFix = true },
+                                onNavigateToGameSpoofing = { showGameSpoofing = true }
                             )
                             "performance" -> PerformanceContent()
                             "multitasking" -> MultitaskingContent()
