@@ -49,6 +49,7 @@ import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.ui.components.ClickablePreference
 import com.android.axion.axionparts.ui.components.EssentialAppsPreference
 import com.android.axion.axionparts.ui.components.PreferencePosition
+import com.android.axion.axionparts.ui.components.SecureSettingSwitch
 import com.android.axion.axionparts.ui.components.SettingsSection
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -198,8 +199,15 @@ fun EssentialsContent(
                 title = "Play Integrity Fix",
                 summary = "Configure build fingerprint spoofing",
                 icon = Icons.Default.Fingerprint,
-                position = PreferencePosition.Bottom,
+                position = PreferencePosition.Middle,
                 onClick = onNavigateToPlayIntegrityFix
+            )
+            
+            SecureSettingSwitch(
+                settingKey = "window_ignore_secure",
+                title = "Ignore Window Secure",
+                summary = "Allow taking screenshots and screen recordings in all apps",
+                position = PreferencePosition.Bottom
             )
         }
         
