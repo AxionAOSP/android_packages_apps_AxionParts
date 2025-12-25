@@ -27,6 +27,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Fingerprint
+import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.SportsEsports
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -53,7 +55,9 @@ import com.android.axion.axionparts.ui.components.SettingsSection
 fun EssentialsScreen(
     onBackClick: (() -> Unit)? = null,
     showTopBar: Boolean = true,
-    onNavigateToAppPicker: (selectedApps: Set<String>) -> Unit = {}
+    onNavigateToAppPicker: (selectedApps: Set<String>) -> Unit = {},
+    onNavigateToTrickyStore: () -> Unit = {},
+    onNavigateToPlayIntegrityFix: () -> Unit = {}
 ) {
     if (showTopBar) {
         Scaffold(
@@ -86,13 +90,17 @@ fun EssentialsScreen(
         ) { innerPadding ->
             EssentialsContent(
                 modifier = Modifier.padding(innerPadding),
-                onNavigateToAppPicker = onNavigateToAppPicker
+                onNavigateToAppPicker = onNavigateToAppPicker,
+                onNavigateToTrickyStore = onNavigateToTrickyStore,
+                onNavigateToPlayIntegrityFix = onNavigateToPlayIntegrityFix
             )
         }
     } else {
         EssentialsContent(
             modifier = Modifier,
-            onNavigateToAppPicker = onNavigateToAppPicker
+            onNavigateToAppPicker = onNavigateToAppPicker,
+            onNavigateToTrickyStore = onNavigateToTrickyStore,
+            onNavigateToPlayIntegrityFix = onNavigateToPlayIntegrityFix
         )
     }
 }
@@ -100,7 +108,9 @@ fun EssentialsScreen(
 @Composable
 fun EssentialsContent(
     modifier: Modifier = Modifier,
-    onNavigateToAppPicker: (selectedApps: Set<String>) -> Unit = {}
+    onNavigateToAppPicker: (selectedApps: Set<String>) -> Unit = {},
+    onNavigateToTrickyStore: () -> Unit = {},
+    onNavigateToPlayIntegrityFix: () -> Unit = {}
 ) {
     val context = LocalContext.current
     
@@ -150,6 +160,32 @@ fun EssentialsContent(
                     }
                     context.startActivity(intent)
                 }
+            )
+        }
+        
+        SettingsSection(
+            title = "Security",
+            icon = Icons.Default.Key,
+            gradientColors = listOf(
+                Color(0xFF059669),
+                Color(0xFF10B981),
+                Color(0xFF34D399)
+            )
+        ) {
+            ClickablePreference(
+                title = "TrickyStore",
+                summary = "Manage keybox for key attestation spoofing",
+                icon = Icons.Default.Key,
+                position = PreferencePosition.Top,
+                onClick = onNavigateToTrickyStore
+            )
+            
+            ClickablePreference(
+                title = "Play Integrity Fix",
+                summary = "Configure build fingerprint spoofing",
+                icon = Icons.Default.Fingerprint,
+                position = PreferencePosition.Bottom,
+                onClick = onNavigateToPlayIntegrityFix
             )
         }
         

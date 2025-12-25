@@ -63,6 +63,8 @@ import com.android.axion.axionparts.ui.screens.SoundFeaturesScreen
 import com.android.axion.axionparts.ui.screens.UIFeaturesScreen
 import com.android.axion.axionparts.ui.screens.MultitaskingContent
 import com.android.axion.axionparts.ui.screens.PerformanceContent
+import com.android.axion.axionparts.ui.screens.PlayIntegrityFixScreen
+import com.android.axion.axionparts.ui.screens.TrickyStoreScreen
 
 val navItems = listOf(
     NavItem(
@@ -101,6 +103,8 @@ fun DashboardScreen() {
     var showLockscreenFeatures by rememberSaveable { mutableStateOf(false) }
     var showUIFeatures by rememberSaveable { mutableStateOf(false) }
     var showSoundFeatures by rememberSaveable { mutableStateOf(false) }
+    var showTrickyStore by rememberSaveable { mutableStateOf(false) }
+    var showPlayIntegrityFix by rememberSaveable { mutableStateOf(false) }
     
     val context = LocalContext.current
     val contentResolver = context.contentResolver
@@ -138,6 +142,8 @@ fun DashboardScreen() {
         showUIFeatures -> "ui_features"
         showLockscreenFeatures -> "lockscreen"
         showSoundFeatures -> "sound"
+        showTrickyStore -> "trickystore"
+        showPlayIntegrityFix -> "playintegrityfix"
         else -> "none"
     }
     
@@ -175,6 +181,18 @@ fun DashboardScreen() {
                 BackHandler { showSoundFeatures = false }
                 SoundFeaturesScreen(
                     onBackClick = { showSoundFeatures = false }
+                )
+            }
+            "trickystore" -> {
+                BackHandler { showTrickyStore = false }
+                TrickyStoreScreen(
+                    onBackClick = { showTrickyStore = false }
+                )
+            }
+            "playintegrityfix" -> {
+                BackHandler { showPlayIntegrityFix = false }
+                PlayIntegrityFixScreen(
+                    onBackClick = { showPlayIntegrityFix = false }
                 )
             }
             else -> {
@@ -262,7 +280,9 @@ fun DashboardScreen() {
                                 onNavigateToAppPicker = { selectedApps ->
                                     appPickerSelectedApps = selectedApps
                                     showAppPicker = true
-                                }
+                                },
+                                onNavigateToTrickyStore = { showTrickyStore = true },
+                                onNavigateToPlayIntegrityFix = { showPlayIntegrityFix = true }
                             )
                             "performance" -> PerformanceContent()
                             "multitasking" -> MultitaskingContent()
