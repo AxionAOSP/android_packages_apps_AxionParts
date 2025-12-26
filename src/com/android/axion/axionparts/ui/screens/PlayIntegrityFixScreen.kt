@@ -50,7 +50,10 @@ import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Fingerprint
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Upload
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -190,6 +193,35 @@ fun PlayIntegrityFixContent(
             pifDir.mkdirs()
         }
         refreshStatus()
+    }
+
+    fun updateConfig(key: String, value: Any) {
+        val activeFile = configFiles.find { it.isActive } ?: return
+        val file = File(PIF_PATH, activeFile.fileName)
+        if (!file.exists()) return
+
+        try {
+            if (activeFile.fileName.endsWith(".json")) {
+                val content = file.readText()
+                val json = try { JSONObject(content) } catch (e: Exception) { JSONObject() }
+                json.put(key, value)
+                file.writeText(json.toString(2))
+            } else {
+                val lines = file.readLines().toMutableList()
+                val keyStr = "$key="
+                val idx = lines.indexOfFirst { it.trim().startsWith(keyStr) }
+                if (idx != -1) {
+                    lines[idx] = "$key=$value"
+                } else {
+                    lines.add("$key=$value")
+                }
+                file.writeText(lines.joinToString("\n"))
+            }
+            refreshStatus()
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to update config", e)
+            Toast.makeText(context, "Failed to update: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
     
     fun fetchPixelBetaPif() {
@@ -412,7 +444,7 @@ fun PlayIntegrityFixContent(
                             modifier = Modifier
                                 .size(40.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFF10B981)),
+                                .background(MaterialTheme.colorScheme.primary),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(
@@ -541,6 +573,64 @@ fun PlayIntegrityFixContent(
                             Text("Replace")
                         }
                     }
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+
+        if (activeConfigFile != null) {
+            val isSpoofPhotos = activeConfigFile.data["spoofPhotos"]?.let { 
+                it == "true" || it == "1" 
+            } ?: false
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(24.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                )
+            ) {
+                Row(
+                    modifier = Modifier.padding(20.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clip(CircleShape)
+                            .background(Color(0xFF4285F4)),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            Icons.Default.Image,
+                            contentDescription = null,
+                            tint = Color.White,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                    
+                    Spacer(modifier = Modifier.width(16.dp))
+                    
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = "Spoof Google Photos",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "Unlimited original quality backup",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    
+                    Switch(
+                        checked = isSpoofPhotos,
+                        onCheckedChange = { checked ->
+                            updateConfig("spoofPhotos", checked.toString())
+                        }
+                    )
                 }
             }
             
