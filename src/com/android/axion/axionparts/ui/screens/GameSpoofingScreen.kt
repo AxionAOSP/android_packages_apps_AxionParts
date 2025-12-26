@@ -20,64 +20,19 @@ import android.content.Context
 
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
-import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.animation.*
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.material.icons.filled.Gamepad
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -85,11 +40,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 
@@ -105,20 +59,76 @@ data class GameConfig(
 
 data class DeviceProfile(
     val name: String,
-    val model: String,
-    val manufacturer: String,
-    val device: String = "",
-    val product: String = ""
+    val props: Map<String, String>,
+    val isCustom: Boolean = false
 )
 
 private val PRESET_PROFILES = listOf(
-    DeviceProfile("ROG Phone 8 Pro", "ASUS_AI2401_A", "asus", "AI2401", "WW_AI2401"),
-    DeviceProfile("Galaxy S24 Ultra", "SM-S928B", "samsung", "e3q", "e3qxxx"),
-    DeviceProfile("Xiaomi 13 Pro", "2210132C", "Xiaomi", "nuwa", "nuwa_global"),
-    DeviceProfile("OnePlus 9 Pro", "LE2101", "OnePlus", "lemonadep", "OnePlus9Pro"),
-    DeviceProfile("Black Shark 4", "2SM-X706B", "blackshark", "shark", "shark_global"),
-    DeviceProfile("Lenovo Y700", "Lenovo TB-9707F", "Lenovo", "TB-9707F", "TB-9707F")
+    DeviceProfile("ROG Phone 8 Pro", mapOf("MODEL" to "ASUS_AI2401_A", "MANUFACTURER" to "asus")),
+    DeviceProfile("Galaxy S24 Ultra", mapOf("MODEL" to "SM-S928B", "MANUFACTURER" to "samsung")),
+    DeviceProfile("Xiaomi 13 Pro", mapOf("MODEL" to "2210132C", "MANUFACTURER" to "Xiaomi")),
+    DeviceProfile("OnePlus 9 Pro", mapOf("MODEL" to "LE2101", "MANUFACTURER" to "OnePlus")),
+    DeviceProfile("Black Shark 4", mapOf("MODEL" to "2SM-X706B", "MANUFACTURER" to "blackshark")),
+    DeviceProfile("Lenovo Y700", mapOf("MODEL" to "Lenovo TB-9707F", "MANUFACTURER" to "Lenovo"))
 )
+
+private const val PRESETS_KEY = "game_spoofing_user_presets"
+
+private fun loadCustomPresets(context: Context): List<DeviceProfile> {
+    val jsonString = Settings.Secure.getString(context.contentResolver, PRESETS_KEY) ?: return emptyList()
+    val profiles = mutableListOf<DeviceProfile>()
+    try {
+        val jsonArray = JSONArray(jsonString)
+        for (i in 0 until jsonArray.length()) {
+            val obj = jsonArray.getJSONObject(i)
+            val name = obj.getString("name")
+            val propsObj = obj.getJSONObject("props")
+            val props = mutableMapOf<String, String>()
+            val keys = propsObj.keys()
+            while (keys.hasNext()) {
+                val key = keys.next()
+                props[key] = propsObj.getString(key)
+            }
+            profiles.add(DeviceProfile(name, props, true))
+        }
+    } catch (e: Exception) {
+        Log.e(TAG, "Failed to load custom presets", e)
+    }
+    return profiles
+}
+
+private fun saveCustomPreset(context: Context, profile: DeviceProfile) {
+    val current = loadCustomPresets(context).toMutableList()
+    current.add(profile)
+    
+    val jsonArray = JSONArray()
+    current.forEach { p ->
+        val obj = JSONObject()
+        obj.put("name", p.name)
+        val propsObj = JSONObject()
+        p.props.forEach { (k, v) -> propsObj.put(k, v) }
+        obj.put("props", propsObj)
+        jsonArray.put(obj)
+    }
+    
+    Settings.Secure.putString(context.contentResolver, PRESETS_KEY, jsonArray.toString())
+}
+
+private fun deleteCustomPreset(context: Context, profileName: String) {
+    val current = loadCustomPresets(context).filter { it.name != profileName }
+    
+    val jsonArray = JSONArray()
+    current.forEach { p ->
+        val obj = JSONObject()
+        obj.put("name", p.name)
+        val propsObj = JSONObject()
+        p.props.forEach { (k, v) -> propsObj.put(k, v) }
+        obj.put("props", propsObj)
+        jsonArray.put(obj)
+    }
+    
+    Settings.Secure.putString(context.contentResolver, PRESETS_KEY, jsonArray.toString())
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -541,13 +551,24 @@ fun AddGameDialog(
 ) {
     val context = LocalContext.current
     val pm = context.packageManager
+    val scope = rememberCoroutineScope()
     var installedGames by remember { mutableStateOf(listOf<ApplicationInfo>()) }
     var selectedGame by remember { mutableStateOf<ApplicationInfo?>(null) }
     var selectedProfile by remember { mutableStateOf<DeviceProfile?>(null) }
     var showProfileSelector by remember { mutableStateOf(false) }
     
+    var mergedProfiles by remember { mutableStateOf(PRESET_PROFILES) }
+    var showCreatePresetDialog by remember { mutableStateOf(false) }
+
+    fun refreshPresets() {
+        scope.launch {
+            val custom = withContext(Dispatchers.IO) { loadCustomPresets(context) }
+            mergedProfiles = PRESET_PROFILES + custom
+        }
+    }
+
     LaunchedEffect(Unit) {
-        installedGames = withContext(Dispatchers.IO) {
+        val games = withContext(Dispatchers.IO) {
             pm.getInstalledApplications(PackageManager.GET_META_DATA)
                 .filter { 
                     val isSystem = (it.flags and ApplicationInfo.FLAG_SYSTEM) != 0
@@ -557,6 +578,20 @@ fun AddGameDialog(
                 }
                 .sortedBy { pm.getApplicationLabel(it).toString() }
         }
+        installedGames = games
+        refreshPresets()
+    }
+
+    if (showCreatePresetDialog) {
+        CreatePresetDialog(
+            onDismiss = { showCreatePresetDialog = false },
+            onPresetCreated = { newProfile ->
+                saveCustomPreset(context, newProfile)
+                refreshPresets()
+                showCreatePresetDialog = false
+                selectedProfile = newProfile
+            }
+        )
     }
     
     AlertDialog(
@@ -597,14 +632,23 @@ fun AddGameDialog(
                         }
                     }
                 } else {
-                    Text("Select device profile:", style = MaterialTheme.typography.labelMedium)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text("Select device profile:", style = MaterialTheme.typography.labelMedium)
+                        TextButton(onClick = { showCreatePresetDialog = true }) {
+                            Text("Create New")
+                        }
+                    }
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(300.dp)
                             .verticalScroll(rememberScrollState())
                     ) {
-                        PRESET_PROFILES.forEach { profile ->
+                        mergedProfiles.forEach { profile ->
                             Surface(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -615,16 +659,52 @@ fun AddGameDialog(
                                     Color.Transparent
                             ) {
                                 Column(modifier = Modifier.padding(12.dp)) {
-                                    Text(
-                                        text = profile.name,
-                                        style = MaterialTheme.typography.titleSmall,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                    Text(
-                                        text = "${profile.manufacturer} ${profile.model}",
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceBetween,
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Text(
+                                            text = profile.name,
+                                            style = MaterialTheme.typography.titleSmall,
+                                            fontWeight = FontWeight.Bold,
+                                            modifier = Modifier.weight(1f)
+                                        )
+                                        if (profile.isCustom) {
+                                            Row(
+                                                verticalAlignment = Alignment.CenterVertically,
+                                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                            ) {
+                                                Text(
+                                                    text = "Custom",
+                                                    style = MaterialTheme.typography.labelSmall,
+                                                    color = MaterialTheme.colorScheme.tertiary
+                                                )
+                                                IconButton(
+                                                    onClick = {
+                                                        deleteCustomPreset(context, profile.name)
+                                                        refreshPresets()
+                                                        if (selectedProfile == profile) selectedProfile = null
+                                                    },
+                                                    modifier = Modifier.size(24.dp)
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Delete,
+                                                        contentDescription = "Delete preset",
+                                                        modifier = Modifier.size(16.dp),
+                                                        tint = MaterialTheme.colorScheme.error
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (profile.props.containsKey("MANUFACTURER") && profile.props.containsKey("MODEL")) {
+                                        Text(
+                                            text = "${profile.props["MANUFACTURER"]} ${profile.props["MODEL"]}",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -637,14 +717,7 @@ fun AddGameDialog(
                 onClick = {
                     if (selectedGame != null && selectedProfile != null) {
                         val props = mutableMapOf<String, String>()
-                        props["MODEL"] = selectedProfile!!.model
-                        props["MANUFACTURER"] = selectedProfile!!.manufacturer
-                        if (selectedProfile!!.device.isNotEmpty()) {
-                            props["DEVICE"] = selectedProfile!!.device
-                        }
-                        if (selectedProfile!!.product.isNotEmpty()) {
-                            props["PRODUCT"] = selectedProfile!!.product
-                        }
+                        props.putAll(selectedProfile!!.props)
                         
                         onGameAdded(
                             GameConfig(
@@ -668,65 +741,236 @@ fun AddGameDialog(
     )
 }
 
+
+@Composable
+fun PropertyEditor(
+    props: MutableList<Pair<String, String>>,
+    onAddProp: () -> Unit
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        props.forEachIndexed { index, pair ->
+            OutlinedCard(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.outlinedCardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
+                )
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "Property ${index + 1}",
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        IconButton(
+                            onClick = { props.removeAt(index) },
+                            modifier = Modifier.size(24.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = "Remove",
+                                modifier = Modifier.size(16.dp)
+                            )
+                        }
+                    }
+                    
+                    OutlinedTextField(
+                        value = pair.first,
+                        onValueChange = { newKey -> props[index] = newKey to pair.second },
+                        label = { Text("Key") },
+                        modifier = Modifier.fillMaxWidth(),
+                        singleLine = true,
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    
+                    OutlinedTextField(
+                        value = pair.second,
+                        onValueChange = { newValue -> props[index] = pair.first to newValue },
+                        label = { Text("Value") },
+                        modifier = Modifier.fillMaxWidth(),
+                        singleLine = true,
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                }
+            }
+        }
+        
+        FilledTonalButton(
+            onClick = onAddProp,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("Add Property")
+        }
+    }
+}
+
+@Composable
+fun CreatePresetDialog(
+    onDismiss: () -> Unit,
+    onPresetCreated: (DeviceProfile) -> Unit
+) {
+    var name by remember { mutableStateOf("") }
+    val editableProps = remember { mutableStateListOf<Pair<String, String>>().apply {
+        add("MODEL" to "")
+        add("MANUFACTURER" to "")
+    } }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Create Preset") },
+        text = {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text("Preset Name") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                
+                PropertyEditor(
+                    props = editableProps,
+                    onAddProp = { editableProps.add("" to "") }
+                )
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    if (name.isNotBlank()) {
+                        val props = mutableMapOf<String, String>()
+                        editableProps.forEach { (k, v) -> if (k.isNotBlank()) props[k.trim()] = v.trim() }
+                        onPresetCreated(DeviceProfile(name.trim(), props, true))
+                    }
+                },
+                enabled = name.isNotBlank()
+            ) {
+                Text("Create")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Cancel") }
+        }
+    )
+}
+
 @Composable
 fun EditGameDialog(
     game: GameConfig,
     onDismiss: () -> Unit,
     onGameUpdated: (GameConfig) -> Unit
 ) {
-    var model by remember { mutableStateOf(game.props["MODEL"] ?: "") }
-    var manufacturer by remember { mutableStateOf(game.props["MANUFACTURER"] ?: "") }
-    var device by remember { mutableStateOf(game.props["DEVICE"] ?: "") }
-    var product by remember { mutableStateOf(game.props["PRODUCT"] ?: "") }
+    val propsList = remember { mutableListOf<Pair<String, String>>().apply {
+        game.props.forEach { add(it.toPair()) }
+        if (isEmpty()) {
+            add("MODEL" to "")
+            add("MANUFACTURER" to "")
+        }
+    } }
+
+    val editableProps = remember { mutableStateListOf<Pair<String, String>>().apply { 
+        addAll(propsList)
+    } }
+
+    var showSavePresetDialog by remember { mutableStateOf(false) }
+    var presetName by remember { mutableStateOf("") }
+    val context = LocalContext.current
     
+    if (showSavePresetDialog) {
+        AlertDialog(
+            onDismissRequest = { showSavePresetDialog = false },
+            title = { Text("Save as Preset") },
+            text = {
+                OutlinedTextField(
+                    value = presetName,
+                    onValueChange = { presetName = it },
+                    label = { Text("Preset Name") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        if (presetName.isNotBlank()) {
+                            val propsToSave = mutableMapOf<String, String>()
+                            editableProps.forEach { (key, value) ->
+                                if (key.isNotBlank()) propsToSave[key.trim()] = value.trim()
+                            }
+                            val newProfile = DeviceProfile(presetName.trim(), propsToSave, true)
+                            saveCustomPreset(context, newProfile)
+                            Toast.makeText(context, "Preset saved", Toast.LENGTH_SHORT).show()
+                            showSavePresetDialog = false
+                        }
+                    },
+                    enabled = presetName.isNotBlank()
+                ) {
+                    Text("Save")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showSavePresetDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
+
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Edit ${game.appName}") },
+        title = { 
+            Text(
+                text = "Edit ${game.appName}",
+                textAlign = TextAlign.Center
+            ) 
+        },
         text = {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                OutlinedTextField(
-                    value = model,
-                    onValueChange = { model = it },
-                    label = { Text("MODEL") },
-                    modifier = Modifier.fillMaxWidth()
+                PropertyEditor(
+                    props = editableProps,
+                    onAddProp = { editableProps.add("" to "") }
                 )
-                OutlinedTextField(
-                    value = manufacturer,
-                    onValueChange = { manufacturer = it },
-                    label = { Text("MANUFACTURER") },
+                
+                OutlinedButton(
+                    onClick = { showSavePresetDialog = true },
                     modifier = Modifier.fillMaxWidth()
-                )
-                OutlinedTextField(
-                    value = device,
-                    onValueChange = { device = it },
-                    label = { Text("DEVICE (optional)") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-                OutlinedTextField(
-                    value = product,
-                    onValueChange = { product = it },
-                    label = { Text("PRODUCT (optional)") },
-                    modifier = Modifier.fillMaxWidth()
-                )
+                ) {
+                    Text("Save as Preset")
+                }
             }
         },
         confirmButton = {
-            TextButton(
+            Button(
                 onClick = {
-                    val props = mutableMapOf<String, String>()
-                    if (model.isNotEmpty()) props["MODEL"] = model
-                    if (manufacturer.isNotEmpty()) props["MANUFACTURER"] = manufacturer
-                    if (device.isNotEmpty()) props["DEVICE"] = device
-                    if (product.isNotEmpty()) props["PRODUCT"] = product
-                    
-                    onGameUpdated(game.copy(props = props))
-                },
-                enabled = model.isNotEmpty() && manufacturer.isNotEmpty()
+                    val newProps = mutableMapOf<String, String>()
+                    editableProps.forEach { (key, value) ->
+                        if (key.isNotBlank()) { 
+                            newProps[key.trim()] = value.trim()
+                        }
+                    }
+                    onGameUpdated(game.copy(props = newProps))
+                }
             ) {
                 Text("Save")
             }
