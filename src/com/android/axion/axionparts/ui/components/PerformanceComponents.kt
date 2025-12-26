@@ -124,42 +124,28 @@ fun PowerModeToggle(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     
-    
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.95f else 1f,
         animationSpec = spring(dampingRatio = 0.5f, stiffness = 300f),
         label = "scale"
     )
     
-    
-    val gradientStart by animateColorAsState(
-        targetValue = if (isEnabled) Color(0xFFf12711) else Color(0xFF434343),
-        animationSpec = tween(500),
-        label = "gradientStart"
-    )
-    val gradientEnd by animateColorAsState(
-        targetValue = if (isEnabled) Color(0xFFf5af19) else Color(0xFF000000),
-        animationSpec = tween(500),
-        label = "gradientEnd"
+    val containerColor by animateColorAsState(
+        targetValue = if (isEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+        animationSpec = tween(300),
+        label = "containerColor"
     )
     
+    val contentColor by animateColorAsState(
+        targetValue = if (isEnabled) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
+        animationSpec = tween(300),
+        label = "contentColor"
+    )
     
     val iconRotation by animateFloatAsState(
         targetValue = if (isEnabled) 360f else 0f,
         animationSpec = tween(600, easing = androidx.compose.animation.core.FastOutSlowInEasing),
         label = "iconRotation"
-    )
-    
-    
-    val infiniteTransition = rememberInfiniteTransition(label = "pulse")
-    val pulseAlpha by infiniteTransition.animateFloat(
-        initialValue = 0.3f,
-        targetValue = 0.6f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "pulseAlpha"
     )
     
     val statusColor by animateColorAsState(
@@ -174,19 +160,7 @@ fun PowerModeToggle(
             .height(80.dp)
             .scale(scale)
             .clip(ExpressiveShapes.large)
-            .background(Brush.linearGradient(colors = listOf(gradientStart, gradientEnd)))
-            .then(
-                if (isEnabled) {
-                    Modifier.background(
-                        Brush.radialGradient(
-                            colors = listOf(
-                                Color.White.copy(alpha = pulseAlpha * 0.3f),
-                                Color.Transparent
-                            )
-                        )
-                    )
-                } else Modifier
-            )
+            .background(containerColor)
             .clickable(interactionSource = interactionSource, indication = null) {
                 val newValue = !isEnabled
                 isEnabled = newValue
@@ -219,7 +193,7 @@ fun PowerModeToggle(
                 Icon(
                     imageVector = Icons.Default.Speed,
                     contentDescription = null,
-                    tint = Color.White,
+                    tint = contentColor,
                     modifier = Modifier
                         .size(32.dp)
                         .graphicsLayer { rotationZ = iconRotation }
@@ -229,28 +203,14 @@ fun PowerModeToggle(
                         text = "Performance Mode",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = contentColor
                     )
                     Text(
                         text = if (isEnabled) "Maximum performance enabled" else "Balanced mode",
                         style = MaterialTheme.typography.bodySmall,
-                        color = Color.White.copy(alpha = 0.8f)
+                        color = contentColor.copy(alpha = 0.7f)
                     )
                 }
-            }
-            Box(
-                modifier = Modifier
-                    .size(20.dp)
-                    .clip(CircleShape)
-                    .background(Color.White.copy(alpha = 0.3f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(12.dp)
-                        .clip(CircleShape)
-                        .background(statusColor)
-                )
             }
         }
     }
@@ -262,7 +222,7 @@ fun BoostToggleCard(
     settingKey: String,
     title: String,
     icon: ImageVector,
-    gradientColors: List<Color>,
+    gradientColors: List<Color> = emptyList(),
     defaultValue: Boolean = false,
     modifier: Modifier = Modifier
 ) {
@@ -306,26 +266,16 @@ fun BoostToggleCard(
         label = "scale"
     )
     
-    val gradientStart by animateColorAsState(
-        targetValue = if (isEnabled) gradientColors.first() else Color(0xFF434343),
-        animationSpec = tween(500),
-        label = "gradientStart"
-    )
-    val gradientEnd by animateColorAsState(
-        targetValue = if (isEnabled) gradientColors.last() else Color(0xFF000000),
-        animationSpec = tween(500),
-        label = "gradientEnd"
+    val containerColor by animateColorAsState(
+        targetValue = if (isEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+        animationSpec = tween(300),
+        label = "containerColor"
     )
     
-    val infiniteTransition = rememberInfiniteTransition(label = "boostPulse")
-    val pulseAlpha by infiniteTransition.animateFloat(
-        initialValue = 0.2f,
-        targetValue = 0.5f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1200),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "pulseAlpha"
+    val contentColor by animateColorAsState(
+        targetValue = if (isEnabled) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
+        animationSpec = tween(300),
+        label = "contentColor"
     )
     
     val dotScale by animateFloatAsState(
@@ -345,19 +295,7 @@ fun BoostToggleCard(
             .height(100.dp)
             .scale(scale)
             .clip(ExpressiveShapes.large)
-            .background(Brush.linearGradient(colors = listOf(gradientStart, gradientEnd)))
-            .then(
-                if (isEnabled) {
-                    Modifier.background(
-                        Brush.radialGradient(
-                            colors = listOf(
-                                Color.White.copy(alpha = pulseAlpha * 0.25f),
-                                Color.Transparent
-                            )
-                        )
-                    )
-                } else Modifier
-            )
+            .background(containerColor)
             .clickable(interactionSource = interactionSource, indication = null) {
                 val newValue = !isEnabled
                 isEnabled = newValue
@@ -377,36 +315,21 @@ fun BoostToggleCard(
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
-                    tint = Color.White,
+                    tint = contentColor,
                     modifier = Modifier.size(24.dp)
                 )
-                Box(
-                    modifier = Modifier
-                        .size(16.dp)
-                        .clip(CircleShape)
-                        .background(Color.White.copy(alpha = 0.3f)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .size(10.dp)
-                            .scale(dotScale)
-                            .clip(CircleShape)
-                            .background(statusColor)
-                    )
-                }
             }
             Column {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = contentColor
                 )
                 Text(
                     text = if (isEnabled) "Active" else "Inactive",
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color.White.copy(alpha = 0.8f)
+                    color = contentColor.copy(alpha = 0.7f)
                 )
             }
         }

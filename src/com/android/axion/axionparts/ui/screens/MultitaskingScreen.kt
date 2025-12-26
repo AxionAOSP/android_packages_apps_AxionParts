@@ -27,6 +27,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Splitscreen
 import androidx.compose.material.icons.filled.ViewSidebar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -107,12 +108,7 @@ fun MultitaskingContent(
         
         SettingsSection(
             title = "Edge Features",
-            icon = Icons.Default.ViewSidebar,
-            gradientColors = listOf(
-                Color(0xFF0891B2),
-                Color(0xFF06B6D4),
-                Color(0xFF22D3EE)
-            )
+            icon = Icons.Default.ViewSidebar
         ) {
             ClickablePreference(
                 title = "Sidebar",

@@ -27,10 +27,12 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Diamond
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Gamepad
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.ScreenshotMonitor
 import androidx.compose.material.icons.filled.SportsEsports
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -130,12 +132,7 @@ fun EssentialsContent(
         
         SettingsSection(
             title = "Essential Notifications",
-            icon = Icons.Default.Notifications,
-            gradientColors = listOf(
-                Color(0xFF7C3AED),
-                Color(0xFFA855F7),
-                Color(0xFFD946EF)
-            )
+            icon = Icons.Default.Notifications
         ) {
             EssentialAppsPreference(
                 onNavigateToAppPicker = onNavigateToAppPicker
@@ -144,12 +141,7 @@ fun EssentialsContent(
         
         SettingsSection(
             title = "Gaming",
-            icon = Icons.Default.SportsEsports,
-            gradientColors = listOf(
-                Color(0xFFDC2626),
-                Color(0xFFEF4444),
-                Color(0xFFF87171)
-            )
+            icon = Icons.Default.SportsEsports
         ) {
             ClickablePreference(
                 title = "GameSpace",
@@ -180,12 +172,7 @@ fun EssentialsContent(
         
         SettingsSection(
             title = "Security",
-            icon = Icons.Default.Key,
-            gradientColors = listOf(
-                Color(0xFF059669),
-                Color(0xFF10B981),
-                Color(0xFF34D399)
-            )
+            icon = Icons.Default.Key
         ) {
             ClickablePreference(
                 title = "TrickyStore",
@@ -207,6 +194,7 @@ fun EssentialsContent(
                 settingKey = "window_ignore_secure",
                 title = "Ignore Window Secure",
                 summary = "Allow taking screenshots and screen recordings in all apps",
+                icon = Icons.Default.ScreenshotMonitor,
                 position = PreferencePosition.Bottom
             )
         }

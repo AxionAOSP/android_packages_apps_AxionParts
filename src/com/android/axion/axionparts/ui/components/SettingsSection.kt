@@ -23,7 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -34,8 +33,8 @@ import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 fun SettingsSection(
     title: String,
     icon: ImageVector,
-    gradientColors: List<Color>,
     modifier: Modifier = Modifier,
+    gradientColors: List<Color> = emptyList(),
     visible: Boolean = true,
     content: @Composable ColumnScope.() -> Unit
 ) {
@@ -47,41 +46,15 @@ fun SettingsSection(
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp)
+                .padding(vertical = 12.dp)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(ExpressiveShapes.medium)
-                    .background(Brush.linearGradient(colors = gradientColors))
-                    .padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clip(ExpressiveShapes.small)
-                        .background(Color.White.copy(alpha = 0.2f)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = null,
-                        tint = Color.White,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
-            }
-            
-            Spacer(modifier = Modifier.height(12.dp))
-            
+            Text(
+                text = title.uppercase(),
+                style = MaterialTheme.typography.labelMedium,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.padding(start = 4.dp, bottom = 12.dp)
+            )
             
             Column(
                 modifier = Modifier.fillMaxWidth(),
@@ -108,41 +81,38 @@ fun SettingsSectionTonal(
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp)
+                .padding(vertical = 12.dp)
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(ExpressiveShapes.medium)
-                    .background(MaterialTheme.colorScheme.primaryContainer)
-                    .padding(16.dp),
+                    .padding(horizontal = 4.dp, vertical = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Box(
                     modifier = Modifier
                         .size(40.dp)
-                        .clip(ExpressiveShapes.small)
-                        .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)),
+                        .clip(ExpressiveShapes.medium)
+                        .background(MaterialTheme.colorScheme.tertiaryContainer),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = icon,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                        modifier = Modifier.size(24.dp)
+                        tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                        modifier = Modifier.size(22.dp)
                     )
                 }
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
             
-            Spacer(modifier = Modifier.height(12.dp))
-            
+            Spacer(modifier = Modifier.height(8.dp))
             
             Column(
                 modifier = Modifier.fillMaxWidth(),

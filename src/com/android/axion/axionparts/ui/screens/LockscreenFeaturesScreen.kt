@@ -241,11 +241,7 @@ private fun LockscreenMainContent(
         AnimatedFeatureCard(
             title = "Edge Light",
             description = "Lighting effects on screen edges for notifications",
-            gradientColors = listOf(
-                Color(0xFF0891B2),
-                Color(0xFF06B6D4),
-                Color(0xFF22D3EE)
-            ),
+            illustrationBackground = Color(0xFF06B6D4),
             onClick = onNavigateToEdgeLight
         ) {
             EdgeLightIllustration()
@@ -255,11 +251,7 @@ private fun LockscreenMainContent(
         AnimatedFeatureCard(
             title = "Media Art",
             description = "Album artwork on lockscreen during media playback",
-            gradientColors = listOf(
-                Color(0xFF7C3AED),
-                Color(0xFFA855F7),
-                Color(0xFFD946EF)
-            ),
+            illustrationBackground = Color(0xFFA855F7),
             onClick = onNavigateToMediaArt
         ) {
             MediaArtIllustration()
@@ -269,11 +261,7 @@ private fun LockscreenMainContent(
         AnimatedFeatureCard(
             title = "Pulse Visualizer",
             description = "Audio visualizer on lockscreen and ambient display",
-            gradientColors = listOf(
-                Color(0xFFDC2626),
-                Color(0xFFEF4444),
-                Color(0xFFF87171)
-            ),
+            illustrationBackground = Color(0xFFEF4444),
             onClick = onNavigateToPulse
         ) {
             PulseVisualizerIllustration()
@@ -300,18 +288,13 @@ fun EdgeLightContent(
         
         
         FeatureIllustrationHeader(
-            gradientColors = listOf(
-                Color(0xFF0891B2),
-                Color(0xFF06B6D4),
-                Color(0xFF22D3EE)
-            )
+            illustrationBackground = Color(0xFF06B6D4)
         ) {
             EdgeLightIllustrationLarge()
         }
         
         Spacer(modifier = Modifier.height(16.dp))
-        
-        
+
         PreferenceGroup(title = "General") {
             item {
                 SecureSettingSwitch(
@@ -382,11 +365,7 @@ fun LockscreenMediaContent(
         
         
         FeatureIllustrationHeader(
-            gradientColors = listOf(
-                Color(0xFF7C3AED),
-                Color(0xFFA855F7),
-                Color(0xFFD946EF)
-            )
+            illustrationBackground = Color(0xFFA855F7)
         ) {
             MediaArtIllustrationLarge()
         }
@@ -438,11 +417,7 @@ fun PulseVisualizerContent(
         
         
         FeatureIllustrationHeader(
-            gradientColors = listOf(
-                Color(0xFFDC2626),
-                Color(0xFFEF4444),
-                Color(0xFFF87171)
-            )
+            illustrationBackground = Color(0xFFEF4444)
         ) {
             PulseVisualizerIllustrationLarge()
         }
@@ -524,26 +499,28 @@ fun PulseVisualizerContent(
 private fun AnimatedFeatureCard(
     title: String,
     description: String,
-    gradientColors: List<Color>,
+    illustrationBackground: Color,
     onClick: () -> Unit,
     illustration: @Composable () -> Unit
 ) {
+    val containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+    val contentColor = MaterialTheme.colorScheme.onSurface
+    
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(ExpressiveShapes.large)
-            .background(Brush.linearGradient(colors = gradientColors))
+            .background(containerColor)
             .clickable(onClick = onClick)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        
         Box(
             modifier = Modifier
                 .size(80.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(Color.White.copy(alpha = 0.15f)),
+                .clip(ExpressiveShapes.medium)
+                .background(illustrationBackground.copy(alpha = 0.3f)),
             contentAlignment = Alignment.Center
         ) {
             illustration()
@@ -554,13 +531,13 @@ private fun AnimatedFeatureCard(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = contentColor
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = description,
                 style = MaterialTheme.typography.bodySmall,
-                color = Color.White.copy(alpha = 0.85f)
+                color = contentColor.copy(alpha = 0.7f)
             )
         }
     }
@@ -770,7 +747,7 @@ private fun PulseVisualizerIllustration() {
 
 @Composable
 private fun FeatureIllustrationHeader(
-    gradientColors: List<Color>,
+    illustrationBackground: Color,
     illustration: @Composable () -> Unit
 ) {
     Box(
@@ -778,10 +755,18 @@ private fun FeatureIllustrationHeader(
             .fillMaxWidth()
             .height(180.dp)
             .clip(ExpressiveShapes.large)
-            .background(Brush.linearGradient(colors = gradientColors)),
+            .background(illustrationBackground.copy(alpha = 0.15f)),
         contentAlignment = Alignment.Center
     ) {
-        illustration()
+        Box(
+            modifier = Modifier
+                .size(120.dp)
+                .clip(ExpressiveShapes.medium)
+                .background(illustrationBackground.copy(alpha = 0.2f)),
+            contentAlignment = Alignment.Center
+        ) {
+            illustration()
+        }
     }
 }
 

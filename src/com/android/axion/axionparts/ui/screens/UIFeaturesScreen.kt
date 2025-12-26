@@ -187,29 +187,19 @@ private fun UIFeaturesMainContent(
     ) {
         Spacer(modifier = Modifier.height(4.dp))
         
-        
         AnimatedFeatureCard(
             title = "Quick Settings",
             description = "Brightness slider, tiles & panel customization",
-            gradientColors = listOf(
-                primaryColor,
-                primaryColor.copy(alpha = 0.8f),
-                tertiaryColor.copy(alpha = 0.9f)
-            ),
+            illustrationBackground = primaryColor,
             onClick = onNavigateToQuickSettings
         ) {
             QuickSettingsIllustration()
         }
         
-        
         AnimatedFeatureCard(
             title = "Status Bar",
             description = "Clock, icons and network indicators",
-            gradientColors = listOf(
-                tertiaryColor,
-                tertiaryColor.copy(alpha = 0.8f),
-                primaryColor.copy(alpha = 0.9f)
-            ),
+            illustrationBackground = tertiaryColor,
             onClick = onNavigateToStatusBar
         ) {
             StatusBarIllustration()
@@ -223,15 +213,18 @@ private fun UIFeaturesMainContent(
 private fun AnimatedFeatureCard(
     title: String,
     description: String,
-    gradientColors: List<Color>,
+    illustrationBackground: Color,
     onClick: () -> Unit,
     illustration: @Composable () -> Unit
 ) {
+    val containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+    val contentColor = MaterialTheme.colorScheme.onSurface
+    
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clip(ExpressiveShapes.large)
-            .background(Brush.linearGradient(colors = gradientColors))
+            .background(containerColor)
             .clickable(onClick = onClick)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -240,8 +233,8 @@ private fun AnimatedFeatureCard(
         Box(
             modifier = Modifier
                 .size(80.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .background(Color.White.copy(alpha = 0.15f)),
+                .clip(ExpressiveShapes.medium)
+                .background(illustrationBackground.copy(alpha = 0.3f)),
             contentAlignment = Alignment.Center
         ) {
             illustration()
@@ -252,13 +245,13 @@ private fun AnimatedFeatureCard(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = contentColor
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = description,
                 style = MaterialTheme.typography.bodySmall,
-                color = Color.White.copy(alpha = 0.85f)
+                color = contentColor.copy(alpha = 0.7f)
             )
         }
     }
@@ -267,7 +260,7 @@ private fun AnimatedFeatureCard(
 
 @Composable
 private fun FeatureIllustrationHeader(
-    gradientColors: List<Color>,
+    illustrationBackground: Color,
     illustration: @Composable () -> Unit
 ) {
     Box(
@@ -275,10 +268,18 @@ private fun FeatureIllustrationHeader(
             .fillMaxWidth()
             .height(180.dp)
             .clip(ExpressiveShapes.large)
-            .background(Brush.linearGradient(colors = gradientColors)),
+            .background(illustrationBackground.copy(alpha = 0.15f)),
         contentAlignment = Alignment.Center
     ) {
-        illustration()
+        Box(
+            modifier = Modifier
+                .size(120.dp)
+                .clip(ExpressiveShapes.medium)
+                .background(illustrationBackground.copy(alpha = 0.2f)),
+            contentAlignment = Alignment.Center
+        ) {
+            illustration()
+        }
     }
 }
 
@@ -746,11 +747,7 @@ fun QuickSettingsContent(
         
         
         FeatureIllustrationHeader(
-            gradientColors = listOf(
-                primaryColor,
-                primaryColor.copy(alpha = 0.85f),
-                tertiaryColor.copy(alpha = 0.9f)
-            )
+            illustrationBackground = primaryColor
         ) {
             QuickSettingsIllustrationLarge()
         }
@@ -808,11 +805,7 @@ fun StatusBarContent(
         
         
         FeatureIllustrationHeader(
-            gradientColors = listOf(
-                tertiaryColor,
-                tertiaryColor.copy(alpha = 0.85f),
-                primaryColor.copy(alpha = 0.9f)
-            )
+            illustrationBackground = tertiaryColor
         ) {
             StatusBarIllustrationLarge()
         }

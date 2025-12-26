@@ -314,81 +314,71 @@ fun PlayIntegrityFixContent(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
+                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
             )
         ) {
-            Box(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(
-                        Brush.horizontalGradient(
-                            listOf(
-                                Color(0xFF7C3AED).copy(alpha = 0.2f),
-                                Color(0xFFA855F7).copy(alpha = 0.2f),
-                                Color(0xFFD946EF).copy(alpha = 0.2f)
-                            )
-                        )
-                    )
                     .padding(20.dp)
             ) {
-                Column {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.primary),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .size(48.dp)
-                                .clip(CircleShape)
-                                .background(MaterialTheme.colorScheme.primary),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                Icons.Default.Fingerprint,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onPrimary,
-                                modifier = Modifier.size(28.dp)
-                            )
-                        }
-                        
-                        Spacer(modifier = Modifier.width(16.dp))
-                        
-                        Column {
-                            Text(
-                                text = "Fingerprint Spoofing",
-                                style = MaterialTheme.typography.titleLarge,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = if (activeConfig.isNotEmpty()) "Active: $activeConfig" else "No config loaded",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
+                        Icon(
+                            Icons.Default.Fingerprint,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(28.dp)
+                        )
                     }
                     
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.width(16.dp))
                     
-                    Button(
-                        onClick = { fetchPixelBetaPif() },
-                        enabled = !isFetching,
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.primary
+                    Column {
+                        Text(
+                            text = "Fingerprint Spoofing",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
                         )
-                    ) {
-                        if (isFetching) {
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(20.dp),
-                                color = MaterialTheme.colorScheme.onPrimary,
-                                strokeWidth = 2.dp
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(fetchStatus.ifEmpty { "Fetching..." })
-                        } else {
-                            Icon(Icons.Default.CloudDownload, contentDescription = null)
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("Fetch Pixel Beta")
-                        }
+                        Text(
+                            text = if (activeConfig.isNotEmpty()) "Active: $activeConfig" else "No config loaded",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+                
+                Spacer(modifier = Modifier.height(16.dp))
+                
+                Button(
+                    onClick = { fetchPixelBetaPif() },
+                    enabled = !isFetching,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    )
+                ) {
+                    if (isFetching) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(20.dp),
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            strokeWidth = 2.dp
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(fetchStatus.ifEmpty { "Fetching..." })
+                    } else {
+                        Icon(Icons.Default.CloudDownload, contentDescription = null)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Fetch Pixel Beta")
                     }
                 }
             }

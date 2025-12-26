@@ -272,74 +272,58 @@ fun GameSpoofingContent(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f)
+                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
             )
         ) {
-            Box(
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(
-                        Brush.horizontalGradient(
-                            listOf(
-                                Color(0xFF6366F1).copy(alpha = 0.2f),
-                                Color(0xFF8B5CF6).copy(alpha = 0.2f),
-                                Color(0xFFEC4899).copy(alpha = 0.2f)
-                            )
-                        )
-                    )
-                    .padding(20.dp)
+                    .padding(20.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
+                    Box(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.primary),
+                        contentAlignment = Alignment.Center
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .size(48.dp)
-                                .clip(CircleShape)
-                                .background(MaterialTheme.colorScheme.primary),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                Icons.Default.Gamepad,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onPrimary,
-                                modifier = Modifier.size(28.dp)
-                            )
-                        }
-                        
-                        Spacer(modifier = Modifier.width(16.dp))
-                        
-                        Column {
-                            Text(
-                                text = "Game Spoofing",
-                                style = MaterialTheme.typography.titleLarge,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = if (enabled) "${gameConfigs.size} games configured" else "Disabled",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
+                        Icon(
+                            Icons.Default.Gamepad,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            modifier = Modifier.size(28.dp)
+                        )
                     }
                     
-                    Switch(
-                        checked = enabled,
-                        onCheckedChange = { 
-                            enabled = it
-                            saveConfig()
-                        },
-                        colors = SwitchDefaults.colors(
-                            checkedThumbColor = MaterialTheme.colorScheme.primary,
-                            checkedTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
+                    Spacer(modifier = Modifier.width(16.dp))
+                    
+                    Column {
+                        Text(
+                            text = "Game Spoofing",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
                         )
-                    )
+                        Text(
+                            text = if (enabled) "${gameConfigs.size} games configured" else "Disabled",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
+                
+                Switch(
+                    checked = enabled,
+                    onCheckedChange = { 
+                        enabled = it
+                        saveConfig()
+                    }
+                )
             }
         }
         

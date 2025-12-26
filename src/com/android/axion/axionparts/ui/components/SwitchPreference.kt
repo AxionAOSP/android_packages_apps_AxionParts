@@ -21,10 +21,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -47,8 +50,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 
 enum class PreferencePosition {
     Single,
@@ -85,6 +90,7 @@ fun SwitchPreference(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
     enabled: Boolean = true,
     position: PreferencePosition = LocalPreferencePosition.current
 ) {
@@ -101,27 +107,44 @@ fun SwitchPreference(
                 indication = null,
                 enabled = enabled
             ) { onCheckedChange(!checked) }
-            .padding(horizontal = 16.dp, vertical = 16.dp),
+            .padding(horizontal = 16.dp, vertical = 14.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(end = 16.dp)
+        Row(
+            modifier = Modifier.weight(1f),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodyLarge,
-                color = if (enabled) MaterialTheme.colorScheme.onSurface 
-                        else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
-            )
-            Text(
-                text = summary,
-                style = MaterialTheme.typography.bodyMedium,
-                color = if (enabled) MaterialTheme.colorScheme.onSurfaceVariant 
-                        else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
-            )
+            if (icon != null) {
+                Box(
+                    modifier = Modifier.size(40.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+            }
+            Column(
+                modifier = Modifier.padding(end = 16.dp)
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = if (enabled) MaterialTheme.colorScheme.onSurface 
+                            else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                )
+                Text(
+                    text = summary,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = if (enabled) MaterialTheme.colorScheme.onSurfaceVariant 
+                            else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
+                )
+            }
         }
         Switch(
             checked = checked,
@@ -148,6 +171,7 @@ fun SecureSettingSwitch(
     summary: String,
     defaultValue: Boolean = false,
     modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
     enabled: Boolean = true,
     position: PreferencePosition = LocalPreferencePosition.current
 ) {
@@ -191,6 +215,7 @@ fun SecureSettingSwitch(
             Settings.Secure.putInt(contentResolver, settingKey, if (newValue) 1 else 0)
         },
         modifier = modifier,
+        icon = icon,
         enabled = enabled,
         position = position
     )
@@ -203,6 +228,7 @@ fun SystemSettingSwitch(
     summary: String,
     defaultValue: Boolean = false,
     modifier: Modifier = Modifier,
+    icon: ImageVector? = null,
     enabled: Boolean = true,
     position: PreferencePosition = LocalPreferencePosition.current
 ) {
@@ -246,6 +272,7 @@ fun SystemSettingSwitch(
             Settings.System.putInt(contentResolver, settingKey, if (newValue) 1 else 0)
         },
         modifier = modifier,
+        icon = icon,
         enabled = enabled,
         position = position
     )

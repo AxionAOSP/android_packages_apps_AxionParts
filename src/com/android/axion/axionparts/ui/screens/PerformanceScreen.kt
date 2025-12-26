@@ -382,11 +382,7 @@ private fun ClusterHeader(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(
-                Brush.horizontalGradient(
-                    colors = listOf(accentColor.copy(alpha = 0.15f), Color.Transparent)
-                )
-            )
+            .background(accentColor.copy(alpha = 0.08f))
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -459,11 +455,7 @@ private fun GpuCard(maxLevels: Int) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    Brush.horizontalGradient(
-                        colors = listOf(gpuColor.copy(alpha = 0.15f), Color.Transparent)
-                    )
-                )
+                .background(gpuColor.copy(alpha = 0.08f))
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)

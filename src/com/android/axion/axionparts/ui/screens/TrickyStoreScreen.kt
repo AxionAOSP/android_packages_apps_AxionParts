@@ -309,12 +309,7 @@ fun TrickyStoreContent(
         
         SettingsSection(
             title = "Keybox Management",
-            icon = Icons.Default.Key,
-            gradientColors = listOf(
-                Color(0xFF059669),
-                Color(0xFF10B981),
-                Color(0xFF34D399)
-            )
+            icon = Icons.Default.Key
         ) {
             ClickablePreference(
                 title = "Import Keybox",
@@ -344,12 +339,7 @@ fun TrickyStoreContent(
         
         SettingsSection(
             title = "Target Configuration", 
-            icon = Icons.Default.Security,
-            gradientColors = listOf(
-                Color(0xFF7C3AED),
-                Color(0xFFA855F7),
-                Color(0xFFD946EF)
-            )
+            icon = Icons.Default.Security
         ) {
             ClickablePreference(
                 title = "Manage Target Apps",

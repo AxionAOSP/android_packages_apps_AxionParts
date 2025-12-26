@@ -120,17 +120,12 @@ private fun NavPill(
     )
     
     val backgroundColor = if (isSelected) {
-        Brush.linearGradient(item.gradientColors)
+        MaterialTheme.colorScheme.primary
     } else {
-        Brush.linearGradient(
-            listOf(
-                MaterialTheme.colorScheme.surfaceContainerHigh,
-                MaterialTheme.colorScheme.surfaceContainerHigh
-            )
-        )
+        MaterialTheme.colorScheme.surfaceContainerHigh
     }
     
-    val contentColor = if (isSelected) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
+    val contentColor = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
     
     Box(
         modifier = modifier

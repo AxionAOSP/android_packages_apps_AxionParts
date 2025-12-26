@@ -40,7 +40,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.automirrored.filled.VolumeUp
@@ -58,9 +57,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -81,28 +79,24 @@ fun SoundBanner(
     
     val infiniteTransition = rememberInfiniteTransition(label = "infinite")
     
+    val containerColor = Color(0xFFF97316).copy(alpha = 0.15f)
+    val contentColor = MaterialTheme.colorScheme.onSurface
+    val accentColor = Color(0xFFF97316)
+    
     Box(
         modifier = modifier
             .fillMaxWidth()
             .scale(scale)
             .clip(ExpressiveShapes.large)
-            .background(
-                Brush.linearGradient(
-                    colors = listOf(
-                        Color(0xFFEA580C),
-                        Color(0xFFF97316),
-                        Color(0xFFFB923C),
-                        Color(0xFFFDBA74)
-                    )
-                )
-            )
+            .background(containerColor)
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
                 onClick = onClick
-            )
+            ),
+        contentAlignment = Alignment.Center
     ) {
-        SoundAnimatedIconsBackground(infiniteTransition)
+        SoundAnimatedIconsBackground(infiniteTransition, accentColor)
         
         Row(
             modifier = Modifier
@@ -112,36 +106,11 @@ fun SoundBanner(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "SOUND",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = Color.White.copy(alpha = 0.8f),
-                        letterSpacing = 2.sp
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Box(
-                        modifier = Modifier
-                            .clip(ExpressiveShapes.extraSmall)
-                            .background(Color.White.copy(alpha = 0.2f))
-                            .padding(horizontal = 8.dp, vertical = 2.dp)
-                    ) {
-                        Text(
-                            text = "FEATURES",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = Color.White,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
-                
-                Spacer(modifier = Modifier.height(8.dp))
-                
                 Text(
-                    text = "Audio Experience",
+                    text = "Sound",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = contentColor
                 )
                 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -149,22 +118,7 @@ fun SoundBanner(
                 Text(
                     text = "Per-app volume & multi audio",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White.copy(alpha = 0.85f)
-                )
-            }
-            
-            Box(
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(CircleShape)
-                    .background(Color.White.copy(alpha = 0.2f)),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(28.dp)
+                    color = contentColor.copy(alpha = 0.7f)
                 )
             }
         }
@@ -173,7 +127,8 @@ fun SoundBanner(
 
 @Composable
 private fun SoundAnimatedIconsBackground(
-    infiniteTransition: androidx.compose.animation.core.InfiniteTransition
+    infiniteTransition: androidx.compose.animation.core.InfiniteTransition,
+    accentColor: androidx.compose.ui.graphics.Color
 ) {
     val float1 by infiniteTransition.animateFloat(
         initialValue = 0f,
@@ -229,7 +184,7 @@ private fun SoundAnimatedIconsBackground(
         Icon(
             imageVector = Icons.AutoMirrored.Filled.VolumeUp,
             contentDescription = null,
-            tint = Color.White.copy(alpha = 0.15f),
+            tint = accentColor.copy(alpha = 0.35f),
             modifier = Modifier
                 .size(64.dp)
                 .align(Alignment.TopEnd)
@@ -240,7 +195,7 @@ private fun SoundAnimatedIconsBackground(
         Icon(
             imageVector = Icons.Default.GraphicEq,
             contentDescription = null,
-            tint = Color.White.copy(alpha = 0.12f),
+            tint = accentColor.copy(alpha = 0.30f),
             modifier = Modifier
                 .size(48.dp)
                 .align(Alignment.CenterEnd)
@@ -251,7 +206,7 @@ private fun SoundAnimatedIconsBackground(
         Icon(
             imageVector = Icons.Default.Equalizer,
             contentDescription = null,
-            tint = Color.White.copy(alpha = 0.1f),
+            tint = accentColor.copy(alpha = 0.25f),
             modifier = Modifier
                 .size(40.dp)
                 .align(Alignment.TopEnd)
@@ -262,7 +217,7 @@ private fun SoundAnimatedIconsBackground(
         Icon(
             imageVector = Icons.Default.MusicNote,
             contentDescription = null,
-            tint = Color.White.copy(alpha = 0.08f),
+            tint = accentColor.copy(alpha = 0.20f),
             modifier = Modifier
                 .size(32.dp)
                 .align(Alignment.BottomEnd)

@@ -168,19 +168,15 @@ private fun PerAppVolumeCard() {
         onDispose { contentResolver.unregisterContentObserver(observer) }
     }
     
+    val accentColor = MaterialTheme.colorScheme.primary
+    val containerColor = accentColor.copy(alpha = 0.15f)
+    val contentColor = MaterialTheme.colorScheme.onSurface
+    
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .clip(ExpressiveShapes.large)
-            .background(
-                Brush.linearGradient(
-                    colors = listOf(
-                        Color(0xFFEA580C),
-                        Color(0xFFF97316),
-                        Color(0xFFFB923C)
-                    )
-                )
-            )
+            .background(containerColor)
             .clickable(
                 interactionSource = interactionSource,
                 indication = null
@@ -191,18 +187,18 @@ private fun PerAppVolumeCard() {
             .padding(20.dp)
     ) {
         Column {
-            
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp),
+                    .height(120.dp)
+                    .clip(ExpressiveShapes.medium)
+                    .background(accentColor.copy(alpha = 0.3f)),
                 contentAlignment = Alignment.Center
             ) {
                 PerAppVolumeIllustration()
             }
             
             Spacer(modifier = Modifier.height(16.dp))
-            
             
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -214,13 +210,13 @@ private fun PerAppVolumeCard() {
                         text = "Per-App Volume",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = contentColor
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "Control volume separately for each app",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.White.copy(alpha = 0.85f)
+                        color = contentColor.copy(alpha = 0.7f)
                     )
                 }
                 
@@ -233,16 +229,7 @@ private fun PerAppVolumeCard() {
                             contentDescription = null,
                             modifier = Modifier.size(SwitchDefaults.IconSize)
                         )
-                    },
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = Color(0xFFEA580C),
-                        checkedTrackColor = Color.White,
-                        checkedIconColor = Color.White,
-                        uncheckedThumbColor = Color.White,
-                        uncheckedTrackColor = Color.White.copy(alpha = 0.3f),
-                        uncheckedIconColor = Color(0xFFEA580C),
-                        uncheckedBorderColor = Color.Transparent
-                    )
+                    }
                 )
             }
         }
@@ -253,6 +240,7 @@ private fun PerAppVolumeCard() {
 @Composable
 private fun PerAppVolumeIllustration() {
     val infiniteTransition = rememberInfiniteTransition(label = "perAppVol")
+    val accentColor = MaterialTheme.colorScheme.primary
     
     val slider1 by infiniteTransition.animateFloat(
         initialValue = 0.3f,
@@ -292,7 +280,7 @@ private fun PerAppVolumeIllustration() {
         val cornerRadius = 8.dp.toPx()
         
         drawRoundRect(
-            color = Color.White.copy(alpha = 0.4f),
+            color = accentColor.copy(alpha = 0.6f),
             topLeft = Offset(phoneLeft, phoneTop),
             size = Size(phoneWidth, phoneHeight),
             cornerRadius = CornerRadius(cornerRadius),
@@ -305,12 +293,11 @@ private fun PerAppVolumeIllustration() {
         val panelTop = phoneTop + (phoneHeight - panelHeight) / 2
         
         drawRoundRect(
-            color = Color.White.copy(alpha = 0.15f),
+            color = accentColor.copy(alpha = 0.2f),
             topLeft = Offset(panelRight - panelWidth, panelTop),
             size = Size(panelWidth, panelHeight),
             cornerRadius = CornerRadius(6.dp.toPx())
         )
-        
         
         val rowHeight = panelHeight / 4
         val iconSize = 8.dp.toPx()
@@ -325,23 +312,21 @@ private fun PerAppVolumeIllustration() {
             val y = startY + index * rowHeight
             
             drawCircle(
-                color = Color.White.copy(alpha = 0.6f),
+                color = accentColor.copy(alpha = 0.7f),
                 radius = iconSize / 2,
                 center = Offset(startX + iconSize / 2, y)
             )
             
-            
             val trackX = startX + iconSize + 6.dp.toPx()
             drawRoundRect(
-                color = Color.White.copy(alpha = 0.3f),
+                color = accentColor.copy(alpha = 0.3f),
                 topLeft = Offset(trackX, y - sliderHeight / 2),
                 size = Size(sliderWidth, sliderHeight),
                 cornerRadius = CornerRadius(sliderHeight / 2)
             )
             
-            
             drawRoundRect(
-                color = Color.White.copy(alpha = 0.9f),
+                color = accentColor,
                 topLeft = Offset(trackX, y - sliderHeight / 2),
                 size = Size(sliderWidth * value, sliderHeight),
                 cornerRadius = CornerRadius(sliderHeight / 2)
@@ -384,19 +369,15 @@ private fun MultiAudioFocusCard() {
         onDispose { contentResolver.unregisterContentObserver(observer) }
     }
     
+    val accentColor = MaterialTheme.colorScheme.secondary
+    val containerColor = accentColor.copy(alpha = 0.15f)
+    val contentColor = MaterialTheme.colorScheme.onSurface
+    
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .clip(ExpressiveShapes.large)
-            .background(
-                Brush.linearGradient(
-                    colors = listOf(
-                        Color(0xFFEA580C),
-                        Color(0xFFF97316),
-                        Color(0xFFFB923C)
-                    )
-                )
-            )
+            .background(containerColor)
             .clickable(
                 interactionSource = interactionSource,
                 indication = null
@@ -407,18 +388,18 @@ private fun MultiAudioFocusCard() {
             .padding(20.dp)
     ) {
         Column {
-            
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp),
+                    .height(120.dp)
+                    .clip(ExpressiveShapes.medium)
+                    .background(MaterialTheme.colorScheme.secondary.copy(alpha = 0.3f)),
                 contentAlignment = Alignment.Center
             ) {
                 MultiAudioIllustration()
             }
             
             Spacer(modifier = Modifier.height(16.dp))
-            
             
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -430,13 +411,13 @@ private fun MultiAudioFocusCard() {
                         text = "Multi Audio Focus",
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = contentColor
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "Allow multiple apps to play audio simultaneously",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.White.copy(alpha = 0.85f)
+                        color = contentColor.copy(alpha = 0.7f)
                     )
                 }
                 
@@ -449,16 +430,7 @@ private fun MultiAudioFocusCard() {
                             contentDescription = null,
                             modifier = Modifier.size(SwitchDefaults.IconSize)
                         )
-                    },
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = Color(0xFFEA580C),
-                        checkedTrackColor = Color.White,
-                        checkedIconColor = Color.White,
-                        uncheckedThumbColor = Color.White,
-                        uncheckedTrackColor = Color.White.copy(alpha = 0.3f),
-                        uncheckedIconColor = Color(0xFFEA580C),
-                        uncheckedBorderColor = Color.Transparent
-                    )
+                    }
                 )
             }
         }
@@ -469,6 +441,7 @@ private fun MultiAudioFocusCard() {
 @Composable
 private fun MultiAudioIllustration() {
     val infiniteTransition = rememberInfiniteTransition(label = "multiAudio")
+    val accentColor = MaterialTheme.colorScheme.secondary
     
     val wave1 by infiniteTransition.animateFloat(
         initialValue = 0f,
@@ -512,21 +485,19 @@ private fun MultiAudioIllustration() {
     Canvas(modifier = Modifier.size(200.dp, 100.dp)) {
         val centerY = size.height / 2
         
-        
         val leftSpeakerX = 30.dp.toPx()
         drawRoundRect(
-            color = Color.White.copy(alpha = 0.9f),
+            color = accentColor,
             topLeft = Offset(leftSpeakerX - 8.dp.toPx(), centerY - 25.dp.toPx()),
             size = Size(12.dp.toPx(), 20.dp.toPx()),
             cornerRadius = CornerRadius(3.dp.toPx())
         )
         
-        
         for (i in 0 until 3) {
             val waveOffset = 8.dp.toPx() + i * 8.dp.toPx()
             val alpha = (0.7f - i * 0.2f) * (1f - wave1 * 0.3f)
             drawArc(
-                color = Color.White.copy(alpha = alpha),
+                color = accentColor.copy(alpha = alpha),
                 startAngle = -50f,
                 sweepAngle = 100f,
                 useCenter = false,
@@ -538,18 +509,17 @@ private fun MultiAudioIllustration() {
         
         val rightSpeakerX = size.width - 30.dp.toPx()
         drawRoundRect(
-            color = Color.White.copy(alpha = 0.9f),
+            color = accentColor,
             topLeft = Offset(rightSpeakerX - 4.dp.toPx(), centerY - 25.dp.toPx()),
             size = Size(12.dp.toPx(), 20.dp.toPx()),
             cornerRadius = CornerRadius(3.dp.toPx())
         )
         
-        
         for (i in 0 until 3) {
             val waveOffset = 8.dp.toPx() + i * 8.dp.toPx()
             val alpha = (0.7f - i * 0.2f) * (1f - wave2 * 0.3f)
             drawArc(
-                color = Color.White.copy(alpha = alpha),
+                color = accentColor.copy(alpha = alpha),
                 startAngle = 130f,
                 sweepAngle = 100f,
                 useCenter = false,
@@ -558,7 +528,6 @@ private fun MultiAudioIllustration() {
                 style = Stroke(width = 2.dp.toPx())
             )
         }
-        
         
         val barCount = animatedHeights.size
         val barWidth = 6.dp.toPx()
@@ -572,7 +541,7 @@ private fun MultiAudioIllustration() {
             val barX = startX + index * (barWidth + barSpacing)
             
             drawRoundRect(
-                color = Color.White.copy(alpha = 0.85f),
+                color = accentColor,
                 topLeft = Offset(barX, centerY - barHeight / 2),
                 size = Size(barWidth, barHeight),
                 cornerRadius = CornerRadius(3.dp.toPx())
