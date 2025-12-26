@@ -306,7 +306,7 @@ private fun ClusterCard(cluster: ClusterConfig) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(ExpressiveShapes.large)
-            .background(MaterialTheme.colorScheme.surface)
+            .background(MaterialTheme.colorScheme.surfaceBright)
     ) {
         ClusterHeader(
             name = cluster.name,
@@ -450,7 +450,7 @@ private fun GpuCard(maxLevels: Int) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(ExpressiveShapes.large)
-            .background(MaterialTheme.colorScheme.surface)
+            .background(MaterialTheme.colorScheme.surfaceBright)
     ) {
         Row(
             modifier = Modifier

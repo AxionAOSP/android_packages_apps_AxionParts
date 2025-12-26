@@ -206,7 +206,7 @@ fun DashboardScreen() {
             }
             else -> {
             Scaffold(
-                containerColor = Color.Transparent,
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
                 topBar = {
                     TopAppBar(
                         title = {

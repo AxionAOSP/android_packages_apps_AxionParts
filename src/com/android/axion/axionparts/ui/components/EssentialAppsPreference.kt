@@ -155,7 +155,7 @@ fun EssentialAppsPreference(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape)
-            .background(MaterialTheme.colorScheme.surface)
+            .background(MaterialTheme.colorScheme.surfaceBright)
             .padding(horizontal = 16.dp, vertical = 16.dp)
     ) {
         Text(
@@ -270,7 +270,7 @@ private fun AddAppButton(onClick: () -> Unit) {
         modifier = Modifier
             .scale(scale)
             .clip(ExpressiveShapes.large)
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.primary)
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
@@ -283,7 +283,7 @@ private fun AddAppButton(onClick: () -> Unit) {
         Icon(
             imageVector = Icons.Default.Add,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            tint = MaterialTheme.colorScheme.onPrimary,
             modifier = Modifier.size(20.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
@@ -291,7 +291,7 @@ private fun AddAppButton(onClick: () -> Unit) {
             text = "Add apps",
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.SemiBold,
-            color = MaterialTheme.colorScheme.onPrimaryContainer
+            color = MaterialTheme.colorScheme.onPrimary
         )
     }
 }

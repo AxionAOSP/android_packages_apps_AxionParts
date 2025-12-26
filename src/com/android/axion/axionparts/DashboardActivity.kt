@@ -37,7 +37,7 @@ class DashboardActivity : ComponentActivity() {
             AxionPartsTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.surfaceContainer
                 ) {
                     DashboardScreen()
                 }

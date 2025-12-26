@@ -44,7 +44,7 @@ fun ClickablePreference(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape)
-            .background(MaterialTheme.colorScheme.surface)
+            .background(MaterialTheme.colorScheme.surfaceBright)
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
