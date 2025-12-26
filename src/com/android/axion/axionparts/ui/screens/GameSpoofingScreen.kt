@@ -16,6 +16,8 @@
 
 package com.android.axion.axionparts.ui.screens
 
+import android.content.Context
+
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.util.Log
@@ -179,7 +181,7 @@ fun GameSpoofingContent(
     fun loadConfig() {
         scope.launch {
             val result = withContext(Dispatchers.IO) {
-                loadGamePropsConfig()
+                loadGamePropsConfig(context)
             }
             enabled = result.first
             gameConfigs = result.second
@@ -205,6 +207,7 @@ fun GameSpoofingContent(
     
     if (showAddGameDialog) {
         AddGameDialog(
+            configuredGames = gameConfigs,
             onDismiss = { showAddGameDialog = false },
             onGameAdded = { newGame ->
                 gameConfigs = gameConfigs + newGame
@@ -532,6 +535,7 @@ fun GameConfigCard(
 
 @Composable
 fun AddGameDialog(
+    configuredGames: List<GameConfig>,
     onDismiss: () -> Unit,
     onGameAdded: (GameConfig) -> Unit
 ) {
@@ -545,7 +549,12 @@ fun AddGameDialog(
     LaunchedEffect(Unit) {
         installedGames = withContext(Dispatchers.IO) {
             pm.getInstalledApplications(PackageManager.GET_META_DATA)
-                .filter { (it.flags and ApplicationInfo.FLAG_SYSTEM) == 0 }
+                .filter { 
+                    val isSystem = (it.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+                    val isGame = (it.category == ApplicationInfo.CATEGORY_GAME) || 
+                                ((it.flags and ApplicationInfo.FLAG_IS_GAME) != 0)
+                    !isSystem && isGame && configuredGames.none { config -> config.packageName == it.packageName }
+                }
                 .sortedBy { pm.getApplicationLabel(it).toString() }
         }
     }
@@ -730,7 +739,7 @@ fun EditGameDialog(
     )
 }
 
-private fun loadGamePropsConfig(): Pair<Boolean, List<GameConfig>> {
+private fun loadGamePropsConfig(context: Context): Pair<Boolean, List<GameConfig>> {
     val configFile = File(CONFIG_PATH, CONFIG_FILE)
     if (!configFile.exists()) {
         return Pair(false, emptyList())
@@ -749,7 +758,14 @@ private fun loadGamePropsConfig(): Pair<Boolean, List<GameConfig>> {
                 gameProps.keys().forEach { key ->
                     props[key] = gameProps.getString(key)
                 }
-                games.add(GameConfig(packageName, packageName, props))
+                val appName = try {
+                    val pm = context.packageManager
+                    val appInfo = pm.getApplicationInfo(packageName, 0)
+                    pm.getApplicationLabel(appInfo).toString()
+                } catch (e: PackageManager.NameNotFoundException) {
+                    packageName
+                }
+                games.add(GameConfig(packageName, appName, props))
             }
         }
         
