@@ -60,12 +60,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import android.content.Intent
 import androidx.compose.material.icons.filled.Tune
-import com.android.axion.axionparts.ui.components.ClickablePreference
-import com.android.axion.axionparts.ui.components.PreferenceGroup
-import com.android.axion.axionparts.ui.components.PreferencePosition
-import com.android.axion.axionparts.ui.components.SecureListPreference
-import com.android.axion.axionparts.ui.components.SecureSettingSwitch
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
+import com.android.axion.compose.preferences.*
 
 private enum class UIFeaturesSubScreen {
     MAIN,

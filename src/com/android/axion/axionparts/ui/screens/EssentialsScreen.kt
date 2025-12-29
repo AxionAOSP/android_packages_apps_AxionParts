@@ -48,11 +48,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.android.axion.axionparts.ui.components.ClickablePreference
 import com.android.axion.axionparts.ui.components.EssentialAppsPreference
-import com.android.axion.axionparts.ui.components.PreferencePosition
-import com.android.axion.axionparts.ui.components.SecureSettingSwitch
-import com.android.axion.axionparts.ui.components.SettingsSection
+import com.android.axion.compose.preferences.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

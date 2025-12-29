@@ -92,9 +92,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-import com.android.axion.axionparts.ui.components.ClickablePreference
-import com.android.axion.axionparts.ui.components.PreferencePosition
-import com.android.axion.axionparts.ui.components.SettingsSection
+import com.android.axion.compose.preferences.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

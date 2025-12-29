@@ -99,16 +99,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.android.axion.axionparts.ui.components.PreferenceGroup
-import com.android.axion.axionparts.ui.components.PreferencePosition
-import com.android.axion.axionparts.ui.components.SecureListPreference
-import com.android.axion.axionparts.ui.components.SecureSettingSlider
-import com.android.axion.axionparts.ui.components.SecureSettingSwitch
-import com.android.axion.axionparts.ui.components.preferenceShape
-import com.android.axion.axionparts.ui.components.rememberSecureSettingBoolean
-import com.android.axion.axionparts.ui.components.rememberSecureSettingIntState
-import com.android.axion.axionparts.ui.components.rememberSecureSettingStringState
-import com.android.axion.axionparts.ui.theme.ExpressiveShapes
+import com.android.axion.compose.preferences.*
 import kotlin.math.sin
 
 private enum class LockscreenSubScreen {

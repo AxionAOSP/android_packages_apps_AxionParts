@@ -42,9 +42,8 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.android.axion.axionparts.ui.components.PreferenceGroup
-import com.android.axion.axionparts.ui.components.SystemSettingSwitch
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
+import com.android.axion.compose.preferences.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

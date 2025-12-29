@@ -68,6 +68,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.android.axion.compose.preferences.*
 import androidx.core.graphics.drawable.toBitmap
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 import kotlinx.coroutines.Dispatchers
