@@ -143,7 +143,7 @@ fun GameSpoofingScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = "Game Spoofing",
+                            text = "App Spoofing",
                             fontWeight = FontWeight.Bold,
                             style = MaterialTheme.typography.headlineMedium
                         )
@@ -317,13 +317,13 @@ fun GameSpoofingContent(
                     
                     Column {
                         Text(
-                            text = "Game Spoofing",
+                            text = "App Spoofing",
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = if (enabled) "${gameConfigs.size} games configured" else "Disabled",
+                            text = if (enabled) "${gameConfigs.size} apps configured" else "Disabled",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -355,7 +355,7 @@ fun GameSpoofingContent(
             ) {
                 Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(4.dp))
-                Text("Add Game")
+                Text("Add App")
             }
             
             OutlinedButton(
@@ -372,7 +372,7 @@ fun GameSpoofingContent(
         
         if (gameConfigs.isNotEmpty()) {
             Text(
-                text = "CONFIGURED GAMES",
+                text = "CONFIGURED APPS",
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
@@ -415,12 +415,12 @@ fun GameSpoofingContent(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = "No games configured",
+                        text = "No apps configured",
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Text(
-                        text = "Add games to start spoofing device properties",
+                        text = "Add apps to start spoofing device properties",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                     )
@@ -572,9 +572,7 @@ fun AddGameDialog(
             pm.getInstalledApplications(PackageManager.GET_META_DATA)
                 .filter { 
                     val isSystem = (it.flags and ApplicationInfo.FLAG_SYSTEM) != 0
-                    val isGame = (it.category == ApplicationInfo.CATEGORY_GAME) || 
-                                ((it.flags and ApplicationInfo.FLAG_IS_GAME) != 0)
-                    !isSystem && isGame && configuredGames.none { config -> config.packageName == it.packageName }
+                    !isSystem && configuredGames.none { config -> config.packageName == it.packageName }
                 }
                 .sortedBy { pm.getApplicationLabel(it).toString() }
         }
@@ -596,14 +594,14 @@ fun AddGameDialog(
     
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Add Game") },
+        title = { Text("Add App") },
         text = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 if (!showProfileSelector) {
-                    Text("Select a game:", style = MaterialTheme.typography.labelMedium)
+                    Text("Select an app:", style = MaterialTheme.typography.labelMedium)
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
