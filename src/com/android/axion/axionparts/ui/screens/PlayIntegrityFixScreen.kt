@@ -36,6 +36,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -97,6 +98,7 @@ import java.io.File
 import java.net.URL
 import java.nio.charset.StandardCharsets
 import kotlin.random.Random
+import com.android.axion.axionparts.ui.theme.MaxContentWidth
 
 private const val TAG = "PlayIntegrityFix"
 private const val PIF_PATH = "/data/adb/playintegrityfix"
@@ -145,12 +147,26 @@ fun PlayIntegrityFixScreen(
                 )
             }
         ) { innerPadding ->
-            PlayIntegrityFixContent(
-                modifier = Modifier.padding(innerPadding)
-            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+                contentAlignment = Alignment.TopCenter
+            ) {
+                PlayIntegrityFixContent(
+                    modifier = Modifier.widthIn(max = MaxContentWidth)
+                )
+            }
         }
     } else {
-        PlayIntegrityFixContent(modifier = Modifier)
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            PlayIntegrityFixContent(
+                modifier = Modifier.widthIn(max = MaxContentWidth)
+            )
+        }
     }
 }
 
@@ -346,7 +362,7 @@ fun PlayIntegrityFixContent(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                containerColor = MaterialTheme.colorScheme.surfaceBright
             )
         ) {
             Column(
@@ -428,7 +444,7 @@ fun PlayIntegrityFixContent(
                     .animateContentSize(),
                 shape = RoundedCornerShape(20.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.secondaryContainer
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
                 )
             ) {
                 Column(
@@ -450,7 +466,7 @@ fun PlayIntegrityFixContent(
                             Icon(
                                 Icons.Default.Check,
                                 contentDescription = null,
-                                tint = Color.White,
+                                tint = MaterialTheme.colorScheme.onPrimary,
                                 modifier = Modifier.size(24.dp)
                             )
                         }
@@ -461,7 +477,7 @@ fun PlayIntegrityFixContent(
                             Text(
                                 text = "Active Config",
                                 style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f)
+                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                             )
                             Text(
                                 text = activeConfigFile.fileName,
@@ -473,7 +489,7 @@ fun PlayIntegrityFixContent(
                         Icon(
                             if (activeConfigExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
                             contentDescription = if (activeConfigExpanded) "Collapse" else "Expand",
-                            tint = MaterialTheme.colorScheme.onSecondaryContainer
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     }
                     
@@ -489,7 +505,7 @@ fun PlayIntegrityFixContent(
                                 .fillMaxWidth()
                                 .clickable { activeConfigExpanded = !activeConfigExpanded },
                             shape = RoundedCornerShape(12.dp),
-                            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
+                            color = MaterialTheme.colorScheme.surfaceBright.copy(alpha = 0.5f)
                         ) {
                             Column(
                                 modifier = Modifier.padding(12.dp)
@@ -550,7 +566,11 @@ fun PlayIntegrityFixContent(
                                 deleteTargetFile = activeConfigFile.fileName
                                 showDeleteDialog = true 
                             },
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                containerColor = MaterialTheme.colorScheme.errorContainer,
+                                contentColor = MaterialTheme.colorScheme.error
+                            )
                         ) {
                             Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(4.dp))
@@ -588,7 +608,7 @@ fun PlayIntegrityFixContent(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(24.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                    containerColor = MaterialTheme.colorScheme.surfaceBright
                 )
             ) {
                 Row(
@@ -599,13 +619,13 @@ fun PlayIntegrityFixContent(
                         modifier = Modifier
                             .size(48.dp)
                             .clip(CircleShape)
-                            .background(Color(0xFF4285F4)),
+                            .background(MaterialTheme.colorScheme.primary),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             Icons.Default.Image,
                             contentDescription = null,
-                            tint = Color.White,
+                            tint = MaterialTheme.colorScheme.onPrimary,
                             modifier = Modifier.size(24.dp)
                         )
                     }
@@ -648,7 +668,7 @@ fun PlayIntegrityFixContent(
                     .animateContentSize(),
                 shape = RoundedCornerShape(20.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                    containerColor = MaterialTheme.colorScheme.surfaceBright
                 )
             ) {
                 Column {
@@ -748,9 +768,9 @@ fun ConfigFileCard(
             .animateContentSize(),
         shape = RoundedCornerShape(16.dp),
         color = when {
-            config.isActive -> MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
-            config.exists -> MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
-            else -> MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f)
+            config.isActive -> MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
+            config.exists -> MaterialTheme.colorScheme.surfaceBright.copy(alpha = 0.5f)
+            else -> MaterialTheme.colorScheme.surfaceBright.copy(alpha = 0.2f)
         }
     ) {
         Column(
@@ -829,7 +849,7 @@ fun ConfigFileCard(
                 Surface(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
-                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f)
+                    color = MaterialTheme.colorScheme.surfaceBright.copy(alpha = 0.7f)
                 ) {
                     Column(
                         modifier = Modifier.padding(12.dp)

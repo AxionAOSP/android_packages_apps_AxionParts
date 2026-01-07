@@ -78,6 +78,7 @@ import com.android.axion.axionparts.ui.components.BoostToggleCard
 import com.android.axion.axionparts.ui.components.FrequencySlider
 import com.android.axion.axionparts.ui.components.LevelSlider
 import com.android.axion.axionparts.ui.components.PowerModeToggle
+import com.android.axion.axionparts.ui.theme.BottomNavPadding
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 
 private data class ClusterConfig(
@@ -249,7 +250,7 @@ fun PerformanceContent(
             Spacer(modifier = Modifier.height(16.dp))
         }
         
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(BottomNavPadding))
     }
 }
 

@@ -17,55 +17,23 @@
 package com.android.axion.axionparts.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Bolt
-import androidx.compose.material.icons.filled.Diamond
-import androidx.compose.material.icons.filled.Palette
-import androidx.compose.material.icons.filled.Splitscreen
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import com.android.axion.axionparts.ui.components.BottomNavBar
-import com.android.axion.axionparts.ui.components.NavItem
-import com.android.axion.axionparts.ui.components.saveEssentialApps
-import com.android.axion.axionparts.ui.screens.AppPickerScreen
-import com.android.axion.axionparts.ui.screens.CustomizeContent
-import com.android.axion.axionparts.ui.screens.EssentialsContent
-import com.android.axion.axionparts.ui.screens.LockscreenFeaturesScreen
-import com.android.axion.axionparts.ui.screens.SoundFeaturesScreen
-import com.android.axion.axionparts.ui.screens.UIFeaturesScreen
-import com.android.axion.axionparts.ui.screens.MultitaskingContent
-import com.android.axion.axionparts.ui.screens.PerformanceContent
-import com.android.axion.axionparts.ui.screens.PlayIntegrityFixScreen
-import com.android.axion.axionparts.ui.screens.GameSpoofingScreen
-import com.android.axion.axionparts.ui.screens.TrickyStoreScreen
+import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.ui.components.*
+import com.android.axion.axionparts.ui.screens.*
 
 val navItems = listOf(
     NavItem(
@@ -97,20 +65,18 @@ val navItems = listOf(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen() {
+    val windowSizeClass = rememberWindowSizeClass()
+    val isExpandedLayout = windowSizeClass == WindowSizeClass.EXPANDED || 
+                           windowSizeClass == WindowSizeClass.MEDIUM
+    
     var selectedRoute by rememberSaveable { mutableStateOf(navItems[0].route) }
     var previousIndex by rememberSaveable { mutableIntStateOf(0) }
     var showAppPicker by rememberSaveable { mutableStateOf(false) }
     var appPickerSelectedApps by rememberSaveable { mutableStateOf<Set<String>>(emptySet()) }
-    var showLockscreenFeatures by rememberSaveable { mutableStateOf(false) }
-    var showUIFeatures by rememberSaveable { mutableStateOf(false) }
-    var showSoundFeatures by rememberSaveable { mutableStateOf(false) }
-    var showTrickyStore by rememberSaveable { mutableStateOf(false) }
-    var showPlayIntegrityFix by rememberSaveable { mutableStateOf(false) }
-    var showGameSpoofing by rememberSaveable { mutableStateOf(false) }
+    var currentDetailScreen by rememberSaveable { mutableStateOf<String?>(null) }
     
     val context = LocalContext.current
     val contentResolver = context.contentResolver
-    
     
     val currentIndex = navItems.indexOfFirst { it.route == selectedRoute }
     val isNavigatingForward = currentIndex >= previousIndex
@@ -118,12 +84,20 @@ fun DashboardScreen() {
     fun onNavSelected(route: String) {
         previousIndex = navItems.indexOfFirst { it.route == selectedRoute }
         selectedRoute = route
+        if (!isExpandedLayout) {
+            currentDetailScreen = null
+        }
     }
     
+    fun navigateToDetail(screen: String) {
+        currentDetailScreen = screen
+    }
     
+    fun closeDetail() {
+        currentDetailScreen = null
+    }
     
     val currentTitle = navItems.find { it.route == selectedRoute }?.label ?: "Personalizations"
-    
     
     if (showAppPicker) {
         BackHandler { showAppPicker = false }
@@ -139,168 +113,237 @@ fun DashboardScreen() {
         return
     }
     
-    
-    val currentFeatureScreen = when {
-        showUIFeatures -> "ui_features"
-        showLockscreenFeatures -> "lockscreen"
-        showSoundFeatures -> "sound"
-        showTrickyStore -> "trickystore"
-        showPlayIntegrityFix -> "playintegrityfix"
-        showGameSpoofing -> "gamespoofing"
-        else -> "none"
-    }
-    
-    AnimatedContent(
-        targetState = currentFeatureScreen,
-        transitionSpec = {
-            if (targetState != "none") {
-                
-                (slideInHorizontally(tween(300)) { it } + fadeIn(tween(300))).togetherWith(
-                    slideOutHorizontally(tween(300)) { -it / 3 } + fadeOut(tween(300))
+    if (isExpandedLayout) {
+        TwoPaneLayout(
+            windowSizeClass = windowSizeClass,
+            listPane = {
+                ListPaneContent(
+                    selectedRoute = selectedRoute,
+                    currentTitle = currentTitle,
+                    isNavigatingForward = isNavigatingForward,
+                    onNavSelected = { onNavSelected(it) },
+                    onNavigateToDetail = { navigateToDetail(it) },
+                    onNavigateToAppPicker = { selectedApps ->
+                        appPickerSelectedApps = selectedApps
+                        showAppPicker = true
+                    }
+                )
+            },
+            detailPane = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.surfaceContainer)
+                ) {
+                    if (currentDetailScreen != null) {
+                        DetailPaneContent(
+                            screen = currentDetailScreen!!,
+                            onClose = { closeDetail() }
+                        )
+                    } else {
+                        EmptyDetailPane()
+                    }
+                }
+            },
+            showDetailPane = currentDetailScreen != null,
+            modifier = Modifier.fillMaxSize()
+        )
+    } else {
+        AnimatedContent(
+            targetState = currentDetailScreen,
+            transitionSpec = {
+                if (targetState != null) {
+                    (slideInHorizontally(tween(300)) { it } + fadeIn(tween(300))).togetherWith(
+                        slideOutHorizontally(tween(300)) { -it / 3 } + fadeOut(tween(300))
+                    )
+                } else {
+                    (slideInHorizontally(tween(300)) { -it / 3 } + fadeIn(tween(300))).togetherWith(
+                        slideOutHorizontally(tween(300)) { it } + fadeOut(tween(300))
+                    )
+                }
+            },
+            label = "detailTransition"
+        ) { detailScreen ->
+            if (detailScreen != null) {
+                BackHandler { closeDetail() }
+                DetailScreen(
+                    screen = detailScreen,
+                    onBackClick = { closeDetail() }
                 )
             } else {
-                
-                (slideInHorizontally(tween(300)) { -it / 3 } + fadeIn(tween(300))).togetherWith(
-                    slideOutHorizontally(tween(300)) { it } + fadeOut(tween(300))
+                ListPaneContent(
+                    selectedRoute = selectedRoute,
+                    currentTitle = currentTitle,
+                    isNavigatingForward = isNavigatingForward,
+                    onNavSelected = { onNavSelected(it) },
+                    onNavigateToDetail = { navigateToDetail(it) },
+                    onNavigateToAppPicker = { selectedApps ->
+                        appPickerSelectedApps = selectedApps
+                        showAppPicker = true
+                    }
                 )
             }
-        },
-        label = "featureScreenTransition"
-    ) { featureScreen ->
-        when (featureScreen) {
-            "lockscreen" -> {
-                BackHandler { showLockscreenFeatures = false }
-                LockscreenFeaturesScreen(
-                    onBackClick = { showLockscreenFeatures = false }
-                )
-            }
-            "ui_features" -> {
-                BackHandler { showUIFeatures = false }
-                UIFeaturesScreen(
-                    onBackClick = { showUIFeatures = false }
-                )
-            }
-            "sound" -> {
-                BackHandler { showSoundFeatures = false }
-                SoundFeaturesScreen(
-                    onBackClick = { showSoundFeatures = false }
-                )
-            }
-            "trickystore" -> {
-                BackHandler { showTrickyStore = false }
-                TrickyStoreScreen(
-                    onBackClick = { showTrickyStore = false }
-                )
-            }
-            "playintegrityfix" -> {
-                BackHandler { showPlayIntegrityFix = false }
-                PlayIntegrityFixScreen(
-                    onBackClick = { showPlayIntegrityFix = false }
-                )
-            }
-            "gamespoofing" -> {
-                BackHandler { showGameSpoofing = false }
-                GameSpoofingScreen(
-                    onBackClick = { showGameSpoofing = false }
-                )
-            }
-            else -> {
-            Scaffold(
-                containerColor = MaterialTheme.colorScheme.surfaceContainer,
-                topBar = {
-                    TopAppBar(
-                        title = {
-                            AnimatedContent(
-                                targetState = currentTitle,
-                                transitionSpec = {
-                                    (fadeIn(tween(200)) + scaleIn(
-                                        initialScale = 0.92f,
-                                        animationSpec = spring(
-                                            dampingRatio = Spring.DampingRatioMediumBouncy,
-                                            stiffness = Spring.StiffnessLow
-                                        )
-                                    )).togetherWith(
-                                        fadeOut(tween(150)) + scaleOut(targetScale = 0.92f)
-                                    )
-                                },
-                                label = "titleAnimation"
-                            ) { title ->
-                                Text(
-                                    text = title,
-                                    fontWeight = FontWeight.Bold,
-                                    style = MaterialTheme.typography.headlineMedium
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ListPaneContent(
+    selectedRoute: String,
+    currentTitle: String,
+    isNavigatingForward: Boolean,
+    onNavSelected: (String) -> Unit,
+    onNavigateToDetail: (String) -> Unit,
+    onNavigateToAppPicker: (Set<String>) -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.surfaceContainer)
+    ) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            TopAppBar(
+                title = {
+                    AnimatedContent(
+                        targetState = currentTitle,
+                        transitionSpec = {
+                            (fadeIn(tween(200)) + scaleIn(
+                                initialScale = 0.92f,
+                                animationSpec = spring(
+                                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                                    stiffness = Spring.StiffnessLow
                                 )
-                            }
+                            )).togetherWith(
+                                fadeOut(tween(150)) + scaleOut(targetScale = 0.92f)
+                            )
                         },
-                        colors = TopAppBarDefaults.topAppBarColors(
-                            containerColor = Color.Transparent,
-                            scrolledContainerColor = Color.Transparent
+                        label = "titleAnimation"
+                    ) { title ->
+                        Text(
+                            text = title,
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.headlineMedium
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.Transparent,
+                    scrolledContainerColor = Color.Transparent
+                )
+            )
+            
+            AnimatedContent(
+                targetState = selectedRoute,
+                transitionSpec = {
+                    val slideDirection = if (isNavigatingForward) 1 else -1
+                    
+                    (slideInHorizontally(
+                        initialOffsetX = { fullWidth -> slideDirection * fullWidth / 4 },
+                        animationSpec = spring(
+                            dampingRatio = Spring.DampingRatioLowBouncy,
+                            stiffness = Spring.StiffnessMediumLow
+                        )
+                    ) + fadeIn(
+                        animationSpec = tween(250)
+                    )).togetherWith(
+                        slideOutHorizontally(
+                            targetOffsetX = { fullWidth -> -slideDirection * fullWidth / 4 },
+                            animationSpec = spring(
+                                dampingRatio = Spring.DampingRatioNoBouncy,
+                                stiffness = Spring.StiffnessMedium
+                            )
+                        ) + fadeOut(
+                            animationSpec = tween(200)
                         )
                     )
                 },
-                bottomBar = {
-                    BottomNavBar(
-                        items = navItems,
-                        selectedRoute = selectedRoute,
-                        onItemSelected = { route -> onNavSelected(route) }
+                label = "screenTransition",
+                modifier = Modifier.weight(1f)
+            ) { route ->
+                when (route) {
+                    "customize" -> CustomizeContent(
+                        onNavigateToLockscreen = { onNavigateToDetail("lockscreen") },
+                        onNavigateToUIFeatures = { onNavigateToDetail("ui_features") },
+                        onNavigateToSound = { onNavigateToDetail("sound") },
+                        onNavigateToGestures = { onNavigateToDetail("gestures") }
                     )
-                }
-            ) { innerPadding ->
-                
-                AnimatedContent(
-                    targetState = selectedRoute,
-                    transitionSpec = {
-                        val slideDirection = if (isNavigatingForward) 1 else -1
-                        
-                        (slideInHorizontally(
-                            initialOffsetX = { fullWidth -> slideDirection * fullWidth / 4 },
-                            animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioLowBouncy,
-                                stiffness = Spring.StiffnessMediumLow
-                            )
-                        ) + fadeIn(
-                            animationSpec = tween(250)
-                        )).togetherWith(
-                            slideOutHorizontally(
-                                targetOffsetX = { fullWidth -> -slideDirection * fullWidth / 4 },
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioNoBouncy,
-                                    stiffness = Spring.StiffnessMedium
-                                )
-                            ) + fadeOut(
-                                animationSpec = tween(200)
-                            )
-                        )
-                    },
-                    label = "screenTransition"
-                ) { route ->
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                    ) {
-                        when (route) {
-                            "customize" -> CustomizeContent(
-                                onNavigateToLockscreen = { showLockscreenFeatures = true },
-                                onNavigateToUIFeatures = { showUIFeatures = true },
-                                onNavigateToSound = { showSoundFeatures = true }
-                            )
-                            "essentials" -> EssentialsContent(
-                                onNavigateToAppPicker = { selectedApps ->
-                                    appPickerSelectedApps = selectedApps
-                                    showAppPicker = true
-                                },
-                                onNavigateToTrickyStore = { showTrickyStore = true },
-                                onNavigateToPlayIntegrityFix = { showPlayIntegrityFix = true },
-                                onNavigateToGameSpoofing = { showGameSpoofing = true }
-                            )
-                            "performance" -> PerformanceContent()
-                            "multitasking" -> MultitaskingContent()
-                        }
-                    }
+                    "essentials" -> EssentialsContent(
+                        onNavigateToAppPicker = onNavigateToAppPicker,
+                        onNavigateToTrickyStore = { onNavigateToDetail("trickystore") },
+                        onNavigateToPlayIntegrityFix = { onNavigateToDetail("playintegrityfix") },
+                        onNavigateToGameSpoofing = { onNavigateToDetail("gamespoofing") }
+                    )
+                    "performance" -> PerformanceContent()
+                    "multitasking" -> MultitaskingContent()
                 }
             }
-            }
+        }
+        
+        BottomNavBar(
+            items = navItems,
+            selectedRoute = selectedRoute,
+            onItemSelected = onNavSelected,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
+    }
+}
+
+@Composable
+private fun DetailScreen(
+    screen: String,
+    onBackClick: () -> Unit
+) {
+    when (screen) {
+        "lockscreen" -> LockscreenFeaturesScreen(onBackClick = onBackClick)
+        "ui_features" -> UIFeaturesScreen(onBackClick = onBackClick)
+        "sound" -> SoundFeaturesScreen(onBackClick = onBackClick)
+        "gestures" -> GesturesScreen(onBackClick = onBackClick)
+        "trickystore" -> TrickyStoreScreen(onBackClick = onBackClick)
+        "playintegrityfix" -> PlayIntegrityFixScreen(onBackClick = onBackClick)
+        "gamespoofing" -> GameSpoofingScreen(onBackClick = onBackClick)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun DetailPaneContent(
+    screen: String,
+    onClose: () -> Unit
+) {
+    when (screen) {
+        "lockscreen" -> LockscreenFeaturesScreen(onBackClick = onClose)
+        "ui_features" -> UIFeaturesScreen(onBackClick = onClose)
+        "sound" -> SoundFeaturesScreen(onBackClick = onClose)
+        "gestures" -> GesturesScreen(onBackClick = onClose)
+        "trickystore" -> TrickyStoreScreen(onBackClick = onClose)
+        "playintegrityfix" -> PlayIntegrityFixScreen(onBackClick = onClose)
+        "gamespoofing" -> GameSpoofingScreen(onBackClick = onClose)
+    }
+}
+
+@Composable
+private fun EmptyDetailPane() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Icon(
+                imageVector = Icons.Default.TouchApp,
+                contentDescription = null,
+                modifier = Modifier.size(64.dp),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Select an item",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+            )
         }
     }
 }

@@ -139,7 +139,7 @@ private fun PerAppVolumeCard() {
     }
     
     val accentColor = MaterialTheme.colorScheme.primary
-    val containerColor = accentColor.copy(alpha = 0.15f)
+    val containerColor = MaterialTheme.colorScheme.surfaceBright
     val contentColor = MaterialTheme.colorScheme.onSurface
     
     Box(
@@ -340,7 +340,7 @@ private fun MultiAudioFocusCard() {
     }
     
     val accentColor = MaterialTheme.colorScheme.secondary
-    val containerColor = accentColor.copy(alpha = 0.15f)
+    val containerColor = MaterialTheme.colorScheme.surfaceBright
     val contentColor = MaterialTheme.colorScheme.onSurface
     
     Box(

@@ -213,7 +213,7 @@ private fun AnimatedFeatureCard(
     onClick: () -> Unit,
     illustration: @Composable () -> Unit
 ) {
-    val containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+    val containerColor = MaterialTheme.colorScheme.surfaceBright
     val contentColor = MaterialTheme.colorScheme.onSurface
     
     Row(

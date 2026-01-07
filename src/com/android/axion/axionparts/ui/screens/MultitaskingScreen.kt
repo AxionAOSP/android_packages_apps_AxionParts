@@ -44,6 +44,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.ui.theme.BottomNavPadding
 import com.android.axion.compose.preferences.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -126,7 +127,7 @@ fun MultitaskingContent(
             )
         }
         
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(BottomNavPadding))
     }
 }
 

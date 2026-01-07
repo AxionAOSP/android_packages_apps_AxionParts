@@ -131,7 +131,7 @@ fun PowerModeToggle(
     )
     
     val containerColor by animateColorAsState(
-        targetValue = if (isEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+        targetValue = if (isEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceBright,
         animationSpec = tween(300),
         label = "containerColor"
     )
@@ -267,7 +267,7 @@ fun BoostToggleCard(
     )
     
     val containerColor by animateColorAsState(
-        targetValue = if (isEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+        targetValue = if (isEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceBright,
         animationSpec = tween(300),
         label = "containerColor"
     )
