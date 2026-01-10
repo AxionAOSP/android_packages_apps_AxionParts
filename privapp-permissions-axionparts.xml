@@ -19,5 +19,6 @@
         <permission name="android.permission.READ_WALLPAPER_INTERNAL" />
         <permission name="android.permission.WRITE_SETTINGS" />
         <permission name="android.permission.WRITE_SECURE_SETTINGS" />
+        <permission name="android.permission.FORCE_STOP_PACKAGES" />
     </privapp-permissions>
 </permissions>

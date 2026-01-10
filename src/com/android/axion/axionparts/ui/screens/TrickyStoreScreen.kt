@@ -17,6 +17,8 @@
 package com.android.axion.axionparts.ui.screens
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -101,6 +103,7 @@ import java.io.File
 private const val TRICKYSTORE_PATH = "/data/adb/tricky_store"
 private const val KEYBOX_FILE = "keybox.xml"
 private const val TARGET_FILE = "target.txt"
+private const val VENDING_PACKAGE = "com.android.vending"
 
 enum class TargetMode(val symbol: String, val description: String) {
     AUTO("", "Auto - Automatic mode selection"),
@@ -214,6 +217,9 @@ fun TrickyStoreContent(
                     }
                     
                     keyboxFile.setReadable(true, false)
+                    
+                    val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+                    am.forceStopPackage(VENDING_PACKAGE)
                     
                     Toast.makeText(context, "Keybox imported successfully", Toast.LENGTH_SHORT).show()
                     refreshStatus()

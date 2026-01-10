@@ -17,6 +17,8 @@
 package com.android.axion.axionparts.ui.screens
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
@@ -104,6 +106,7 @@ private const val TAG = "PlayIntegrityFix"
 private const val PIF_PATH = "/data/adb/playintegrityfix"
 private val PIF_FILES = listOf("custom.pif.prop", "custom.pif.json", "pif.prop", "pif.json")
 private const val GOOGLE_URL = "https://developer.android.com"
+private const val VENDING_PACKAGE = "com.android.vending"
 
 data class ConfigFileState(
     val fileName: String,
@@ -261,6 +264,9 @@ fun PlayIntegrityFixContent(
                         targetFile.writeText(result.pifData.toString(2))
                         targetFile.setReadable(true, false)
                         
+                        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+                        am.forceStopPackage(VENDING_PACKAGE)
+                        
                         Toast.makeText(context, "Fetched: ${result.model}", Toast.LENGTH_SHORT).show()
                         fetchStatus = ""
                         refreshStatus()
@@ -306,6 +312,9 @@ fun PlayIntegrityFixContent(
                     }
                     
                     pifFile.setReadable(true, false)
+                    
+                    val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+                    am.forceStopPackage(VENDING_PACKAGE)
                     
                     Toast.makeText(context, "Imported as $targetFileName", Toast.LENGTH_SHORT).show()
                     importTargetFile = ""
