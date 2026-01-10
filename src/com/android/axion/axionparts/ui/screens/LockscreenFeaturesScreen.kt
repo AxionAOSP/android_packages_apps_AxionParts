@@ -72,6 +72,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -106,7 +107,8 @@ private enum class LockscreenSubScreen {
     MAIN,
     EDGE_LIGHT,
     MEDIA_ART,
-    PULSE_VISUALIZER
+    PULSE_VISUALIZER,
+    AOD
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -121,6 +123,7 @@ fun LockscreenFeaturesScreen(
         LockscreenSubScreen.EDGE_LIGHT -> "Edge Light"
         LockscreenSubScreen.MEDIA_ART -> "Media Art"
         LockscreenSubScreen.PULSE_VISUALIZER -> "Pulse Visualizer"
+        LockscreenSubScreen.AOD -> "Always On Display"
     }
     
     val handleBack: () -> Unit = {
@@ -196,7 +199,8 @@ fun LockscreenFeaturesScreen(
                     modifier = Modifier.padding(innerPadding),
                     onNavigateToEdgeLight = { currentScreen = LockscreenSubScreen.EDGE_LIGHT },
                     onNavigateToMediaArt = { currentScreen = LockscreenSubScreen.MEDIA_ART },
-                    onNavigateToPulse = { currentScreen = LockscreenSubScreen.PULSE_VISUALIZER }
+                    onNavigateToPulse = { currentScreen = LockscreenSubScreen.PULSE_VISUALIZER },
+                    onNavigateToAod = { currentScreen = LockscreenSubScreen.AOD }
                 )
                 LockscreenSubScreen.EDGE_LIGHT -> EdgeLightContent(
                     modifier = Modifier.padding(innerPadding)
@@ -205,6 +209,9 @@ fun LockscreenFeaturesScreen(
                     modifier = Modifier.padding(innerPadding)
                 )
                 LockscreenSubScreen.PULSE_VISUALIZER -> PulseVisualizerContent(
+                    modifier = Modifier.padding(innerPadding)
+                )
+                LockscreenSubScreen.AOD -> AodContent(
                     modifier = Modifier.padding(innerPadding)
                 )
             }
@@ -217,7 +224,8 @@ private fun LockscreenMainContent(
     modifier: Modifier = Modifier,
     onNavigateToEdgeLight: () -> Unit,
     onNavigateToMediaArt: () -> Unit,
-    onNavigateToPulse: () -> Unit
+    onNavigateToPulse: () -> Unit,
+    onNavigateToAod: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -248,7 +256,6 @@ private fun LockscreenMainContent(
             MediaArtIllustration()
         }
         
-        
         AnimatedFeatureCard(
             title = "Pulse Visualizer",
             description = "Audio visualizer on lockscreen and ambient display",
@@ -256,6 +263,15 @@ private fun LockscreenMainContent(
             onClick = onNavigateToPulse
         ) {
             PulseVisualizerIllustration()
+        }
+        
+        AnimatedFeatureCard(
+            title = "Always On Display",
+            description = "Manage scheduled AOD and screen off behavior",
+            illustrationBackground = Color(0xFFFF9800),
+            onClick = onNavigateToAod
+        ) {
+            AodIllustration()
         }
         
         Spacer(modifier = Modifier.height(16.dp))
@@ -1494,3 +1510,215 @@ private fun ColorPickerDialog(
     }
 }
 
+@Composable
+fun AodContent(
+    modifier: Modifier = Modifier
+) {
+    val (scheduleMode, _) = rememberSecureSettingStringState("aod_schedule_mode", "0")
+    val context = LocalContext.current
+
+    LaunchedEffect(scheduleMode) {
+        when (scheduleMode) {
+            "0", "1" -> Settings.Secure.putInt(context.contentResolver, Settings.Secure.DOZE_ALWAYS_ON, 1)
+            "2" -> Settings.Secure.putInt(context.contentResolver, Settings.Secure.DOZE_ALWAYS_ON, 0)
+        }
+    }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 16.dp)
+    ) {
+        Spacer(modifier = Modifier.height(8.dp))
+        
+        FeatureIllustrationHeader(
+            illustrationBackground = Color(0xFFFF9800)
+        ) {
+            AodIllustrationLarge()
+        }
+        
+        Spacer(modifier = Modifier.height(16.dp))
+        
+        PreferenceGroup(title = "Mode") {
+            item {
+                SecureListPreference(
+                    key = "aod_schedule_mode",
+                    title = "AOD Schedule",
+                    summary = when (scheduleMode) {
+                        "0" -> "Always on"
+                        "1" -> "Scheduled"
+                        "2" -> "Disabled"
+                        else -> "Always on"
+                    },
+                    options = listOf(
+                        "0" to "Always on",
+                        "1" to "Scheduled",
+                        "2" to "Disabled"
+                    ),
+                    defaultValue = "0"
+                )
+            }
+        }
+        
+        AnimatedVisibility(
+            visible = scheduleMode == "1",
+            enter = fadeIn() + expandVertically(),
+            exit = fadeOut() + shrinkVertically()
+        ) {
+            Column {
+                Spacer(modifier = Modifier.height(12.dp))
+                
+                PreferenceGroup(title = "Schedule") {
+                    item {
+                        SecureTimePreference(
+                            key = "aod_schedule_start_time",
+                            title = "Start time",
+                            summary = "When AOD turns on",
+                            defaultValue = "2300"
+                        )
+                    }
+                    item {
+                        SecureTimePreference(
+                            key = "aod_schedule_end_time",
+                            title = "End time",
+                            summary = "When AOD turns off",
+                            defaultValue = "0700"
+                        )
+                    }
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        PreferenceGroup(title = "Screen Off") {
+            item {
+                SystemSettingSwitch(
+                    settingKey = "screen_off_aod_enabled",
+                    title = "Screen Off AOD",
+                    summary = "Keep AOD active when screen turns off",
+                    defaultValue = false
+                )
+            }
+            item {
+                SystemSettingSwitch(
+                    settingKey = "screen_off_aod_animation",
+                    title = "Screen Off Animation",
+                    summary = "Animate the transition to AOD",
+                    defaultValue = true
+                )
+            }
+        }
+        
+        Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Composable
+private fun AodIllustration() {
+    val infiniteTransition = rememberInfiniteTransition(label = "aod")
+    
+    val pulseAlpha by infiniteTransition.animateFloat(
+        initialValue = 0.4f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(2000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "pulse"
+    )
+    
+    Canvas(modifier = Modifier.size(60.dp, 70.dp)) {
+        val phoneWidth = size.width * 0.7f
+        val phoneHeight = size.height * 0.9f
+        val phoneLeft = (size.width - phoneWidth) / 2
+        val phoneTop = (size.height - phoneHeight) / 2
+        val cornerRadius = 8.dp.toPx()
+        
+        drawRoundRect(
+            color = Color.White.copy(alpha = 0.4f),
+            topLeft = Offset(phoneLeft, phoneTop),
+            size = Size(phoneWidth, phoneHeight),
+            cornerRadius = CornerRadius(cornerRadius),
+            style = Stroke(width = 2.dp.toPx())
+        )
+        
+        val centerX = phoneLeft + phoneWidth / 2
+        val centerY = phoneTop + phoneHeight / 3
+        
+        drawCircle(
+            color = Color(0xFFFF9800).copy(alpha = pulseAlpha),
+            radius = 12.dp.toPx(),
+            center = Offset(centerX, centerY)
+        )
+        
+        drawRoundRect(
+            color = Color.White.copy(alpha = 0.2f),
+            topLeft = Offset(centerX - 15.dp.toPx(), centerY + 20.dp.toPx()),
+            size = Size(30.dp.toPx(), 4.dp.toPx()),
+            cornerRadius = CornerRadius(2.dp.toPx())
+        )
+    }
+}
+
+@Composable
+private fun AodIllustrationLarge() {
+    val infiniteTransition = rememberInfiniteTransition(label = "aodLarge")
+    
+    val pulseAlpha by infiniteTransition.animateFloat(
+        initialValue = 0.4f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(2000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "pulse"
+    )
+    
+    Canvas(modifier = Modifier.size(120.dp, 140.dp)) {
+        val phoneWidth = size.width * 0.6f
+        val phoneHeight = size.height * 0.9f
+        val phoneLeft = (size.width - phoneWidth) / 2
+        val phoneTop = (size.height - phoneHeight) / 2
+        val cornerRadius = 16.dp.toPx()
+        
+        drawRoundRect(
+            color = Color.White.copy(alpha = 0.2f),
+            topLeft = Offset(phoneLeft, phoneTop),
+            size = Size(phoneWidth, phoneHeight),
+            cornerRadius = CornerRadius(cornerRadius),
+            style = Stroke(width = 2.dp.toPx())
+        )
+        
+        drawRoundRect(
+            color = Color.Black.copy(alpha = 0.3f),
+            topLeft = Offset(phoneLeft + 4.dp.toPx(), phoneTop + 4.dp.toPx()),
+            size = Size(phoneWidth - 8.dp.toPx(), phoneHeight - 8.dp.toPx()),
+            cornerRadius = CornerRadius(cornerRadius - 2.dp.toPx())
+        )
+        
+        val centerX = phoneLeft + phoneWidth / 2
+        val centerY = phoneTop + phoneHeight / 3
+        
+        drawCircle(
+            color = Color(0xFFFF9800).copy(alpha = pulseAlpha),
+            radius = 24.dp.toPx(),
+            center = Offset(centerX, centerY)
+        )
+        
+        drawRoundRect(
+            color = Color.White.copy(alpha = 0.5f),
+            topLeft = Offset(centerX - 30.dp.toPx(), centerY + 40.dp.toPx()),
+            size = Size(60.dp.toPx(), 6.dp.toPx()),
+            cornerRadius = CornerRadius(3.dp.toPx())
+        )
+        
+        drawRoundRect(
+            color = Color.White.copy(alpha = 0.3f),
+            topLeft = Offset(centerX - 20.dp.toPx(), centerY + 55.dp.toPx()),
+            size = Size(40.dp.toPx(), 6.dp.toPx()),
+            cornerRadius = CornerRadius(3.dp.toPx())
+        )
+    }
+}
