@@ -123,6 +123,17 @@ private fun GesturesContent(
                 )
             }
             item {
+                SystemSettingSlider(
+                    settingKey = "shake_gestures_intensity",
+                    title = "Shake Gesture Intensity",
+                    summary = "Intensity needed to trigger shake gesure",
+                    min = 1,
+                    max = 10,
+                    unit = "",
+                    defaultValue = 6
+                )
+            }
+            item {
                 SecureListPreference(
                     key = "shake_gestures_action",
                     title = "Shake Action",
