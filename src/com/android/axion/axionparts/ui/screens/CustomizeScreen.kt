@@ -9,7 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.components.*
 import com.android.axion.axionparts.ui.theme.BottomNavPadding
 import com.android.axion.axionparts.ui.theme.MaxContentWidth
@@ -26,8 +28,8 @@ fun CustomizeContent(
     
     val items = listOf(
         CustomizeItem(
-            title = "Themes",
-            subtitle = "Icons, shapes & more",
+            title = stringResource(R.string.themes),
+            subtitle = stringResource(R.string.themes_subtitle),
             illustrationType = IllustrationType.THEMES,
             onClick = {
                 val intent = Intent().apply {
@@ -41,26 +43,26 @@ fun CustomizeContent(
             }
         ),
         CustomizeItem(
-            title = "Lockscreen",
-            subtitle = "Edge light, media & visualizer",
+            title = stringResource(R.string.lockscreen),
+            subtitle = stringResource(R.string.lockscreen_subtitle),
             illustrationType = IllustrationType.LOCKSCREEN,
             onClick = onNavigateToLockscreen
         ),
         CustomizeItem(
-            title = "UI Features",
-            subtitle = "Status bar, QS & more",
+            title = stringResource(R.string.ui_features),
+            subtitle = stringResource(R.string.ui_features_subtitle),
             illustrationType = IllustrationType.UI_FEATURES,
             onClick = onNavigateToUIFeatures
         ),
         CustomizeItem(
-            title = "Sound",
-            subtitle = "Per-app volume & multi audio",
+            title = stringResource(R.string.sound),
+            subtitle = stringResource(R.string.sound_subtitle),
             illustrationType = IllustrationType.SOUND,
             onClick = onNavigateToSound
         ),
         CustomizeItem(
-            title = "Gestures",
-            subtitle = "Shake & three finger actions",
+            title = stringResource(R.string.gestures),
+            subtitle = stringResource(R.string.gestures_subtitle),
             illustrationType = IllustrationType.GESTURES,
             onClick = onNavigateToGestures
         )

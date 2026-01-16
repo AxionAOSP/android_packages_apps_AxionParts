@@ -56,10 +56,12 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import android.content.Intent
 import androidx.compose.material.icons.filled.Tune
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 import com.android.axion.compose.preferences.*
 
@@ -77,9 +79,9 @@ fun UIFeaturesScreen(
     var currentScreen by rememberSaveable { mutableStateOf(UIFeaturesSubScreen.MAIN) }
     
     val screenTitle = when (currentScreen) {
-        UIFeaturesSubScreen.MAIN -> "User Interface"
-        UIFeaturesSubScreen.QUICK_SETTINGS -> "Quick Settings"
-        UIFeaturesSubScreen.STATUS_BAR -> "Status Bar"
+        UIFeaturesSubScreen.MAIN -> stringResource(R.string.user_interface)
+        UIFeaturesSubScreen.QUICK_SETTINGS -> stringResource(R.string.quick_settings)
+        UIFeaturesSubScreen.STATUS_BAR -> stringResource(R.string.status_bar)
     }
     
     val handleBack: () -> Unit = {
@@ -108,7 +110,7 @@ fun UIFeaturesScreen(
                     IconButton(onClick = handleBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },
@@ -184,8 +186,8 @@ private fun UIFeaturesMainContent(
         Spacer(modifier = Modifier.height(4.dp))
         
         AnimatedFeatureCard(
-            title = "Quick Settings",
-            description = "Brightness slider, tiles & panel customization",
+            title = stringResource(R.string.quick_settings),
+            description = stringResource(R.string.quick_settings_description),
             illustrationBackground = primaryColor,
             onClick = onNavigateToQuickSettings
         ) {
@@ -193,8 +195,8 @@ private fun UIFeaturesMainContent(
         }
         
         AnimatedFeatureCard(
-            title = "Status Bar",
-            description = "Clock, icons and network indicators",
+            title = stringResource(R.string.status_bar),
+            description = stringResource(R.string.status_bar_description),
             illustrationBackground = tertiaryColor,
             onClick = onNavigateToStatusBar
         ) {
@@ -751,16 +753,16 @@ fun QuickSettingsContent(
         Spacer(modifier = Modifier.height(16.dp))
         
         
-        PreferenceGroup(title = "Brightness Slider") {
+        PreferenceGroup(title = stringResource(R.string.brightness_slider)) {
             item {
                 SecureListPreference(
                     key = "qs_brightness_slider_enabled",
-                    title = "Brightness Slider",
-                    summary = "Show brightness slider in Quick Settings panel",
+                    title = stringResource(R.string.brightness_slider),
+                    summary = stringResource(R.string.brightness_slider_summary),
                     options = listOf(
-                        "0" to "Hidden",
-                        "1" to "Show when quick settings is expanded",
-                        "2" to "Always Visible"
+                        "0" to stringResource(R.string.brightness_hidden),
+                        "1" to stringResource(R.string.brightness_show_expanded),
+                        "2" to stringResource(R.string.brightness_always_visible)
                     ),
                     defaultValue = "2"
                 )
@@ -768,11 +770,11 @@ fun QuickSettingsContent(
             item {
                 SecureListPreference(
                     key = "qs_brightness_slider_top",
-                    title = "Brightness Slider Position",
-                    summary = "Position of brightness slider in QS",
+                    title = stringResource(R.string.brightness_slider_position),
+                    summary = stringResource(R.string.brightness_slider_position_summary),
                     options = listOf(
-                        "0" to "Bottom",
-                        "1" to "Top"
+                        "0" to stringResource(R.string.position_bottom),
+                        "1" to stringResource(R.string.position_top)
                     ),
                     defaultValue = "0"
                 )
@@ -808,11 +810,11 @@ fun StatusBarContent(
         
         Spacer(modifier = Modifier.height(16.dp))
         
-        PreferenceGroup(title = "Status Bar Icons") {
+        PreferenceGroup(title = stringResource(R.string.status_bar_icons)) {
             item {
                 ClickablePreference(
-                    title = "Status Bar Tuner",
-                    summary = "Show or hide status bar icons",
+                    title = stringResource(R.string.status_bar_tuner),
+                    summary = stringResource(R.string.status_bar_tuner_summary),
                     icon = Icons.Default.Tune,
                     showExternalIcon = true,
                     onClick = {

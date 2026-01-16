@@ -40,8 +40,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 import com.android.axion.compose.preferences.*
 
@@ -56,7 +58,7 @@ fun SoundFeaturesScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Sound",
+                        text = stringResource(R.string.sound),
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.headlineMedium
                     )
@@ -65,7 +67,7 @@ fun SoundFeaturesScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },
@@ -177,14 +179,14 @@ private fun PerAppVolumeCard() {
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Per-App Volume",
+                        text = stringResource(R.string.per_app_volume),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = contentColor
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Control volume separately for each app",
+                        text = stringResource(R.string.per_app_volume_summary),
                         style = MaterialTheme.typography.bodyMedium,
                         color = contentColor.copy(alpha = 0.7f)
                     )
@@ -378,14 +380,14 @@ private fun MultiAudioFocusCard() {
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Multi Audio Focus",
+                        text = stringResource(R.string.multi_audio_focus),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = contentColor
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Allow multiple apps to play audio simultaneously",
+                        text = stringResource(R.string.multi_audio_focus_summary),
                         style = MaterialTheme.typography.bodyMedium,
                         color = contentColor.copy(alpha = 0.7f)
                     )

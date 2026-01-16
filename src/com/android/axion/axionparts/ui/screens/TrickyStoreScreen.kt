@@ -92,8 +92,10 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
+import com.android.axion.axionparts.R
 import com.android.axion.compose.preferences.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -105,10 +107,10 @@ private const val KEYBOX_FILE = "keybox.xml"
 private const val TARGET_FILE = "target.txt"
 private const val VENDING_PACKAGE = "com.android.vending"
 
-enum class TargetMode(val symbol: String, val description: String) {
-    AUTO("", "Auto - Automatic mode selection"),
-    LEAF_HACK("?", "Leaf Hack - Force leaf certificate hacking"),
-    CERT_GEN("!", "Cert Gen - Force certificate generation")
+enum class TargetMode(val symbol: String) {
+    AUTO(""),
+    LEAF_HACK("?"),
+    CERT_GEN("!")
 }
 
 data class AppEntry(
@@ -132,7 +134,7 @@ fun TrickyStoreScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = "TrickyStore",
+                            text = stringResource(R.string.trickystore),
                             fontWeight = FontWeight.Bold,
                             style = MaterialTheme.typography.headlineMedium
                         )
@@ -142,7 +144,7 @@ fun TrickyStoreScreen(
                             IconButton(onClick = onClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = stringResource(R.string.back)
                                 )
                             }
                         }
@@ -221,11 +223,11 @@ fun TrickyStoreContent(
                     val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                     am.forceStopPackage(VENDING_PACKAGE)
                     
-                    Toast.makeText(context, "Keybox imported successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.keybox_imported_success), Toast.LENGTH_SHORT).show()
                     refreshStatus()
                 } catch (e: Exception) {
                     Log.e("TrickyStore", "Failed to import keybox: ${e.message}")
-                    Toast.makeText(context, "Failed to import keybox: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, context.getString(R.string.keybox_import_failed, e.message), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -253,10 +255,10 @@ fun TrickyStoreContent(
                     
                     targetFile.setReadable(true, false)
                     
-                    Toast.makeText(context, "Target list imported successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.target_list_imported), Toast.LENGTH_SHORT).show()
                     refreshStatus()
                 } catch (e: Exception) {
-                    Toast.makeText(context, "Failed to import target list: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, context.getString(R.string.target_list_import_failed, e.message), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -265,8 +267,8 @@ fun TrickyStoreContent(
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
-            title = { Text("Delete Keybox?") },
-            text = { Text("This will remove the keybox.xml file. Certificate spoofing will be disabled until a new keybox is imported.") },
+            title = { Text(stringResource(R.string.delete_keybox_title)) },
+            text = { Text(stringResource(R.string.delete_keybox_message)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -275,20 +277,20 @@ fun TrickyStoreContent(
                             if (keyboxFile.exists()) {
                                 keyboxFile.delete()
                             }
-                            Toast.makeText(context, "Keybox deleted", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.keybox_deleted), Toast.LENGTH_SHORT).show()
                             refreshStatus()
                         } catch (e: Exception) {
-                            Toast.makeText(context, "Failed to delete keybox: ${e.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, context.getString(R.string.keybox_delete_failed, e.message), Toast.LENGTH_LONG).show()
                         }
                         showDeleteDialog = false
                     }
                 ) {
-                    Text("Delete")
+                    Text(stringResource(R.string.delete))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -312,12 +314,12 @@ fun TrickyStoreContent(
         Spacer(modifier = Modifier.height(8.dp))
         
         SettingsSection(
-            title = "Keybox Management",
+            title = stringResource(R.string.keybox_management),
             icon = Icons.Default.Key
         ) {
             ClickablePreference(
-                title = "Import Keybox",
-                summary = if (keyboxExists) "Keybox is installed" else "No keybox found - tap to import",
+                title = stringResource(R.string.import_keybox),
+                summary = if (keyboxExists) stringResource(R.string.keybox_installed) else stringResource(R.string.no_keybox_found),
                 icon = Icons.Default.Upload,
                 position = PreferencePosition.Top,
                 onClick = {
@@ -330,8 +332,8 @@ fun TrickyStoreContent(
             )
             
             ClickablePreference(
-                title = "Delete Keybox",
-                summary = "Remove the current keybox file",
+                title = stringResource(R.string.delete_keybox),
+                summary = stringResource(R.string.remove_keybox_file),
                 icon = Icons.Default.Delete,
                 enabled = keyboxExists,
                 position = PreferencePosition.Bottom,
@@ -342,12 +344,12 @@ fun TrickyStoreContent(
         }
         
         SettingsSection(
-            title = "Target Configuration", 
+            title = stringResource(R.string.target_configuration), 
             icon = Icons.Default.Security
         ) {
             ClickablePreference(
-                title = "Manage Target Apps",
-                summary = if (targetAppCount > 0) "$targetAppCount apps configured" else "No apps configured - tap to add",
+                title = stringResource(R.string.manage_target_apps),
+                summary = if (targetAppCount > 0) stringResource(R.string.target_apps_configured, targetAppCount) else stringResource(R.string.no_apps_configured),
                 icon = Icons.Default.Add,
                 position = PreferencePosition.Top,
                 onClick = {
@@ -356,8 +358,8 @@ fun TrickyStoreContent(
             )
             
             ClickablePreference(
-                title = "Import Target List",
-                summary = "Import from file",
+                title = stringResource(R.string.import_target_list),
+                summary = stringResource(R.string.import_from_file),
                 icon = Icons.Default.Upload,
                 position = PreferencePosition.Bottom,
                 onClick = {
@@ -556,14 +558,14 @@ fun AppPickerBottomSheet(
                             }
                         }
                     },
-                    label = { Text("Show System Apps") },
+                    label = { Text(stringResource(R.string.show_system_apps)) },
                     leadingIcon = if (showSystemApps) {
                         { Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(18.dp)) }
                     } else null
                 )
                 
                 Text(
-                    text = "${allApps.count { it.isInTarget }} selected",
+                    text = stringResource(R.string.selected_count, allApps.count { it.isInTarget }),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -578,7 +580,7 @@ fun AppPickerBottomSheet(
                         .height(300.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("Loading apps...")
+                    Text(stringResource(R.string.loading_apps))
                 }
             } else {
                 LazyColumn(
@@ -721,9 +723,9 @@ fun AppListItem(
                             label = {
                                 Text(
                                     text = when (mode) {
-                                        TargetMode.AUTO -> "Auto"
-                                        TargetMode.LEAF_HACK -> "Leaf ?"
-                                        TargetMode.CERT_GEN -> "Gen !"
+                                        TargetMode.AUTO -> stringResource(R.string.target_mode_auto)
+                                        TargetMode.LEAF_HACK -> stringResource(R.string.target_mode_leaf_hack)
+                                        TargetMode.CERT_GEN -> stringResource(R.string.target_mode_cert_gen)
                                     },
                                     style = MaterialTheme.typography.labelSmall
                                 )

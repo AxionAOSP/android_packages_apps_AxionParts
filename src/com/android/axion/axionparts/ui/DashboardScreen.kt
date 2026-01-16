@@ -30,33 +30,36 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.components.*
 import com.android.axion.axionparts.ui.screens.*
 
-val navItems = listOf(
+@Composable
+fun getNavItems() = listOf(
     NavItem(
         route = "customize",
-        label = "Customize",
+        label = stringResource(R.string.customize),
         icon = Icons.Filled.Palette,
         gradientColors = listOf(Color(0xFF6366F1), Color(0xFF8B5CF6))
     ),
     NavItem(
         route = "essentials",
-        label = "Essentials",
+        label = stringResource(R.string.essentials),
         icon = Icons.Filled.Diamond,
         gradientColors = listOf(Color(0xFF7C3AED), Color(0xFFA855F7))
     ),
     NavItem(
         route = "performance",
-        label = "Performance",
+        label = stringResource(R.string.performance),
         icon = Icons.Filled.Bolt,
         gradientColors = listOf(Color(0xFFF59E0B), Color(0xFFFBBF24))
     ),
     NavItem(
         route = "multitasking",
-        label = "Multitasking",
+        label = stringResource(R.string.multitasking),
         icon = Icons.Filled.Splitscreen,
         gradientColors = listOf(Color(0xFF0891B2), Color(0xFF06B6D4))
     )
@@ -65,6 +68,7 @@ val navItems = listOf(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen() {
+    val navItems = getNavItems()
     val windowSizeClass = rememberWindowSizeClass()
     val isExpandedLayout = windowSizeClass == WindowSizeClass.EXPANDED || 
                            windowSizeClass == WindowSizeClass.MEDIUM
@@ -97,12 +101,12 @@ fun DashboardScreen() {
         currentDetailScreen = null
     }
     
-    val currentTitle = navItems.find { it.route == selectedRoute }?.label ?: "Personalizations"
+    val currentTitle = navItems.find { it.route == selectedRoute }?.label ?: stringResource(R.string.personalizations)
     
     if (showAppPicker) {
         BackHandler { showAppPicker = false }
         AppPickerScreen(
-            title = "Select Essential Apps",
+            title = stringResource(R.string.select_essential_apps),
             selectedApps = appPickerSelectedApps,
             onBackClick = { showAppPicker = false },
             onAppsSelected = { apps ->

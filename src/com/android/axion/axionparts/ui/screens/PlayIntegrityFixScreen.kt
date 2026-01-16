@@ -89,9 +89,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -138,7 +140,7 @@ fun PlayIntegrityFixScreen(
                             IconButton(onClick = onClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = stringResource(R.string.back)
                                 )
                             }
                         }
@@ -239,14 +241,14 @@ fun PlayIntegrityFixContent(
             refreshStatus()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to update config", e)
-            Toast.makeText(context, "Failed to update: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.failed_to_update, e.message ?: ""), Toast.LENGTH_SHORT).show()
         }
     }
     
     fun fetchPixelBetaPif() {
         scope.launch {
             isFetching = true
-            fetchStatus = "Fetching..."
+            fetchStatus = context.getString(R.string.fetching)
             
             try {
                 val result = withContext(Dispatchers.IO) {
@@ -267,18 +269,18 @@ fun PlayIntegrityFixContent(
                         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                         am.forceStopPackage(VENDING_PACKAGE)
                         
-                        Toast.makeText(context, "Fetched: ${result.model}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.fetched_model, result.model), Toast.LENGTH_SHORT).show()
                         fetchStatus = ""
                         refreshStatus()
                     }
                     is PifFetchResult.Error -> {
-                        Toast.makeText(context, "Failed: ${result.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, context.getString(R.string.failed_message, result.message), Toast.LENGTH_LONG).show()
                         fetchStatus = ""
                     }
                 }
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to fetch PIF config: ${e.message}")
-                Toast.makeText(context, "Failed: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, context.getString(R.string.failed_message, e.message ?: ""), Toast.LENGTH_LONG).show()
                 fetchStatus = ""
             } finally {
                 isFetching = false
@@ -316,12 +318,12 @@ fun PlayIntegrityFixContent(
                     val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                     am.forceStopPackage(VENDING_PACKAGE)
                     
-                    Toast.makeText(context, "Imported as $targetFileName", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.imported_as, targetFileName), Toast.LENGTH_SHORT).show()
                     importTargetFile = ""
                     refreshStatus()
                 } catch (e: Exception) {
                     Log.e(TAG, "Failed to import PIF config: ${e.message}")
-                    Toast.makeText(context, "Failed: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, context.getString(R.string.failed_message, e.message ?: ""), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -331,29 +333,29 @@ fun PlayIntegrityFixContent(
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
-            title = { Text("Delete $deleteTargetFile?") },
-            text = { Text("This config file will be removed.") },
+            title = { Text(context.getString(R.string.delete_file_title, deleteTargetFile)) },
+            text = { Text(context.getString(R.string.delete_config_message)) },
             confirmButton = {
                 TextButton(
                     onClick = {
                         try {
                             val pifDir = File(PIF_PATH)
                             File(pifDir, deleteTargetFile).delete()
-                            Toast.makeText(context, "Deleted $deleteTargetFile", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.deleted_file, deleteTargetFile), Toast.LENGTH_SHORT).show()
                             refreshStatus()
                         } catch (e: Exception) {
-                            Toast.makeText(context, "Failed: ${e.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, context.getString(R.string.failed_message, e.message ?: ""), Toast.LENGTH_LONG).show()
                         }
                         showDeleteDialog = false
                         deleteTargetFile = ""
                     }
                 ) {
-                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.delete), color = MaterialTheme.colorScheme.error)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteDialog = false; deleteTargetFile = "" }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -431,11 +433,11 @@ fun PlayIntegrityFixContent(
                             strokeWidth = 2.dp
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(fetchStatus.ifEmpty { "Fetching..." })
+                        Text(fetchStatus.ifEmpty { stringResource(R.string.fetching) })
                     } else {
                         Icon(Icons.Default.CloudDownload, contentDescription = null)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Fetch Pixel Beta")
+                        Text(stringResource(R.string.fetch_pixel_beta))
                     }
                 }
             }
@@ -848,7 +850,7 @@ fun ConfigFileCard(
                 ) {
                     Icon(Icons.Default.Upload, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(if (config.exists) "Replace" else "Import")
+                    Text(if (config.exists) stringResource(R.string.replace) else stringResource(R.string.import_text_verb))
                 }
             }
             

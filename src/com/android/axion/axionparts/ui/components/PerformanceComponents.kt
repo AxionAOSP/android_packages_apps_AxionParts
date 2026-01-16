@@ -67,9 +67,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 import kotlin.math.roundToInt
 
@@ -200,7 +202,7 @@ fun PowerModeToggle(
                 )
                 Column {
                     Text(
-                        text = "Performance Mode",
+                        text = stringResource(R.string.performance_mode),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = contentColor

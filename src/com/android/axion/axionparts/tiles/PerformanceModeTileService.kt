@@ -74,8 +74,8 @@ class PerformanceModeTileService : TileService() {
         val isEnabled = isPerformanceModeEnabled()
         
         tile.state = if (isEnabled) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
-        tile.label = "Performance"
-        tile.subtitle = if (isEnabled) "On" else "Off"
+        tile.label = getString(R.string.qs_tile_performance)
+        tile.subtitle = if (isEnabled) getString(R.string.qs_tile_on) else getString(R.string.qs_tile_off)
         tile.icon = Icon.createWithResource(this, android.R.drawable.ic_menu_manage)
         tile.updateTile()
     }

@@ -96,10 +96,12 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.android.axion.axionparts.R
 import com.android.axion.compose.preferences.*
 import kotlin.math.sin
 
@@ -119,11 +121,11 @@ fun LockscreenFeaturesScreen(
     var currentScreen by rememberSaveable { mutableStateOf(LockscreenSubScreen.MAIN) }
     
     val screenTitle = when (currentScreen) {
-        LockscreenSubScreen.MAIN -> "Lockscreen"
-        LockscreenSubScreen.EDGE_LIGHT -> "Edge Light"
-        LockscreenSubScreen.MEDIA_ART -> "Media Art"
-        LockscreenSubScreen.PULSE_VISUALIZER -> "Pulse Visualizer"
-        LockscreenSubScreen.AOD -> "Always On Display"
+        LockscreenSubScreen.MAIN -> stringResource(R.string.lockscreen)
+        LockscreenSubScreen.EDGE_LIGHT -> stringResource(R.string.edge_light)
+        LockscreenSubScreen.MEDIA_ART -> stringResource(R.string.media_art)
+        LockscreenSubScreen.PULSE_VISUALIZER -> stringResource(R.string.pulse_visualizer)
+        LockscreenSubScreen.AOD -> stringResource(R.string.always_on_display)
     }
     
     val handleBack: () -> Unit = {
@@ -152,7 +154,7 @@ fun LockscreenFeaturesScreen(
                     IconButton(onClick = handleBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },
@@ -238,8 +240,8 @@ private fun LockscreenMainContent(
         
         
         AnimatedFeatureCard(
-            title = "Edge Light",
-            description = "Lighting effects on screen edges for notifications",
+            title = stringResource(R.string.edge_light),
+            description = stringResource(R.string.edge_light_description),
             illustrationBackground = Color(0xFF06B6D4),
             onClick = onNavigateToEdgeLight
         ) {
@@ -248,8 +250,8 @@ private fun LockscreenMainContent(
         
         
         AnimatedFeatureCard(
-            title = "Media Art",
-            description = "Album artwork on lockscreen during media playback",
+            title = stringResource(R.string.media_art),
+            description = stringResource(R.string.media_art_description),
             illustrationBackground = Color(0xFFA855F7),
             onClick = onNavigateToMediaArt
         ) {
@@ -257,8 +259,8 @@ private fun LockscreenMainContent(
         }
         
         AnimatedFeatureCard(
-            title = "Pulse Visualizer",
-            description = "Audio visualizer on lockscreen and ambient display",
+            title = stringResource(R.string.pulse_visualizer),
+            description = stringResource(R.string.pulse_visualizer_description),
             illustrationBackground = Color(0xFFEF4444),
             onClick = onNavigateToPulse
         ) {
@@ -266,8 +268,8 @@ private fun LockscreenMainContent(
         }
         
         AnimatedFeatureCard(
-            title = "Always On Display",
-            description = "Manage scheduled AOD and screen off behavior",
+            title = stringResource(R.string.always_on_display),
+            description = stringResource(R.string.always_on_display_description),
             illustrationBackground = Color(0xFFFF9800),
             onClick = onNavigateToAod
         ) {
@@ -302,19 +304,19 @@ fun EdgeLightContent(
         
         Spacer(modifier = Modifier.height(16.dp))
 
-        PreferenceGroup(title = "General") {
+        PreferenceGroup(title = stringResource(R.string.general)) {
             item {
                 SecureSettingSwitch(
                     settingKey = "edge_light_enabled",
-                    title = "Enable Edge Light",
-                    summary = "Show lighting effects on screen edges for notifications",
+                    title = stringResource(R.string.enable_edge_light),
+                    summary = stringResource(R.string.edge_light_summary),
                     defaultValue = false
                 )
             }
             item {
                 SecureListPreference(
                     key = "edge_light_color_mode",
-                    title = "Color mode",
+                    title = stringResource(R.string.color_mode),
                     summary = when (colorMode) {
                         "default" -> "Notification accent"
                         "custom" -> "Custom color"
@@ -340,11 +342,11 @@ fun EdgeLightContent(
             Column {
                 Spacer(modifier = Modifier.height(12.dp))
                 
-                PreferenceGroup(title = "Customization") {
+                PreferenceGroup(title = stringResource(R.string.customization)) {
                     item {
                         SecureColorPreference(
                             key = "edge_light_custom_color",
-                            title = "Custom color",
+                            title = stringResource(R.string.custom_color),
                             summary = String.format("#%06X", customColor and 0xFFFFFF),
                             defaultValue = AndroidColor.WHITE,
                             dependencyKey = "edge_light_enabled"
@@ -379,12 +381,12 @@ fun LockscreenMediaContent(
         
         Spacer(modifier = Modifier.height(16.dp))
         
-        PreferenceGroup(title = "General") {
+        PreferenceGroup(title = stringResource(R.string.general)) {
             item {
                 SecureSettingSwitch(
                     settingKey = "ls_media_art_enabled",
-                    title = "Enable Media Art",
-                    summary = "Show album artwork on lockscreen during media playback",
+                    title = stringResource(R.string.enable_media_art),
+                    summary = stringResource(R.string.media_art_summary),
                     defaultValue = false
                 )
             }
@@ -392,12 +394,12 @@ fun LockscreenMediaContent(
         
         Spacer(modifier = Modifier.height(12.dp))
         
-        PreferenceGroup(title = "Appearance") {
+        PreferenceGroup(title = stringResource(R.string.appearance)) {
             item {
                 SecureSettingSlider(
                     settingKey = "ls_media_art_blur",
-                    title = "Blur Level",
-                    summary = "Adjust the blur intensity of the album artwork",
+                    title = stringResource(R.string.blur_level),
+                    summary = stringResource(R.string.blur_level_summary),
                     min = 0,
                     max = 100,
                     unit = "dp",
@@ -431,12 +433,12 @@ fun PulseVisualizerContent(
         
         Spacer(modifier = Modifier.height(16.dp))
         
-        PreferenceGroup(title = "General") {
+        PreferenceGroup(title = stringResource(R.string.general)) {
             item {
                 SecureSettingSwitch(
                     settingKey = "visualizer_pulse_enabled",
-                    title = "Enable Pulse",
-                    summary = "Show audio visualizer on lockscreen and ambient display",
+                    title = stringResource(R.string.enable_pulse),
+                    summary = stringResource(R.string.pulse_summary),
                     defaultValue = false
                 )
             }
@@ -444,12 +446,12 @@ fun PulseVisualizerContent(
         
         Spacer(modifier = Modifier.height(12.dp))
         
-        PreferenceGroup(title = "Style") {
+        PreferenceGroup(title = stringResource(R.string.style)) {
             item {
                 SecureListPreference(
                     key = "pulse_view_style",
-                    title = "Render Style",
-                    summary = "Choose the visual style of the visualizer",
+                    title = stringResource(R.string.render_style),
+                    summary = stringResource(R.string.render_style_summary),
                     options = listOf(
                         "0" to "Solid Lines",
                         "1" to "Fading Blocks"
@@ -461,8 +463,8 @@ fun PulseVisualizerContent(
             item {
                 SecureListPreference(
                     key = "visualizer_pulse_color",
-                    title = "Color Mode",
-                    summary = "Customize the color of the visualizer",
+                    title = stringResource(R.string.color_mode),
+                    summary = stringResource(R.string.visualizer_color_summary),
                     options = listOf(
                         "lavalamp" to "Lava Lamp",
                         "album" to "Album Art",
@@ -476,12 +478,12 @@ fun PulseVisualizerContent(
         
         Spacer(modifier = Modifier.height(12.dp))
         
-        PreferenceGroup(title = "Bars") {
+        PreferenceGroup(title = stringResource(R.string.bars)) {
             item {
                 SecureSettingSlider(
                     settingKey = "visualizer_pulse_bar_count",
-                    title = "Bar Count",
-                    summary = "Number of visualization bars",
+                    title = stringResource(R.string.bar_count),
+                    summary = stringResource(R.string.bar_count_summary),
                     min = 8,
                     max = 64,
                     defaultValue = 32,
@@ -491,8 +493,8 @@ fun PulseVisualizerContent(
             item {
                 SecureSettingSwitch(
                     settingKey = "visualizer_pulse_rounded_bars_enabled",
-                    title = "Rounded Bars",
-                    summary = "Use rounded corners for visualizer bars",
+                    title = stringResource(R.string.rounded_bars),
+                    summary = stringResource(R.string.rounded_bars_summary),
                     defaultValue = true
                 )
             }
@@ -1491,7 +1493,7 @@ private fun ColorPickerDialog(
             ) {
                 androidx.compose.material3.TextButton(onClick = onDismiss) {
                     Text(
-                        text = "Cancel",
+                        text = stringResource(R.string.cancel),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -1540,11 +1542,11 @@ fun AodContent(
         
         Spacer(modifier = Modifier.height(16.dp))
         
-        PreferenceGroup(title = "Mode") {
+        PreferenceGroup(title = stringResource(R.string.mode)) {
             item {
                 SecureListPreference(
                     key = "aod_schedule_mode",
-                    title = "AOD Schedule",
+                    title = stringResource(R.string.aod_schedule),
                     summary = when (scheduleMode) {
                         "0" -> "Always on"
                         "1" -> "Scheduled"
@@ -1569,20 +1571,20 @@ fun AodContent(
             Column {
                 Spacer(modifier = Modifier.height(12.dp))
                 
-                PreferenceGroup(title = "Schedule") {
+                PreferenceGroup(title = stringResource(R.string.schedule)) {
                     item {
                         SecureTimePreference(
                             key = "aod_schedule_start_time",
-                            title = "Start time",
-                            summary = "When AOD turns on",
+                            title = stringResource(R.string.start_time),
+                            summary = stringResource(R.string.start_time_summary),
                             defaultValue = "2300"
                         )
                     }
                     item {
                         SecureTimePreference(
                             key = "aod_schedule_end_time",
-                            title = "End time",
-                            summary = "When AOD turns off",
+                            title = stringResource(R.string.end_time),
+                            summary = stringResource(R.string.end_time_summary),
                             defaultValue = "0700"
                         )
                     }
@@ -1592,20 +1594,20 @@ fun AodContent(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        PreferenceGroup(title = "Screen Off") {
+        PreferenceGroup(title = stringResource(R.string.screen_off)) {
             item {
                 SystemSettingSwitch(
                     settingKey = "screen_off_aod_enabled",
-                    title = "Screen Off AOD",
-                    summary = "Keep AOD active when screen turns off",
+                    title = stringResource(R.string.screen_off_aod),
+                    summary = stringResource(R.string.screen_off_aod_summary),
                     defaultValue = false
                 )
             }
             item {
                 SystemSettingSwitch(
                     settingKey = "screen_off_aod_animation",
-                    title = "Screen Off Animation",
-                    summary = "Animate the transition to AOD",
+                    title = stringResource(R.string.screen_off_animation),
+                    summary = stringResource(R.string.screen_off_animation_summary),
                     defaultValue = true
                 )
             }

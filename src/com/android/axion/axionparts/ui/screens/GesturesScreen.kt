@@ -29,8 +29,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import com.android.axion.compose.preferences.*
 import com.android.axion.axionparts.ui.theme.MaxContentWidth
 
@@ -45,7 +47,7 @@ fun GesturesScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Gestures",
+                        text = stringResource(R.string.gestures),
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.headlineMedium
                     )
@@ -54,7 +56,7 @@ fun GesturesScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },
@@ -83,22 +85,22 @@ private fun GesturesContent(
     modifier: Modifier = Modifier
 ) {
     val gestureActions = listOf(
-        "0" to "Nothing",
-        "2" to "App switch",
-        "3" to "Search",
-        "4" to "Voice search",
-        "6" to "Launch camera",
-        "7" to "Sleep",
-        "8" to "Last app",
-        "10" to "Close app",
-        "11" to "Play/Pause music",
-        "12" to "Flashlight",
-        "13" to "Screenshot",
-        "14" to "Volume panel",
-        "15" to "Clear notifications",
-        "16" to "Notifications panel",
-        "17" to "Expand QS panel",
-        "18" to "Ringer modes"
+        "0" to stringResource(R.string.gesture_action_nothing),
+        "2" to stringResource(R.string.gesture_action_app_switch),
+        "3" to stringResource(R.string.gesture_action_search),
+        "4" to stringResource(R.string.gesture_action_voice_search),
+        "6" to stringResource(R.string.gesture_action_launch_camera),
+        "7" to stringResource(R.string.gesture_action_sleep),
+        "8" to stringResource(R.string.gesture_action_last_app),
+        "10" to stringResource(R.string.gesture_action_close_app),
+        "11" to stringResource(R.string.gesture_action_play_pause),
+        "12" to stringResource(R.string.gesture_action_flashlight),
+        "13" to stringResource(R.string.gesture_action_screenshot),
+        "14" to stringResource(R.string.gesture_action_volume_panel),
+        "15" to stringResource(R.string.gesture_action_clear_notifications),
+        "16" to stringResource(R.string.gesture_action_notifications_panel),
+        "17" to stringResource(R.string.gesture_action_expand_qs),
+        "18" to stringResource(R.string.gesture_action_ringer_modes)
     )
 
     Column(
@@ -113,20 +115,20 @@ private fun GesturesContent(
         
         Spacer(modifier = Modifier.height(16.dp))
         
-        PreferenceGroup(title = "Shake Gestures") {
+        PreferenceGroup(title = stringResource(R.string.shake_gestures)) {
             item {
                 SecureSettingSwitch(
                     settingKey = "shake_gestures_enabled",
-                    title = "Enable Shake Gestures",
-                    summary = "Trigger actions by shaking your device",
+                    title = stringResource(R.string.enable_shake_gestures),
+                    summary = stringResource(R.string.shake_gestures_summary),
                     defaultValue = false
                 )
             }
             item {
                 SystemSettingSlider(
                     settingKey = "shake_gestures_intensity",
-                    title = "Shake Gesture Intensity",
-                    summary = "Intensity needed to trigger shake gesure",
+                    title = stringResource(R.string.shake_gesture_intensity),
+                    summary = stringResource(R.string.shake_intensity_summary),
                     min = 1,
                     max = 10,
                     unit = "",
@@ -136,8 +138,8 @@ private fun GesturesContent(
             item {
                 SecureListPreference(
                     key = "shake_gestures_action",
-                    title = "Shake Action",
-                    summary = "Action to perform when device is shaken",
+                    title = stringResource(R.string.shake_action),
+                    summary = stringResource(R.string.shake_action_summary),
                     options = gestureActions,
                     defaultValue = "0",
                     dependencyKey = "shake_gestures_enabled"
@@ -147,12 +149,12 @@ private fun GesturesContent(
         
         Spacer(modifier = Modifier.height(12.dp))
         
-        PreferenceGroup(title = "Three Finger Gestures") {
+        PreferenceGroup(title = stringResource(R.string.three_finger_gestures)) {
             item {
                 SecureListPreference(
                     key = "nothing_three_finger_screenshot",
-                    title = "Three Finger Swipe",
-                    summary = "Action when swiping with three fingers",
+                    title = stringResource(R.string.three_finger_swipe),
+                    summary = stringResource(R.string.three_finger_swipe_summary),
                     options = gestureActions,
                     defaultValue = "13"
                 )
@@ -160,16 +162,16 @@ private fun GesturesContent(
             item {
                 SecureSettingSwitch(
                     settingKey = "nothing_three_finger_long_press",
-                    title = "Three Finger Long Press",
-                    summary = "Enable three finger long press gesture",
+                    title = stringResource(R.string.three_finger_long_press),
+                    summary = stringResource(R.string.three_finger_long_press_summary),
                     defaultValue = false
                 )
             }
             item {
                 SecureSettingSwitch(
                     settingKey = "nt_disable_combination_screenshot",
-                    title = "Disable Button Screenshot",
-                    summary = "Disable power + volume down screenshot combo",
+                    title = stringResource(R.string.disable_button_screenshot),
+                    summary = stringResource(R.string.disable_button_screenshot_summary),
                     defaultValue = false
                 )
             }

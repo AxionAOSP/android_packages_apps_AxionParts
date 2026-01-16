@@ -66,8 +66,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import com.android.axion.compose.preferences.*
 import androidx.core.graphics.drawable.toBitmap
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
@@ -160,13 +162,13 @@ fun EssentialAppsPreference(
             .padding(horizontal = 16.dp, vertical = 16.dp)
     ) {
         Text(
-            text = "Selected Apps",
+            text = stringResource(R.string.selected_apps),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface
         )
         
         Text(
-            text = "Filter what's important. These apps stay grouped at the top.",
+            text = stringResource(R.string.selected_apps_description),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -198,7 +200,7 @@ fun EssentialAppsPreference(
         
         if (selectedAppsInfo.isEmpty()) {
             Text(
-                text = "No apps selected",
+                text = stringResource(R.string.no_apps_selected),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                 modifier = Modifier.padding(vertical = 8.dp)
@@ -289,7 +291,7 @@ private fun AddAppButton(onClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
-            text = "Add apps",
+            text = stringResource(R.string.add_apps),
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.onPrimary

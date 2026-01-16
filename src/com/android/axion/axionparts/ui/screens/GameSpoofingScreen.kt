@@ -39,9 +39,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import kotlinx.coroutines.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -153,7 +155,7 @@ fun GameSpoofingScreen(
                             IconButton(onClick = onClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = stringResource(R.string.back)
                                 )
                             }
                         }
@@ -203,7 +205,7 @@ fun GameSpoofingContent(
             withContext(Dispatchers.IO) {
                 saveGamePropsConfig(enabled, gameConfigs)
             }
-            Toast.makeText(context, "Configuration saved", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.configuration_saved), Toast.LENGTH_SHORT).show()
         }
     }
     
@@ -248,8 +250,8 @@ fun GameSpoofingContent(
     if (showDeleteDialog && deleteTarget != null) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
-            title = { Text("Remove Game?") },
-            text = { Text("This will remove the spoofing configuration for this game.") },
+            title = { Text(stringResource(R.string.remove_game_title)) },
+            text = { Text(stringResource(R.string.remove_game_message)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -259,7 +261,7 @@ fun GameSpoofingContent(
                         deleteTarget = null
                     }
                 ) {
-                    Text("Remove", color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.remove), color = MaterialTheme.colorScheme.error)
                 }
             },
             dismissButton = {
@@ -267,7 +269,7 @@ fun GameSpoofingContent(
                     showDeleteDialog = false
                     deleteTarget = null
                 }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -355,7 +357,7 @@ fun GameSpoofingContent(
             ) {
                 Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(4.dp))
-                Text("Add App")
+                Text(stringResource(R.string.add_app))
             }
             
             OutlinedButton(
@@ -594,14 +596,14 @@ fun AddGameDialog(
     
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Add App") },
+        title = { Text(stringResource(R.string.add_app_title)) },
         text = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 if (!showProfileSelector) {
-                    Text("Select an app:", style = MaterialTheme.typography.labelMedium)
+                    Text(stringResource(R.string.select_an_app), style = MaterialTheme.typography.labelMedium)
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -635,9 +637,9 @@ fun AddGameDialog(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Select device profile:", style = MaterialTheme.typography.labelMedium)
+                        Text(stringResource(R.string.select_device_profile), style = MaterialTheme.typography.labelMedium)
                         TextButton(onClick = { showCreatePresetDialog = true }) {
-                            Text("Create New")
+                            Text(stringResource(R.string.create_new))
                         }
                     }
                     Column(
@@ -733,7 +735,7 @@ fun AddGameDialog(
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel))
             }
         }
     )
@@ -784,7 +786,7 @@ fun PropertyEditor(
                     OutlinedTextField(
                         value = pair.first,
                         onValueChange = { newKey -> props[index] = newKey to pair.second },
-                        label = { Text("Key") },
+                        label = { Text(stringResource(R.string.key)) },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                         shape = RoundedCornerShape(12.dp)
@@ -793,7 +795,7 @@ fun PropertyEditor(
                     OutlinedTextField(
                         value = pair.second,
                         onValueChange = { newValue -> props[index] = pair.first to newValue },
-                        label = { Text("Value") },
+                        label = { Text(stringResource(R.string.value)) },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
                         shape = RoundedCornerShape(12.dp)
@@ -808,7 +810,7 @@ fun PropertyEditor(
         ) {
             Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
             Spacer(modifier = Modifier.width(8.dp))
-            Text("Add Property")
+            Text(stringResource(R.string.add_property))
         }
     }
 }
@@ -826,7 +828,7 @@ fun CreatePresetDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Create Preset") },
+        title = { Text(stringResource(R.string.create_preset_title)) },
         text = {
             Column(
                 modifier = Modifier
@@ -837,7 +839,7 @@ fun CreatePresetDialog(
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Preset Name") },
+                    label = { Text(stringResource(R.string.preset_name)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -863,7 +865,7 @@ fun CreatePresetDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
         }
     )
 }
@@ -893,12 +895,12 @@ fun EditGameDialog(
     if (showSavePresetDialog) {
         AlertDialog(
             onDismissRequest = { showSavePresetDialog = false },
-            title = { Text("Save as Preset") },
+            title = { Text(stringResource(R.string.save_as_preset_title)) },
             text = {
                 OutlinedTextField(
                     value = presetName,
                     onValueChange = { presetName = it },
-                    label = { Text("Preset Name") },
+                    label = { Text(stringResource(R.string.preset_name)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -913,7 +915,7 @@ fun EditGameDialog(
                             }
                             val newProfile = DeviceProfile(presetName.trim(), propsToSave, true)
                             saveCustomPreset(context, newProfile)
-                            Toast.makeText(context, "Preset saved", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.preset_saved), Toast.LENGTH_SHORT).show()
                             showSavePresetDialog = false
                         }
                     },
@@ -924,7 +926,7 @@ fun EditGameDialog(
             },
             dismissButton = {
                 TextButton(onClick = { showSavePresetDialog = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -954,7 +956,7 @@ fun EditGameDialog(
                     onClick = { showSavePresetDialog = true },
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Save as Preset")
+                    Text(stringResource(R.string.save_as_preset_title))
                 }
             }
         },
@@ -975,7 +977,7 @@ fun EditGameDialog(
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel))
             }
         }
     )

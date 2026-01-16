@@ -46,8 +46,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.components.EssentialAppsPreference
 import com.android.axion.axionparts.ui.theme.BottomNavPadding
 import com.android.axion.compose.preferences.*
@@ -79,7 +81,7 @@ fun EssentialsScreen(
                             IconButton(onClick = onClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = stringResource(R.string.back)
                                 )
                             }
                         }
@@ -129,7 +131,7 @@ fun EssentialsContent(
         Spacer(modifier = Modifier.height(8.dp))
         
         SettingsSection(
-            title = "Essential Notifications",
+            title = stringResource(R.string.essential_notifications),
             icon = Icons.Default.Notifications
         ) {
             EssentialAppsPreference(
@@ -138,12 +140,12 @@ fun EssentialsContent(
         }
         
         SettingsSection(
-            title = "Gaming",
+            title = stringResource(R.string.gaming),
             icon = Icons.Default.SportsEsports
         ) {
             ClickablePreference(
-                title = "GameSpace",
-                summary = "Optimize your gaming experience with GameSpace features",
+                title = stringResource(R.string.gamespace),
+                summary = stringResource(R.string.gamespace_summary),
                 icon = Icons.Default.SportsEsports,
                 position = PreferencePosition.Top,
                 showExternalIcon = true,
@@ -160,8 +162,8 @@ fun EssentialsContent(
             )
             
             ClickablePreference(
-                title = "Game Spoofing",
-                summary = "Spoof device properties for specific games",
+                title = stringResource(R.string.game_spoofing),
+                summary = stringResource(R.string.game_spoofing_summary),
                 icon = Icons.Default.Gamepad,
                 position = PreferencePosition.Bottom,
                 onClick = onNavigateToGameSpoofing
@@ -169,20 +171,20 @@ fun EssentialsContent(
         }
         
         SettingsSection(
-            title = "Security",
+            title = stringResource(R.string.security),
             icon = Icons.Default.Key
         ) {
             ClickablePreference(
-                title = "TrickyStore",
-                summary = "Manage keybox for key attestation spoofing",
+                title = stringResource(R.string.trickystore),
+                summary = stringResource(R.string.trickystore_summary),
                 icon = Icons.Default.Key,
                 position = PreferencePosition.Top,
                 onClick = onNavigateToTrickyStore
             )
             
             ClickablePreference(
-                title = "Play Integrity Fix",
-                summary = "Configure build fingerprint spoofing",
+                title = stringResource(R.string.play_integrity_fix),
+                summary = stringResource(R.string.play_integrity_fix_summary),
                 icon = Icons.Default.Fingerprint,
                 position = PreferencePosition.Middle,
                 onClick = onNavigateToPlayIntegrityFix
@@ -190,8 +192,8 @@ fun EssentialsContent(
             
             SecureSettingSwitch(
                 settingKey = "window_ignore_secure",
-                title = "Ignore Window Secure",
-                summary = "Allow taking screenshots and screen recordings in all apps",
+                title = stringResource(R.string.ignore_window_secure),
+                summary = stringResource(R.string.ignore_window_secure_summary),
                 icon = Icons.Default.ScreenshotMonitor,
                 position = PreferencePosition.Bottom
             )

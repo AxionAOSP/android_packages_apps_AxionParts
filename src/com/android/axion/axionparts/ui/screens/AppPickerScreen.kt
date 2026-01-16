@@ -70,9 +70,11 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -98,7 +100,7 @@ enum class AppFilterType {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppPickerScreen(
-    title: String = "Select Apps",
+    title: String = stringResource(R.string.select_apps),
     selectedApps: Set<String>,
     onBackClick: () -> Unit,
     onAppsSelected: (Set<String>) -> Unit,
@@ -170,7 +172,7 @@ fun AppPickerScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 },

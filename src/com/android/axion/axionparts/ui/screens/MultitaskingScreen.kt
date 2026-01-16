@@ -42,8 +42,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.theme.BottomNavPadding
 import com.android.axion.compose.preferences.*
 
@@ -72,7 +74,7 @@ fun MultitaskingScreen(
                             IconButton(onClick = onClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = stringResource(R.string.back)
                                 )
                             }
                         }
@@ -107,12 +109,12 @@ fun MultitaskingContent(
         Spacer(modifier = Modifier.height(8.dp))
         
         SettingsSection(
-            title = "Edge Features",
+            title = stringResource(R.string.edge_features),
             icon = Icons.Default.ViewSidebar
         ) {
             ClickablePreference(
-                title = "Sidebar",
-                summary = "Quick access to your favorite apps from the edge",
+                title = stringResource(R.string.sidebar),
+                summary = stringResource(R.string.sidebar_summary),
                 icon = Icons.Default.ViewSidebar,
                 onClick = {
                     val intent = Intent().apply {

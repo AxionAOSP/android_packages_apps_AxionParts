@@ -71,9 +71,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.components.BoostToggleCard
 import com.android.axion.axionparts.ui.components.FrequencySlider
 import com.android.axion.axionparts.ui.components.LevelSlider
@@ -108,7 +110,7 @@ fun PerformanceScreen(
                 LargeTopAppBar(
                     title = {
                         Text(
-                            text = "Performance",
+                            text = stringResource(R.string.performance),
                             fontWeight = FontWeight.Bold
                         )
                     },
@@ -117,7 +119,7 @@ fun PerformanceScreen(
                             IconButton(onClick = onClick) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = stringResource(R.string.back)
                                 )
                             }
                         }
@@ -152,7 +154,7 @@ fun PerformanceContent(
     val clusters = remember {
         listOf(
             ClusterConfig(
-                name = "Little Cluster",
+                name = stringResource(R.string.little_cluster),
                 maxFreq = maxFreqs.getOrNull(0) ?: 0,
                 boostKey = "axion_cpu_boost",
                 boostFreqKey = "axion_min_freq_boost",
@@ -162,7 +164,7 @@ fun PerformanceContent(
                 accentColor = Color(0xFF667eea)
             ),
             ClusterConfig(
-                name = "Big Cluster",
+                name = stringResource(R.string.big_cluster),
                 maxFreq = maxFreqs.getOrNull(1) ?: 0,
                 boostKey = "axion_big_core_boost",
                 boostFreqKey = "axion_min_freq_big_boost",
@@ -172,7 +174,7 @@ fun PerformanceContent(
                 accentColor = Color(0xFFf5576c)
             ),
             ClusterConfig(
-                name = "Prime Cluster",
+                name = stringResource(R.string.prime_cluster),
                 maxFreq = maxFreqs.getOrNull(2) ?: 0,
                 boostKey = "axion_prime_core_boost",
                 boostFreqKey = "axion_min_freq_prime_boost",
@@ -211,7 +213,7 @@ fun PerformanceContent(
         ) {
             BoostToggleCard(
                 settingKey = "axion_sf_boost",
-                title = "Display Boost",
+                title = stringResource(R.string.display_boost),
                 icon = Icons.Default.DisplaySettings,
                 gradientColors = listOf(Color(0xFF11998e), Color(0xFF38ef7d)),
                 defaultValue = true,
@@ -219,7 +221,7 @@ fun PerformanceContent(
             )
             BoostToggleCard(
                 settingKey = "axion_touch_boost",
-                title = "Touch Boost",
+                title = stringResource(R.string.touch_boost),
                 icon = Icons.Default.TouchApp,
                 gradientColors = listOf(Color(0xFFee0979), Color(0xFFff6a00)),
                 defaultValue = false,
@@ -333,7 +335,7 @@ private fun ClusterCard(cluster: ClusterConfig) {
             ) {
                 FrequencySlider(
                     settingKey = cluster.boostFreqKey,
-                    label = "Boost Frequency",
+                    label = stringResource(R.string.boost_frequency),
                     min = 0,
                     max = cluster.maxFreq,
                     interval = 100000,
@@ -345,7 +347,7 @@ private fun ClusterCard(cluster: ClusterConfig) {
             
             FrequencySlider(
                 settingKey = cluster.minFreqKey,
-                label = "Minimum Frequency",
+                label = stringResource(R.string.minimum_frequency),
                 min = 0,
                 max = cluster.maxFreq,
                 interval = 100000,
@@ -355,7 +357,7 @@ private fun ClusterCard(cluster: ClusterConfig) {
             
             FrequencySlider(
                 settingKey = cluster.maxFreqKey,
-                label = "Maximum Frequency",
+                label = stringResource(R.string.maximum_frequency),
                 min = 0,
                 max = cluster.maxFreq,
                 interval = 100000,
@@ -498,7 +500,7 @@ private fun GpuCard(maxLevels: Int) {
         ) {
             LevelSlider(
                 settingKey = "axion_game_gpu_boost_level",
-                label = "Game GPU Boost",
+                label = stringResource(R.string.game_gpu_boost),
                 min = 0,
                 max = maxLevels,
                 defaultValue = 1,
@@ -507,7 +509,7 @@ private fun GpuCard(maxLevels: Int) {
             
             LevelSlider(
                 settingKey = "axion_sys_gpu_boost_level",
-                label = "System GPU Boost",
+                label = stringResource(R.string.system_gpu_boost),
                 min = 0,
                 max = maxLevels,
                 defaultValue = 1,
