@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Axion Parts</string>
+    
+    <!-- Common UI Elements -->
+    <string name="back">رجوع</string>
+    <string name="cancel">إلغاء</string>
+    <string name="save">حفظ</string>
+    <string name="delete">حذف</string>
+    <string name="remove">إزالة</string>
+    <string name="add">إضافة</string>
+    <string name="edit">تعديل</string>
+    <string name="replace">استبدال</string>
+    <string name="import_text">استيراد</string>
+    <string name="reload">إعادة تحميل</string>
+    <string name="clear">مسح</string>
+    <string name="expand">توسيع</string>
+    <string name="collapse">طي</string>
+    <string name="search">بحث</string>
+    <string name="create">إنشاء</string>
+    <string name="settings">الإعدادات</string>
+    <string name="general">عام</string>
+    <string name="active">نشط</string>
+    <string name="inactive">غير نشط</string>
+    <string name="disabled">معطل</string>
+    <string name="custom">مخصص</string>
+    
+    <!-- Navigation -->
+    <string name="customize">تخصيص</string>
+    <string name="nav_customize">تخصيص</string>
+    <string name="nav_essentials">الأساسيات</string>
+    <string name="nav_performance">الأداء</string>
+    <string name="nav_multitasking">تعدد المهام</string>
+    <string name="personalizations">التخصيصات</string>
+    
+    <!-- Customize Screen -->
+    <string name="themes">السمات</string>
+    <string name="themes_subtitle">الأيقونات والأشكال والمزيد</string>
+    <string name="lockscreen">شاشة القفل</string>
+    <string name="lockscreen_subtitle">إضاءة الحواف والوسائط والمرئيات</string>
+    <string name="ui_features">ميزات الواجهة</string>
+    <string name="ui_features_subtitle">شريط الحالة وQS والمزيد</string>
+    <string name="sound">الصوت</string>
+    <string name="sound_subtitle">مستوى الصوت لكل تطبيق والصوت المتعدد</string>
+    <string name="gestures">الإيماءات</string>
+    <string name="gestures_subtitle">الاهتزاز وإجراءات الأصابع الثلاثة</string>
+    
+    <!-- Lockscreen Features -->
+    <string name="edge_light">إضاءة الحواف</string>
+    <string name="edge_light_description">تأثيرات الإضاءة على حواف الشاشة للإشعارات</string>
+    <string name="enable_edge_light">تفعيل إضاءة الحواف</string>
+    <string name="edge_light_summary">إظهار تأثيرات الإضاءة على حواف الشاشة للإشعارات</string>
+    <string name="color_mode">وضع اللون</string>
+    <string name="notification_accent">لون الإشعار المميز</string>
+    <string name="custom_color">لون مخصص</string>
+    <string name="customization">التخصيص</string>
+    <string name="custom_color_summary">#%1$06X</string>
+    <string name="choose_color">اختر اللون</string>
+    <string name="presets">الإعدادات المسبقة</string>
+    <string name="selected">محدد</string>
+    <string name="select_uppercase">تحديد</string>
+    <string name="select_item">اختر عنصرًا</string>
+    
+    <!-- Media Art -->
+    <string name="media_art">فن الوسائط</string>
+    <string name="media_art_description">غلاف الألبوم على شاشة القفل أثناء تشغيل الوسائط</string>
+    <string name="enable_media_art">تفعيل فن الوسائط</string>
+    <string name="media_art_summary">إظهار غلاف الألبوم على شاشة القفل أثناء تشغيل الوسائط</string>
+    <string name="appearance">المظهر</string>
+    <string name="blur_level">مستوى الطمس</string>
+    <string name="blur_level_summary">ضبط شدة طمس غلاف الألبوم</string>
+    
+    <!-- Pulse Visualizer -->
+    <string name="pulse_visualizer">مُرئي النبض</string>
+    <string name="pulse_visualizer_description">مُرئي الصوت على شاشة القفل والعرض المحيط</string>
+    <string name="enable_pulse">تفعيل النبض</string>
+    <string name="pulse_summary">إظهار مُرئي الصوت على شاشة القفل والعرض المحيط</string>
+    <string name="style">النمط</string>
+    <string name="render_style">نمط العرض</string>
+    <string name="render_style_summary">اختر النمط المرئي للمُرئي</string>
+    <string name="solid_lines">خطوط صلبة</string>
+    <string name="fading_blocks">كتل متلاشية</string>
+    <string name="color_mode_title">وضع اللون</string>
+    <string name="visualizer_color_summary">تخصيص لون المُرئي</string>
+    <string name="lava_lamp">مصباح الحمم</string>
+    <string name="album_art">غلاف الألبوم</string>
+    <string name="system_accent">اللون المميز للنظام</string>
+    <string name="bars">الأشرطة</string>
+    <string name="bar_count">عدد الأشرطة</string>
+    <string name="bar_count_summary">عدد أشرطة المرئيات</string>
+    <string name="rounded_bars">أشرطة مستديرة</string>
+    <string name="rounded_bars_summary">استخدام زوايا مستديرة لأشرطة المرئيات</string>
+    
+    <!-- Always On Display -->
+    <string name="always_on_display">العرض الدائم</string>
+    <string name="always_on_display_description">إدارة جدول AOD وسلوك إيقاف الشاشة</string>
+    <string name="mode">الوضع</string>
+    <string name="aod_schedule">جدول AOD</string>
+    <string name="always_on">دائمًا قيد التشغيل</string>
+    <string name="scheduled">مجدول</string>
+    <string name="schedule">الجدول</string>
+    <string name="start_time">وقت البدء</string>
+    <string name="start_time_summary">عندما يتم تشغيل AOD</string>
+    <string name="end_time">وقت الانتهاء</string>
+    <string name="end_time_summary">عندما يتم إيقاف AOD</string>
+    <string name="screen_off">إيقاف الشاشة</string>
+    <string name="screen_off_aod">AOD عند إيقاف الشاشة</string>
+    <string name="screen_off_aod_summary">إبقاء AOD نشطًا عند إيقاف الشاشة</string>
+    <string name="screen_off_animation">حركة إيقاف الشاشة</string>
+    <string name="screen_off_animation_summary">تحريك الانتقال إلى AOD</string>
+    
+    <!-- UI Features -->
+    <string name="user_interface">واجهة المستخدم</string>
+    <string name="quick_settings">الإعدادات السريعة</string>
+    <string name="quick_settings_description">شريط تمرير السطوع والبلاطات وتخصيص اللوحة</string>
+    <string name="status_bar">شريط الحالة</string>
+    <string name="status_bar_description">الساعة والأيقونات ومؤشرات الشبكة</string>
+    <string name="brightness_slider">شريط تمرير السطوع</string>
+    <string name="brightness_slider_summary">إظهار شريط تمرير السطوع في لوحة الإعدادات السريعة</string>
+    <string name="brightness_slider_position">موضع شريط تمرير السطوع</string>
+    <string name="brightness_slider_position_summary">موضع شريط تمرير السطوع في QS</string>
+    <string name="brightness_hidden">مخفي</string>
+    <string name="brightness_show_expanded">إظهار عند توسيع الإعدادات السريعة</string>
+    <string name="brightness_always_visible">مرئي دائمًا</string>
+    <string name="position_bottom">الأسفل</string>
+    <string name="position_top">الأعلى</string>
+    <string name="status_bar_icons">أيقونات شريط الحالة</string>
+    <string name="status_bar_tuner">موالف شريط الحالة</string>
+    <string name="status_bar_tuner_summary">إظهار أو إخفاء أيقونات شريط الحالة</string>
+    
+    <!-- Sound Features -->
+    <string name="per_app_volume">مستوى الصوت لكل تطبيق</string>
+    <string name="per_app_volume_summary">التحكم في مستوى الصوت بشكل منفصل لكل تطبيق</string>
+    <string name="multi_audio_focus">تركيز الصوت المتعدد</string>
+    <string name="multi_audio_focus_summary">السماح لتطبيقات متعددة بتشغيل الصوت في وقت واحد</string>
+    
+    <!-- Gestures -->
+    <string name="shake_gestures">إيماءات الاهتزاز</string>
+    <string name="enable_shake_gestures">تفعيل إيماءات الاهتزاز</string>
+    <string name="shake_gestures_summary">تفعيل الإجراءات عن طريق اهتزاز جهازك</string>
+    <string name="shake_gesture_intensity">شدة إيماءة الاهتزاز</string>
+    <string name="shake_intensity_summary">الشدة المطلوبة لتفعيل إيماءة الاهتزاز</string>
+    <string name="shake_action">إجراء الاهتزاز</string>
+    <string name="shake_action_summary">الإجراء المطلوب تنفيذه عند اهتزاز الجهاز</string>
+    <string name="three_finger_gestures">إيماءات الأصابع الثلاثة</string>
+    <string name="three_finger_swipe">التمرير بثلاثة أصابع</string>
+    <string name="three_finger_swipe_summary">الإجراء عند التمرير بثلاثة أصابع</string>
+    <string name="three_finger_long_press">الضغط الطويل بثلاثة أصابع</string>
+    <string name="three_finger_long_press_summary">تفعيل إيماءة الضغط الطويل بثلاثة أصابع</string>
+    <string name="disable_button_screenshot">تعطيل لقطة الشاشة بالزر</string>
+    <string name="disable_button_screenshot_summary">تعطيل مجموعة الطاقة + خفض مستوى الصوت لالتقاط الشاشة</string>
+    
+    <!-- Gesture Actions -->
+    <string name="gesture_action_nothing">لا شيء</string>
+    <string name="gesture_action_app_switch">تبديل التطبيقات</string>
+    <string name="gesture_action_search">بحث</string>
+    <string name="gesture_action_voice_search">البحث الصوتي</string>
+    <string name="gesture_action_launch_camera">فتح الكاميرا</string>
+    <string name="gesture_action_sleep">سكون</string>
+    <string name="gesture_action_last_app">التطبيق الأخير</string>
+    <string name="gesture_action_close_app">إغلاق التطبيق</string>
+    <string name="gesture_action_play_pause">تشغيل/إيقاف الموسيقى</string>
+    <string name="gesture_action_flashlight">المصباح</string>
+    <string name="gesture_action_screenshot">لقطة الشاشة</string>
+    <string name="gesture_action_volume_panel">لوحة مستوى الصوت</string>
+    <string name="gesture_action_clear_notifications">مسح الإشعارات</string>
+    <string name="gesture_action_notifications_panel">لوحة الإشعارات</string>
+    <string name="gesture_action_expand_qs">توسيع لوحة QS</string>
+    <string name="gesture_action_ringer_modes">أوضاع الرنين</string>
+    
+    <!-- Essentials Screen -->
+    <string name="essentials">الأساسيات</string>
+    <string name="essential_notifications">الإشعارات الأساسية</string>
+    <string name="gaming">الألعاب</string>
+    <string name="security">الأمان</string>
+    
+    <!-- Essential Apps -->
+    <string name="selected_apps">التطبيقات المحددة</string>
+    <string name="selected_apps_description">تصفية ما هو مهم. هذه التطبيقات تبقى مجمعة في الأعلى.</string>
+    <string name="no_apps_selected">لم يتم تحديد تطبيقات</string>
+    <string name="add_apps">إضافة تطبيقات</string>
+    <string name="add_app">إضافة تطبيق</string>
+    <string name="select_essential_apps">حدد التطبيقات الأساسية</string>
+    <string name="select_apps">اختر التطبيقات</string>
+    
+    <!-- App Picker -->
+    <string name="loading_apps">جارٍ تحميل التطبيقات...</string>
+    <string name="search_apps">البحث عن التطبيقات...</string>
+    <string name="show_system_apps">إظهار تطبيقات النظام</string>
+    <string name="selected_count">%1$d محدد</string>
+    
+    <!-- GameSpace -->
+    <string name="gamespace">مساحة الألعاب</string>
+    <string name="gamespace_summary">حسّن تجربة الألعاب باستخدام ميزات مساحة الألعاب</string>
+    
+    <!-- Game Spoofing -->
+    <string name="game_spoofing">انتحال الألعاب</string>
+    <string name="game_spoofing_summary">انتحال خصائص الجهاز لألعاب معينة</string>
+    <string name="app_spoofing">انتحال التطبيقات</string>
+    <string name="apps_configured">تم تكوين %1$d تطبيق</string>
+    <string name="no_apps_configured">لم يتم تكوين أي تطبيقات</string>
+    <string name="configured_apps">التطبيقات المُكَوَّنَة</string>
+    <string name="no_apps_configured_empty">لم يتم تكوين أي تطبيقات</string>
+    <string name="add_apps_to_spoof">أضف تطبيقات لبدء انتحال خصائص الجهاز</string>
+    <string name="configuration_saved">تم حفظ التكوين</string>
+    <string name="remove_game_title">إزالة اللعبة؟</string>
+    <string name="remove_game_message">سيؤدي هذا إلى إزالة تكوين الانتحال لهذه اللعبة.</string>
+    <string name="select_an_app">حدد تطبيقًا:</string>
+    <string name="select_device_profile">حدد ملف تعريف الجهاز:</string>
+    <string name="create_new">إنشاء جديد</string>
+    <string name="delete_preset">حذف الإعداد المسبق</string>
+    <string name="create_preset_title">إنشاء إعداد مسبق</string>
+    <string name="preset_name">اسم الإعداد المسبق</string>
+    <string name="property_number">الخاصية %1$d</string>
+    <string name="key">المفتاح</string>
+    <string name="value">القيمة</string>
+    <string name="add_property">إضافة خاصية</string>
+    <string name="save_as_preset_title">حفظ كإعداد مسبق</string>
+    <string name="preset_saved">تم حفظ الإعداد المسبق</string>
+    <string name="edit_app">تعديل %1$s</string>
+    <string name="add_app_title">إضافة تطبيق</string>
+    
+    <!-- Device Profiles -->
+    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
+    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
+    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
+    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
+    <string name="device_black_shark_4">Black Shark 4</string>
+    <string name="device_lenovo_y700">Lenovo Y700</string>
+    
+    <!-- Security Features -->
+    <string name="trickystore">TrickyStore</string>
+    <string name="trickystore_summary">إدارة keybox لانتحال key attestation</string>
+    <string name="keybox_management">إدارة Keybox</string>
+    <string name="import_keybox">استيراد Keybox</string>
+    <string name="keybox_installed">تم تثبيت Keybox</string>
+    <string name="no_keybox_found">لم يتم العثور على keybox - اضغط للاستيراد</string>
+    <string name="delete_keybox">حذف Keybox</string>
+    <string name="remove_keybox_file">إزالة ملف keybox الحالي</string>
+    <string name="delete_keybox_title">حذف Keybox؟</string>
+    <string name="delete_keybox_message">سيؤدي هذا إلى إزالة ملف keybox.xml. سيتم تعطيل انتحال الشهادة حتى يتم استيراد keybox جديد.</string>
+    <string name="keybox_imported_success">تم استيراد Keybox بنجاح</string>
+    <string name="keybox_import_failed">فشل استيراد keybox: %1$s</string>
+    <string name="keybox_deleted">تم حذف Keybox</string>
+    <string name="keybox_delete_failed">فشل حذف keybox: %1$s</string>
+    <string name="target_configuration">تكوين الهدف</string>
+    <string name="manage_target_apps">إدارة التطبيقات المستهدفة</string>
+    <string name="target_apps_configured">تم تكوين %1$d تطبيق</string>
+    <string name="import_target_list">استيراد قائمة الأهداف</string>
+    <string name="import_from_file">الاستيراد من ملف</string>
+    <string name="target_list_imported">تم استيراد قائمة الأهداف بنجاح</string>
+    <string name="target_list_import_failed">فشل استيراد قائمة الأهداف: %1$s</string>
+    <string name="select_target_apps">حدد التطبيقات المستهدفة</string>
+    <string name="choose_apps_for_attestation">اختر التطبيقات لتمكين انتحال attestation</string>
+    <string name="target_mode_auto">تلقائي</string>
+    <string name="target_mode_leaf_hack">Leaf ?</string>
+    <string name="target_mode_cert_gen">Gen !</string>
+    
+    <!-- Play Integrity Fix -->
+    <string name="play_integrity_fix">إصلاح Play Integrity</string>
+    <string name="play_integrity_fix_summary">تكوين انتحال بصمة البناء</string>
+    <string name="fingerprint_spoofing">انتحال بصمة الإصبع</string>
+    <string name="active_config">نشط: %1$s</string>
+    <string name="no_config_loaded">لم يتم تحميل أي تكوين</string>
+    <string name="fetch_pixel_beta">جلب Pixel Beta</string>
+    <string name="fetching">جارٍ الجلب…</string>
+    <string name="fetched_model">تم الجلب: %1$s</string>
+    <string name="failed_message">فشل: %1$s</string>
+    <string name="failed_to_update">فشل التحديث: %1$s</string>
+    <string name="imported_as">تم الاستيراد كـ %1$s</string>
+    <string name="deleted_file">تم حذف %1$s</string>
+    <string name="delete_file_title">حذف %1$s؟</string>
+    <string name="delete_config_message">سيتم إزالة ملف التكوين هذا.</string>
+    <string name="import_text_verb">استيراد</string>
+    <string name="active_config_title">التكوين النشط</string>
+    <string name="spoof_google_photos">انتحال Google Photos</string>
+    <string name="unlimited_backup">نسخ احتياطي غير محدود بالجودة الأصلية</string>
+    <string name="other_config_files">ملفات التكوين الأخرى</string>
+    <string name="configured_count">%1$d من %2$d مُكَوَّن</string>
+    <string name="priority_note">الأولوية: custom.pif.* > pif.* (يتم استخدام الأول الذي يتم العثور عليه)</string>
+    <string name="active_in_use">نشط - قيد الاستخدام حاليًا</string>
+    <string name="available_overridden">متاح - تم تجاوزه بأولوية أعلى</string>
+    <string name="not_configured">غير مُكَوَّن</string>
+    
+    <!-- Security - Window Secure -->
+    <string name="ignore_window_secure">تجاهل Window Secure</string>
+    <string name="ignore_window_secure_summary">السماح بالتقاط الشاشة وتسجيل الشاشة في جميع التطبيقات</string>
+    
+    <!-- Performance Screen -->
+    <string name="performance">الأداء</string>
+    <string name="performance_mode">وضع الأداء</string>
+    <string name="maximum_performance_enabled">تم تمكين الأداء الأقصى</string>
+    <string name="balanced_mode">الوضع المتوازن</string>
+    <string name="boost_controls">عناصر التحكم في التعزيز</string>
+    <string name="frequency_control">التحكم في التردد</string>
+    <string name="display_boost">تعزيز الشاشة</string>
+    <string name="touch_boost">تعزيز اللمس</string>
+    <string name="boost_active">التعزيز نشط</string>
+    <string name="boost_disabled">التعزيز معطل</string>
+    
+    <!-- CPU Clusters -->
+    <string name="little_cluster">المجموعة الصغيرة</string>
+    <string name="big_cluster">المجموعة الكبيرة</string>
+    <string name="prime_cluster">المجموعة الرئيسية</string>
+    <string name="boost_frequency">تردد التعزيز</string>
+    <string name="minimum_frequency">التردد الأدنى</string>
+    <string name="maximum_frequency">التردد الأقصى</string>
+    
+    <!-- GPU -->
+    <string name="gpu">GPU</string>
+    <string name="graphics_performance">أداء الرسومات</string>
+    <string name="game_gpu_boost">تعزيز GPU للألعاب</string>
+    <string name="system_gpu_boost">تعزيز GPU للنظام</string>
+    
+    <!-- Performance Formats -->
+    <string name="level_format">المستوى %1$d</string>
+    <string name="mhz_format">%1$d MHz</string>
+    
+    <!-- Quick Settings Tile -->
+    <string name="qs_tile_performance">الأداء</string>
+    <string name="qs_tile_on">تشغيل</string>
+    <string name="qs_tile_off">إيقاف</string>
+    
+    <!-- Multitasking Screen -->
+    <string name="multitasking">تعدد المهام</string>
+    <string name="edge_features">ميزات الحافة</string>
+    <string name="sidebar">الشريط الجانبي</string>
+    <string name="sidebar_summary">وصول سريع إلى تطبيقاتك المفضلة من الحافة</string>
+    
+</resources>

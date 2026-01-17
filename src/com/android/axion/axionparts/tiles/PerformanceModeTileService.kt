@@ -25,6 +25,7 @@ import android.os.UserHandle
 import android.provider.Settings
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
+import com.android.axion.axionparts.R
 
 class PerformanceModeTileService : TileService() {
 

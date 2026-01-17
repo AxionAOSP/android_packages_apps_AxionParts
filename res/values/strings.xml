@@ -27,6 +27,7 @@
     <string name="custom">Custom</string>
     
     <!-- Navigation -->
+    <string name="customize">Customize</string>
     <string name="nav_customize">Customize</string>
     <string name="nav_essentials">Essentials</string>
     <string name="nav_performance">Performance</string>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Axion Parts</string>
+    
+    <!-- Common UI Elements -->
+    <string name="back">Retour</string>
+    <string name="cancel">Annuler</string>
+    <string name="save">Enregistrer</string>
+    <string name="delete">Supprimer</string>
+    <string name="remove">Retirer</string>
+    <string name="add">Ajouter</string>
+    <string name="edit">Modifier</string>
+    <string name="replace">Remplacer</string>
+    <string name="import_text">Importer</string>
+    <string name="reload">Recharger</string>
+    <string name="clear">Effacer</string>
+    <string name="expand">Développer</string>
+    <string name="collapse">Réduire</string>
+    <string name="search">Rechercher</string>
+    <string name="create">Créer</string>
+    <string name="settings">Paramètres</string>
+    <string name="general">Général</string>
+    <string name="active">Actif</string>
+    <string name="inactive">Inactif</string>
+    <string name="disabled">Désactivé</string>
+    <string name="custom">Personnalisé</string>
+    
+    <!-- Navigation -->
+    <string name="customize">Personnaliser</string>
+    <string name="nav_customize">Personnaliser</string>
+    <string name="nav_essentials">Essentiels</string>
+    <string name="nav_performance">Performance</string>
+    <string name="nav_multitasking">Multitâche</string>
+    <string name="personalizations">Personnalisations</string>
+    
+    <!-- Customize Screen -->
+    <string name="themes">Thèmes</string>
+    <string name="themes_subtitle">Icônes, formes &amp; plus</string>
+    <string name="lockscreen">Écran de verrouillage</string>
+    <string name="lockscreen_subtitle">Lumière des bords, médias &amp; visualiseur</string>
+    <string name="ui_features">Fonctionnalités UI</string>
+    <string name="ui_features_subtitle">Barre d\'état, QS &amp; plus</string>
+    <string name="sound">Son</string>
+    <string name="sound_subtitle">Volume par application &amp; multi audio</string>
+    <string name="gestures">Gestes</string>
+    <string name="gestures_subtitle">Secouer &amp; actions à trois doigts</string>
+    
+    <!-- Lockscreen Features -->
+    <string name="edge_light">Lumière des bords</string>
+    <string name="edge_light_description">Effets lumineux sur les bords de l\'écran pour les notifications</string>
+    <string name="enable_edge_light">Activer la lumière des bords</string>
+    <string name="edge_light_summary">Afficher des effets lumineux sur les bords de l\'écran pour les notifications</string>
+    <string name="color_mode">Mode couleur</string>
+    <string name="notification_accent">Accent de notification</string>
+    <string name="custom_color">Couleur personnalisée</string>
+    <string name="customization">Personnalisation</string>
+    <string name="custom_color_summary">#%1$06X</string>
+    <string name="choose_color">Choisir une couleur</string>
+    <string name="presets">Préréglages</string>
+    <string name="selected">Sélectionné</string>
+    <string name="select_uppercase">Sélectionner</string>
+    <string name="select_item">Sélectionner un élément</string>
+    
+    <!-- Media Art -->
+    <string name="media_art">Art des médias</string>
+    <string name="media_art_description">Pochette d\'album sur l\'écran de verrouillage pendant la lecture</string>
+    <string name="enable_media_art">Activer l\'art des médias</string>
+    <string name="media_art_summary">Afficher la pochette d\'album sur l\'écran de verrouillage pendant la lecture</string>
+    <string name="appearance">Apparence</string>
+    <string name="blur_level">Niveau de flou</string>
+    <string name="blur_level_summary">Ajuster l\'intensité du flou de la pochette d\'album</string>
+    
+    <!-- Pulse Visualizer -->
+    <string name="pulse_visualizer">Visualiseur Pulse</string>
+    <string name="pulse_visualizer_description">Visualiseur audio sur l\'écran de verrouillage et l\'affichage ambiant</string>
+    <string name="enable_pulse">Activer Pulse</string>
+    <string name="pulse_summary">Afficher le visualiseur audio sur l\'écran de verrouillage et l\'affichage ambiant</string>
+    <string name="style">Style</string>
+    <string name="render_style">Style de rendu</string>
+    <string name="render_style_summary">Choisir le style visuel du visualiseur</string>
+    <string name="solid_lines">Lignes pleines</string>
+    <string name="fading_blocks">Blocs fondus</string>
+    <string name="color_mode_title">Mode couleur</string>
+    <string name="visualizer_color_summary">Personnaliser la couleur du visualiseur</string>
+    <string name="lava_lamp">Lampe à lave</string>
+    <string name="album_art">Pochette d\'album</string>
+    <string name="system_accent">Accent système</string>
+    <string name="bars">Barres</string>
+    <string name="bar_count">Nombre de barres</string>
+    <string name="bar_count_summary">Nombre de barres de visualisation</string>
+    <string name="rounded_bars">Barres arrondies</string>
+    <string name="rounded_bars_summary">Utiliser des coins arrondis pour les barres du visualiseur</string>
+    
+    <!-- Always On Display -->
+    <string name="always_on_display">Affichage permanent</string>
+    <string name="always_on_display_description">Gérer l\'horaire AOD et le comportement d\'écran éteint</string>
+    <string name="mode">Mode</string>
+    <string name="aod_schedule">Horaire AOD</string>
+    <string name="always_on">Toujours actif</string>
+    <string name="scheduled">Programmé</string>
+    <string name="schedule">Horaire</string>
+    <string name="start_time">Heure de début</string>
+    <string name="start_time_summary">Quand AOD s\'active</string>
+    <string name="end_time">Heure de fin</string>
+    <string name="end_time_summary">Quand AOD se désactive</string>
+    <string name="screen_off">Écran éteint</string>
+    <string name="screen_off_aod">AOD écran éteint</string>
+    <string name="screen_off_aod_summary">Garder AOD actif lorsque l\'écran s\'éteint</string>
+    <string name="screen_off_animation">Animation d\'écran éteint</string>
+    <string name="screen_off_animation_summary">Animer la transition vers AOD</string>
+    
+    <!-- UI Features -->
+    <string name="user_interface">Interface utilisateur</string>
+    <string name="quick_settings">Paramètres rapides</string>
+    <string name="quick_settings_description">Curseur de luminosité, tuiles &amp; personnalisation du panneau</string>
+    <string name="status_bar">Barre d\'état</string>
+    <string name="status_bar_description">Horloge, icônes et indicateurs réseau</string>
+    <string name="brightness_slider">Curseur de luminosité</string>
+    <string name="brightness_slider_summary">Afficher le curseur de luminosité dans le panneau Paramètres rapides</string>
+    <string name="brightness_slider_position">Position du curseur de luminosité</string>
+    <string name="brightness_slider_position_summary">Position du curseur de luminosité dans QS</string>
+    <string name="brightness_hidden">Masqué</string>
+    <string name="brightness_show_expanded">Afficher lorsque les paramètres rapides sont développés</string>
+    <string name="brightness_always_visible">Toujours visible</string>
+    <string name="position_bottom">Bas</string>
+    <string name="position_top">Haut</string>
+    <string name="status_bar_icons">Icônes de la barre d\'état</string>
+    <string name="status_bar_tuner">Régleur de barre d\'état</string>
+    <string name="status_bar_tuner_summary">Afficher ou masquer les icônes de la barre d\'état</string>
+    
+    <!-- Sound Features -->
+    <string name="per_app_volume">Volume par application</string>
+    <string name="per_app_volume_summary">Contrôler le volume séparément pour chaque application</string>
+    <string name="multi_audio_focus">Focus audio multiple</string>
+    <string name="multi_audio_focus_summary">Autoriser plusieurs applications à lire de l\'audio simultanément</string>
+    
+    <!-- Gestures -->
+    <string name="shake_gestures">Gestes de secousse</string>
+    <string name="enable_shake_gestures">Activer les gestes de secousse</string>
+    <string name="shake_gestures_summary">Déclencher des actions en secouant votre appareil</string>
+    <string name="shake_gesture_intensity">Intensité du geste de secousse</string>
+    <string name="shake_intensity_summary">Intensité nécessaire pour déclencher le geste de secousse</string>
+    <string name="shake_action">Action de secousse</string>
+    <string name="shake_action_summary">Action à effectuer lors de la secousse de l\'appareil</string>
+    <string name="three_finger_gestures">Gestes à trois doigts</string>
+    <string name="three_finger_swipe">Balayage à trois doigts</string>
+    <string name="three_finger_swipe_summary">Action lors du balayage avec trois doigts</string>
+    <string name="three_finger_long_press">Appui long à trois doigts</string>
+    <string name="three_finger_long_press_summary">Activer le geste d\'appui long à trois doigts</string>
+    <string name="disable_button_screenshot">Désactiver la capture d\'écran par boutons</string>
+    <string name="disable_button_screenshot_summary">Désactiver la combinaison power + volume bas pour la capture d\'écran</string>
+    
+    <!-- Gesture Actions -->
+    <string name="gesture_action_nothing">Rien</string>
+    <string name="gesture_action_app_switch">Changer d\'application</string>
+    <string name="gesture_action_search">Rechercher</string>
+    <string name="gesture_action_voice_search">Recherche vocale</string>
+    <string name="gesture_action_launch_camera">Lancer l\'appareil photo</string>
+    <string name="gesture_action_sleep">Veille</string>
+    <string name="gesture_action_last_app">Dernière application</string>
+    <string name="gesture_action_close_app">Fermer l\'application</string>
+    <string name="gesture_action_play_pause">Lecture/Pause musique</string>
+    <string name="gesture_action_flashlight">Lampe torche</string>
+    <string name="gesture_action_screenshot">Capture d\'écran</string>
+    <string name="gesture_action_volume_panel">Panneau de volume</string>
+    <string name="gesture_action_clear_notifications">Effacer les notifications</string>
+    <string name="gesture_action_notifications_panel">Panneau de notifications</string>
+    <string name="gesture_action_expand_qs">Développer le panneau QS</string>
+    <string name="gesture_action_ringer_modes">Modes de sonnerie</string>
+    
+    <!-- Essentials Screen -->
+    <string name="essentials">Essentiels</string>
+    <string name="essential_notifications">Notifications essentielles</string>
+    <string name="gaming">Jeux</string>
+    <string name="security">Sécurité</string>
+    
+    <!-- Essential Apps -->
+    <string name="selected_apps">Applications sélectionnées</string>
+    <string name="selected_apps_description">Filtrez ce qui est important. Ces applications restent groupées en haut.</string>
+    <string name="no_apps_selected">Aucune application sélectionnée</string>
+    <string name="add_apps">Ajouter des applications</string>
+    <string name="add_app">Ajouter une application</string>
+    <string name="select_essential_apps">Sélectionner les applications essentielles</string>
+    <string name="select_apps">Sélectionner des applications</string>
+    
+    <!-- App Picker -->
+    <string name="loading_apps">Chargement des applications...</string>
+    <string name="search_apps">Rechercher des applications...</string>
+    <string name="show_system_apps">Afficher les applications système</string>
+    <string name="selected_count">%1$d sélectionné(s)</string>
+    
+    <!-- GameSpace -->
+    <string name="gamespace">GameSpace</string>
+    <string name="gamespace_summary">Optimisez votre expérience de jeu avec les fonctionnalités GameSpace</string>
+    
+    <!-- Game Spoofing -->
+    <string name="game_spoofing">Usurpation de jeu</string>
+    <string name="game_spoofing_summary">Usurper les propriétés de l\'appareil pour des jeux spécifiques</string>
+    <string name="app_spoofing">Usurpation d\'application</string>
+    <string name="apps_configured">%1$d applications configurées</string>
+    <string name="no_apps_configured">Aucune application configurée</string>
+    <string name="configured_apps">APPLICATIONS CONFIGURÉES</string>
+    <string name="no_apps_configured_empty">Aucune application configurée</string>
+    <string name="add_apps_to_spoof">Ajouter des applications pour commencer l\'usurpation des propriétés de l\'appareil</string>
+    <string name="configuration_saved">Configuration enregistrée</string>
+    <string name="remove_game_title">Retirer le jeu ?</string>
+    <string name="remove_game_message">Cela supprimera la configuration d\'usurpation pour ce jeu.</string>
+    <string name="select_an_app">Sélectionner une application :</string>
+    <string name="select_device_profile">Sélectionner le profil de l\'appareil :</string>
+    <string name="create_new">Créer nouveau</string>
+    <string name="delete_preset">Supprimer le préréglage</string>
+    <string name="create_preset_title">Créer un préréglage</string>
+    <string name="preset_name">Nom du préréglage</string>
+    <string name="property_number">Propriété %1$d</string>
+    <string name="key">Clé</string>
+    <string name="value">Valeur</string>
+    <string name="add_property">Ajouter une propriété</string>
+    <string name="save_as_preset_title">Enregistrer comme préréglage</string>
+    <string name="preset_saved">Préréglage enregistré</string>
+    <string name="edit_app">Modifier %1$s</string>
+    <string name="add_app_title">Ajouter une application</string>
+    
+    <!-- Device Profiles -->
+    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
+    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
+    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
+    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
+    <string name="device_black_shark_4">Black Shark 4</string>
+    <string name="device_lenovo_y700">Lenovo Y700</string>
+    
+    <!-- Security Features -->
+    <string name="trickystore">TrickyStore</string>
+    <string name="trickystore_summary">Gérer la keybox pour l\'usurpation d\'attestation de clé</string>
+    <string name="keybox_management">Gestion de Keybox</string>
+    <string name="import_keybox">Importer Keybox</string>
+    <string name="keybox_installed">Keybox est installé</string>
+    <string name="no_keybox_found">Aucune keybox trouvée - appuyez pour importer</string>
+    <string name="delete_keybox">Supprimer Keybox</string>
+    <string name="remove_keybox_file">Supprimer le fichier keybox actuel</string>
+    <string name="delete_keybox_title">Supprimer Keybox ?</string>
+    <string name="delete_keybox_message">Cela supprimera le fichier keybox.xml. L\'usurpation de certificat sera désactivée jusqu\'à ce qu\'une nouvelle keybox soit importée.</string>
+    <string name="keybox_imported_success">Keybox importé avec succès</string>
+    <string name="keybox_import_failed">Échec de l\'importation de keybox : %1$s</string>
+    <string name="keybox_deleted">Keybox supprimé</string>
+    <string name="keybox_delete_failed">Échec de la suppression de keybox : %1$s</string>
+    <string name="target_configuration">Configuration cible</string>
+    <string name="manage_target_apps">Gérer les applications cibles</string>
+    <string name="target_apps_configured">%1$d applications configurées</string>
+    <string name="import_target_list">Importer la liste des cibles</string>
+    <string name="import_from_file">Importer depuis un fichier</string>
+    <string name="target_list_imported">Liste des cibles importée avec succès</string>
+    <string name="target_list_import_failed">Échec de l\'importation de la liste des cibles : %1$s</string>
+    <string name="select_target_apps">Sélectionner les applications cibles</string>
+    <string name="choose_apps_for_attestation">Choisir les applications pour activer l\'usurpation d\'attestation</string>
+    <string name="target_mode_auto">Auto</string>
+    <string name="target_mode_leaf_hack">Leaf ?</string>
+    <string name="target_mode_cert_gen">Gen !</string>
+    
+    <!-- Play Integrity Fix -->
+    <string name="play_integrity_fix">Correctif Play Integrity</string>
+    <string name="play_integrity_fix_summary">Configurer l\'usurpation d\'empreinte de build</string>
+    <string name="fingerprint_spoofing">Usurpation d\'empreinte</string>
+    <string name="active_config">Actif : %1$s</string>
+    <string name="no_config_loaded">Aucune configuration chargée</string>
+    <string name="fetch_pixel_beta">Récupérer Pixel Beta</string>
+    <string name="fetching">Récupération…</string>
+    <string name="fetched_model">Récupéré : %1$s</string>
+    <string name="failed_message">Échec : %1$s</string>
+    <string name="failed_to_update">Échec de la mise à jour : %1$s</string>
+    <string name="imported_as">Importé en tant que %1$s</string>
+    <string name="deleted_file">%1$s supprimé</string>
+    <string name="delete_file_title">Supprimer %1$s ?</string>
+    <string name="delete_config_message">Ce fichier de configuration sera supprimé.</string>
+    <string name="import_text_verb">Importer</string>
+    <string name="active_config_title">Configuration active</string>
+    <string name="spoof_google_photos">Usurper Google Photos</string>
+    <string name="unlimited_backup">Sauvegarde illimitée en qualité d\'origine</string>
+    <string name="other_config_files">Autres fichiers de configuration</string>
+    <string name="configured_count">%1$d sur %2$d configurés</string>
+    <string name="priority_note">Priorité : custom.pif.* > pif.* (le premier trouvé est utilisé)</string>
+    <string name="active_in_use">Actif - Actuellement utilisé</string>
+    <string name="available_overridden">Disponible - Remplacé par une priorité supérieure</string>
+    <string name="not_configured">Non configuré</string>
+    
+    <!-- Security - Window Secure -->
+    <string name="ignore_window_secure">Ignorer Window Secure</string>
+    <string name="ignore_window_secure_summary">Autoriser les captures d\'écran et les enregistrements d\'écran dans toutes les applications</string>
+    
+    <!-- Performance Screen -->
+    <string name="performance">Performance</string>
+    <string name="performance_mode">Mode performance</string>
+    <string name="maximum_performance_enabled">Performance maximale activée</string>
+    <string name="balanced_mode">Mode équilibré</string>
+    <string name="boost_controls">CONTRÔLES BOOST</string>
+    <string name="frequency_control">CONTRÔLE DE FRÉQUENCE</string>
+    <string name="display_boost">Boost d\'affichage</string>
+    <string name="touch_boost">Boost tactile</string>
+    <string name="boost_active">Boost actif</string>
+    <string name="boost_disabled">Boost désactivé</string>
+    
+    <!-- CPU Clusters -->
+    <string name="little_cluster">Petit cluster</string>
+    <string name="big_cluster">Grand cluster</string>
+    <string name="prime_cluster">Cluster prime</string>
+    <string name="boost_frequency">Fréquence boost</string>
+    <string name="minimum_frequency">Fréquence minimale</string>
+    <string name="maximum_frequency">Fréquence maximale</string>
+    
+    <!-- GPU -->
+    <string name="gpu">GPU</string>
+    <string name="graphics_performance">Performance graphique</string>
+    <string name="game_gpu_boost">Boost GPU jeux</string>
+    <string name="system_gpu_boost">Boost GPU système</string>
+    
+    <!-- Performance Formats -->
+    <string name="level_format">Niveau %1$d</string>
+    <string name="mhz_format">%1$d MHz</string>
+    
+    <!-- Quick Settings Tile -->
+    <string name="qs_tile_performance">Performance</string>
+    <string name="qs_tile_on">Activé</string>
+    <string name="qs_tile_off">Désactivé</string>
+    
+    <!-- Multitasking Screen -->
+    <string name="multitasking">Multitâche</string>
+    <string name="edge_features">Fonctionnalités des bords</string>
+    <string name="sidebar">Barre latérale</string>
+    <string name="sidebar_summary">Accès rapide à vos applications préférées depuis le bord</string>
+    
+</resources>

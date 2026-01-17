@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Axion Parts</string>
+    
+    <!-- Common UI Elements -->
+    <string name="back">戻る</string>
+    <string name="cancel">キャンセル</string>
+    <string name="save">保存</string>
+    <string name="delete">削除</string>
+    <string name="remove">削除</string>
+    <string name="add">追加</string>
+    <string name="edit">編集</string>
+    <string name="replace">置換</string>
+    <string name="import_text">インポート</string>
+    <string name="reload">再読み込み</string>
+    <string name="clear">クリア</string>
+    <string name="expand">展開</string>
+    <string name="collapse">折りたたむ</string>
+    <string name="search">検索</string>
+    <string name="create">作成</string>
+    <string name="settings">設定</string>
+    <string name="general">一般</string>
+    <string name="active">有効</string>
+    <string name="inactive">無効</string>
+    <string name="disabled">無効化</string>
+    <string name="custom">カスタム</string>
+    
+    <!-- Navigation -->
+    <string name="customize">カスタマイズ</string>
+    <string name="nav_customize">カスタマイズ</string>
+    <string name="nav_essentials">必須項目</string>
+    <string name="nav_performance">パフォーマンス</string>
+    <string name="nav_multitasking">マルチタスク</string>
+    <string name="personalizations">パーソナライズ</string>
+    
+    <!-- Customize Screen -->
+    <string name="themes">テーマ</string>
+    <string name="themes_subtitle">アイコン、形状など</string>
+    <string name="lockscreen">ロック画面</string>
+    <string name="lockscreen_subtitle">エッジライト、メディア、ビジュアライザー</string>
+    <string name="ui_features">UI機能</string>
+    <string name="ui_features_subtitle">ステータスバー、QSなど</string>
+    <string name="sound">サウンド</string>
+    <string name="sound_subtitle">アプリ別音量、マルチオーディオ</string>
+    <string name="gestures">ジェスチャー</string>
+    <string name="gestures_subtitle">シェイク、3本指アクション</string>
+    
+    <!-- Lockscreen Features -->
+    <string name="edge_light">エッジライト</string>
+    <string name="edge_light_description">通知時に画面の端に光るエフェクト</string>
+    <string name="enable_edge_light">エッジライトを有効にする</string>
+    <string name="edge_light_summary">通知時に画面の端に光るエフェクトを表示</string>
+    <string name="color_mode">カラーモード</string>
+    <string name="notification_accent">通知アクセント</string>
+    <string name="custom_color">カスタムカラー</string>
+    <string name="customization">カスタマイズ</string>
+    <string name="custom_color_summary">#%1$06X</string>
+    <string name="choose_color">色を選択</string>
+    <string name="presets">プリセット</string>
+    <string name="selected">選択済み</string>
+    <string name="select_uppercase">選択</string>
+    <string name="select_item">アイテムを選択</string>
+    
+    <!-- Media Art -->
+    <string name="media_art">メディアアート</string>
+    <string name="media_art_description">メディア再生中にロック画面にアルバムアートを表示</string>
+    <string name="enable_media_art">メディアアートを有効にする</string>
+    <string name="media_art_summary">メディア再生中にロック画面にアルバムアートを表示</string>
+    <string name="appearance">外観</string>
+    <string name="blur_level">ぼかしレベル</string>
+    <string name="blur_level_summary">アルバムアートのぼかし強度を調整</string>
+    
+    <!-- Pulse Visualizer -->
+    <string name="pulse_visualizer">パルスビジュアライザー</string>
+    <string name="pulse_visualizer_description">ロック画面とアンビエント表示でオーディオビジュアライザーを表示</string>
+    <string name="enable_pulse">パルスを有効にする</string>
+    <string name="pulse_summary">ロック画面とアンビエント表示でオーディオビジュアライザーを表示</string>
+    <string name="style">スタイル</string>
+    <string name="render_style">レンダースタイル</string>
+    <string name="render_style_summary">ビジュアライザーの視覚スタイルを選択</string>
+    <string name="solid_lines">ソリッドライン</string>
+    <string name="fading_blocks">フェーディングブロック</string>
+    <string name="color_mode_title">カラーモード</string>
+    <string name="visualizer_color_summary">ビジュアライザーの色をカスタマイズ</string>
+    <string name="lava_lamp">ラバランプ</string>
+    <string name="album_art">アルバムアート</string>
+    <string name="system_accent">システムアクセント</string>
+    <string name="bars">バー</string>
+    <string name="bar_count">バー数</string>
+    <string name="bar_count_summary">ビジュアライザーのバー数</string>
+    <string name="rounded_bars">丸みを帯びたバー</string>
+    <string name="rounded_bars_summary">ビジュアライザーバーに丸い角を使用</string>
+    
+    <!-- Always On Display -->
+    <string name="always_on_display">常時表示ディスプレイ</string>
+    <string name="always_on_display_description">AODのスケジュールと画面オフ時の動作を管理</string>
+    <string name="mode">モード</string>
+    <string name="aod_schedule">AODスケジュール</string>
+    <string name="always_on">常にオン</string>
+    <string name="scheduled">スケジュール</string>
+    <string name="schedule">スケジュール</string>
+    <string name="start_time">開始時刻</string>
+    <string name="start_time_summary">AODがオンになる時刻</string>
+    <string name="end_time">終了時刻</string>
+    <string name="end_time_summary">AODがオフになる時刻</string>
+    <string name="screen_off">画面オフ</string>
+    <string name="screen_off_aod">画面オフ時のAOD</string>
+    <string name="screen_off_aod_summary">画面がオフになってもAODをアクティブに保つ</string>
+    <string name="screen_off_animation">画面オフアニメーション</string>
+    <string name="screen_off_animation_summary">AODへの遷移をアニメーション化</string>
+    
+    <!-- UI Features -->
+    <string name="user_interface">ユーザーインターフェース</string>
+    <string name="quick_settings">クイック設定</string>
+    <string name="quick_settings_description">明るさスライダー、タイル、パネルのカスタマイズ</string>
+    <string name="status_bar">ステータスバー</string>
+    <string name="status_bar_description">時計、アイコン、ネットワークインジケーター</string>
+    <string name="brightness_slider">明るさスライダー</string>
+    <string name="brightness_slider_summary">クイック設定パネルに明るさスライダーを表示</string>
+    <string name="brightness_slider_position">明るさスライダーの位置</string>
+    <string name="brightness_slider_position_summary">QSでの明るさスライダーの位置</string>
+    <string name="brightness_hidden">非表示</string>
+    <string name="brightness_show_expanded">クイック設定が展開されたときに表示</string>
+    <string name="brightness_always_visible">常に表示</string>
+    <string name="position_bottom">下部</string>
+    <string name="position_top">上部</string>
+    <string name="status_bar_icons">ステータスバーアイコン</string>
+    <string name="status_bar_tuner">ステータスバーチューナー</string>
+    <string name="status_bar_tuner_summary">ステータスバーアイコンの表示/非表示</string>
+    
+    <!-- Sound Features -->
+    <string name="per_app_volume">アプリ別音量</string>
+    <string name="per_app_volume_summary">各アプリの音量を個別に制御</string>
+    <string name="multi_audio_focus">マルチオーディオフォーカス</string>
+    <string name="multi_audio_focus_summary">複数のアプリが同時にオーディオを再生できるようにする</string>
+    
+    <!-- Gestures -->
+    <string name="shake_gestures">シェイクジェスチャー</string>
+    <string name="enable_shake_gestures">シェイクジェスチャーを有効にする</string>
+    <string name="shake_gestures_summary">デバイスをシェイクしてアクションをトリガー</string>
+    <string name="shake_gesture_intensity">シェイクジェスチャーの強度</string>
+    <string name="shake_intensity_summary">シェイクジェスチャーをトリガーするのに必要な強度</string>
+    <string name="shake_action">シェイクアクション</string>
+    <string name="shake_action_summary">デバイスをシェイクしたときに実行するアクション</string>
+    <string name="three_finger_gestures">3本指ジェスチャー</string>
+    <string name="three_finger_swipe">3本指スワイプ</string>
+    <string name="three_finger_swipe_summary">3本指でスワイプしたときのアクション</string>
+    <string name="three_finger_long_press">3本指長押し</string>
+    <string name="three_finger_long_press_summary">3本指長押しジェスチャーを有効にする</string>
+    <string name="disable_button_screenshot">ボタンスクリーンショットを無効にする</string>
+    <string name="disable_button_screenshot_summary">電源+音量ダウンの組み合わせによるスクリーンショットを無効にする</string>
+    
+    <!-- Gesture Actions -->
+    <string name="gesture_action_nothing">なし</string>
+    <string name="gesture_action_app_switch">アプリ切り替え</string>
+    <string name="gesture_action_search">検索</string>
+    <string name="gesture_action_voice_search">音声検索</string>
+    <string name="gesture_action_launch_camera">カメラを起動</string>
+    <string name="gesture_action_sleep">スリープ</string>
+    <string name="gesture_action_last_app">最後のアプリ</string>
+    <string name="gesture_action_close_app">アプリを閉じる</string>
+    <string name="gesture_action_play_pause">音楽を再生/一時停止</string>
+    <string name="gesture_action_flashlight">フラッシュライト</string>
+    <string name="gesture_action_screenshot">スクリーンショット</string>
+    <string name="gesture_action_volume_panel">音量パネル</string>
+    <string name="gesture_action_clear_notifications">通知をクリア</string>
+    <string name="gesture_action_notifications_panel">通知パネル</string>
+    <string name="gesture_action_expand_qs">QSパネルを展開</string>
+    <string name="gesture_action_ringer_modes">着信モード</string>
+    
+    <!-- Essentials Screen -->
+    <string name="essentials">必須項目</string>
+    <string name="essential_notifications">必須通知</string>
+    <string name="gaming">ゲーミング</string>
+    <string name="security">セキュリティ</string>
+    
+    <!-- Essential Apps -->
+    <string name="selected_apps">選択されたアプリ</string>
+    <string name="selected_apps_description">重要なものをフィルタリング。これらのアプリは上部にグループ化されたままです。</string>
+    <string name="no_apps_selected">アプリが選択されていません</string>
+    <string name="add_apps">アプリを追加</string>
+    <string name="add_app">アプリを追加</string>
+    <string name="select_essential_apps">必須アプリを選択</string>
+    <string name="select_apps">アプリを選択</string>
+    
+    <!-- App Picker -->
+    <string name="loading_apps">アプリを読み込んでいます...</string>
+    <string name="search_apps">アプリを検索...</string>
+    <string name="show_system_apps">システムアプリを表示</string>
+    <string name="selected_count">%1$d個選択</string>
+    
+    <!-- GameSpace -->
+    <string name="gamespace">GameSpace</string>
+    <string name="gamespace_summary">GameSpace機能でゲーム体験を最適化</string>
+    
+    <!-- Game Spoofing -->
+    <string name="game_spoofing">ゲームスプーフィング</string>
+    <string name="game_spoofing_summary">特定のゲーム向けにデバイスプロパティを偽装</string>
+    <string name="app_spoofing">アプリスプーフィング</string>
+    <string name="apps_configured">%1$d個のアプリを設定済み</string>
+    <string name="no_apps_configured">設定されたアプリがありません</string>
+    <string name="configured_apps">設定済みアプリ</string>
+    <string name="no_apps_configured_empty">設定されたアプリがありません</string>
+    <string name="add_apps_to_spoof">アプリを追加してデバイスプロパティの偽装を開始</string>
+    <string name="configuration_saved">設定を保存しました</string>
+    <string name="remove_game_title">ゲームを削除しますか？</string>
+    <string name="remove_game_message">このゲームのスプーフィング設定が削除されます。</string>
+    <string name="select_an_app">アプリを選択:</string>
+    <string name="select_device_profile">デバイスプロファイルを選択:</string>
+    <string name="create_new">新規作成</string>
+    <string name="delete_preset">プリセットを削除</string>
+    <string name="create_preset_title">プリセットを作成</string>
+    <string name="preset_name">プリセット名</string>
+    <string name="property_number">プロパティ %1$d</string>
+    <string name="key">キー</string>
+    <string name="value">値</string>
+    <string name="add_property">プロパティを追加</string>
+    <string name="save_as_preset_title">プリセットとして保存</string>
+    <string name="preset_saved">プリセットを保存しました</string>
+    <string name="edit_app">%1$sを編集</string>
+    <string name="add_app_title">アプリを追加</string>
+    
+    <!-- Device Profiles -->
+    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
+    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
+    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
+    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
+    <string name="device_black_shark_4">Black Shark 4</string>
+    <string name="device_lenovo_y700">Lenovo Y700</string>
+    
+    <!-- Security Features -->
+    <string name="trickystore">TrickyStore</string>
+    <string name="trickystore_summary">キー認証スプーフィング用のkeyboxを管理</string>
+    <string name="keybox_management">Keybox管理</string>
+    <string name="import_keybox">Keyboxをインポート</string>
+    <string name="keybox_installed">Keyboxがインストールされています</string>
+    <string name="no_keybox_found">Keyboxが見つかりません - タップしてインポート</string>
+    <string name="delete_keybox">Keyboxを削除</string>
+    <string name="remove_keybox_file">現在のkeyboxファイルを削除</string>
+    <string name="delete_keybox_title">Keyboxを削除しますか？</string>
+    <string name="delete_keybox_message">これによりkeybox.xmlファイルが削除されます。新しいkeyboxがインポートされるまで証明書スプーフィングは無効になります。</string>
+    <string name="keybox_imported_success">Keyboxを正常にインポートしました</string>
+    <string name="keybox_import_failed">Keyboxのインポートに失敗しました: %1$s</string>
+    <string name="keybox_deleted">Keyboxを削除しました</string>
+    <string name="keybox_delete_failed">Keyboxの削除に失敗しました: %1$s</string>
+    <string name="target_configuration">ターゲット設定</string>
+    <string name="manage_target_apps">ターゲットアプリを管理</string>
+    <string name="target_apps_configured">%1$d個のアプリを設定済み</string>
+    <string name="import_target_list">ターゲットリストをインポート</string>
+    <string name="import_from_file">ファイルからインポート</string>
+    <string name="target_list_imported">ターゲットリストを正常にインポートしました</string>
+    <string name="target_list_import_failed">ターゲットリストのインポートに失敗しました: %1$s</string>
+    <string name="select_target_apps">ターゲットアプリを選択</string>
+    <string name="choose_apps_for_attestation">認証スプーフィングを有効にするアプリを選択</string>
+    <string name="target_mode_auto">自動</string>
+    <string name="target_mode_leaf_hack">Leaf ?</string>
+    <string name="target_mode_cert_gen">Gen !</string>
+    
+    <!-- Play Integrity Fix -->
+    <string name="play_integrity_fix">Play Integrity修正</string>
+    <string name="play_integrity_fix_summary">ビルドフィンガープリントスプーフィングを設定</string>
+    <string name="fingerprint_spoofing">フィンガープリントスプーフィング</string>
+    <string name="active_config">アクティブ: %1$s</string>
+    <string name="no_config_loaded">設定が読み込まれていません</string>
+    <string name="fetch_pixel_beta">Pixel Betaを取得</string>
+    <string name="fetching">取得中…</string>
+    <string name="fetched_model">取得済み: %1$s</string>
+    <string name="failed_message">失敗: %1$s</string>
+    <string name="failed_to_update">更新に失敗しました: %1$s</string>
+    <string name="imported_as">%1$sとしてインポートしました</string>
+    <string name="deleted_file">%1$sを削除しました</string>
+    <string name="delete_file_title">%1$sを削除しますか？</string>
+    <string name="delete_config_message">この設定ファイルが削除されます。</string>
+    <string name="import_text_verb">インポート</string>
+    <string name="active_config_title">アクティブな設定</string>
+    <string name="spoof_google_photos">Google Photosを偽装</string>
+    <string name="unlimited_backup">元の画質で無制限バックアップ</string>
+    <string name="other_config_files">その他の設定ファイル</string>
+    <string name="configured_count">%2$d個中%1$d個を設定済み</string>
+    <string name="priority_note">優先順位: custom.pif.* > pif.* (最初に見つかったものが使用されます)</string>
+    <string name="active_in_use">アクティブ - 現在使用中</string>
+    <string name="available_overridden">利用可能 - より高い優先度で上書きされています</string>
+    <string name="not_configured">未設定</string>
+    
+    <!-- Security - Window Secure -->
+    <string name="ignore_window_secure">Window Secureを無視</string>
+    <string name="ignore_window_secure_summary">すべてのアプリでスクリーンショットと画面録画を許可</string>
+    
+    <!-- Performance Screen -->
+    <string name="performance">パフォーマンス</string>
+    <string name="performance_mode">パフォーマンスモード</string>
+    <string name="maximum_performance_enabled">最大パフォーマンスが有効</string>
+    <string name="balanced_mode">バランスモード</string>
+    <string name="boost_controls">ブーストコントロール</string>
+    <string name="frequency_control">周波数制御</string>
+    <string name="display_boost">ディスプレイブースト</string>
+    <string name="touch_boost">タッチブースト</string>
+    <string name="boost_active">ブーストアクティブ</string>
+    <string name="boost_disabled">ブースト無効</string>
+    
+    <!-- CPU Clusters -->
+    <string name="little_cluster">リトルクラスター</string>
+    <string name="big_cluster">ビッグクラスター</string>
+    <string name="prime_cluster">プライムクラスター</string>
+    <string name="boost_frequency">ブースト周波数</string>
+    <string name="minimum_frequency">最小周波数</string>
+    <string name="maximum_frequency">最大周波数</string>
+    
+    <!-- GPU -->
+    <string name="gpu">GPU</string>
+    <string name="graphics_performance">グラフィックスパフォーマンス</string>
+    <string name="game_gpu_boost">ゲームGPUブースト</string>
+    <string name="system_gpu_boost">システムGPUブースト</string>
+    
+    <!-- Performance Formats -->
+    <string name="level_format">レベル %1$d</string>
+    <string name="mhz_format">%1$d MHz</string>
+    
+    <!-- Quick Settings Tile -->
+    <string name="qs_tile_performance">パフォーマンス</string>
+    <string name="qs_tile_on">オン</string>
+    <string name="qs_tile_off">オフ</string>
+    
+    <!-- Multitasking Screen -->
+    <string name="multitasking">マルチタスク</string>
+    <string name="edge_features">エッジ機能</string>
+    <string name="sidebar">サイドバー</string>
+    <string name="sidebar_summary">エッジからお気に入りのアプリにすぐにアクセス</string>
+    
+</resources>

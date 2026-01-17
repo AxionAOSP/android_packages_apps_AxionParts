@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Axion Parts</string>
+    
+    <!-- Common UI Elements -->
+    <string name="back">Geri</string>
+    <string name="cancel">İptal</string>
+    <string name="save">Kaydet</string>
+    <string name="delete">Sil</string>
+    <string name="remove">Kaldır</string>
+    <string name="add">Ekle</string>
+    <string name="edit">Düzenle</string>
+    <string name="replace">Değiştir</string>
+    <string name="import_text">İçe Aktar</string>
+    <string name="reload">Yeniden Yükle</string>
+    <string name="clear">Temizle</string>
+    <string name="expand">Genişlet</string>
+    <string name="collapse">Daralt</string>
+    <string name="search">Ara</string>
+    <string name="create">Oluştur</string>
+    <string name="settings">Ayarlar</string>
+    <string name="general">Genel</string>
+    <string name="active">Aktif</string>
+    <string name="inactive">Pasif</string>
+    <string name="disabled">Devre Dışı</string>
+    <string name="custom">Özel</string>
+    
+    <!-- Navigation -->
+    <string name="customize">Özelleştir</string>
+    <string name="nav_customize">Özelleştir</string>
+    <string name="nav_essentials">Temel</string>
+    <string name="nav_performance">Performans</string>
+    <string name="nav_multitasking">Çoklu Görev</string>
+    <string name="personalizations">Kişiselleştirmeler</string>
+    
+    <!-- Customize Screen -->
+    <string name="themes">Temalar</string>
+    <string name="themes_subtitle">Simgeler, şekiller ve daha fazlası</string>
+    <string name="lockscreen">Kilit Ekranı</string>
+    <string name="lockscreen_subtitle">Kenar ışığı, medya ve görselleştirici</string>
+    <string name="ui_features">Arayüz Özellikleri</string>
+    <string name="ui_features_subtitle">Durum çubuğu, hızlı ayarlar ve daha fazlası</string>
+    <string name="sound">Ses</string>
+    <string name="sound_subtitle">Uygulama başına ses ve çoklu ses</string>
+    <string name="gestures">Hareketler</string>
+    <string name="gestures_subtitle">Sallama ve üç parmak hareketleri</string>
+    
+    <!-- Lockscreen Features -->
+    <string name="edge_light">Kenar Işığı</string>
+    <string name="edge_light_description">Bildirimler için ekran kenarlarında ışık efektleri</string>
+    <string name="enable_edge_light">Kenar Işığını Etkinleştir</string>
+    <string name="edge_light_summary">Bildirimler için ekran kenarlarında ışık efektleri göster</string>
+    <string name="color_mode">Renk modu</string>
+    <string name="notification_accent">Bildirim vurgusu</string>
+    <string name="custom_color">Özel renk</string>
+    <string name="customization">Özelleştirme</string>
+    <string name="custom_color_summary">#%1$06X</string>
+    <string name="choose_color">Renk seç</string>
+    <string name="presets">Hazır Ayarlar</string>
+    <string name="selected">Seçildi</string>
+    <string name="select_uppercase">Seç</string>
+    <string name="select_item">Bir öğe seçin</string>
+    
+    <!-- Media Art -->
+    <string name="media_art">Medya Sanatı</string>
+    <string name="media_art_description">Medya oynatımı sırasında kilit ekranında albüm kapağı</string>
+    <string name="enable_media_art">Medya Sanatını Etkinleştir</string>
+    <string name="media_art_summary">Medya oynatımı sırasında kilit ekranında albüm kapağı göster</string>
+    <string name="appearance">Görünüm</string>
+    <string name="blur_level">Bulanıklık Seviyesi</string>
+    <string name="blur_level_summary">Albüm kapağının bulanıklık yoğunluğunu ayarla</string>
+    
+    <!-- Pulse Visualizer -->
+    <string name="pulse_visualizer">Pulse Görselleştirici</string>
+    <string name="pulse_visualizer_description">Kilit ekranı ve ambient ekranda ses görselleştirici</string>
+    <string name="enable_pulse">Pulse\'u Etkinleştir</string>
+    <string name="pulse_summary">Kilit ekranı ve ambient ekranda ses görselleştirici göster</string>
+    <string name="style">Stil</string>
+    <string name="render_style">İşleme Stili</string>
+    <string name="render_style_summary">Görselleştiricinin görsel stilini seçin</string>
+    <string name="solid_lines">Düz Çizgiler</string>
+    <string name="fading_blocks">Solan Bloklar</string>
+    <string name="color_mode_title">Renk Modu</string>
+    <string name="visualizer_color_summary">Görselleştiricinin rengini özelleştir</string>
+    <string name="lava_lamp">Lav Lambası</string>
+    <string name="album_art">Albüm Kapağı</string>
+    <string name="system_accent">Sistem Vurgusu</string>
+    <string name="bars">Çubuklar</string>
+    <string name="bar_count">Çubuk Sayısı</string>
+    <string name="bar_count_summary">Görselleştirme çubukları sayısı</string>
+    <string name="rounded_bars">Yuvarlatılmış Çubuklar</string>
+    <string name="rounded_bars_summary">Görselleştirici çubukları için yuvarlatılmış köşeler kullan</string>
+    
+    <!-- Always On Display -->
+    <string name="always_on_display">Her Zaman Açık Ekran</string>
+    <string name="always_on_display_description">Zamanlanmış AOD ve ekran kapatma davranışını yönet</string>
+    <string name="mode">Mod</string>
+    <string name="aod_schedule">AOD Programı</string>
+    <string name="always_on">Her zaman açık</string>
+    <string name="scheduled">Zamanlanmış</string>
+    <string name="schedule">Program</string>
+    <string name="start_time">Başlangıç zamanı</string>
+    <string name="start_time_summary">AOD açılma zamanı</string>
+    <string name="end_time">Bitiş zamanı</string>
+    <string name="end_time_summary">AOD kapanma zamanı</string>
+    <string name="screen_off">Ekran Kapalı</string>
+    <string name="screen_off_aod">Ekran Kapalıyken AOD</string>
+    <string name="screen_off_aod_summary">Ekran kapandığında AOD\'yi aktif tut</string>
+    <string name="screen_off_animation">Ekran Kapatma Animasyonu</string>
+    <string name="screen_off_animation_summary">AOD\'ye geçişi canlandır</string>
+    
+    <!-- UI Features -->
+    <string name="user_interface">Kullanıcı Arayüzü</string>
+    <string name="quick_settings">Hızlı Ayarlar</string>
+    <string name="quick_settings_description">Parlaklık kaydırıcısı, karolar ve panel özelleştirme</string>
+    <string name="status_bar">Durum Çubuğu</string>
+    <string name="status_bar_description">Saat, simgeler ve ağ göstergeleri</string>
+    <string name="brightness_slider">Parlaklık Kaydırıcısı</string>
+    <string name="brightness_slider_summary">Hızlı Ayarlar panelinde parlaklık kaydırıcısını göster</string>
+    <string name="brightness_slider_position">Parlaklık Kaydırıcısı Konumu</string>
+    <string name="brightness_slider_position_summary">QS\'de parlaklık kaydırıcısının konumu</string>
+    <string name="brightness_hidden">Gizli</string>
+    <string name="brightness_show_expanded">Hızlı ayarlar genişletildiğinde göster</string>
+    <string name="brightness_always_visible">Her Zaman Görünür</string>
+    <string name="position_bottom">Alt</string>
+    <string name="position_top">Üst</string>
+    <string name="status_bar_icons">Durum Çubuğu Simgeleri</string>
+    <string name="status_bar_tuner">Durum Çubuğu Ayarlayıcı</string>
+    <string name="status_bar_tuner_summary">Durum çubuğu simgelerini göster veya gizle</string>
+    
+    <!-- Sound Features -->
+    <string name="per_app_volume">Uygulama Başına Ses</string>
+    <string name="per_app_volume_summary">Her uygulama için ses seviyesini ayrı ayrı kontrol et</string>
+    <string name="multi_audio_focus">Çoklu Ses Odağı</string>
+    <string name="multi_audio_focus_summary">Birden fazla uygulamanın aynı anda ses çalmasına izin ver</string>
+    
+    <!-- Gestures -->
+    <string name="shake_gestures">Sallama Hareketleri</string>
+    <string name="enable_shake_gestures">Sallama Hareketlerini Etkinleştir</string>
+    <string name="shake_gestures_summary">Cihazı sallayarak eylemleri tetikle</string>
+    <string name="shake_gesture_intensity">Sallama Hareketi Yoğunluğu</string>
+    <string name="shake_intensity_summary">Sallama hareketini tetiklemek için gereken yoğunluk</string>
+    <string name="shake_action">Sallama Eylemi</string>
+    <string name="shake_action_summary">Cihaz sallandığında gerçekleştirilecek eylem</string>
+    <string name="three_finger_gestures">Üç Parmak Hareketleri</string>
+    <string name="three_finger_swipe">Üç Parmakla Kaydırma</string>
+    <string name="three_finger_swipe_summary">Üç parmakla kaydırırken yapılacak eylem</string>
+    <string name="three_finger_long_press">Üç Parmakla Uzun Basma</string>
+    <string name="three_finger_long_press_summary">Üç parmakla uzun basma hareketini etkinleştir</string>
+    <string name="disable_button_screenshot">Düğme Ekran Görüntüsünü Devre Dışı Bırak</string>
+    <string name="disable_button_screenshot_summary">Güç + ses kısma ekran görüntüsü kombinasyonunu devre dışı bırak</string>
+    
+    <!-- Gesture Actions -->
+    <string name="gesture_action_nothing">Hiçbir şey</string>
+    <string name="gesture_action_app_switch">Uygulama değiştir</string>
+    <string name="gesture_action_search">Ara</string>
+    <string name="gesture_action_voice_search">Sesli arama</string>
+    <string name="gesture_action_launch_camera">Kamerayı başlat</string>
+    <string name="gesture_action_sleep">Uyku</string>
+    <string name="gesture_action_last_app">Son uygulama</string>
+    <string name="gesture_action_close_app">Uygulamayı kapat</string>
+    <string name="gesture_action_play_pause">Oynat/Duraklat</string>
+    <string name="gesture_action_flashlight">El feneri</string>
+    <string name="gesture_action_screenshot">Ekran görüntüsü</string>
+    <string name="gesture_action_volume_panel">Ses paneli</string>
+    <string name="gesture_action_clear_notifications">Bildirimleri temizle</string>
+    <string name="gesture_action_notifications_panel">Bildirimler paneli</string>
+    <string name="gesture_action_expand_qs">QS panelini genişlet</string>
+    <string name="gesture_action_ringer_modes">Zil modları</string>
+    
+    <!-- Essentials Screen -->
+    <string name="essentials">Temel</string>
+    <string name="essential_notifications">Temel Bildirimler</string>
+    <string name="gaming">Oyun</string>
+    <string name="security">Güvenlik</string>
+    
+    <!-- Essential Apps -->
+    <string name="selected_apps">Seçili Uygulamalar</string>
+    <string name="selected_apps_description">Önemli olanları filtrele. Bu uygulamalar en üstte gruplanır.</string>
+    <string name="no_apps_selected">Uygulama seçilmedi</string>
+    <string name="add_apps">Uygulama ekle</string>
+    <string name="add_app">Uygulama Ekle</string>
+    <string name="select_essential_apps">Temel Uygulamaları Seç</string>
+    <string name="select_apps">Uygulama Seç</string>
+    
+    <!-- App Picker -->
+    <string name="loading_apps">Uygulamalar yükleniyor…</string>
+    <string name="search_apps">Uygulama ara…</string>
+    <string name="show_system_apps">Sistem Uygulamalarını Göster</string>
+    <string name="selected_count">%1$d seçildi</string>
+    
+    <!-- GameSpace -->
+    <string name="gamespace">GameSpace</string>
+    <string name="gamespace_summary">GameSpace özellikleriyle oyun deneyiminizi optimize edin</string>
+    
+    <!-- Game Spoofing -->
+    <string name="game_spoofing">Oyun Sahteciliği</string>
+    <string name="game_spoofing_summary">Belirli oyunlar için cihaz özelliklerini taklit et</string>
+    <string name="app_spoofing">Uygulama Sahteciliği</string>
+    <string name="apps_configured">%1$d uygulama yapılandırıldı</string>
+    <string name="no_apps_configured">Hiçbir uygulama yapılandırılmadı</string>
+    <string name="configured_apps">YAPILANDIRILMIŞ UYGULAMALAR</string>
+    <string name="no_apps_configured_empty">Hiçbir uygulama yapılandırılmadı</string>
+    <string name="add_apps_to_spoof">Cihaz özelliklerini taklit etmeye başlamak için uygulama ekle</string>
+    <string name="configuration_saved">Yapılandırma kaydedildi</string>
+    <string name="remove_game_title">Oyunu Kaldır?</string>
+    <string name="remove_game_message">Bu, bu oyun için sahtecilik yapılandırmasını kaldıracak.</string>
+    <string name="select_an_app">Bir uygulama seçin:</string>
+    <string name="select_device_profile">Cihaz profili seçin:</string>
+    <string name="create_new">Yeni Oluştur</string>
+    <string name="delete_preset">Ön ayarı sil</string>
+    <string name="create_preset_title">Ön Ayar Oluştur</string>
+    <string name="preset_name">Ön Ayar Adı</string>
+    <string name="property_number">Özellik %1$d</string>
+    <string name="key">Anahtar</string>
+    <string name="value">Değer</string>
+    <string name="add_property">Özellik Ekle</string>
+    <string name="save_as_preset_title">Ön Ayar Olarak Kaydet</string>
+    <string name="preset_saved">Ön ayar kaydedildi</string>
+    <string name="edit_app">%1$s\'yi Düzenle</string>
+    <string name="add_app_title">Uygulama Ekle</string>
+    
+    <!-- Device Profiles -->
+    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
+    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
+    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
+    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
+    <string name="device_black_shark_4">Black Shark 4</string>
+    <string name="device_lenovo_y700">Lenovo Y700</string>
+    
+    <!-- Security Features -->
+    <string name="trickystore">TrickyStore</string>
+    <string name="trickystore_summary">Anahtar doğrulama sahteciliği için keybox\'ı yönet</string>
+    <string name="keybox_management">Keybox Yönetimi</string>
+    <string name="import_keybox">Keybox İçe Aktar</string>
+    <string name="keybox_installed">Keybox kurulu</string>
+    <string name="no_keybox_found">Keybox bulunamadı - içe aktarmak için dokunun</string>
+    <string name="delete_keybox">Keybox\'ı Sil</string>
+    <string name="remove_keybox_file">Mevcut keybox dosyasını kaldır</string>
+    <string name="delete_keybox_title">Keybox Silinsin mi?</string>
+    <string name="delete_keybox_message">Bu, keybox.xml dosyasını kaldıracak. Yeni bir keybox içe aktarılana kadar sertifika sahteciliği devre dışı kalacak.</string>
+    <string name="keybox_imported_success">Keybox başarıyla içe aktarıldı</string>
+    <string name="keybox_import_failed">Keybox içe aktarılamadı: %1$s</string>
+    <string name="keybox_deleted">Keybox silindi</string>
+    <string name="keybox_delete_failed">Keybox silinemedi: %1$s</string>
+    <string name="target_configuration">Hedef Yapılandırması</string>
+    <string name="manage_target_apps">Hedef Uygulamaları Yönet</string>
+    <string name="target_apps_configured">%1$d uygulama yapılandırıldı</string>
+    <string name="import_target_list">Hedef Listesini İçe Aktar</string>
+    <string name="import_from_file">Dosyadan içe aktar</string>
+    <string name="target_list_imported">Hedef listesi başarıyla içe aktarıldı</string>
+    <string name="target_list_import_failed">Hedef listesi içe aktarılamadı: %1$s</string>
+    <string name="select_target_apps">Hedef Uygulamaları Seç</string>
+    <string name="choose_apps_for_attestation">Doğrulama sahteciliğini etkinleştirmek için uygulamaları seçin</string>
+    <string name="target_mode_auto">Otomatik</string>
+    <string name="target_mode_leaf_hack">Leaf ?</string>
+    <string name="target_mode_cert_gen">Gen !</string>
+    
+    <!-- Play Integrity Fix -->
+    <string name="play_integrity_fix">Play Integrity Fix</string>
+    <string name="play_integrity_fix_summary">Yapı parmak izi sahteciliğini yapılandır</string>
+    <string name="fingerprint_spoofing">Parmak İzi Sahteciliği</string>
+    <string name="active_config">Aktif: %1$s</string>
+    <string name="no_config_loaded">Yapılandırma yüklenmedi</string>
+    <string name="fetch_pixel_beta">Pixel Beta Al</string>
+    <string name="fetching">Alınıyor…</string>
+    <string name="fetched_model">Alındı: %1$s</string>
+    <string name="failed_message">Başarısız: %1$s</string>
+    <string name="failed_to_update">Güncellenemedi: %1$s</string>
+    <string name="imported_as">%1$s olarak içe aktarıldı</string>
+    <string name="deleted_file">%1$s silindi</string>
+    <string name="delete_file_title">%1$s Silinsin mi?</string>
+    <string name="delete_config_message">Bu yapılandırma dosyası kaldırılacak.</string>
+    <string name="import_text_verb">İçe Aktar</string>
+    <string name="active_config_title">Aktif Yapılandırma</string>
+    <string name="spoof_google_photos">Google Fotoğraflar Sahteciliği</string>
+    <string name="unlimited_backup">Sınırsız orijinal kalite yedekleme</string>
+    <string name="other_config_files">Diğer Yapılandırma Dosyaları</string>
+    <string name="configured_count">%2$d\'dan %1$d yapılandırıldı</string>
+    <string name="priority_note">Öncelik: custom.pif.* > pif.* (bulunan ilk kullanılır)</string>
+    <string name="active_in_use">Aktif - Şu anda kullanımda</string>
+    <string name="available_overridden">Mevcut - Daha yüksek öncelik tarafından geçersiz kılındı</string>
+    <string name="not_configured">Yapılandırılmadı</string>
+    
+    <!-- Security - Window Secure -->
+    <string name="ignore_window_secure">Pencere Güvenliğini Yoksay</string>
+    <string name="ignore_window_secure_summary">Tüm uygulamalarda ekran görüntüsü ve ekran kaydına izin ver</string>
+    
+    <!-- Performance Screen -->
+    <string name="performance">Performans</string>
+    <string name="performance_mode">Performans Modu</string>
+    <string name="maximum_performance_enabled">Maksimum performans etkinleştirildi</string>
+    <string name="balanced_mode">Dengeli mod</string>
+    <string name="boost_controls">HIZLANDIRMA KONTROL</string>
+    <string name="frequency_control">FREKANS KONTROL</string>
+    <string name="display_boost">Ekran Hızlandırma</string>
+    <string name="touch_boost">Dokunmatik Hızlandırma</string>
+    <string name="boost_active">Hızlandırma Aktif</string>
+    <string name="boost_disabled">Hızlandırma Devre Dışı</string>
+    
+    <!-- CPU Clusters -->
+    <string name="little_cluster">Küçük Küme</string>
+    <string name="big_cluster">Büyük Küme</string>
+    <string name="prime_cluster">Ana Küme</string>
+    <string name="boost_frequency">Hızlandırma Frekansı</string>
+    <string name="minimum_frequency">Minimum Frekans</string>
+    <string name="maximum_frequency">Maksimum Frekans</string>
+    
+    <!-- GPU -->
+    <string name="gpu">GPU</string>
+    <string name="graphics_performance">Grafik Performansı</string>
+    <string name="game_gpu_boost">Oyun GPU Hızlandırma</string>
+    <string name="system_gpu_boost">Sistem GPU Hızlandırma</string>
+    
+    <!-- Performance Formats -->
+    <string name="level_format">Seviye %1$d</string>
+    <string name="mhz_format">%1$d MHz</string>
+    
+    <!-- Quick Settings Tile -->
+    <string name="qs_tile_performance">Performans</string>
+    <string name="qs_tile_on">Açık</string>
+    <string name="qs_tile_off">Kapalı</string>
+    
+    <!-- Multitasking Screen -->
+    <string name="multitasking">Çoklu Görev</string>
+    <string name="edge_features">Kenar Özellikleri</string>
+    <string name="sidebar">Kenar Çubuğu</string>
+    <string name="sidebar_summary">Kenardan favori uygulamalarınıza hızlı erişim</string>
+    
+</resources>

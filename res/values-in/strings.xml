@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Axion Parts</string>
+    
+    <!-- Common UI Elements -->
+    <string name="back">Kembali</string>
+    <string name="cancel">Batal</string>
+    <string name="save">Simpan</string>
+    <string name="delete">Hapus</string>
+    <string name="remove">Hapus</string>
+    <string name="add">Tambah</string>
+    <string name="edit">Ubah</string>
+    <string name="replace">Ganti</string>
+    <string name="import_text">Impor</string>
+    <string name="reload">Muat Ulang</string>
+    <string name="clear">Bersihkan</string>
+    <string name="expand">Perluas</string>
+    <string name="collapse">Ciutkan</string>
+    <string name="search">Cari</string>
+    <string name="create">Buat</string>
+    <string name="settings">Pengaturan</string>
+    <string name="general">Umum</string>
+    <string name="active">Aktif</string>
+    <string name="inactive">Tidak Aktif</string>
+    <string name="disabled">Nonaktif</string>
+    <string name="custom">Kustom</string>
+    
+    <!-- Navigation -->
+    <string name="customize">Kustomisasi</string>
+    <string name="nav_customize">Kustomisasi</string>
+    <string name="nav_essentials">Penting</string>
+    <string name="nav_performance">Performa</string>
+    <string name="nav_multitasking">Multi-tugas</string>
+    <string name="personalizations">Personalisasi</string>
+    
+    <!-- Customize Screen -->
+    <string name="themes">Tema</string>
+    <string name="themes_subtitle">Ikon, bentuk &amp; lainnya</string>
+    <string name="lockscreen">Layar Kunci</string>
+    <string name="lockscreen_subtitle">Cahaya tepi, media &amp; visualisasi</string>
+    <string name="ui_features">Fitur UI</string>
+    <string name="ui_features_subtitle">Status bar, QS &amp; lainnya</string>
+    <string name="sound">Suara</string>
+    <string name="sound_subtitle">Volume per aplikasi &amp; multi audio</string>
+    <string name="gestures">Gerakan</string>
+    <string name="gestures_subtitle">Goyangkan &amp; aksi tiga jari</string>
+    
+    <!-- Lockscreen Features -->
+    <string name="edge_light">Cahaya Tepi</string>
+    <string name="edge_light_description">Efek cahaya di tepi layar untuk notifikasi</string>
+    <string name="enable_edge_light">Aktifkan Cahaya Tepi</string>
+    <string name="edge_light_summary">Tampilkan efek cahaya di tepi layar untuk notifikasi</string>
+    <string name="color_mode">Mode warna</string>
+    <string name="notification_accent">Aksen notifikasi</string>
+    <string name="custom_color">Warna kustom</string>
+    <string name="customization">Kustomisasi</string>
+    <string name="custom_color_summary">#%1$06X</string>
+    <string name="choose_color">Pilih warna</string>
+    <string name="presets">Preset</string>
+    <string name="selected">Dipilih</string>
+    <string name="select_uppercase">Pilih</string>
+    <string name="select_item">Pilih item</string>
+    
+    <!-- Media Art -->
+    <string name="media_art">Seni Media</string>
+    <string name="media_art_description">Sampul album di layar kunci saat memutar media</string>
+    <string name="enable_media_art">Aktifkan Seni Media</string>
+    <string name="media_art_summary">Tampilkan sampul album di layar kunci saat memutar media</string>
+    <string name="appearance">Tampilan</string>
+    <string name="blur_level">Tingkat Blur</string>
+    <string name="blur_level_summary">Sesuaikan intensitas blur sampul album</string>
+    
+    <!-- Pulse Visualizer -->
+    <string name="pulse_visualizer">Visualisasi Pulse</string>
+    <string name="pulse_visualizer_description">Visualisasi audio di layar kunci dan ambient display</string>
+    <string name="enable_pulse">Aktifkan Pulse</string>
+    <string name="pulse_summary">Tampilkan visualisasi audio di layar kunci dan ambient display</string>
+    <string name="style">Gaya</string>
+    <string name="render_style">Gaya Render</string>
+    <string name="render_style_summary">Pilih gaya visual visualisasi</string>
+    <string name="solid_lines">Garis Solid</string>
+    <string name="fading_blocks">Blok Memudar</string>
+    <string name="color_mode_title">Mode Warna</string>
+    <string name="visualizer_color_summary">Sesuaikan warna visualisasi</string>
+    <string name="lava_lamp">Lampu Lava</string>
+    <string name="album_art">Seni Album</string>
+    <string name="system_accent">Aksen Sistem</string>
+    <string name="bars">Batang</string>
+    <string name="bar_count">Jumlah Batang</string>
+    <string name="bar_count_summary">Jumlah batang visualisasi</string>
+    <string name="rounded_bars">Batang Bulat</string>
+    <string name="rounded_bars_summary">Gunakan sudut bulat untuk batang visualisasi</string>
+    
+    <!-- Always On Display -->
+    <string name="always_on_display">Always On Display</string>
+    <string name="always_on_display_description">Kelola jadwal AOD dan perilaku layar mati</string>
+    <string name="mode">Mode</string>
+    <string name="aod_schedule">Jadwal AOD</string>
+    <string name="always_on">Selalu aktif</string>
+    <string name="scheduled">Terjadwal</string>
+    <string name="schedule">Jadwal</string>
+    <string name="start_time">Waktu mulai</string>
+    <string name="start_time_summary">Saat AOD menyala</string>
+    <string name="end_time">Waktu selesai</string>
+    <string name="end_time_summary">Saat AOD mati</string>
+    <string name="screen_off">Layar Mati</string>
+    <string name="screen_off_aod">AOD Layar Mati</string>
+    <string name="screen_off_aod_summary">Tetap aktifkan AOD saat layar mati</string>
+    <string name="screen_off_animation">Animasi Layar Mati</string>
+    <string name="screen_off_animation_summary">Animasikan transisi ke AOD</string>
+    
+    <!-- UI Features -->
+    <string name="user_interface">Antarmuka Pengguna</string>
+    <string name="quick_settings">Pengaturan Cepat</string>
+    <string name="quick_settings_description">Slider kecerahan, ubin &amp; kustomisasi panel</string>
+    <string name="status_bar">Status Bar</string>
+    <string name="status_bar_description">Jam, ikon dan indikator jaringan</string>
+    <string name="brightness_slider">Slider Kecerahan</string>
+    <string name="brightness_slider_summary">Tampilkan slider kecerahan di panel Pengaturan Cepat</string>
+    <string name="brightness_slider_position">Posisi Slider Kecerahan</string>
+    <string name="brightness_slider_position_summary">Posisi slider kecerahan di QS</string>
+    <string name="brightness_hidden">Tersembunyi</string>
+    <string name="brightness_show_expanded">Tampilkan saat pengaturan cepat diperluas</string>
+    <string name="brightness_always_visible">Selalu Terlihat</string>
+    <string name="position_bottom">Bawah</string>
+    <string name="position_top">Atas</string>
+    <string name="status_bar_icons">Ikon Status Bar</string>
+    <string name="status_bar_tuner">Tuner Status Bar</string>
+    <string name="status_bar_tuner_summary">Tampilkan atau sembunyikan ikon status bar</string>
+    
+    <!-- Sound Features -->
+    <string name="per_app_volume">Volume Per Aplikasi</string>
+    <string name="per_app_volume_summary">Kontrol volume terpisah untuk setiap aplikasi</string>
+    <string name="multi_audio_focus">Multi Fokus Audio</string>
+    <string name="multi_audio_focus_summary">Izinkan beberapa aplikasi memutar audio secara bersamaan</string>
+    
+    <!-- Gestures -->
+    <string name="shake_gestures">Gerakan Goyangkan</string>
+    <string name="enable_shake_gestures">Aktifkan Gerakan Goyangkan</string>
+    <string name="shake_gestures_summary">Picu aksi dengan menggoyangkan perangkat</string>
+    <string name="shake_gesture_intensity">Intensitas Gerakan Goyangkan</string>
+    <string name="shake_intensity_summary">Intensitas yang diperlukan untuk memicu gerakan goyang</string>
+    <string name="shake_action">Aksi Goyangkan</string>
+    <string name="shake_action_summary">Aksi yang dilakukan saat perangkat digoyangkan</string>
+    <string name="three_finger_gestures">Gerakan Tiga Jari</string>
+    <string name="three_finger_swipe">Geser Tiga Jari</string>
+    <string name="three_finger_swipe_summary">Aksi saat menggeser dengan tiga jari</string>
+    <string name="three_finger_long_press">Tekan Lama Tiga Jari</string>
+    <string name="three_finger_long_press_summary">Aktifkan gerakan tekan lama tiga jari</string>
+    <string name="disable_button_screenshot">Nonaktifkan Screenshot Tombol</string>
+    <string name="disable_button_screenshot_summary">Nonaktifkan kombinasi power + volume bawah untuk screenshot</string>
+    
+    <!-- Gesture Actions -->
+    <string name="gesture_action_nothing">Tidak ada</string>
+    <string name="gesture_action_app_switch">Ganti aplikasi</string>
+    <string name="gesture_action_search">Cari</string>
+    <string name="gesture_action_voice_search">Pencarian suara</string>
+    <string name="gesture_action_launch_camera">Buka kamera</string>
+    <string name="gesture_action_sleep">Tidur</string>
+    <string name="gesture_action_last_app">Aplikasi terakhir</string>
+    <string name="gesture_action_close_app">Tutup aplikasi</string>
+    <string name="gesture_action_play_pause">Putar/Jeda musik</string>
+    <string name="gesture_action_flashlight">Senter</string>
+    <string name="gesture_action_screenshot">Screenshot</string>
+    <string name="gesture_action_volume_panel">Panel volume</string>
+    <string name="gesture_action_clear_notifications">Hapus notifikasi</string>
+    <string name="gesture_action_notifications_panel">Panel notifikasi</string>
+    <string name="gesture_action_expand_qs">Perluas panel QS</string>
+    <string name="gesture_action_ringer_modes">Mode dering</string>
+    
+    <!-- Essentials Screen -->
+    <string name="essentials">Penting</string>
+    <string name="essential_notifications">Notifikasi Penting</string>
+    <string name="gaming">Gaming</string>
+    <string name="security">Keamanan</string>
+    
+    <!-- Essential Apps -->
+    <string name="selected_apps">Aplikasi Terpilih</string>
+    <string name="selected_apps_description">Filter yang penting. Aplikasi ini tetap dikelompokkan di atas.</string>
+    <string name="no_apps_selected">Tidak ada aplikasi terpilih</string>
+    <string name="add_apps">Tambah aplikasi</string>
+    <string name="add_app">Tambah Aplikasi</string>
+    <string name="select_essential_apps">Pilih Aplikasi Penting</string>
+    <string name="select_apps">Pilih Aplikasi</string>
+    
+    <!-- App Picker -->
+    <string name="loading_apps">Memuat aplikasi...</string>
+    <string name="search_apps">Cari aplikasi...</string>
+    <string name="show_system_apps">Tampilkan Aplikasi Sistem</string>
+    <string name="selected_count">%1$d terpilih</string>
+    
+    <!-- GameSpace -->
+    <string name="gamespace">GameSpace</string>
+    <string name="gamespace_summary">Optimalkan pengalaman gaming dengan fitur GameSpace</string>
+    
+    <!-- Game Spoofing -->
+    <string name="game_spoofing">Game Spoofing</string>
+    <string name="game_spoofing_summary">Spoof properti perangkat untuk game tertentu</string>
+    <string name="app_spoofing">App Spoofing</string>
+    <string name="apps_configured">%1$d aplikasi dikonfigurasi</string>
+    <string name="no_apps_configured">Tidak ada aplikasi dikonfigurasi</string>
+    <string name="configured_apps">APLIKASI DIKONFIGURASI</string>
+    <string name="no_apps_configured_empty">Tidak ada aplikasi dikonfigurasi</string>
+    <string name="add_apps_to_spoof">Tambah aplikasi untuk mulai spoof properti perangkat</string>
+    <string name="configuration_saved">Konfigurasi disimpan</string>
+    <string name="remove_game_title">Hapus Game?</string>
+    <string name="remove_game_message">Ini akan menghapus konfigurasi spoofing untuk game ini.</string>
+    <string name="select_an_app">Pilih aplikasi:</string>
+    <string name="select_device_profile">Pilih profil perangkat:</string>
+    <string name="create_new">Buat Baru</string>
+    <string name="delete_preset">Hapus preset</string>
+    <string name="create_preset_title">Buat Preset</string>
+    <string name="preset_name">Nama Preset</string>
+    <string name="property_number">Properti %1$d</string>
+    <string name="key">Kunci</string>
+    <string name="value">Nilai</string>
+    <string name="add_property">Tambah Properti</string>
+    <string name="save_as_preset_title">Simpan sebagai Preset</string>
+    <string name="preset_saved">Preset disimpan</string>
+    <string name="edit_app">Edit %1$s</string>
+    <string name="add_app_title">Tambah Aplikasi</string>
+    
+    <!-- Device Profiles -->
+    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
+    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
+    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
+    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
+    <string name="device_black_shark_4">Black Shark 4</string>
+    <string name="device_lenovo_y700">Lenovo Y700</string>
+    
+    <!-- Security Features -->
+    <string name="trickystore">TrickyStore</string>
+    <string name="trickystore_summary">Kelola keybox untuk spoofing key attestation</string>
+    <string name="keybox_management">Manajemen Keybox</string>
+    <string name="import_keybox">Impor Keybox</string>
+    <string name="keybox_installed">Keybox terinstal</string>
+    <string name="no_keybox_found">Keybox tidak ditemukan - ketuk untuk impor</string>
+    <string name="delete_keybox">Hapus Keybox</string>
+    <string name="remove_keybox_file">Hapus file keybox saat ini</string>
+    <string name="delete_keybox_title">Hapus Keybox?</string>
+    <string name="delete_keybox_message">Ini akan menghapus file keybox.xml. Spoofing sertifikat akan dinonaktifkan sampai keybox baru diimpor.</string>
+    <string name="keybox_imported_success">Keybox berhasil diimpor</string>
+    <string name="keybox_import_failed">Gagal mengimpor keybox: %1$s</string>
+    <string name="keybox_deleted">Keybox dihapus</string>
+    <string name="keybox_delete_failed">Gagal menghapus keybox: %1$s</string>
+    <string name="target_configuration">Konfigurasi Target</string>
+    <string name="manage_target_apps">Kelola Aplikasi Target</string>
+    <string name="target_apps_configured">%1$d aplikasi dikonfigurasi</string>
+    <string name="import_target_list">Impor Daftar Target</string>
+    <string name="import_from_file">Impor dari file</string>
+    <string name="target_list_imported">Daftar target berhasil diimpor</string>
+    <string name="target_list_import_failed">Gagal mengimpor daftar target: %1$s</string>
+    <string name="select_target_apps">Pilih Aplikasi Target</string>
+    <string name="choose_apps_for_attestation">Pilih aplikasi untuk mengaktifkan spoofing attestation</string>
+    <string name="target_mode_auto">Otomatis</string>
+    <string name="target_mode_leaf_hack">Leaf ?</string>
+    <string name="target_mode_cert_gen">Gen !</string>
+    
+    <!-- Play Integrity Fix -->
+    <string name="play_integrity_fix">Play Integrity Fix</string>
+    <string name="play_integrity_fix_summary">Konfigurasi spoofing build fingerprint</string>
+    <string name="fingerprint_spoofing">Spoofing Fingerprint</string>
+    <string name="active_config">Aktif: %1$s</string>
+    <string name="no_config_loaded">Tidak ada konfigurasi dimuat</string>
+    <string name="fetch_pixel_beta">Ambil Pixel Beta</string>
+    <string name="fetching">Mengambil…</string>
+    <string name="fetched_model">Diambil: %1$s</string>
+    <string name="failed_message">Gagal: %1$s</string>
+    <string name="failed_to_update">Gagal memperbarui: %1$s</string>
+    <string name="imported_as">Diimpor sebagai %1$s</string>
+    <string name="deleted_file">%1$s dihapus</string>
+    <string name="delete_file_title">Hapus %1$s?</string>
+    <string name="delete_config_message">File konfigurasi ini akan dihapus.</string>
+    <string name="import_text_verb">Impor</string>
+    <string name="active_config_title">Konfigurasi Aktif</string>
+    <string name="spoof_google_photos">Spoof Google Photos</string>
+    <string name="unlimited_backup">Cadangan kualitas asli tanpa batas</string>
+    <string name="other_config_files">File Konfigurasi Lain</string>
+    <string name="configured_count">%1$d dari %2$d dikonfigurasi</string>
+    <string name="priority_note">Prioritas: custom.pif.* > pif.* (yang pertama ditemukan akan digunakan)</string>
+    <string name="active_in_use">Aktif - Sedang digunakan</string>
+    <string name="available_overridden">Tersedia - Ditimpa oleh prioritas lebih tinggi</string>
+    <string name="not_configured">Belum dikonfigurasi</string>
+    
+    <!-- Security - Window Secure -->
+    <string name="ignore_window_secure">Abaikan Window Secure</string>
+    <string name="ignore_window_secure_summary">Izinkan screenshot dan rekaman layar di semua aplikasi</string>
+    
+    <!-- Performance Screen -->
+    <string name="performance">Performa</string>
+    <string name="performance_mode">Mode Performa</string>
+    <string name="maximum_performance_enabled">Performa maksimum aktif</string>
+    <string name="balanced_mode">Mode seimbang</string>
+    <string name="boost_controls">KONTROL BOOST</string>
+    <string name="frequency_control">KONTROL FREKUENSI</string>
+    <string name="display_boost">Boost Layar</string>
+    <string name="touch_boost">Boost Sentuh</string>
+    <string name="boost_active">Boost Aktif</string>
+    <string name="boost_disabled">Boost Nonaktif</string>
+    
+    <!-- CPU Clusters -->
+    <string name="little_cluster">Kluster Kecil</string>
+    <string name="big_cluster">Kluster Besar</string>
+    <string name="prime_cluster">Kluster Prime</string>
+    <string name="boost_frequency">Frekuensi Boost</string>
+    <string name="minimum_frequency">Frekuensi Minimum</string>
+    <string name="maximum_frequency">Frekuensi Maksimum</string>
+    
+    <!-- GPU -->
+    <string name="gpu">GPU</string>
+    <string name="graphics_performance">Performa Grafis</string>
+    <string name="game_gpu_boost">Boost GPU Game</string>
+    <string name="system_gpu_boost">Boost GPU Sistem</string>
+    
+    <!-- Performance Formats -->
+    <string name="level_format">Level %1$d</string>
+    <string name="mhz_format">%1$d MHz</string>
+    
+    <!-- Quick Settings Tile -->
+    <string name="qs_tile_performance">Performa</string>
+    <string name="qs_tile_on">Aktif</string>
+    <string name="qs_tile_off">Mati</string>
+    
+    <!-- Multitasking Screen -->
+    <string name="multitasking">Multi-tugas</string>
+    <string name="edge_features">Fitur Tepi</string>
+    <string name="sidebar">Sidebar</string>
+    <string name="sidebar_summary">Akses cepat ke aplikasi favorit dari tepi</string>
+    
+</resources>

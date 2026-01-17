@@ -122,6 +122,7 @@ fun DashboardScreen() {
             windowSizeClass = windowSizeClass,
             listPane = {
                 ListPaneContent(
+                    navItems = navItems,
                     selectedRoute = selectedRoute,
                     currentTitle = currentTitle,
                     isNavigatingForward = isNavigatingForward,
@@ -176,6 +177,7 @@ fun DashboardScreen() {
                 )
             } else {
                 ListPaneContent(
+                    navItems = navItems,
                     selectedRoute = selectedRoute,
                     currentTitle = currentTitle,
                     isNavigatingForward = isNavigatingForward,
@@ -194,6 +196,7 @@ fun DashboardScreen() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ListPaneContent(
+    navItems: List<NavItem>,
     selectedRoute: String,
     currentTitle: String,
     isNavigatingForward: Boolean,

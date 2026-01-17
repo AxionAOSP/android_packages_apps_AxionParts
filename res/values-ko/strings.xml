@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Axion Parts</string>
+    
+    <!-- Common UI Elements -->
+    <string name="back">뒤로</string>
+    <string name="cancel">취소</string>
+    <string name="save">저장</string>
+    <string name="delete">삭제</string>
+    <string name="remove">제거</string>
+    <string name="add">추가</string>
+    <string name="edit">편집</string>
+    <string name="replace">바꾸기</string>
+    <string name="import_text">가져오기</string>
+    <string name="reload">다시 로드</string>
+    <string name="clear">지우기</string>
+    <string name="expand">펼치기</string>
+    <string name="collapse">접기</string>
+    <string name="search">검색</string>
+    <string name="create">만들기</string>
+    <string name="settings">설정</string>
+    <string name="general">일반</string>
+    <string name="active">활성화</string>
+    <string name="inactive">비활성화</string>
+    <string name="disabled">사용 안 함</string>
+    <string name="custom">사용자 지정</string>
+    
+    <!-- Navigation -->
+    <string name="customize">사용자 지정</string>
+    <string name="nav_customize">사용자 지정</string>
+    <string name="nav_essentials">필수</string>
+    <string name="nav_performance">성능</string>
+    <string name="nav_multitasking">멀티태스킹</string>
+    <string name="personalizations">개인 설정</string>
+    
+    <!-- Customize Screen -->
+    <string name="themes">테마</string>
+    <string name="themes_subtitle">아이콘, 모양 등</string>
+    <string name="lockscreen">잠금 화면</string>
+    <string name="lockscreen_subtitle">가장자리 조명, 미디어, 시각화</string>
+    <string name="ui_features">UI 기능</string>
+    <string name="ui_features_subtitle">상태 표시줄, QS 등</string>
+    <string name="sound">사운드</string>
+    <string name="sound_subtitle">앱별 볼륨, 멀티 오디오</string>
+    <string name="gestures">제스처</string>
+    <string name="gestures_subtitle">흔들기, 세 손가락 동작</string>
+    
+    <!-- Lockscreen Features -->
+    <string name="edge_light">가장자리 조명</string>
+    <string name="edge_light_description">알림 시 화면 가장자리의 조명 효과</string>
+    <string name="enable_edge_light">가장자리 조명 사용</string>
+    <string name="edge_light_summary">알림 시 화면 가장자리의 조명 효과 표시</string>
+    <string name="color_mode">색상 모드</string>
+    <string name="notification_accent">알림 강조 색상</string>
+    <string name="custom_color">사용자 지정 색상</string>
+    <string name="customization">사용자 지정</string>
+    <string name="custom_color_summary">#%1$06X</string>
+    <string name="choose_color">색상 선택</string>
+    <string name="presets">프리셋</string>
+    <string name="selected">선택됨</string>
+    <string name="select_uppercase">선택</string>
+    <string name="select_item">항목 선택</string>
+    
+    <!-- Media Art -->
+    <string name="media_art">미디어 아트</string>
+    <string name="media_art_description">미디어 재생 중 잠금 화면에 앨범 아트 표시</string>
+    <string name="enable_media_art">미디어 아트 사용</string>
+    <string name="media_art_summary">미디어 재생 중 잠금 화면에 앨범 아트 표시</string>
+    <string name="appearance">모양</string>
+    <string name="blur_level">흐림 레벨</string>
+    <string name="blur_level_summary">앨범 아트의 흐림 강도 조절</string>
+    
+    <!-- Pulse Visualizer -->
+    <string name="pulse_visualizer">펄스 시각화</string>
+    <string name="pulse_visualizer_description">잠금 화면 및 앰비언트 디스플레이에서 오디오 시각화</string>
+    <string name="enable_pulse">펄스 사용</string>
+    <string name="pulse_summary">잠금 화면 및 앰비언트 디스플레이에서 오디오 시각화 표시</string>
+    <string name="style">스타일</string>
+    <string name="render_style">렌더 스타일</string>
+    <string name="render_style_summary">시각화의 시각적 스타일 선택</string>
+    <string name="solid_lines">단색 선</string>
+    <string name="fading_blocks">페이딩 블록</string>
+    <string name="color_mode_title">색상 모드</string>
+    <string name="visualizer_color_summary">시각화 색상 사용자 지정</string>
+    <string name="lava_lamp">용암 램프</string>
+    <string name="album_art">앨범 아트</string>
+    <string name="system_accent">시스템 강조 색상</string>
+    <string name="bars">바</string>
+    <string name="bar_count">바 개수</string>
+    <string name="bar_count_summary">시각화 바의 개수</string>
+    <string name="rounded_bars">둥근 바</string>
+    <string name="rounded_bars_summary">시각화 바에 둥근 모서리 사용</string>
+    
+    <!-- Always On Display -->
+    <string name="always_on_display">상시 표시 화면</string>
+    <string name="always_on_display_description">AOD 일정 및 화면 꺼짐 동작 관리</string>
+    <string name="mode">모드</string>
+    <string name="aod_schedule">AOD 일정</string>
+    <string name="always_on">항상 켜기</string>
+    <string name="scheduled">예약됨</string>
+    <string name="schedule">일정</string>
+    <string name="start_time">시작 시간</string>
+    <string name="start_time_summary">AOD가 켜지는 시간</string>
+    <string name="end_time">종료 시간</string>
+    <string name="end_time_summary">AOD가 꺼지는 시간</string>
+    <string name="screen_off">화면 끄기</string>
+    <string name="screen_off_aod">화면 꺼짐 AOD</string>
+    <string name="screen_off_aod_summary">화면이 꺼질 때 AOD를 계속 활성화</string>
+    <string name="screen_off_animation">화면 끄기 애니메이션</string>
+    <string name="screen_off_animation_summary">AOD로의 전환 애니메이션</string>
+    
+    <!-- UI Features -->
+    <string name="user_interface">사용자 인터페이스</string>
+    <string name="quick_settings">빠른 설정</string>
+    <string name="quick_settings_description">밝기 슬라이더, 타일, 패널 사용자 지정</string>
+    <string name="status_bar">상태 표시줄</string>
+    <string name="status_bar_description">시계, 아이콘 및 네트워크 표시기</string>
+    <string name="brightness_slider">밝기 슬라이더</string>
+    <string name="brightness_slider_summary">빠른 설정 패널에 밝기 슬라이더 표시</string>
+    <string name="brightness_slider_position">밝기 슬라이더 위치</string>
+    <string name="brightness_slider_position_summary">QS에서 밝기 슬라이더의 위치</string>
+    <string name="brightness_hidden">숨김</string>
+    <string name="brightness_show_expanded">빠른 설정이 펼쳐졌을 때 표시</string>
+    <string name="brightness_always_visible">항상 표시</string>
+    <string name="position_bottom">하단</string>
+    <string name="position_top">상단</string>
+    <string name="status_bar_icons">상태 표시줄 아이콘</string>
+    <string name="status_bar_tuner">상태 표시줄 튜너</string>
+    <string name="status_bar_tuner_summary">상태 표시줄 아이콘 표시 또는 숨김</string>
+    
+    <!-- Sound Features -->
+    <string name="per_app_volume">앱별 볼륨</string>
+    <string name="per_app_volume_summary">각 앱의 볼륨을 개별적으로 제어</string>
+    <string name="multi_audio_focus">멀티 오디오 포커스</string>
+    <string name="multi_audio_focus_summary">여러 앱이 동시에 오디오를 재생하도록 허용</string>
+    
+    <!-- Gestures -->
+    <string name="shake_gestures">흔들기 제스처</string>
+    <string name="enable_shake_gestures">흔들기 제스처 사용</string>
+    <string name="shake_gestures_summary">기기를 흔들어 작업 실행</string>
+    <string name="shake_gesture_intensity">흔들기 제스처 강도</string>
+    <string name="shake_intensity_summary">흔들기 제스처를 실행하는 데 필요한 강도</string>
+    <string name="shake_action">흔들기 동작</string>
+    <string name="shake_action_summary">기기를 흔들었을 때 수행할 작업</string>
+    <string name="three_finger_gestures">세 손가락 제스처</string>
+    <string name="three_finger_swipe">세 손가락 스와이프</string>
+    <string name="three_finger_swipe_summary">세 손가락으로 스와이프했을 때의 작업</string>
+    <string name="three_finger_long_press">세 손가락 길게 누르기</string>
+    <string name="three_finger_long_press_summary">세 손가락 길게 누르기 제스처 사용</string>
+    <string name="disable_button_screenshot">버튼 스크린샷 사용 안 함</string>
+    <string name="disable_button_screenshot_summary">전원 + 볼륨 다운 스크린샷 조합 사용 안 함</string>
+    
+    <!-- Gesture Actions -->
+    <string name="gesture_action_nothing">없음</string>
+    <string name="gesture_action_app_switch">앱 전환</string>
+    <string name="gesture_action_search">검색</string>
+    <string name="gesture_action_voice_search">음성 검색</string>
+    <string name="gesture_action_launch_camera">카메라 실행</string>
+    <string name="gesture_action_sleep">절전</string>
+    <string name="gesture_action_last_app">마지막 앱</string>
+    <string name="gesture_action_close_app">앱 닫기</string>
+    <string name="gesture_action_play_pause">음악 재생/일시정지</string>
+    <string name="gesture_action_flashlight">손전등</string>
+    <string name="gesture_action_screenshot">스크린샷</string>
+    <string name="gesture_action_volume_panel">볼륨 패널</string>
+    <string name="gesture_action_clear_notifications">알림 지우기</string>
+    <string name="gesture_action_notifications_panel">알림 패널</string>
+    <string name="gesture_action_expand_qs">QS 패널 펼치기</string>
+    <string name="gesture_action_ringer_modes">벨소리 모드</string>
+    
+    <!-- Essentials Screen -->
+    <string name="essentials">필수</string>
+    <string name="essential_notifications">필수 알림</string>
+    <string name="gaming">게임</string>
+    <string name="security">보안</string>
+    
+    <!-- Essential Apps -->
+    <string name="selected_apps">선택된 앱</string>
+    <string name="selected_apps_description">중요한 항목을 필터링합니다. 이러한 앱은 상단에 그룹화되어 유지됩니다.</string>
+    <string name="no_apps_selected">선택된 앱 없음</string>
+    <string name="add_apps">앱 추가</string>
+    <string name="add_app">앱 추가</string>
+    <string name="select_essential_apps">필수 앱 선택</string>
+    <string name="select_apps">앱 선택</string>
+    
+    <!-- App Picker -->
+    <string name="loading_apps">앱 로드 중...</string>
+    <string name="search_apps">앱 검색...</string>
+    <string name="show_system_apps">시스템 앱 표시</string>
+    <string name="selected_count">%1$d개 선택됨</string>
+    
+    <!-- GameSpace -->
+    <string name="gamespace">GameSpace</string>
+    <string name="gamespace_summary">GameSpace 기능으로 게임 경험 최적화</string>
+    
+    <!-- Game Spoofing -->
+    <string name="game_spoofing">게임 스푸핑</string>
+    <string name="game_spoofing_summary">특정 게임에 대한 기기 속성 스푸핑</string>
+    <string name="app_spoofing">앱 스푸핑</string>
+    <string name="apps_configured">%1$d개 앱 구성됨</string>
+    <string name="no_apps_configured">구성된 앱 없음</string>
+    <string name="configured_apps">구성된 앱</string>
+    <string name="no_apps_configured_empty">구성된 앱 없음</string>
+    <string name="add_apps_to_spoof">앱을 추가하여 기기 속성 스푸핑 시작</string>
+    <string name="configuration_saved">구성 저장됨</string>
+    <string name="remove_game_title">게임을 제거하시겠습니까?</string>
+    <string name="remove_game_message">이 게임의 스푸핑 구성이 제거됩니다.</string>
+    <string name="select_an_app">앱 선택:</string>
+    <string name="select_device_profile">기기 프로필 선택:</string>
+    <string name="create_new">새로 만들기</string>
+    <string name="delete_preset">프리셋 삭제</string>
+    <string name="create_preset_title">프리셋 만들기</string>
+    <string name="preset_name">프리셋 이름</string>
+    <string name="property_number">속성 %1$d</string>
+    <string name="key">키</string>
+    <string name="value">값</string>
+    <string name="add_property">속성 추가</string>
+    <string name="save_as_preset_title">프리셋으로 저장</string>
+    <string name="preset_saved">프리셋 저장됨</string>
+    <string name="edit_app">%1$s 편집</string>
+    <string name="add_app_title">앱 추가</string>
+    
+    <!-- Device Profiles -->
+    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
+    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
+    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
+    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
+    <string name="device_black_shark_4">Black Shark 4</string>
+    <string name="device_lenovo_y700">Lenovo Y700</string>
+    
+    <!-- Security Features -->
+    <string name="trickystore">TrickyStore</string>
+    <string name="trickystore_summary">키 증명 스푸핑을 위한 keybox 관리</string>
+    <string name="keybox_management">Keybox 관리</string>
+    <string name="import_keybox">Keybox 가져오기</string>
+    <string name="keybox_installed">Keybox 설치됨</string>
+    <string name="no_keybox_found">keybox를 찾을 수 없음 - 탭하여 가져오기</string>
+    <string name="delete_keybox">Keybox 삭제</string>
+    <string name="remove_keybox_file">현재 keybox 파일 제거</string>
+    <string name="delete_keybox_title">Keybox를 삭제하시겠습니까?</string>
+    <string name="delete_keybox_message">keybox.xml 파일이 제거됩니다. 새 keybox를 가져올 때까지 인증서 스푸핑이 비활성화됩니다.</string>
+    <string name="keybox_imported_success">Keybox를 성공적으로 가져왔습니다</string>
+    <string name="keybox_import_failed">keybox 가져오기 실패: %1$s</string>
+    <string name="keybox_deleted">Keybox 삭제됨</string>
+    <string name="keybox_delete_failed">keybox 삭제 실패: %1$s</string>
+    <string name="target_configuration">대상 구성</string>
+    <string name="manage_target_apps">대상 앱 관리</string>
+    <string name="target_apps_configured">%1$d개 앱 구성됨</string>
+    <string name="import_target_list">대상 목록 가져오기</string>
+    <string name="import_from_file">파일에서 가져오기</string>
+    <string name="target_list_imported">대상 목록을 성공적으로 가져왔습니다</string>
+    <string name="target_list_import_failed">대상 목록 가져오기 실패: %1$s</string>
+    <string name="select_target_apps">대상 앱 선택</string>
+    <string name="choose_apps_for_attestation">증명 스푸핑을 활성화할 앱 선택</string>
+    <string name="target_mode_auto">자동</string>
+    <string name="target_mode_leaf_hack">Leaf ?</string>
+    <string name="target_mode_cert_gen">Gen !</string>
+    
+    <!-- Play Integrity Fix -->
+    <string name="play_integrity_fix">Play Integrity 수정</string>
+    <string name="play_integrity_fix_summary">빌드 지문 스푸핑 구성</string>
+    <string name="fingerprint_spoofing">지문 스푸핑</string>
+    <string name="active_config">활성: %1$s</string>
+    <string name="no_config_loaded">로드된 구성 없음</string>
+    <string name="fetch_pixel_beta">Pixel Beta 가져오기</string>
+    <string name="fetching">가져오는 중…</string>
+    <string name="fetched_model">가져옴: %1$s</string>
+    <string name="failed_message">실패: %1$s</string>
+    <string name="failed_to_update">업데이트 실패: %1$s</string>
+    <string name="imported_as">%1$s(으)로 가져옴</string>
+    <string name="deleted_file">%1$s 삭제됨</string>
+    <string name="delete_file_title">%1$s을(를) 삭제하시겠습니까?</string>
+    <string name="delete_config_message">이 구성 파일이 제거됩니다.</string>
+    <string name="import_text_verb">가져오기</string>
+    <string name="active_config_title">활성 구성</string>
+    <string name="spoof_google_photos">Google 포토 스푸핑</string>
+    <string name="unlimited_backup">원본 품질로 무제한 백업</string>
+    <string name="other_config_files">기타 구성 파일</string>
+    <string name="configured_count">%2$d개 중 %1$d개 구성됨</string>
+    <string name="priority_note">우선순위: custom.pif.* > pif.* (먼저 발견된 것이 사용됨)</string>
+    <string name="active_in_use">활성 - 현재 사용 중</string>
+    <string name="available_overridden">사용 가능 - 높은 우선순위로 재정의됨</string>
+    <string name="not_configured">구성되지 않음</string>
+    
+    <!-- Security - Window Secure -->
+    <string name="ignore_window_secure">Window Secure 무시</string>
+    <string name="ignore_window_secure_summary">모든 앱에서 스크린샷 및 화면 녹화 허용</string>
+    
+    <!-- Performance Screen -->
+    <string name="performance">성능</string>
+    <string name="performance_mode">성능 모드</string>
+    <string name="maximum_performance_enabled">최대 성능 활성화</string>
+    <string name="balanced_mode">균형 모드</string>
+    <string name="boost_controls">부스트 제어</string>
+    <string name="frequency_control">주파수 제어</string>
+    <string name="display_boost">디스플레이 부스트</string>
+    <string name="touch_boost">터치 부스트</string>
+    <string name="boost_active">부스트 활성</string>
+    <string name="boost_disabled">부스트 비활성</string>
+    
+    <!-- CPU Clusters -->
+    <string name="little_cluster">리틀 클러스터</string>
+    <string name="big_cluster">빅 클러스터</string>
+    <string name="prime_cluster">프라임 클러스터</string>
+    <string name="boost_frequency">부스트 주파수</string>
+    <string name="minimum_frequency">최소 주파수</string>
+    <string name="maximum_frequency">최대 주파수</string>
+    
+    <!-- GPU -->
+    <string name="gpu">GPU</string>
+    <string name="graphics_performance">그래픽 성능</string>
+    <string name="game_gpu_boost">게임 GPU 부스트</string>
+    <string name="system_gpu_boost">시스템 GPU 부스트</string>
+    
+    <!-- Performance Formats -->
+    <string name="level_format">레벨 %1$d</string>
+    <string name="mhz_format">%1$d MHz</string>
+    
+    <!-- Quick Settings Tile -->
+    <string name="qs_tile_performance">성능</string>
+    <string name="qs_tile_on">켜짐</string>
+    <string name="qs_tile_off">꺼짐</string>
+    
+    <!-- Multitasking Screen -->
+    <string name="multitasking">멀티태스킹</string>
+    <string name="edge_features">가장자리 기능</string>
+    <string name="sidebar">사이드바</string>
+    <string name="sidebar_summary">가장자리에서 즐겨찾는 앱에 빠르게 접근</string>
+    
+</resources>

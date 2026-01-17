@@ -151,10 +151,14 @@ fun PerformanceContent(
     val gpuMaxLevels = remember { SystemProperties.getInt("persist.sys.axion_gpu_levels", 0) }
     val showGpu = gpuFreqsPath.isNotEmpty() && gpuMinFreqFile.isNotEmpty() && gpuMaxLevels > 0
     
-    val clusters = remember {
+    val littleClusterName = stringResource(R.string.little_cluster)
+    val bigClusterName = stringResource(R.string.big_cluster)
+    val primeClusterName = stringResource(R.string.prime_cluster)
+    
+    val clusters = remember(littleClusterName, bigClusterName, primeClusterName) {
         listOf(
             ClusterConfig(
-                name = stringResource(R.string.little_cluster),
+                name = littleClusterName,
                 maxFreq = maxFreqs.getOrNull(0) ?: 0,
                 boostKey = "axion_cpu_boost",
                 boostFreqKey = "axion_min_freq_boost",
@@ -164,7 +168,7 @@ fun PerformanceContent(
                 accentColor = Color(0xFF667eea)
             ),
             ClusterConfig(
-                name = stringResource(R.string.big_cluster),
+                name = bigClusterName,
                 maxFreq = maxFreqs.getOrNull(1) ?: 0,
                 boostKey = "axion_big_core_boost",
                 boostFreqKey = "axion_min_freq_big_boost",
@@ -174,7 +178,7 @@ fun PerformanceContent(
                 accentColor = Color(0xFFf5576c)
             ),
             ClusterConfig(
-                name = stringResource(R.string.prime_cluster),
+                name = primeClusterName,
                 maxFreq = maxFreqs.getOrNull(2) ?: 0,
                 boostKey = "axion_prime_core_boost",
                 boostFreqKey = "axion_min_freq_prime_boost",

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Axion Parts</string>
+    
+    <!-- Common UI Elements -->
+    <string name="back">Zurück</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="save">Speichern</string>
+    <string name="delete">Löschen</string>
+    <string name="remove">Entfernen</string>
+    <string name="add">Hinzufügen</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="replace">Ersetzen</string>
+    <string name="import_text">Importieren</string>
+    <string name="reload">Neu laden</string>
+    <string name="clear">Löschen</string>
+    <string name="expand">Erweitern</string>
+    <string name="collapse">Reduzieren</string>
+    <string name="search">Suchen</string>
+    <string name="create">Erstellen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="general">Allgemein</string>
+    <string name="active">Aktiv</string>
+    <string name="inactive">Inaktiv</string>
+    <string name="disabled">Deaktiviert</string>
+    <string name="custom">Benutzerdefiniert</string>
+    
+    <!-- Navigation -->
+    <string name="customize">Anpassen</string>
+    <string name="nav_customize">Anpassen</string>
+    <string name="nav_essentials">Wesentliches</string>
+    <string name="nav_performance">Leistung</string>
+    <string name="nav_multitasking">Multitasking</string>
+    <string name="personalizations">Personalisierungen</string>
+    
+    <!-- Customize Screen -->
+    <string name="themes">Designs</string>
+    <string name="themes_subtitle">Symbole, Formen &amp; mehr</string>
+    <string name="lockscreen">Sperrbildschirm</string>
+    <string name="lockscreen_subtitle">Kantenlicht, Medien &amp; Visualizer</string>
+    <string name="ui_features">UI-Funktionen</string>
+    <string name="ui_features_subtitle">Statusleiste, QS &amp; mehr</string>
+    <string name="sound">Sound</string>
+    <string name="sound_subtitle">Lautstärke pro App &amp; Multi-Audio</string>
+    <string name="gestures">Gesten</string>
+    <string name="gestures_subtitle">Schütteln &amp; Drei-Finger-Aktionen</string>
+    
+    <!-- Lockscreen Features -->
+    <string name="edge_light">Kantenlicht</string>
+    <string name="edge_light_description">Lichteffekte an den Bildschirmkanten für Benachrichtigungen</string>
+    <string name="enable_edge_light">Kantenlicht aktivieren</string>
+    <string name="edge_light_summary">Lichteffekte an den Bildschirmkanten für Benachrichtigungen anzeigen</string>
+    <string name="color_mode">Farbmodus</string>
+    <string name="notification_accent">Benachrichtigungsakzent</string>
+    <string name="custom_color">Benutzerdefinierte Farbe</string>
+    <string name="customization">Anpassung</string>
+    <string name="custom_color_summary">#%1$06X</string>
+    <string name="choose_color">Farbe wählen</string>
+    <string name="presets">Voreinstellungen</string>
+    <string name="selected">Ausgewählt</string>
+    <string name="select_uppercase">Auswählen</string>
+    <string name="select_item">Element auswählen</string>
+    
+    <!-- Media Art -->
+    <string name="media_art">Medienkunst</string>
+    <string name="media_art_description">Albumcover auf dem Sperrbildschirm während der Medienwiedergabe</string>
+    <string name="enable_media_art">Medienkunst aktivieren</string>
+    <string name="media_art_summary">Albumcover auf dem Sperrbildschirm während der Medienwiedergabe anzeigen</string>
+    <string name="appearance">Erscheinungsbild</string>
+    <string name="blur_level">Unschärfe-Grad</string>
+    <string name="blur_level_summary">Unschärfe-Intensität des Albumcovers anpassen</string>
+    
+    <!-- Pulse Visualizer -->
+    <string name="pulse_visualizer">Pulse-Visualizer</string>
+    <string name="pulse_visualizer_description">Audio-Visualizer auf Sperrbildschirm und Ambient-Display</string>
+    <string name="enable_pulse">Pulse aktivieren</string>
+    <string name="pulse_summary">Audio-Visualizer auf Sperrbildschirm und Ambient-Display anzeigen</string>
+    <string name="style">Stil</string>
+    <string name="render_style">Render-Stil</string>
+    <string name="render_style_summary">Visuellen Stil des Visualizers wählen</string>
+    <string name="solid_lines">Durchgezogene Linien</string>
+    <string name="fading_blocks">Ausblendende Blöcke</string>
+    <string name="color_mode_title">Farbmodus</string>
+    <string name="visualizer_color_summary">Farbe des Visualizers anpassen</string>
+    <string name="lava_lamp">Lavalampe</string>
+    <string name="album_art">Albumcover</string>
+    <string name="system_accent">Systemakzent</string>
+    <string name="bars">Balken</string>
+    <string name="bar_count">Balkenanzahl</string>
+    <string name="bar_count_summary">Anzahl der Visualisierungsbalken</string>
+    <string name="rounded_bars">Abgerundete Balken</string>
+    <string name="rounded_bars_summary">Abgerundete Ecken für Visualisierungsbalken verwenden</string>
+    
+    <!-- Always On Display -->
+    <string name="always_on_display">Immer angezeigt</string>
+    <string name="always_on_display_description">Geplantes AOD und Verhalten bei ausgeschaltetem Bildschirm verwalten</string>
+    <string name="mode">Modus</string>
+    <string name="aod_schedule">AOD-Zeitplan</string>
+    <string name="always_on">Immer an</string>
+    <string name="scheduled">Geplant</string>
+    <string name="schedule">Zeitplan</string>
+    <string name="start_time">Startzeit</string>
+    <string name="start_time_summary">Wenn AOD eingeschaltet wird</string>
+    <string name="end_time">Endzeit</string>
+    <string name="end_time_summary">Wenn AOD ausgeschaltet wird</string>
+    <string name="screen_off">Bildschirm aus</string>
+    <string name="screen_off_aod">Bildschirm-aus-AOD</string>
+    <string name="screen_off_aod_summary">AOD aktiv halten, wenn Bildschirm ausgeschaltet wird</string>
+    <string name="screen_off_animation">Bildschirm-aus-Animation</string>
+    <string name="screen_off_animation_summary">Übergang zu AOD animieren</string>
+    
+    <!-- UI Features -->
+    <string name="user_interface">Benutzeroberfläche</string>
+    <string name="quick_settings">Schnelleinstellungen</string>
+    <string name="quick_settings_description">Helligkeitsregler, Kacheln &amp; Panel-Anpassung</string>
+    <string name="status_bar">Statusleiste</string>
+    <string name="status_bar_description">Uhr, Symbole und Netzwerkanzeigen</string>
+    <string name="brightness_slider">Helligkeitsregler</string>
+    <string name="brightness_slider_summary">Helligkeitsregler im Schnelleinstellungs-Panel anzeigen</string>
+    <string name="brightness_slider_position">Position des Helligkeitsreglers</string>
+    <string name="brightness_slider_position_summary">Position des Helligkeitsreglers in QS</string>
+    <string name="brightness_hidden">Verborgen</string>
+    <string name="brightness_show_expanded">Anzeigen, wenn Schnelleinstellungen erweitert sind</string>
+    <string name="brightness_always_visible">Immer sichtbar</string>
+    <string name="position_bottom">Unten</string>
+    <string name="position_top">Oben</string>
+    <string name="status_bar_icons">Statusleistensymbole</string>
+    <string name="status_bar_tuner">Statusleisten-Tuner</string>
+    <string name="status_bar_tuner_summary">Statusleistensymbole ein- oder ausblenden</string>
+    
+    <!-- Sound Features -->
+    <string name="per_app_volume">Lautstärke pro App</string>
+    <string name="per_app_volume_summary">Lautstärke für jede App separat steuern</string>
+    <string name="multi_audio_focus">Multi-Audio-Fokus</string>
+    <string name="multi_audio_focus_summary">Mehreren Apps gleichzeitige Audiowiedergabe erlauben</string>
+    
+    <!-- Gestures -->
+    <string name="shake_gestures">Schüttelgesten</string>
+    <string name="enable_shake_gestures">Schüttelgesten aktivieren</string>
+    <string name="shake_gestures_summary">Aktionen durch Schütteln des Geräts auslösen</string>
+    <string name="shake_gesture_intensity">Intensität der Schüttelgeste</string>
+    <string name="shake_intensity_summary">Erforderliche Intensität zum Auslösen der Schüttelgeste</string>
+    <string name="shake_action">Schüttelaktion</string>
+    <string name="shake_action_summary">Aktion beim Schütteln des Geräts</string>
+    <string name="three_finger_gestures">Drei-Finger-Gesten</string>
+    <string name="three_finger_swipe">Drei-Finger-Wischen</string>
+    <string name="three_finger_swipe_summary">Aktion beim Wischen mit drei Fingern</string>
+    <string name="three_finger_long_press">Drei-Finger-Langdruck</string>
+    <string name="three_finger_long_press_summary">Drei-Finger-Langdruck-Geste aktivieren</string>
+    <string name="disable_button_screenshot">Tasten-Screenshot deaktivieren</string>
+    <string name="disable_button_screenshot_summary">Power + Lautstärke-Leiser-Screenshot-Kombination deaktivieren</string>
+    
+    <!-- Gesture Actions -->
+    <string name="gesture_action_nothing">Nichts</string>
+    <string name="gesture_action_app_switch">App wechseln</string>
+    <string name="gesture_action_search">Suche</string>
+    <string name="gesture_action_voice_search">Sprachsuche</string>
+    <string name="gesture_action_launch_camera">Kamera starten</string>
+    <string name="gesture_action_sleep">Ruhezustand</string>
+    <string name="gesture_action_last_app">Letzte App</string>
+    <string name="gesture_action_close_app">App schließen</string>
+    <string name="gesture_action_play_pause">Musik abspielen/pausieren</string>
+    <string name="gesture_action_flashlight">Taschenlampe</string>
+    <string name="gesture_action_screenshot">Screenshot</string>
+    <string name="gesture_action_volume_panel">Lautstärke-Panel</string>
+    <string name="gesture_action_clear_notifications">Benachrichtigungen löschen</string>
+    <string name="gesture_action_notifications_panel">Benachrichtigungs-Panel</string>
+    <string name="gesture_action_expand_qs">QS-Panel erweitern</string>
+    <string name="gesture_action_ringer_modes">Klingelmodi</string>
+    
+    <!-- Essentials Screen -->
+    <string name="essentials">Wesentliches</string>
+    <string name="essential_notifications">Wesentliche Benachrichtigungen</string>
+    <string name="gaming">Gaming</string>
+    <string name="security">Sicherheit</string>
+    
+    <!-- Essential Apps -->
+    <string name="selected_apps">Ausgewählte Apps</string>
+    <string name="selected_apps_description">Filtern Sie Wichtiges. Diese Apps bleiben oben gruppiert.</string>
+    <string name="no_apps_selected">Keine Apps ausgewählt</string>
+    <string name="add_apps">Apps hinzufügen</string>
+    <string name="add_app">App hinzufügen</string>
+    <string name="select_essential_apps">Wesentliche Apps auswählen</string>
+    <string name="select_apps">Apps auswählen</string>
+    
+    <!-- App Picker -->
+    <string name="loading_apps">Apps werden geladen...</string>
+    <string name="search_apps">Apps suchen...</string>
+    <string name="show_system_apps">System-Apps anzeigen</string>
+    <string name="selected_count">%1$d ausgewählt</string>
+    
+    <!-- GameSpace -->
+    <string name="gamespace">GameSpace</string>
+    <string name="gamespace_summary">Optimieren Sie Ihr Gaming-Erlebnis mit GameSpace-Funktionen</string>
+    
+    <!-- Game Spoofing -->
+    <string name="game_spoofing">Spiel-Spoofing</string>
+    <string name="game_spoofing_summary">Geräteeigenschaften für bestimmte Spiele vortäuschen</string>
+    <string name="app_spoofing">App-Spoofing</string>
+    <string name="apps_configured">%1$d Apps konfiguriert</string>
+    <string name="no_apps_configured">Keine Apps konfiguriert</string>
+    <string name="configured_apps">KONFIGURIERTE APPS</string>
+    <string name="no_apps_configured_empty">Keine Apps konfiguriert</string>
+    <string name="add_apps_to_spoof">Apps hinzufügen, um Geräteeigenschaften vorzutäuschen</string>
+    <string name="configuration_saved">Konfiguration gespeichert</string>
+    <string name="remove_game_title">Spiel entfernen?</string>
+    <string name="remove_game_message">Dies entfernt die Spoofing-Konfiguration für dieses Spiel.</string>
+    <string name="select_an_app">Eine App auswählen:</string>
+    <string name="select_device_profile">Geräteprofil auswählen:</string>
+    <string name="create_new">Neu erstellen</string>
+    <string name="delete_preset">Voreinstellung löschen</string>
+    <string name="create_preset_title">Voreinstellung erstellen</string>
+    <string name="preset_name">Name der Voreinstellung</string>
+    <string name="property_number">Eigenschaft %1$d</string>
+    <string name="key">Schlüssel</string>
+    <string name="value">Wert</string>
+    <string name="add_property">Eigenschaft hinzufügen</string>
+    <string name="save_as_preset_title">Als Voreinstellung speichern</string>
+    <string name="preset_saved">Voreinstellung gespeichert</string>
+    <string name="edit_app">%1$s bearbeiten</string>
+    <string name="add_app_title">App hinzufügen</string>
+    
+    <!-- Device Profiles -->
+    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
+    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
+    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
+    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
+    <string name="device_black_shark_4">Black Shark 4</string>
+    <string name="device_lenovo_y700">Lenovo Y700</string>
+    
+    <!-- Security Features -->
+    <string name="trickystore">TrickyStore</string>
+    <string name="trickystore_summary">Keybox für Key-Attestation-Spoofing verwalten</string>
+    <string name="keybox_management">Keybox-Verwaltung</string>
+    <string name="import_keybox">Keybox importieren</string>
+    <string name="keybox_installed">Keybox ist installiert</string>
+    <string name="no_keybox_found">Keine Keybox gefunden - Zum Importieren tippen</string>
+    <string name="delete_keybox">Keybox löschen</string>
+    <string name="remove_keybox_file">Aktuelle Keybox-Datei entfernen</string>
+    <string name="delete_keybox_title">Keybox löschen?</string>
+    <string name="delete_keybox_message">Dies entfernt die keybox.xml-Datei. Zertifikat-Spoofing wird deaktiviert, bis eine neue Keybox importiert wird.</string>
+    <string name="keybox_imported_success">Keybox erfolgreich importiert</string>
+    <string name="keybox_import_failed">Keybox-Import fehlgeschlagen: %1$s</string>
+    <string name="keybox_deleted">Keybox gelöscht</string>
+    <string name="keybox_delete_failed">Keybox-Löschung fehlgeschlagen: %1$s</string>
+    <string name="target_configuration">Zielkonfiguration</string>
+    <string name="manage_target_apps">Ziel-Apps verwalten</string>
+    <string name="target_apps_configured">%1$d Apps konfiguriert</string>
+    <string name="import_target_list">Zielliste importieren</string>
+    <string name="import_from_file">Aus Datei importieren</string>
+    <string name="target_list_imported">Zielliste erfolgreich importiert</string>
+    <string name="target_list_import_failed">Ziellisten-Import fehlgeschlagen: %1$s</string>
+    <string name="select_target_apps">Ziel-Apps auswählen</string>
+    <string name="choose_apps_for_attestation">Apps für Attestation-Spoofing auswählen</string>
+    <string name="target_mode_auto">Automatisch</string>
+    <string name="target_mode_leaf_hack">Leaf ?</string>
+    <string name="target_mode_cert_gen">Gen !</string>
+    
+    <!-- Play Integrity Fix -->
+    <string name="play_integrity_fix">Play Integrity-Fix</string>
+    <string name="play_integrity_fix_summary">Build-Fingerprint-Spoofing konfigurieren</string>
+    <string name="fingerprint_spoofing">Fingerprint-Spoofing</string>
+    <string name="active_config">Aktiv: %1$s</string>
+    <string name="no_config_loaded">Keine Konfiguration geladen</string>
+    <string name="fetch_pixel_beta">Pixel Beta abrufen</string>
+    <string name="fetching">Abrufen…</string>
+    <string name="fetched_model">Abgerufen: %1$s</string>
+    <string name="failed_message">Fehlgeschlagen: %1$s</string>
+    <string name="failed_to_update">Update fehlgeschlagen: %1$s</string>
+    <string name="imported_as">Importiert als %1$s</string>
+    <string name="deleted_file">%1$s gelöscht</string>
+    <string name="delete_file_title">%1$s löschen?</string>
+    <string name="delete_config_message">Diese Konfigurationsdatei wird entfernt.</string>
+    <string name="import_text_verb">Importieren</string>
+    <string name="active_config_title">Aktive Konfiguration</string>
+    <string name="spoof_google_photos">Google Fotos vortäuschen</string>
+    <string name="unlimited_backup">Unbegrenzte Sicherung in Originalqualität</string>
+    <string name="other_config_files">Andere Konfigurationsdateien</string>
+    <string name="configured_count">%1$d von %2$d konfiguriert</string>
+    <string name="priority_note">Priorität: custom.pif.* > pif.* (zuerst gefundene wird verwendet)</string>
+    <string name="active_in_use">Aktiv - Derzeit in Verwendung</string>
+    <string name="available_overridden">Verfügbar - Durch höhere Priorität überschrieben</string>
+    <string name="not_configured">Nicht konfiguriert</string>
+    
+    <!-- Security - Window Secure -->
+    <string name="ignore_window_secure">Window Secure ignorieren</string>
+    <string name="ignore_window_secure_summary">Screenshots und Bildschirmaufnahmen in allen Apps erlauben</string>
+    
+    <!-- Performance Screen -->
+    <string name="performance">Leistung</string>
+    <string name="performance_mode">Leistungsmodus</string>
+    <string name="maximum_performance_enabled">Maximale Leistung aktiviert</string>
+    <string name="balanced_mode">Ausgewogener Modus</string>
+    <string name="boost_controls">BOOST-STEUERUNG</string>
+    <string name="frequency_control">FREQUENZSTEUERUNG</string>
+    <string name="display_boost">Display-Boost</string>
+    <string name="touch_boost">Touch-Boost</string>
+    <string name="boost_active">Boost aktiv</string>
+    <string name="boost_disabled">Boost deaktiviert</string>
+    
+    <!-- CPU Clusters -->
+    <string name="little_cluster">Little-Cluster</string>
+    <string name="big_cluster">Big-Cluster</string>
+    <string name="prime_cluster">Prime-Cluster</string>
+    <string name="boost_frequency">Boost-Frequenz</string>
+    <string name="minimum_frequency">Minimale Frequenz</string>
+    <string name="maximum_frequency">Maximale Frequenz</string>
+    
+    <!-- GPU -->
+    <string name="gpu">GPU</string>
+    <string name="graphics_performance">Grafikleistung</string>
+    <string name="game_gpu_boost">Spiele-GPU-Boost</string>
+    <string name="system_gpu_boost">System-GPU-Boost</string>
+    
+    <!-- Performance Formats -->
+    <string name="level_format">Stufe %1$d</string>
+    <string name="mhz_format">%1$d MHz</string>
+    
+    <!-- Quick Settings Tile -->
+    <string name="qs_tile_performance">Leistung</string>
+    <string name="qs_tile_on">Ein</string>
+    <string name="qs_tile_off">Aus</string>
+    
+    <!-- Multitasking Screen -->
+    <string name="multitasking">Multitasking</string>
+    <string name="edge_features">Kantenfunktionen</string>
+    <string name="sidebar">Seitenleiste</string>
+    <string name="sidebar_summary">Schnellzugriff auf Ihre Lieblings-Apps vom Rand aus</string>
+    
+</resources>
