@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:OptIn(ExperimentalMaterial3ExpressiveApi::class)
+
 package com.android.axion.axionparts.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -135,8 +137,9 @@ fun AxionPartsTheme(
         dynamicLightColorScheme(context)
     }
     
-    MaterialTheme(
+    MaterialExpressiveTheme(
         colorScheme = dynamicColorScheme,
+        motionScheme = MotionScheme.expressive(),
         shapes = ExpressiveShapes,
         typography = ExpressiveTypography,
         content = content
