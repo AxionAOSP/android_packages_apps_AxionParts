@@ -1517,13 +1517,17 @@ fun AodContent(
     modifier: Modifier = Modifier
 ) {
     val (scheduleMode, _) = rememberSecureSettingStringState("aod_schedule_mode", "0")
+    val (screenOffAnimation, _) = rememberSystemSettingIntState("screen_off_aod_animation", 1)
     val context = LocalContext.current
 
     LaunchedEffect(scheduleMode) {
-        when (scheduleMode) {
-            "0", "1" -> Settings.Secure.putInt(context.contentResolver, Settings.Secure.DOZE_ALWAYS_ON, 1)
-            "2" -> Settings.Secure.putInt(context.contentResolver, Settings.Secure.DOZE_ALWAYS_ON, 0)
-        }
+        val modeInt = scheduleMode.toIntOrNull() ?: 0
+        val shouldEnableDoze = modeInt != 0
+        Settings.Secure.putInt(
+            context.contentResolver, 
+            Settings.Secure.DOZE_ALWAYS_ON, 
+            if (shouldEnableDoze) 1 else 0
+        )
     }
 
     Column(
@@ -1548,23 +1552,62 @@ fun AodContent(
                     key = "aod_schedule_mode",
                     title = stringResource(R.string.aod_schedule),
                     summary = when (scheduleMode) {
-                        "0" -> "Always on"
-                        "1" -> "Scheduled"
-                        "2" -> "Disabled"
-                        else -> "Always on"
+                        "0" -> stringResource(R.string.disabled)
+                        "1" -> stringResource(R.string.always_on)
+                        "2" -> stringResource(R.string.aod_charge_only)
+                        "3" -> stringResource(R.string.scheduled)
+                        "4" -> stringResource(R.string.aod_scheduled_charge)
+                        else -> stringResource(R.string.disabled)
                     },
                     options = listOf(
-                        "0" to "Always on",
-                        "1" to "Scheduled",
-                        "2" to "Disabled"
+                        "0" to stringResource(R.string.disabled),
+                        "1" to stringResource(R.string.always_on),
+                        "2" to stringResource(R.string.aod_charge_only),
+                        "3" to stringResource(R.string.scheduled),
+                        "4" to stringResource(R.string.aod_scheduled_charge)
                     ),
                     defaultValue = "0"
                 )
             }
         }
         
+        
+        Spacer(modifier = Modifier.height(12.dp))
+        
+        PreferenceGroup(title = stringResource(R.string.general)) {
+            item {
+                SystemSettingSwitch(
+                    settingKey = "screen_off_aod_animation",
+                    title = stringResource(R.string.screen_off_animation),
+                    summary = stringResource(R.string.screen_off_animation_summary),
+                    defaultValue = true
+                )
+            }
+        }
+        
         AnimatedVisibility(
-            visible = scheduleMode == "1",
+            visible = screenOffAnimation == 1,
+            enter = fadeIn() + expandVertically(),
+            exit = fadeOut() + shrinkVertically()
+        ) {
+            Column {
+                Spacer(modifier = Modifier.height(12.dp))
+                
+                PreferenceGroup(title = stringResource(R.string.screen_off)) {
+                    item {
+                        SystemSettingSwitch(
+                            settingKey = "screen_off_aod_enabled",
+                            title = stringResource(R.string.screen_off_aod),
+                            summary = stringResource(R.string.screen_off_aod_summary),
+                            defaultValue = false
+                        )
+                    }
+                }
+            }
+        }
+        
+        AnimatedVisibility(
+            visible = scheduleMode == "3" || scheduleMode == "4",
             enter = fadeIn() + expandVertically(),
             exit = fadeOut() + shrinkVertically()
         ) {
@@ -1589,27 +1632,6 @@ fun AodContent(
                         )
                     }
                 }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        PreferenceGroup(title = stringResource(R.string.screen_off)) {
-            item {
-                SystemSettingSwitch(
-                    settingKey = "screen_off_aod_enabled",
-                    title = stringResource(R.string.screen_off_aod),
-                    summary = stringResource(R.string.screen_off_aod_summary),
-                    defaultValue = false
-                )
-            }
-            item {
-                SystemSettingSwitch(
-                    settingKey = "screen_off_aod_animation",
-                    title = stringResource(R.string.screen_off_animation),
-                    summary = stringResource(R.string.screen_off_animation_summary),
-                    defaultValue = true
-                )
             }
         }
         
