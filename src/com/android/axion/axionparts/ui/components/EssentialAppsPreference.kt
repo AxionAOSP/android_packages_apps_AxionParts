@@ -237,7 +237,7 @@ private fun AppChip(
         trailingIcon = {
             Icon(
                 imageVector = Icons.Default.Close,
-                contentDescription = "Remove",
+                contentDescription = stringResource(R.string.remove),
                 modifier = Modifier.size(18.dp)
             )
         },

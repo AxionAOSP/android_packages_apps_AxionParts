@@ -194,7 +194,7 @@ fun AppPickerScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Check,
-                        contentDescription = "Save"
+                        contentDescription = stringResource(R.string.save)
                     )
                 }
             }
@@ -210,7 +210,7 @@ fun AppPickerScreen(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("Search apps...") },
+                placeholder = { Text(stringResource(R.string.search_apps)) },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
@@ -230,7 +230,7 @@ fun AppPickerScreen(
             Spacer(modifier = Modifier.height(12.dp))
             
             Text(
-                text = "${tempSelectedApps.size} selected",
+                text = stringResource(R.string.selected_count, tempSelectedApps.size),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Medium,

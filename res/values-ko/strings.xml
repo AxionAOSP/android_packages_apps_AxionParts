@@ -19,8 +19,8 @@
     <string name="collapse">접기</string>
     <string name="search">검색</string>
     <string name="create">만들기</string>
-    <string name="settings">설정</string>
     <string name="general">일반</string>
+    <string name="settings">설정</string>
     <string name="active">활성화</string>
     <string name="inactive">비활성화</string>
     <string name="disabled">사용 안 함</string>
@@ -222,12 +222,6 @@
     <string name="add_app_title">앱 추가</string>
     
     <!-- Device Profiles -->
-    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
-    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
-    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
-    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
-    <string name="device_black_shark_4">Black Shark 4</string>
-    <string name="device_lenovo_y700">Lenovo Y700</string>
     
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
@@ -269,6 +263,11 @@
     <string name="failed_message">실패: %1$s</string>
     <string name="failed_to_update">업데이트 실패: %1$s</string>
     <string name="imported_as">%1$s(으)로 가져옴</string>
+    <string name="error_no_android_versions">Android 버전 페이지를 찾을 수 없습니다</string>
+    <string name="error_extract_fingerprint">OTA 메타데이터에서 지문을 추출할 수 없습니다</string>
+    <string name="error_extract_security_patch">OTA 메타데이터에서 보안 패치를 추출할 수 없습니다</string>
+    <string name="error_no_valid_ota">유효한 베타 OTA 페이지를 찾을 수 없습니다</string>
+    <string name="error_fetch_google">Google에서 가져오기 실패: %1$s</string>
     <string name="deleted_file">%1$s 삭제됨</string>
     <string name="delete_file_title">%1$s을(를) 삭제하시겠습니까?</string>
     <string name="delete_config_message">이 구성 파일이 제거됩니다.</string>
@@ -315,7 +314,6 @@
     
     <!-- Performance Formats -->
     <string name="level_format">레벨 %1$d</string>
-    <string name="mhz_format">%1$d MHz</string>
     
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">성능</string>
@@ -328,4 +326,5 @@
     <string name="sidebar">사이드바</string>
     <string name="sidebar_summary">가장자리에서 즐겨찾는 앱에 빠르게 접근</string>
     
+    <!-- Misc -->
 </resources>

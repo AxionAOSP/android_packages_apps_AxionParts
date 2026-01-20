@@ -492,7 +492,7 @@ fun AppPickerBottomSheet(
                 .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = "Select Target Apps",
+                text = stringResource(R.string.select_target_apps),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold
             )
@@ -500,7 +500,7 @@ fun AppPickerBottomSheet(
             Spacer(modifier = Modifier.height(4.dp))
             
             Text(
-                text = "Choose apps to enable attestation spoofing",
+                text = stringResource(R.string.choose_apps_for_attestation),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -511,12 +511,12 @@ fun AppPickerBottomSheet(
                 value = searchQuery,
                 onValueChange = { searchQuery = it },
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("Search apps...") },
+                placeholder = { Text(stringResource(R.string.search_apps)) },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                 trailingIcon = {
                     if (searchQuery.isNotEmpty()) {
                         IconButton(onClick = { searchQuery = "" }) {
-                            Icon(Icons.Default.Close, contentDescription = "Clear")
+                            Icon(Icons.Default.Close, contentDescription = stringResource(R.string.clear))
                         }
                     }
                 },

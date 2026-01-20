@@ -19,8 +19,8 @@
     <string name="collapse">折叠</string>
     <string name="search">搜索</string>
     <string name="create">创建</string>
-    <string name="settings">设置</string>
     <string name="general">常规</string>
+    <string name="settings">设置</string>
     <string name="active">已激活</string>
     <string name="inactive">未激活</string>
     <string name="disabled">已禁用</string>
@@ -222,12 +222,6 @@
     <string name="add_app_title">添加应用</string>
     
     <!-- Device Profiles -->
-    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
-    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
-    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
-    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
-    <string name="device_black_shark_4">Black Shark 4</string>
-    <string name="device_lenovo_y700">Lenovo Y700</string>
     
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
@@ -269,6 +263,11 @@
     <string name="failed_message">失败：%1$s</string>
     <string name="failed_to_update">更新失败：%1$s</string>
     <string name="imported_as">已导入为 %1$s</string>
+    <string name="error_no_android_versions">找不到任何Android版本页面</string>
+    <string name="error_extract_fingerprint">无法从OTA元数据中提取指纹</string>
+    <string name="error_extract_security_patch">无法从OTA元数据中提取安全补丁</string>
+    <string name="error_no_valid_ota">找不到任何有效的测试版OTA页面</string>
+    <string name="error_fetch_google">从Google获取失败：%1$s</string>
     <string name="deleted_file">已删除 %1$s</string>
     <string name="delete_file_title">删除 %1$s？</string>
     <string name="delete_config_message">此配置文件将被移除。</string>
@@ -315,7 +314,6 @@
     
     <!-- Performance Formats -->
     <string name="level_format">级别 %1$d</string>
-    <string name="mhz_format">%1$d MHz</string>
     
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">性能</string>
@@ -328,4 +326,5 @@
     <string name="sidebar">侧边栏</string>
     <string name="sidebar_summary">从边缘快速访问您喜爱的应用</string>
     
+    <!-- Misc -->
 </resources>

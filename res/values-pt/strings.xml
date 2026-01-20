@@ -19,8 +19,8 @@
     <string name="collapse">Recolher</string>
     <string name="search">Pesquisar</string>
     <string name="create">Criar</string>
-    <string name="settings">Configurações</string>
     <string name="general">Geral</string>
+    <string name="settings">Configurações</string>
     <string name="active">Ativo</string>
     <string name="inactive">Inativo</string>
     <string name="disabled">Desativado</string>
@@ -222,12 +222,6 @@
     <string name="add_app_title">Adicionar aplicativo</string>
     
     <!-- Device Profiles -->
-    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
-    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
-    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
-    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
-    <string name="device_black_shark_4">Black Shark 4</string>
-    <string name="device_lenovo_y700">Lenovo Y700</string>
     
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
@@ -269,6 +263,11 @@
     <string name="failed_message">Falhou: %1$s</string>
     <string name="failed_to_update">Falha ao atualizar: %1$s</string>
     <string name="imported_as">Importado como %1$s</string>
+    <string name="error_no_android_versions">Não foi possível encontrar páginas de versões do Android</string>
+    <string name="error_extract_fingerprint">Não foi possível extrair a impressão digital dos metadados OTA</string>
+    <string name="error_extract_security_patch">Não foi possível extrair o patch de segurança dos metadados OTA</string>
+    <string name="error_no_valid_ota">Não foi possível encontrar páginas OTA beta válidas</string>
+    <string name="error_fetch_google">Falha ao buscar do Google: %1$s</string>
     <string name="deleted_file">%1$s excluído</string>
     <string name="delete_file_title">Excluir %1$s?</string>
     <string name="delete_config_message">Este arquivo de configuração será removido.</string>
@@ -315,7 +314,6 @@
     
     <!-- Performance Formats -->
     <string name="level_format">Nível %1$d</string>
-    <string name="mhz_format">%1$d MHz</string>
     
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Desempenho</string>
@@ -328,4 +326,5 @@
     <string name="sidebar">Barra lateral</string>
     <string name="sidebar_summary">Acesso rápido aos seus aplicativos favoritos pela borda</string>
     
+    <!-- Misc -->
 </resources>

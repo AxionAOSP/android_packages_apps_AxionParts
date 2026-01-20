@@ -318,13 +318,13 @@ fun EdgeLightContent(
                     key = "edge_light_color_mode",
                     title = stringResource(R.string.color_mode),
                     summary = when (colorMode) {
-                        "default" -> "Notification accent"
-                        "custom" -> "Custom color"
-                        else -> "Notification accent"
+                        "default" -> stringResource(R.string.notification_accent)
+                        "custom" -> stringResource(R.string.custom_color)
+                        else -> stringResource(R.string.notification_accent)
                     },
                     options = listOf(
-                        "default" to "Notification accent",
-                        "custom" to "Custom color"
+                        "default" to stringResource(R.string.notification_accent),
+                        "custom" to stringResource(R.string.custom_color)
                     ),
                     defaultValue = "default",
                     dependencyKey = "edge_light_enabled"
@@ -453,8 +453,8 @@ fun PulseVisualizerContent(
                     title = stringResource(R.string.render_style),
                     summary = stringResource(R.string.render_style_summary),
                     options = listOf(
-                        "0" to "Solid Lines",
-                        "1" to "Fading Blocks"
+                        "0" to stringResource(R.string.solid_lines),
+                        "1" to stringResource(R.string.fading_blocks)
                     ),
                     defaultValue = "0",
                     dependencyKey = "visualizer_pulse_enabled"
@@ -466,9 +466,9 @@ fun PulseVisualizerContent(
                     title = stringResource(R.string.color_mode),
                     summary = stringResource(R.string.visualizer_color_summary),
                     options = listOf(
-                        "lavalamp" to "Lava Lamp",
-                        "album" to "Album Art",
-                        "accent" to "System Accent"
+                        "lavalamp" to stringResource(R.string.lava_lamp),
+                        "album" to stringResource(R.string.album_art),
+                        "accent" to stringResource(R.string.system_accent)
                     ),
                     defaultValue = "lavalamp",
                     dependencyKey = "visualizer_pulse_enabled"
@@ -1288,7 +1288,7 @@ private fun ColorSwatch(
         if (isSelected) {
             Icon(
                 imageVector = Icons.Default.Check,
-                contentDescription = "Selected",
+                contentDescription = stringResource(R.string.selected),
                 tint = if (isLightColor) Color.Black else Color.White,
                 modifier = Modifier.size(16.dp)
             )
@@ -1395,7 +1395,7 @@ private fun ColorPickerDialog(
                 .padding(24.dp)
         ) {
             Text(
-                text = "Choose color",
+                text = stringResource(R.string.choose_color),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface
@@ -1465,7 +1465,7 @@ private fun ColorPickerDialog(
             
             
             Text(
-                text = "Presets",
+                text = stringResource(R.string.presets),
                 style = MaterialTheme.typography.labelMedium,
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -1503,7 +1503,7 @@ private fun ColorPickerDialog(
                     onClick = { onColorSelected(currentColor) }
                 ) {
                     Text(
-                        text = "Select",
+                        text = stringResource(R.string.select_uppercase),
                         style = MaterialTheme.typography.labelLarge
                     )
                 }

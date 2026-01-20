@@ -85,6 +85,7 @@ import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 
 private data class ClusterConfig(
     val name: String,
+    val id: String,
     val maxFreq: Int,
     val availableFreqs: List<Int>,
     val boostKey: String,
@@ -172,6 +173,7 @@ fun PerformanceContent(
         listOf(
             ClusterConfig(
                 name = littleClusterName,
+                id = "little",
                 maxFreq = smallAvailableFreqs.maxOrNull() ?: 0,
                 availableFreqs = smallAvailableFreqs,
                 boostKey = "axion_cpu_boost",
@@ -183,6 +185,7 @@ fun PerformanceContent(
             ),
             ClusterConfig(
                 name = bigClusterName,
+                id = "big",
                 maxFreq = bigAvailableFreqs.maxOrNull() ?: 0,
                 availableFreqs = bigAvailableFreqs,
                 boostKey = "axion_big_core_boost",
@@ -194,6 +197,7 @@ fun PerformanceContent(
             ),
             ClusterConfig(
                 name = primeClusterName,
+                id = "prime",
                 maxFreq = primeAvailableFreqs.maxOrNull() ?: 0,
                 availableFreqs = primeAvailableFreqs,
                 boostKey = "axion_prime_core_boost",
@@ -219,7 +223,7 @@ fun PerformanceContent(
         Spacer(modifier = Modifier.height(24.dp))
         
         Text(
-            text = "BOOST CONTROLS",
+            text = stringResource(R.string.boost_controls),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold,
@@ -252,7 +256,7 @@ fun PerformanceContent(
         Spacer(modifier = Modifier.height(24.dp))
         
         Text(
-            text = "FREQUENCY CONTROL",
+            text = stringResource(R.string.frequency_control),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold,
@@ -319,9 +323,9 @@ private fun ClusterCard(cluster: ClusterConfig) {
         onDispose { contentResolver.unregisterContentObserver(observer) }
     }
     
-    val icon = when {
-        cluster.name.contains("Little") -> Icons.Outlined.Bolt
-        cluster.name.contains("Big") -> Icons.Outlined.RocketLaunch
+    val icon = when (cluster.id) {
+        "little" -> Icons.Outlined.Bolt
+        "big" -> Icons.Outlined.RocketLaunch
         else -> Icons.Outlined.Layers
     }
     
@@ -450,7 +454,7 @@ private fun ClusterHeader(
                     )
                 }
                 Text(
-                    text = if (boostEnabled) "Boost Active" else "Boost Disabled",
+                    text = if (boostEnabled) stringResource(R.string.boost_active) else stringResource(R.string.boost_disabled),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -502,13 +506,13 @@ private fun GpuCard(maxLevels: Int) {
             }
             Column {
                 Text(
-                    text = "GPU",
+                    text = stringResource(R.string.gpu),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "Graphics Performance",
+                    text = stringResource(R.string.graphics_performance),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

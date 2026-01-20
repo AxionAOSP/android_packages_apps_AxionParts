@@ -130,7 +130,7 @@ fun PlayIntegrityFixScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = "Play Integrity Fix",
+                            text = stringResource(R.string.play_integrity_fix),
                             fontWeight = FontWeight.Bold,
                             style = MaterialTheme.typography.headlineMedium
                         )
@@ -252,7 +252,7 @@ fun PlayIntegrityFixContent(
             
             try {
                 val result = withContext(Dispatchers.IO) {
-                    fetchBetaPifFromGoogle()
+                    fetchBetaPifFromGoogle(context)
                 }
                 
                 when (result) {
@@ -403,13 +403,13 @@ fun PlayIntegrityFixContent(
                     
                     Column {
                         Text(
-                            text = "Fingerprint Spoofing",
+                            text = stringResource(R.string.fingerprint_spoofing),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = if (activeConfig.isNotEmpty()) "Active: $activeConfig" else "No config loaded",
+                            text = if (activeConfig.isNotEmpty()) stringResource(R.string.active_config, activeConfig) else stringResource(R.string.no_config_loaded),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -486,7 +486,7 @@ fun PlayIntegrityFixContent(
                         
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Active Config",
+                                text = stringResource(R.string.active_config_title),
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                             )
@@ -499,7 +499,7 @@ fun PlayIntegrityFixContent(
                         
                         Icon(
                             if (activeConfigExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                            contentDescription = if (activeConfigExpanded) "Collapse" else "Expand",
+                            contentDescription = if (activeConfigExpanded) stringResource(R.string.collapse) else stringResource(R.string.expand),
                             tint = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                     }
@@ -549,7 +549,7 @@ fun PlayIntegrityFixContent(
                                         Spacer(modifier = Modifier.height(8.dp))
                                         
                                         Text(
-                                            text = "Settings",
+                                            text = stringResource(R.string.settings),
                                             style = MaterialTheme.typography.labelMedium,
                                             color = MaterialTheme.colorScheme.primary,
                                             fontWeight = FontWeight.Bold
@@ -585,7 +585,7 @@ fun PlayIntegrityFixContent(
                         ) {
                             Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Delete")
+                            Text(stringResource(R.string.delete))
                         }
                         
                         FilledTonalButton(
@@ -601,7 +601,7 @@ fun PlayIntegrityFixContent(
                         ) {
                             Icon(Icons.Default.Upload, contentDescription = null, modifier = Modifier.size(18.dp))
                             Spacer(modifier = Modifier.width(4.dp))
-                            Text("Replace")
+                            Text(stringResource(R.string.replace))
                         }
                     }
                 }
@@ -645,12 +645,12 @@ fun PlayIntegrityFixContent(
                     
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Spoof Google Photos",
+                            text = stringResource(R.string.spoof_google_photos),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = "Unlimited original quality backup",
+                            text = stringResource(R.string.unlimited_backup),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -701,12 +701,12 @@ fun PlayIntegrityFixContent(
                         
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Other Config Files",
+                                text = stringResource(R.string.other_config_files),
                                 style = MaterialTheme.typography.titleSmall,
                                 fontWeight = FontWeight.Medium
                             )
                             Text(
-                                text = "$existingInactiveCount of ${inactiveConfigFiles.size} configured",
+                                text = stringResource(R.string.configured_count, existingInactiveCount, inactiveConfigFiles.size),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -714,7 +714,7 @@ fun PlayIntegrityFixContent(
                         
                         Icon(
                             if (configSectionExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                            contentDescription = if (configSectionExpanded) "Collapse" else "Expand",
+                            contentDescription = if (configSectionExpanded) stringResource(R.string.collapse) else stringResource(R.string.expand),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
@@ -724,7 +724,7 @@ fun PlayIntegrityFixContent(
                             modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
                         ) {
                             Text(
-                                text = "Priority: custom.pif.* > pif.* (first found is used)",
+                                text = stringResource(R.string.priority_note),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(bottom = 12.dp)
@@ -808,9 +808,9 @@ fun ConfigFileCard(
                     )
                     Text(
                         text = when {
-                            config.isActive -> "Active - Currently in use"
-                            config.exists -> "Available - Overridden by higher priority"
-                            else -> "Not configured"
+                            config.isActive -> stringResource(R.string.active_in_use)
+                            config.exists -> stringResource(R.string.available_overridden)
+                            else -> stringResource(R.string.not_configured)
                         },
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -821,7 +821,7 @@ fun ConfigFileCard(
                     IconButton(onClick = { expanded = !expanded }) {
                         Icon(
                             if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                            contentDescription = if (expanded) "Collapse" else "Expand"
+                            contentDescription = if (expanded) stringResource(R.string.collapse) else stringResource(R.string.expand)
                         )
                     }
                 }
@@ -840,7 +840,7 @@ fun ConfigFileCard(
                     ) {
                         Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(modifier = Modifier.width(4.dp))
-                        Text("Delete")
+                        Text(stringResource(R.string.delete))
                     }
                 }
                 
@@ -866,8 +866,7 @@ fun ConfigFileCard(
                         modifier = Modifier.padding(12.dp)
                     ) {
                         val displayKeys = listOf(
-                            "FINGERPRINT", "MODEL", "MANUFACTURER", "BRAND",
-                            "PRODUCT", "DEVICE", "SECURITY_PATCH", "DEVICE_INITIAL_SDK_INT"
+                            "FINGERPRINT", "MODEL", "SECURITY_PATCH", "MANUFACTURER", "BRAND", "PRODUCT", "DEVICE", "DEVICE_INITIAL_SDK_INT"
                         )
                         
                         displayKeys.forEach { key ->
@@ -877,16 +876,19 @@ fun ConfigFileCard(
                         }
                         
                         val settingKeys = config.data.keys.filter { 
-                            it.startsWith("spoof") || it == "DEBUG" 
+                            it.startsWith("spoof") || it == "DEBUG"
                         }
+                        
                         if (settingKeys.isNotEmpty()) {
                             Spacer(modifier = Modifier.height(8.dp))
+                            
                             Text(
-                                text = "Settings",
+                                text = stringResource(R.string.settings),
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.primary,
                                 fontWeight = FontWeight.Bold
                             )
+                            
                             settingKeys.forEach { key ->
                                 config.data[key]?.let { value ->
                                     ConfigValueRow(key, value)
@@ -993,7 +995,7 @@ private fun readConfigData(file: File): Map<String, String> {
     }
 }
 
-private fun fetchBetaPifFromGoogle(): PifFetchResult {
+private fun fetchBetaPifFromGoogle(context: Context): PifFetchResult {
     try {
         Log.d(TAG, "Fetching Pixel Beta metadata from Google Developer...")
 
@@ -1006,7 +1008,7 @@ private fun fetchBetaPifFromGoogle(): PifFetchResult {
             .sortedDescending()
 
         if (versions.isEmpty()) {
-            return PifFetchResult.Error("Could not find any Android version pages")
+            return PifFetchResult.Error(context.getString(R.string.error_no_android_versions))
         }
 
         Log.d(TAG, "Found versions: $versions")
@@ -1087,11 +1089,11 @@ private fun fetchBetaPifFromGoogle(): PifFetchResult {
 
                         val fingerprintMatch = Regex("""post-build=(.*)""")
                             .find(partialData)
-                            ?: return PifFetchResult.Error("Could not extract fingerprint from OTA metadata")
+                            ?: return PifFetchResult.Error(context.getString(R.string.error_extract_fingerprint))
 
                         val securityPatchMatch = Regex("""security-patch-level=(.*)""")
                             .find(partialData)
-                            ?: return PifFetchResult.Error("Could not extract security patch from OTA metadata")
+                            ?: return PifFetchResult.Error(context.getString(R.string.error_extract_security_patch))
 
                         val fingerprint = fingerprintMatch.groupValues[1].trim()
                         val securityPatch = securityPatchMatch.groupValues[1].trim()
@@ -1123,11 +1125,11 @@ private fun fetchBetaPifFromGoogle(): PifFetchResult {
             }
         }
 
-        return PifFetchResult.Error("Could not find any valid beta OTA pages")
+        return PifFetchResult.Error(context.getString(R.string.error_no_valid_ota))
 
     } catch (e: Exception) {
         Log.e(TAG, "Error fetching from Google developer site", e)
-        return PifFetchResult.Error("Failed to fetch from Google: ${e.message}")
+        return PifFetchResult.Error(context.getString(R.string.error_fetch_google, e.message ?: ""))
     }
 }
 

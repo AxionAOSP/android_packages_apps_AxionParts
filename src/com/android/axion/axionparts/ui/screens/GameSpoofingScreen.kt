@@ -145,7 +145,7 @@ fun GameSpoofingScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = "App Spoofing",
+                            text = stringResource(R.string.app_spoofing),
                             fontWeight = FontWeight.Bold,
                             style = MaterialTheme.typography.headlineMedium
                         )
@@ -319,13 +319,13 @@ fun GameSpoofingContent(
                     
                     Column {
                         Text(
-                            text = "App Spoofing",
+                            text = stringResource(R.string.app_spoofing),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = if (enabled) "${gameConfigs.size} apps configured" else "Disabled",
+                            text = if (enabled) stringResource(R.string.apps_configured, gameConfigs.size) else stringResource(R.string.disabled),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -366,7 +366,7 @@ fun GameSpoofingContent(
             ) {
                 Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(18.dp))
                 Spacer(modifier = Modifier.width(4.dp))
-                Text("Reload")
+                Text(stringResource(R.string.reload))
             }
         }
         
@@ -374,7 +374,7 @@ fun GameSpoofingContent(
         
         if (gameConfigs.isNotEmpty()) {
             Text(
-                text = "CONFIGURED APPS",
+                text = stringResource(R.string.configured_apps),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
@@ -417,12 +417,12 @@ fun GameSpoofingContent(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = "No apps configured",
+                        text = stringResource(R.string.no_apps_configured_empty),
                         style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     Text(
-                        text = "Add apps to start spoofing device properties",
+                        text = stringResource(R.string.add_apps_to_spoof),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                     )
@@ -492,11 +492,11 @@ fun GameConfigCard(
                     )
                 }
                 
-                Icon(
-                    if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                    contentDescription = if (expanded) "Collapse" else "Expand",
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+    Icon(
+        if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+        contentDescription = if (expanded) stringResource(R.string.collapse) else stringResource(R.string.expand),
+        tint = MaterialTheme.colorScheme.onSurfaceVariant
+    )
             }
             
             if (expanded && game.props.isNotEmpty()) {
@@ -529,7 +529,7 @@ fun GameConfigCard(
                 ) {
                     Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Remove")
+                    Text(stringResource(R.string.remove))
                 }
                 
                 FilledTonalButton(
@@ -538,7 +538,7 @@ fun GameConfigCard(
                 ) {
                     Icon(Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Edit")
+                    Text(stringResource(R.string.edit))
                 }
             }
         }
@@ -664,22 +664,22 @@ fun AddGameDialog(
                                         horizontalArrangement = Arrangement.SpaceBetween,
                                         verticalAlignment = Alignment.CenterVertically
                                     ) {
-                                        Text(
-                                            text = profile.name,
-                                            style = MaterialTheme.typography.titleSmall,
-                                            fontWeight = FontWeight.Bold,
-                                            modifier = Modifier.weight(1f)
-                                        )
+                                    Text(
+                                        text = profile.name,
+                                        style = MaterialTheme.typography.titleSmall,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.weight(1f)
+                                    )
                                         if (profile.isCustom) {
                                             Row(
                                                 verticalAlignment = Alignment.CenterVertically,
                                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
                                             ) {
-                                                Text(
-                                                    text = "Custom",
-                                                    style = MaterialTheme.typography.labelSmall,
-                                                    color = MaterialTheme.colorScheme.tertiary
-                                                )
+                                            Text(
+                                                text = stringResource(R.string.custom),
+                                                style = MaterialTheme.typography.labelSmall,
+                                                color = MaterialTheme.colorScheme.tertiary
+                                            )
                                                 IconButton(
                                                     onClick = {
                                                         deleteCustomPreset(context, profile.name)
@@ -690,7 +690,7 @@ fun AddGameDialog(
                                                 ) {
                                                     Icon(
                                                         imageVector = Icons.Default.Delete,
-                                                        contentDescription = "Delete preset",
+                                                        contentDescription = stringResource(R.string.delete_preset),
                                                         modifier = Modifier.size(16.dp),
                                                         tint = MaterialTheme.colorScheme.error
                                                     )
@@ -730,7 +730,7 @@ fun AddGameDialog(
                 },
                 enabled = selectedGame != null && selectedProfile != null
             ) {
-                Text("Add")
+                Text(stringResource(R.string.add))
             }
         },
         dismissButton = {
@@ -767,7 +767,7 @@ fun PropertyEditor(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Property ${index + 1}",
+                            text = stringResource(R.string.property_number, index + 1),
                             style = MaterialTheme.typography.labelLarge,
                             color = MaterialTheme.colorScheme.primary
                         )
@@ -777,7 +777,7 @@ fun PropertyEditor(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = "Remove",
+                                contentDescription = stringResource(R.string.remove),
                                 modifier = Modifier.size(16.dp)
                             )
                         }
@@ -861,7 +861,7 @@ fun CreatePresetDialog(
                 },
                 enabled = name.isNotBlank()
             ) {
-                Text("Create")
+                Text(stringResource(R.string.create))
             }
         },
         dismissButton = {
@@ -921,7 +921,7 @@ fun EditGameDialog(
                     },
                     enabled = presetName.isNotBlank()
                 ) {
-                    Text("Save")
+                    Text(stringResource(R.string.save))
                 }
             },
             dismissButton = {
@@ -936,7 +936,7 @@ fun EditGameDialog(
         onDismissRequest = onDismiss,
         title = { 
             Text(
-                text = "Edit ${game.appName}",
+                text = stringResource(R.string.edit_app, game.appName),
                 textAlign = TextAlign.Center
             ) 
         },
@@ -972,7 +972,7 @@ fun EditGameDialog(
                     onGameUpdated(game.copy(props = newProps))
                 }
             ) {
-                Text("Save")
+                Text(stringResource(R.string.save))
             }
         },
         dismissButton = {

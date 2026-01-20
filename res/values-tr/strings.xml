@@ -19,8 +19,8 @@
     <string name="collapse">Daralt</string>
     <string name="search">Ara</string>
     <string name="create">Oluştur</string>
-    <string name="settings">Ayarlar</string>
     <string name="general">Genel</string>
+    <string name="settings">Ayarlar</string>
     <string name="active">Aktif</string>
     <string name="inactive">Pasif</string>
     <string name="disabled">Devre Dışı</string>
@@ -222,12 +222,6 @@
     <string name="add_app_title">Uygulama Ekle</string>
     
     <!-- Device Profiles -->
-    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
-    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
-    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
-    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
-    <string name="device_black_shark_4">Black Shark 4</string>
-    <string name="device_lenovo_y700">Lenovo Y700</string>
     
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
@@ -269,6 +263,11 @@
     <string name="failed_message">Başarısız: %1$s</string>
     <string name="failed_to_update">Güncellenemedi: %1$s</string>
     <string name="imported_as">%1$s olarak içe aktarıldı</string>
+    <string name="error_no_android_versions">Android sürüm sayfaları bulunamadı</string>
+    <string name="error_extract_fingerprint">OTA meta verilerinden parmak izi çıkarılamadı</string>
+    <string name="error_extract_security_patch">OTA meta verilerinden güvenlik yaması çıkarılamadı</string>
+    <string name="error_no_valid_ota">Geçerli beta OTA sayfaları bulunamadı</string>
+    <string name="error_fetch_google">Google\'dan alınamadı: %1$s</string>
     <string name="deleted_file">%1$s silindi</string>
     <string name="delete_file_title">%1$s Silinsin mi?</string>
     <string name="delete_config_message">Bu yapılandırma dosyası kaldırılacak.</string>
@@ -315,7 +314,6 @@
     
     <!-- Performance Formats -->
     <string name="level_format">Seviye %1$d</string>
-    <string name="mhz_format">%1$d MHz</string>
     
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Performans</string>
@@ -328,4 +326,5 @@
     <string name="sidebar">Kenar Çubuğu</string>
     <string name="sidebar_summary">Kenardan favori uygulamalarınıza hızlı erişim</string>
     
+    <!-- Misc -->
 </resources>

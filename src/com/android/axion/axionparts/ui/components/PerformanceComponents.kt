@@ -208,7 +208,7 @@ fun PowerModeToggle(
                         color = contentColor
                     )
                     Text(
-                        text = if (isEnabled) "Maximum performance enabled" else "Balanced mode",
+                        text = if (isEnabled) stringResource(R.string.maximum_performance_enabled) else stringResource(R.string.balanced_mode),
                         style = MaterialTheme.typography.bodySmall,
                         color = contentColor.copy(alpha = 0.7f)
                     )
@@ -329,7 +329,7 @@ fun BoostToggleCard(
                     color = contentColor
                 )
                 Text(
-                    text = if (isEnabled) "Active" else "Inactive",
+                    text = if (isEnabled) stringResource(R.string.active) else stringResource(R.string.inactive),
                     style = MaterialTheme.typography.bodySmall,
                     color = contentColor.copy(alpha = 0.7f)
                 )
@@ -590,7 +590,7 @@ fun LevelSlider(
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Text(
-                text = "Level ${currentValue.roundToInt()}",
+                text = stringResource(R.string.level_format, currentValue.roundToInt()),
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold,
                 color = accentColor

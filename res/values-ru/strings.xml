@@ -19,8 +19,8 @@
     <string name="collapse">Свернуть</string>
     <string name="search">Поиск</string>
     <string name="create">Создать</string>
-    <string name="settings">Настройки</string>
     <string name="general">Общие</string>
+    <string name="settings">Настройки</string>
     <string name="active">Активно</string>
     <string name="inactive">Неактивно</string>
     <string name="disabled">Отключено</string>
@@ -222,12 +222,6 @@
     <string name="add_app_title">Добавить приложение</string>
     
     <!-- Device Profiles -->
-    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
-    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
-    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
-    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
-    <string name="device_black_shark_4">Black Shark 4</string>
-    <string name="device_lenovo_y700">Lenovo Y700</string>
     
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
@@ -269,6 +263,11 @@
     <string name="failed_message">Ошибка: %1$s</string>
     <string name="failed_to_update">Не удалось обновить: %1$s</string>
     <string name="imported_as">Импортировано как %1$s</string>
+    <string name="error_no_android_versions">Не удалось найти страницы версий Android</string>
+    <string name="error_extract_fingerprint">Не удалось извлечь отпечаток из метаданных OTA</string>
+    <string name="error_extract_security_patch">Не удалось извлечь патч безопасности из метаданных OTA</string>
+    <string name="error_no_valid_ota">Не удалось найти действительные страницы бета-версии OTA</string>
+    <string name="error_fetch_google">Ошибка получения данных от Google: %1$s</string>
     <string name="deleted_file">Удалено %1$s</string>
     <string name="delete_file_title">Удалить %1$s?</string>
     <string name="delete_config_message">Этот файл конфигурации будет удалён.</string>
@@ -300,7 +299,7 @@
     <string name="boost_disabled">Ускорение отключено</string>
     
     <!-- CPU Clusters -->
-    <string name="little_cluster">Слабый кластер</string>
+    <string name="little_cluster">Малый кластер</string>
     <string name="big_cluster">Большой кластер</string>
     <string name="prime_cluster">Главный кластер</string>
     <string name="boost_frequency">Частота ускорения</string>
@@ -315,7 +314,6 @@
     
     <!-- Performance Formats -->
     <string name="level_format">Уровень %1$d</string>
-    <string name="mhz_format">%1$d МГц</string>
     
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Производительность</string>
@@ -328,4 +326,5 @@
     <string name="sidebar">Боковая панель</string>
     <string name="sidebar_summary">Быстрый доступ к любимым приложениям с края экрана</string>
     
+    <!-- Misc -->
 </resources>

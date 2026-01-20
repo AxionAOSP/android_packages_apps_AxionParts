@@ -347,7 +347,7 @@ private fun EmptyDetailPane() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Select an item",
+                text = stringResource(R.string.select_item),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
             )

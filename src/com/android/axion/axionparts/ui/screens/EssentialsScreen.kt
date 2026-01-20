@@ -71,7 +71,7 @@ fun EssentialsScreen(
                 TopAppBar(
                     title = {
                         Text(
-                            text = "Essentials",
+                            text = stringResource(R.string.essentials),
                             fontWeight = FontWeight.Bold,
                             style = MaterialTheme.typography.headlineMedium
                         )

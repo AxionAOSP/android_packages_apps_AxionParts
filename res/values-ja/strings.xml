@@ -19,8 +19,8 @@
     <string name="collapse">折りたたむ</string>
     <string name="search">検索</string>
     <string name="create">作成</string>
-    <string name="settings">設定</string>
     <string name="general">一般</string>
+    <string name="settings">設定</string>
     <string name="active">有効</string>
     <string name="inactive">無効</string>
     <string name="disabled">無効化</string>
@@ -222,12 +222,6 @@
     <string name="add_app_title">アプリを追加</string>
     
     <!-- Device Profiles -->
-    <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
-    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
-    <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
-    <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
-    <string name="device_black_shark_4">Black Shark 4</string>
-    <string name="device_lenovo_y700">Lenovo Y700</string>
     
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
@@ -269,6 +263,11 @@
     <string name="failed_message">失敗: %1$s</string>
     <string name="failed_to_update">更新に失敗しました: %1$s</string>
     <string name="imported_as">%1$sとしてインポートしました</string>
+    <string name="error_no_android_versions">Androidバージョンページが見つかりませんでした</string>
+    <string name="error_extract_fingerprint">OTAメタデータからフィンガープリントを抽出できませんでした</string>
+    <string name="error_extract_security_patch">OTAメタデータからセキュリティパッチを抽出できませんでした</string>
+    <string name="error_no_valid_ota">有効なベータOTAページが見つかりませんでした</string>
+    <string name="error_fetch_google">Googleからの取得に失敗しました: %1$s</string>
     <string name="deleted_file">%1$sを削除しました</string>
     <string name="delete_file_title">%1$sを削除しますか？</string>
     <string name="delete_config_message">この設定ファイルが削除されます。</string>
@@ -315,7 +314,6 @@
     
     <!-- Performance Formats -->
     <string name="level_format">レベル %1$d</string>
-    <string name="mhz_format">%1$d MHz</string>
     
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">パフォーマンス</string>
@@ -328,4 +326,5 @@
     <string name="sidebar">サイドバー</string>
     <string name="sidebar_summary">エッジからお気に入りのアプリにすぐにアクセス</string>
     
+    <!-- Misc -->
 </resources>

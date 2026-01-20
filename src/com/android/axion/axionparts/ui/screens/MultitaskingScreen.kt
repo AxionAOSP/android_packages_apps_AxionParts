@@ -65,7 +65,7 @@ fun MultitaskingScreen(
                 LargeTopAppBar(
                     title = {
                         Text(
-                            text = "Multitasking",
+                            text = stringResource(R.string.multitasking),
                             fontWeight = FontWeight.Bold
                         )
                     },
