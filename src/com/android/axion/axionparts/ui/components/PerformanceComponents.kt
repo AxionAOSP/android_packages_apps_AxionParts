@@ -343,8 +343,9 @@ fun BoostToggleCard(
 fun FrequencySlider(
     settingKey: String,
     label: String,
+    availableFrequencies: List<Int>? = null,
     min: Int = 0,
-    max: Int,
+    max: Int = 0,
     interval: Int = 100000,
     defaultValue: Int = min,
     accentColor: Color = MaterialTheme.colorScheme.primary,
@@ -353,7 +354,7 @@ fun FrequencySlider(
 ) {
     val context = LocalContext.current
     val contentResolver = context.contentResolver
-    
+
     var currentValue by remember {
         mutableFloatStateOf(
             try {
@@ -363,7 +364,7 @@ fun FrequencySlider(
             }
         )
     }
-    
+
     DisposableEffect(settingKey) {
         val observer = object : android.database.ContentObserver(android.os.Handler(android.os.Looper.getMainLooper())) {
             override fun onChange(selfChange: Boolean) {
@@ -381,8 +382,16 @@ fun FrequencySlider(
         )
         onDispose { contentResolver.unregisterContentObserver(observer) }
     }
-    
-    val progress = if (max > min) (currentValue - min) / (max - min) else 0f
+
+    val progress = if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
+        val sortedFreqs = availableFrequencies.sorted()
+        val currentIndex = sortedFreqs.indexOf(currentValue.toInt()).coerceAtLeast(0)
+        currentIndex.toFloat() / (sortedFreqs.size - 1).coerceAtLeast(1)
+    } else if (max > min) {
+        (currentValue - min) / (max - min).toFloat()
+    } else {
+        0f
+    }
     val animatedProgress by animateFloatAsState(
         targetValue = progress,
         animationSpec = spring(dampingRatio = 0.8f, stiffness = 300f),
@@ -429,16 +438,36 @@ fun FrequencySlider(
         Spacer(modifier = Modifier.height(4.dp))
         
         Slider(
-            value = currentValue,
+            value = if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
+                val sortedFreqs = availableFrequencies.sorted()
+                val currentIndex = sortedFreqs.indexOf(currentValue.toInt()).coerceAtLeast(0)
+                currentIndex.toFloat()
+            } else {
+                currentValue
+            },
             onValueChange = { newValue ->
-                val steppedValue = ((newValue - min) / interval).roundToInt() * interval + min
-                currentValue = steppedValue.coerceIn(min, max).toFloat()
+                if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
+                    val sortedFreqs = availableFrequencies.sorted()
+                    val index = newValue.roundToInt().coerceIn(0, sortedFreqs.size - 1)
+                    currentValue = sortedFreqs[index].toFloat()
+                } else {
+                    val steppedValue = ((newValue - min) / interval).roundToInt() * interval + min
+                    currentValue = steppedValue.coerceIn(min, max).toFloat()
+                }
             },
             onValueChangeFinished = {
                 Settings.Secure.putInt(contentResolver, settingKey, currentValue.roundToInt())
             },
-            valueRange = min.toFloat()..max.toFloat(),
-            steps = if (interval > 0) ((max - min) / interval) - 1 else 0,
+            valueRange = if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
+                0f..(availableFrequencies.size - 1).toFloat()
+            } else {
+                min.toFloat()..max.toFloat()
+            },
+            steps = if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
+                (availableFrequencies.size - 2).coerceAtLeast(0)
+            } else {
+                if (interval > 0) ((max - min) / interval) - 1 else 0
+            },
             enabled = enabled,
             colors = SliderDefaults.colors(
                 thumbColor = accentColor,
@@ -452,14 +481,25 @@ fun FrequencySlider(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
+            val minDisplay = if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
+                availableFrequencies.minOrNull()?.div(1000) ?: 0
+            } else {
+                min / 1000
+            }
+            val maxDisplay = if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
+                availableFrequencies.maxOrNull()?.div(1000) ?: 0
+            } else {
+                max / 1000
+            }
+
             Text(
-                text = "${min / 1000} MHz",
+                text = "${minDisplay} MHz",
                 style = MaterialTheme.typography.labelSmall,
                 fontSize = 10.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
             )
             Text(
-                text = "${max / 1000} MHz",
+                text = "${maxDisplay} MHz",
                 style = MaterialTheme.typography.labelSmall,
                 fontSize = 10.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
