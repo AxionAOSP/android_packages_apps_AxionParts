@@ -355,10 +355,18 @@ fun FrequencySlider(
     val context = LocalContext.current
     val contentResolver = context.contentResolver
 
-    var currentValue by remember {
+    var currentValue by remember(settingKey) {
         mutableFloatStateOf(
             try {
-                Settings.Secure.getInt(contentResolver, settingKey, defaultValue).toFloat()
+                val value = Settings.Secure.getInt(contentResolver, settingKey, defaultValue).toFloat()
+                if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
+                    val sorted = availableFrequencies.sorted()
+                    value.coerceIn(sorted.first().toFloat(), sorted.last().toFloat())
+                } else if (max > min) {
+                    value.coerceIn(min.toFloat(), max.toFloat())
+                } else {
+                    value
+                }
             } catch (e: Exception) {
                 defaultValue.toFloat()
             }
@@ -385,10 +393,16 @@ fun FrequencySlider(
 
     val progress = if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
         val sortedFreqs = availableFrequencies.sorted()
-        val currentIndex = sortedFreqs.indexOf(currentValue.toInt()).coerceAtLeast(0)
+        var index = sortedFreqs.binarySearch(currentValue.toInt())
+        if (index < 0) {
+            index = -(index + 1)
+            if (index >= sortedFreqs.size) index = sortedFreqs.size - 1
+        }
+        val currentIndex = index.coerceIn(0, sortedFreqs.size - 1)
         currentIndex.toFloat() / (sortedFreqs.size - 1).coerceAtLeast(1)
     } else if (max > min) {
-        (currentValue - min) / (max - min).toFloat()
+        val coercedValue = currentValue.coerceIn(min.toFloat(), max.toFloat())
+        (coercedValue - min) / (max - min).toFloat()
     } else {
         0f
     }
@@ -440,10 +454,14 @@ fun FrequencySlider(
         Slider(
             value = if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
                 val sortedFreqs = availableFrequencies.sorted()
-                val currentIndex = sortedFreqs.indexOf(currentValue.toInt()).coerceAtLeast(0)
-                currentIndex.toFloat()
+                var index = sortedFreqs.binarySearch(currentValue.toInt())
+                if (index < 0) {
+                    index = -(index + 1)
+                    if (index >= sortedFreqs.size) index = sortedFreqs.size - 1
+                }
+                index.coerceIn(0, sortedFreqs.size - 1).toFloat()
             } else {
-                currentValue
+                currentValue.coerceIn(min.toFloat(), max.toFloat())
             },
             onValueChange = { newValue ->
                 if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
@@ -521,12 +539,13 @@ fun LevelSlider(
     val context = LocalContext.current
     val contentResolver = context.contentResolver
     
-    var currentValue by remember {
+    var currentValue by remember(settingKey) {
         mutableFloatStateOf(
             try {
-                Settings.Secure.getInt(contentResolver, settingKey, defaultValue).toFloat()
+                Settings.Secure.getInt(contentResolver, settingKey, defaultValue)
+                    .coerceIn(min, max).toFloat()
             } catch (e: Exception) {
-                defaultValue.toFloat()
+                defaultValue.toFloat().coerceIn(min.toFloat(), max.toFloat())
             }
         )
     }
@@ -549,7 +568,10 @@ fun LevelSlider(
         onDispose { contentResolver.unregisterContentObserver(observer) }
     }
     
-    val progress = if (max > min) (currentValue - min) / (max - min) else 0f
+    val progress = if (max > min) {
+        val coercedValue = currentValue.coerceIn(min.toFloat(), max.toFloat())
+        (coercedValue - min) / (max - min)
+    } else 0f
     val animatedProgress by animateFloatAsState(
         targetValue = progress,
         animationSpec = spring(dampingRatio = 0.8f, stiffness = 300f),

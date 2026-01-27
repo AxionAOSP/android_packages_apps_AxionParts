@@ -144,9 +144,6 @@ fun PerformanceScreen(
 fun PerformanceContent(
     modifier: Modifier = Modifier
 ) {
-    val freqProp = remember { SystemProperties.get("persist.sys.ax_max_cpu_freqs", "") }
-    val maxFreqs = remember { freqProp.split(",").mapNotNull { it.toIntOrNull() } }
-
     val context = LocalContext.current
     val contentResolver = context.contentResolver
 
@@ -175,7 +172,7 @@ fun PerformanceContent(
         listOf(
             ClusterConfig(
                 name = littleClusterName,
-                maxFreq = maxFreqs.getOrNull(0) ?: 0,
+                maxFreq = smallAvailableFreqs.maxOrNull() ?: 0,
                 availableFreqs = smallAvailableFreqs,
                 boostKey = "axion_cpu_boost",
                 boostFreqKey = "axion_min_freq_boost",
@@ -186,7 +183,7 @@ fun PerformanceContent(
             ),
             ClusterConfig(
                 name = bigClusterName,
-                maxFreq = maxFreqs.getOrNull(1) ?: 0,
+                maxFreq = bigAvailableFreqs.maxOrNull() ?: 0,
                 availableFreqs = bigAvailableFreqs,
                 boostKey = "axion_big_core_boost",
                 boostFreqKey = "axion_min_freq_big_boost",
@@ -197,7 +194,7 @@ fun PerformanceContent(
             ),
             ClusterConfig(
                 name = primeClusterName,
-                maxFreq = maxFreqs.getOrNull(2) ?: 0,
+                maxFreq = primeAvailableFreqs.maxOrNull() ?: 0,
                 availableFreqs = primeAvailableFreqs,
                 boostKey = "axion_prime_core_boost",
                 boostFreqKey = "axion_min_freq_prime_boost",
