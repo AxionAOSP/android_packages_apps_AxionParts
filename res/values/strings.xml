@@ -326,6 +326,7 @@
     
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Performance</string>
+    <string name="qs_tile_pc_mode">PC Mode</string>
     <string name="qs_tile_on">On</string>
     <string name="qs_tile_off">Off</string>
     
@@ -334,5 +335,32 @@
     <string name="edge_features">Edge Features</string>
     <string name="sidebar">Sidebar</string>
     <string name="sidebar_summary">Quick access to your favorite apps from the edge</string>
+    
+    <!-- PC Mode Settings -->
+    <string name="pc_mode">PC Mode</string>
+    <string name="pc_mode_settings">PC Mode Settings</string>
+    <string name="pc_mode_summary">Configure screen resolution and behavior</string>
+    <string name="pc_mode_title">PC Mode</string>
+    <string name="pref_category_general">General</string>
+    <string name="pref_category_display">Display</string>
+    <string name="pref_category_taskbar">Taskbar</string>
+    <string name="pref_enable_pc_mode_title">Enable PC Mode</string>
+    <string name="pref_enable_pc_mode_summary">Enable desktop-like experience</string>
+    <string name="pref_taskbar_timeout_title">Auto-hide timeout</string>
+    <string name="pref_taskbar_timeout_summary">Duration before taskbar hides automatically</string>
+    <string name="pref_pc_mode_screen_off_title">Turn off internal screen</string>
+    <string name="pref_pc_mode_screen_off_summary">Turn off the device screen when PC Mode is active on an external display</string>
+    
+    <!-- Resolution Settings -->
+    <string name="resolution_override_title">Resolution Override</string>
+    <string name="resolution_default">Default</string>
+    <string name="resolution_dialog_title">Set Resolution</string>
+    <string name="resolution_input_label">WidthxHeight (e.g. 1920x1080)</string>
+    <string name="resolution_invalid_format">Invalid format. Use WxH.</string>
+    <string name="resolution_max_limit_error">Resolution too high. Max is 4096x4096.</string>
+    <string name="resolution_min_limit_error">Resolution too low. Min is 320x240.</string>
+    <string name="action_apply">Apply</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_reset_default">Reset to Default</string>
     
 </resources>

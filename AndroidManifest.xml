@@ -36,6 +36,20 @@
                 android:name="android.service.quicksettings.ACTIVE_TILE"
                 android:value="false" />
         </service>
+
+        <service
+            android:name=".tiles.PcModeTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_qs_pc_mode"
+            android:label="@string/qs_tile_pc_mode"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="false" />
+        </service>
         
     </application>
 

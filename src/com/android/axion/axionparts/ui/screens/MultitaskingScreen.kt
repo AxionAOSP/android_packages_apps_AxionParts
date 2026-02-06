@@ -96,7 +96,8 @@ fun MultitaskingScreen(
 
 @Composable
 fun MultitaskingContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateToPcMode: () -> Unit = {}
 ) {
     val context = LocalContext.current
     
@@ -129,6 +130,20 @@ fun MultitaskingContent(
             )
         }
         
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SettingsSection(
+            title = stringResource(R.string.pc_mode),
+            icon = Icons.Filled.Splitscreen
+        ) {
+            ClickablePreference(
+                title = stringResource(R.string.pc_mode_settings),
+                summary = stringResource(R.string.pc_mode_summary),
+                icon = Icons.Filled.Splitscreen,
+                onClick = onNavigateToPcMode
+            )
+        }
+
         Spacer(modifier = Modifier.height(BottomNavPadding))
     }
 }

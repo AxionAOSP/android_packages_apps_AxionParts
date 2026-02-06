@@ -282,7 +282,9 @@ private fun ListPaneContent(
                         onNavigateToGameSpoofing = { onNavigateToDetail("gamespoofing") }
                     )
                     "performance" -> PerformanceContent()
-                    "multitasking" -> MultitaskingContent()
+                    "multitasking" -> MultitaskingContent(
+                        onNavigateToPcMode = { onNavigateToDetail("pcmode") }
+                    )
                 }
             }
         }
@@ -309,6 +311,7 @@ private fun DetailScreen(
         "trickystore" -> TrickyStoreScreen(onBackClick = onBackClick)
         "playintegrityfix" -> PlayIntegrityFixScreen(onBackClick = onBackClick)
         "gamespoofing" -> GameSpoofingScreen(onBackClick = onBackClick)
+        "pcmode" -> PcModeScreen(onBackClick = onBackClick)
     }
 }
 
@@ -326,6 +329,7 @@ private fun DetailPaneContent(
         "trickystore" -> TrickyStoreScreen(onBackClick = onClose)
         "playintegrityfix" -> PlayIntegrityFixScreen(onBackClick = onClose)
         "gamespoofing" -> GameSpoofingScreen(onBackClick = onClose)
+        "pcmode" -> PcModeScreen(onBackClick = onClose)
     }
 }
 
