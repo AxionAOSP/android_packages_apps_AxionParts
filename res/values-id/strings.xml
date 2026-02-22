@@ -4,9 +4,9 @@
     <string name="app_name">Axion Parts</string>
     <!-- Common UI Elements -->
     <string name="back">Back</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
-    <string name="delete">Delete</string>
+    <string name="cancel">Batal</string>
+    <string name="save">Simpan</string>
+    <string name="delete">Hapus</string>
     <string name="remove">Remove</string>
     <string name="add">Add</string>
     <string name="edit">Edit</string>
