@@ -248,7 +248,7 @@
     <string name="fetch_pixel_beta">Fetch Pixel Beta</string>
     <string name="fetching">Fetching…</string>
     <string name="fetched_model">Fetched: %1$s</string>
-    <string name="failed_message">Failed: %1$s</string>
+    <string name="failed_message"></string>
     <string name="failed_to_update">Failed to update: %1$s</string>
     <string name="imported_as">Imported as %1$s</string>
     <string name="error_no_android_versions">Could not find any Android version pages</string>
