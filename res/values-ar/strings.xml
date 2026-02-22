@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">اجزاء Axion</string>
+    <string name="app_name">تخصيص</string>
     <!-- Common UI Elements -->
     <string name="back">رجوع</string>
     <string name="cancel">يلغي</string>
