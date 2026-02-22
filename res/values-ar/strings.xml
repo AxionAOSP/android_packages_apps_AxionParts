@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Axion Parts</string>
+    <string name="app_name">اجزاء Axion</string>
     <!-- Common UI Elements -->
     <string name="back">رجوع</string>
     <string name="cancel">يلغي</string>
@@ -51,7 +51,7 @@
     <string name="notification_accent">لون الإشعار</string>
     <string name="custom_color">لون مخصص</string>
     <string name="customization">التخصيص</string>
-    <string name="custom_color_summary">#%1$06X</string>
+    <string name="custom_color_summary">ملخص اللون</string>
     <string name="choose_color">اختر لوناً</string>
     <string name="presets">المسبقة</string>
     <string name="selected">محدد</string>
@@ -92,18 +92,18 @@
     <string name="aod_schedule">جدول الشاشة الدائمة</string>
     <string name="always_on">دائماً قيد التشغيل</string>
     <string name="scheduled">مجدول</string>
-    <string name="aod_charge_only">Charge only</string>
-    <string name="aod_scheduled_charge">Scheduled + Charge</string>
+    <string name="aod_charge_only">عند الشحن فقط</string>
+    <string name="aod_scheduled_charge">مجدول + الشحن</string>
     <string name="schedule">الجدول</string>
     <string name="start_time">وقت البدء</string>
     <string name="start_time_summary">متى يتم تشغيل الشاشة الدائمة</string>
     <string name="end_time">وقت الانتهاء</string>
     <string name="end_time_summary">متى يتم إيقاف الشاشة الدائمة</string>
-    <string name="when_to_show">When to Show</string>
-    <string name="aod_on_charge">AOD on Charge</string>
-    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
-    <string name="custom_schedule">Custom Schedule</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="when_to_show">منى الظهور</string>
+    <string name="aod_on_charge">دائما على الشاشة عند الشحن</string>
+    <string name="aod_on_charge_summary">اظهر AOD عندما شحن الجهاز فقط</string>
+    <string name="custom_schedule">جدولة مخصصة</string>
+    <string name="custom_schedule_summary">تفعيل AOD مبنى على الجدولة</string>
     <string name="screen_off">إيقاف الشاشة</string>
     <string name="screen_off_aod">الشاشة الدائمة عند إيقاف الشاشة</string>
     <string name="screen_off_aod_summary">إبقاء الشاشة الدائمة نشطة عند إيقاف الشاشة</string>
