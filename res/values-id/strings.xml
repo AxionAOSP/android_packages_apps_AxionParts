@@ -16,7 +16,7 @@
     <string name="clear">Clear</string>
     <string name="expand">Expand</string>
     <string name="collapse">Collapse</string>
-    <string name="search">Search</string>
+    <string name="search">Pencarian</string>
     <string name="create">Create</string>
     <string name="general">General</string>
     <string name="settings">Settings</string>
@@ -150,7 +150,7 @@
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
     <string name="gesture_action_app_switch">App switch</string>
-    <string name="gesture_action_search">Search</string>
+    <string name="gesture_action_search">Pencarian</string>
     <string name="gesture_action_voice_search">Voice search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
