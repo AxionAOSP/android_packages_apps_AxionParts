@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Bagian Axon</string>
+    <string name="app_name">Bagian Axion</string>
     <!-- Common UI Elements -->
     <string name="back">Kembali</string>
     <string name="cancel">Batal</string>
@@ -9,7 +9,7 @@
     <string name="delete">Hapus</string>
     <string name="remove">Hapus</string>
     <string name="add">Tambah</string>
-    <string name="edit">Ubah</string>
+    <string name="edit">Edit</string>
     <string name="replace">Ganti</string>
     <string name="import_text">Impor</string>
     <string name="reload">Segarkan</string>
@@ -19,7 +19,7 @@
     <string name="search">Pencarian</string>
     <string name="create">Buat</string>
     <string name="general">Umum</string>
-    <string name="settings">Pengaturan</string>
+    <string name="settings">Setelan</string>
     <string name="active">Aktif</string>
     <string name="inactive">Tidak aktif</string>
     <string name="disabled">Dinonaktifkan</string>
@@ -40,7 +40,7 @@
     <string name="ui_features_subtitle">Bilah status, QS &amp; lainnya</string>
     <string name="sound">Suara</string>
     <string name="sound_subtitle">Volume per aplikasi &amp; audio ganda</string>
-    <string name="gestures">Gerakan</string>
+    <string name="gestures">Gestur</string>
     <string name="gestures_subtitle">Tindakan goyang &amp; tiga jari</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Cahaya Tepi</string>
@@ -209,7 +209,7 @@
     <string name="add_property">Tambahkan properti</string>
     <string name="save_as_preset_title">Simpan sebagai preset</string>
     <string name="preset_saved">Preset disimpan</string>
-    <string name="edit_app">Edit %1$s</string>
+    <string name="edit_app">Ubah %1$s</string>
     <string name="add_app_title">Tambahkan aplikasi</string>
     <!-- Device Profiles -->
     <!-- Security Features -->
