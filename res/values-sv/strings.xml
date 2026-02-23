@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Axion Parts</string>
-    <string name="back">Bakåt</string>
-    <string name="cancel">Avbryt</string>
-    <string name="save">Spara</string>
+    <!-- Common UI Elements -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
     <string name="delete">Ta bort</string>
     <string name="remove">Ta bort</string>
     <string name="add">Lägg till</string>
     <string name="edit">Redigera</string>
     <string name="replace">Ersätt</string>
-    <string name="import_text">Importera</string>
+    <string name="import_text">Import</string>
     <string name="reload">Ladda om</string>
     <string name="clear">Rensa</string>
     <string name="expand">Expandera</string>
@@ -18,16 +20,18 @@
     <string name="create">Skapa</string>
     <string name="general">Allmänt</string>
     <string name="settings">Inställningar</string>
-    <string name="active">Aktiv</string>
+    <string name="active">Aktivt</string>
     <string name="inactive">Inaktiv</string>
     <string name="disabled">Inaktiverad</string>
     <string name="custom">Anpassad</string>
-    <string name="customize">Anpassa</string>
-    <string name="nav_customize">Anpassa</string>
-    <string name="nav_essentials">Grundläggande</string>
+    <!-- Navigation -->
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
+    <string name="nav_essentials">Viktigt</string>
     <string name="nav_performance">Prestanda</string>
     <string name="nav_multitasking">Multitasking</string>
     <string name="personalizations">Personalisering</string>
+    <!-- Customize Screen -->
     <string name="themes">Teman</string>
     <string name="themes_subtitle">Ikoner, former &amp; mer</string>
     <string name="lockscreen">Låsskärm</string>
@@ -38,6 +42,7 @@
     <string name="sound_subtitle">Volym per app &amp; multi-ljud</string>
     <string name="gestures">Gester</string>
     <string name="gestures_subtitle">Skaka &amp; trefingersåtgärder</string>
+    <!-- Lockscreen Features -->
     <string name="edge_light">Kantbelysning</string>
     <string name="edge_light_description">Ljuseffekter på skärmkanterna för aviseringar</string>
     <string name="enable_edge_light">Aktivera kantbelysning</string>
@@ -52,6 +57,7 @@
     <string name="selected">Vald</string>
     <string name="select_uppercase">Välj</string>
     <string name="select_item">Välj ett objekt</string>
+    <!-- Media Art -->
     <string name="media_art">Mediaomslag</string>
     <string name="media_art_description">Albumomslag på låsskärmen vid medieuppspelning</string>
     <string name="enable_media_art">Aktivera mediaomslag</string>
@@ -59,6 +65,7 @@
     <string name="appearance">Utseende</string>
     <string name="blur_level">Oskärpa</string>
     <string name="blur_level_summary">Justera oskärpan för albumomslaget</string>
+    <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Pulse Visualiserare</string>
     <string name="pulse_visualizer_description">Ljudvisualiserare på låsskärmen och ambient display</string>
     <string name="enable_pulse">Aktivera Pulse</string>
@@ -78,22 +85,31 @@
     <string name="bar_count_summary">Antal visualiseringsstaplar</string>
     <string name="rounded_bars">Rundade staplar</string>
     <string name="rounded_bars_summary">Använd rundade hörn för visualiseringsstaplar</string>
+    <!-- Always On Display -->
     <string name="always_on_display">Always On Display</string>
     <string name="always_on_display_description">Hantera schemalagd AOD och beteende vid släckt skärm</string>
     <string name="mode">Läge</string>
     <string name="aod_schedule">AOD-schema</string>
     <string name="always_on">Alltid på</string>
     <string name="scheduled">Schemalagd</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">Schema</string>
     <string name="start_time">Starttid</string>
     <string name="start_time_summary">När AOD slås på</string>
     <string name="end_time">Sluttid</string>
     <string name="end_time_summary">När AOD slås av</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Skärm av</string>
     <string name="screen_off_aod">AOD vid släckt skärm</string>
     <string name="screen_off_aod_summary">Håll AOD aktiv när skärmen släcks</string>
     <string name="screen_off_animation">Skärmsläckningsanimering</string>
     <string name="screen_off_animation_summary">Animera övergången till AOD</string>
+    <!-- UI Features -->
     <string name="user_interface">Användargränssnitt</string>
     <string name="quick_settings">Snabbinställningar</string>
     <string name="quick_settings_description">Ljusstyrka, paneler &amp; panelanpassning</string>
@@ -111,10 +127,12 @@
     <string name="status_bar_icons">Ikoner i statusfältet</string>
     <string name="status_bar_tuner">Statusfältstuner</string>
     <string name="status_bar_tuner_summary">Visa eller dölj ikoner i statusfältet</string>
+    <!-- Sound Features -->
     <string name="per_app_volume">Volym per app</string>
     <string name="per_app_volume_summary">Styr volymen separat för varje app</string>
     <string name="multi_audio_focus">Multi Audio Focus</string>
     <string name="multi_audio_focus_summary">Tillåt att flera appar spelar ljud samtidigt</string>
+    <!-- Gestures -->
     <string name="shake_gestures">Skakgester</string>
     <string name="enable_shake_gestures">Aktivera skakgester</string>
     <string name="shake_gestures_summary">Utlösa åtgärder genom att skaka enheten</string>
@@ -129,6 +147,7 @@
     <string name="three_finger_long_press_summary">Aktivera trefingerslångtryckning</string>
     <string name="disable_button_screenshot">Inaktivera knappskärmbild</string>
     <string name="disable_button_screenshot_summary">Inaktivera Power + Volym ned-kombinationen för skärmbild</string>
+    <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Ingenting</string>
     <string name="gesture_action_app_switch">Appbyte</string>
     <string name="gesture_action_search">Sök</string>
@@ -145,10 +164,12 @@
     <string name="gesture_action_notifications_panel">Aviseringspanel</string>
     <string name="gesture_action_expand_qs">Expandera QS-panelen</string>
     <string name="gesture_action_ringer_modes">Ringsignallägen</string>
-    <string name="essentials">Grundläggande</string>
+    <!-- Essentials Screen -->
+    <string name="essentials">Viktigt</string>
     <string name="essential_notifications">Grundläggande aviseringar</string>
     <string name="gaming">Gaming</string>
     <string name="security">Säkerhet</string>
+    <!-- Essential Apps -->
     <string name="selected_apps">Valda appar</string>
     <string name="selected_apps_description">Filtrera det som är viktigt. Dessa appar förblir grupperade högst upp.</string>
     <string name="no_apps_selected">Inga appar valda</string>
@@ -156,12 +177,15 @@
     <string name="add_app">Lägg till app</string>
     <string name="select_essential_apps">Välj grundläggande appar</string>
     <string name="select_apps">Välj appar</string>
+    <!-- App Picker -->
     <string name="loading_apps">Laddar appar...</string>
     <string name="search_apps">Sök appar...</string>
     <string name="show_system_apps">Visa systemappar</string>
     <string name="selected_count">%1$d valda</string>
+    <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">Optimera din spelupplevelse med GameSpace-funktioner</string>
+    <!-- Game Spoofing -->
     <string name="game_spoofing">Spel-spoofing</string>
     <string name="game_spoofing_summary">Spoofa enhetsegenskaper för specifika spel</string>
     <string name="app_spoofing">App-spoofing</string>
@@ -187,6 +211,8 @@
     <string name="preset_saved">Förinställning sparad</string>
     <string name="edit_app">Redigera %1$s</string>
     <string name="add_app_title">Lägg till app</string>
+    <!-- Device Profiles -->
+    <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Hantera keybox för spoofing av nyckelattestering</string>
     <string name="keybox_management">Keybox-hantering</string>
@@ -213,6 +239,7 @@
     <string name="target_mode_auto">Auto</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Konfigurera spoofing av build fingerprint</string>
     <string name="fingerprint_spoofing">Fingeravtrycks-spoofing</string>
@@ -232,18 +259,20 @@
     <string name="deleted_file">Tog bort %1$s</string>
     <string name="delete_file_title">Ta bort %1$s?</string>
     <string name="delete_config_message">Denna konfigurationsfil kommer att tas bort.</string>
-    <string name="import_text_verb">Importera</string>
+    <string name="import_text_verb">Import</string>
     <string name="active_config_title">Aktiv konfiguration</string>
     <string name="spoof_google_photos">Spoofa Google Foto</string>
     <string name="unlimited_backup">Obegränsad säkerhetskopiering i originalkvalitet</string>
     <string name="other_config_files">Andra konfigurationsfiler</string>
     <string name="configured_count">%1$d av %2$d konfigurerade</string>
-    <string name="priority_note">Prioritet: custom.pif.* > pif.* (första som hittas används)</string>
+    <string name="priority_note">Prioritet: custom.pif.* &gt; pif.* (första som hittas används)</string>
     <string name="active_in_use">Aktiv - Används för närvarande</string>
     <string name="available_overridden">Tillgänglig - Åsidosatt av högre prioritet</string>
     <string name="not_configured">Inte konfigurerad</string>
+    <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Ignorera Window Secure</string>
     <string name="ignore_window_secure_summary">Tillåt skärmbilder och skärminspelningar i alla appar</string>
+    <!-- Performance Screen -->
     <string name="performance">Prestanda</string>
     <string name="performance_mode">Prestandaläge</string>
     <string name="maximum_performance_enabled">Maximal prestanda aktiverad</string>
@@ -254,22 +283,28 @@
     <string name="touch_boost">Touch Boost</string>
     <string name="boost_active">Boost aktiv</string>
     <string name="boost_disabled">Boost inaktiverad</string>
+    <!-- CPU Clusters -->
     <string name="little_cluster">Litet kluster</string>
     <string name="big_cluster">Stort kluster</string>
     <string name="prime_cluster">Prime-kluster</string>
     <string name="boost_frequency">Boost-frekvens</string>
     <string name="minimum_frequency">Minsta frekvens</string>
     <string name="maximum_frequency">Högsta frekvens</string>
+    <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Grafikprestanda</string>
     <string name="game_gpu_boost">Spel-GPU-boost</string>
     <string name="system_gpu_boost">System-GPU-boost</string>
+    <!-- Performance Formats -->
     <string name="level_format">Nivå %1$d</string>
+    <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Prestanda</string>
     <string name="qs_tile_on">På</string>
     <string name="qs_tile_off">Av</string>
+    <!-- Multitasking Screen -->
     <string name="multitasking">Multitasking</string>
     <string name="edge_features">Kantfunktioner</string>
     <string name="sidebar">Sidofält</string>
     <string name="sidebar_summary">Snabb åtkomst till dina favoritappar från kanten</string>
+    <!-- Misc -->
 </resources>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Axion Parts</string>
+    <!-- Common UI Elements -->
     <string name="back">Terug</string>
-    <string name="cancel">Annuleren</string>
-    <string name="save">Opslaan</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
     <string name="delete">Verwijderen</string>
     <string name="remove">Verwijderen</string>
     <string name="add">Toevoegen</string>
@@ -22,12 +24,14 @@
     <string name="inactive">Inactief</string>
     <string name="disabled">Uitgeschakeld</string>
     <string name="custom">Aangepast</string>
-    <string name="customize">Aanpassen</string>
-    <string name="nav_customize">Aanpassen</string>
-    <string name="nav_essentials">Essentieel</string>
+    <!-- Navigation -->
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
+    <string name="nav_essentials">Essentials</string>
     <string name="nav_performance">Prestaties</string>
     <string name="nav_multitasking">Multitasking</string>
     <string name="personalizations">Personalisatie</string>
+    <!-- Customize Screen -->
     <string name="themes">Thema\'s</string>
     <string name="themes_subtitle">Pictogrammen, vormen &amp; meer</string>
     <string name="lockscreen">Vergrendelscherm</string>
@@ -38,6 +42,7 @@
     <string name="sound_subtitle">Volume per app &amp; multi-audio</string>
     <string name="gestures">Gebaren</string>
     <string name="gestures_subtitle">Schudden &amp; acties met drie vingers</string>
+    <!-- Lockscreen Features -->
     <string name="edge_light">Randverlichting</string>
     <string name="edge_light_description">Lichteffecten op schermranden voor meldingen</string>
     <string name="enable_edge_light">Randverlichting inschakelen</string>
@@ -52,6 +57,7 @@
     <string name="selected">Geselecteerd</string>
     <string name="select_uppercase">Selecteren</string>
     <string name="select_item">Selecteer een item</string>
+    <!-- Media Art -->
     <string name="media_art">Media-art</string>
     <string name="media_art_description">Albumhoes op vergrendelscherm tijdens afspelen</string>
     <string name="enable_media_art">Media-art inschakelen</string>
@@ -59,6 +65,7 @@
     <string name="appearance">Uiterlijk</string>
     <string name="blur_level">Vervagingsniveau</string>
     <string name="blur_level_summary">Pas de vervagingsintensiteit van de albumhoes aan</string>
+    <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Pulse-visualisatie</string>
     <string name="pulse_visualizer_description">Audiovisualisatie op vergrendelscherm en ambient display</string>
     <string name="enable_pulse">Pulse inschakelen</string>
@@ -78,22 +85,31 @@
     <string name="bar_count_summary">Aantal visualisatiebalken</string>
     <string name="rounded_bars">Afgeronde balken</string>
     <string name="rounded_bars_summary">Gebruik afgeronde hoeken voor visualisatiebalken</string>
+    <!-- Always On Display -->
     <string name="always_on_display">Always On Display</string>
     <string name="always_on_display_description">Beheer gepland AOD en gedrag bij scherm uit</string>
     <string name="mode">Modus</string>
     <string name="aod_schedule">AOD-schema</string>
     <string name="always_on">Altijd aan</string>
     <string name="scheduled">Gepland</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">Schema</string>
     <string name="start_time">Begintijd</string>
     <string name="start_time_summary">Wanneer AOD wordt ingeschakeld</string>
     <string name="end_time">Eindtijd</string>
     <string name="end_time_summary">Wanneer AOD wordt uitgeschakeld</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Scherm uit</string>
     <string name="screen_off_aod">AOD bij scherm uit</string>
     <string name="screen_off_aod_summary">Houd AOD actief wanneer het scherm wordt uitgeschakeld</string>
     <string name="screen_off_animation">Animatie bij scherm uit</string>
     <string name="screen_off_animation_summary">Animeer de overgang naar AOD</string>
+    <!-- UI Features -->
     <string name="user_interface">Gebruikersinterface</string>
     <string name="quick_settings">Snelle instellingen</string>
     <string name="quick_settings_description">Helderheidsschuifregelaar, tegels &amp; paneelaanpassing</string>
@@ -111,10 +127,12 @@
     <string name="status_bar_icons">Statusbalkpictogrammen</string>
     <string name="status_bar_tuner">Statusbalk-tuner</string>
     <string name="status_bar_tuner_summary">Toon of verberg statusbalkpictogrammen</string>
+    <!-- Sound Features -->
     <string name="per_app_volume">Volume per app</string>
     <string name="per_app_volume_summary">Regel het volume afzonderlijk voor elke app</string>
     <string name="multi_audio_focus">Multi-audiofocus</string>
     <string name="multi_audio_focus_summary">Sta toe dat meerdere apps tegelijkertijd audio afspelen</string>
+    <!-- Gestures -->
     <string name="shake_gestures">Schudgebaren</string>
     <string name="enable_shake_gestures">Schudgebaren inschakelen</string>
     <string name="shake_gestures_summary">Acties activeren door met uw apparaat te schudden</string>
@@ -129,6 +147,7 @@
     <string name="three_finger_long_press_summary">Schakel gebaar voor lang drukken met drie vingers in</string>
     <string name="disable_button_screenshot">Knopscreenshot uitschakelen</string>
     <string name="disable_button_screenshot_summary">Schakel Power + Volume omlaag screenshot-combinatie uit</string>
+    <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Niets</string>
     <string name="gesture_action_app_switch">App wisselen</string>
     <string name="gesture_action_search">Zoeken</string>
@@ -145,10 +164,12 @@
     <string name="gesture_action_notifications_panel">Meldingspaneel</string>
     <string name="gesture_action_expand_qs">QS-paneel uitvouwen</string>
     <string name="gesture_action_ringer_modes">Belmodi</string>
-    <string name="essentials">Essentieel</string>
+    <!-- Essentials Screen -->
+    <string name="essentials">Essentials</string>
     <string name="essential_notifications">Essentiële meldingen</string>
     <string name="gaming">Gamen</string>
     <string name="security">Beveiliging</string>
+    <!-- Essential Apps -->
     <string name="selected_apps">Geselecteerde apps</string>
     <string name="selected_apps_description">Filter wat belangrijk is. Deze apps blijven bovenaan gegroepeerd.</string>
     <string name="no_apps_selected">Geen apps geselecteerd</string>
@@ -156,12 +177,15 @@
     <string name="add_app">App toevoegen</string>
     <string name="select_essential_apps">Selecteer essentiële apps</string>
     <string name="select_apps">Apps selecteren</string>
+    <!-- App Picker -->
     <string name="loading_apps">Apps laden...</string>
     <string name="search_apps">Apps zoeken...</string>
     <string name="show_system_apps">Systeem-apps tonen</string>
     <string name="selected_count">%1$d geselecteerd</string>
+    <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">Optimaliseer uw game-ervaring met GameSpace-functies</string>
+    <!-- Game Spoofing -->
     <string name="game_spoofing">Game-spoofing</string>
     <string name="game_spoofing_summary">Apparaateigenschappen spoofen voor specifieke games</string>
     <string name="app_spoofing">App-spoofing</string>
@@ -187,6 +211,8 @@
     <string name="preset_saved">Preset opgeslagen</string>
     <string name="edit_app">Bewerk %1$s</string>
     <string name="add_app_title">App toevoegen</string>
+    <!-- Device Profiles -->
+    <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Beheer keybox voor key attestation spoofing</string>
     <string name="keybox_management">Keybox-beheer</string>
@@ -213,6 +239,7 @@
     <string name="target_mode_auto">Auto</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Build-vingerafdrukspoofing configureren</string>
     <string name="fingerprint_spoofing">Vingerafdrukspoofing</string>
@@ -238,12 +265,14 @@
     <string name="unlimited_backup">Onbeperkte back-up in originele kwaliteit</string>
     <string name="other_config_files">Andere configuratiebestanden</string>
     <string name="configured_count">%1$d van %2$d geconfigureerd</string>
-    <string name="priority_note">Prioriteit: custom.pif.* > pif.* (eerste gevonden wordt gebruikt)</string>
+    <string name="priority_note">Prioriteit: custom.pif.* &gt; pif.* (eerste gevonden wordt gebruikt)</string>
     <string name="active_in_use">Actief - Momenteel in gebruik</string>
     <string name="available_overridden">Beschikbaar - Overschreven door hogere prioriteit</string>
     <string name="not_configured">Niet geconfigureerd</string>
+    <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Window Secure negeren</string>
     <string name="ignore_window_secure_summary">Screenshots en schermopnames toestaan in alle apps</string>
+    <!-- Performance Screen -->
     <string name="performance">Prestaties</string>
     <string name="performance_mode">Prestatiemodus</string>
     <string name="maximum_performance_enabled">Maximale prestaties ingeschakeld</string>
@@ -254,22 +283,28 @@
     <string name="touch_boost">Touchboost</string>
     <string name="boost_active">Boost actief</string>
     <string name="boost_disabled">Boost uitgeschakeld</string>
+    <!-- CPU Clusters -->
     <string name="little_cluster">Kleine cluster</string>
     <string name="big_cluster">Grote cluster</string>
     <string name="prime_cluster">Prime-cluster</string>
     <string name="boost_frequency">Boostfrequentie</string>
     <string name="minimum_frequency">Minimale frequentie</string>
     <string name="maximum_frequency">Maximale frequentie</string>
+    <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Grafische prestaties</string>
     <string name="game_gpu_boost">Game GPU Boost</string>
     <string name="system_gpu_boost">Systeem GPU Boost</string>
+    <!-- Performance Formats -->
     <string name="level_format">Niveau %1$d</string>
+    <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Prestaties</string>
     <string name="qs_tile_on">Aan</string>
     <string name="qs_tile_off">Uit</string>
+    <!-- Multitasking Screen -->
     <string name="multitasking">Multitasking</string>
     <string name="edge_features">Randfuncties</string>
     <string name="sidebar">Zijbalk</string>
     <string name="sidebar_summary">Snelle toegang tot uw favoriete apps vanaf de rand</string>
+    <!-- Misc -->
 </resources>

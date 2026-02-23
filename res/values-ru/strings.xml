@@ -2,11 +2,10 @@
 <resources>
     <!-- App Name -->
     <string name="app_name">Axion Parts</string>
-    
     <!-- Common UI Elements -->
     <string name="back">Назад</string>
     <string name="cancel">Отмена</string>
-    <string name="save">Сохранить</string>
+    <string name="save">Сохранять</string>
     <string name="delete">Удалить</string>
     <string name="remove">Убрать</string>
     <string name="add">Добавить</string>
@@ -25,15 +24,13 @@
     <string name="inactive">Неактивно</string>
     <string name="disabled">Отключено</string>
     <string name="custom">Пользовательский</string>
-    
     <!-- Navigation -->
-    <string name="customize">Настроить</string>
-    <string name="nav_customize">Настроить</string>
-    <string name="nav_essentials">Важное</string>
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
+    <string name="nav_essentials">Основное</string>
     <string name="nav_performance">Производительность</string>
     <string name="nav_multitasking">Многозадачность</string>
     <string name="personalizations">Персонализация</string>
-    
     <!-- Customize Screen -->
     <string name="themes">Темы</string>
     <string name="themes_subtitle">Иконки, формы и многое другое</string>
@@ -45,7 +42,6 @@
     <string name="sound_subtitle">Громкость для каждого приложения</string>
     <string name="gestures">Жесты</string>
     <string name="gestures_subtitle">Встряхивание и жесты тремя пальцами</string>
-    
     <!-- Lockscreen Features -->
     <string name="edge_light">Подсветка краев</string>
     <string name="edge_light_description">Световые эффекты по краям экрана для уведомлений</string>
@@ -61,7 +57,6 @@
     <string name="selected">Выбрано</string>
     <string name="select_uppercase">Выбрать</string>
     <string name="select_item">Выберите элемент</string>
-    
     <!-- Media Art -->
     <string name="media_art">Медиа-арт</string>
     <string name="media_art_description">Обложка альбома на экране блокировки при воспроизведении</string>
@@ -70,7 +65,6 @@
     <string name="appearance">Внешний вид</string>
     <string name="blur_level">Уровень размытия</string>
     <string name="blur_level_summary">Настройка интенсивности размытия обложки альбома</string>
-    
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Визуализатор Pulse</string>
     <string name="pulse_visualizer_description">Аудиовизуализатор на экране блокировки и ambient display</string>
@@ -91,7 +85,6 @@
     <string name="bar_count_summary">Количество полос визуализации</string>
     <string name="rounded_bars">Закруглённые полосы</string>
     <string name="rounded_bars_summary">Использовать закругленные углы для полос</string>
-    
     <!-- Always On Display -->
     <string name="always_on_display">Постоянный экран</string>
     <string name="always_on_display_description">Управление расписанием AOD и поведением при выключении экрана</string>
@@ -99,17 +92,23 @@
     <string name="aod_schedule">Расписание AOD</string>
     <string name="always_on">Всегда включен</string>
     <string name="scheduled">По расписанию</string>
+    <string name="aod_charge_only">При зарядке</string>
+    <string name="aod_scheduled_charge">Расписание + Зарядка</string>
     <string name="schedule">Расписание</string>
     <string name="start_time">Время начала</string>
     <string name="start_time_summary">Когда AOD включается</string>
     <string name="end_time">Время окончания</string>
     <string name="end_time_summary">Когда AOD выключается</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Показывать AOD только во время зарядки устройства</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Экран выключен</string>
     <string name="screen_off_aod">AOD при выключенном экране</string>
     <string name="screen_off_aod_summary">Оставить AOD активным при выключении экрана</string>
     <string name="screen_off_animation">Анимация выключения экрана</string>
     <string name="screen_off_animation_summary">Анимировать переход к AOD</string>
-    
     <!-- UI Features -->
     <string name="user_interface">Пользовательский интерфейс</string>
     <string name="quick_settings">Быстрые настройки</string>
@@ -120,21 +119,19 @@
     <string name="brightness_slider_summary">Показывать ползунок яркости в панели быстрых настроек</string>
     <string name="brightness_slider_position">Позиция ползунка яркости</string>
     <string name="brightness_slider_position_summary">Положение ползунка яркости в QS</string>
-    <string name="brightness_hidden">Скрыто</string>
+    <string name="brightness_hidden">Скрыт</string>
     <string name="brightness_show_expanded">Показывать при развёрнутых быстрых настройках</string>
-    <string name="brightness_always_visible">Всегда видимо</string>
+    <string name="brightness_always_visible">Показывать всегда</string>
     <string name="position_bottom">Снизу</string>
     <string name="position_top">Сверху</string>
     <string name="status_bar_icons">Иконки строки состояния</string>
     <string name="status_bar_tuner">Настройка строки состояния</string>
     <string name="status_bar_tuner_summary">Показать или скрыть иконки строки состояния</string>
-    
     <!-- Sound Features -->
     <string name="per_app_volume">Громкость для каждого приложения</string>
     <string name="per_app_volume_summary">Управление громкостью отдельно для каждого приложения</string>
     <string name="multi_audio_focus">Множественный аудиофокус</string>
     <string name="multi_audio_focus_summary">Разрешить нескольким приложениям воспроизводить аудио одновременно</string>
-    
     <!-- Gestures -->
     <string name="shake_gestures">Жесты встряхивания</string>
     <string name="enable_shake_gestures">Включить жесты встряхивания</string>
@@ -150,7 +147,6 @@
     <string name="three_finger_long_press_summary">Включить жест долгого нажатия тремя пальцами</string>
     <string name="disable_button_screenshot">Отключить скриншот кнопками</string>
     <string name="disable_button_screenshot_summary">Отключить комбинацию кнопок питания + громкость вниз</string>
-    
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Ничего</string>
     <string name="gesture_action_app_switch">Переключение приложений</string>
@@ -168,13 +164,11 @@
     <string name="gesture_action_notifications_panel">Панель уведомлений</string>
     <string name="gesture_action_expand_qs">Развернуть панель QS</string>
     <string name="gesture_action_ringer_modes">Режимы звонка</string>
-    
     <!-- Essentials Screen -->
-    <string name="essentials">Важное</string>
+    <string name="essentials">Основное</string>
     <string name="essential_notifications">Важные уведомления</string>
     <string name="gaming">Игры</string>
     <string name="security">Безопасность</string>
-    
     <!-- Essential Apps -->
     <string name="selected_apps">Выбранные приложения</string>
     <string name="selected_apps_description">Отфильтруйте важное. Эти приложения группируются вверху.</string>
@@ -183,17 +177,14 @@
     <string name="add_app">Добавить приложение</string>
     <string name="select_essential_apps">Выбрать важные приложения</string>
     <string name="select_apps">Выбрать приложения</string>
-    
     <!-- App Picker -->
     <string name="loading_apps">Загрузка приложений…</string>
     <string name="search_apps">Поиск приложений…</string>
     <string name="show_system_apps">Показать системные приложения</string>
     <string name="selected_count">Выбрано: %1$d</string>
-    
     <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">Оптимизация игрового опыта с функциями GameSpace</string>
-    
     <!-- Game Spoofing -->
     <string name="game_spoofing">Подмена устройства для игр</string>
     <string name="game_spoofing_summary">Подмена свойств устройства для конкретных игр</string>
@@ -220,9 +211,7 @@
     <string name="preset_saved">Предустановка сохранена</string>
     <string name="edit_app">Изменить %1$s</string>
     <string name="add_app_title">Добавить приложение</string>
-    
     <!-- Device Profiles -->
-    
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Управление keybox для подмены аттестации ключей</string>
@@ -250,9 +239,8 @@
     <string name="target_mode_auto">Авто</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
-    
     <!-- Play Integrity Fix -->
-    <string name="play_integrity_fix">Play Integrity Fix</string>
+    <string name="play_integrity_fix">Исправление Play Integrity</string>
     <string name="play_integrity_fix_summary">Настройка подмены отпечатка сборки</string>
     <string name="fingerprint_spoofing">Подмена отпечатка</string>
     <string name="active_config">Активно: %1$s</string>
@@ -277,15 +265,13 @@
     <string name="unlimited_backup">Неограниченное резервное копирование в оригинальном качестве</string>
     <string name="other_config_files">Другие файлы конфигурации</string>
     <string name="configured_count">Настроено %1$d из %2$d</string>
-    <string name="priority_note">Приоритет: custom.pif.* > pif.* (используется первый найденный)</string>
+    <string name="priority_note">Приоритет: custom.pif.* &gt; pif.* (используется первый найденный)</string>
     <string name="active_in_use">Активно - Используется</string>
     <string name="available_overridden">Доступно - Переопределено более высоким приоритетом</string>
     <string name="not_configured">Не настроено</string>
-    
     <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Игнорировать защиту окна</string>
     <string name="ignore_window_secure_summary">Разрешить скриншоты и запись экрана во всех приложениях</string>
-    
     <!-- Performance Screen -->
     <string name="performance">Производительность</string>
     <string name="performance_mode">Режим производительности</string>
@@ -297,7 +283,6 @@
     <string name="touch_boost">Ускорение касаний</string>
     <string name="boost_active">Ускорение активно</string>
     <string name="boost_disabled">Ускорение отключено</string>
-    
     <!-- CPU Clusters -->
     <string name="little_cluster">Малый кластер</string>
     <string name="big_cluster">Большой кластер</string>
@@ -305,26 +290,21 @@
     <string name="boost_frequency">Частота ускорения</string>
     <string name="minimum_frequency">Минимальная частота</string>
     <string name="maximum_frequency">Максимальная частота</string>
-    
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Графическая производительность</string>
     <string name="game_gpu_boost">Ускорение GPU для игр</string>
     <string name="system_gpu_boost">Системное ускорение GPU</string>
-    
     <!-- Performance Formats -->
     <string name="level_format">Уровень %1$d</string>
-    
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Производительность</string>
-    <string name="qs_tile_on">Вкл</string>
-    <string name="qs_tile_off">Выкл</string>
-    
+    <string name="qs_tile_on">Включены</string>
+    <string name="qs_tile_off">Отключены</string>
     <!-- Multitasking Screen -->
     <string name="multitasking">Многозадачность</string>
     <string name="edge_features">Функции края</string>
     <string name="sidebar">Боковая панель</string>
     <string name="sidebar_summary">Быстрый доступ к любимым приложениям с края экрана</string>
-    
     <!-- Misc -->
 </resources>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Axion Parts</string>
-    <string name="back">Vissza</string>
-    <string name="cancel">Mégse</string>
-    <string name="save">Mentés</string>
+    <!-- Common UI Elements -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
     <string name="delete">Törlés</string>
-    <string name="remove">Eltávolítás</string>
+    <string name="remove">Törlés</string>
     <string name="add">Hozzáadás</string>
     <string name="edit">Szerkesztés</string>
     <string name="replace">Csere</string>
-    <string name="import_text">Importálás</string>
+    <string name="import_text">Import</string>
     <string name="reload">Újratöltés</string>
     <string name="clear">Törlés</string>
     <string name="expand">Kibontás</string>
@@ -22,12 +24,14 @@
     <string name="inactive">Inaktív</string>
     <string name="disabled">Kikapcsolva</string>
     <string name="custom">Egyedi</string>
-    <string name="customize">Testreszabás</string>
-    <string name="nav_customize">Testreszabás</string>
-    <string name="nav_essentials">Alapvető</string>
+    <!-- Navigation -->
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
+    <string name="nav_essentials">Legfontosabbak</string>
     <string name="nav_performance">Teljesítmény</string>
     <string name="nav_multitasking">Multitasking</string>
     <string name="personalizations">Személyre szabás</string>
+    <!-- Customize Screen -->
     <string name="themes">Témák</string>
     <string name="themes_subtitle">Ikonok, formák és egyebek</string>
     <string name="lockscreen">Zárolási képernyő</string>
@@ -38,6 +42,7 @@
     <string name="sound_subtitle">Alkalmazásonkénti hangerő és több hangforrás</string>
     <string name="gestures">Gesztusok</string>
     <string name="gestures_subtitle">Rázási és háromujjas műveletek</string>
+    <!-- Lockscreen Features -->
     <string name="edge_light">Élvilágítás</string>
     <string name="edge_light_description">Fényeffektusok a képernyő szélein az értesítésekhez</string>
     <string name="enable_edge_light">Élvilágítás engedélyezése</string>
@@ -52,6 +57,7 @@
     <string name="selected">Kiválasztva</string>
     <string name="select_uppercase">KIVÁLASZTÁS</string>
     <string name="select_item">Válasszon egy elemet</string>
+    <!-- Media Art -->
     <string name="media_art">Médiaművészet</string>
     <string name="media_art_description">Album borítója a zárolási képernyőn médialejátszás közben</string>
     <string name="enable_media_art">Médiaművészet engedélyezése</string>
@@ -59,6 +65,7 @@
     <string name="appearance">Megjelenés</string>
     <string name="blur_level">Elmosódás mértéke</string>
     <string name="blur_level_summary">Az album borítója elmosódási intenzitásának beállítása</string>
+    <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Pulse Vizualizáló</string>
     <string name="pulse_visualizer_description">Audió vizualizáló a zárolási képernyőn és az Ambient kijelzőn</string>
     <string name="enable_pulse">Pulse engedélyezése</string>
@@ -78,22 +85,31 @@
     <string name="bar_count_summary">A vizualizációs sávok száma</string>
     <string name="rounded_bars">Lekerekített sávok</string>
     <string name="rounded_bars_summary">Lekerekített sarkok használata a vizualizáló sávokhoz</string>
+    <!-- Always On Display -->
     <string name="always_on_display">Mindig bekapcsolt kijelző (AOD)</string>
     <string name="always_on_display_description">Időzített AOD és a képernyő kikapcsoláskori viselkedés kezelése</string>
     <string name="mode">Mód</string>
     <string name="aod_schedule">AOD időzítés</string>
     <string name="always_on">Mindig bekapcsolva</string>
     <string name="scheduled">Időzített</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">Időzítés</string>
     <string name="start_time">Kezdési idő</string>
     <string name="start_time_summary">Amikor az AOD bekapcsol</string>
     <string name="end_time">Befejezési idő</string>
     <string name="end_time_summary">Amikor az AOD kikapcsol</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Képernyő kikapcsolva</string>
     <string name="screen_off_aod">AOD kikapcsolt képernyőnél</string>
     <string name="screen_off_aod_summary">Az AOD aktív marad, amikor a képernyő kikapcsol</string>
     <string name="screen_off_animation">Képernyő kikapcsolási animáció</string>
     <string name="screen_off_animation_summary">Átmenet animálása az AOD-re</string>
+    <!-- UI Features -->
     <string name="user_interface">Felhasználói felület</string>
     <string name="quick_settings">Gyorsbeállítások (QS)</string>
     <string name="quick_settings_description">Fényerőcsúszka, csempék és panel testreszabása</string>
@@ -111,10 +127,12 @@
     <string name="status_bar_icons">Állapotsor ikonok</string>
     <string name="status_bar_tuner">Állapotsor hangoló</string>
     <string name="status_bar_tuner_summary">Állapotsor ikonok megjelenítése vagy elrejtése</string>
+    <!-- Sound Features -->
     <string name="per_app_volume">Alkalmazásonkénti hangerő</string>
     <string name="per_app_volume_summary">Minden alkalmazás hangerejének külön vezérlése</string>
     <string name="multi_audio_focus">Többszörös audió fókusz</string>
     <string name="multi_audio_focus_summary">Több alkalmazás egyidejű hanglejátszásának engedélyezése</string>
+    <!-- Gestures -->
     <string name="shake_gestures">Rázási gesztusok</string>
     <string name="enable_shake_gestures">Rázási gesztusok engedélyezése</string>
     <string name="shake_gestures_summary">Műveletek indítása az eszköz megrázásával</string>
@@ -129,6 +147,7 @@
     <string name="three_finger_long_press_summary">Háromujjas hosszú nyomás gesztus engedélyezése</string>
     <string name="disable_button_screenshot">Gombos képernyőkép letiltása</string>
     <string name="disable_button_screenshot_summary">A Bekapcsológomb + Hangerő le kombináció letiltása képernyőképhez</string>
+    <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nincs művelet</string>
     <string name="gesture_action_app_switch">Alkalmazásváltó</string>
     <string name="gesture_action_search">Keresés</string>
@@ -145,10 +164,12 @@
     <string name="gesture_action_notifications_panel">Értesítési panel</string>
     <string name="gesture_action_expand_qs">QS panel kibontása</string>
     <string name="gesture_action_ringer_modes">Csengetési módok</string>
-    <string name="essentials">Alapvető</string>
+    <!-- Essentials Screen -->
+    <string name="essentials">Legfontosabbak</string>
     <string name="essential_notifications">Alapvető értesítések</string>
     <string name="gaming">Játék</string>
     <string name="security">Biztonság</string>
+    <!-- Essential Apps -->
     <string name="selected_apps">Kiválasztott alkalmazások</string>
     <string name="selected_apps_description">Szűrje ki a fontosakat. Ezek az alkalmazások felül csoportosítva maradnak.</string>
     <string name="no_apps_selected">Nincs kiválasztott alkalmazás</string>
@@ -156,12 +177,15 @@
     <string name="add_app">Alkalmazás hozzáadása</string>
     <string name="select_essential_apps">Alapvető alkalmazások kiválasztása</string>
     <string name="select_apps">Alkalmazások kiválasztása</string>
+    <!-- App Picker -->
     <string name="loading_apps">Alkalmazások betöltése...</string>
     <string name="search_apps">Alkalmazások keresése...</string>
     <string name="show_system_apps">Rendszeralkalmazások megjelenítése</string>
     <string name="selected_count">%1$d kiválasztva</string>
+    <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">Optimalizálja a játékélményt a GameSpace funkcióival</string>
+    <!-- Game Spoofing -->
     <string name="game_spoofing">Játék spoofing</string>
     <string name="game_spoofing_summary">Eszköz tulajdonságainak meghamisítása adott játékokhoz</string>
     <string name="app_spoofing">Alkalmazás spoofing</string>
@@ -187,6 +211,8 @@
     <string name="preset_saved">Előbeállítás mentve</string>
     <string name="edit_app">%1$s szerkesztése</string>
     <string name="add_app_title">Alkalmazás hozzáadása</string>
+    <!-- Device Profiles -->
+    <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Keybox kezelése a kulcs hitelesítés (key attestation) spoofingjához</string>
     <string name="keybox_management">Keybox kezelés</string>
@@ -213,6 +239,7 @@
     <string name="target_mode_auto">Automatikus</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Build ujjlenyomat spoofing konfigurálása</string>
     <string name="fingerprint_spoofing">Ujjlenyomat spoofing</string>
@@ -232,18 +259,20 @@
     <string name="deleted_file">%1$s törölve</string>
     <string name="delete_file_title">Törli a(z) %1$s fájlt?</string>
     <string name="delete_config_message">Ez a konfigurációs fájl el lesz távolítva.</string>
-    <string name="import_text_verb">Importálás</string>
+    <string name="import_text_verb">Import</string>
     <string name="active_config_title">Aktív konfiguráció</string>
     <string name="spoof_google_photos">Google Fotók spoofing</string>
     <string name="unlimited_backup">Korlátlan eredeti minőségű mentés</string>
     <string name="other_config_files">Egyéb konfigurációs fájlok</string>
     <string name="configured_count">%1$d / %2$d konfigurálva</string>
-    <string name="priority_note">Prioritás: custom.pif.* > pif.* (az elsőként talált lesz használva)</string>
+    <string name="priority_note">Prioritás: custom.pif.* &gt; pif.* (az elsőként talált lesz használva)</string>
     <string name="active_in_use">Aktív - Jelenleg használatban</string>
     <string name="available_overridden">Elérhető - Felülbírálva magasabb prioritással</string>
     <string name="not_configured">Nincs konfigurálva</string>
+    <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Window Secure mellőzése</string>
     <string name="ignore_window_secure_summary">Képernyőképek és rögzítés engedélyezése minden alkalmazásban</string>
+    <!-- Performance Screen -->
     <string name="performance">Teljesítmény</string>
     <string name="performance_mode">Teljesítmény mód</string>
     <string name="maximum_performance_enabled">Maximális teljesítmény engedélyezve</string>
@@ -254,20 +283,25 @@
     <string name="touch_boost">Érintés Boost</string>
     <string name="boost_active">Boost Aktív</string>
     <string name="boost_disabled">Boost Kikapcsolva</string>
+    <!-- CPU Clusters -->
     <string name="little_cluster">Little klaszter</string>
     <string name="big_cluster">Big klaszter</string>
     <string name="prime_cluster">Prime klaszter</string>
     <string name="boost_frequency">Boost frekvencia</string>
     <string name="minimum_frequency">Minimum frekvencia</string>
     <string name="maximum_frequency">Maximum frekvencia</string>
+    <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Grafikai teljesítmény</string>
     <string name="game_gpu_boost">Játék GPU Boost</string>
     <string name="system_gpu_boost">Rendszer GPU Boost</string>
+    <!-- Performance Formats -->
     <string name="level_format">%1$d. szint</string>
+    <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Teljesítmény</string>
     <string name="qs_tile_on">Be</string>
     <string name="qs_tile_off">Ki</string>
+    <!-- Multitasking Screen -->
     <string name="multitasking">Multitasking</string>
     <string name="edge_features">Edge funkciók</string>
     <string name="sidebar">Oldalsáv</string>

@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Axion Parts</string>
-    <string name="back">Zpět</string>
-    <string name="cancel">Zrušit</string>
-    <string name="save">Uložit</string>
-    <string name="delete">Smazat</string>
-    <string name="remove">Odebrat</string>
+    <!-- Common UI Elements -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Odstranit</string>
+    <string name="remove">Odstranit</string>
     <string name="add">Přidat</string>
     <string name="edit">Upravit</string>
     <string name="replace">Nahradit</string>
-    <string name="import_text">Importovat</string>
+    <string name="import_text">Import</string>
     <string name="reload">Znovu načíst</string>
     <string name="clear">Vymazat</string>
     <string name="expand">Rozbalit</string>
     <string name="collapse">Sbalit</string>
-    <string name="search">Hledat</string>
+    <string name="search">Vyhledávání</string>
     <string name="create">Vytvořit</string>
     <string name="general">Obecné</string>
     <string name="settings">Nastavení</string>
@@ -22,12 +24,14 @@
     <string name="inactive">Neaktivní</string>
     <string name="disabled">Zakázáno</string>
     <string name="custom">Vlastní</string>
-    <string name="customize">Přizpůsobit</string>
-    <string name="nav_customize">Přizpůsobení</string>
-    <string name="nav_essentials">Základní</string>
+    <!-- Navigation -->
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
+    <string name="nav_essentials">Nejdůležitější aplikace</string>
     <string name="nav_performance">Výkon</string>
     <string name="nav_multitasking">Multitasking</string>
     <string name="personalizations">Personalizace</string>
+    <!-- Customize Screen -->
     <string name="themes">Motivy</string>
     <string name="themes_subtitle">Ikony, tvary a další</string>
     <string name="lockscreen">Zamykací obrazovka</string>
@@ -38,6 +42,7 @@
     <string name="sound_subtitle">Hlasitost pro jednotlivé aplikace a multi-audio</string>
     <string name="gestures">Gesta</string>
     <string name="gestures_subtitle">Akce zatřesením a gesta třemi prsty</string>
+    <!-- Lockscreen Features -->
     <string name="edge_light">Osvětlení okrajů</string>
     <string name="edge_light_description">Světelné efekty na okrajích obrazovky pro oznámení</string>
     <string name="enable_edge_light">Povolit osvětlení okrajů</string>
@@ -52,6 +57,7 @@
     <string name="selected">Vybráno</string>
     <string name="select_uppercase">VYBRAT</string>
     <string name="select_item">Vyberte položku</string>
+    <!-- Media Art -->
     <string name="media_art">Vizuál médií</string>
     <string name="media_art_description">Obal alba na zamykací obrazovce během přehrávání</string>
     <string name="enable_media_art">Povolit vizuál médií</string>
@@ -59,6 +65,7 @@
     <string name="appearance">Vzhled</string>
     <string name="blur_level">Úroveň rozostření</string>
     <string name="blur_level_summary">Upravit intenzitu rozostření obalu alba</string>
+    <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Vizualizér Pulse</string>
     <string name="pulse_visualizer_description">Audio vizualizér na zamykací obrazovce a ambientním displeji</string>
     <string name="enable_pulse">Povolit Pulse</string>
@@ -78,22 +85,31 @@
     <string name="bar_count_summary">Počet vizualizačních sloupců</string>
     <string name="rounded_bars">Zaoblené sloupce</string>
     <string name="rounded_bars_summary">Použít zaoblené rohy pro sloupce vizualizéru</string>
+    <!-- Always On Display -->
     <string name="always_on_display">Vždy zapnutý displej (AOD)</string>
     <string name="always_on_display_description">Správa plánovaného AOD a chování při vypnuté obrazovce</string>
     <string name="mode">Režim</string>
     <string name="aod_schedule">Plán AOD</string>
     <string name="always_on">Vždy zapnuto</string>
     <string name="scheduled">Plánováno</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">Plán</string>
     <string name="start_time">Čas zahájení</string>
     <string name="start_time_summary">Kdy se AOD zapne</string>
     <string name="end_time">Čas ukončení</string>
     <string name="end_time_summary">Kdy se AOD vypne</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Vypnutá obrazovka</string>
     <string name="screen_off_aod">AOD při vypnuté obrazovce</string>
     <string name="screen_off_aod_summary">Ponechat AOD aktivní i při vypnuté obrazovce</string>
     <string name="screen_off_animation">Animace vypnutí obrazovky</string>
     <string name="screen_off_animation_summary">Animovat přechod do režimu AOD</string>
+    <!-- UI Features -->
     <string name="user_interface">Uživatelské rozhraní</string>
     <string name="quick_settings">Rychlá nastavení (QS)</string>
     <string name="quick_settings_description">Posuvník jasu, dlaždice a přizpůsobení panelu</string>
@@ -111,10 +127,12 @@
     <string name="status_bar_icons">Ikony stavového řádku</string>
     <string name="status_bar_tuner">Ladění stavového řádku</string>
     <string name="status_bar_tuner_summary">Zobrazit nebo skrýt ikony stavového řádku</string>
+    <!-- Sound Features -->
     <string name="per_app_volume">Hlasitost pro jednotlivé aplikace</string>
     <string name="per_app_volume_summary">Ovládat hlasitost pro každou aplikaci zvlášť</string>
     <string name="multi_audio_focus">Multi-audio fokus</string>
     <string name="multi_audio_focus_summary">Povolit více aplikacím přehrávat zvuk současně</string>
+    <!-- Gestures -->
     <string name="shake_gestures">Gesta zatřesením</string>
     <string name="enable_shake_gestures">Povolit gesta zatřesením</string>
     <string name="shake_gestures_summary">Spouštění akcí zatřesením zařízením</string>
@@ -129,9 +147,10 @@
     <string name="three_finger_long_press_summary">Povolit gesto dlouhého stisknutí třemi prsty</string>
     <string name="disable_button_screenshot">Zakázat snímek obrazovky tlačítky</string>
     <string name="disable_button_screenshot_summary">Zakázat kombinaci tlačítek Napájení + Snížení hlasitosti pro snímek obrazovky</string>
+    <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nic</string>
     <string name="gesture_action_app_switch">Přepínač aplikací</string>
-    <string name="gesture_action_search">Hledat</string>
+    <string name="gesture_action_search">Vyhledávání</string>
     <string name="gesture_action_voice_search">Hlasové vyhledávání</string>
     <string name="gesture_action_launch_camera">Spustit fotoaparát</string>
     <string name="gesture_action_sleep">Uspat</string>
@@ -145,10 +164,12 @@
     <string name="gesture_action_notifications_panel">Panel oznámení</string>
     <string name="gesture_action_expand_qs">Rozbalit panel QS</string>
     <string name="gesture_action_ringer_modes">Režimy vyzvánění</string>
-    <string name="essentials">Základní</string>
+    <!-- Essentials Screen -->
+    <string name="essentials">Nejdůležitější aplikace</string>
     <string name="essential_notifications">Důležitá oznámení</string>
     <string name="gaming">Hraní her</string>
     <string name="security">Zabezpečení</string>
+    <!-- Essential Apps -->
     <string name="selected_apps">Vybrané aplikace</string>
     <string name="selected_apps_description">Filtrujte to, co je důležité. Tyto aplikace zůstanou seskupeny nahoře.</string>
     <string name="no_apps_selected">Nejsou vybrány žádné aplikace</string>
@@ -156,12 +177,15 @@
     <string name="add_app">Přidat aplikaci</string>
     <string name="select_essential_apps">Vybrat důležité aplikace</string>
     <string name="select_apps">Vybrat aplikace</string>
+    <!-- App Picker -->
     <string name="loading_apps">Načítání aplikací...</string>
     <string name="search_apps">Hledat aplikace...</string>
     <string name="show_system_apps">Zobrazit systémové aplikace</string>
     <string name="selected_count">Vybráno %1$d</string>
+    <!-- GameSpace -->
     <string name="gamespace">Herní prostor</string>
     <string name="gamespace_summary">Optimalizujte svůj herní zážitek pomocí funkcí Gamespace</string>
+    <!-- Game Spoofing -->
     <string name="game_spoofing">Simulace zařízení pro hry</string>
     <string name="game_spoofing_summary">Simulovat vlastnosti zařízení pro konkrétní hry</string>
     <string name="app_spoofing">Simulace aplikací</string>
@@ -187,6 +211,8 @@
     <string name="preset_saved">Předvolba uložena</string>
     <string name="edit_app">Upravit %1$s</string>
     <string name="add_app_title">Přidat aplikaci</string>
+    <!-- Device Profiles -->
+    <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Správa keyboxu pro simulaci atestace klíčů</string>
     <string name="keybox_management">Správa keyboxu</string>
@@ -213,6 +239,7 @@
     <string name="target_mode_auto">Auto</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Konfigurovat simulaci build fingerprintu</string>
     <string name="fingerprint_spoofing">Simulace otisku prstu</string>
@@ -232,18 +259,20 @@
     <string name="deleted_file">Smazáno %1$s</string>
     <string name="delete_file_title">Smazat %1$s?</string>
     <string name="delete_config_message">Tento konfigurační soubor bude odebrán.</string>
-    <string name="import_text_verb">Importovat</string>
+    <string name="import_text_verb">Import</string>
     <string name="active_config_title">Aktivní konfigurace</string>
     <string name="spoof_google_photos">Simulovat Google Fotky</string>
     <string name="unlimited_backup">Neomezené zálohování v původní kvalitě</string>
     <string name="other_config_files">Ostatní konfigurační soubory</string>
     <string name="configured_count">Konfigurováno %1$d z %2$d</string>
-    <string name="priority_note">Priorita: custom.pif.* > pif.* (použije se první nalezený)</string>
+    <string name="priority_note">Priorita: custom.pif.* &gt; pif.* (použije se první nalezený)</string>
     <string name="active_in_use">Aktivní – aktuálně se používá</string>
     <string name="available_overridden">K dispozici – přepsáno vyšší prioritou</string>
     <string name="not_configured">Nekonfigurováno</string>
+    <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Ignorovat Window Secure</string>
     <string name="ignore_window_secure_summary">Povolit pořizování snímků a nahrávání obrazovky ve všech aplikacích</string>
+    <!-- Performance Screen -->
     <string name="performance">Výkon</string>
     <string name="performance_mode">Režim výkonu</string>
     <string name="maximum_performance_enabled">Maximální výkon povolen</string>
@@ -254,20 +283,25 @@
     <string name="touch_boost">Boost dotyku</string>
     <string name="boost_active">Boost aktivní</string>
     <string name="boost_disabled">Boost zakázán</string>
+    <!-- CPU Clusters -->
     <string name="little_cluster">Malý cluster</string>
     <string name="big_cluster">Velký cluster</string>
     <string name="prime_cluster">Hlavní cluster</string>
     <string name="boost_frequency">Frekvence boostu</string>
     <string name="minimum_frequency">Minimální frekvence</string>
     <string name="maximum_frequency">Maximální frekvence</string>
+    <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Grafický výkon</string>
     <string name="game_gpu_boost">Herní GPU boost</string>
     <string name="system_gpu_boost">Systémový GPU boost</string>
+    <!-- Performance Formats -->
     <string name="level_format">Úroveň %1$d</string>
+    <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Výkon</string>
-    <string name="qs_tile_on">Zap</string>
-    <string name="qs_tile_off">Vyp</string>
+    <string name="qs_tile_on">Zapnuto</string>
+    <string name="qs_tile_off">Vypnuto</string>
+    <!-- Multitasking Screen -->
     <string name="multitasking">Multitasking</string>
     <string name="edge_features">Funkce okrajů</string>
     <string name="sidebar">Boční panel</string>

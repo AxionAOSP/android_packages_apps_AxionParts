@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Axion Parts</string>
-    <string name="back">Πίσω</string>
-    <string name="cancel">Ακύρωση</string>
-    <string name="save">Αποθήκευση</string>
+    <!-- Common UI Elements -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
     <string name="delete">Διαγραφή</string>
-    <string name="remove">Αφαίρεση</string>
+    <string name="remove">Κατάργηση</string>
     <string name="add">Προσθήκη</string>
     <string name="edit">Επεξεργασία</string>
     <string name="replace">Αντικατάσταση</string>
-    <string name="import_text">Εισαγωγή</string>
+    <string name="import_text">Import</string>
     <string name="reload">Επαναφόρτωση</string>
     <string name="clear">Εκκαθάριση</string>
     <string name="expand">Ανάπτυξη</string>
@@ -22,12 +24,14 @@
     <string name="inactive">Ανενεργό</string>
     <string name="disabled">Απενεργοποιημένο</string>
     <string name="custom">Προσαρμοσμένο</string>
-    <string name="customize">Προσαρμογή</string>
-    <string name="nav_customize">Προσαρμογή</string>
-    <string name="nav_essentials">Βασικά</string>
+    <!-- Navigation -->
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
+    <string name="nav_essentials">Απαραίτητα</string>
     <string name="nav_performance">Απόδοση</string>
     <string name="nav_multitasking">Πολυδιεργασία</string>
     <string name="personalizations">Εξατομίκευση</string>
+    <!-- Customize Screen -->
     <string name="themes">Θέματα</string>
     <string name="themes_subtitle">Εικονίδια, σχήματα &amp; περισσότερα</string>
     <string name="lockscreen">Οθόνη κλειδώματος</string>
@@ -38,6 +42,7 @@
     <string name="sound_subtitle">Ένταση ανά εφαρμογή &amp; πολλαπλός ήχος</string>
     <string name="gestures">Χειρονομίες</string>
     <string name="gestures_subtitle">Ενέργειες ανακίνησης &amp; τριών δακτύλων</string>
+    <!-- Lockscreen Features -->
     <string name="edge_light">Φωτισμός Άκρων</string>
     <string name="edge_light_description">Εφέ φωτισμού στις άκρες της οθόνης για ειδοποιήσεις</string>
     <string name="enable_edge_light">Ενεργοποίηση Φωτισμού Άκρων</string>
@@ -52,6 +57,7 @@
     <string name="selected">Επιλέχθηκε</string>
     <string name="select_uppercase">ΕΠΙΛΟΓΗ</string>
     <string name="select_item">Επιλέξτε ένα στοιχείο</string>
+    <!-- Media Art -->
     <string name="media_art">Τέχνη Μέσων</string>
     <string name="media_art_description">Εξώφυλλο άλμπουμ στην οθόνη κλειδώματος κατά την αναπαραγωγή μέσων</string>
     <string name="enable_media_art">Ενεργοποίηση Τέχνης Μέσων</string>
@@ -59,6 +65,7 @@
     <string name="appearance">Εμφάνιση</string>
     <string name="blur_level">Επίπεδο θολώματος</string>
     <string name="blur_level_summary">Προσαρμογή της έντασης θολώματος του εξωφύλλου άλμπουμ</string>
+    <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Οπτικοποιητής Pulse</string>
     <string name="pulse_visualizer_description">Οπτικοποιητής ήχου στην οθόνη κλειδώματος και την οθόνη ambient</string>
     <string name="enable_pulse">Ενεργοποίηση Pulse</string>
@@ -78,22 +85,31 @@
     <string name="bar_count_summary">Αριθμός μπαρών οπτικοποίησης</string>
     <string name="rounded_bars">Στρογγυλεμένες μπάρες</string>
     <string name="rounded_bars_summary">Χρήση στρογγυλεμένων γωνιών για τις μπάρες του οπτικοποιητή</string>
+    <!-- Always On Display -->
     <string name="always_on_display">Always-On Display</string>
     <string name="always_on_display_description">Διαχείριση προγραμματισμένης AOD και συμπεριφοράς απενεργοποίησης οθόνης</string>
     <string name="mode">Λειτουργία</string>
     <string name="aod_schedule">Πρόγραμμα AOD</string>
     <string name="always_on">Πάντα ενεργή</string>
     <string name="scheduled">Προγραμματισμένη</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">Πρόγραμμα</string>
     <string name="start_time">Ώρα έναρξης</string>
     <string name="start_time_summary">Πότε ενεργοποιείται η AOD</string>
     <string name="end_time">Ώρα λήξης</string>
     <string name="end_time_summary">Πότε απενεργοποιείται η AOD</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Οθόνη ανενεργή</string>
     <string name="screen_off_aod">AOD με ανενεργή οθόνη</string>
     <string name="screen_off_aod_summary">Διατήρηση AOD ενεργής όταν η οθόνη απενεργοποιείται</string>
     <string name="screen_off_animation">Εφέ απενεργοποίησης οθόνης</string>
     <string name="screen_off_animation_summary">Εφέ μετάβασης στην AOD</string>
+    <!-- UI Features -->
     <string name="user_interface">Διεπαφή Χρήστη</string>
     <string name="quick_settings">Γρήγορες Ρυθμίσεις (QS)</string>
     <string name="quick_settings_description">Ρυθμιστικό φωτεινότητας, πλακίδια &amp; προσαρμογή πάνελ</string>
@@ -111,10 +127,12 @@
     <string name="status_bar_icons">Εικονίδια Γραμμής Κατάστασης</string>
     <string name="status_bar_tuner">Συντονιστής Γραμμής Κατάστασης</string>
     <string name="status_bar_tuner_summary">Εμφάνιση ή απόκρυψη εικονιδίων γραμμής κατάστασης</string>
+    <!-- Sound Features -->
     <string name="per_app_volume">Ένταση ανά Εφαρμογή</string>
     <string name="per_app_volume_summary">Έλεγχος έντασης για κάθε εφαρμογή ξεχωριστά</string>
     <string name="multi_audio_focus">Πολλαπλή εστίαση ήχου</string>
     <string name="multi_audio_focus_summary">Επιτρέψτε σε πολλαπλές εφαρμογές να αναπαράγουν ήχο ταυτόχρονα</string>
+    <!-- Gestures -->
     <string name="shake_gestures">Χειρονομίες Ανακίνησης</string>
     <string name="enable_shake_gestures">Ενεργοποίηση Χειρονομιών Ανακίνησης</string>
     <string name="shake_gestures_summary">Ενεργοποίηση ενεργειών ανακινώντας τη συσκευή σας</string>
@@ -129,6 +147,7 @@
     <string name="three_finger_long_press_summary">Ενεργοποίηση χειρονομίας παρατεταμένου πατήματος με τρία δάκτυλα</string>
     <string name="disable_button_screenshot">Απενεργοποίηση Στιγμιότυπου με Κουμπιά</string>
     <string name="disable_button_screenshot_summary">Απενεργοποίηση του συνδυασμού κουμπιών Power + Volume Down για στιγμιότυπο οθόνης</string>
+    <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Τίποτα</string>
     <string name="gesture_action_app_switch">Εναλλαγή εφαρμογών</string>
     <string name="gesture_action_search">Αναζήτηση</string>
@@ -145,10 +164,12 @@
     <string name="gesture_action_notifications_panel">Πάνελ ειδοποιήσεων</string>
     <string name="gesture_action_expand_qs">Ανάπτυξη πάνελ QS</string>
     <string name="gesture_action_ringer_modes">Λειτουργίες κουδουνισμού</string>
-    <string name="essentials">Βασικά</string>
+    <!-- Essentials Screen -->
+    <string name="essentials">Απαραίτητα</string>
     <string name="essential_notifications">Βασικές Ειδοποιήσεις</string>
     <string name="gaming">Gaming</string>
     <string name="security">Ασφάλεια</string>
+    <!-- Essential Apps -->
     <string name="selected_apps">Επιλεγμένες εφαρμογές</string>
     <string name="selected_apps_description">Φιλτράρετε ό,τι είναι σημαντικό. Αυτές οι εφαρμογές παραμένουν ομαδοποιημένες στην κορυφή.</string>
     <string name="no_apps_selected">Δεν έχουν επιλεγεί εφαρμογές</string>
@@ -156,12 +177,15 @@
     <string name="add_app">Προσθήκη Εφαρμογής</string>
     <string name="select_essential_apps">Επιλογή Βασικών Εφαρμογών</string>
     <string name="select_apps">Επιλογή Εφαρμογών</string>
+    <!-- App Picker -->
     <string name="loading_apps">Φόρτωση εφαρμογών...</string>
     <string name="search_apps">Αναζήτηση εφαρμογών...</string>
     <string name="show_system_apps">Εμφάνιση Εφαρμογών Συστήματος</string>
     <string name="selected_count">%1$d επιλέχθηκαν</string>
+    <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">Βελτιστοποιήστε την εμπειρία παιχνιδιού σας με τα χαρακτηριστικά του GameSpace</string>
+    <!-- Game Spoofing -->
     <string name="game_spoofing">Spoofing Παιχνιδιών</string>
     <string name="game_spoofing_summary">Spoofing ιδιοτήτων συσκευής για συγκεκριμένα παιχνίδια</string>
     <string name="app_spoofing">Spoofing Εφαρμογών</string>
@@ -187,6 +211,8 @@
     <string name="preset_saved">Η προεπιλογή αποθηκεύτηκε</string>
     <string name="edit_app">Επεξεργασία %1$s</string>
     <string name="add_app_title">Προσθήκη Εφαρμογής</string>
+    <!-- Device Profiles -->
+    <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Διαχείριση keybox για spoofing πιστοποίησης κλειδιού</string>
     <string name="keybox_management">Διαχείριση Keybox</string>
@@ -213,6 +239,7 @@
     <string name="target_mode_auto">Αυτόματο</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Ρύθμιση spoofing του build fingerprint</string>
     <string name="fingerprint_spoofing">Spoofing αποτυπώματος</string>
@@ -232,18 +259,20 @@
     <string name="deleted_file">Διαγράφηκε το %1$s</string>
     <string name="delete_file_title">Διαγραφή του %1$s;</string>
     <string name="delete_config_message">Αυτό το αρχείο ρύθμισης θα αφαιρεθεί.</string>
-    <string name="import_text_verb">Εισαγωγή</string>
+    <string name="import_text_verb">Import</string>
     <string name="active_config_title">Ενεργή Ρύθμιση</string>
     <string name="spoof_google_photos">Spoofing Google Φωτογραφιών</string>
     <string name="unlimited_backup">Απεριόριστο αντίγραφο ασφαλείας αρχικής ποιότητας</string>
     <string name="other_config_files">Άλλα Αρχεία Ρυθμίσεων</string>
     <string name="configured_count">%1$d από %2$d ρυθμίστηκαν</string>
-    <string name="priority_note">Προτεραιότητα: custom.pif.* > pif.* (χρησιμοποιείται το πρώτο που θα βρεθεί)</string>
+    <string name="priority_note">Προτεραιότητα: custom.pif.* &gt; pif.* (χρησιμοποιείται το πρώτο που θα βρεθεί)</string>
     <string name="active_in_use">Ενεργό - Σε χρήση</string>
     <string name="available_overridden">Διαθέσιμο - Παρακάμπτεται από υψηλότερη προτεραιότητα</string>
     <string name="not_configured">Δεν έχει ρυθμιστεί</string>
+    <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Παράκαμψη Ασφάλειας Παραθύρου</string>
     <string name="ignore_window_secure_summary">Επιτρέψτε τη λήψη στιγμιότυπων και την καταγραφή οθόνης σε όλες τις εφαρμογές</string>
+    <!-- Performance Screen -->
     <string name="performance">Απόδοση</string>
     <string name="performance_mode">Λειτουργία Απόδοσης</string>
     <string name="maximum_performance_enabled">Η μέγιστη απόδοση ενεργοποιήθηκε</string>
@@ -254,20 +283,25 @@
     <string name="touch_boost">Boost Αφής</string>
     <string name="boost_active">Boost Ενεργό</string>
     <string name="boost_disabled">Boost Ανενεργό</string>
+    <!-- CPU Clusters -->
     <string name="little_cluster">Μικρό cluster</string>
     <string name="big_cluster">Μεγάλο cluster</string>
     <string name="prime_cluster">Κύριο cluster</string>
     <string name="boost_frequency">Συχνότητα Boost</string>
     <string name="minimum_frequency">Ελάχιστη Συχνότητα</string>
     <string name="maximum_frequency">Μέγιστη Συχνότητα</string>
+    <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Γραφική Απόδοση</string>
     <string name="game_gpu_boost">Boost GPU Παιχνιδιών</string>
     <string name="system_gpu_boost">Boost GPU Συστήματος</string>
+    <!-- Performance Formats -->
     <string name="level_format">Επίπεδο %1$d</string>
+    <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Απόδοση</string>
-    <string name="qs_tile_on">On</string>
-    <string name="qs_tile_off">Off</string>
+    <string name="qs_tile_on">Ενεργοποίηση</string>
+    <string name="qs_tile_off">Απενεργοποίηση</string>
+    <!-- Multitasking Screen -->
     <string name="multitasking">Πολυδιεργασία</string>
     <string name="edge_features">Χαρακτηριστικά Άκρων</string>
     <string name="sidebar">Πλευρική μπάρα</string>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Axion Parts</string>
-    <string name="back">Quay lại</string>
-    <string name="cancel">Hủy</string>
-    <string name="save">Lưu</string>
-    <string name="delete">Xóa</string>
-    <string name="remove">Gỡ bỏ</string>
+    <!-- Common UI Elements -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="delete">Xóa</string>
+    <string name="remove">Xóa</string>
     <string name="add">Thêm</string>
     <string name="edit">Chỉnh sửa</string>
     <string name="replace">Thay thế</string>
-    <string name="import_text">Nhập</string>
+    <string name="import_text">Import</string>
     <string name="reload">Tải lại</string>
     <string name="clear">Xóa sạch</string>
     <string name="expand">Mở rộng</string>
@@ -22,12 +24,14 @@
     <string name="inactive">Không hoạt động</string>
     <string name="disabled">Đã tắt</string>
     <string name="custom">Tùy chỉnh</string>
-    <string name="customize">Tùy biến</string>
-    <string name="nav_customize">Tùy biến</string>
-    <string name="nav_essentials">Thiết yếu</string>
+    <!-- Navigation -->
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
+    <string name="nav_essentials">Các tiện ích thiết yếu</string>
     <string name="nav_performance">Hiệu năng</string>
     <string name="nav_multitasking">Đa nhiệm</string>
     <string name="personalizations">Cá nhân hóa</string>
+    <!-- Customize Screen -->
     <string name="themes">Chủ đề</string>
     <string name="themes_subtitle">Biểu tượng, hình dạng &amp; hơn thế nữa</string>
     <string name="lockscreen">Màn hình khóa</string>
@@ -38,6 +42,7 @@
     <string name="sound_subtitle">Âm lượng từng ứng dụng &amp; Đa âm thanh</string>
     <string name="gestures">Cử chỉ</string>
     <string name="gestures_subtitle">Hành động lắc &amp; ba ngón tay</string>
+    <!-- Lockscreen Features -->
     <string name="edge_light">Cạnh sáng</string>
     <string name="edge_light_description">Hiệu ứng ánh sáng ở các cạnh màn hình khi có thông báo</string>
     <string name="enable_edge_light">Bật cạnh sáng</string>
@@ -52,6 +57,7 @@
     <string name="selected">Đã chọn</string>
     <string name="select_uppercase">CHỌN</string>
     <string name="select_item">Chọn mục</string>
+    <!-- Media Art -->
     <string name="media_art">Ảnh bìa phương tiện</string>
     <string name="media_art_description">Ảnh bìa album trên màn hình khóa khi đang phát nhạc</string>
     <string name="enable_media_art">Bật ảnh bìa phương tiện</string>
@@ -59,6 +65,7 @@
     <string name="appearance">Giao diện</string>
     <string name="blur_level">Mức độ mờ</string>
     <string name="blur_level_summary">Điều chỉnh mức độ mờ của ảnh bìa album</string>
+    <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Trình hiển thị nhịp điệu</string>
     <string name="pulse_visualizer_description">Trình hiển thị âm thanh trên màn hình khóa và màn hình luôn bật</string>
     <string name="enable_pulse">Bật Pulse</string>
@@ -78,22 +85,31 @@
     <string name="bar_count_summary">Số lượng thanh trong trình hiển thị</string>
     <string name="rounded_bars">Thanh bo tròn</string>
     <string name="rounded_bars_summary">Sử dụng các góc bo tròn cho các thanh trình hiển thị</string>
+    <!-- Always On Display -->
     <string name="always_on_display">Màn hình luôn bật (AOD)</string>
     <string name="always_on_display_description">Quản lý lịch trình AOD và hành vi khi tắt màn hình</string>
     <string name="mode">Chế độ</string>
     <string name="aod_schedule">Lịch trình AOD</string>
     <string name="always_on">Luôn bật</string>
     <string name="scheduled">Theo lịch trình</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">Lịch trình</string>
     <string name="start_time">Thời gian bắt đầu</string>
     <string name="start_time_summary">Thời điểm bật AOD</string>
     <string name="end_time">Thời gian kết thúc</string>
     <string name="end_time_summary">Thời điểm tắt AOD</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Tắt màn hình</string>
     <string name="screen_off_aod">AOD khi tắt màn hình</string>
     <string name="screen_off_aod_summary">Giữ AOD hoạt động khi màn hình tắt</string>
     <string name="screen_off_animation">Hiệu ứng tắt màn hình</string>
     <string name="screen_off_animation_summary">Hoạt ảnh chuyển đổi sang AOD</string>
+    <!-- UI Features -->
     <string name="user_interface">Giao diện người dùng</string>
     <string name="quick_settings">Cài đặt nhanh (QS)</string>
     <string name="quick_settings_description">Thanh trượt độ sáng, các ô &amp; tùy biến bảng điều khiển</string>
@@ -111,10 +127,12 @@
     <string name="status_bar_icons">Biểu tượng thanh trạng thái</string>
     <string name="status_bar_tuner">Bộ chỉnh thanh trạng thái</string>
     <string name="status_bar_tuner_summary">Chọn biểu tượng thanh trạng thái để hiển thị hoặc ẩn</string>
+    <!-- Sound Features -->
     <string name="per_app_volume">Âm lượng từng ứng dụng</string>
     <string name="per_app_volume_summary">Kiểm soát âm lượng cho từng ứng dụng riêng biệt</string>
     <string name="multi_audio_focus">Đa tiêu điểm âm thanh</string>
     <string name="multi_audio_focus_summary">Cho phép nhiều ứng dụng phát âm thanh cùng lúc</string>
+    <!-- Gestures -->
     <string name="shake_gestures">Cử chỉ lắc</string>
     <string name="enable_shake_gestures">Bật cử chỉ lắc</string>
     <string name="shake_gestures_summary">Kích hoạt các hành động bằng cách lắc thiết bị</string>
@@ -129,6 +147,7 @@
     <string name="three_finger_long_press_summary">Bật cử chỉ nhấn giữ bằng ba ngón tay</string>
     <string name="disable_button_screenshot">Tắt chụp màn hình bằng nút</string>
     <string name="disable_button_screenshot_summary">Tắt tổ hợp phím Nguồn + Giảm âm lượng để chụp màn hình</string>
+    <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Không có gì</string>
     <string name="gesture_action_app_switch">Chuyển đổi ứng dụng</string>
     <string name="gesture_action_search">Tìm kiếm</string>
@@ -145,10 +164,12 @@
     <string name="gesture_action_notifications_panel">Bảng thông báo</string>
     <string name="gesture_action_expand_qs">Mở rộng bảng QS</string>
     <string name="gesture_action_ringer_modes">Chế độ chuông</string>
-    <string name="essentials">Thiết yếu</string>
+    <!-- Essentials Screen -->
+    <string name="essentials">Các tiện ích thiết yếu</string>
     <string name="essential_notifications">Thông báo thiết yếu</string>
     <string name="gaming">Chơi game</string>
     <string name="security">Bảo mật</string>
+    <!-- Essential Apps -->
     <string name="selected_apps">Ứng dụng đã chọn</string>
     <string name="selected_apps_description">Lọc những gì quan trọng. Những ứng dụng này sẽ được nhóm ở trên cùng.</string>
     <string name="no_apps_selected">Chưa chọn ứng dụng nào</string>
@@ -156,12 +177,15 @@
     <string name="add_app">Thêm ứng dụng</string>
     <string name="select_essential_apps">Chọn ứng dụng thiết yếu</string>
     <string name="select_apps">Chọn ứng dụng</string>
+    <!-- App Picker -->
     <string name="loading_apps">Đang tải ứng dụng...</string>
     <string name="search_apps">Tìm kiếm ứng dụng...</string>
     <string name="show_system_apps">Hiển thị ứng dụng hệ thống</string>
     <string name="selected_count">Đã chọn %1$d</string>
+    <!-- GameSpace -->
     <string name="gamespace">Không gian trò chơi</string>
     <string name="gamespace_summary">Cải thiện trải nghiệm chơi game với các tính năng Gamespace</string>
+    <!-- Game Spoofing -->
     <string name="game_spoofing">Giả lập trò chơi</string>
     <string name="game_spoofing_summary">Giả lập các thuộc tính thiết bị cho các trò chơi cụ thể</string>
     <string name="app_spoofing">Giả lập ứng dụng</string>
@@ -187,6 +211,8 @@
     <string name="preset_saved">Đã lưu cài đặt sẵn</string>
     <string name="edit_app">Chỉnh sửa %1$s</string>
     <string name="add_app_title">Thêm ứng dụng</string>
+    <!-- Device Profiles -->
+    <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Quản lý keybox để giả lập xác thực khóa (Key Attestation)</string>
     <string name="keybox_management">Quản lý Keybox</string>
@@ -213,6 +239,7 @@
     <string name="target_mode_auto">Tự động</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Sửa lỗi Play Integrity</string>
     <string name="play_integrity_fix_summary">Cấu hình giả lập vân tay bản dựng (build fingerprint)</string>
     <string name="fingerprint_spoofing">Giả lập vân tay</string>
@@ -232,18 +259,20 @@
     <string name="deleted_file">Đã xóa %1$s</string>
     <string name="delete_file_title">Xóa %1$s?</string>
     <string name="delete_config_message">Tệp cấu hình này sẽ bị gỡ bỏ.</string>
-    <string name="import_text_verb">Nhập</string>
+    <string name="import_text_verb">Import</string>
     <string name="active_config_title">Cấu hình đang hoạt động</string>
     <string name="spoof_google_photos">Giả lập Google Photos</string>
     <string name="unlimited_backup">Sao lưu chất lượng gốc không giới hạn</string>
     <string name="other_config_files">Các tệp cấu hình khác</string>
     <string name="configured_count">Đã cấu hình %1$d trên %2$d</string>
-    <string name="priority_note">Ưu tiên: custom.pif.* > pif.* (tệp đầu tiên tìm thấy sẽ được dùng)</string>
+    <string name="priority_note">Ưu tiên: custom.pif.* &gt; pif.* (tệp đầu tiên tìm thấy sẽ được dùng)</string>
     <string name="active_in_use">Đang hoạt động - Đang được sử dụng</string>
     <string name="available_overridden">Có sẵn - Bị ghi đè bởi ưu tiên cao hơn</string>
     <string name="not_configured">Chưa cấu hình</string>
+    <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Bỏ qua Window Secure</string>
     <string name="ignore_window_secure_summary">Cho phép chụp ảnh màn hình và ghi màn hình trong tất cả các ứng dụng</string>
+    <!-- Performance Screen -->
     <string name="performance">Hiệu năng</string>
     <string name="performance_mode">Chế độ hiệu năng</string>
     <string name="maximum_performance_enabled">Đã bật hiệu năng tối đa</string>
@@ -254,20 +283,25 @@
     <string name="touch_boost">Tăng tốc cảm ứng</string>
     <string name="boost_active">Đang tăng tốc</string>
     <string name="boost_disabled">Đã tắt tăng tốc</string>
+    <!-- CPU Clusters -->
     <string name="little_cluster">Cụm lõi nhỏ (Little Cluster)</string>
     <string name="big_cluster">Cụm lõi lớn (Big Cluster)</string>
     <string name="prime_cluster">Cụm lõi chính (Prime Cluster)</string>
     <string name="boost_frequency">Tần số tăng tốc</string>
     <string name="minimum_frequency">Tần số tối thiểu</string>
     <string name="maximum_frequency">Tần số tối đa</string>
+    <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Hiệu năng đồ họa</string>
     <string name="game_gpu_boost">Tăng tốc GPU trò chơi</string>
     <string name="system_gpu_boost">Tăng tốc GPU hệ thống</string>
+    <!-- Performance Formats -->
     <string name="level_format">Cấp độ %1$d</string>
+    <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Hiệu năng</string>
-    <string name="qs_tile_on">Bật</string>
+    <string name="qs_tile_on">Đang bật</string>
     <string name="qs_tile_off">Tắt</string>
+    <!-- Multitasking Screen -->
     <string name="multitasking">Đa nhiệm</string>
     <string name="edge_features">Tính năng cạnh</string>
     <string name="sidebar">Thanh bên</string>

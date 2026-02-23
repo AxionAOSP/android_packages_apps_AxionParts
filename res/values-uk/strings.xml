@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Axion Parts</string>
-    <string name="back">Назад</string>
-    <string name="cancel">Скасувати</string>
-    <string name="save">Зберегти</string>
+    <!-- Common UI Elements -->
+    <string name="back">Back</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
     <string name="delete">Видалити</string>
-    <string name="remove">Вилучити</string>
+    <string name="remove">Видалити</string>
     <string name="add">Додати</string>
     <string name="edit">Редагувати</string>
     <string name="replace">Замінити</string>
-    <string name="import_text">Імпортувати</string>
+    <string name="import_text">Import</string>
     <string name="reload">Перезавантажити</string>
     <string name="clear">Очистити</string>
     <string name="expand">Розгорнути</string>
@@ -18,16 +20,18 @@
     <string name="create">Створити</string>
     <string name="general">Загальні</string>
     <string name="settings">Налаштування</string>
-    <string name="active">Активно</string>
+    <string name="active">Додаток активний</string>
     <string name="inactive">Неактивно</string>
     <string name="disabled">Вимкнено</string>
     <string name="custom">Користувацький</string>
-    <string name="customize">Налаштувати</string>
-    <string name="nav_customize">Налаштувати</string>
+    <!-- Navigation -->
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
     <string name="nav_essentials">Основне</string>
     <string name="nav_performance">Продуктивність</string>
     <string name="nav_multitasking">Багатозадачність</string>
     <string name="personalizations">Персоналізація</string>
+    <!-- Customize Screen -->
     <string name="themes">Теми</string>
     <string name="themes_subtitle">Іконки, форми та інше</string>
     <string name="lockscreen">Екран блокування</string>
@@ -38,6 +42,7 @@
     <string name="sound_subtitle">Гучність для кожного додатка та мульти-аудіо</string>
     <string name="gestures">Жести</string>
     <string name="gestures_subtitle">Струшування та дії трьома пальцями</string>
+    <!-- Lockscreen Features -->
     <string name="edge_light">Підсвічування країв</string>
     <string name="edge_light_description">Світлові ефекти по краях екрана для повідомлень</string>
     <string name="enable_edge_light">Увімкнути підсвічування країв</string>
@@ -52,6 +57,7 @@
     <string name="selected">Вибрано</string>
     <string name="select_uppercase">Вибрати</string>
     <string name="select_item">Виберіть елемент</string>
+    <!-- Media Art -->
     <string name="media_art">Медіа-арт</string>
     <string name="media_art_description">Обкладинка альбому на екрані блокування під час відтворення</string>
     <string name="enable_media_art">Увімкнути медіа-арт</string>
@@ -59,6 +65,7 @@
     <string name="appearance">Зовнішній вигляд</string>
     <string name="blur_level">Рівень розмиття</string>
     <string name="blur_level_summary">Налаштування інтенсивності розмиття обкладинки альбому</string>
+    <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Візуалізатор Pulse</string>
     <string name="pulse_visualizer_description">Аудіовізуалізатор на екрані блокування та ambient display</string>
     <string name="enable_pulse">Увімкнути Pulse</string>
@@ -78,22 +85,31 @@
     <string name="bar_count_summary">Кількість смуг візуалізації</string>
     <string name="rounded_bars">Заокруглені смуги</string>
     <string name="rounded_bars_summary">Заокруглені кути для смуг візуалізатора</string>
+    <!-- Always On Display -->
     <string name="always_on_display">Завжди увімкнений дисплей</string>
     <string name="always_on_display_description">Керування розкладом AOD та поведінкою при вимкненні екрана</string>
     <string name="mode">Режим</string>
     <string name="aod_schedule">Розклад AOD</string>
     <string name="always_on">Завжди увімкнено</string>
     <string name="scheduled">За розкладом</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">Розклад</string>
     <string name="start_time">Час початку</string>
     <string name="start_time_summary">Коли AOD вмикається</string>
     <string name="end_time">Час закінчення</string>
     <string name="end_time_summary">Коли AOD вимикається</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Екран вимкнено</string>
     <string name="screen_off_aod">AOD при вимкненому екрані</string>
     <string name="screen_off_aod_summary">Тримати AOD активним при вимкненні екрана</string>
     <string name="screen_off_animation">Анімація вимкнення екрана</string>
     <string name="screen_off_animation_summary">Анімація переходу до AOD</string>
+    <!-- UI Features -->
     <string name="user_interface">Інтерфейс користувача</string>
     <string name="quick_settings">Швидкі налаштування</string>
     <string name="quick_settings_description">Повзунок яскравості, плитки та налаштування панелі</string>
@@ -111,10 +127,12 @@
     <string name="status_bar_icons">Іконки рядка стану</string>
     <string name="status_bar_tuner">Налаштування рядка стану</string>
     <string name="status_bar_tuner_summary">Показати або приховати іконки рядка стану</string>
+    <!-- Sound Features -->
     <string name="per_app_volume">Гучність для кожного додатка</string>
     <string name="per_app_volume_summary">Керування гучністю окремо для кожного додатка</string>
     <string name="multi_audio_focus">Мульти-аудіофокус</string>
     <string name="multi_audio_focus_summary">Дозволити кільком додаткам відтворювати аудіо одночасно</string>
+    <!-- Gestures -->
     <string name="shake_gestures">Жести струшування</string>
     <string name="enable_shake_gestures">Увімкнути жести струшування</string>
     <string name="shake_gestures_summary">Запуск дій струшуванням пристрою</string>
@@ -129,6 +147,7 @@
     <string name="three_finger_long_press_summary">Увімкнути жест довгого натискання трьома пальцями</string>
     <string name="disable_button_screenshot">Вимкнути скріншот кнопками</string>
     <string name="disable_button_screenshot_summary">Вимкнути комбінацію кнопок живлення + гучність вниз</string>
+    <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Нічого</string>
     <string name="gesture_action_app_switch">Перемикання додатків</string>
     <string name="gesture_action_search">Пошук</string>
@@ -145,10 +164,12 @@
     <string name="gesture_action_notifications_panel">Панель повідомлень</string>
     <string name="gesture_action_expand_qs">Розгорнути панель QS</string>
     <string name="gesture_action_ringer_modes">Режими дзвінка</string>
+    <!-- Essentials Screen -->
     <string name="essentials">Основне</string>
     <string name="essential_notifications">Важливі повідомлення</string>
     <string name="gaming">Ігри</string>
     <string name="security">Безпека</string>
+    <!-- Essential Apps -->
     <string name="selected_apps">Вибрані додатки</string>
     <string name="selected_apps_description">Відфільтруйте важливе. Ці додатки групуються вгорі.</string>
     <string name="no_apps_selected">Додатки не вибрано</string>
@@ -156,12 +177,15 @@
     <string name="add_app">Додати додаток</string>
     <string name="select_essential_apps">Вибрати важливі додатки</string>
     <string name="select_apps">Вибрати додатки</string>
+    <!-- App Picker -->
     <string name="loading_apps">Завантаження додатків…</string>
     <string name="search_apps">Пошук додатків…</string>
     <string name="show_system_apps">Показати системні додатки</string>
     <string name="selected_count">Вибрано: %1$d</string>
+    <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">Оптимізація ігрового досвіду з функціями GameSpace</string>
+    <!-- Game Spoofing -->
     <string name="game_spoofing">Підміна пристрою для ігор</string>
     <string name="game_spoofing_summary">Підміна властивостей пристрою для конкретних ігор</string>
     <string name="app_spoofing">Підміна додатка</string>
@@ -187,6 +211,8 @@
     <string name="preset_saved">Пресет збережено</string>
     <string name="edit_app">Редагувати %1$s</string>
     <string name="add_app_title">Додати додаток</string>
+    <!-- Device Profiles -->
+    <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Керування keybox для підміни атестації ключів</string>
     <string name="keybox_management">Керування Keybox</string>
@@ -213,6 +239,7 @@
     <string name="target_mode_auto">Авто</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Налаштування підміни відбитка збірки</string>
     <string name="fingerprint_spoofing">Підміна відбитка</string>
@@ -232,18 +259,20 @@
     <string name="deleted_file">Видалено %1$s</string>
     <string name="delete_file_title">Видалити %1$s?</string>
     <string name="delete_config_message">Цей файл конфігурації буде видалено.</string>
-    <string name="import_text_verb">Імпортувати</string>
+    <string name="import_text_verb">Import</string>
     <string name="active_config_title">Активна конфігурація</string>
     <string name="spoof_google_photos">Підміна Google Фото</string>
     <string name="unlimited_backup">Необмежене резервне копіювання в оригінальній якості</string>
     <string name="other_config_files">Інші файли конфігурації</string>
     <string name="configured_count">Налаштовано %1$d з %2$d</string>
-    <string name="priority_note">Пріоритет: custom.pif.* > pif.* (використовується перший знайдений)</string>
+    <string name="priority_note">Пріоритет: custom.pif.* &gt; pif.* (використовується перший знайдений)</string>
     <string name="active_in_use">Активно - Використовується</string>
     <string name="available_overridden">Доступно - Перевизначено вищим пріоритетом</string>
     <string name="not_configured">Не налаштовано</string>
+    <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Ігнорувати захист вікна</string>
     <string name="ignore_window_secure_summary">Дозволити скріншоти та запис екрана в усіх додатках</string>
+    <!-- Performance Screen -->
     <string name="performance">Продуктивність</string>
     <string name="performance_mode">Режим продуктивності</string>
     <string name="maximum_performance_enabled">Максимальна продуктивність увімкнена</string>
@@ -254,22 +283,28 @@
     <string name="touch_boost">Прискорення дотиків</string>
     <string name="boost_active">Прискорення активне</string>
     <string name="boost_disabled">Прискорення вимкнено</string>
+    <!-- CPU Clusters -->
     <string name="little_cluster">Малий кластер</string>
     <string name="big_cluster">Великий кластер</string>
     <string name="prime_cluster">Головний кластер</string>
     <string name="boost_frequency">Частота прискорення</string>
     <string name="minimum_frequency">Мінімальна частота</string>
     <string name="maximum_frequency">Максимальна частота</string>
+    <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Графічна продуктивність</string>
     <string name="game_gpu_boost">Прискорення GPU для ігор</string>
     <string name="system_gpu_boost">Системне прискорення GPU</string>
+    <!-- Performance Formats -->
     <string name="level_format">Рівень %1$d</string>
+    <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Продуктивність</string>
-    <string name="qs_tile_on">Увімк.</string>
-    <string name="qs_tile_off">Вимк.</string>
+    <string name="qs_tile_on">Увімкнено</string>
+    <string name="qs_tile_off">Вимкнено</string>
+    <!-- Multitasking Screen -->
     <string name="multitasking">Багатозадачність</string>
     <string name="edge_features">Функції країв</string>
     <string name="sidebar">Бічна панель</string>
     <string name="sidebar_summary">Швидкий доступ до улюблених додатків з краю екрана</string>
+    <!-- Misc -->
 </resources>

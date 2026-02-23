@@ -9,28 +9,28 @@
     <string name="delete">Delete</string>
     <string name="remove">Remove</string>
     <string name="add">Add</string>
-    <string name="edit">Edit</string>
-    <string name="replace">Replace</string>
+    <string name="edit">编辑</string>
+    <string name="replace">替换</string>
     <string name="import_text">Import</string>
-    <string name="reload">Reload</string>
-    <string name="clear">Clear</string>
-    <string name="expand">Expand</string>
-    <string name="collapse">Collapse</string>
-    <string name="search">Search</string>
-    <string name="create">Create</string>
-    <string name="general">General</string>
-    <string name="settings">Settings</string>
+    <string name="reload">重新加载</string>
+    <string name="clear">清除</string>
+    <string name="expand">展开</string>
+    <string name="collapse">收起</string>
+    <string name="search">搜索</string>
+    <string name="create">创建</string>
+    <string name="general">通用</string>
+    <string name="settings">设置</string>
     <string name="active">Active</string>
-    <string name="inactive">Inactive</string>
-    <string name="disabled">Disabled</string>
-    <string name="custom">Custom</string>
+    <string name="inactive">未启用</string>
+    <string name="disabled">已禁用</string>
+    <string name="custom">自定义</string>
     <!-- Navigation -->
     <string name="customize">Customize</string>
     <string name="nav_customize">Customize</string>
-    <string name="nav_essentials">Essentials</string>
+    <string name="nav_essentials">常用功能</string>
     <string name="nav_performance">Performance</string>
     <string name="nav_multitasking">Multitasking</string>
-    <string name="personalizations">Personalizations</string>
+    <string name="personalizations">个性化设置</string>
     <!-- Customize Screen -->
     <string name="themes">Themes</string>
     <string name="themes_subtitle">Icons, shapes &amp; more</string>
@@ -150,7 +150,7 @@
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
     <string name="gesture_action_app_switch">App switch</string>
-    <string name="gesture_action_search">Search</string>
+    <string name="gesture_action_search">搜索</string>
     <string name="gesture_action_voice_search">Voice search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
@@ -165,7 +165,7 @@
     <string name="gesture_action_expand_qs">Expand QS panel</string>
     <string name="gesture_action_ringer_modes">Ringer modes</string>
     <!-- Essentials Screen -->
-    <string name="essentials">Essentials</string>
+    <string name="essentials">常用功能</string>
     <string name="essential_notifications">Essential Notifications</string>
     <string name="gaming">Gaming</string>
     <string name="security">Security</string>
@@ -248,7 +248,7 @@
     <string name="fetch_pixel_beta">Fetch Pixel Beta</string>
     <string name="fetching">Fetching…</string>
     <string name="fetched_model">Fetched: %1$s</string>
-    <string name="failed_message"></string>
+    <string name="failed_message">Failed: %1$s</string>
     <string name="failed_to_update">Failed to update: %1$s</string>
     <string name="imported_as">Imported as %1$s</string>
     <string name="error_no_android_versions">Could not find any Android version pages</string>

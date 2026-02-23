@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App Name -->
     <string name="app_name">Axion Parts</string>
+    <!-- Common UI Elements -->
     <string name="back">Wstecz</string>
-    <string name="cancel">Anuluj</string>
-    <string name="save">Zapisz</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
     <string name="delete">Usuń</string>
     <string name="remove">Usuń</string>
     <string name="add">Dodaj</string>
@@ -18,16 +20,18 @@
     <string name="create">Utwórz</string>
     <string name="general">Ogólne</string>
     <string name="settings">Ustawienia</string>
-    <string name="active">Aktywne</string>
+    <string name="active">Aktywna</string>
     <string name="inactive">Nieaktywne</string>
     <string name="disabled">Wyłączone</string>
     <string name="custom">Własne</string>
-    <string name="customize">Dostosuj</string>
-    <string name="nav_customize">Dostosuj</string>
-    <string name="nav_essentials">Podstawowe</string>
+    <!-- Navigation -->
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
+    <string name="nav_essentials">Najbardziej przydatne</string>
     <string name="nav_performance">Wydajność</string>
     <string name="nav_multitasking">Wielozadaniowość</string>
     <string name="personalizations">Personalizacja</string>
+    <!-- Customize Screen -->
     <string name="themes">Motywy</string>
     <string name="themes_subtitle">Ikony, kształty i inne</string>
     <string name="lockscreen">Ekran blokady</string>
@@ -38,6 +42,7 @@
     <string name="sound_subtitle">Głośność dla aplikacji i multi-audio</string>
     <string name="gestures">Gesty</string>
     <string name="gestures_subtitle">Potrząsanie i gesty trzema palcami</string>
+    <!-- Lockscreen Features -->
     <string name="edge_light">Podświetlenie krawędziowe</string>
     <string name="edge_light_description">Efekty świetlne na krawędziach ekranu dla powiadomień</string>
     <string name="enable_edge_light">Włącz podświetlenie krawędziowe</string>
@@ -52,6 +57,7 @@
     <string name="selected">Wybrano</string>
     <string name="select_uppercase">Wybierz</string>
     <string name="select_item">Wybierz element</string>
+    <!-- Media Art -->
     <string name="media_art">Okładka albumu</string>
     <string name="media_art_description">Okładka albumu na ekranie blokady podczas odtwarzania</string>
     <string name="enable_media_art">Włącz okładkę albumu</string>
@@ -59,6 +65,7 @@
     <string name="appearance">Wygląd</string>
     <string name="blur_level">Poziom rozmycia</string>
     <string name="blur_level_summary">Dostosuj intensywność rozmycia okładki albumu</string>
+    <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Wizualizator Pulse</string>
     <string name="pulse_visualizer_description">Wizualizator dźwięku na ekranie blokady i ambient display</string>
     <string name="enable_pulse">Włącz Pulse</string>
@@ -78,22 +85,31 @@
     <string name="bar_count_summary">Liczba słupków wizualizacji</string>
     <string name="rounded_bars">Zaokrąglone słupki</string>
     <string name="rounded_bars_summary">Użyj zaokrąglonych rogów dla słupków wizualizatora</string>
+    <!-- Always On Display -->
     <string name="always_on_display">Always On Display</string>
     <string name="always_on_display_description">Zarządzaj harmonogramem AOD i zachowaniem po wyłączeniu ekranu</string>
     <string name="mode">Tryb</string>
     <string name="aod_schedule">Harmonogram AOD</string>
     <string name="always_on">Zawsze włączone</string>
     <string name="scheduled">Zaplanowane</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">Harmonogram</string>
     <string name="start_time">Czas rozpoczęcia</string>
     <string name="start_time_summary">Kiedy AOD się włącza</string>
     <string name="end_time">Czas zakończenia</string>
     <string name="end_time_summary">Kiedy AOD się wyłącza</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Ekran wyłączony</string>
     <string name="screen_off_aod">AOD przy wyłączonym ekranie</string>
     <string name="screen_off_aod_summary">Utrzymuj AOD aktywne po wyłączeniu ekranu</string>
     <string name="screen_off_animation">Animacja wyłączania ekranu</string>
     <string name="screen_off_animation_summary">Animuj przejście do AOD</string>
+    <!-- UI Features -->
     <string name="user_interface">Interfejs użytkownika</string>
     <string name="quick_settings">Szybkie ustawienia</string>
     <string name="quick_settings_description">Suwak jasności, kafelki i dostosowywanie panelu</string>
@@ -111,10 +127,12 @@
     <string name="status_bar_icons">Ikony paska stanu</string>
     <string name="status_bar_tuner">Tuner paska stanu</string>
     <string name="status_bar_tuner_summary">Pokaż lub ukryj ikony paska stanu</string>
+    <!-- Sound Features -->
     <string name="per_app_volume">Głośność dla aplikacji</string>
     <string name="per_app_volume_summary">Kontroluj głośność osobno dla każdej aplikacji</string>
     <string name="multi_audio_focus">Multi audio focus</string>
     <string name="multi_audio_focus_summary">Zezwalaj wielu aplikacjom na jednoczesne odtwarzanie dźwięku</string>
+    <!-- Gestures -->
     <string name="shake_gestures">Gesty potrząsania</string>
     <string name="enable_shake_gestures">Włącz gesty potrząsania</string>
     <string name="shake_gestures_summary">Uruchamiaj akcje przez potrząsanie urządzeniem</string>
@@ -129,6 +147,7 @@
     <string name="three_finger_long_press_summary">Włącz gest długiego naciśnięcia trzema palcami</string>
     <string name="disable_button_screenshot">Wyłącz zrzut ekranu przyciskami</string>
     <string name="disable_button_screenshot_summary">Wyłącz kombinację Power + Volume Down dla zrzutu ekranu</string>
+    <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nic</string>
     <string name="gesture_action_app_switch">Przełączanie aplikacji</string>
     <string name="gesture_action_search">Szukaj</string>
@@ -145,10 +164,12 @@
     <string name="gesture_action_notifications_panel">Panel powiadomień</string>
     <string name="gesture_action_expand_qs">Rozwiń panel QS</string>
     <string name="gesture_action_ringer_modes">Tryby dzwonka</string>
-    <string name="essentials">Podstawowe</string>
+    <!-- Essentials Screen -->
+    <string name="essentials">Najbardziej przydatne</string>
     <string name="essential_notifications">Ważne powiadomienia</string>
     <string name="gaming">Granie</string>
     <string name="security">Bezpieczeństwo</string>
+    <!-- Essential Apps -->
     <string name="selected_apps">Wybrane aplikacje</string>
     <string name="selected_apps_description">Filtruj to, co ważne. Te aplikacje pozostają zgrupowane na górze.</string>
     <string name="no_apps_selected">Brak wybranych aplikacji</string>
@@ -156,12 +177,15 @@
     <string name="add_app">Dodaj aplikację</string>
     <string name="select_essential_apps">Wybierz ważne aplikacje</string>
     <string name="select_apps">Wybierz aplikacje</string>
+    <!-- App Picker -->
     <string name="loading_apps">Ładowanie aplikacji...</string>
     <string name="search_apps">Szukaj aplikacji...</string>
     <string name="show_system_apps">Pokaż aplikacje systemowe</string>
     <string name="selected_count">Wybrano: %1$d</string>
+    <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">Zoptymalizuj wrażenia z gry dzięki funkcjom GameSpace</string>
+    <!-- Game Spoofing -->
     <string name="game_spoofing">Spoofing w grach</string>
     <string name="game_spoofing_summary">Podszywanie się pod właściwości urządzenia dla gier</string>
     <string name="app_spoofing">Spoofing aplikacji</string>
@@ -187,6 +211,8 @@
     <string name="preset_saved">Preset zapisany</string>
     <string name="edit_app">Edytuj %1$s</string>
     <string name="add_app_title">Dodaj aplikację</string>
+    <!-- Device Profiles -->
+    <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Zarządzaj keybox dla spoofingu atestacji kluczy</string>
     <string name="keybox_management">Zarządzanie Keybox</string>
@@ -213,6 +239,7 @@
     <string name="target_mode_auto">Auto</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Konfiguruj spoofing odcisku palca kompilacji</string>
     <string name="fingerprint_spoofing">Spoofing odcisku palca</string>
@@ -238,12 +265,14 @@
     <string name="unlimited_backup">Nielimitowana kopia zapasowa w oryginalnej jakości</string>
     <string name="other_config_files">Inne pliki konfiguracyjne</string>
     <string name="configured_count">Skonfigurowano %1$d z %2$d</string>
-    <string name="priority_note">Priorytet: custom.pif.* > pif.* (używany pierwszy znaleziony)</string>
+    <string name="priority_note">Priorytet: custom.pif.* &gt; pif.* (używany pierwszy znaleziony)</string>
     <string name="active_in_use">Aktywne - Obecnie w użyciu</string>
     <string name="available_overridden">Dostępne - Nadpisane przez wyższy priorytet</string>
     <string name="not_configured">Nieskonfigurowane</string>
+    <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Ignoruj Window Secure</string>
     <string name="ignore_window_secure_summary">Zezwalaj na zrzuty i nagrywanie ekranu we wszystkich aplikacjach</string>
+    <!-- Performance Screen -->
     <string name="performance">Wydajność</string>
     <string name="performance_mode">Tryb wydajności</string>
     <string name="maximum_performance_enabled">Maksymalna wydajność włączona</string>
@@ -254,22 +283,28 @@
     <string name="touch_boost">Touch Boost</string>
     <string name="boost_active">Boost aktywny</string>
     <string name="boost_disabled">Boost wyłączony</string>
+    <!-- CPU Clusters -->
     <string name="little_cluster">Mały klaster</string>
     <string name="big_cluster">Duży klaster</string>
     <string name="prime_cluster">Główny klaster</string>
     <string name="boost_frequency">Częstotliwość boost</string>
     <string name="minimum_frequency">Minimalna częstotliwość</string>
     <string name="maximum_frequency">Maksymalna częstotliwość</string>
+    <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Wydajność grafiki</string>
     <string name="game_gpu_boost">Game GPU Boost</string>
     <string name="system_gpu_boost">System GPU Boost</string>
+    <!-- Performance Formats -->
     <string name="level_format">Poziom %1$d</string>
+    <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">Wydajność</string>
-    <string name="qs_tile_on">Wł</string>
-    <string name="qs_tile_off">Wył</string>
+    <string name="qs_tile_on">Włączone</string>
+    <string name="qs_tile_off">Wyłączone</string>
+    <!-- Multitasking Screen -->
     <string name="multitasking">Wielozadaniowość</string>
     <string name="edge_features">Funkcje krawędzi</string>
     <string name="sidebar">Pasek boczny</string>
     <string name="sidebar_summary">Szybki dostęp do ulubionych aplikacji z krawędzi</string>
+    <!-- Misc -->
 </resources>
