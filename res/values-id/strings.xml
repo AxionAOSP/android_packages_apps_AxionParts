@@ -22,49 +22,49 @@
     <string name="settings">Settings</string>
     <string name="active">Aktif</string>
     <string name="inactive">Inactive</string>
-    <string name="disabled">Disabled</string>
-    <string name="custom">Custom</string>
+    <string name="disabled">Dinonaktifkan</string>
+    <string name="custom">Khusus</string>
     <!-- Navigation -->
     <string name="customize">Sesuaikan</string>
     <string name="nav_customize">Sesuaikan</string>
     <string name="nav_essentials">Esensial</string>
-    <string name="nav_performance">Performance</string>
-    <string name="nav_multitasking">Multitasking</string>
-    <string name="personalizations">Personalizations</string>
+    <string name="nav_performance">Performa</string>
+    <string name="nav_multitasking">Multitugas</string>
+    <string name="personalizations">Personalisasi</string>
     <!-- Customize Screen -->
-    <string name="themes">Themes</string>
-    <string name="themes_subtitle">Icons, shapes &amp; more</string>
-    <string name="lockscreen">Lockscreen</string>
-    <string name="lockscreen_subtitle">Edge light, media &amp; visualizer</string>
+    <string name="themes">Tema</string>
+    <string name="themes_subtitle">Ikon, bentuk &amp; lainnya</string>
+    <string name="lockscreen">Layar kunci</string>
+    <string name="lockscreen_subtitle">Cahaya tepi, media &amp; visualisasi</string>
     <string name="ui_features"></string>
-    <string name="ui_features_subtitle">Status bar, QS &amp; more</string>
-    <string name="sound">Sound</string>
-    <string name="sound_subtitle">Per-app volume &amp; multi audio</string>
+    <string name="ui_features_subtitle">Bilah status, QS &amp; lainnya</string>
+    <string name="sound">Suara</string>
+    <string name="sound_subtitle">Volume per aplikasi &amp; audio ganda</string>
     <string name="gestures">Gestures</string>
-    <string name="gestures_subtitle">Shake &amp; three finger actions</string>
+    <string name="gestures_subtitle">Tindakan goyang &amp; tiga jari</string>
     <!-- Lockscreen Features -->
-    <string name="edge_light">Edge Light</string>
-    <string name="edge_light_description">Lighting effects on screen edges for notifications</string>
-    <string name="enable_edge_light">Enable Edge Light</string>
+    <string name="edge_light">Cahaya Tepi</string>
+    <string name="edge_light_description">Efek pencahayaan di tepi layar untuk notifikasi</string>
+    <string name="enable_edge_light">Aktifkan Cahaya Tepi</string>
     <string name="edge_light_summary"></string>
-    <string name="color_mode">Color mode</string>
-    <string name="notification_accent">Notification accent</string>
-    <string name="custom_color">Custom color</string>
+    <string name="color_mode">Mode warna</string>
+    <string name="notification_accent">Aksen notifikasi</string>
+    <string name="custom_color">Warna khusus</string>
     <string name="customization">Penyesuaian</string>
     <string name="custom_color_summary">#%1$06X</string>
-    <string name="choose_color">Choose color</string>
-    <string name="presets">Presets</string>
-    <string name="selected">Selected</string>
-    <string name="select_uppercase">Select</string>
-    <string name="select_item">Select an item</string>
+    <string name="choose_color">Pilih warna</string>
+    <string name="presets">Prasetel</string>
+    <string name="selected">Dipilih</string>
+    <string name="select_uppercase">Pilih</string>
+    <string name="select_item">Pilih item</string>
     <!-- Media Art -->
-    <string name="media_art">Media Art</string>
-    <string name="media_art_description">Album artwork on lockscreen during media playback</string>
+    <string name="media_art">Sampul Media</string>
+    <string name="media_art_description">Tampilan sampul album di layar kunci selama pemutaran media</string>
     <string name="enable_media_art">Aktifkan Sampul Media</string>
-    <string name="media_art_summary">Show album artwork on lockscreen during media playback</string>
-    <string name="appearance">Appearance</string>
-    <string name="blur_level">Blur Level</string>
-    <string name="blur_level_summary">Adjust the blur intensity of the album artwork</string>
+    <string name="media_art_summary">Tampilkan sampul album di layar kunci selama pemutaran media</string>
+    <string name="appearance">Tampilan</string>
+    <string name="blur_level">Tingkat keburaman</string>
+    <string name="blur_level_summary">Sesuaikan intensitas keburaman pada sampul album</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Pulse Visualizer</string>
     <string name="pulse_visualizer_description">Audio visualizer on lockscreen and ambient display</string>
@@ -273,7 +273,7 @@
     <string name="ignore_window_secure">Ignore Window Secure</string>
     <string name="ignore_window_secure_summary">Allow taking screenshots and screen recordings in all apps</string>
     <!-- Performance Screen -->
-    <string name="performance">Performance</string>
+    <string name="performance">Performa</string>
     <string name="performance_mode">Performance Mode</string>
     <string name="maximum_performance_enabled">Maximum performance enabled</string>
     <string name="balanced_mode">Balanced mode</string>
@@ -298,11 +298,11 @@
     <!-- Performance Formats -->
     <string name="level_format">Level %1$d</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">Performance</string>
+    <string name="qs_tile_performance">Performa</string>
     <string name="qs_tile_on">Aktif</string>
     <string name="qs_tile_off">Nonaktif</string>
     <!-- Multitasking Screen -->
-    <string name="multitasking">Multitasking</string>
+    <string name="multitasking">Multitugas</string>
     <string name="edge_features">Edge Features</string>
     <string name="sidebar">Sidebar</string>
     <string name="sidebar_summary">Quick access to your favorite apps from the edge</string>
