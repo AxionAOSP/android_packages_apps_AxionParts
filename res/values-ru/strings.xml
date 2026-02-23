@@ -240,7 +240,7 @@
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
     <!-- Play Integrity Fix -->
-    <string name="play_integrity_fix">Play Integrity Fix</string>
+    <string name="play_integrity_fix">Исправление Play Integrity</string>
     <string name="play_integrity_fix_summary">Настройка подмены отпечатка сборки</string>
     <string name="fingerprint_spoofing">Подмена отпечатка</string>
     <string name="active_config">Активно: %1$s</string>
