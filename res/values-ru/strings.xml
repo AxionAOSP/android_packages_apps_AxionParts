@@ -25,8 +25,8 @@
     <string name="disabled">Отключено</string>
     <string name="custom">Пользовательский</string>
     <!-- Navigation -->
-    <string name="customize">Customize</string>
-    <string name="nav_customize">Customize</string>
+    <string name="customize">Настроить</string>
+    <string name="nav_customize">Настроить</string>
     <string name="nav_essentials">Основное</string>
     <string name="nav_performance">Производительность</string>
     <string name="nav_multitasking">Многозадачность</string>
@@ -99,11 +99,11 @@
     <string name="start_time_summary">Когда AOD включается</string>
     <string name="end_time">Время окончания</string>
     <string name="end_time_summary">Когда AOD выключается</string>
-    <string name="when_to_show">When to Show</string>
-    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="when_to_show">Когда показывать</string>
+    <string name="aod_on_charge">AOD при зарядке</string>
     <string name="aod_on_charge_summary">Показывать AOD только во время зарядки устройства</string>
-    <string name="custom_schedule">Custom Schedule</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="custom_schedule">Настроить расписание</string>
+    <string name="custom_schedule_summary">Включить расписание AOD по времени</string>
     <string name="screen_off">Экран выключен</string>
     <string name="screen_off_aod">AOD при выключенном экране</string>
     <string name="screen_off_aod_summary">Оставить AOD активным при выключении экрана</string>
