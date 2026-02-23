@@ -92,8 +92,8 @@
     <string name="aod_schedule">Расписание AOD</string>
     <string name="always_on">Всегда включен</string>
     <string name="scheduled">По расписанию</string>
-    <string name="aod_charge_only">Charge only</string>
-    <string name="aod_scheduled_charge">Scheduled + Charge</string>
+    <string name="aod_charge_only">При зарядке</string>
+    <string name="aod_scheduled_charge">Расписание + Зарядка</string>
     <string name="schedule">Расписание</string>
     <string name="start_time">Время начала</string>
     <string name="start_time_summary">Когда AOD включается</string>
@@ -101,7 +101,7 @@
     <string name="end_time_summary">Когда AOD выключается</string>
     <string name="when_to_show">When to Show</string>
     <string name="aod_on_charge">AOD on Charge</string>
-    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="aod_on_charge_summary">Показывать AOD только во время зарядки устройства</string>
     <string name="custom_schedule">Custom Schedule</string>
     <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">Экран выключен</string>
@@ -119,9 +119,9 @@
     <string name="brightness_slider_summary">Показывать ползунок яркости в панели быстрых настроек</string>
     <string name="brightness_slider_position">Позиция ползунка яркости</string>
     <string name="brightness_slider_position_summary">Положение ползунка яркости в QS</string>
-    <string name="brightness_hidden">Скрыто</string>
+    <string name="brightness_hidden">Скрыт</string>
     <string name="brightness_show_expanded">Показывать при развёрнутых быстрых настройках</string>
-    <string name="brightness_always_visible">Всегда видимо</string>
+    <string name="brightness_always_visible">Показывать всегда</string>
     <string name="position_bottom">Снизу</string>
     <string name="position_top">Сверху</string>
     <string name="status_bar_icons">Иконки строки состояния</string>
