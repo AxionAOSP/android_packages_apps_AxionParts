@@ -60,14 +60,14 @@
     <!-- Media Art -->
     <string name="media_art">Medya Sanatı</string>
     <string name="media_art_description">Medya oynatımı sırasında kilit ekranında albüm kapağı</string>
-    <string name="enable_media_art">Medya Sanatını Etkinleştir</string>
+    <string name="enable_media_art">Albüm Kapağını Etkinleştir</string>
     <string name="media_art_summary">Medya oynatımı sırasında kilit ekranında albüm kapağı göster</string>
     <string name="appearance">Görünüm</string>
     <string name="blur_level">Bulanıklık Seviyesi</string>
     <string name="blur_level_summary">Albüm kapağının bulanıklık yoğunluğunu ayarla</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Pulse Görselleştirici</string>
-    <string name="pulse_visualizer_description">Kilit ekranı ve ambient ekranda ses görselleştirici</string>
+    <string name="pulse_visualizer_description">Kilit ekranı ve AOD ekranında Ses Görselleştirici</string>
     <string name="enable_pulse">Pulse\'u Etkinleştir</string>
     <string name="pulse_summary">Kilit ekranı ve ambient ekranda ses görselleştirici göster</string>
     <string name="style">Stil</string>
@@ -101,12 +101,12 @@
     <string name="end_time_summary">AOD kapanma zamanı</string>
     <string name="when_to_show">Ne Zaman Gösterilsin</string>
     <string name="aod_on_charge">Şarj Sırasında AOD</string>
-    <string name="aod_on_charge_summary">AOD\'yi sadece şarj sırasında göster</string>
+    <string name="aod_on_charge_summary">AOD sadece şarj sırasında gösterilsin</string>
     <string name="custom_schedule">Özel zamanlama</string>
     <string name="custom_schedule_summary">Saat bazlı AOD zamanlamasını etkinleştir</string>
     <string name="screen_off">Ekran Kapalı</string>
     <string name="screen_off_aod">Ekran Kapalıyken AOD</string>
-    <string name="screen_off_aod_summary">Ekran kapandığında AOD\'yi aktif tut</string>
+    <string name="screen_off_aod_summary">Ekran kapandığında AOD\'yi etkin tut</string>
     <string name="screen_off_animation">Ekran Kapatma Animasyonu</string>
     <string name="screen_off_animation_summary">AOD\'ye geçişi canlandır</string>
     <!-- UI Features -->
@@ -243,7 +243,7 @@
     <string name="play_integrity_fix">Play Entegrasyon Yaması</string>
     <string name="play_integrity_fix_summary">Yapı parmak izi sahteciliğini yapılandır</string>
     <string name="fingerprint_spoofing">Parmak İzi Sahteciliği</string>
-    <string name="active_config">Aktif: %1$s</string>
+    <string name="active_config">Etkin: %1$s</string>
     <string name="no_config_loaded">Yapılandırma yüklenmedi</string>
     <string name="fetch_pixel_beta">Pixel Beta Al</string>
     <string name="fetching">Alınıyor…</string>
@@ -266,7 +266,7 @@
     <string name="other_config_files">Diğer Yapılandırma Dosyaları</string>
     <string name="configured_count">%2$d\'dan %1$d yapılandırıldı</string>
     <string name="priority_note">Öncelik: custom.pif.* &gt; pif.* (bulunan ilk kullanılır)</string>
-    <string name="active_in_use">Aktif - Şu anda kullanımda</string>
+    <string name="active_in_use">Etkin - Şu anda kullanımda</string>
     <string name="available_overridden">Mevcut - Daha yüksek öncelik tarafından geçersiz kılındı</string>
     <string name="not_configured">Yapılandırılmadı</string>
     <!-- Security - Window Secure -->
@@ -281,7 +281,7 @@
     <string name="frequency_control">FREKANS KONTROL</string>
     <string name="display_boost">Ekran Hızlandırma</string>
     <string name="touch_boost">Dokunmatik Hızlandırma</string>
-    <string name="boost_active">Hızlandırma Aktif</string>
+    <string name="boost_active">Hızlandırma Etkin</string>
     <string name="boost_disabled">Hızlandırma Devre Dışı</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Küçük Küme</string>
