@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Axion Parts</string>
+    <string name="app_name">Bagian Axon</string>
     <!-- Common UI Elements -->
     <string name="back">Back</string>
     <string name="cancel">Batal</string>
@@ -36,7 +36,7 @@
     <string name="themes_subtitle">Icons, shapes &amp; more</string>
     <string name="lockscreen">Lockscreen</string>
     <string name="lockscreen_subtitle">Edge light, media &amp; visualizer</string>
-    <string name="ui_features">UI Features</string>
+    <string name="ui_features"></string>
     <string name="ui_features_subtitle">Status bar, QS &amp; more</string>
     <string name="sound">Sound</string>
     <string name="sound_subtitle">Per-app volume &amp; multi audio</string>
@@ -46,11 +46,11 @@
     <string name="edge_light">Edge Light</string>
     <string name="edge_light_description">Lighting effects on screen edges for notifications</string>
     <string name="enable_edge_light">Enable Edge Light</string>
-    <string name="edge_light_summary">Show lighting effects on screen edges for notifications</string>
+    <string name="edge_light_summary"></string>
     <string name="color_mode">Color mode</string>
     <string name="notification_accent">Notification accent</string>
     <string name="custom_color">Custom color</string>
-    <string name="customization">Customization</string>
+    <string name="customization">Penyesuaian</string>
     <string name="custom_color_summary">#%1$06X</string>
     <string name="choose_color">Choose color</string>
     <string name="presets">Presets</string>
@@ -60,7 +60,7 @@
     <!-- Media Art -->
     <string name="media_art">Media Art</string>
     <string name="media_art_description">Album artwork on lockscreen during media playback</string>
-    <string name="enable_media_art">Enable Media Art</string>
+    <string name="enable_media_art">Aktifkan Sampul Media</string>
     <string name="media_art_summary">Show album artwork on lockscreen during media playback</string>
     <string name="appearance">Appearance</string>
     <string name="blur_level">Blur Level</string>
@@ -125,7 +125,7 @@
     <string name="position_bottom">Bottom</string>
     <string name="position_top">Top</string>
     <string name="status_bar_icons">Status Bar Icons</string>
-    <string name="status_bar_tuner">Status Bar Tuner</string>
+    <string name="status_bar_tuner">Penyetel Bilah Status</string>
     <string name="status_bar_tuner_summary">Show or hide status bar icons</string>
     <!-- Sound Features -->
     <string name="per_app_volume">Per-App Volume</string>
@@ -143,7 +143,7 @@
     <string name="three_finger_gestures">Three Finger Gestures</string>
     <string name="three_finger_swipe">Three Finger Swipe</string>
     <string name="three_finger_swipe_summary">Action when swiping with three fingers</string>
-    <string name="three_finger_long_press">Three Finger Long Press</string>
+    <string name="three_finger_long_press"></string>
     <string name="three_finger_long_press_summary">Enable three finger long press gesture</string>
     <string name="disable_button_screenshot">Disable Button Screenshot</string>
     <string name="disable_button_screenshot_summary">Disable power + volume down screenshot combo</string>
