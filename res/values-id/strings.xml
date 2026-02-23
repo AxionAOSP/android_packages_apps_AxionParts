@@ -69,7 +69,7 @@
     <string name="pulse_visualizer">Pulse Visualizer</string>
     <string name="pulse_visualizer_description">Audio visualizer on lockscreen and ambient display</string>
     <string name="enable_pulse">Enable Pulse</string>
-    <string name="pulse_summary">Show audio visualizer on lockscreen and ambient display</string>
+    <string name="pulse_summary">Tampilkan visual audio di layar kunci dan tampilan cahaya</string>
     <string name="style">Style</string>
     <string name="render_style">Render Style</string>
     <string name="render_style_summary">Choose the visual style of the visualizer</string>
@@ -126,7 +126,7 @@
     <string name="position_top">Top</string>
     <string name="status_bar_icons">Status Bar Icons</string>
     <string name="status_bar_tuner">Penyetel Bilah Status</string>
-    <string name="status_bar_tuner_summary">Show or hide status bar icons</string>
+    <string name="status_bar_tuner_summary">Tampilkan atau sembunyikan ikon bilah status</string>
     <!-- Sound Features -->
     <string name="per_app_volume">Per-App Volume</string>
     <string name="per_app_volume_summary">Control volume separately for each app</string>
@@ -183,13 +183,13 @@
     <string name="show_system_apps">Show System Apps</string>
     <string name="selected_count">%1$d selected</string>
     <!-- GameSpace -->
-    <string name="gamespace">GameSpace</string>
-    <string name="gamespace_summary">Optimize your gaming experience with GameSpace features</string>
+    <string name="gamespace">Game Space </string>
+    <string name="gamespace_summary">Optimalkan Game Space</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Game Spoofing</string>
     <string name="game_spoofing_summary">Spoof device properties for specific games</string>
     <string name="app_spoofing">App Spoofing</string>
-    <string name="apps_configured">%1$d apps configured</string>
+    <string name="apps_configured">Aplilasi Konfigurasi</string>
     <string name="no_apps_configured">No apps configured</string>
     <string name="configured_apps">CONFIGURED APPS</string>
     <string name="no_apps_configured_empty">No apps configured</string>
@@ -229,7 +229,7 @@
     <string name="keybox_delete_failed">Failed to delete keybox: %1$s</string>
     <string name="target_configuration">Target Configuration</string>
     <string name="manage_target_apps">Manage Target Apps</string>
-    <string name="target_apps_configured">%1$d apps configured</string>
+    <string name="target_apps_configured">Aplilasi Konfigurasi</string>
     <string name="import_target_list">Import Target List</string>
     <string name="import_from_file">Import from file</string>
     <string name="target_list_imported">Target list imported successfully</string>
