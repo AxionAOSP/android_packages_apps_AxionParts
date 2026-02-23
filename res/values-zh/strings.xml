@@ -16,7 +16,7 @@
     <string name="clear">清除</string>
     <string name="expand">展开</string>
     <string name="collapse">收起</string>
-    <string name="search">搜索</string>
+    <string name="search">Search</string>
     <string name="create">创建</string>
     <string name="general">通用</string>
     <string name="settings">设置</string>
@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <string name="customize">Customize</string>
     <string name="nav_customize">Customize</string>
-    <string name="nav_essentials">常用功能</string>
+    <string name="nav_essentials">Essentials</string>
     <string name="nav_performance">Performance</string>
     <string name="nav_multitasking">Multitasking</string>
     <string name="personalizations">个性化设置</string>
@@ -150,7 +150,7 @@
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
     <string name="gesture_action_app_switch">App switch</string>
-    <string name="gesture_action_search">搜索</string>
+    <string name="gesture_action_search">Search</string>
     <string name="gesture_action_voice_search">Voice search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
@@ -165,7 +165,7 @@
     <string name="gesture_action_expand_qs">Expand QS panel</string>
     <string name="gesture_action_ringer_modes">Ringer modes</string>
     <!-- Essentials Screen -->
-    <string name="essentials">常用功能</string>
+    <string name="essentials">Essentials</string>
     <string name="essential_notifications">Essential Notifications</string>
     <string name="gaming">Gaming</string>
     <string name="security">Security</string>
