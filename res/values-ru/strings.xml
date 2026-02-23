@@ -183,7 +183,7 @@
     <string name="show_system_apps">Показать системные приложения</string>
     <string name="selected_count">Выбрано: %1$d</string>
     <!-- GameSpace -->
-    <string name="gamespace">GameSpace</string>
+    <string name="gamespace">Игровое пространство</string>
     <string name="gamespace_summary">Оптимизация игрового опыта с функциями GameSpace</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Подмена устройства для игр</string>
