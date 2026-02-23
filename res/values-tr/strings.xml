@@ -4,8 +4,8 @@
     <string name="app_name">Axion Parts</string>
     <!-- Common UI Elements -->
     <string name="back">Geri</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
+    <string name="cancel">Vazgeç</string>
+    <string name="save">Kaydet</string>
     <string name="delete">Sil</string>
     <string name="remove">Sil</string>
     <string name="add">Ekle</string>
@@ -53,7 +53,7 @@
     <string name="customization">Özelleştirme</string>
     <string name="custom_color_summary">#%1$06X</string>
     <string name="choose_color">Renk seç</string>
-    <string name="presets">Hazır Ayarlar</string>
+    <string name="presets">Ön Ayarlar</string>
     <string name="selected">Seçildi</string>
     <string name="select_uppercase">Seç</string>
     <string name="select_item">Bir öğe seçin</string>
@@ -92,18 +92,18 @@
     <string name="aod_schedule">AOD Programı</string>
     <string name="always_on">Her zaman açık</string>
     <string name="scheduled">Zamanlanmış</string>
-    <string name="aod_charge_only">Charge only</string>
-    <string name="aod_scheduled_charge">Scheduled + Charge</string>
+    <string name="aod_charge_only">Yalnızca şarj</string>
+    <string name="aod_scheduled_charge">Zamanlanmış + Şarj</string>
     <string name="schedule">Program</string>
     <string name="start_time">Başlangıç zamanı</string>
     <string name="start_time_summary">AOD açılma zamanı</string>
     <string name="end_time">Bitiş zamanı</string>
     <string name="end_time_summary">AOD kapanma zamanı</string>
-    <string name="when_to_show">When to Show</string>
-    <string name="aod_on_charge">AOD on Charge</string>
-    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
-    <string name="custom_schedule">Custom Schedule</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="when_to_show">Ne Zaman Gösterilsin</string>
+    <string name="aod_on_charge">Şarj Sırasında AOD</string>
+    <string name="aod_on_charge_summary">AOD\'yi sadece şarj sırasında göster</string>
+    <string name="custom_schedule">Özel zamanlama</string>
+    <string name="custom_schedule_summary">Saat bazlı AOD zamanlamasını etkinleştir</string>
     <string name="screen_off">Ekran Kapalı</string>
     <string name="screen_off_aod">Ekran Kapalıyken AOD</string>
     <string name="screen_off_aod_summary">Ekran kapandığında AOD\'yi aktif tut</string>
@@ -183,7 +183,7 @@
     <string name="show_system_apps">Sistem Uygulamalarını Göster</string>
     <string name="selected_count">%1$d seçildi</string>
     <!-- GameSpace -->
-    <string name="gamespace">GameSpace</string>
+    <string name="gamespace">Oyun Sahası</string>
     <string name="gamespace_summary">GameSpace özellikleriyle oyun deneyiminizi optimize edin</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Oyun Sahteciliği</string>
@@ -240,7 +240,7 @@
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
     <!-- Play Integrity Fix -->
-    <string name="play_integrity_fix">Play Integrity Fix</string>
+    <string name="play_integrity_fix">Play Entegrasyon Yaması</string>
     <string name="play_integrity_fix_summary">Yapı parmak izi sahteciliğini yapılandır</string>
     <string name="fingerprint_spoofing">Parmak İzi Sahteciliği</string>
     <string name="active_config">Aktif: %1$s</string>
@@ -291,7 +291,7 @@
     <string name="minimum_frequency">Minimum Frekans</string>
     <string name="maximum_frequency">Maksimum Frekans</string>
     <!-- GPU -->
-    <string name="gpu">GPU</string>
+    <string name="gpu">Grafik İşlem Birimi</string>
     <string name="graphics_performance">Grafik Performansı</string>
     <string name="game_gpu_boost">Oyun GPU Hızlandırma</string>
     <string name="system_gpu_boost">Sistem GPU Hızlandırma</string>
