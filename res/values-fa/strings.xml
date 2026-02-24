@@ -8,7 +8,7 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="remove">Remove</string>
-    <string name="add">Add</string>
+    <string name="add">افزودن</string>
     <string name="edit">Edit</string>
     <string name="replace">Replace</string>
     <string name="import_text">Import</string>
@@ -16,7 +16,7 @@
     <string name="clear">Clear</string>
     <string name="expand">Expand</string>
     <string name="collapse">Collapse</string>
-    <string name="search">Search</string>
+    <string name="search">جستجو</string>
     <string name="create">Create</string>
     <string name="general">General</string>
     <string name="settings">Settings</string>
@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <string name="customize">Customize</string>
     <string name="nav_customize">Customize</string>
-    <string name="nav_essentials">Essentials</string>
+    <string name="nav_essentials">کاربردی</string>
     <string name="nav_performance">Performance</string>
     <string name="nav_multitasking">Multitasking</string>
     <string name="personalizations">Personalizations</string>
@@ -150,7 +150,7 @@
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
     <string name="gesture_action_app_switch">App switch</string>
-    <string name="gesture_action_search">Search</string>
+    <string name="gesture_action_search">جستجو</string>
     <string name="gesture_action_voice_search">Voice search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
@@ -165,7 +165,7 @@
     <string name="gesture_action_expand_qs">Expand QS panel</string>
     <string name="gesture_action_ringer_modes">Ringer modes</string>
     <!-- Essentials Screen -->
-    <string name="essentials">Essentials</string>
+    <string name="essentials">کاربردی</string>
     <string name="essential_notifications">Essential Notifications</string>
     <string name="gaming">Gaming</string>
     <string name="security">Security</string>
