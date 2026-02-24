@@ -4,9 +4,9 @@
     <string name="app_name">Axion Parts</string>
     <!-- Common UI Elements -->
     <string name="back">Back</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
-    <string name="delete">Delete</string>
+    <string name="cancel">گذشتن</string>
+    <string name="save">به‌ یاد سپاری</string>
+    <string name="delete">پاک</string>
     <string name="remove">جداکردن</string>
     <string name="add">افزودن</string>
     <string name="edit">Edit</string>
