@@ -3,15 +3,15 @@
     <!-- App Name -->
     <string name="app_name">Partes da Axion</string>
     <!-- Common UI Elements -->
-    <string name="back">Back</string>
+    <string name="back">Voltar</string>
     <string name="cancel">Cancelar</string>
     <string name="save">Salvar</string>
-    <string name="delete">Delete</string>
+    <string name="delete">Deletar</string>
     <string name="remove">Remover</string>
     <string name="add">Adicionar</string>
     <string name="edit">Editar</string>
     <string name="replace">Substituir</string>
-    <string name="import_text">Import</string>
+    <string name="import_text">Importar</string>
     <string name="reload">Recarregar</string>
     <string name="clear">Limpar</string>
     <string name="expand">Expandir</string>
@@ -259,7 +259,7 @@
     <string name="deleted_file">%1$s excluído</string>
     <string name="delete_file_title">Excluir %1$s?</string>
     <string name="delete_config_message">Este arquivo de configuração será removido.</string>
-    <string name="import_text_verb">Import</string>
+    <string name="import_text_verb">Importar</string>
     <string name="active_config_title">Configuração ativa</string>
     <string name="spoof_google_photos">Falsificar Google Photos</string>
     <string name="unlimited_backup">Backup ilimitado na qualidade original</string>
