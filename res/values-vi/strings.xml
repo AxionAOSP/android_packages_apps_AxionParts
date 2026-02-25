@@ -184,11 +184,11 @@
     <string name="selected_count">Đã chọn %1$d</string>
     <!-- GameSpace -->
     <string name="gamespace">Không gian trò chơi</string>
-    <string name="gamespace_summary">Cải thiện trải nghiệm chơi game với các tính năng Gamespace</string>
+    <string name="gamespace_summary">Cải thiện trải nghiệm chơi game với các tính năng của không gian trò chơi</string>
     <!-- Game Spoofing -->
-    <string name="game_spoofing">Giả lập trò chơi</string>
-    <string name="game_spoofing_summary">Giả lập các thuộc tính thiết bị cho các trò chơi cụ thể</string>
-    <string name="app_spoofing">Giả lập ứng dụng</string>
+    <string name="game_spoofing">Giả mạo trò chơi</string>
+    <string name="game_spoofing_summary">Giả mạo các thuộc tính thiết bị cho các trò chơi cụ thể</string>
+    <string name="app_spoofing">Giả mạo ứng dụng</string>
     <string name="apps_configured">Đã cấu hình %1$d ứng dụng</string>
     <string name="no_apps_configured">Chưa cấu hình ứng dụng nào</string>
     <string name="configured_apps">Ứng dụng đã cấu hình</string>
@@ -196,7 +196,7 @@
     <string name="add_apps_to_spoof">Thêm ứng dụng để bắt đầu giả lập thuộc tính thiết bị</string>
     <string name="configuration_saved">Đã lưu cấu hình</string>
     <string name="remove_game_title">Gỡ bỏ trò chơi?</string>
-    <string name="remove_game_message">Thao tác này sẽ gỡ bỏ cấu hình giả lập cho trò chơi này.</string>
+    <string name="remove_game_message">Thao tác này sẽ gỡ bỏ cấu hình giả mạo cho trò chơi này.</string>
     <string name="select_an_app">Chọn một ứng dụng:</string>
     <string name="select_device_profile">Chọn cấu hình thiết bị:</string>
     <string name="create_new">Tạo mới</string>
@@ -214,7 +214,7 @@
     <!-- Device Profiles -->
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
-    <string name="trickystore_summary">Quản lý keybox để giả lập xác thực khóa (Key Attestation)</string>
+    <string name="trickystore_summary">Quản lý keybox để giả mạo xác thực khóa (Key Attestation)</string>
     <string name="keybox_management">Quản lý Keybox</string>
     <string name="import_keybox">Nhập Keybox</string>
     <string name="keybox_installed">Keybox đã được cài đặt</string>
@@ -222,7 +222,7 @@
     <string name="delete_keybox">Xóa Keybox</string>
     <string name="remove_keybox_file">Gỡ bỏ tệp keybox hiện tại</string>
     <string name="delete_keybox_title">Xóa Keybox?</string>
-    <string name="delete_keybox_message">Thao tác này sẽ xóa tệp keybox.xml. Giả lập chứng chỉ sẽ bị vô hiệu hóa cho đến khi một keybox mới được nhập.</string>
+    <string name="delete_keybox_message">Thao tác này sẽ xóa tệp keybox.xml. Giả mạo chứng chỉ sẽ bị vô hiệu hóa cho đến khi một keybox mới được nhập.</string>
     <string name="keybox_imported_success">Đã nhập Keybox thành công</string>
     <string name="keybox_import_failed">Nhập Keybox thất bại: %1$s</string>
     <string name="keybox_deleted">Đã xóa Keybox</string>
