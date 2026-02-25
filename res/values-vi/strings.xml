@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Axion Parts</string>
+    <string name="app_name">Thành phần của Axion</string>
     <!-- Common UI Elements -->
     <string name="back">Back</string>
     <string name="cancel">Cancel</string>
@@ -33,7 +33,7 @@
     <string name="personalizations">Cá nhân hóa</string>
     <!-- Customize Screen -->
     <string name="themes">Chủ đề</string>
-    <string name="themes_subtitle">Biểu tượng, hình dạng &amp; hơn thế nữa</string>
+    <string name="themes_subtitle">Biểu tượng, hình dạng &amp; và hơn thế nữa</string>
     <string name="lockscreen">Màn hình khóa</string>
     <string name="lockscreen_subtitle">Cạnh sáng, Đa phương tiện &amp; Trình hiển thị</string>
     <string name="ui_features">Tính năng UI</string>
@@ -92,18 +92,18 @@
     <string name="aod_schedule">Lịch trình AOD</string>
     <string name="always_on">Luôn bật</string>
     <string name="scheduled">Theo lịch trình</string>
-    <string name="aod_charge_only">Charge only</string>
-    <string name="aod_scheduled_charge">Scheduled + Charge</string>
+    <string name="aod_charge_only">Chỉ sạc</string>
+    <string name="aod_scheduled_charge">Lên lịch + Sạc</string>
     <string name="schedule">Lịch trình</string>
     <string name="start_time">Thời gian bắt đầu</string>
     <string name="start_time_summary">Thời điểm bật AOD</string>
     <string name="end_time">Thời gian kết thúc</string>
     <string name="end_time_summary">Thời điểm tắt AOD</string>
-    <string name="when_to_show">When to Show</string>
-    <string name="aod_on_charge">AOD on Charge</string>
-    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
-    <string name="custom_schedule">Custom Schedule</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="when_to_show">Hiển thị khi</string>
+    <string name="aod_on_charge">AOD khi sạc</string>
+    <string name="aod_on_charge_summary">Hiển thị AOD chỉ khi thiết bị đang được sạc</string>
+    <string name="custom_schedule">Tùy chỉnh lịch trình</string>
+    <string name="custom_schedule_summary">Lịch trình kích hoạt AOD dựa vào thời gian</string>
     <string name="screen_off">Tắt màn hình</string>
     <string name="screen_off_aod">AOD khi tắt màn hình</string>
     <string name="screen_off_aod_summary">Giữ AOD hoạt động khi màn hình tắt</string>
