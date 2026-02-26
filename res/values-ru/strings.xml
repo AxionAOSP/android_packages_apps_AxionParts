@@ -5,7 +5,7 @@
     <!-- Common UI Elements -->
     <string name="back">Назад</string>
     <string name="cancel">Отмена</string>
-    <string name="save">Сохранять</string>
+    <string name="save">Сохранить</string>
     <string name="delete">Удалить</string>
     <string name="remove">Убрать</string>
     <string name="add">Добавить</string>
@@ -33,7 +33,7 @@
     <string name="personalizations">Персонализация</string>
     <!-- Customize Screen -->
     <string name="themes">Темы</string>
-    <string name="themes_subtitle">Иконки, формы и многое другое</string>
+    <string name="themes_subtitle">Иконки, формы и другое</string>
     <string name="lockscreen">Экран блокировки</string>
     <string name="lockscreen_subtitle">Подсветка краев, медиа и визуализатор</string>
     <string name="ui_features">Функции интерфейса</string>
@@ -43,7 +43,7 @@
     <string name="gestures">Жесты</string>
     <string name="gestures_subtitle">Встряхивание и жесты тремя пальцами</string>
     <!-- Lockscreen Features -->
-    <string name="edge_light">Подсветка краев</string>
+    <string name="edge_light">Подсветка краёв</string>
     <string name="edge_light_description">Световые эффекты по краям экрана для уведомлений</string>
     <string name="enable_edge_light">Включить подсветку краев</string>
     <string name="edge_light_summary">Показывать световые эффекты по краям экрана для уведомлений</string>
