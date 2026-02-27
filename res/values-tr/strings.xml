@@ -33,15 +33,15 @@
     <string name="personalizations">Kişiselleştirmeler</string>
     <!-- Customize Screen -->
     <string name="themes">Temalar</string>
-    <string name="themes_subtitle">Simgeler, şekiller ve daha fazlası</string>
+    <string name="themes_subtitle">Simgeler, şekiller &amp; daha fazlası</string>
     <string name="lockscreen">Kilit Ekranı</string>
-    <string name="lockscreen_subtitle">Kenar ışığı, medya ve görselleştirici</string>
+    <string name="lockscreen_subtitle">Kenar ışığı, medya &amp; görselleştirici</string>
     <string name="ui_features">Arayüz Özellikleri</string>
-    <string name="ui_features_subtitle">Durum çubuğu, hızlı ayarlar ve daha fazlası</string>
+    <string name="ui_features_subtitle">Durum çubuğu, hızlı ayarlar &amp; daha fazlası</string>
     <string name="sound">Ses</string>
-    <string name="sound_subtitle">Uygulama başına ses ve çoklu ses</string>
+    <string name="sound_subtitle">Uygulama başına ses &amp; çoklu ses</string>
     <string name="gestures">Hareketler</string>
-    <string name="gestures_subtitle">Sallama ve üç parmak hareketleri</string>
+    <string name="gestures_subtitle">Sallama &amp; üç parmak hareketleri</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Kenar Işığı</string>
     <string name="edge_light_description">Bildirimler için ekran kenarlarında ışık efektleri</string>
