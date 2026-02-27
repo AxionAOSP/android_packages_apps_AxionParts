@@ -112,7 +112,7 @@
     <!-- UI Features -->
     <string name="user_interface">Kullanıcı Arayüzü</string>
     <string name="quick_settings">Hızlı Ayarlar</string>
-    <string name="quick_settings_description">Parlaklık kaydırıcısı, karolar ve panel özelleştirme</string>
+    <string name="quick_settings_description">Parlaklık kaydırıcısı, karolar &amp; panel özelleştirme</string>
     <string name="status_bar">Durum Çubuğu</string>
     <string name="status_bar_description">Saat, simgeler ve ağ göstergeleri</string>
     <string name="brightness_slider">Parlaklık Kaydırıcısı</string>
@@ -178,8 +178,8 @@
     <string name="select_essential_apps">Temel Uygulamaları Seç</string>
     <string name="select_apps">Uygulama Seç</string>
     <!-- App Picker -->
-    <string name="loading_apps">Uygulamalar yükleniyor…</string>
-    <string name="search_apps">Uygulama ara…</string>
+    <string name="loading_apps">Uygulamalar yükleniyor...</string>
+    <string name="search_apps">Uygulama ara...</string>
     <string name="show_system_apps">Sistem Uygulamalarını Göster</string>
     <string name="selected_count">%1$d seçildi</string>
     <!-- GameSpace -->
@@ -291,7 +291,7 @@
     <string name="minimum_frequency">Minimum Frekans</string>
     <string name="maximum_frequency">Maksimum Frekans</string>
     <!-- GPU -->
-    <string name="gpu">Grafik İşlem Birimi</string>
+    <string name="gpu">GPU</string>
     <string name="graphics_performance">Grafik Performansı</string>
     <string name="game_gpu_boost">Oyun GPU Hızlandırma</string>
     <string name="system_gpu_boost">Sistem GPU Hızlandırma</string>
