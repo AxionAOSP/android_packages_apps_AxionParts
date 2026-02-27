@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Axion Parts</string>
+    <string name="app_name">Partes Axion</string>
     <!-- Common UI Elements -->
     <string name="back">Atrás</string>
     <string name="cancel">Cancelar</string>
@@ -53,7 +53,7 @@
     <string name="customization">Personalización</string>
     <string name="custom_color_summary">#%1$06X</string>
     <string name="choose_color">Elegir color</string>
-    <string name="presets">Preajustes</string>
+    <string name="presets">Ajustes por defecto</string>
     <string name="selected">Seleccionado</string>
     <string name="select_uppercase">Seleccionar</string>
     <string name="select_item">Selecciona un elemento</string>
@@ -183,7 +183,7 @@
     <string name="show_system_apps">Mostrar aplicaciones del sistema</string>
     <string name="selected_count">%1$d seleccionadas</string>
     <!-- GameSpace -->
-    <string name="gamespace">GameSpace</string>
+    <string name="gamespace">Espacios de Juegos</string>
     <string name="gamespace_summary">Optimiza tu experiencia de juego con las funciones de GameSpace</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Falsificación de juegos</string>
