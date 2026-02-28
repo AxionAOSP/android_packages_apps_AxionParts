@@ -4,7 +4,7 @@
     <string name="app_name">Axion Parts</string>
     <!-- Common UI Elements -->
     <string name="back">Back</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">Kanselahin</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="remove">Remove</string>
@@ -122,8 +122,8 @@
     <string name="brightness_hidden">Hidden</string>
     <string name="brightness_show_expanded">Show when quick settings is expanded</string>
     <string name="brightness_always_visible">Always Visible</string>
-    <string name="position_bottom">Bottom</string>
-    <string name="position_top">Top</string>
+    <string name="position_bottom">Baba</string>
+    <string name="position_top">Taas</string>
     <string name="status_bar_icons">Status Bar Icons</string>
     <string name="status_bar_tuner">Status Bar Tuner</string>
     <string name="status_bar_tuner_summary">Show or hide status bar icons</string>

@@ -5,7 +5,7 @@
     <!-- Common UI Elements -->
     <string name="back">Назад</string>
     <string name="cancel">Отмена</string>
-    <string name="save">Сохранять</string>
+    <string name="save">Сохранить</string>
     <string name="delete">Удалить</string>
     <string name="remove">Убрать</string>
     <string name="add">Добавить</string>
@@ -25,15 +25,15 @@
     <string name="disabled">Отключено</string>
     <string name="custom">Пользовательский</string>
     <!-- Navigation -->
-    <string name="customize">Customize</string>
-    <string name="nav_customize">Customize</string>
+    <string name="customize">Настроить</string>
+    <string name="nav_customize">Настроить</string>
     <string name="nav_essentials">Основное</string>
     <string name="nav_performance">Производительность</string>
     <string name="nav_multitasking">Многозадачность</string>
     <string name="personalizations">Персонализация</string>
     <!-- Customize Screen -->
     <string name="themes">Темы</string>
-    <string name="themes_subtitle">Иконки, формы и многое другое</string>
+    <string name="themes_subtitle">Иконки, формы и другое</string>
     <string name="lockscreen">Экран блокировки</string>
     <string name="lockscreen_subtitle">Подсветка краев, медиа и визуализатор</string>
     <string name="ui_features">Функции интерфейса</string>
@@ -43,7 +43,7 @@
     <string name="gestures">Жесты</string>
     <string name="gestures_subtitle">Встряхивание и жесты тремя пальцами</string>
     <!-- Lockscreen Features -->
-    <string name="edge_light">Подсветка краев</string>
+    <string name="edge_light">Подсветка краёв</string>
     <string name="edge_light_description">Световые эффекты по краям экрана для уведомлений</string>
     <string name="enable_edge_light">Включить подсветку краев</string>
     <string name="edge_light_summary">Показывать световые эффекты по краям экрана для уведомлений</string>
@@ -99,11 +99,11 @@
     <string name="start_time_summary">Когда AOD включается</string>
     <string name="end_time">Время окончания</string>
     <string name="end_time_summary">Когда AOD выключается</string>
-    <string name="when_to_show">When to Show</string>
-    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="when_to_show">Когда показывать</string>
+    <string name="aod_on_charge">AOD при зарядке</string>
     <string name="aod_on_charge_summary">Показывать AOD только во время зарядки устройства</string>
-    <string name="custom_schedule">Custom Schedule</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="custom_schedule">Настроить расписание</string>
+    <string name="custom_schedule_summary">Включить расписание AOD по времени</string>
     <string name="screen_off">Экран выключен</string>
     <string name="screen_off_aod">AOD при выключенном экране</string>
     <string name="screen_off_aod_summary">Оставить AOD активным при выключении экрана</string>
@@ -183,7 +183,7 @@
     <string name="show_system_apps">Показать системные приложения</string>
     <string name="selected_count">Выбрано: %1$d</string>
     <!-- GameSpace -->
-    <string name="gamespace">GameSpace</string>
+    <string name="gamespace">Игровое пространство</string>
     <string name="gamespace_summary">Оптимизация игрового опыта с функциями GameSpace</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Подмена устройства для игр</string>

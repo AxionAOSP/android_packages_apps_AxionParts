@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Axion Parts</string>
+    <string name="app_name">Thành phần của Axion</string>
     <!-- Common UI Elements -->
     <string name="back">Back</string>
     <string name="cancel">Cancel</string>
@@ -33,7 +33,7 @@
     <string name="personalizations">Cá nhân hóa</string>
     <!-- Customize Screen -->
     <string name="themes">Chủ đề</string>
-    <string name="themes_subtitle">Biểu tượng, hình dạng &amp; hơn thế nữa</string>
+    <string name="themes_subtitle">Biểu tượng, hình dạng &amp; và hơn thế nữa</string>
     <string name="lockscreen">Màn hình khóa</string>
     <string name="lockscreen_subtitle">Cạnh sáng, Đa phương tiện &amp; Trình hiển thị</string>
     <string name="ui_features">Tính năng UI</string>
@@ -92,18 +92,18 @@
     <string name="aod_schedule">Lịch trình AOD</string>
     <string name="always_on">Luôn bật</string>
     <string name="scheduled">Theo lịch trình</string>
-    <string name="aod_charge_only">Charge only</string>
-    <string name="aod_scheduled_charge">Scheduled + Charge</string>
+    <string name="aod_charge_only">Chỉ sạc</string>
+    <string name="aod_scheduled_charge">Lên lịch + Sạc</string>
     <string name="schedule">Lịch trình</string>
     <string name="start_time">Thời gian bắt đầu</string>
     <string name="start_time_summary">Thời điểm bật AOD</string>
     <string name="end_time">Thời gian kết thúc</string>
     <string name="end_time_summary">Thời điểm tắt AOD</string>
-    <string name="when_to_show">When to Show</string>
-    <string name="aod_on_charge">AOD on Charge</string>
-    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
-    <string name="custom_schedule">Custom Schedule</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="when_to_show">Hiển thị khi</string>
+    <string name="aod_on_charge">AOD khi sạc</string>
+    <string name="aod_on_charge_summary">Hiển thị AOD chỉ khi thiết bị đang được sạc</string>
+    <string name="custom_schedule">Tùy chỉnh lịch trình</string>
+    <string name="custom_schedule_summary">Lịch trình kích hoạt AOD dựa vào thời gian</string>
     <string name="screen_off">Tắt màn hình</string>
     <string name="screen_off_aod">AOD khi tắt màn hình</string>
     <string name="screen_off_aod_summary">Giữ AOD hoạt động khi màn hình tắt</string>
@@ -184,11 +184,11 @@
     <string name="selected_count">Đã chọn %1$d</string>
     <!-- GameSpace -->
     <string name="gamespace">Không gian trò chơi</string>
-    <string name="gamespace_summary">Cải thiện trải nghiệm chơi game với các tính năng Gamespace</string>
+    <string name="gamespace_summary">Cải thiện trải nghiệm chơi game với các tính năng của không gian trò chơi</string>
     <!-- Game Spoofing -->
-    <string name="game_spoofing">Giả lập trò chơi</string>
-    <string name="game_spoofing_summary">Giả lập các thuộc tính thiết bị cho các trò chơi cụ thể</string>
-    <string name="app_spoofing">Giả lập ứng dụng</string>
+    <string name="game_spoofing">Giả mạo trò chơi</string>
+    <string name="game_spoofing_summary">Giả mạo các thuộc tính thiết bị cho các trò chơi cụ thể</string>
+    <string name="app_spoofing">Giả mạo ứng dụng</string>
     <string name="apps_configured">Đã cấu hình %1$d ứng dụng</string>
     <string name="no_apps_configured">Chưa cấu hình ứng dụng nào</string>
     <string name="configured_apps">Ứng dụng đã cấu hình</string>
@@ -196,7 +196,7 @@
     <string name="add_apps_to_spoof">Thêm ứng dụng để bắt đầu giả lập thuộc tính thiết bị</string>
     <string name="configuration_saved">Đã lưu cấu hình</string>
     <string name="remove_game_title">Gỡ bỏ trò chơi?</string>
-    <string name="remove_game_message">Thao tác này sẽ gỡ bỏ cấu hình giả lập cho trò chơi này.</string>
+    <string name="remove_game_message">Thao tác này sẽ gỡ bỏ cấu hình giả mạo cho trò chơi này.</string>
     <string name="select_an_app">Chọn một ứng dụng:</string>
     <string name="select_device_profile">Chọn cấu hình thiết bị:</string>
     <string name="create_new">Tạo mới</string>
@@ -214,7 +214,7 @@
     <!-- Device Profiles -->
     <!-- Security Features -->
     <string name="trickystore">TrickyStore</string>
-    <string name="trickystore_summary">Quản lý keybox để giả lập xác thực khóa (Key Attestation)</string>
+    <string name="trickystore_summary">Quản lý keybox để giả mạo xác thực khóa (Key Attestation)</string>
     <string name="keybox_management">Quản lý Keybox</string>
     <string name="import_keybox">Nhập Keybox</string>
     <string name="keybox_installed">Keybox đã được cài đặt</string>
@@ -222,7 +222,7 @@
     <string name="delete_keybox">Xóa Keybox</string>
     <string name="remove_keybox_file">Gỡ bỏ tệp keybox hiện tại</string>
     <string name="delete_keybox_title">Xóa Keybox?</string>
-    <string name="delete_keybox_message">Thao tác này sẽ xóa tệp keybox.xml. Giả lập chứng chỉ sẽ bị vô hiệu hóa cho đến khi một keybox mới được nhập.</string>
+    <string name="delete_keybox_message">Thao tác này sẽ xóa tệp keybox.xml. Giả mạo chứng chỉ sẽ bị vô hiệu hóa cho đến khi một keybox mới được nhập.</string>
     <string name="keybox_imported_success">Đã nhập Keybox thành công</string>
     <string name="keybox_import_failed">Nhập Keybox thất bại: %1$s</string>
     <string name="keybox_deleted">Đã xóa Keybox</string>

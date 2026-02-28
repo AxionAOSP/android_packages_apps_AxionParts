@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Axion Parts</string>
+    <string name="app_name">Partes da Axion</string>
     <!-- Common UI Elements -->
-    <string name="back">Back</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
-    <string name="delete">Delete</string>
+    <string name="back">Voltar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Salvar</string>
+    <string name="delete">Deletar</string>
     <string name="remove">Remover</string>
     <string name="add">Adicionar</string>
     <string name="edit">Editar</string>
     <string name="replace">Substituir</string>
-    <string name="import_text">Import</string>
+    <string name="import_text">Importar</string>
     <string name="reload">Recarregar</string>
     <string name="clear">Limpar</string>
     <string name="expand">Expandir</string>
@@ -93,17 +93,17 @@
     <string name="always_on">Sempre ativo</string>
     <string name="scheduled">Agendado</string>
     <string name="aod_charge_only">Apenas carregar</string>
-    <string name="aod_scheduled_charge">Scheduled + Charge</string>
+    <string name="aod_scheduled_charge">Agendado + Carga</string>
     <string name="schedule">Horário</string>
     <string name="start_time">Hora de início</string>
     <string name="start_time_summary">Quando AOD liga</string>
     <string name="end_time">Hora de término</string>
     <string name="end_time_summary">Quando AOD desliga</string>
     <string name="when_to_show">Quando mostrar</string>
-    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge">AOD durante carga</string>
     <string name="aod_on_charge_summary">Mostrar AOD apenas quando o dispositivo estiver carregando</string>
-    <string name="custom_schedule">Custom Schedule</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="custom_schedule">Agendamento personalizado</string>
+    <string name="custom_schedule_summary">Habilitar cronograma AOD baseado no tempo</string>
     <string name="screen_off">Tela desligada</string>
     <string name="screen_off_aod">AOD com tela desligada</string>
     <string name="screen_off_aod_summary">Manter AOD ativo quando a tela desligar</string>
@@ -183,7 +183,7 @@
     <string name="show_system_apps">Mostrar aplicativos do sistema</string>
     <string name="selected_count">%1$d selecionados</string>
     <!-- GameSpace -->
-    <string name="gamespace">GameSpace</string>
+    <string name="gamespace">Espaço de Jogos</string>
     <string name="gamespace_summary">Otimize sua experiência de jogo com recursos do GameSpace</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Falsificação de jogos</string>
@@ -213,7 +213,7 @@
     <string name="add_app_title">Adicionar aplicativo</string>
     <!-- Device Profiles -->
     <!-- Security Features -->
-    <string name="trickystore">TrickyStore</string>
+    <string name="trickystore">Tricky Store</string>
     <string name="trickystore_summary">Gerenciar keybox para falsificação de attestation</string>
     <string name="keybox_management">Gerenciamento de Keybox</string>
     <string name="import_keybox">Importar Keybox</string>
@@ -237,8 +237,8 @@
     <string name="select_target_apps">Selecionar aplicativos de destino</string>
     <string name="choose_apps_for_attestation">Escolha aplicativos para ativar falsificação de attestation</string>
     <string name="target_mode_auto">Automático</string>
-    <string name="target_mode_leaf_hack">Leaf ?</string>
-    <string name="target_mode_cert_gen">Gen !</string>
+    <string name="target_mode_leaf_hack">Leaf?</string>
+    <string name="target_mode_cert_gen">Gen!</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Correção de Play Integrity</string>
     <string name="play_integrity_fix_summary">Configurar falsificação de impressão digital de compilação</string>
@@ -259,7 +259,7 @@
     <string name="deleted_file">%1$s excluído</string>
     <string name="delete_file_title">Excluir %1$s?</string>
     <string name="delete_config_message">Este arquivo de configuração será removido.</string>
-    <string name="import_text_verb">Import</string>
+    <string name="import_text_verb">Importar</string>
     <string name="active_config_title">Configuração ativa</string>
     <string name="spoof_google_photos">Falsificar Google Photos</string>
     <string name="unlimited_backup">Backup ilimitado na qualidade original</string>

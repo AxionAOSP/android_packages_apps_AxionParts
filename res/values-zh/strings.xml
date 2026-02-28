@@ -9,28 +9,28 @@
     <string name="delete">Delete</string>
     <string name="remove">Remove</string>
     <string name="add">Add</string>
-    <string name="edit">编辑</string>
-    <string name="replace">替换</string>
+    <string name="edit">編輯</string>
+    <string name="replace">取代</string>
     <string name="import_text">Import</string>
-    <string name="reload">重新加载</string>
+    <string name="reload">重新載入</string>
     <string name="clear">清除</string>
-    <string name="expand">展开</string>
-    <string name="collapse">收起</string>
-    <string name="search">搜索</string>
-    <string name="create">创建</string>
-    <string name="general">通用</string>
-    <string name="settings">设置</string>
+    <string name="expand">展開</string>
+    <string name="collapse">收合</string>
+    <string name="search">Search</string>
+    <string name="create">建立</string>
+    <string name="general">一般</string>
+    <string name="settings">設定</string>
     <string name="active">Active</string>
-    <string name="inactive">未启用</string>
-    <string name="disabled">已禁用</string>
-    <string name="custom">自定义</string>
+    <string name="inactive">未啟用</string>
+    <string name="disabled">已停用</string>
+    <string name="custom">自訂</string>
     <!-- Navigation -->
     <string name="customize">Customize</string>
     <string name="nav_customize">Customize</string>
-    <string name="nav_essentials">常用功能</string>
+    <string name="nav_essentials">Essentials</string>
     <string name="nav_performance">Performance</string>
     <string name="nav_multitasking">Multitasking</string>
-    <string name="personalizations">个性化设置</string>
+    <string name="personalizations">個人化設定</string>
     <!-- Customize Screen -->
     <string name="themes">Themes</string>
     <string name="themes_subtitle">Icons, shapes &amp; more</string>
@@ -150,7 +150,7 @@
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
     <string name="gesture_action_app_switch">App switch</string>
-    <string name="gesture_action_search">搜索</string>
+    <string name="gesture_action_search">Search</string>
     <string name="gesture_action_voice_search">Voice search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
@@ -165,7 +165,7 @@
     <string name="gesture_action_expand_qs">Expand QS panel</string>
     <string name="gesture_action_ringer_modes">Ringer modes</string>
     <!-- Essentials Screen -->
-    <string name="essentials">常用功能</string>
+    <string name="essentials">Essentials</string>
     <string name="essential_notifications">Essential Notifications</string>
     <string name="gaming">Gaming</string>
     <string name="security">Security</string>

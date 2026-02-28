@@ -4,8 +4,8 @@
     <string name="app_name">Axion Parts</string>
     <!-- Common UI Elements -->
     <string name="back">Geri</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
+    <string name="cancel">Vazgeç</string>
+    <string name="save">Kaydet</string>
     <string name="delete">Sil</string>
     <string name="remove">Sil</string>
     <string name="add">Ekle</string>
@@ -33,15 +33,15 @@
     <string name="personalizations">Kişiselleştirmeler</string>
     <!-- Customize Screen -->
     <string name="themes">Temalar</string>
-    <string name="themes_subtitle">Simgeler, şekiller ve daha fazlası</string>
+    <string name="themes_subtitle">Simgeler, şekiller &amp; daha fazlası</string>
     <string name="lockscreen">Kilit Ekranı</string>
-    <string name="lockscreen_subtitle">Kenar ışığı, medya ve görselleştirici</string>
+    <string name="lockscreen_subtitle">Kenar ışığı, medya &amp; görselleştirici</string>
     <string name="ui_features">Arayüz Özellikleri</string>
-    <string name="ui_features_subtitle">Durum çubuğu, hızlı ayarlar ve daha fazlası</string>
+    <string name="ui_features_subtitle">Durum çubuğu, hızlı ayarlar &amp; daha fazlası</string>
     <string name="sound">Ses</string>
-    <string name="sound_subtitle">Uygulama başına ses ve çoklu ses</string>
+    <string name="sound_subtitle">Uygulama başına ses &amp; çoklu ses</string>
     <string name="gestures">Hareketler</string>
-    <string name="gestures_subtitle">Sallama ve üç parmak hareketleri</string>
+    <string name="gestures_subtitle">Sallama &amp; üç parmak hareketleri</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Kenar Işığı</string>
     <string name="edge_light_description">Bildirimler için ekran kenarlarında ışık efektleri</string>
@@ -53,21 +53,21 @@
     <string name="customization">Özelleştirme</string>
     <string name="custom_color_summary">#%1$06X</string>
     <string name="choose_color">Renk seç</string>
-    <string name="presets">Hazır Ayarlar</string>
+    <string name="presets">Ön Ayarlar</string>
     <string name="selected">Seçildi</string>
     <string name="select_uppercase">Seç</string>
     <string name="select_item">Bir öğe seçin</string>
     <!-- Media Art -->
     <string name="media_art">Medya Sanatı</string>
     <string name="media_art_description">Medya oynatımı sırasında kilit ekranında albüm kapağı</string>
-    <string name="enable_media_art">Medya Sanatını Etkinleştir</string>
+    <string name="enable_media_art">Albüm Kapağını Etkinleştir</string>
     <string name="media_art_summary">Medya oynatımı sırasında kilit ekranında albüm kapağı göster</string>
     <string name="appearance">Görünüm</string>
     <string name="blur_level">Bulanıklık Seviyesi</string>
     <string name="blur_level_summary">Albüm kapağının bulanıklık yoğunluğunu ayarla</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Pulse Görselleştirici</string>
-    <string name="pulse_visualizer_description">Kilit ekranı ve ambient ekranda ses görselleştirici</string>
+    <string name="pulse_visualizer_description">Kilit ekranı ve AOD ekranında Ses Görselleştirici</string>
     <string name="enable_pulse">Pulse\'u Etkinleştir</string>
     <string name="pulse_summary">Kilit ekranı ve ambient ekranda ses görselleştirici göster</string>
     <string name="style">Stil</string>
@@ -92,27 +92,27 @@
     <string name="aod_schedule">AOD Programı</string>
     <string name="always_on">Her zaman açık</string>
     <string name="scheduled">Zamanlanmış</string>
-    <string name="aod_charge_only">Charge only</string>
-    <string name="aod_scheduled_charge">Scheduled + Charge</string>
+    <string name="aod_charge_only">Yalnızca şarj</string>
+    <string name="aod_scheduled_charge">Zamanlanmış + Şarj</string>
     <string name="schedule">Program</string>
     <string name="start_time">Başlangıç zamanı</string>
     <string name="start_time_summary">AOD açılma zamanı</string>
     <string name="end_time">Bitiş zamanı</string>
     <string name="end_time_summary">AOD kapanma zamanı</string>
-    <string name="when_to_show">When to Show</string>
-    <string name="aod_on_charge">AOD on Charge</string>
-    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
-    <string name="custom_schedule">Custom Schedule</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="when_to_show">Ne Zaman Gösterilsin</string>
+    <string name="aod_on_charge">Şarj Sırasında AOD</string>
+    <string name="aod_on_charge_summary">AOD sadece şarj sırasında gösterilsin</string>
+    <string name="custom_schedule">Özel zamanlama</string>
+    <string name="custom_schedule_summary">Saat bazlı AOD zamanlamasını etkinleştir</string>
     <string name="screen_off">Ekran Kapalı</string>
     <string name="screen_off_aod">Ekran Kapalıyken AOD</string>
-    <string name="screen_off_aod_summary">Ekran kapandığında AOD\'yi aktif tut</string>
+    <string name="screen_off_aod_summary">Ekran kapandığında AOD\'yi etkin tut</string>
     <string name="screen_off_animation">Ekran Kapatma Animasyonu</string>
     <string name="screen_off_animation_summary">AOD\'ye geçişi canlandır</string>
     <!-- UI Features -->
     <string name="user_interface">Kullanıcı Arayüzü</string>
     <string name="quick_settings">Hızlı Ayarlar</string>
-    <string name="quick_settings_description">Parlaklık kaydırıcısı, karolar ve panel özelleştirme</string>
+    <string name="quick_settings_description">Parlaklık kaydırıcısı, karolar &amp; panel özelleştirme</string>
     <string name="status_bar">Durum Çubuğu</string>
     <string name="status_bar_description">Saat, simgeler ve ağ göstergeleri</string>
     <string name="brightness_slider">Parlaklık Kaydırıcısı</string>
@@ -178,12 +178,12 @@
     <string name="select_essential_apps">Temel Uygulamaları Seç</string>
     <string name="select_apps">Uygulama Seç</string>
     <!-- App Picker -->
-    <string name="loading_apps">Uygulamalar yükleniyor…</string>
-    <string name="search_apps">Uygulama ara…</string>
+    <string name="loading_apps">Uygulamalar yükleniyor...</string>
+    <string name="search_apps">Uygulama ara...</string>
     <string name="show_system_apps">Sistem Uygulamalarını Göster</string>
     <string name="selected_count">%1$d seçildi</string>
     <!-- GameSpace -->
-    <string name="gamespace">GameSpace</string>
+    <string name="gamespace">Oyun Sahası</string>
     <string name="gamespace_summary">GameSpace özellikleriyle oyun deneyiminizi optimize edin</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Oyun Sahteciliği</string>
@@ -240,10 +240,10 @@
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
     <!-- Play Integrity Fix -->
-    <string name="play_integrity_fix">Play Integrity Fix</string>
+    <string name="play_integrity_fix">Play Entegrasyon Yaması</string>
     <string name="play_integrity_fix_summary">Yapı parmak izi sahteciliğini yapılandır</string>
     <string name="fingerprint_spoofing">Parmak İzi Sahteciliği</string>
-    <string name="active_config">Aktif: %1$s</string>
+    <string name="active_config">Etkin: %1$s</string>
     <string name="no_config_loaded">Yapılandırma yüklenmedi</string>
     <string name="fetch_pixel_beta">Pixel Beta Al</string>
     <string name="fetching">Alınıyor…</string>
@@ -266,7 +266,7 @@
     <string name="other_config_files">Diğer Yapılandırma Dosyaları</string>
     <string name="configured_count">%2$d\'dan %1$d yapılandırıldı</string>
     <string name="priority_note">Öncelik: custom.pif.* &gt; pif.* (bulunan ilk kullanılır)</string>
-    <string name="active_in_use">Aktif - Şu anda kullanımda</string>
+    <string name="active_in_use">Etkin - Şu anda kullanımda</string>
     <string name="available_overridden">Mevcut - Daha yüksek öncelik tarafından geçersiz kılındı</string>
     <string name="not_configured">Yapılandırılmadı</string>
     <!-- Security - Window Secure -->
@@ -281,7 +281,7 @@
     <string name="frequency_control">FREKANS KONTROL</string>
     <string name="display_boost">Ekran Hızlandırma</string>
     <string name="touch_boost">Dokunmatik Hızlandırma</string>
-    <string name="boost_active">Hızlandırma Aktif</string>
+    <string name="boost_active">Hızlandırma Etkin</string>
     <string name="boost_disabled">Hızlandırma Devre Dışı</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Küçük Küme</string>
