@@ -25,8 +25,8 @@
     <string name="disabled">Devre Dışı</string>
     <string name="custom">Özel</string>
     <!-- Navigation -->
-    <string name="customize">Customize</string>
-    <string name="nav_customize">Customize</string>
+    <string name="customize">Kişiselleştir</string>
+    <string name="nav_customize">Kişiselleştir</string>
     <string name="nav_essentials">Önemliler</string>
     <string name="nav_performance">Performans</string>
     <string name="nav_multitasking">Çoklu Görev</string>
