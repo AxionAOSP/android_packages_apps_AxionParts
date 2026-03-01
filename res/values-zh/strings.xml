@@ -9,38 +9,38 @@
     <string name="delete">Delete</string>
     <string name="remove">Remove</string>
     <string name="add">Add</string>
-    <string name="edit">編輯</string>
-    <string name="replace">取代</string>
+    <string name="edit">编辑</string>
+    <string name="replace">替换</string>
     <string name="import_text">Import</string>
-    <string name="reload">重新載入</string>
+    <string name="reload">重新加载</string>
     <string name="clear">清除</string>
-    <string name="expand">展開</string>
-    <string name="collapse">收合</string>
-    <string name="search">Search</string>
-    <string name="create">建立</string>
-    <string name="general">一般</string>
-    <string name="settings">設定</string>
+    <string name="expand">展开</string>
+    <string name="collapse">收起</string>
+    <string name="search">搜索</string>
+    <string name="create">创建</string>
+    <string name="general">通用</string>
+    <string name="settings">设置</string>
     <string name="active">Active</string>
-    <string name="inactive">未啟用</string>
-    <string name="disabled">已停用</string>
-    <string name="custom">自訂</string>
+    <string name="inactive">未启用</string>
+    <string name="disabled">已禁用</string>
+    <string name="custom">自定义</string>
     <!-- Navigation -->
     <string name="customize">Customize</string>
     <string name="nav_customize">Customize</string>
-    <string name="nav_essentials">Essentials</string>
-    <string name="nav_performance">Performance</string>
+    <string name="nav_essentials">常用功能</string>
+    <string name="nav_performance">性能</string>
     <string name="nav_multitasking">Multitasking</string>
-    <string name="personalizations">個人化設定</string>
+    <string name="personalizations">个性化设置</string>
     <!-- Customize Screen -->
-    <string name="themes">Themes</string>
+    <string name="themes">主题</string>
     <string name="themes_subtitle">Icons, shapes &amp; more</string>
-    <string name="lockscreen">Lockscreen</string>
+    <string name="lockscreen">锁屏</string>
     <string name="lockscreen_subtitle">Edge light, media &amp; visualizer</string>
     <string name="ui_features">UI Features</string>
     <string name="ui_features_subtitle">Status bar, QS &amp; more</string>
-    <string name="sound">Sound</string>
+    <string name="sound">声音</string>
     <string name="sound_subtitle">Per-app volume &amp; multi audio</string>
-    <string name="gestures">Gestures</string>
+    <string name="gestures">手势</string>
     <string name="gestures_subtitle">Shake &amp; three finger actions</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Edge Light</string>
@@ -76,10 +76,10 @@
     <string name="solid_lines">Solid Lines</string>
     <string name="fading_blocks">Fading Blocks</string>
     <string name="color_mode_title">Color Mode</string>
-    <string name="visualizer_color_summary">Customize the color of the visualizer</string>
+    <string name="visualizer_color_summary">自定义可视化器颜色</string>
     <string name="lava_lamp">Lava Lamp</string>
     <string name="album_art">Album Art</string>
-    <string name="system_accent">System Accent</string>
+    <string name="system_accent">系统强调色</string>
     <string name="bars">Bars</string>
     <string name="bar_count">Bar Count</string>
     <string name="bar_count_summary">Number of visualization bars</string>
@@ -150,7 +150,7 @@
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
     <string name="gesture_action_app_switch">App switch</string>
-    <string name="gesture_action_search">Search</string>
+    <string name="gesture_action_search">搜索</string>
     <string name="gesture_action_voice_search">Voice search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
@@ -165,7 +165,7 @@
     <string name="gesture_action_expand_qs">Expand QS panel</string>
     <string name="gesture_action_ringer_modes">Ringer modes</string>
     <!-- Essentials Screen -->
-    <string name="essentials">Essentials</string>
+    <string name="essentials">常用功能</string>
     <string name="essential_notifications">Essential Notifications</string>
     <string name="gaming">Gaming</string>
     <string name="security">Security</string>
@@ -273,7 +273,7 @@
     <string name="ignore_window_secure">Ignore Window Secure</string>
     <string name="ignore_window_secure_summary">Allow taking screenshots and screen recordings in all apps</string>
     <!-- Performance Screen -->
-    <string name="performance">Performance</string>
+    <string name="performance">性能</string>
     <string name="performance_mode">Performance Mode</string>
     <string name="maximum_performance_enabled">Maximum performance enabled</string>
     <string name="balanced_mode">Balanced mode</string>
@@ -298,7 +298,7 @@
     <!-- Performance Formats -->
     <string name="level_format">Level %1$d</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">Performance</string>
+    <string name="qs_tile_performance">性能</string>
     <string name="qs_tile_on">On</string>
     <string name="qs_tile_off">Off</string>
     <!-- Multitasking Screen -->
