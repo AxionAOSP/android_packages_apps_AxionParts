@@ -25,8 +25,8 @@
     <string name="disabled">Отключено</string>
     <string name="custom">Пользовательский</string>
     <!-- Navigation -->
-    <string name="customize">Настроить</string>
-    <string name="nav_customize">Настроить</string>
+    <string name="customize">Кастомизация</string>
+    <string name="nav_customize">Кастомизация</string>
     <string name="nav_essentials">Основное</string>
     <string name="nav_performance">Производительность</string>
     <string name="nav_multitasking">Многозадачность</string>
