@@ -44,7 +44,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.CloudDownload
@@ -55,26 +54,21 @@ import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Upload
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
+import com.android.axion.compose.preferences.ExpressiveSwitch
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -94,6 +88,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
+import com.android.axion.compose.scaffold.AxionScaffold
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -117,40 +112,15 @@ data class ConfigFileState(
     val data: Map<String, String> = emptyMap()
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayIntegrityFixScreen(
     onBackClick: (() -> Unit)? = null,
     showTopBar: Boolean = true
 ) {
     if (showTopBar) {
-        Scaffold(
-            containerColor = Color.Transparent,
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = "Play Integrity Fix",
-                            fontWeight = FontWeight.Bold,
-                            style = MaterialTheme.typography.headlineMedium
-                        )
-                    },
-                    navigationIcon = {
-                        onBackClick?.let { onClick ->
-                            IconButton(onClick = onClick) {
-                                Icon(
-                                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = stringResource(R.string.back)
-                                )
-                            }
-                        }
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Transparent
-                    )
-                )
-            }
+        AxionScaffold(
+            title = "Play Integrity Fix",
+            onBackClick = { onBackClick?.invoke() },
         ) { innerPadding ->
             Box(
                 modifier = Modifier
@@ -656,7 +626,7 @@ fun PlayIntegrityFixContent(
                         )
                     }
                     
-                    Switch(
+                    ExpressiveSwitch(
                         checked = isSpoofPhotos,
                         onCheckedChange = { checked ->
                             updateConfig("spoofPhotos", checked.toString())

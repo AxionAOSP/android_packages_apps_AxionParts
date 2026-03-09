@@ -19,6 +19,7 @@ package com.android.axion.axionparts.ui.screens
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.provider.Settings
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -43,20 +44,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -67,7 +62,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -76,28 +70,26 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
+import com.android.axion.compose.applist.AppFilter
+import com.android.axion.compose.applist.rememberFilteredAppList
+import com.android.axion.compose.scaffold.AxionScaffold
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-data class AppInfo(
-    val packageName: String,
-    val label: String,
-    val icon: Drawable
-)
+data class AppInfo(val packageName: String, val label: String, val icon: Drawable)
 
 enum class AppPickerMode {
     SINGLE,
-    MULTI
+    MULTI,
 }
 
 enum class AppFilterType {
     ALL,
     USER_ONLY,
     LAUNCHABLE_ONLY,
-    LAUNCHABLE_USER_ONLY
+    LAUNCHABLE_USER_ONLY,
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppPickerScreen(
     title: String = stringResource(R.string.select_apps),
@@ -107,247 +99,222 @@ fun AppPickerScreen(
     mode: AppPickerMode = AppPickerMode.MULTI,
     filterType: AppFilterType = AppFilterType.LAUNCHABLE_USER_ONLY,
     showSystemApps: Boolean = false,
-    customFilter: ((ApplicationInfo) -> Boolean)? = null
+    customFilter: ((ApplicationInfo) -> Boolean)? = null,
 ) {
     val context = LocalContext.current
     val packageManager = context.packageManager
-    
-    var installedApps by remember { mutableStateOf<List<AppInfo>>(emptyList()) }
+
     var searchQuery by remember { mutableStateOf("") }
-    var tempSelectedApps by remember { mutableStateOf(selectedApps) }
-    
+    val savedApps = remember {
+        val saved = Settings.Secure.getString(context.contentResolver, "essential_app_list") ?: ""
+        if (saved.isEmpty()) emptySet() else saved.split(",").filter { it.isNotEmpty() }.toSet()
+    }
+    var tempSelectedApps by remember { mutableStateOf(selectedApps.ifEmpty { savedApps }) }
+
+    val sdkFilters: Array<AppFilter> = when (filterType) {
+        AppFilterType.ALL -> arrayOf(AppFilter.ALL, AppFilter.NO_OVERLAYS)
+        AppFilterType.USER_ONLY -> if (showSystemApps) arrayOf(AppFilter.ALL, AppFilter.NO_OVERLAYS) else arrayOf(AppFilter.USER_ONLY, AppFilter.NO_OVERLAYS)
+        AppFilterType.LAUNCHABLE_ONLY -> arrayOf(AppFilter.LAUNCHABLE_ONLY, AppFilter.NO_OVERLAYS)
+        AppFilterType.LAUNCHABLE_USER_ONLY -> if (showSystemApps) arrayOf(AppFilter.LAUNCHABLE_ONLY, AppFilter.NO_OVERLAYS) else arrayOf(AppFilter.USER_ONLY, AppFilter.LAUNCHABLE_ONLY, AppFilter.NO_OVERLAYS)
+    }
+
+    val sdkApps = rememberFilteredAppList(searchQuery, *sdkFilters)
+    var customApps by remember { mutableStateOf<List<AppInfo>>(emptyList()) }
+
     LaunchedEffect(Unit) {
-        withContext(Dispatchers.IO) {
-            val apps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
-                .filter { appInfo ->
-                    if (customFilter != null) {
-                        customFilter(appInfo)
-                    } else {
-                        val isSystemApp = (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
-                        val isLaunchable = packageManager.getLaunchIntentForPackage(appInfo.packageName) != null
-                        
-                        when (filterType) {
-                            AppFilterType.ALL -> true
-                            AppFilterType.USER_ONLY -> !isSystemApp || showSystemApps
-                            AppFilterType.LAUNCHABLE_ONLY -> isLaunchable
-                            AppFilterType.LAUNCHABLE_USER_ONLY -> isLaunchable && (!isSystemApp || showSystemApps)
-                        }
-                    }
-                }
-                .map { appInfo ->
-                    AppInfo(
-                        packageName = appInfo.packageName,
-                        label = appInfo.loadLabel(packageManager).toString(),
-                        icon = appInfo.loadIcon(packageManager)
-                    )
-                }
-                .sortedBy { it.label.lowercase() }
-            installedApps = apps
-        }
-    }
-    
-    val filteredApps = remember(installedApps, searchQuery) {
-        if (searchQuery.isEmpty()) {
-            installedApps
-        } else {
-            installedApps.filter { 
-                it.label.contains(searchQuery, ignoreCase = true) ||
-                it.packageName.contains(searchQuery, ignoreCase = true)
-            }
-        }
-    }
-    
-    Scaffold(
-        containerColor = Color.Transparent,
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = title,
-                        fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.headlineMedium
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.back)
+        if (customFilter != null) {
+            withContext(Dispatchers.IO) {
+                customApps = packageManager
+                    .getInstalledApplications(PackageManager.GET_META_DATA)
+                    .filter { appInfo -> customFilter(appInfo) }
+                    .map { appInfo ->
+                        AppInfo(
+                            packageName = appInfo.packageName,
+                            label = appInfo.loadLabel(packageManager).toString(),
+                            icon = appInfo.loadIcon(packageManager),
                         )
                     }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent,
-                    scrolledContainerColor = Color.Transparent
-                )
-            )
-        },
-        floatingActionButton = {
-            if (mode == AppPickerMode.MULTI) {
-                FloatingActionButton(
-                    onClick = {
-                        onAppsSelected(tempSelectedApps)
-                    },
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary,
-                    shape = ExpressiveShapes.large
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Check,
-                        contentDescription = "Save"
-                    )
-                }
+                    .sortedBy { it.label.lowercase() }
             }
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 16.dp)
-        ) {
-            OutlinedTextField(
-                value = searchQuery,
-                onValueChange = { searchQuery = it },
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("Search apps...") },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = null
-                    )
-                },
-                shape = ExpressiveShapes.large,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = MaterialTheme.colorScheme.primary,
-                    unfocusedBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
-                    focusedContainerColor = MaterialTheme.colorScheme.surface,
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surface
-                ),
-                singleLine = true
-            )
-            
-            Spacer(modifier = Modifier.height(12.dp))
-            
-            Text(
-                text = "${tempSelectedApps.size} selected",
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier.padding(start = 4.dp, bottom = 8.dp)
-            )
-            
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                items(filteredApps, key = { it.packageName }) { app ->
-                    AppListItem(
-                        app = app,
-                        isSelected = tempSelectedApps.contains(app.packageName),
-                        onClick = {
-                            when (mode) {
-                                AppPickerMode.SINGLE -> {
-                                    onAppsSelected(setOf(app.packageName))
-                                    onBackClick()
-                                }
-                                AppPickerMode.MULTI -> {
-                                    tempSelectedApps = if (tempSelectedApps.contains(app.packageName)) {
-                                        tempSelectedApps - app.packageName
-                                    } else {
-                                        tempSelectedApps + app.packageName
+    }
+
+    val filteredCustomApps by remember(customApps, searchQuery) {
+        mutableStateOf(
+            if (searchQuery.isEmpty()) customApps
+            else customApps.filter {
+                it.label.contains(searchQuery, ignoreCase = true) ||
+                    it.packageName.contains(searchQuery, ignoreCase = true)
+            }
+        )
+    }
+
+    val filteredApps: List<AppInfo> = if (customFilter != null) {
+        filteredCustomApps
+    } else {
+        sdkApps.value.map { entry ->
+            AppInfo(packageName = entry.packageName, label = entry.label, icon = entry.icon)
+        }
+    }
+
+    AxionScaffold(title = title, onBackClick = onBackClick) { innerPadding ->
+        Box(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
+            Column(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
+                OutlinedTextField(
+                    value = searchQuery,
+                    onValueChange = { searchQuery = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    placeholder = { Text("Search apps...") },
+                    leadingIcon = {
+                        Icon(imageVector = Icons.Default.Search, contentDescription = null)
+                    },
+                    shape = ExpressiveShapes.large,
+                    colors =
+                        OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                            unfocusedBorderColor =
+                                MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
+                            focusedContainerColor = MaterialTheme.colorScheme.surface,
+                            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                        ),
+                    singleLine = true,
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    text = "${tempSelectedApps.size} selected",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
+                )
+
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    items(filteredApps, key = { it.packageName }) { app ->
+                        AppListItem(
+                            app = app,
+                            isSelected = tempSelectedApps.contains(app.packageName),
+                            onClick = {
+                                when (mode) {
+                                    AppPickerMode.SINGLE -> {
+                                        onAppsSelected(setOf(app.packageName))
+                                        onBackClick()
+                                    }
+                                    AppPickerMode.MULTI -> {
+                                        tempSelectedApps =
+                                            if (tempSelectedApps.contains(app.packageName)) {
+                                                tempSelectedApps - app.packageName
+                                            } else {
+                                                tempSelectedApps + app.packageName
+                                            }
                                     }
                                 }
-                            }
-                        }
-                    )
+                            },
+                        )
+                    }
+
+                    item { Spacer(modifier = Modifier.height(80.dp)) }
                 }
-                
-                item { Spacer(modifier = Modifier.height(80.dp)) }
+            }
+
+            if (mode == AppPickerMode.MULTI) {
+                FloatingActionButton(
+                    onClick = { onAppsSelected(tempSelectedApps) },
+                    modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                    shape = ExpressiveShapes.large,
+                ) {
+                    Icon(imageVector = Icons.Default.Check, contentDescription = "Save")
+                }
             }
         }
     }
 }
 
 @Composable
-private fun AppListItem(
-    app: AppInfo,
-    isSelected: Boolean,
-    onClick: () -> Unit
-) {
+private fun AppListItem(app: AppInfo, isSelected: Boolean, onClick: () -> Unit) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.98f else 1f,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMedium
-        ),
-        label = "scale"
-    )
-    
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) {
-            MaterialTheme.colorScheme.primaryContainer
-        } else {
-            MaterialTheme.colorScheme.surface
-        },
-        animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-        label = "bgColor"
-    )
-    
+    val scale by
+        animateFloatAsState(
+            targetValue = if (isPressed) 0.98f else 1f,
+            animationSpec =
+                spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessMedium,
+                ),
+            label = "scale",
+        )
+
+    val backgroundColor by
+        animateColorAsState(
+            targetValue =
+                if (isSelected) {
+                    MaterialTheme.colorScheme.primaryContainer
+                } else {
+                    MaterialTheme.colorScheme.surface
+                },
+            animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
+            label = "bgColor",
+        )
+
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .scale(scale)
-            .clip(ExpressiveShapes.large)
-            .background(backgroundColor)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                onClick = onClick
-            )
-            .padding(horizontal = 16.dp, vertical = 14.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier.fillMaxWidth()
+                .scale(scale)
+                .clip(ExpressiveShapes.large)
+                .background(backgroundColor)
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    onClick = onClick,
+                )
+                .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
             bitmap = app.icon.toBitmap(48, 48).asImageBitmap(),
             contentDescription = null,
-            modifier = Modifier
-                .size(44.dp)
-                .clip(ExpressiveShapes.medium)
+            modifier = Modifier.size(44.dp).clip(ExpressiveShapes.medium),
         )
-        
+
         Spacer(modifier = Modifier.width(16.dp))
-        
+
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = app.label,
                 style = MaterialTheme.typography.bodyLarge,
-                color = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer
-                        else MaterialTheme.colorScheme.onSurface
+                color =
+                    if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer
+                    else MaterialTheme.colorScheme.onSurface,
             )
             Text(
                 text = app.packageName,
                 style = MaterialTheme.typography.bodySmall,
-                color = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
-                        else MaterialTheme.colorScheme.onSurfaceVariant
+                color =
+                    if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
+                    else MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
-        
+
         if (isSelected) {
             Box(
-                modifier = Modifier
-                    .size(28.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primary),
-                contentAlignment = Alignment.Center
+                modifier =
+                    Modifier.size(28.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.primary),
+                contentAlignment = Alignment.Center,
             ) {
                 Icon(
                     imageVector = Icons.Default.Check,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier.size(18.dp)
+                    modifier = Modifier.size(18.dp),
                 )
             }
         }

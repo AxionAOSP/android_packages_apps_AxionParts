@@ -54,80 +54,77 @@ fun WallpaperCard(
     title: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    height: Dp = 140.dp
+    height: Dp = 140.dp,
 ) {
     val context = LocalContext.current
     val wallpaperManager = remember { WallpaperManager.getInstance(context) }
     val wallpaperDrawable = remember { wallpaperManager.drawable }
-    val wallpaperBitmap = remember {
-        (wallpaperDrawable as? BitmapDrawable)?.bitmap
-    }
-    
+    val wallpaperBitmap = remember { (wallpaperDrawable as? BitmapDrawable)?.bitmap }
+
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.96f else 1f,
-        animationSpec = spring(dampingRatio = 0.7f, stiffness = 400f),
-        label = "scale"
-    )
-    
+    val scale by
+        animateFloatAsState(
+            targetValue = if (isPressed) 0.96f else 1f,
+            animationSpec = spring(dampingRatio = 0.7f, stiffness = 400f),
+            label = "scale",
+        )
+
     Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(height)
-            .scale(scale)
-            .clip(ExpressiveShapes.large)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                onClick = onClick
-            )
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .height(height)
+                .scale(scale)
+                .clip(ExpressiveShapes.large)
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    onClick = onClick,
+                )
     ) {
         wallpaperBitmap?.let { bitmap ->
             Image(
                 bitmap = bitmap.asImageBitmap(),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
             )
-        } ?: Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.linearGradient(
-                        colors = listOf(
-                            MaterialTheme.colorScheme.primaryContainer,
-                            MaterialTheme.colorScheme.tertiaryContainer
+        }
+            ?: Box(
+                modifier =
+                    Modifier.fillMaxSize()
+                        .background(
+                            Brush.linearGradient(
+                                colors =
+                                    listOf(
+                                        MaterialTheme.colorScheme.primaryContainer,
+                                        MaterialTheme.colorScheme.tertiaryContainer,
+                                    )
+                            )
+                        )
+            )
+
+        Box(
+            modifier =
+                Modifier.fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.7f)),
+                            startY = 100f,
                         )
                     )
-                )
         )
-        
+
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.Black.copy(alpha = 0.7f)
-                        ),
-                        startY = 100f
-                    )
-                )
-        )
-        
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(20.dp),
-            contentAlignment = Alignment.BottomStart
+            modifier = Modifier.fillMaxSize().padding(20.dp),
+            contentAlignment = Alignment.BottomStart,
         ) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = Color.White,
             )
         }
     }

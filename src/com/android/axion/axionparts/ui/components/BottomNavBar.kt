@@ -17,6 +17,7 @@
 package com.android.axion.axionparts.ui.components
 
 import androidx.compose.animation.core.*
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
@@ -31,13 +32,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 
 data class NavItem(
     val route: String,
     val label: String,
     val icon: ImageVector,
-    val gradientColors: List<Color>
+    val gradientColors: List<Color>,
 )
 
 @Composable
@@ -45,27 +45,26 @@ fun BottomNavBar(
     items: List<NavItem>,
     selectedRoute: String,
     onItemSelected: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .windowInsetsPadding(WindowInsets.navigationBars)
-            .padding(horizontal = 24.dp, vertical = 16.dp),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .windowInsetsPadding(WindowInsets.navigationBars)
+                .padding(horizontal = 24.dp, vertical = 16.dp),
+        contentAlignment = Alignment.Center,
     ) {
         Surface(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(28.dp),
             color = MaterialTheme.colorScheme.surfaceBright,
-            shadowElevation = 8.dp
+            shadowElevation = 8.dp,
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 10.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 10.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 items.forEach { item ->
                     val isSelected = selectedRoute == item.route
@@ -73,7 +72,7 @@ fun BottomNavBar(
                         item = item,
                         isSelected = isSelected,
                         onClick = { onItemSelected(item.route) },
-                        modifier = if (isSelected) Modifier.weight(1f) else Modifier
+                        modifier = if (isSelected) Modifier.weight(1f) else Modifier,
                     )
                 }
             }
@@ -81,67 +80,74 @@ fun BottomNavBar(
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun NavPill(
     item: NavItem,
     isSelected: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    
-    val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.95f else 1f,
-        animationSpec = tween(durationMillis = 100),
-        label = "scale"
-    )
-    
-    val labelAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 1f else 0f,
-        animationSpec = tween(durationMillis = 200),
-        label = "labelAlpha"
-    )
-    
-    val backgroundColor = if (isSelected) {
-        MaterialTheme.colorScheme.primary
-    } else {
-        MaterialTheme.colorScheme.surfaceContainer
-    }
-    
-    val contentColor = if (isSelected) {
-        MaterialTheme.colorScheme.onPrimary
-    } else {
-        MaterialTheme.colorScheme.onSurfaceVariant
-    }
-    
+    val motionScheme = MaterialTheme.motionScheme
+
+    val scale by
+        animateFloatAsState(
+            targetValue = if (isPressed) 0.95f else 1f,
+            animationSpec = motionScheme.fastSpatialSpec(),
+            label = "scale",
+        )
+
+    val labelAlpha by
+        animateFloatAsState(
+            targetValue = if (isSelected) 1f else 0f,
+            animationSpec = motionScheme.fastEffectsSpec(),
+            label = "labelAlpha",
+        )
+
+    val backgroundColor =
+        if (isSelected) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            MaterialTheme.colorScheme.surfaceContainer
+        }
+
+    val contentColor =
+        if (isSelected) {
+            MaterialTheme.colorScheme.onPrimary
+        } else {
+            MaterialTheme.colorScheme.onSurfaceVariant
+        }
+
     val shape = if (isSelected) RoundedCornerShape(24.dp) else CircleShape
-    
+
     Box(
-        modifier = modifier
-            .scale(scale)
-            .height(48.dp)
-            .then(if (!isSelected) Modifier.aspectRatio(1f) else Modifier)
-            .clip(shape)
-            .background(backgroundColor)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                onClick = onClick
-            ),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .scale(scale)
+                .height(48.dp)
+                .then(if (!isSelected) Modifier.aspectRatio(1f) else Modifier)
+                .clip(shape)
+                .background(backgroundColor)
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    onClick = onClick,
+                ),
+        contentAlignment = Alignment.Center,
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
         ) {
             Icon(
                 imageVector = item.icon,
                 contentDescription = null,
                 tint = contentColor,
-                modifier = Modifier.size(22.dp)
+                modifier = Modifier.size(22.dp),
             )
-            
+
             if (isSelected && labelAlpha > 0.01f) {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
@@ -151,7 +157,7 @@ private fun NavPill(
                     color = contentColor,
                     modifier = Modifier.alpha(labelAlpha),
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
         }

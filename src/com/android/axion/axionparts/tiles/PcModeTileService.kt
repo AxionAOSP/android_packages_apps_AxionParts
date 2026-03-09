@@ -31,11 +31,12 @@ class PcModeTileService : TileService() {
         private const val PC_MODE_KEY = "ax_pc_mode"
     }
 
-    private val settingsObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
-        override fun onChange(selfChange: Boolean) {
-            updateTileState()
+    private val settingsObserver =
+        object : ContentObserver(Handler(Looper.getMainLooper())) {
+            override fun onChange(selfChange: Boolean) {
+                updateTileState()
+            }
         }
-    }
 
     private fun isPcModeEnabled(): Boolean {
         return Settings.Secure.getInt(contentResolver, PC_MODE_KEY, 0) == 1
@@ -50,7 +51,8 @@ class PcModeTileService : TileService() {
         val isEnabled = isPcModeEnabled()
         tile.state = if (isEnabled) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
         tile.label = getString(R.string.qs_tile_pc_mode)
-        tile.subtitle = if (isEnabled) getString(R.string.qs_tile_on) else getString(R.string.qs_tile_off)
+        tile.subtitle =
+            if (isEnabled) getString(R.string.qs_tile_on) else getString(R.string.qs_tile_off)
         val iconRes = if (isEnabled) R.drawable.ic_qs_pc_mode else R.drawable.ic_qs_pc_mode_disabled
         tile.icon = Icon.createWithResource(this, iconRes)
         tile.updateTile()
@@ -61,7 +63,7 @@ class PcModeTileService : TileService() {
         contentResolver.registerContentObserver(
             Settings.Secure.getUriFor(PC_MODE_KEY),
             false,
-            settingsObserver
+            settingsObserver,
         )
         updateTileState()
     }

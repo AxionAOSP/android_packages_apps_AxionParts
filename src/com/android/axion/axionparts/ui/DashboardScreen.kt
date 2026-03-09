@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http:
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,93 +16,77 @@
 
 package com.android.axion.axionparts.ui
 
+import android.app.Activity
+import android.app.WallpaperManager
+import android.content.ComponentName
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.*
+import androidx.compose.ui.draw.*
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.components.*
 import com.android.axion.axionparts.ui.screens.*
+import com.android.axion.axionparts.ui.screens.routines.RoutinesScreen
+import com.android.axion.axionparts.ui.theme.MaxContentWidth
+import com.android.axion.compose.preferences.*
+import com.android.axion.compose.scaffold.CollapseOnFirstComposition
 
-@Composable
-fun getNavItems() = listOf(
-    NavItem(
-        route = "customize",
-        label = stringResource(R.string.customize),
-        icon = Icons.Filled.Palette,
-        gradientColors = listOf(Color(0xFF6366F1), Color(0xFF8B5CF6))
-    ),
-    NavItem(
-        route = "essentials",
-        label = stringResource(R.string.essentials),
-        icon = Icons.Filled.Diamond,
-        gradientColors = listOf(Color(0xFF7C3AED), Color(0xFFA855F7))
-    ),
-    NavItem(
-        route = "performance",
-        label = stringResource(R.string.performance),
-        icon = Icons.Filled.Bolt,
-        gradientColors = listOf(Color(0xFFF59E0B), Color(0xFFFBBF24))
-    ),
-    NavItem(
-        route = "multitasking",
-        label = stringResource(R.string.multitasking),
-        icon = Icons.Filled.Splitscreen,
-        gradientColors = listOf(Color(0xFF0891B2), Color(0xFF06B6D4))
-    )
-)
-
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun DashboardScreen() {
-    val navItems = getNavItems()
     val windowSizeClass = rememberWindowSizeClass()
-    val isExpandedLayout = windowSizeClass == WindowSizeClass.EXPANDED || 
-                           windowSizeClass == WindowSizeClass.MEDIUM
-    
-    var selectedRoute by rememberSaveable { mutableStateOf(navItems[0].route) }
-    var previousIndex by rememberSaveable { mutableIntStateOf(0) }
+    val isExpandedLayout =
+        windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
+
     var showAppPicker by rememberSaveable { mutableStateOf(false) }
     var appPickerSelectedApps by rememberSaveable { mutableStateOf<Set<String>>(emptySet()) }
     var currentDetailScreen by rememberSaveable { mutableStateOf<String?>(null) }
-    
+    val dashboardScrollState = rememberScrollState()
+
     val context = LocalContext.current
     val contentResolver = context.contentResolver
-    
-    val currentIndex = navItems.indexOfFirst { it.route == selectedRoute }
-    val isNavigatingForward = currentIndex >= previousIndex
-    
-    fun onNavSelected(route: String) {
-        previousIndex = navItems.indexOfFirst { it.route == selectedRoute }
-        selectedRoute = route
-        if (!isExpandedLayout) {
-            currentDetailScreen = null
-        }
-    }
-    
+
     fun navigateToDetail(screen: String) {
         currentDetailScreen = screen
     }
-    
+
     fun closeDetail() {
         currentDetailScreen = null
     }
-    
-    val currentTitle = navItems.find { it.route == selectedRoute }?.label ?: stringResource(R.string.personalizations)
-    
+
     if (showAppPicker) {
         BackHandler { showAppPicker = false }
         AppPickerScreen(
@@ -112,38 +96,38 @@ fun DashboardScreen() {
             onAppsSelected = { apps ->
                 saveEssentialApps(contentResolver, apps)
                 showAppPicker = false
-            }
+            },
         )
         return
     }
-    
+
+    val motionScheme = MaterialTheme.motionScheme
+
+    val appPickerCallback: (Set<String>) -> Unit = { selectedApps ->
+        appPickerSelectedApps = selectedApps
+        showAppPicker = true
+    }
+
     if (isExpandedLayout) {
         TwoPaneLayout(
             windowSizeClass = windowSizeClass,
             listPane = {
-                ListPaneContent(
-                    navItems = navItems,
-                    selectedRoute = selectedRoute,
-                    currentTitle = currentTitle,
-                    isNavigatingForward = isNavigatingForward,
-                    onNavSelected = { onNavSelected(it) },
+                DashboardContent(
+                    scrollState = dashboardScrollState,
                     onNavigateToDetail = { navigateToDetail(it) },
-                    onNavigateToAppPicker = { selectedApps ->
-                        appPickerSelectedApps = selectedApps
-                        showAppPicker = true
-                    }
                 )
             },
             detailPane = {
                 Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.surfaceContainer)
+                    modifier =
+                        Modifier.fillMaxSize()
+                            .background(MaterialTheme.colorScheme.surfaceContainer)
                 ) {
                     if (currentDetailScreen != null) {
                         DetailPaneContent(
                             screen = currentDetailScreen!!,
-                            onClose = { closeDetail() }
+                            onClose = { closeDetail() },
+                            onNavigateToAppPicker = appPickerCallback,
                         )
                     } else {
                         EmptyDetailPane()
@@ -151,42 +135,35 @@ fun DashboardScreen() {
                 }
             },
             showDetailPane = currentDetailScreen != null,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         )
     } else {
         AnimatedContent(
             targetState = currentDetailScreen,
             transitionSpec = {
                 if (targetState != null) {
-                    (slideInHorizontally(tween(300)) { it } + fadeIn(tween(300))).togetherWith(
-                        slideOutHorizontally(tween(300)) { -it / 3 } + fadeOut(tween(300))
+                    (slideInHorizontally(motionScheme.defaultSpatialSpec()) { it } + fadeIn(motionScheme.defaultEffectsSpec())).togetherWith(
+                        slideOutHorizontally(motionScheme.defaultSpatialSpec()) { -it / 3 } + fadeOut(motionScheme.defaultEffectsSpec())
                     )
                 } else {
-                    (slideInHorizontally(tween(300)) { -it / 3 } + fadeIn(tween(300))).togetherWith(
-                        slideOutHorizontally(tween(300)) { it } + fadeOut(tween(300))
+                    (slideInHorizontally(motionScheme.defaultSpatialSpec()) { -it / 3 } + fadeIn(motionScheme.defaultEffectsSpec())).togetherWith(
+                        slideOutHorizontally(motionScheme.defaultSpatialSpec()) { it } + fadeOut(motionScheme.defaultEffectsSpec())
                     )
                 }
             },
-            label = "detailTransition"
+            label = "detailTransition",
         ) { detailScreen ->
             if (detailScreen != null) {
                 BackHandler { closeDetail() }
                 DetailScreen(
                     screen = detailScreen,
-                    onBackClick = { closeDetail() }
+                    onBackClick = { closeDetail() },
+                    onNavigateToAppPicker = appPickerCallback,
                 )
             } else {
-                ListPaneContent(
-                    navItems = navItems,
-                    selectedRoute = selectedRoute,
-                    currentTitle = currentTitle,
-                    isNavigatingForward = isNavigatingForward,
-                    onNavSelected = { onNavSelected(it) },
+                DashboardContent(
+                    scrollState = dashboardScrollState,
                     onNavigateToDetail = { navigateToDetail(it) },
-                    onNavigateToAppPicker = { selectedApps ->
-                        appPickerSelectedApps = selectedApps
-                        showAppPicker = true
-                    }
                 )
             }
         }
@@ -195,113 +172,187 @@ fun DashboardScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ListPaneContent(
-    navItems: List<NavItem>,
-    selectedRoute: String,
-    currentTitle: String,
-    isNavigatingForward: Boolean,
-    onNavSelected: (String) -> Unit,
+private fun DashboardContent(
+    scrollState: ScrollState,
     onNavigateToDetail: (String) -> Unit,
-    onNavigateToAppPicker: (Set<String>) -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.surfaceContainer)
-    ) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            TopAppBar(
+    val context = LocalContext.current
+    val activity = context as? Activity
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    CollapseOnFirstComposition(scrollBehavior)
+
+    Scaffold(
+        modifier =
+            Modifier.fillMaxSize()
+                .nestedScroll(scrollBehavior.nestedScrollConnection)
+                .background(MaterialTheme.colorScheme.surfaceContainer),
+        containerColor = MaterialTheme.colorScheme.surfaceContainer,
+        topBar = {
+            LargeTopAppBar(
                 title = {
-                    AnimatedContent(
-                        targetState = currentTitle,
-                        transitionSpec = {
-                            (fadeIn(tween(200)) + scaleIn(
-                                initialScale = 0.92f,
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                                    stiffness = Spring.StiffnessLow
-                                )
-                            )).togetherWith(
-                                fadeOut(tween(150)) + scaleOut(targetScale = 0.92f)
-                            )
-                        },
-                        label = "titleAnimation"
-                    ) { title ->
-                        Text(
-                            text = title,
-                            fontWeight = FontWeight.Bold,
-                            style = MaterialTheme.typography.headlineMedium
+                    Text(
+                        text = stringResource(R.string.personalizations),
+                        fontWeight = FontWeight.Bold,
+                    )
+                },
+                navigationIcon = {
+                    IconButton(onClick = { activity?.finish() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.back),
                         )
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent,
-                    scrolledContainerColor = Color.Transparent
-                )
+                colors =
+                    TopAppBarDefaults.largeTopAppBarColors(
+                        containerColor = Color.Transparent,
+                        scrolledContainerColor = Color.Transparent,
+                    ),
+                scrollBehavior = scrollBehavior,
             )
-            
-            AnimatedContent(
-                targetState = selectedRoute,
-                transitionSpec = {
-                    val slideDirection = if (isNavigatingForward) 1 else -1
-                    
-                    (slideInHorizontally(
-                        initialOffsetX = { fullWidth -> slideDirection * fullWidth / 4 },
-                        animationSpec = spring(
-                            dampingRatio = Spring.DampingRatioLowBouncy,
-                            stiffness = Spring.StiffnessMediumLow
-                        )
-                    ) + fadeIn(
-                        animationSpec = tween(250)
-                    )).togetherWith(
-                        slideOutHorizontally(
-                            targetOffsetX = { fullWidth -> -slideDirection * fullWidth / 4 },
-                            animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioNoBouncy,
-                                stiffness = Spring.StiffnessMedium
-                            )
-                        ) + fadeOut(
-                            animationSpec = tween(200)
-                        )
+        },
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier.fillMaxSize().padding(innerPadding),
+            contentAlignment = Alignment.TopCenter,
+        ) {
+            Column(
+                modifier =
+                    Modifier.widthIn(max = MaxContentWidth)
+                        .fillMaxWidth()
+                        .verticalScroll(scrollState)
+                        .padding(horizontal = 24.dp),
+            ) {
+                val scaleIn = remember { Animatable(0.85f) }
+                val alphaIn = remember { Animatable(0f) }
+                LaunchedEffect(Unit) {
+                    launch { scaleIn.animateTo(1f, tween(500, easing = FastOutSlowInEasing)) }
+                    launch { alphaIn.animateTo(1f, tween(350, easing = FastOutSlowInEasing)) }
+                }
+                val revealModifier = Modifier.graphicsLayer {
+                    scaleX = scaleIn.value
+                    scaleY = scaleIn.value
+                    alpha = alphaIn.value
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(372.dp).then(revealModifier),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    WallpaperCard(
+                        title = stringResource(R.string.lockscreen),
+                        onClick = { onNavigateToDetail("lockscreen") },
+                        modifier = Modifier.weight(1f).fillMaxHeight(),
                     )
-                },
-                label = "screenTransition",
-                modifier = Modifier.weight(1f)
-            ) { route ->
-                when (route) {
-                    "customize" -> CustomizeContent(
-                        onNavigateToLockscreen = { onNavigateToDetail("lockscreen") },
-                        onNavigateToUIFeatures = { onNavigateToDetail("ui_features") },
-                        onNavigateToSound = { onNavigateToDetail("sound") },
-                        onNavigateToGestures = { onNavigateToDetail("gestures") }
+                    Column(
+                        modifier = Modifier.weight(1f).fillMaxHeight(),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        VisualCard(
+                            title = stringResource(R.string.themes),
+                            onClick = {
+                                val intent =
+                                    Intent().apply {
+                                        component =
+                                            ComponentName(
+                                                "com.android.axion.axthemestore",
+                                                "com.android.axion.axthemestore.MainActivity",
+                                            )
+                                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    }
+                                context.startActivity(intent)
+                            },
+                            modifier = Modifier.fillMaxWidth().weight(1f),
+                        ) {
+                            ThemesIllustration()
+                        }
+                        VisualCard(
+                            title = stringResource(R.string.ui_features),
+                            onClick = { onNavigateToDetail("ui_features") },
+                            modifier = Modifier.fillMaxWidth().weight(1f),
+                        ) {
+                            UIFeaturesIllustration()
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(148.dp).then(revealModifier),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    VisualCard(
+                        title = stringResource(R.string.sound),
+                        onClick = { onNavigateToDetail("sound") },
+                        modifier = Modifier.weight(1f).fillMaxHeight(),
+                    ) {
+                        SoundIllustration()
+                    }
+                    VisualCard(
+                        title = stringResource(R.string.gestures),
+                        onClick = { onNavigateToDetail("gestures") },
+                        modifier = Modifier.weight(1f).fillMaxHeight(),
+                    ) {
+                        GesturesIllustration()
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(118.dp).then(revealModifier),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    DashboardCard(
+                        title = stringResource(R.string.routines),
+                        icon = Icons.Filled.AutoMode,
+                        onClick = { onNavigateToDetail("routines") },
+                        modifier = Modifier.weight(1f),
                     )
-                    "essentials" -> EssentialsContent(
-                        onNavigateToAppPicker = onNavigateToAppPicker,
-                        onNavigateToTrickyStore = { onNavigateToDetail("trickystore") },
-                        onNavigateToPlayIntegrityFix = { onNavigateToDetail("playintegrityfix") },
-                        onNavigateToGameSpoofing = { onNavigateToDetail("gamespoofing") }
+                    DashboardCard(
+                        title = stringResource(R.string.essentials),
+                        icon = Icons.Filled.Workspaces,
+                        onClick = { onNavigateToDetail("essentials") },
+                        modifier = Modifier.weight(1f),
                     )
-                    "performance" -> PerformanceContent()
-                    "multitasking" -> MultitaskingContent(
-                        onNavigateToPcMode = { onNavigateToDetail("pcmode") }
+                    DashboardCard(
+                        title = stringResource(R.string.performance),
+                        icon = Icons.Filled.Bolt,
+                        onClick = { onNavigateToDetail("performance") },
+                        modifier = Modifier.weight(1f),
                     )
                 }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(118.dp).then(revealModifier),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    DashboardCard(
+                        title = stringResource(R.string.multitasking),
+                        icon = Icons.Filled.Splitscreen,
+                        onClick = { onNavigateToDetail("multitasking") },
+                        modifier = Modifier.weight(1f),
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.weight(1f))
+                }
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Spacer(modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars))
             }
         }
-        
-        BottomNavBar(
-            items = navItems,
-            selectedRoute = selectedRoute,
-            onItemSelected = onNavSelected,
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
     }
 }
 
 @Composable
 private fun DetailScreen(
     screen: String,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onNavigateToAppPicker: (Set<String>) -> Unit = {},
 ) {
     when (screen) {
         "lockscreen" -> LockscreenFeaturesScreen(onBackClick = onBackClick)
@@ -311,7 +362,17 @@ private fun DetailScreen(
         "trickystore" -> TrickyStoreScreen(onBackClick = onBackClick)
         "playintegrityfix" -> PlayIntegrityFixScreen(onBackClick = onBackClick)
         "gamespoofing" -> GameSpoofingScreen(onBackClick = onBackClick)
+        "customromhide" -> CustomRomHideScreen(onBackClick = onBackClick)
         "pcmode" -> PcModeScreen(onBackClick = onBackClick)
+        "routines" -> RoutinesScreen(onBackClick = onBackClick)
+        "performance" -> PerformanceScreen(onBackClick = onBackClick)
+        "dynamic_bar" -> DynamicBarScreen(onBackClick = onBackClick)
+        "essentials" ->
+            EssentialsScreen(
+                onBackClick = onBackClick,
+                onNavigateToAppPicker = onNavigateToAppPicker,
+            )
+        "multitasking" -> MultitaskingScreen(onBackClick = onBackClick)
     }
 }
 
@@ -319,7 +380,8 @@ private fun DetailScreen(
 @Composable
 private fun DetailPaneContent(
     screen: String,
-    onClose: () -> Unit
+    onClose: () -> Unit,
+    onNavigateToAppPicker: (Set<String>) -> Unit = {},
 ) {
     when (screen) {
         "lockscreen" -> LockscreenFeaturesScreen(onBackClick = onClose)
@@ -329,31 +391,249 @@ private fun DetailPaneContent(
         "trickystore" -> TrickyStoreScreen(onBackClick = onClose)
         "playintegrityfix" -> PlayIntegrityFixScreen(onBackClick = onClose)
         "gamespoofing" -> GameSpoofingScreen(onBackClick = onClose)
+        "customromhide" -> CustomRomHideScreen(onBackClick = onClose)
         "pcmode" -> PcModeScreen(onBackClick = onClose)
+        "routines" -> RoutinesScreen(onBackClick = onClose)
+        "performance" -> PerformanceScreen(onBackClick = onClose)
+        "dynamic_bar" -> DynamicBarScreen(onBackClick = onClose)
+        "essentials" ->
+            EssentialsScreen(
+                onBackClick = onClose,
+                onNavigateToAppPicker = onNavigateToAppPicker,
+            )
+        "multitasking" -> MultitaskingScreen(onBackClick = onClose)
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+private fun WallpaperCard(
+    title: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+    val density = LocalDensity.current
+    val motionScheme = MaterialTheme.motionScheme
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+    val scale by
+        animateFloatAsState(
+            targetValue = if (isPressed) 0.97f else 1f,
+            animationSpec = motionScheme.defaultSpatialSpec(),
+            label = "scale",
+        )
+
+    var wallpaperImage by remember { mutableStateOf<ImageBitmap?>(null) }
+    LaunchedEffect(Unit) {
+        val wallpaperManager = WallpaperManager.getInstance(context)
+        val drawable = wallpaperManager.drawable
+        val bitmap = (drawable as? BitmapDrawable)?.bitmap
+        if (bitmap != null) {
+            val maxW = with(density) { 400.dp.roundToPx() }
+            val maxH = with(density) { 600.dp.roundToPx() }
+            wallpaperImage =
+                withContext(Dispatchers.Default) {
+                    val s =
+                        minOf(
+                            maxW.toFloat() / bitmap.width,
+                            maxH.toFloat() / bitmap.height,
+                            1f,
+                        )
+                    val sw = (bitmap.width * s).toInt().coerceAtLeast(1)
+                    val sh = (bitmap.height * s).toInt().coerceAtLeast(1)
+                    Bitmap.createScaledBitmap(bitmap, sw, sh, true).asImageBitmap()
+                }
+        }
+    }
+
+    val fallbackColors =
+        listOf(
+            MaterialTheme.colorScheme.primaryContainer,
+            MaterialTheme.colorScheme.tertiaryContainer,
+        )
+
+    Box(
+        modifier =
+            modifier
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                }
+                .clip(RoundedCornerShape(28.dp))
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null,
+                    onClick = onClick,
+                )
+    ) {
+        val img = wallpaperImage
+        if (img != null) {
+            Image(
+                bitmap = img,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop,
+            )
+        } else {
+            Box(
+                modifier =
+                    Modifier.fillMaxSize()
+                        .background(Brush.linearGradient(fallbackColors))
+            )
+        }
+
+        Box(
+            modifier =
+                Modifier.fillMaxWidth()
+                    .height(72.dp)
+                    .align(Alignment.BottomCenter)
+                    .background(
+                        Brush.verticalGradient(
+                            listOf(Color.Transparent, Color.Black.copy(alpha = 0.6f))
+                        )
+                    )
+        )
+
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.White,
+            modifier = Modifier.align(Alignment.BottomStart).padding(18.dp),
+        )
+    }
+}
+
+@Composable
+private fun ThemesIllustration() {
+    val colors = MaterialTheme.colorScheme
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .offset(x = (-14).dp)
+                .clip(CircleShape)
+                .background(colors.primary.copy(alpha = 0.7f)),
+        )
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .offset(x = 14.dp)
+                .clip(CircleShape)
+                .background(colors.tertiary.copy(alpha = 0.7f)),
+        )
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .offset(y = 14.dp)
+                .clip(CircleShape)
+                .background(colors.secondary.copy(alpha = 0.7f)),
+        )
+    }
+}
+
+@Composable
+private fun UIFeaturesIllustration() {
+    val colors = MaterialTheme.colorScheme
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(colors.primary),
+                )
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(colors.primaryContainer),
+                )
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(colors.tertiaryContainer),
+                )
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(colors.secondaryContainer),
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun SoundIllustration() {
+    val colors = MaterialTheme.colorScheme
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            val heights = listOf(20f, 32f, 44f, 56f, 44f, 32f, 20f)
+            heights.forEach { h ->
+                Box(
+                    modifier = Modifier
+                        .width(8.dp)
+                        .height(h.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .background(colors.tertiary),
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun GesturesIllustration() {
+    val colors = MaterialTheme.colorScheme
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .size(60.dp)
+                .clip(CircleShape)
+                .background(colors.primaryContainer),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Gesture,
+                contentDescription = null,
+                tint = colors.onPrimaryContainer,
+                modifier = Modifier.size(32.dp),
+            )
+        }
     }
 }
 
 @Composable
 private fun EmptyDetailPane() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             Icon(
                 imageVector = Icons.Default.TouchApp,
                 contentDescription = null,
                 modifier = Modifier.size(64.dp),
-                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
+                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Select an item",
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
             )
         }
     }

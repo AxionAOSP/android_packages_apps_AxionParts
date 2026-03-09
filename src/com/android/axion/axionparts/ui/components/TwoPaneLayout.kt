@@ -27,14 +27,14 @@ import androidx.compose.ui.unit.dp
 enum class WindowSizeClass {
     COMPACT,
     MEDIUM,
-    EXPANDED
+    EXPANDED,
 }
 
 @Composable
 fun rememberWindowSizeClass(): WindowSizeClass {
     val configuration = LocalConfiguration.current
     val screenWidthDp = configuration.screenWidthDp
-    
+
     return when {
         screenWidthDp < 600 -> WindowSizeClass.COMPACT
         screenWidthDp < 840 -> WindowSizeClass.MEDIUM
@@ -48,38 +48,24 @@ fun TwoPaneLayout(
     listPane: @Composable () -> Unit,
     detailPane: @Composable () -> Unit,
     showDetailPane: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    val isExpandedOrMedium = windowSizeClass == WindowSizeClass.EXPANDED || 
-                             windowSizeClass == WindowSizeClass.MEDIUM
-    
+    val isExpandedOrMedium =
+        windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
+
     if (isExpandedOrMedium) {
         Row(
-            modifier = modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surfaceContainer)
+            modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.surfaceContainer)
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(0.4f)
-            ) {
-                listPane()
-            }
-            
+            Box(modifier = Modifier.fillMaxHeight().weight(0.5f)) { listPane() }
+
             VerticalDivider(
                 modifier = Modifier.fillMaxHeight(),
                 thickness = 1.dp,
-                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)
+                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f),
             )
-            
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(0.6f)
-            ) {
-                detailPane()
-            }
+
+            Box(modifier = Modifier.fillMaxHeight().weight(0.5f)) { detailPane() }
         }
     } else {
         Box(modifier = modifier.fillMaxSize()) {
@@ -96,31 +82,31 @@ fun TwoPaneLayout(
 fun AdaptiveDetailContainer(
     windowSizeClass: WindowSizeClass,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-    val isExpandedOrMedium = windowSizeClass == WindowSizeClass.EXPANDED || 
-                             windowSizeClass == WindowSizeClass.MEDIUM
-    
+    val isExpandedOrMedium =
+        windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
+
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .then(
-                if (isExpandedOrMedium) {
-                    Modifier.padding(horizontal = 16.dp)
-                } else {
-                    Modifier
-                }
-            ),
-        contentAlignment = if (isExpandedOrMedium) Alignment.TopCenter else Alignment.TopStart
+        modifier =
+            modifier
+                .fillMaxSize()
+                .then(
+                    if (isExpandedOrMedium) {
+                        Modifier.padding(horizontal = 16.dp)
+                    } else {
+                        Modifier
+                    }
+                ),
+        contentAlignment = if (isExpandedOrMedium) Alignment.TopCenter else Alignment.TopStart,
     ) {
         Box(
-            modifier = if (isExpandedOrMedium) {
-                Modifier
-                    .widthIn(max = 600.dp)
-                    .fillMaxWidth()
-            } else {
-                Modifier.fillMaxWidth()
-            }
+            modifier =
+                if (isExpandedOrMedium) {
+                    Modifier.widthIn(max = 600.dp).fillMaxWidth()
+                } else {
+                    Modifier.fillMaxWidth()
+                }
         ) {
             content()
         }

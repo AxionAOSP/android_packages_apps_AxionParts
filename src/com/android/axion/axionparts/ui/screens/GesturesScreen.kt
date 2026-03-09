@@ -16,112 +16,154 @@
 
 package com.android.axion.axionparts.ui.screens
 
-import androidx.compose.animation.core.*
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.*
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.*
-import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.drawscope.*
+import androidx.compose.material.icons.filled.Swipe
+import androidx.compose.material.icons.filled.Vibration
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
+import com.android.axion.axionparts.ui.components.FeatureCard
 import com.android.axion.compose.preferences.*
-import com.android.axion.axionparts.ui.theme.MaxContentWidth
+import com.android.axion.compose.scaffold.AxionScaffold
 
-@OptIn(ExperimentalMaterial3Api::class)
+private enum class GesturesSubScreen {
+    MAIN,
+    SHAKE,
+    THREE_FINGER,
+}
+
 @Composable
-fun GesturesScreen(
-    onBackClick: () -> Unit
-) {
-    Scaffold(
-        containerColor = Color.Transparent,
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(R.string.gestures),
-                        fontWeight = FontWeight.Bold,
-                        style = MaterialTheme.typography.headlineMedium
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.back)
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent,
-                    scrolledContainerColor = Color.Transparent
-                )
-            )
+fun GesturesScreen(onBackClick: () -> Unit) {
+    var currentScreen by rememberSaveable { mutableStateOf(GesturesSubScreen.MAIN) }
+
+    val screenTitle =
+        when (currentScreen) {
+            GesturesSubScreen.MAIN -> stringResource(R.string.gestures)
+            GesturesSubScreen.SHAKE -> stringResource(R.string.shake_gestures)
+            GesturesSubScreen.THREE_FINGER -> stringResource(R.string.three_finger_gestures)
         }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            contentAlignment = Alignment.TopCenter
-        ) {
-            GesturesContent(
-                modifier = Modifier.widthIn(max = MaxContentWidth)
-            )
+
+    val handleBack: () -> Unit = {
+        if (currentScreen == GesturesSubScreen.MAIN) {
+            onBackClick()
+        } else {
+            currentScreen = GesturesSubScreen.MAIN
+        }
+    }
+
+    BackHandler(onBack = handleBack)
+
+    AxionScaffold(title = screenTitle, onBackClick = handleBack) { innerPadding ->
+        when (currentScreen) {
+            GesturesSubScreen.MAIN ->
+                GesturesMainContent(
+                    modifier = Modifier.padding(innerPadding),
+                    onNavigateToShake = { currentScreen = GesturesSubScreen.SHAKE },
+                    onNavigateToThreeFinger = { currentScreen = GesturesSubScreen.THREE_FINGER },
+                )
+            GesturesSubScreen.SHAKE ->
+                ShakeGesturesContent(modifier = Modifier.padding(innerPadding))
+            GesturesSubScreen.THREE_FINGER ->
+                ThreeFingerGesturesContent(modifier = Modifier.padding(innerPadding))
         }
     }
 }
 
 @Composable
-private fun GesturesContent(
-    modifier: Modifier = Modifier
+private fun GesturesMainContent(
+    modifier: Modifier = Modifier,
+    onNavigateToShake: () -> Unit,
+    onNavigateToThreeFinger: () -> Unit,
 ) {
-    val gestureActions = listOf(
-        "0" to stringResource(R.string.gesture_action_nothing),
-        "2" to stringResource(R.string.gesture_action_app_switch),
-        "3" to stringResource(R.string.gesture_action_search),
-        "4" to stringResource(R.string.gesture_action_voice_search),
-        "6" to stringResource(R.string.gesture_action_launch_camera),
-        "7" to stringResource(R.string.gesture_action_sleep),
-        "8" to stringResource(R.string.gesture_action_last_app),
-        "10" to stringResource(R.string.gesture_action_close_app),
-        "11" to stringResource(R.string.gesture_action_play_pause),
-        "12" to stringResource(R.string.gesture_action_flashlight),
-        "13" to stringResource(R.string.gesture_action_screenshot),
-        "14" to stringResource(R.string.gesture_action_volume_panel),
-        "15" to stringResource(R.string.gesture_action_clear_notifications),
-        "16" to stringResource(R.string.gesture_action_notifications_panel),
-        "17" to stringResource(R.string.gesture_action_expand_qs),
-        "18" to stringResource(R.string.gesture_action_ringer_modes)
-    )
-
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp)
+        modifier =
+            modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
     ) {
         Spacer(modifier = Modifier.height(8.dp))
-        
-        GesturesIllustration()
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
-        PreferenceGroup(title = stringResource(R.string.shake_gestures)) {
+
+        Row(
+            modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            FeatureCard(
+                title = stringResource(R.string.shake_gestures),
+                subtitle = stringResource(R.string.shake_gestures_summary),
+                icon = Icons.Filled.Vibration,
+                onClick = onNavigateToShake,
+                illustrationColor = MaterialTheme.colorScheme.tertiaryContainer,
+                iconTint = MaterialTheme.colorScheme.onTertiaryContainer,
+                modifier = Modifier.weight(1f),
+            )
+            FeatureCard(
+                title = stringResource(R.string.three_finger_gestures),
+                subtitle = stringResource(R.string.three_finger_gestures_summary),
+                icon = Icons.Filled.Swipe,
+                onClick = onNavigateToThreeFinger,
+                illustrationColor = MaterialTheme.colorScheme.primaryContainer,
+                iconTint = MaterialTheme.colorScheme.onPrimaryContainer,
+                modifier = Modifier.weight(1f),
+            )
+        }
+
+        Spacer(modifier = Modifier.height(32.dp))
+    }
+}
+
+@Composable
+private fun ShakeGesturesContent(modifier: Modifier = Modifier) {
+    val gestureActions =
+        listOf(
+            "0" to stringResource(R.string.gesture_action_nothing),
+            "2" to stringResource(R.string.gesture_action_app_switch),
+            "3" to stringResource(R.string.gesture_action_search),
+            "4" to stringResource(R.string.gesture_action_voice_search),
+            "6" to stringResource(R.string.gesture_action_launch_camera),
+            "7" to stringResource(R.string.gesture_action_sleep),
+            "8" to stringResource(R.string.gesture_action_last_app),
+            "10" to stringResource(R.string.gesture_action_close_app),
+            "11" to stringResource(R.string.gesture_action_play_pause),
+            "12" to stringResource(R.string.gesture_action_flashlight),
+            "13" to stringResource(R.string.gesture_action_screenshot),
+            "14" to stringResource(R.string.gesture_action_volume_panel),
+            "15" to stringResource(R.string.gesture_action_clear_notifications),
+            "16" to stringResource(R.string.gesture_action_notifications_panel),
+            "17" to stringResource(R.string.gesture_action_expand_qs),
+            "18" to stringResource(R.string.gesture_action_ringer_modes),
+        )
+
+    Column(
+        modifier =
+            modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
+    ) {
+        Spacer(modifier = Modifier.height(8.dp))
+
+        PreferenceGroup {
             item {
                 SecureSettingSwitch(
                     settingKey = "shake_gestures_enabled",
                     title = stringResource(R.string.enable_shake_gestures),
                     summary = stringResource(R.string.shake_gestures_summary),
-                    defaultValue = false
+                    icon = Icons.Filled.Vibration,
+                    defaultValue = false,
                 )
             }
             item {
@@ -132,7 +174,7 @@ private fun GesturesContent(
                     min = 1,
                     max = 10,
                     unit = "",
-                    defaultValue = 6
+                    defaultValue = 6,
                 )
             }
             item {
@@ -142,21 +184,51 @@ private fun GesturesContent(
                     summary = stringResource(R.string.shake_action_summary),
                     options = gestureActions,
                     defaultValue = "0",
-                    dependencyKey = "shake_gestures_enabled"
+                    dependencyKey = "shake_gestures_enabled",
                 )
             }
         }
-        
-        Spacer(modifier = Modifier.height(12.dp))
-        
-        PreferenceGroup(title = stringResource(R.string.three_finger_gestures)) {
+
+        Spacer(modifier = Modifier.height(32.dp))
+    }
+}
+
+@Composable
+private fun ThreeFingerGesturesContent(modifier: Modifier = Modifier) {
+    val gestureActions =
+        listOf(
+            "0" to stringResource(R.string.gesture_action_nothing),
+            "2" to stringResource(R.string.gesture_action_app_switch),
+            "3" to stringResource(R.string.gesture_action_search),
+            "4" to stringResource(R.string.gesture_action_voice_search),
+            "6" to stringResource(R.string.gesture_action_launch_camera),
+            "7" to stringResource(R.string.gesture_action_sleep),
+            "8" to stringResource(R.string.gesture_action_last_app),
+            "10" to stringResource(R.string.gesture_action_close_app),
+            "11" to stringResource(R.string.gesture_action_play_pause),
+            "12" to stringResource(R.string.gesture_action_flashlight),
+            "13" to stringResource(R.string.gesture_action_screenshot),
+            "14" to stringResource(R.string.gesture_action_volume_panel),
+            "15" to stringResource(R.string.gesture_action_clear_notifications),
+            "16" to stringResource(R.string.gesture_action_notifications_panel),
+            "17" to stringResource(R.string.gesture_action_expand_qs),
+            "18" to stringResource(R.string.gesture_action_ringer_modes),
+        )
+
+    Column(
+        modifier =
+            modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
+    ) {
+        Spacer(modifier = Modifier.height(8.dp))
+
+        PreferenceGroup {
             item {
                 SecureListPreference(
                     key = "nothing_three_finger_screenshot",
                     title = stringResource(R.string.three_finger_swipe),
                     summary = stringResource(R.string.three_finger_swipe_summary),
                     options = gestureActions,
-                    defaultValue = "13"
+                    defaultValue = "13",
                 )
             }
             item {
@@ -164,7 +236,7 @@ private fun GesturesContent(
                     settingKey = "nothing_three_finger_long_press",
                     title = stringResource(R.string.three_finger_long_press),
                     summary = stringResource(R.string.three_finger_long_press_summary),
-                    defaultValue = false
+                    defaultValue = false,
                 )
             }
             item {
@@ -172,129 +244,11 @@ private fun GesturesContent(
                     settingKey = "nt_disable_combination_screenshot",
                     title = stringResource(R.string.disable_button_screenshot),
                     summary = stringResource(R.string.disable_button_screenshot_summary),
-                    defaultValue = false
+                    defaultValue = false,
                 )
             }
         }
-        
-        Spacer(modifier = Modifier.height(16.dp))
-    }
-}
 
-@Composable
-private fun GesturesIllustration() {
-    val infiniteTransition = rememberInfiniteTransition(label = "gestures")
-    
-    val shakeOffset by infiniteTransition.animateFloat(
-        initialValue = -1f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(200, easing = LinearEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "shake"
-    )
-    
-    val swipeProgress by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1500, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "swipe"
-    )
-    
-    val primary = MaterialTheme.colorScheme.primary
-    val onSurface = MaterialTheme.colorScheme.onSurface
-    
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(160.dp)
-            .clip(RoundedCornerShape(28.dp))
-            .background(MaterialTheme.colorScheme.surfaceBright),
-        contentAlignment = Alignment.Center
-    ) {
-        Canvas(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-            val centerX = size.width / 2
-            val centerY = size.height / 2
-            
-            val phoneWidth = 50.dp.toPx()
-            val phoneHeight = 85.dp.toPx()
-            val phoneLeft = centerX - 60.dp.toPx() - phoneWidth / 2 + (shakeOffset * 4.dp.toPx())
-            val phoneTop = centerY - phoneHeight / 2
-            
-            drawRoundRect(
-                color = onSurface.copy(alpha = 0.15f),
-                topLeft = Offset(phoneLeft, phoneTop),
-                size = Size(phoneWidth, phoneHeight),
-                cornerRadius = CornerRadius(10.dp.toPx())
-            )
-            
-            drawRoundRect(
-                color = primary.copy(alpha = 0.4f),
-                topLeft = Offset(phoneLeft + 4.dp.toPx(), phoneTop + 6.dp.toPx()),
-                size = Size(phoneWidth - 8.dp.toPx(), phoneHeight - 12.dp.toPx()),
-                cornerRadius = CornerRadius(6.dp.toPx())
-            )
-            
-            val arrowStartX = phoneLeft - 15.dp.toPx()
-            val arrowEndX = phoneLeft - 5.dp.toPx()
-            drawLine(
-                color = primary.copy(alpha = 0.6f),
-                start = Offset(arrowStartX, centerY - 10.dp.toPx()),
-                end = Offset(arrowEndX, centerY),
-                strokeWidth = 2.dp.toPx(),
-                cap = StrokeCap.Round
-            )
-            drawLine(
-                color = primary.copy(alpha = 0.6f),
-                start = Offset(arrowStartX, centerY + 10.dp.toPx()),
-                end = Offset(arrowEndX, centerY),
-                strokeWidth = 2.dp.toPx(),
-                cap = StrokeCap.Round
-            )
-            
-            val rightArrowStartX = phoneLeft + phoneWidth + 5.dp.toPx()
-            val rightArrowEndX = phoneLeft + phoneWidth + 15.dp.toPx()
-            drawLine(
-                color = primary.copy(alpha = 0.6f),
-                start = Offset(rightArrowEndX, centerY - 10.dp.toPx()),
-                end = Offset(rightArrowStartX, centerY),
-                strokeWidth = 2.dp.toPx(),
-                cap = StrokeCap.Round
-            )
-            drawLine(
-                color = primary.copy(alpha = 0.6f),
-                start = Offset(rightArrowEndX, centerY + 10.dp.toPx()),
-                end = Offset(rightArrowStartX, centerY),
-                strokeWidth = 2.dp.toPx(),
-                cap = StrokeCap.Round
-            )
-            
-            val handCenterX = centerX + 60.dp.toPx()
-            val handCenterY = centerY
-            
-            val fingerSpacing = 10.dp.toPx()
-            for (i in -1..1) {
-                drawCircle(
-                    color = primary.copy(alpha = 0.6f),
-                    radius = 6.dp.toPx(),
-                    center = Offset(handCenterX + i * fingerSpacing, handCenterY - 25.dp.toPx() + (swipeProgress * 50.dp.toPx()))
-                )
-            }
-            
-            val trailAlpha = (1f - swipeProgress) * 0.3f
-            for (i in -1..1) {
-                drawLine(
-                    color = primary.copy(alpha = trailAlpha),
-                    start = Offset(handCenterX + i * fingerSpacing, handCenterY - 25.dp.toPx()),
-                    end = Offset(handCenterX + i * fingerSpacing, handCenterY - 25.dp.toPx() + (swipeProgress * 40.dp.toPx())),
-                    strokeWidth = 3.dp.toPx(),
-                    cap = StrokeCap.Round
-                )
-            }
-        }
+        Spacer(modifier = Modifier.height(32.dp))
     }
 }

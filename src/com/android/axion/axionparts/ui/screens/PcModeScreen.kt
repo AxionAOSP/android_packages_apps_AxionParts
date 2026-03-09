@@ -16,8 +16,6 @@
 
 package com.android.axion.axionparts.ui.screens
 
-import android.provider.Settings
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,88 +23,58 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
+import com.android.axion.compose.preferences.ClickablePreference
 import com.android.axion.compose.preferences.PreferenceGroup
 import com.android.axion.compose.preferences.SecureSettingSlider
 import com.android.axion.compose.preferences.SecureSettingSwitch
-import com.android.axion.compose.preferences.ClickablePreference
+import com.android.axion.compose.preferences.SettingsType
+import com.android.axion.compose.preferences.rememberSettingString
+import com.android.axion.compose.preferences.rememberSettingsFlow
+import com.android.axion.compose.scaffold.AxionScaffold
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PcModeScreen(onBackClick: () -> Unit) {
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            LargeTopAppBar(
-                title = { Text(stringResource(R.string.pc_mode_title)) },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                            contentDescription = stringResource(R.string.back)
-                        )
-                    }
-                },
-                scrollBehavior = scrollBehavior,
-                colors = TopAppBarDefaults.largeTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    scrolledContainerColor = MaterialTheme.colorScheme.background
-                )
-            )
-        }
-    ) { paddingValues ->
+    AxionScaffold(title = stringResource(R.string.pc_mode_title), onBackClick = onBackClick) {
+        paddingValues ->
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 16.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier.fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(horizontal = 16.dp)
+                    .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             PreferenceGroup(title = stringResource(R.string.pref_category_general)) {
                 item {
                     SecureSettingSwitch(
                         settingKey = "ax_pc_mode",
                         title = stringResource(R.string.pref_enable_pc_mode_title),
-                        summary = stringResource(R.string.pref_enable_pc_mode_summary)
+                        summary = stringResource(R.string.pref_enable_pc_mode_summary),
                     )
                 }
             }
 
             PreferenceGroup(title = stringResource(R.string.pref_category_display)) {
-                item {
-                    ResolutionPreference()
-                }
+                item { ResolutionPreference() }
                 item {
                     SecureSettingSwitch(
                         settingKey = "ax_pc_mode_display_off",
                         title = stringResource(R.string.pref_pc_mode_screen_off_title),
-                        summary = stringResource(R.string.pref_pc_mode_screen_off_summary)
+                        summary = stringResource(R.string.pref_pc_mode_screen_off_summary),
                     )
                 }
             }
@@ -132,7 +100,7 @@ fun PcModeScreen(onBackClick: () -> Unit) {
                             } else {
                                 "${value}ms"
                             }
-                        }
+                        },
                     )
                 }
             }
@@ -142,17 +110,16 @@ fun PcModeScreen(onBackClick: () -> Unit) {
 
 @Composable
 private fun ResolutionPreference() {
-    val context = LocalContext.current
+    val flow = rememberSettingsFlow(SettingsType.SECURE)
     var showDialog by remember { mutableStateOf(false) }
-    val resolver = context.contentResolver
-    val currentResolution = remember {
-        Settings.Secure.getString(resolver, "ax_pc_mode_resolution_override") ?: ""
-    }
+    val currentResolution by rememberSettingString("ax_pc_mode_resolution_override", SettingsType.SECURE)
 
     ClickablePreference(
         title = stringResource(R.string.resolution_override_title),
-        summary = if (currentResolution.isNotEmpty()) currentResolution else stringResource(R.string.resolution_default),
-        onClick = { showDialog = true }
+        summary =
+            if (currentResolution.isNotEmpty()) currentResolution
+            else stringResource(R.string.resolution_default),
+        onClick = { showDialog = true },
     )
 
     if (showDialog) {
@@ -160,9 +127,9 @@ private fun ResolutionPreference() {
             currentValue = currentResolution,
             onDismiss = { showDialog = false },
             onConfirm = { newValue ->
-                Settings.Secure.putString(resolver, "ax_pc_mode_resolution_override", newValue)
+                flow.putString("ax_pc_mode_resolution_override", newValue)
                 showDialog = false
-            }
+            },
         )
     }
 }
@@ -171,7 +138,7 @@ private fun ResolutionPreference() {
 private fun ResolutionDialog(
     currentValue: String,
     onDismiss: () -> Unit,
-    onConfirm: (String) -> Unit
+    onConfirm: (String) -> Unit,
 ) {
     var text by remember { mutableStateOf(currentValue) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -186,21 +153,21 @@ private fun ResolutionDialog(
             Column {
                 OutlinedTextField(
                     value = text,
-                    onValueChange = { 
-                        text = it 
+                    onValueChange = {
+                        text = it
                         error = null
                     },
                     label = { Text(stringResource(R.string.resolution_input_label)) },
                     isError = error != null,
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
                 if (error != null) {
                     Text(
                         text = error!!,
                         color = MaterialTheme.colorScheme.error,
                         style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+                        modifier = Modifier.padding(start = 16.dp, top = 4.dp),
                     )
                 }
             }
@@ -216,7 +183,7 @@ private fun ResolutionDialog(
                     if (parts.size == 2) {
                         val width = parts[0].trim().toIntOrNull()
                         val height = parts[1].trim().toIntOrNull()
-                        
+
                         if (width != null && height != null) {
                             if (width > 4096 || height > 4096) {
                                 error = maxLimitError
@@ -237,12 +204,10 @@ private fun ResolutionDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = { onDismiss() }) {
-                Text(stringResource(R.string.action_cancel))
-            }
+            TextButton(onClick = { onDismiss() }) { Text(stringResource(R.string.action_cancel)) }
             TextButton(onClick = { onConfirm("") }) {
                 Text(stringResource(R.string.action_reset_default))
             }
-        }
+        },
     )
 }

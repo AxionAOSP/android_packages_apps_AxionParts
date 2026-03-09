@@ -34,11 +34,12 @@ class PerformanceModeTileService : TileService() {
         private const val POWER_MODE_BY_USER_KEY = "persist.sys.power_mode_perf_by_user"
     }
 
-    private val settingsObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
-        override fun onChange(selfChange: Boolean) {
-            updateTileState()
+    private val settingsObserver =
+        object : ContentObserver(Handler(Looper.getMainLooper())) {
+            override fun onChange(selfChange: Boolean) {
+                updateTileState()
+            }
         }
-    }
 
     private fun isPerformanceModeEnabled(): Boolean {
         return try {
@@ -46,7 +47,7 @@ class PerformanceModeTileService : TileService() {
                 contentResolver,
                 POWER_MODE_KEY,
                 0,
-                UserHandle.USER_CURRENT
+                UserHandle.USER_CURRENT,
             ) == 1
         } catch (e: Exception) {
             SystemProperties.getInt(POWER_MODE_KEY, 0) == 1
@@ -60,23 +61,24 @@ class PerformanceModeTileService : TileService() {
             contentResolver,
             POWER_MODE_KEY,
             modeValue,
-            UserHandle.USER_CURRENT
+            UserHandle.USER_CURRENT,
         )
         Settings.System.putIntForUser(
             contentResolver,
             POWER_MODE_BY_USER_KEY,
             modeValue,
-            UserHandle.USER_CURRENT
+            UserHandle.USER_CURRENT,
         )
     }
 
     private fun updateTileState() {
         val tile = qsTile ?: return
         val isEnabled = isPerformanceModeEnabled()
-        
+
         tile.state = if (isEnabled) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
         tile.label = getString(R.string.qs_tile_performance)
-        tile.subtitle = if (isEnabled) getString(R.string.qs_tile_on) else getString(R.string.qs_tile_off)
+        tile.subtitle =
+            if (isEnabled) getString(R.string.qs_tile_on) else getString(R.string.qs_tile_off)
         tile.icon = Icon.createWithResource(this, android.R.drawable.ic_menu_manage)
         tile.updateTile()
     }
@@ -86,7 +88,7 @@ class PerformanceModeTileService : TileService() {
         contentResolver.registerContentObserver(
             Settings.System.getUriFor(POWER_MODE_KEY),
             false,
-            settingsObserver
+            settingsObserver,
         )
         updateTileState()
     }

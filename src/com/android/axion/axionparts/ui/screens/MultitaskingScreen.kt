@@ -18,6 +18,15 @@ package com.android.axion.axionparts.ui.screens
 
 import android.content.ComponentName
 import android.content.Intent
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,125 +35,107 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Splitscreen
 import androidx.compose.material.icons.filled.ViewSidebar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
-import com.android.axion.axionparts.ui.theme.BottomNavPadding
-import com.android.axion.compose.preferences.*
+import com.android.axion.compose.preferences.ClickablePreference
+import com.android.axion.compose.preferences.PreferenceGroup
+import com.android.axion.compose.scaffold.AxionScaffold
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun MultitaskingScreen(
-    onBackClick: (() -> Unit)? = null,
-    showTopBar: Boolean = true
-) {
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-    
-    if (showTopBar) {
-        Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-            containerColor = Color.Transparent,
-            topBar = {
-                LargeTopAppBar(
-                    title = {
-                        Text(
-                            text = "Multitasking",
-                            fontWeight = FontWeight.Bold
-                        )
-                    },
-                    navigationIcon = {
-                        onBackClick?.let { onClick ->
-                            IconButton(onClick = onClick) {
-                                Icon(
-                                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = stringResource(R.string.back)
-                                )
-                            }
-                        }
-                    },
-                    scrollBehavior = scrollBehavior,
-                    colors = TopAppBarDefaults.largeTopAppBarColors(
-                        containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Transparent
-                    )
+fun MultitaskingScreen(onBackClick: (() -> Unit)? = null) {
+    var currentSubScreen by rememberSaveable { mutableStateOf<String?>(null) }
+
+    val motionScheme = MaterialTheme.motionScheme
+    AnimatedContent(
+        targetState = currentSubScreen,
+        transitionSpec = {
+            if (targetState != null) {
+                (slideInHorizontally(motionScheme.defaultSpatialSpec()) { it } + fadeIn(motionScheme.defaultEffectsSpec())).togetherWith(
+                    slideOutHorizontally(motionScheme.defaultSpatialSpec()) { -it / 3 } + fadeOut(motionScheme.defaultEffectsSpec())
+                )
+            } else {
+                (slideInHorizontally(motionScheme.defaultSpatialSpec()) { -it / 3 } + fadeIn(motionScheme.defaultEffectsSpec())).togetherWith(
+                    slideOutHorizontally(motionScheme.defaultSpatialSpec()) { it } + fadeOut(motionScheme.defaultEffectsSpec())
                 )
             }
-        ) { innerPadding ->
-            MultitaskingContent(modifier = Modifier.padding(innerPadding))
+        },
+        label = "multitaskingSubScreen",
+    ) { subScreen ->
+        when (subScreen) {
+            null -> {
+                AxionScaffold(
+                    title = stringResource(R.string.multitasking),
+                    onBackClick = { onBackClick?.invoke() },
+                ) { innerPadding ->
+                    MultitaskingContent(
+                        modifier = Modifier.padding(innerPadding),
+                        onNavigateToPcMode = { currentSubScreen = "pcmode" },
+                    )
+                }
+            }
+            "pcmode" -> {
+                BackHandler { currentSubScreen = null }
+                PcModeScreen(onBackClick = { currentSubScreen = null })
+            }
         }
-    } else {
-        MultitaskingContent(modifier = Modifier)
     }
 }
 
 @Composable
-fun MultitaskingContent(
+private fun MultitaskingContent(
     modifier: Modifier = Modifier,
-    onNavigateToPcMode: () -> Unit = {}
+    onNavigateToPcMode: () -> Unit = {},
 ) {
     val context = LocalContext.current
-    
+
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp)
+        modifier =
+            modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
     ) {
         Spacer(modifier = Modifier.height(8.dp))
-        
-        SettingsSection(
-            title = stringResource(R.string.edge_features),
-            icon = Icons.Default.ViewSidebar
-        ) {
-            ClickablePreference(
-                title = stringResource(R.string.sidebar),
-                summary = stringResource(R.string.sidebar_summary),
-                icon = Icons.Default.ViewSidebar,
-                onClick = {
-                    val intent = Intent().apply {
-                        component = ComponentName(
-                            "com.android.edge.bar",
-                            "com.android.edge.bar.settings.SettingsActivity"
-                        )
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    }
-                    context.startActivity(intent)
-                }
-            )
-        }
-        
-        Spacer(modifier = Modifier.height(16.dp))
 
-        SettingsSection(
-            title = stringResource(R.string.pc_mode),
-            icon = Icons.Filled.Splitscreen
-        ) {
-            ClickablePreference(
-                title = stringResource(R.string.pc_mode_settings),
-                summary = stringResource(R.string.pc_mode_summary),
-                icon = Icons.Filled.Splitscreen,
-                onClick = onNavigateToPcMode
-            )
+        PreferenceGroup(title = stringResource(R.string.multitasking)) {
+            item {
+                ClickablePreference(
+                    title = stringResource(R.string.sidebar),
+                    summary = stringResource(R.string.sidebar_summary),
+                    icon = Icons.Default.ViewSidebar,
+                    showExternalIcon = true,
+                    onClick = {
+                        val intent =
+                            Intent().apply {
+                                component =
+                                    ComponentName(
+                                        "com.android.edge.bar",
+                                        "com.android.edge.bar.settings.SettingsActivity",
+                                    )
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                        context.startActivity(intent)
+                    },
+                )
+            }
+            item {
+                ClickablePreference(
+                    title = stringResource(R.string.pc_mode_settings),
+                    summary = stringResource(R.string.pc_mode_summary),
+                    icon = Icons.Filled.Splitscreen,
+                    onClick = onNavigateToPcMode,
+                )
+            }
         }
 
-        Spacer(modifier = Modifier.height(BottomNavPadding))
+        Spacer(modifier = Modifier.height(32.dp))
     }
 }
-
