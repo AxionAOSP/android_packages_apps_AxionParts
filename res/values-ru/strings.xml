@@ -33,11 +33,11 @@
     <string name="personalizations">Персонализация</string>
     <!-- Customize Screen -->
     <string name="themes">Темы</string>
-    <string name="themes_subtitle">Иконки, формы и другое</string>
+    <string name="themes_subtitle">Иконки, формы &amp; другое</string>
     <string name="lockscreen">Экран блокировки</string>
-    <string name="lockscreen_subtitle">Подсветка краев, медиа и визуализатор</string>
+    <string name="lockscreen_subtitle">Подсветка краев, медиа &amp; визуализатор</string>
     <string name="ui_features">Функции интерфейса</string>
-    <string name="ui_features_subtitle">Строка состояния, быстрые настройки и др.</string>
+    <string name="ui_features_subtitle">Строка состояния, быстрые настройки &amp; другое</string>
     <string name="sound">Звук</string>
     <string name="sound_subtitle">Громкость для каждого приложения</string>
     <string name="gestures">Жесты</string>
@@ -53,21 +53,21 @@
     <string name="customization">Настройка</string>
     <string name="custom_color_summary">#%1$06X</string>
     <string name="choose_color">Выберите цвет</string>
-    <string name="presets">Предустановки</string>
+    <string name="presets">Шаблоны</string>
     <string name="selected">Выбрано</string>
     <string name="select_uppercase">Выбрать</string>
     <string name="select_item">Выберите элемент</string>
     <!-- Media Art -->
-    <string name="media_art">Медиа-арт</string>
+    <string name="media_art">Медиа арт</string>
     <string name="media_art_description">Обложка альбома на экране блокировки при воспроизведении</string>
-    <string name="enable_media_art">Включить медиа-арт</string>
+    <string name="enable_media_art">Включить медиа арт</string>
     <string name="media_art_summary">Показывать обложку альбома на экране блокировки</string>
     <string name="appearance">Внешний вид</string>
     <string name="blur_level">Уровень размытия</string>
     <string name="blur_level_summary">Настройка интенсивности размытия обложки альбома</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Визуализатор Pulse</string>
-    <string name="pulse_visualizer_description">Аудиовизуализатор на экране блокировки и ambient display</string>
+    <string name="pulse_visualizer_description">Аудио визуализатор на экране блокировки и ambient display</string>
     <string name="enable_pulse">Включить Pulse</string>
     <string name="pulse_summary">Показывать аудиовизуализатор на экране блокировки</string>
     <string name="style">Стиль</string>
@@ -102,8 +102,8 @@
     <string name="when_to_show">Когда показывать</string>
     <string name="aod_on_charge">AOD при зарядке</string>
     <string name="aod_on_charge_summary">Показывать AOD только во время зарядки устройства</string>
-    <string name="custom_schedule">Настроить расписание</string>
-    <string name="custom_schedule_summary">Включить расписание AOD по времени</string>
+    <string name="custom_schedule">Настроить график</string>
+    <string name="custom_schedule_summary">Включать AOD по графику</string>
     <string name="screen_off">Экран выключен</string>
     <string name="screen_off_aod">AOD при выключенном экране</string>
     <string name="screen_off_aod_summary">Оставить AOD активным при выключении экрана</string>
