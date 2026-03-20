@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name"></string>
+    <string name="app_name">Axion 部件</string>
     <!-- Common UI Elements -->
-    <string name="back">Back</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
-    <string name="delete">Delete</string>
+    <string name="back">返回</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+    <string name="delete">删除</string>
     <string name="remove">移除</string>
     <string name="add">添加</string>
     <string name="edit">编辑</string>
     <string name="replace">替换</string>
-    <string name="import_text">Import</string>
+    <string name="import_text">导入</string>
     <string name="reload">重新加载</string>
     <string name="clear">清除</string>
     <string name="expand">展开</string>
@@ -20,7 +20,7 @@
     <string name="create">创建</string>
     <string name="general">通用</string>
     <string name="settings">设置</string>
-    <string name="active">Active</string>
+    <string name="active">启用</string>
     <string name="inactive">未启用</string>
     <string name="disabled">已禁用</string>
     <string name="custom">自定义</string>
@@ -29,32 +29,32 @@
     <string name="nav_customize">自定义</string>
     <string name="nav_essentials">常用功能</string>
     <string name="nav_performance">性能</string>
-    <string name="nav_multitasking">Multitasking</string>
+    <string name="nav_multitasking">多任务</string>
     <string name="personalizations">个性化设置</string>
     <!-- Customize Screen -->
     <string name="themes">主题</string>
-    <string name="themes_subtitle">Icons, shapes &amp; more</string>
+    <string name="themes_subtitle">图标、形状 &amp; 更多</string>
     <string name="lockscreen">锁屏</string>
-    <string name="lockscreen_subtitle">Edge light, media &amp; visualizer</string>
-    <string name="ui_features">UI Features</string>
-    <string name="ui_features_subtitle">Status bar, QS &amp; more</string>
+    <string name="lockscreen_subtitle">边缘闪光，媒体 &amp; 可视化</string>
+    <string name="ui_features">界面特性</string>
+    <string name="ui_features_subtitle">状态栏，快速设置 &amp; 更多</string>
     <string name="sound">声音</string>
-    <string name="sound_subtitle">Per-app volume &amp; multi audio</string>
+    <string name="sound_subtitle">应用独立音量 &amp; 多音频</string>
     <string name="gestures">手势</string>
-    <string name="gestures_subtitle">Shake &amp; three finger actions</string>
+    <string name="gestures_subtitle">晃动 &amp; 三指操作</string>
     <!-- Lockscreen Features -->
-    <string name="edge_light">Edge Light</string>
-    <string name="edge_light_description">Lighting effects on screen edges for notifications</string>
-    <string name="enable_edge_light">Enable Edge Light</string>
-    <string name="edge_light_summary">Show lighting effects on screen edges for notifications</string>
-    <string name="color_mode">Color mode</string>
-    <string name="notification_accent">Notification accent</string>
-    <string name="custom_color">Custom color</string>
-    <string name="customization">Customization</string>
+    <string name="edge_light">边缘闪光</string>
+    <string name="edge_light_description">通知屏幕边缘时的亮光效果</string>
+    <string name="enable_edge_light">开启边缘闪光</string>
+    <string name="edge_light_summary">通知时在屏幕边缘显示灯光效果</string>
+    <string name="color_mode">色彩模式</string>
+    <string name="notification_accent">通知音效</string>
+    <string name="custom_color">自定义颜色</string>
+    <string name="customization">个性化</string>
     <string name="custom_color_summary">#%1$06X</string>
-    <string name="choose_color">Choose color</string>
+    <string name="choose_color">选择颜色</string>
     <string name="presets">预设</string>
-    <string name="selected">Selected</string>
+    <string name="selected">已选择</string>
     <string name="select_uppercase">选择</string>
     <string name="select_item">选择项目</string>
     <!-- Media Art -->
@@ -111,7 +111,7 @@
     <string name="screen_off_animation_summary">动画过渡到 AOD</string>
     <!-- UI Features -->
     <string name="user_interface">用户界面</string>
-    <string name="quick_settings"></string>
+    <string name="quick_settings">快速设置</string>
     <string name="quick_settings_description">亮度滑块，瓷块 &amp; 面板自定义</string>
     <string name="status_bar">状态栏​​​​​​​</string>
     <string name="status_bar_description">时钟、图标和网络指示器</string>
@@ -178,7 +178,7 @@
     <string name="select_essential_apps">选择基本应用</string>
     <string name="select_apps">选择应用</string>
     <!-- App Picker -->
-    <string name="loading_apps">正在加载应用…</string>
+    <string name="loading_apps">正在加载应用……</string>
     <string name="search_apps">……搜索应用……</string>
     <string name="show_system_apps">显示系统应用</string>
     <string name="selected_count">已选择 %1$d</string>
@@ -195,7 +195,7 @@
     <string name="no_apps_configured_empty">未配置应用</string>
     <string name="add_apps_to_spoof">添加应用以启动伪装设备属性</string>
     <string name="configuration_saved">配置已保存</string>
-    <string name="remove_game_title">移除游戏</string>
+    <string name="remove_game_title">移除游戏？</string>
     <string name="remove_game_message">这将删除此游戏的伪装配置。</string>
     <string name="select_an_app">选择应用：</string>
     <string name="select_device_profile">选择设备配置：</string>
@@ -238,7 +238,7 @@
     <string name="choose_apps_for_attestation">选择要启用认证伪装的应用</string>
     <string name="target_mode_auto">自动</string>
     <string name="target_mode_leaf_hack">末端？</string>
-    <string name="target_mode_cert_gen">启动 !</string>
+    <string name="target_mode_cert_gen">启动 ！</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play 完整性修复</string>
     <string name="play_integrity_fix_summary">配置构建指纹伪装</string>
@@ -259,7 +259,7 @@
     <string name="deleted_file">删除 %1$s</string>
     <string name="delete_file_title">删除 %1$s吗？</string>
     <string name="delete_config_message">此配置文件将被删除。</string>
-    <string name="import_text_verb">Import</string>
+    <string name="import_text_verb">导入</string>
     <string name="active_config_title">当前配置</string>
     <string name="spoof_google_photos">谷歌相册伪装</string>
     <string name="unlimited_backup">无限原始质量备份</string>
@@ -291,7 +291,7 @@
     <string name="minimum_frequency">最小频率</string>
     <string name="maximum_frequency">最大频率</string>
     <!-- GPU -->
-    <string name="gpu">显卡 (GPU)</string>
+    <string name="gpu">显卡</string>
     <string name="graphics_performance">图形性能</string>
     <string name="game_gpu_boost">游戏 GPU 加速</string>
     <string name="system_gpu_boost">系统 GPU 加速</string>
@@ -299,10 +299,10 @@
     <string name="level_format">级别 %1$d</string>
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">性能</string>
-    <string name="qs_tile_on">On</string>
-    <string name="qs_tile_off">Off</string>
+    <string name="qs_tile_on">开启</string>
+    <string name="qs_tile_off">关闭</string>
     <!-- Multitasking Screen -->
-    <string name="multitasking">Multitasking</string>
+    <string name="multitasking">多任务</string>
     <string name="edge_features">边缘特性</string>
     <string name="sidebar">侧边栏</string>
     <string name="sidebar_summary">从边缘快速访问您喜欢的应用</string>
