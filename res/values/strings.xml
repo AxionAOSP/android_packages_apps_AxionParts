@@ -545,4 +545,12 @@
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
 
+    <string name="ax_bravia_engine">AxBravia Engine</string>
+    <string name="ax_bravia_engine_summary">Color enhancement and sharpening</string>
+    <string name="ax_bravia_engine_mode">Enhancement mode</string>
+    <string name="ax_bravia_engine_off">Off</string>
+    <string name="ax_bravia_engine_vivid">Vivid</string>
+    <string name="ax_bravia_engine_natural">Natural</string>
+    <string name="ax_bravia_engine_cinema">Cinema</string>
+
 </resources>

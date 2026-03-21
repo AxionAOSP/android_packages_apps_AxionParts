@@ -336,7 +336,12 @@ private fun DashboardContent(
                         onClick = { onNavigateToDetail("multitasking") },
                         modifier = Modifier.weight(1f),
                     )
-                    Spacer(modifier = Modifier.weight(1f))
+                    DashboardCard(
+                        title = stringResource(R.string.ax_bravia_engine),
+                        icon = Icons.Filled.Palette,
+                        onClick = { onNavigateToDetail("bravia_engine") },
+                        modifier = Modifier.weight(1f),
+                    )
                     Spacer(modifier = Modifier.weight(1f))
                 }
 
@@ -366,6 +371,7 @@ private fun DetailScreen(
         "pcmode" -> PcModeScreen(onBackClick = onBackClick)
         "routines" -> RoutinesScreen(onBackClick = onBackClick)
         "performance" -> PerformanceScreen(onBackClick = onBackClick)
+        "bravia_engine" -> AxBraviaEngineScreen(onBackClick = onBackClick)
         "dynamic_bar" -> DynamicBarScreen(onBackClick = onBackClick)
         "essentials" ->
             EssentialsScreen(
@@ -395,6 +401,7 @@ private fun DetailPaneContent(
         "pcmode" -> PcModeScreen(onBackClick = onClose)
         "routines" -> RoutinesScreen(onBackClick = onClose)
         "performance" -> PerformanceScreen(onBackClick = onClose)
+        "bravia_engine" -> AxBraviaEngineScreen(onBackClick = onClose)
         "dynamic_bar" -> DynamicBarScreen(onBackClick = onClose)
         "essentials" ->
             EssentialsScreen(
