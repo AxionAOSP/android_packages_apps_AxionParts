@@ -44,7 +44,7 @@
     <string name="sound">Sound</string>
     <string name="sound_subtitle">Per-app volume &amp; multi audio</string>
     <string name="gestures">Gestures</string>
-    <string name="gestures_subtitle">Shake &amp; three finger actions</string>
+    <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
     
     <!-- Lockscreen Features -->
     <string name="edge_light">Edge Light</string>
@@ -159,6 +159,20 @@
     <string name="disable_button_screenshot">Disable Button Screenshot</string>
     <string name="disable_button_screenshot_summary">Disable power + volume down screenshot combo</string>
     
+    <!-- Doze Pulse -->
+    <string name="doze_pulse_gestures">Doze Pulse</string>
+    <string name="doze_pulse_gestures_summary">Pulse screen instead of waking</string>
+    <string name="doze_pulse_notification">Notification pulse</string>
+    <string name="doze_pulse_notification_summary">Briefly show lockscreen on notifications without AOD</string>
+    <string name="doze_pulse_tap">Tap to pulse</string>
+    <string name="doze_pulse_tap_summary">Pulse screen on tap instead of waking</string>
+    <string name="doze_pulse_double_tap">Double tap to pulse</string>
+    <string name="doze_pulse_double_tap_summary">Pulse screen on double tap instead of waking</string>
+    <string name="doze_pulse_pickup">Pickup to pulse</string>
+    <string name="doze_pulse_pickup_summary">Pulse screen on pickup instead of waking</string>
+    <string name="doze_pulse_side_fps">Side fingerprint to pulse</string>
+    <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
+
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
     <string name="gesture_action_app_switch">App switch</string>
