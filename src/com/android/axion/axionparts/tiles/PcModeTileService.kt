@@ -16,6 +16,7 @@
 
 package com.android.axion.axionparts.tiles
 
+import android.app.StatusBarManager
 import android.database.ContentObserver
 import android.graphics.drawable.Icon
 import android.os.Handler
@@ -78,5 +79,7 @@ class PcModeTileService : TileService() {
         val currentState = isPcModeEnabled()
         setPcMode(!currentState)
         updateTileState()
+        val sbm = getSystemService(StatusBarManager::class.java)
+        sbm?.collapsePanels()
     }
 }

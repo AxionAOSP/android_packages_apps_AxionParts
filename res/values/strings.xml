@@ -380,8 +380,14 @@
     <string name="pref_taskbar_timeout_summary">Duration before taskbar hides automatically</string>
     <string name="pref_pc_mode_screen_off_title">Turn off internal screen</string>
     <string name="pref_pc_mode_screen_off_summary">Turn off the device screen when PC Mode is active on an external display</string>
+    <string name="pref_pc_mode_secondary_only_title">Secondary display only</string>
+    <string name="pref_pc_mode_secondary_only_summary">Run PC Mode only on the external display without changing the main display</string>
     
     <!-- Resolution Settings -->
+    <string name="pref_pc_mode_density_title">Display Density</string>
+    <string name="pref_pc_mode_density_summary">Adjust the UI scale for PC Mode</string>
+    <string name="pref_pc_mode_secondary_density_title">External Display Density</string>
+    <string name="pref_pc_mode_secondary_density_summary">Adjust the UI scale for the external display (lower = more content)</string>
     <string name="resolution_override_title">Resolution Override</string>
     <string name="resolution_default">Default</string>
     <string name="resolution_dialog_title">Set Resolution</string>

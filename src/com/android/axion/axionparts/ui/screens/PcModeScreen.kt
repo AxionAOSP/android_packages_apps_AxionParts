@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2025 AxionOS Project
+ * Copyright (C) 2025-2026 AxionOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,12 +69,36 @@ fun PcModeScreen(onBackClick: () -> Unit) {
             }
 
             PreferenceGroup(title = stringResource(R.string.pref_category_display)) {
-                item { ResolutionPreference() }
                 item {
                     SecureSettingSwitch(
                         settingKey = "ax_pc_mode_display_off",
                         title = stringResource(R.string.pref_pc_mode_screen_off_title),
                         summary = stringResource(R.string.pref_pc_mode_screen_off_summary),
+                    )
+                }
+                item { ResolutionPreference() }
+                item {
+                    SecureSettingSlider(
+                        settingKey = "ax_pc_mode_density",
+                        title = stringResource(R.string.pref_pc_mode_density_title),
+                        summary = stringResource(R.string.pref_pc_mode_density_summary),
+                        min = 120,
+                        max = 420,
+                        interval = 10,
+                        defaultValue = 284,
+                        unit = " dpi",
+                    )
+                }
+                item {
+                    SecureSettingSlider(
+                        settingKey = "ax_pc_mode_secondary_density",
+                        title = stringResource(R.string.pref_pc_mode_secondary_density_title),
+                        summary = stringResource(R.string.pref_pc_mode_secondary_density_summary),
+                        min = 100,
+                        max = 320,
+                        interval = 10,
+                        defaultValue = 160,
+                        unit = " dpi",
                     )
                 }
             }
