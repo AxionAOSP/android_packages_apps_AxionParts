@@ -65,6 +65,10 @@ fun EssentialsScreen(
 ) {
     var currentSubScreen by rememberSaveable { mutableStateOf<String?>(null) }
 
+    if (currentSubScreen != null) {
+        BackHandler { currentSubScreen = null }
+    }
+
     val motionScheme = MaterialTheme.motionScheme
     AnimatedContent(
         targetState = currentSubScreen,
@@ -98,19 +102,15 @@ fun EssentialsScreen(
                 }
             }
             "trickystore" -> {
-                BackHandler { currentSubScreen = null }
                 TrickyStoreScreen(onBackClick = { currentSubScreen = null })
             }
             "playintegrityfix" -> {
-                BackHandler { currentSubScreen = null }
                 PlayIntegrityFixScreen(onBackClick = { currentSubScreen = null })
             }
             "gamespoofing" -> {
-                BackHandler { currentSubScreen = null }
                 GameSpoofingScreen(onBackClick = { currentSubScreen = null })
             }
             "customromhide" -> {
-                BackHandler { currentSubScreen = null }
                 CustomRomHideScreen(onBackClick = { currentSubScreen = null })
             }
         }

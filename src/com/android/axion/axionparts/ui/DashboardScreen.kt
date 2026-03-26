@@ -45,7 +45,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -62,7 +61,7 @@ import com.android.axion.axionparts.ui.screens.*
 import com.android.axion.axionparts.ui.screens.routines.RoutinesScreen
 import com.android.axion.axionparts.ui.theme.MaxContentWidth
 import com.android.axion.compose.preferences.*
-import com.android.axion.compose.scaffold.CollapseOnFirstComposition
+import com.android.axion.compose.scaffold.AxionScaffold
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -106,6 +105,10 @@ fun DashboardScreen() {
     val appPickerCallback: (Set<String>) -> Unit = { selectedApps ->
         appPickerSelectedApps = selectedApps
         showAppPicker = true
+    }
+
+    if (currentDetailScreen != null) {
+        BackHandler { closeDetail() }
     }
 
     if (isExpandedLayout) {
@@ -154,7 +157,6 @@ fun DashboardScreen() {
             label = "detailTransition",
         ) { detailScreen ->
             if (detailScreen != null) {
-                BackHandler { closeDetail() }
                 DetailScreen(
                     screen = detailScreen,
                     onBackClick = { closeDetail() },
@@ -170,7 +172,6 @@ fun DashboardScreen() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DashboardContent(
     scrollState: ScrollState,
@@ -178,39 +179,10 @@ private fun DashboardContent(
 ) {
     val context = LocalContext.current
     val activity = context as? Activity
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-    CollapseOnFirstComposition(scrollBehavior)
 
-    Scaffold(
-        modifier =
-            Modifier.fillMaxSize()
-                .nestedScroll(scrollBehavior.nestedScrollConnection)
-                .background(MaterialTheme.colorScheme.surfaceContainer),
-        containerColor = MaterialTheme.colorScheme.surfaceContainer,
-        topBar = {
-            LargeTopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(R.string.personalizations),
-                        fontWeight = FontWeight.Bold,
-                    )
-                },
-                navigationIcon = {
-                    IconButton(onClick = { activity?.finish() }) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.back),
-                        )
-                    }
-                },
-                colors =
-                    TopAppBarDefaults.largeTopAppBarColors(
-                        containerColor = Color.Transparent,
-                        scrolledContainerColor = Color.Transparent,
-                    ),
-                scrollBehavior = scrollBehavior,
-            )
-        },
+    AxionScaffold(
+        title = stringResource(R.string.personalizations),
+        onBackClick = { activity?.finish() },
     ) { innerPadding ->
         Box(
             modifier = Modifier.fillMaxSize().padding(innerPadding),

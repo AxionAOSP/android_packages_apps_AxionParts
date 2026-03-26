@@ -56,6 +56,10 @@ import com.android.axion.compose.scaffold.AxionScaffold
 fun MultitaskingScreen(onBackClick: (() -> Unit)? = null) {
     var currentSubScreen by rememberSaveable { mutableStateOf<String?>(null) }
 
+    if (currentSubScreen != null) {
+        BackHandler { currentSubScreen = null }
+    }
+
     val motionScheme = MaterialTheme.motionScheme
     AnimatedContent(
         targetState = currentSubScreen,
@@ -85,7 +89,6 @@ fun MultitaskingScreen(onBackClick: (() -> Unit)? = null) {
                 }
             }
             "pcmode" -> {
-                BackHandler { currentSubScreen = null }
                 PcModeScreen(onBackClick = { currentSubScreen = null })
             }
         }
