@@ -17,13 +17,6 @@
 package com.android.axion.axionparts.ui.screens
 
 import android.os.SystemProperties
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,21 +29,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DisplaySettings
 import androidx.compose.material.icons.filled.Sensors
-import androidx.compose.material.icons.filled.TouchApp
 import androidx.compose.material.icons.outlined.Bolt
 import androidx.compose.material.icons.outlined.Layers
 import androidx.compose.material.icons.outlined.RocketLaunch
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import com.android.axion.compose.preferences.ExpressiveSwitch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -62,13 +50,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android.axion.axionparts.R
-import com.android.axion.axionparts.ui.components.BoostToggleCard
 import com.android.axion.axionparts.ui.components.FrequencySlider
 import com.android.axion.axionparts.ui.components.LevelSlider
 import com.android.axion.axionparts.ui.components.PowerModeToggle
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 import com.android.axion.compose.preferences.SettingsType
-import com.android.axion.compose.preferences.rememberSettingBoolean
 import com.android.axion.compose.preferences.rememberSettingsFlow
 import com.android.axion.compose.scaffold.AxionScaffold
 
@@ -76,11 +62,8 @@ private data class ClusterConfig(
     val name: String,
     val maxFreq: Int,
     val availableFreqs: List<Int>,
-    val boostKey: String,
-    val boostFreqKey: String,
     val minFreqKey: String,
     val maxFreqKey: String,
-    val boostDefault: Boolean,
     val accentColor: Color,
 )
 
@@ -143,33 +126,24 @@ fun PerformanceContent(modifier: Modifier = Modifier) {
                     name = littleClusterName,
                     maxFreq = smallAvailableFreqs.maxOrNull() ?: 0,
                     availableFreqs = smallAvailableFreqs,
-                    boostKey = "axion_cpu_boost",
-                    boostFreqKey = "axion_min_freq_boost",
                     minFreqKey = "axion_min_freq",
                     maxFreqKey = "axion_max_freq",
-                    boostDefault = true,
                     accentColor = primaryColor,
                 ),
                 ClusterConfig(
                     name = bigClusterName,
                     maxFreq = bigAvailableFreqs.maxOrNull() ?: 0,
                     availableFreqs = bigAvailableFreqs,
-                    boostKey = "axion_big_core_boost",
-                    boostFreqKey = "axion_min_freq_big_boost",
                     minFreqKey = "axion_min_freq_big",
                     maxFreqKey = "axion_max_freq_big",
-                    boostDefault = false,
                     accentColor = tertiaryColor,
                 ),
                 ClusterConfig(
                     name = primeClusterName,
                     maxFreq = primeAvailableFreqs.maxOrNull() ?: 0,
                     availableFreqs = primeAvailableFreqs,
-                    boostKey = "axion_prime_core_boost",
-                    boostFreqKey = "axion_min_freq_prime_boost",
                     minFreqKey = "axion_min_freq_prime",
                     maxFreqKey = "axion_max_freq_prime",
-                    boostDefault = false,
                     accentColor = secondaryColor,
                 ),
             )
@@ -212,9 +186,6 @@ fun PerformanceContent(modifier: Modifier = Modifier) {
 
 @Composable
 private fun ClusterCard(cluster: ClusterConfig) {
-    val flow = rememberSettingsFlow(SettingsType.SECURE)
-    val boostEnabled by rememberSettingBoolean(cluster.boostKey, SettingsType.SECURE, cluster.boostDefault)
-
     val icon =
         when {
             cluster.name.contains("Little") -> Icons.Outlined.Bolt
@@ -232,34 +203,12 @@ private fun ClusterCard(cluster: ClusterConfig) {
             name = cluster.name,
             icon = icon,
             accentColor = cluster.accentColor,
-            boostEnabled = boostEnabled,
-            onBoostToggle = { newValue ->
-                flow.putInt(cluster.boostKey, if (newValue) 1 else 0)
-            },
         )
 
         Column(
             modifier = Modifier.fillMaxWidth().padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            AnimatedVisibility(
-                visible = boostEnabled,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically(),
-            ) {
-                FrequencySlider(
-                    settingKey = cluster.boostFreqKey,
-                    label = stringResource(R.string.boost_frequency),
-                    availableFrequencies = cluster.availableFreqs.takeIf { it.isNotEmpty() },
-                    min = 0,
-                    max = cluster.maxFreq,
-                    interval = 100000,
-                    defaultValue = 1000000,
-                    accentColor = cluster.accentColor,
-                    enabled = boostEnabled,
-                )
-            }
-
             FrequencySlider(
                 settingKey = cluster.minFreqKey,
                 label = stringResource(R.string.minimum_frequency),
@@ -286,72 +235,36 @@ private fun ClusterCard(cluster: ClusterConfig) {
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 private fun ClusterHeader(
     name: String,
     icon: ImageVector,
     accentColor: Color,
-    boostEnabled: Boolean,
-    onBoostToggle: (Boolean) -> Unit,
 ) {
-    val motionScheme = MaterialTheme.motionScheme
-    val statusColor by
-        animateColorAsState(
-            targetValue =
-                if (boostEnabled) MaterialTheme.colorScheme.primary
-                else MaterialTheme.colorScheme.outlineVariant,
-            animationSpec = motionScheme.defaultEffectsSpec(),
-            label = "statusColor",
-        )
-
     Row(
         modifier =
             Modifier.fillMaxWidth().background(accentColor.copy(alpha = 0.25f)).padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        Box(
+            modifier =
+                Modifier.size(40.dp)
+                    .clip(ExpressiveShapes.small)
+                    .background(accentColor.copy(alpha = 0.2f)),
+            contentAlignment = Alignment.Center,
         ) {
-            Box(
-                modifier =
-                    Modifier.size(40.dp)
-                        .clip(ExpressiveShapes.small)
-                        .background(accentColor.copy(alpha = 0.2f)),
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    tint = accentColor,
-                    modifier = Modifier.size(24.dp),
-                )
-            }
-            Column {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    Text(
-                        text = name,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface,
-                    )
-                    Box(modifier = Modifier.size(8.dp).clip(CircleShape).background(statusColor))
-                }
-                Text(
-                    text = if (boostEnabled) "Boost Active" else "Boost Disabled",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = accentColor,
+                modifier = Modifier.size(24.dp),
+            )
         }
-
-        ExpressiveSwitch(
-            checked = boostEnabled,
-            onCheckedChange = onBoostToggle,
+        Text(
+            text = name,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurface,
         )
     }
 }
