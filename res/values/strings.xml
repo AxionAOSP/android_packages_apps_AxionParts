@@ -198,6 +198,8 @@
     <string name="essentials">Essentials</string>
     <string name="essentials_summary">Notifications, gaming &amp; security</string>
     <string name="essential_notifications">Essential Notifications</string>
+    <string name="quicklook">QuickLook</string>
+    <string name="quicklook_settings_summary">Summarize what to appear on quick look</string>
     <string name="gaming">Gaming</string>
     <string name="security">Security</string>
     

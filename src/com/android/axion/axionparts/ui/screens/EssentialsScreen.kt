@@ -140,6 +140,24 @@ private fun EssentialsContent(
 
         Spacer(modifier = Modifier.height(12.dp))
 
+        PreferenceGroup(title = stringResource(R.string.quicklook)) {
+            item {
+                ClickablePreference(
+                    title = stringResource(R.string.quicklook),
+                    summary = stringResource(R.string.quicklook_settings_summary),
+                    showExternalIcon = true,
+                    onClick = {
+                        val intent = Intent("com.android.axion.quicklook.SETTINGS").apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        }
+                        context.startActivity(intent)
+                    },
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
         PreferenceGroup(title = stringResource(R.string.gaming)) {
             item {
                 ClickablePreference(
