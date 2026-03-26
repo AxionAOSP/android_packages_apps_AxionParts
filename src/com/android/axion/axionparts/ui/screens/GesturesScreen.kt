@@ -16,7 +16,6 @@
 
 package com.android.axion.axionparts.ui.screens
 
-import android.os.SystemProperties
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,11 +29,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Fingerprint
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.ScreenshotMonitor
 import androidx.compose.material.icons.filled.Swipe
-import androidx.compose.material.icons.filled.TouchApp
 import androidx.compose.material.icons.filled.Vibration
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -54,7 +49,6 @@ private enum class GesturesSubScreen {
     MAIN,
     SHAKE,
     THREE_FINGER,
-    DOZE_PULSE,
 }
 
 @Composable
@@ -66,7 +60,6 @@ fun GesturesScreen(onBackClick: () -> Unit) {
             GesturesSubScreen.MAIN -> stringResource(R.string.gestures)
             GesturesSubScreen.SHAKE -> stringResource(R.string.shake_gestures)
             GesturesSubScreen.THREE_FINGER -> stringResource(R.string.three_finger_gestures)
-            GesturesSubScreen.DOZE_PULSE -> stringResource(R.string.doze_pulse_gestures)
         }
 
     val handleBack: () -> Unit = {
@@ -86,14 +79,11 @@ fun GesturesScreen(onBackClick: () -> Unit) {
                     modifier = Modifier.padding(innerPadding),
                     onNavigateToShake = { currentScreen = GesturesSubScreen.SHAKE },
                     onNavigateToThreeFinger = { currentScreen = GesturesSubScreen.THREE_FINGER },
-                    onNavigateToDozePulse = { currentScreen = GesturesSubScreen.DOZE_PULSE },
                 )
             GesturesSubScreen.SHAKE ->
                 ShakeGesturesContent(modifier = Modifier.padding(innerPadding))
             GesturesSubScreen.THREE_FINGER ->
                 ThreeFingerGesturesContent(modifier = Modifier.padding(innerPadding))
-            GesturesSubScreen.DOZE_PULSE ->
-                DozePulseContent(modifier = Modifier.padding(innerPadding))
         }
     }
 }
@@ -103,7 +93,6 @@ private fun GesturesMainContent(
     modifier: Modifier = Modifier,
     onNavigateToShake: () -> Unit,
     onNavigateToThreeFinger: () -> Unit,
-    onNavigateToDozePulse: () -> Unit,
 ) {
     Column(
         modifier =
@@ -134,18 +123,6 @@ private fun GesturesMainContent(
                 modifier = Modifier.weight(1f),
             )
         }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        FeatureCard(
-            title = stringResource(R.string.doze_pulse_gestures),
-            subtitle = stringResource(R.string.doze_pulse_gestures_summary),
-            icon = Icons.Filled.ScreenshotMonitor,
-            onClick = onNavigateToDozePulse,
-            illustrationColor = MaterialTheme.colorScheme.secondaryContainer,
-            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
-            modifier = Modifier.fillMaxWidth(),
-        )
 
         Spacer(modifier = Modifier.height(32.dp))
     }
@@ -276,78 +253,3 @@ private fun ThreeFingerGesturesContent(modifier: Modifier = Modifier) {
     }
 }
 
-@Composable
-private fun DozePulseContent(modifier: Modifier = Modifier) {
-    val tapSupported = SystemProperties.getBoolean(
-        "persist.sys.ax_doze_tap_pulse_supported", false)
-    val doubleTapSupported = SystemProperties.getBoolean(
-        "persist.sys.ax_doze_double_tap_pulse_supported", false)
-    val pickupSupported = SystemProperties.getBoolean(
-        "persist.sys.ax_doze_pickup_pulse_supported", false)
-    val sideFpsSupported = SystemProperties.getBoolean(
-        "persist.sys.ax_doze_side_fps_pulse_supported", false)
-
-    Column(
-        modifier =
-            modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
-    ) {
-        Spacer(modifier = Modifier.height(8.dp))
-
-        PreferenceGroup {
-            item {
-                SecureSettingSwitch(
-                    settingKey = "ax_doze_notification_pulse",
-                    title = stringResource(R.string.doze_pulse_notification),
-                    summary = stringResource(R.string.doze_pulse_notification_summary),
-                    icon = Icons.Filled.Notifications,
-                    defaultValue = false,
-                )
-            }
-            if (tapSupported) {
-                item {
-                    SecureSettingSwitch(
-                        settingKey = "ax_doze_tap_pulse",
-                        title = stringResource(R.string.doze_pulse_tap),
-                        summary = stringResource(R.string.doze_pulse_tap_summary),
-                        icon = Icons.Filled.TouchApp,
-                        defaultValue = false,
-                    )
-                }
-            }
-            if (doubleTapSupported) {
-                item {
-                    SecureSettingSwitch(
-                        settingKey = "ax_doze_double_tap_pulse",
-                        title = stringResource(R.string.doze_pulse_double_tap),
-                        summary = stringResource(R.string.doze_pulse_double_tap_summary),
-                        icon = Icons.Filled.TouchApp,
-                        defaultValue = false,
-                    )
-                }
-            }
-            if (pickupSupported) {
-                item {
-                    SecureSettingSwitch(
-                        settingKey = "ax_doze_pickup_pulse",
-                        title = stringResource(R.string.doze_pulse_pickup),
-                        summary = stringResource(R.string.doze_pulse_pickup_summary),
-                        defaultValue = false,
-                    )
-                }
-            }
-            if (sideFpsSupported) {
-                item {
-                    SecureSettingSwitch(
-                        settingKey = "ax_doze_side_fps_pulse",
-                        title = stringResource(R.string.doze_pulse_side_fps),
-                        summary = stringResource(R.string.doze_pulse_side_fps_summary),
-                        icon = Icons.Filled.Fingerprint,
-                        defaultValue = false,
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(32.dp))
-    }
-}

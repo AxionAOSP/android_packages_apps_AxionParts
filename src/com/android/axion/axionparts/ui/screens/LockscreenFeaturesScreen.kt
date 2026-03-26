@@ -17,6 +17,7 @@
 package com.android.axion.axionparts.ui.screens
 
 import android.graphics.Color as AndroidColor
+import android.os.SystemProperties
 import android.provider.Settings
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
@@ -57,9 +58,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Album
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.FlashOn
 import androidx.compose.material.icons.filled.GraphicEq
 import androidx.compose.material.icons.filled.Nightlight
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.TouchApp
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
@@ -906,6 +910,16 @@ fun AodContent(modifier: Modifier = Modifier) {
     val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
     val scheduleMode by rememberSettingString("aod_schedule_mode", SettingsType.SECURE, "0")
     val screenOffAnimation by rememberSettingInt("screen_off_aod_animation", SettingsType.SYSTEM, 1)
+    val screenOffAodEnabled by rememberSettingInt("screen_off_aod_enabled", SettingsType.SYSTEM, 0)
+
+    val tapSupported = SystemProperties.getBoolean(
+        "persist.sys.ax_doze_tap_pulse_supported", false)
+    val doubleTapSupported = SystemProperties.getBoolean(
+        "persist.sys.ax_doze_double_tap_pulse_supported", false)
+    val pickupSupported = SystemProperties.getBoolean(
+        "persist.sys.ax_doze_pickup_pulse_supported", false)
+    val sideFpsSupported = SystemProperties.getBoolean(
+        "persist.sys.ax_doze_side_fps_pulse_supported", false)
 
     LaunchedEffect(scheduleMode) {
         val modeInt = scheduleMode.toIntOrNull() ?: 0
@@ -976,6 +990,20 @@ fun AodContent(modifier: Modifier = Modifier) {
                             defaultValue = false,
                         )
                     }
+                    if (screenOffAodEnabled == 1) {
+                        item {
+                            SystemSettingSlider(
+                                settingKey = "screen_off_aod_duration",
+                                title = stringResource(R.string.screen_off_aod_duration),
+                                summary = stringResource(R.string.screen_off_aod_duration_summary),
+                                min = 1000,
+                                max = 10000,
+                                interval = 500,
+                                defaultValue = 4000,
+                                formatValue = { "${it / 1000f}s" },
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -1005,6 +1033,63 @@ fun AodContent(modifier: Modifier = Modifier) {
                             defaultValue = "0700",
                         )
                     }
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        PreferenceGroup(title = stringResource(R.string.doze_pulse_gestures)) {
+            item {
+                SecureSettingSwitch(
+                    settingKey = "ax_doze_notification_pulse",
+                    title = stringResource(R.string.doze_pulse_notification),
+                    summary = stringResource(R.string.doze_pulse_notification_summary),
+                    icon = Icons.Filled.Notifications,
+                    defaultValue = false,
+                )
+            }
+            if (tapSupported) {
+                item {
+                    SecureSettingSwitch(
+                        settingKey = "ax_doze_tap_pulse",
+                        title = stringResource(R.string.doze_pulse_tap),
+                        summary = stringResource(R.string.doze_pulse_tap_summary),
+                        icon = Icons.Filled.TouchApp,
+                        defaultValue = false,
+                    )
+                }
+            }
+            if (doubleTapSupported) {
+                item {
+                    SecureSettingSwitch(
+                        settingKey = "ax_doze_double_tap_pulse",
+                        title = stringResource(R.string.doze_pulse_double_tap),
+                        summary = stringResource(R.string.doze_pulse_double_tap_summary),
+                        icon = Icons.Filled.TouchApp,
+                        defaultValue = false,
+                    )
+                }
+            }
+            if (pickupSupported) {
+                item {
+                    SecureSettingSwitch(
+                        settingKey = "ax_doze_pickup_pulse",
+                        title = stringResource(R.string.doze_pulse_pickup),
+                        summary = stringResource(R.string.doze_pulse_pickup_summary),
+                        defaultValue = false,
+                    )
+                }
+            }
+            if (sideFpsSupported) {
+                item {
+                    SecureSettingSwitch(
+                        settingKey = "ax_doze_side_fps_pulse",
+                        title = stringResource(R.string.doze_pulse_side_fps),
+                        summary = stringResource(R.string.doze_pulse_side_fps_summary),
+                        icon = Icons.Filled.Fingerprint,
+                        defaultValue = false,
+                    )
                 }
             }
         }
