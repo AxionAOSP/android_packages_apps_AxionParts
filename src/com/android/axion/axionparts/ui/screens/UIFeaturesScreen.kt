@@ -69,7 +69,7 @@ fun UIFeaturesScreen(onBackClick: () -> Unit) {
         }
     }
 
-    BackHandler(onBack = handleBack)
+    BackHandler(enabled = currentScreen != UIFeaturesSubScreen.MAIN, onBack = handleBack)
 
     AxionScaffold(title = screenTitle, onBackClick = handleBack) { innerPadding ->
         val motionScheme = MaterialTheme.motionScheme

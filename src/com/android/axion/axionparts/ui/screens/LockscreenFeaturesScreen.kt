@@ -131,7 +131,7 @@ fun LockscreenFeaturesScreen(onBackClick: () -> Unit) {
         }
     }
 
-    BackHandler(onBack = handleBack)
+    BackHandler(enabled = currentScreen != LockscreenSubScreen.MAIN, onBack = handleBack)
 
     AxionScaffold(title = screenTitle, onBackClick = handleBack) { innerPadding ->
         val motionScheme = MaterialTheme.motionScheme

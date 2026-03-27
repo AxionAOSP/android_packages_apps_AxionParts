@@ -70,7 +70,7 @@ fun GesturesScreen(onBackClick: () -> Unit) {
         }
     }
 
-    BackHandler(onBack = handleBack)
+    BackHandler(enabled = currentScreen != GesturesSubScreen.MAIN, onBack = handleBack)
 
     AxionScaffold(title = screenTitle, onBackClick = handleBack) { innerPadding ->
         when (currentScreen) {

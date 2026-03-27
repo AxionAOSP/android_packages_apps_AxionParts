@@ -178,7 +178,7 @@ fun DynamicBarScreen(onBackClick: () -> Unit) {
         else currentScreen = DynamicBarSubScreen.MAIN
     }
 
-    BackHandler(onBack = handleBack)
+    BackHandler(enabled = currentScreen != DynamicBarSubScreen.MAIN, onBack = handleBack)
 
     AxionScaffold(title = screenTitle, onBackClick = handleBack) { innerPadding ->
         AnimatedContent(

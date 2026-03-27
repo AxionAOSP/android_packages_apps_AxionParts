@@ -19,7 +19,8 @@
         
         <activity
             android:name=".DashboardActivity"
-            android:exported="true">
+            android:exported="true"
+            android:taskAffinity="com.android.settings">
         </activity>
         
         <service

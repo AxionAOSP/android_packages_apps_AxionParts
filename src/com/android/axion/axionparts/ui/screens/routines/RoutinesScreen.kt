@@ -126,7 +126,7 @@ fun RoutinesScreen(onBackClick: () -> Unit) {
         }
     }
 
-    BackHandler(onBack = handleBack)
+    BackHandler(enabled = currentView != "list", onBack = handleBack)
 
     val screenTitle = when (currentView) {
         "editor" -> if (editingRoutineId != null)
