@@ -163,6 +163,7 @@ private val EVENT_TOGGLES = listOf(
 private const val SETTINGS_KEY_ENABLED = "ax_dynamic_bar_enabled"
 private const val SETTINGS_KEY_KEYGUARD_ENABLED = "ax_dynamic_bar_keyguard_enabled"
 private const val SETTINGS_KEY_EVENTS = "ax_dynamic_bar_events"
+private const val SETTINGS_KEY_COMPACT_NOTIFICATIONS = "ax_dynamic_bar_compact_notifications"
 
 @Composable
 fun DynamicBarScreen(onBackClick: () -> Unit) {
@@ -278,6 +279,16 @@ internal fun DynamicBarMainContent(
                                 enabled = toggle.typeId !in disabledEvents,
                                 onToggle = { toggleEvent(toggle.typeId, it) },
                             )
+                        }
+                        if (toggle.typeId == "notification" && "notification" !in disabledEvents) {
+                            item {
+                                SecureSettingSwitch(
+                                    settingKey = SETTINGS_KEY_COMPACT_NOTIFICATIONS,
+                                    title = stringResource(R.string.dynamic_bar_compact_notifications),
+                                    summary = stringResource(R.string.dynamic_bar_compact_notifications_summary),
+                                    defaultValue = true,
+                                )
+                            }
                         }
                     }
                 }
