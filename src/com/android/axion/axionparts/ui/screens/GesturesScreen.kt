@@ -228,7 +228,7 @@ private fun ThreeFingerGesturesContent(modifier: Modifier = Modifier) {
                     title = stringResource(R.string.three_finger_swipe),
                     summary = stringResource(R.string.three_finger_swipe_summary),
                     options = gestureActions,
-                    defaultValue = "13",
+                    defaultValue = "0",
                 )
             }
             item {
