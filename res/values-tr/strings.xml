@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Axion Parts</string>
+    <string name="app_name">Axion Parçaları</string>
     <!-- Common UI Elements -->
     <string name="back">Geri</string>
     <string name="cancel">Vazgeç</string>
@@ -25,8 +25,8 @@
     <string name="disabled">Devre Dışı</string>
     <string name="custom">Özel</string>
     <!-- Navigation -->
-    <string name="customize">Customize</string>
-    <string name="nav_customize">Customize</string>
+    <string name="customize">Kişiselleştir</string>
+    <string name="nav_customize">Kişiselleştir</string>
     <string name="nav_essentials">Önemliler</string>
     <string name="nav_performance">Performans</string>
     <string name="nav_multitasking">Çoklu Görev</string>
@@ -39,7 +39,7 @@
     <string name="ui_features">Arayüz Özellikleri</string>
     <string name="ui_features_subtitle">Durum çubuğu, hızlı ayarlar &amp; daha fazlası</string>
     <string name="sound">Ses</string>
-    <string name="sound_subtitle">Uygulama başına ses &amp; çoklu ses</string>
+    <string name="sound_subtitle">Uygulama bazlı ses &amp; çoklu ses</string>
     <string name="gestures">Hareketler</string>
     <string name="gestures_subtitle">Sallama &amp; üç parmak hareketleri</string>
     <!-- Lockscreen Features -->
@@ -59,20 +59,20 @@
     <string name="select_item">Bir öğe seçin</string>
     <!-- Media Art -->
     <string name="media_art">Medya Sanatı</string>
-    <string name="media_art_description">Medya oynatımı sırasında kilit ekranında albüm kapağı</string>
-    <string name="enable_media_art">Albüm Kapağını Etkinleştir</string>
+    <string name="media_art_description">Medya oynatımı sırasında kilit ekranında albüm kapağı göster</string>
+    <string name="enable_media_art">Medya Sanatını Etkinleştir</string>
     <string name="media_art_summary">Medya oynatımı sırasında kilit ekranında albüm kapağı göster</string>
     <string name="appearance">Görünüm</string>
     <string name="blur_level">Bulanıklık Seviyesi</string>
     <string name="blur_level_summary">Albüm kapağının bulanıklık yoğunluğunu ayarla</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Pulse Görselleştirici</string>
-    <string name="pulse_visualizer_description">Kilit ekranı ve AOD ekranında Ses Görselleştirici</string>
+    <string name="pulse_visualizer_description">Kilit ekranı ve ortam ekranında ses görselleştirici</string>
     <string name="enable_pulse">Pulse\'u Etkinleştir</string>
-    <string name="pulse_summary">Kilit ekranı ve ambient ekranda ses görselleştirici göster</string>
-    <string name="style">Stil</string>
-    <string name="render_style">İşleme Stili</string>
-    <string name="render_style_summary">Görselleştiricinin görsel stilini seçin</string>
+    <string name="pulse_summary">Kilit ekranı ve ortam ekranında ses görselleştirici göster</string>
+    <string name="style">Tarz</string>
+    <string name="render_style">İşleme Tarzı</string>
+    <string name="render_style_summary">Görselleştiricinin görsel tarzını seçin</string>
     <string name="solid_lines">Düz Çizgiler</string>
     <string name="fading_blocks">Solan Bloklar</string>
     <string name="color_mode_title">Renk Modu</string>
@@ -100,13 +100,13 @@
     <string name="end_time">Bitiş zamanı</string>
     <string name="end_time_summary">AOD kapanma zamanı</string>
     <string name="when_to_show">Ne Zaman Gösterilsin</string>
-    <string name="aod_on_charge">Şarj Sırasında AOD</string>
+    <string name="aod_on_charge">Şarj sırasında AOD</string>
     <string name="aod_on_charge_summary">AOD sadece şarj sırasında gösterilsin</string>
     <string name="custom_schedule">Özel zamanlama</string>
     <string name="custom_schedule_summary">Saat bazlı AOD zamanlamasını etkinleştir</string>
     <string name="screen_off">Ekran Kapalı</string>
     <string name="screen_off_aod">Ekran Kapalıyken AOD</string>
-    <string name="screen_off_aod_summary">Ekran kapandığında AOD\'yi etkin tut</string>
+    <string name="screen_off_aod_summary">Ekran kapandığında AOD etkin kalsın</string>
     <string name="screen_off_animation">Ekran Kapatma Animasyonu</string>
     <string name="screen_off_animation_summary">AOD\'ye geçişi canlandır</string>
     <!-- UI Features -->
@@ -128,7 +128,7 @@
     <string name="status_bar_tuner">Durum Çubuğu Ayarlayıcı</string>
     <string name="status_bar_tuner_summary">Durum çubuğu simgelerini göster veya gizle</string>
     <!-- Sound Features -->
-    <string name="per_app_volume">Uygulama Başına Ses</string>
+    <string name="per_app_volume">Uygulama Bazlı Ses</string>
     <string name="per_app_volume_summary">Her uygulama için ses seviyesini ayrı ayrı kontrol et</string>
     <string name="multi_audio_focus">Çoklu Ses Odağı</string>
     <string name="multi_audio_focus_summary">Birden fazla uygulamanın aynı anda ses çalmasına izin ver</string>
@@ -184,7 +184,7 @@
     <string name="selected_count">%1$d seçildi</string>
     <!-- GameSpace -->
     <string name="gamespace">Oyun Sahası</string>
-    <string name="gamespace_summary">GameSpace özellikleriyle oyun deneyiminizi optimize edin</string>
+    <string name="gamespace_summary">Oyun Sahası özellikleriyle oyun deneyiminizi optimize edin</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Oyun Sahteciliği</string>
     <string name="game_spoofing_summary">Belirli oyunlar için cihaz özelliklerini taklit et</string>
@@ -279,15 +279,15 @@
     <string name="balanced_mode">Dengeli mod</string>
     <string name="boost_controls">HIZLANDIRMA KONTROL</string>
     <string name="frequency_control">FREKANS KONTROL</string>
-    <string name="display_boost">Ekran Hızlandırma</string>
-    <string name="touch_boost">Dokunmatik Hızlandırma</string>
-    <string name="boost_active">Hızlandırma Etkin</string>
-    <string name="boost_disabled">Hızlandırma Devre Dışı</string>
+    <string name="display_boost">Ekran İvmesi</string>
+    <string name="touch_boost">Dokunmatik ivmesi</string>
+    <string name="boost_active">İvme Etkin</string>
+    <string name="boost_disabled">İvme Devre Dışı</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Küçük Küme</string>
     <string name="big_cluster">Büyük Küme</string>
     <string name="prime_cluster">Ana Küme</string>
-    <string name="boost_frequency">Hızlandırma Frekansı</string>
+    <string name="boost_frequency">İvme Frekansı</string>
     <string name="minimum_frequency">Minimum Frekans</string>
     <string name="maximum_frequency">Maksimum Frekans</string>
     <!-- GPU -->
