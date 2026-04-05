@@ -27,15 +27,18 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Splitscreen
+import androidx.compose.material.icons.filled.DesktopWindows
 import androidx.compose.material.icons.filled.ViewSidebar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -43,12 +46,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
-import com.android.axion.compose.preferences.ClickablePreference
-import com.android.axion.compose.preferences.PreferenceGroup
+import com.android.axion.axionparts.ui.components.FeatureCard
 import com.android.axion.compose.scaffold.AxionScaffold
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -108,35 +111,39 @@ private fun MultitaskingContent(
     ) {
         Spacer(modifier = Modifier.height(8.dp))
 
-        PreferenceGroup(title = stringResource(R.string.multitasking)) {
-            item {
-                ClickablePreference(
-                    title = stringResource(R.string.sidebar),
-                    summary = stringResource(R.string.sidebar_summary),
-                    icon = Icons.Default.ViewSidebar,
-                    showExternalIcon = true,
-                    onClick = {
-                        val intent =
-                            Intent().apply {
-                                component =
-                                    ComponentName(
-                                        "com.android.edge.bar",
-                                        "com.android.edge.bar.settings.SettingsActivity",
-                                    )
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            }
-                        context.startActivity(intent)
-                    },
-                )
-            }
-            item {
-                ClickablePreference(
-                    title = stringResource(R.string.pc_mode_settings),
-                    summary = stringResource(R.string.pc_mode_summary),
-                    icon = Icons.Filled.Splitscreen,
-                    onClick = onNavigateToPcMode,
-                )
-            }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            FeatureCard(
+                title = stringResource(R.string.sidebar),
+                subtitle = stringResource(R.string.sidebar_summary),
+                icon = Icons.Default.ViewSidebar,
+                onClick = {
+                    val intent =
+                        Intent().apply {
+                            component =
+                                ComponentName(
+                                    "com.android.edge.bar",
+                                    "com.android.edge.bar.settings.SettingsActivity",
+                                )
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        }
+                    context.startActivity(intent)
+                },
+                illustrationColor = MaterialTheme.colorScheme.primaryContainer,
+                iconTint = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.weight(1f),
+            )
+            FeatureCard(
+                title = stringResource(R.string.pc_mode_settings),
+                subtitle = stringResource(R.string.pc_mode_summary),
+                icon = Icons.Filled.DesktopWindows,
+                onClick = onNavigateToPcMode,
+                illustrationColor = MaterialTheme.colorScheme.tertiaryContainer,
+                iconTint = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.weight(1f),
+            )
         }
 
         Spacer(modifier = Modifier.height(32.dp))
