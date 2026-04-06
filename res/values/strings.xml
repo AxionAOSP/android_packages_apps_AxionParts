@@ -51,6 +51,11 @@
     <string name="edge_light_description">Lighting effects on screen edges for notifications</string>
     <string name="enable_edge_light">Enable Edge Light</string>
     <string name="edge_light_summary">Show lighting effects on screen edges for notifications</string>
+    <string name="edge_light_appearance">Appearance</string>
+    <string name="edge_light_spread">Glow spread</string>
+    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
+    <string name="edge_light_intensity">Glow intensity</string>
+    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
     <string name="color_mode">Color mode</string>
     <string name="notification_accent">Notification accent</string>
     <string name="custom_color">Custom color</string>

@@ -260,6 +260,7 @@ private fun LockscreenMainContent(
 
 @Composable
 fun EdgeLightContent(modifier: Modifier = Modifier) {
+    val edgeLightEnabled by rememberSettingBoolean("edge_light_enabled", SettingsType.SECURE, false)
     val colorMode by rememberSettingString("edge_light_color_mode", SettingsType.SECURE, "default")
     val customColor by rememberSettingInt("edge_light_custom_color", SettingsType.SECURE, AndroidColor.WHITE)
 
@@ -292,6 +293,35 @@ fun EdgeLightContent(modifier: Modifier = Modifier) {
                         listOf("default" to "Notification accent", "custom" to "Custom color"),
                     defaultValue = "default",
                     dependencyKey = "edge_light_enabled",
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        PreferenceGroup(title = stringResource(R.string.edge_light_appearance)) {
+            item {
+                SecureSettingSlider(
+                    settingKey = "edge_light_spread",
+                    title = stringResource(R.string.edge_light_spread),
+                    summary = stringResource(R.string.edge_light_spread_summary),
+                    min = 10,
+                    max = 60,
+                    defaultValue = 50,
+                    unit = "%",
+                    enabled = edgeLightEnabled,
+                )
+            }
+            item {
+                SecureSettingSlider(
+                    settingKey = "edge_light_intensity",
+                    title = stringResource(R.string.edge_light_intensity),
+                    summary = stringResource(R.string.edge_light_intensity_summary),
+                    min = 10,
+                    max = 100,
+                    defaultValue = 100,
+                    unit = "%",
+                    enabled = edgeLightEnabled,
                 )
             }
         }
