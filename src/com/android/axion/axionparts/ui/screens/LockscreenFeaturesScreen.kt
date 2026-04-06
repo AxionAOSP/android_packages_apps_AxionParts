@@ -375,6 +375,19 @@ fun LockscreenMediaContent(modifier: Modifier = Modifier) {
 
         PreferenceGroup(title = stringResource(R.string.appearance)) {
             item {
+                SecureListPreference(
+                    key = "ls_media_art_style",
+                    title = stringResource(R.string.art_style),
+                    summary = stringResource(R.string.art_style_summary),
+                    options = listOf(
+                        "0" to stringResource(R.string.art_style_blur),
+                        "1" to stringResource(R.string.art_style_concept),
+                    ),
+                    defaultValue = "0",
+                    dependencyKey = "ls_media_art_enabled",
+                )
+            }
+            item {
                 SecureSettingSlider(
                     settingKey = "ls_media_art_blur",
                     title = stringResource(R.string.blur_level),

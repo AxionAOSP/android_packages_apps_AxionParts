@@ -75,6 +75,10 @@
     <string name="appearance">Appearance</string>
     <string name="blur_level">Blur Level</string>
     <string name="blur_level_summary">Adjust the blur intensity of the album artwork</string>
+    <string name="art_style">Art Style</string>
+    <string name="art_style_summary">Choose how album art is displayed on the lockscreen</string>
+    <string name="art_style_blur">Blur Background</string>
+    <string name="art_style_concept">Art Card</string>
     
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Pulse Visualizer</string>
