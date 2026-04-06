@@ -56,6 +56,7 @@ import androidx.compose.material.icons.filled.BatteryChargingFull
 import androidx.compose.material.icons.filled.Bluetooth
 import androidx.compose.material.icons.filled.Cast
 import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.DensitySmall
 import androidx.compose.material.icons.filled.FiberManualRecord
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.FlashlightOn
@@ -287,6 +288,22 @@ internal fun DynamicBarMainContent(
                                     title = stringResource(R.string.dynamic_bar_compact_notifications),
                                     summary = stringResource(R.string.dynamic_bar_compact_notifications_summary),
                                     defaultValue = true,
+                                    customIcon = {
+                                        Box(
+                                            modifier = Modifier
+                                                .size(40.dp)
+                                                .clip(CircleShape)
+                                                .background(MaterialTheme.colorScheme.primaryContainer),
+                                            contentAlignment = Alignment.Center,
+                                        ) {
+                                            Icon(
+                                                Icons.Filled.DensitySmall,
+                                                contentDescription = null,
+                                                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                                                modifier = Modifier.size(20.dp),
+                                            )
+                                        }
+                                    },
                                 )
                             }
                         }
