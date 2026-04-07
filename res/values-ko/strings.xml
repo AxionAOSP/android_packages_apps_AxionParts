@@ -2,18 +2,17 @@
 <resources>
     <!-- App Name -->
     <string name="app_name">Axion Parts</string>
-    
     <!-- Common UI Elements -->
     <string name="back">뒤로</string>
     <string name="cancel">취소</string>
-    <string name="save">저장</string>
+    <string name="save">구하다</string>
     <string name="delete">삭제</string>
-    <string name="remove">제거</string>
+    <string name="remove">삭제</string>
     <string name="add">추가</string>
     <string name="edit">편집</string>
-    <string name="replace">바꾸기</string>
+    <string name="replace">덮어쓰기</string>
     <string name="import_text">가져오기</string>
-    <string name="reload">다시 로드</string>
+    <string name="reload">다시 불러오기</string>
     <string name="clear">지우기</string>
     <string name="expand">펼치기</string>
     <string name="collapse">접기</string>
@@ -21,19 +20,17 @@
     <string name="create">만들기</string>
     <string name="settings">설정</string>
     <string name="general">일반</string>
-    <string name="active">활성화</string>
+    <string name="active">활성</string>
     <string name="inactive">비활성화</string>
     <string name="disabled">사용 안 함</string>
     <string name="custom">사용자 지정</string>
-    
     <!-- Navigation -->
-    <string name="customize">사용자 지정</string>
-    <string name="nav_customize">사용자 지정</string>
+    <string name="customize">Customize</string>
+    <string name="nav_customize">Customize</string>
     <string name="nav_essentials">필수</string>
     <string name="nav_performance">성능</string>
     <string name="nav_multitasking">멀티태스킹</string>
-    <string name="personalizations">개인 설정</string>
-    
+    <string name="personalizations">Personalize</string>
     <!-- Customize Screen -->
     <string name="themes">테마</string>
     <string name="themes_subtitle">아이콘, 모양 등</string>
@@ -44,13 +41,17 @@
     <string name="sound">사운드</string>
     <string name="sound_subtitle">앱별 볼륨, 멀티 오디오</string>
     <string name="gestures">제스처</string>
-    <string name="gestures_subtitle">흔들기, 세 손가락 동작</string>
-    
+    <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">가장자리 조명</string>
     <string name="edge_light_description">알림 시 화면 가장자리의 조명 효과</string>
     <string name="enable_edge_light">가장자리 조명 사용</string>
     <string name="edge_light_summary">알림 시 화면 가장자리의 조명 효과 표시</string>
+    <string name="edge_light_appearance">모양</string>
+    <string name="edge_light_spread">Glow spread</string>
+    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
+    <string name="edge_light_intensity">Glow intensity</string>
+    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
     <string name="color_mode">색상 모드</string>
     <string name="notification_accent">알림 강조 색상</string>
     <string name="custom_color">사용자 지정 색상</string>
@@ -61,7 +62,6 @@
     <string name="selected">선택됨</string>
     <string name="select_uppercase">선택</string>
     <string name="select_item">항목 선택</string>
-    
     <!-- Media Art -->
     <string name="media_art">미디어 아트</string>
     <string name="media_art_description">미디어 재생 중 잠금 화면에 앨범 아트 표시</string>
@@ -70,7 +70,10 @@
     <string name="appearance">모양</string>
     <string name="blur_level">흐림 레벨</string>
     <string name="blur_level_summary">앨범 아트의 흐림 강도 조절</string>
-    
+    <string name="art_style">Art Style</string>
+    <string name="art_style_summary">Choose how album art is displayed on the lockscreen</string>
+    <string name="art_style_blur">Blur Background</string>
+    <string name="art_style_concept">Art Card</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">펄스 시각화</string>
     <string name="pulse_visualizer_description">잠금 화면 및 앰비언트 디스플레이에서 오디오 시각화</string>
@@ -91,7 +94,6 @@
     <string name="bar_count_summary">시각화 바의 개수</string>
     <string name="rounded_bars">둥근 바</string>
     <string name="rounded_bars_summary">시각화 바에 둥근 모서리 사용</string>
-    
     <!-- Always On Display -->
     <string name="always_on_display">상시 표시 화면</string>
     <string name="always_on_display_description">AOD 일정 및 화면 꺼짐 동작 관리</string>
@@ -99,17 +101,25 @@
     <string name="aod_schedule">AOD 일정</string>
     <string name="always_on">항상 켜기</string>
     <string name="scheduled">예약됨</string>
+    <string name="aod_charge_only">Charge only</string>
+    <string name="aod_scheduled_charge">Scheduled + Charge</string>
     <string name="schedule">일정</string>
     <string name="start_time">시작 시간</string>
     <string name="start_time_summary">AOD가 켜지는 시간</string>
     <string name="end_time">종료 시간</string>
     <string name="end_time_summary">AOD가 꺼지는 시간</string>
+    <string name="when_to_show">When to Show</string>
+    <string name="aod_on_charge">AOD on Charge</string>
+    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="custom_schedule">Custom Schedule</string>
+    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
     <string name="screen_off">화면 끄기</string>
     <string name="screen_off_aod">화면 꺼짐 AOD</string>
     <string name="screen_off_aod_summary">화면이 꺼질 때 AOD를 계속 활성화</string>
+    <string name="screen_off_aod_duration">AOD Duration</string>
+    <string name="screen_off_aod_duration_summary">How long to show AOD before entering doze</string>
     <string name="screen_off_animation">화면 끄기 애니메이션</string>
     <string name="screen_off_animation_summary">AOD로의 전환 애니메이션</string>
-    
     <!-- UI Features -->
     <string name="user_interface">사용자 인터페이스</string>
     <string name="quick_settings">빠른 설정</string>
@@ -128,13 +138,11 @@
     <string name="status_bar_icons">상태 표시줄 아이콘</string>
     <string name="status_bar_tuner">상태 표시줄 튜너</string>
     <string name="status_bar_tuner_summary">상태 표시줄 아이콘 표시 또는 숨김</string>
-    
     <!-- Sound Features -->
     <string name="per_app_volume">앱별 볼륨</string>
     <string name="per_app_volume_summary">각 앱의 볼륨을 개별적으로 제어</string>
     <string name="multi_audio_focus">멀티 오디오 포커스</string>
     <string name="multi_audio_focus_summary">여러 앱이 동시에 오디오를 재생하도록 허용</string>
-    
     <!-- Gestures -->
     <string name="shake_gestures">흔들기 제스처</string>
     <string name="enable_shake_gestures">흔들기 제스처 사용</string>
@@ -144,13 +152,26 @@
     <string name="shake_action">흔들기 동작</string>
     <string name="shake_action_summary">기기를 흔들었을 때 수행할 작업</string>
     <string name="three_finger_gestures">세 손가락 제스처</string>
+    <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">세 손가락 스와이프</string>
     <string name="three_finger_swipe_summary">세 손가락으로 스와이프했을 때의 작업</string>
     <string name="three_finger_long_press">세 손가락 길게 누르기</string>
     <string name="three_finger_long_press_summary">세 손가락 길게 누르기 제스처 사용</string>
     <string name="disable_button_screenshot">버튼 스크린샷 사용 안 함</string>
     <string name="disable_button_screenshot_summary">전원 + 볼륨 다운 스크린샷 조합 사용 안 함</string>
-    
+    <!-- Doze Pulse -->
+    <string name="doze_pulse_gestures">Doze Pulse</string>
+    <string name="doze_pulse_gestures_summary">Pulse screen instead of waking</string>
+    <string name="doze_pulse_notification">Notification pulse</string>
+    <string name="doze_pulse_notification_summary">Briefly show lockscreen on notifications without AOD</string>
+    <string name="doze_pulse_tap">Tap to pulse</string>
+    <string name="doze_pulse_tap_summary">Pulse screen on tap instead of waking</string>
+    <string name="doze_pulse_double_tap">Double tap to pulse</string>
+    <string name="doze_pulse_double_tap_summary">Pulse screen on double tap instead of waking</string>
+    <string name="doze_pulse_pickup">Pickup to pulse</string>
+    <string name="doze_pulse_pickup_summary">Pulse screen on pickup instead of waking</string>
+    <string name="doze_pulse_side_fps">Side fingerprint to pulse</string>
+    <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">없음</string>
     <string name="gesture_action_app_switch">앱 전환</string>
@@ -168,13 +189,16 @@
     <string name="gesture_action_notifications_panel">알림 패널</string>
     <string name="gesture_action_expand_qs">QS 패널 펼치기</string>
     <string name="gesture_action_ringer_modes">벨소리 모드</string>
-    
+    <!-- Dashboard -->
+    <string name="features">Features</string>
     <!-- Essentials Screen -->
     <string name="essentials">필수</string>
+    <string name="essentials_summary">Notifications, gaming &amp; security</string>
     <string name="essential_notifications">필수 알림</string>
+    <string name="quicklook">QuickLook</string>
+    <string name="quicklook_settings_summary">Summarize what to appear on quick look</string>
     <string name="gaming">게임</string>
     <string name="security">보안</string>
-    
     <!-- Essential Apps -->
     <string name="selected_apps">선택된 앱</string>
     <string name="selected_apps_description">중요한 항목을 필터링합니다. 이러한 앱은 상단에 그룹화되어 유지됩니다.</string>
@@ -183,17 +207,14 @@
     <string name="add_app">앱 추가</string>
     <string name="select_essential_apps">필수 앱 선택</string>
     <string name="select_apps">앱 선택</string>
-    
     <!-- App Picker -->
     <string name="loading_apps">앱 로드 중...</string>
     <string name="search_apps">앱 검색...</string>
     <string name="show_system_apps">시스템 앱 표시</string>
     <string name="selected_count">%1$d개 선택됨</string>
-    
     <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">GameSpace 기능으로 게임 경험 최적화</string>
-    
     <!-- Game Spoofing -->
     <string name="game_spoofing">게임 스푸핑</string>
     <string name="game_spoofing_summary">특정 게임에 대한 기기 속성 스푸핑</string>
@@ -220,7 +241,6 @@
     <string name="preset_saved">프리셋 저장됨</string>
     <string name="edit_app">%1$s 편집</string>
     <string name="add_app_title">앱 추가</string>
-    
     <!-- Device Profiles -->
     <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
     <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
@@ -228,8 +248,15 @@
     <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
     <string name="device_black_shark_4">Black Shark 4</string>
     <string name="device_lenovo_y700">Lenovo Y700</string>
-    
     <!-- Security Features -->
+    <string name="custom_rom_hide">Custom ROM Hide</string>
+    <string name="custom_rom_hide_summary">Manage per-app allowlist for custom ROM detection hiding</string>
+    <string name="custom_rom_hide_allowlist">Allowlist</string>
+    <string name="manage_allowlist_apps">Manage allowlist apps</string>
+    <string name="allowlist_apps_configured">%d apps can bypass hiding</string>
+    <string name="no_allowlist_apps">No apps configured — all apps are hidden from</string>
+    <string name="custom_rom_hide_picker_title">Select Allowlist Apps</string>
+    <string name="custom_rom_hide_picker_desc">Choose apps that should see root and custom ROM indicators. All other apps will be hidden from.</string>
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">키 증명 스푸핑을 위한 keybox 관리</string>
     <string name="keybox_management">Keybox 관리</string>
@@ -256,7 +283,6 @@
     <string name="target_mode_auto">자동</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
-    
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity 수정</string>
     <string name="play_integrity_fix_summary">빌드 지문 스푸핑 구성</string>
@@ -278,17 +304,16 @@
     <string name="unlimited_backup">원본 품질로 무제한 백업</string>
     <string name="other_config_files">기타 구성 파일</string>
     <string name="configured_count">%2$d개 중 %1$d개 구성됨</string>
-    <string name="priority_note">우선순위: custom.pif.* > pif.* (먼저 발견된 것이 사용됨)</string>
+    <string name="priority_note">우선순위: custom.pif.* &gt; pif.* (먼저 발견된 것이 사용됨)</string>
     <string name="active_in_use">활성 - 현재 사용 중</string>
     <string name="available_overridden">사용 가능 - 높은 우선순위로 재정의됨</string>
     <string name="not_configured">구성되지 않음</string>
-    
     <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Window Secure 무시</string>
     <string name="ignore_window_secure_summary">모든 앱에서 스크린샷 및 화면 녹화 허용</string>
-    
     <!-- Performance Screen -->
     <string name="performance">성능</string>
+    <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
     <string name="performance_mode">성능 모드</string>
     <string name="maximum_performance_enabled">최대 성능 활성화</string>
     <string name="balanced_mode">균형 모드</string>
@@ -298,7 +323,6 @@
     <string name="touch_boost">터치 부스트</string>
     <string name="boost_active">부스트 활성</string>
     <string name="boost_disabled">부스트 비활성</string>
-    
     <!-- CPU Clusters -->
     <string name="little_cluster">리틀 클러스터</string>
     <string name="big_cluster">빅 클러스터</string>
@@ -306,26 +330,227 @@
     <string name="boost_frequency">부스트 주파수</string>
     <string name="minimum_frequency">최소 주파수</string>
     <string name="maximum_frequency">최대 주파수</string>
-    
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">그래픽 성능</string>
     <string name="game_gpu_boost">게임 GPU 부스트</string>
     <string name="system_gpu_boost">시스템 GPU 부스트</string>
-    
     <!-- Performance Formats -->
     <string name="level_format">레벨 %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
-    
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">성능</string>
-    <string name="qs_tile_on">켜짐</string>
-    <string name="qs_tile_off">꺼짐</string>
-    
+    <string name="qs_tile_pc_mode">PC Mode</string>
+    <string name="qs_tile_on">사용</string>
+    <string name="qs_tile_off">사용 안함</string>
     <!-- Multitasking Screen -->
     <string name="multitasking">멀티태스킹</string>
+    <string name="multitasking_summary">Sidebar &amp; PC mode</string>
     <string name="edge_features">가장자리 기능</string>
     <string name="sidebar">사이드바</string>
     <string name="sidebar_summary">가장자리에서 즐겨찾는 앱에 빠르게 접근</string>
-    
+    <!-- PC Mode Settings -->
+    <string name="pc_mode">PC Mode</string>
+    <string name="pc_mode_settings">PC Mode Settings</string>
+    <string name="pc_mode_summary">Configure screen resolution and behavior</string>
+    <string name="pc_mode_title">PC Mode</string>
+    <string name="pref_category_general">일반</string>
+    <string name="pref_category_display">Display</string>
+    <string name="pref_category_taskbar">Taskbar</string>
+    <string name="pref_enable_pc_mode_title">Enable PC Mode</string>
+    <string name="pref_enable_pc_mode_summary">Enable desktop-like experience</string>
+    <string name="pref_taskbar_timeout_title">Auto-hide timeout</string>
+    <string name="pref_taskbar_timeout_summary">Duration before taskbar hides automatically</string>
+    <string name="pref_pc_mode_screen_off_title">Turn off internal screen</string>
+    <string name="pref_pc_mode_screen_off_summary">Turn off the device screen when PC Mode is active on an external display</string>
+    <string name="pref_pc_mode_secondary_only_title">Secondary display only</string>
+    <string name="pref_pc_mode_secondary_only_summary">Run PC Mode only on the external display without changing the main display</string>
+    <!-- Resolution Settings -->
+    <string name="pref_pc_mode_density_title">Display Density</string>
+    <string name="pref_pc_mode_density_summary">Adjust the UI scale for PC Mode</string>
+    <string name="pref_pc_mode_secondary_density_title">External Display Density</string>
+    <string name="pref_pc_mode_secondary_density_summary">Adjust the UI scale for the external display (lower = more content)</string>
+    <string name="resolution_override_title">Resolution Override</string>
+    <string name="resolution_default">Default</string>
+    <string name="resolution_dialog_title">Set Resolution</string>
+    <string name="resolution_input_label">WidthxHeight (e.g. 1920x1080)</string>
+    <string name="resolution_invalid_format">Invalid format. Use WxH.</string>
+    <string name="resolution_max_limit_error">Resolution too high. Max is 4096x4096.</string>
+    <string name="resolution_min_limit_error">Resolution too low. Min is 320x240.</string>
+    <string name="action_apply">Apply</string>
+    <string name="action_cancel">취소</string>
+    <string name="action_reset_default">Reset to Default</string>
+    <!-- Dynamic Bar -->
+    <string name="dynamic_bar">Dynamic Bar</string>
+    <string name="dynamic_bar_summary">Smart status bar chip for live events</string>
+    <string name="dynamic_bar_enable">Enable Dynamic Bar</string>
+    <string name="dynamic_bar_enable_summary">Show a dynamic chip on the status bar for live events</string>
+    <string name="dynamic_bar_keyguard_enable">Lock screen chip</string>
+    <string name="dynamic_bar_keyguard_enable_summary">Show the Dynamic Bar chip on the lock screen with controls and quick actions</string>
+    <string name="dynamic_bar_events">Events</string>
+    <string name="dynamic_bar_events_summary">Choose which events appear in the Dynamic Bar</string>
+    <string name="dynamic_bar_event_recording">Screen Recording</string>
+    <string name="dynamic_bar_event_recording_summary">Active screen recording indicator</string>
+    <string name="dynamic_bar_event_privacy">Privacy Indicators</string>
+    <string name="dynamic_bar_event_privacy_summary">Camera and microphone access alerts</string>
+    <string name="dynamic_bar_event_audio_recording">Audio Recording</string>
+    <string name="dynamic_bar_event_audio_recording_summary">Voice recorder and audio capture</string>
+    <string name="dynamic_bar_event_media">Media Playback</string>
+    <string name="dynamic_bar_event_media_summary">Now playing music and audio controls</string>
+    <string name="dynamic_bar_event_notification">알림</string>
+    <string name="dynamic_bar_event_notification_summary">Incoming notification alerts</string>
+    <string name="dynamic_bar_compact_notifications">Compact notifications</string>
+    <string name="dynamic_bar_compact_notifications_summary">Show notifications as a small chip first, tap to expand</string>
+    <string name="dynamic_bar_event_timer">Timer</string>
+    <string name="dynamic_bar_event_timer_summary">Countdown timer from Clock app</string>
+    <string name="dynamic_bar_event_stopwatch">Stopwatch</string>
+    <string name="dynamic_bar_event_stopwatch_summary">Running stopwatch from Clock app</string>
+    <string name="dynamic_bar_event_alarm">Alarm</string>
+    <string name="dynamic_bar_event_alarm_summary">Ringing and upcoming alarms</string>
+    <string name="dynamic_bar_event_charging">Charging</string>
+    <string name="dynamic_bar_event_charging_summary">Battery level when plugged in</string>
+    <string name="dynamic_bar_event_bluetooth">Bluetooth</string>
+    <string name="dynamic_bar_event_bluetooth_summary">Device connection status</string>
+    <string name="dynamic_bar_event_hotspot">Hotspot</string>
+    <string name="dynamic_bar_event_hotspot_summary">Mobile hotspot active indicator</string>
+    <string name="dynamic_bar_event_ringer">Ringer Mode</string>
+    <string name="dynamic_bar_event_ringer_summary">Silent, vibrate, and ring mode changes</string>
+    <string name="dynamic_bar_event_vpn">VPN</string>
+    <string name="dynamic_bar_event_vpn_summary">Active VPN connection indicator</string>
+    <string name="dynamic_bar_event_clipboard">Clipboard</string>
+    <string name="dynamic_bar_event_clipboard_summary">Copied text and image preview</string>
+    <string name="dynamic_bar_event_torch">손전등</string>
+    <string name="dynamic_bar_event_torch_summary">Flashlight toggle and brightness</string>
+    <string name="dynamic_bar_event_casting">Casting</string>
+    <string name="dynamic_bar_event_casting_summary">Screen cast and media cast status</string>
+    <string name="dynamic_bar_event_ongoing">Ongoing Activities</string>
+    <string name="dynamic_bar_event_ongoing_summary">Navigation, deliveries, and other live activities</string>
+    <string name="dynamic_bar_event_sports">Sports</string>
+    <string name="dynamic_bar_event_sports_summary">Live scores and game updates</string>
+    <string name="dynamic_bar_event_app_switch">Recent app switch</string>
+    <string name="dynamic_bar_event_app_switch_summary">Show chip when switching between recent apps</string>
+    <string name="dynamic_bar_event_biometric">Biometric unlock</string>
+    <string name="dynamic_bar_event_biometric_summary">Show chip on fingerprint or face unlock</string>
+    <string name="dynamic_bar_guide_title">How Dynamic Bar works</string>
+    <string name="dynamic_bar_guide_chip">Events appear as a compact chip next to the camera cutout with an accent-colored background, animated icon, and live info.</string>
+    <string name="dynamic_bar_guide_swipe">Swipe left or right on the chip to cycle between active events when multiple are running.</string>
+    <string name="dynamic_bar_guide_expand">Tap the chip to open an expanded card with full details, controls, and quick actions.</string>
+    <string name="dynamic_bar_guide_dismiss">Drag the expanded card left or right to dismiss it with a magnetic swipe gesture.</string>
+    <string name="dynamic_bar_guide_keyguard">On the lock screen, the chip appears at the bottom with playback controls and quick actions.</string>
+    <string name="dynamic_bar_guide_chip_title">Chip appearance</string>
+    <string name="dynamic_bar_guide_swipe_title">Swipe to cycle</string>
+    <string name="dynamic_bar_guide_expand_title">Tap to expand</string>
+    <string name="dynamic_bar_guide_dismiss_title">Swipe to dismiss</string>
+    <string name="dynamic_bar_guide_keyguard_title">Lock screen chip</string>
+    <string name="dynamic_bar_footer_title">About Dynamic Bar</string>
+    <string name="dynamic_bar_footer_body">Dynamic Bar transforms your status bar into a live activity hub. Timers, media, recordings, and system events surface right where you need them — no notification shade required.\n\nEach event type has its own accent color and expanded card with quick actions.</string>
+    <!-- Routines -->
+    <string name="routines">Routines</string>
+    <string name="routines_summary">Automate tasks with triggers and actions</string>
+    <string name="routines_enabled">Enable Routines</string>
+    <string name="routines_enabled_summary">Allow routines to run automatically</string>
+    <string name="routines_create">Create Routine</string>
+    <string name="routines_edit">Edit Routine</string>
+    <string name="routines_name">Routine name</string>
+    <string name="routines_triggers">Triggers</string>
+    <string name="routines_conditions">Conditions</string>
+    <string name="routines_actions">Actions</string>
+    <string name="routines_add_trigger">Add trigger</string>
+    <string name="routines_add_condition">Add condition</string>
+    <string name="routines_add_action">Add action</string>
+    <string name="routines_select_trigger">Select trigger</string>
+    <string name="routines_select_action">Select action</string>
+    <string name="routines_select_condition">Select condition</string>
+    <string name="routines_no_routines">No routines yet</string>
+    <string name="routines_no_routines_desc">Create your first automation routine</string>
+    <string name="routines_delete_title">Delete routine?</string>
+    <string name="routines_delete_message">This routine will be permanently removed.</string>
+    <string name="routines_optional">optional</string>
+    <string name="routines_minutes">Minutes</string>
+    <string name="routines_seconds">Seconds</string>
+    <string name="routines_above">Above</string>
+    <string name="routines_below">Below</string>
+    <string name="routines_silent">Silent</string>
+    <string name="routines_vibrate">Vibrate</string>
+    <string name="routines_normal">Normal</string>
+    <string name="routines_next">Next</string>
+    <string name="routines_ssid_hint">WiFi network name (optional)</string>
+    <string name="routines_device_hint">Device address (optional)</string>
+    <string name="routines_broadcast_hint">Broadcast action</string>
+    <string name="routines_notif_title_hint">Notification title</string>
+    <string name="routines_notif_text_hint">Notification text</string>
+    <string name="routines_setting_key_hint">Setting key</string>
+    <string name="routines_setting_value_hint">Setting value</string>
+    <string name="routines_time_of_day">Time of Day</string>
+    <string name="routines_interval">Interval</string>
+    <string name="routines_charging">Charging</string>
+    <string name="routines_charging_starts">Charging starts</string>
+    <string name="routines_charging_stops">Charging stops</string>
+    <string name="routines_battery_level">Battery Level</string>
+    <string name="routines_wifi">WiFi</string>
+    <string name="routines_bluetooth">Bluetooth</string>
+    <string name="routines_connected">Connected</string>
+    <string name="routines_screen">Screen</string>
+    <string name="routines_screen_on">Screen turns on</string>
+    <string name="routines_screen_off">Screen turns off</string>
+    <string name="routines_feature_state">Feature State</string>
+    <string name="routines_headphones">Headphones</string>
+    <string name="routines_headphones_connected">Headphones connected</string>
+    <string name="routines_headphones_disconnected">Headphones disconnected</string>
+    <string name="routines_ringer_mode">Ringer Mode</string>
+    <string name="routines_app_launch">App Launch</string>
+    <string name="routines_app_close">App Close</string>
+    <string name="routines_set_feature">Set Feature</string>
+    <string name="routines_toggle_feature">Toggle Feature</string>
+    <string name="routines_set_volume">Set Volume</string>
+    <string name="routines_set_brightness">Set Brightness</string>
+    <string name="routines_set_ringer_mode">Set Ringer Mode</string>
+    <string name="routines_launch_app">Launch App</string>
+    <string name="routines_send_broadcast">Send Broadcast</string>
+    <string name="routines_show_notification">Show Notification</string>
+    <string name="routines_delay">Delay</string>
+    <string name="routines_set_setting">Set Setting</string>
+    <string name="routines_stream_media">Media</string>
+    <string name="routines_stream_ring">Ring</string>
+    <string name="routines_stream_notification">Notification</string>
+    <string name="routines_stream_alarm">Alarm</string>
+    <string name="routines_stream_system">System</string>
+    <string name="routines_start_time">Start Time</string>
+    <string name="routines_end_time">End Time</string>
+    <string name="routines_time_range">Time Range</string>
+    <string name="routines_day_of_week">Days of Week</string>
+    <string name="routines_battery_range">Battery Range</string>
+    <string name="routines_wifi_connected">WiFi Connected</string>
+    <string name="routines_bluetooth_connected">Bluetooth Connected</string>
+    <string name="routines_screen_on_condition">Screen On</string>
+    <string name="routines_feature_active">Feature Active</string>
+    <string name="routines_while_charging">While charging</string>
+    <string name="routines_while_not_charging">While not charging</string>
+    <string name="routines_screen_is_on">Screen is on</string>
+    <string name="routines_screen_is_off">Screen is off</string>
+    <string name="routines_sensor_privacy">Sensor Privacy</string>
+    <string name="routines_camera_blocked">Camera blocked</string>
+    <string name="routines_camera_unblocked">Camera unblocked</string>
+    <string name="routines_mic_blocked">Microphone blocked</string>
+    <string name="routines_mic_unblocked">Microphone unblocked</string>
+    <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
+    <string name="routines_sensor_blocked">Sensor Blocked</string>
+    <string name="routines_location">Location</string>
+    <string name="routines_location_enter">Enter area</string>
+    <string name="routines_location_exit">Leave area</string>
+    <string name="routines_latitude_hint">Latitude</string>
+    <string name="routines_longitude_hint">Longitude</string>
+    <string name="routines_radius_hint">Radius (meters)</string>
+    <string name="routines_location_near">Location Near</string>
+    <string name="routines_sensor_camera">Camera</string>
+    <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_block">Block</string>
+    <string name="routines_unblock">Unblock</string>
+    <string name="ax_bravia_engine">AxBravia Engine</string>
+    <string name="ax_bravia_engine_summary">Color enhancement and sharpening</string>
+    <string name="ax_bravia_engine_mode">Enhancement mode</string>
+    <string name="ax_bravia_engine_off">사용 안함</string>
+    <string name="ax_bravia_engine_vivid">Vivid</string>
+    <string name="ax_bravia_engine_natural">Natural</string>
+    <string name="ax_bravia_engine_cinema">Cinema</string>
 </resources>
