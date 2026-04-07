@@ -78,7 +78,7 @@
     <string name="pulse_visualizer">Визуализатор Pulse</string>
     <string name="pulse_visualizer_description">Аудио визуализатор на экране блокировки и ambient display</string>
     <string name="enable_pulse">Включить Pulse</string>
-    <string name="pulse_summary">Показывать аудиовизуализатор на экране блокировки</string>
+    <string name="pulse_summary">Визуализация аудио на экране блокировки и активном экране</string>
     <string name="style">Стиль</string>
     <string name="render_style">Стиль отрисовки</string>
     <string name="render_style_summary">Выберите визуальный стиль визуализатора</string>
@@ -86,7 +86,7 @@
     <string name="fading_blocks">Затухающие блоки</string>
     <string name="color_mode_title">Режим цвета</string>
     <string name="visualizer_color_summary">Настройка цвета визуализатора</string>
-    <string name="lava_lamp">Лава-лампа</string>
+    <string name="lava_lamp">Лава лампа</string>
     <string name="album_art">Обложка альбома</string>
     <string name="system_accent">Системный акцент</string>
     <string name="bars">Полосы</string>
@@ -119,11 +119,11 @@
     <string name="screen_off_aod_duration">AOD Duration</string>
     <string name="screen_off_aod_duration_summary">How long to show AOD before entering doze</string>
     <string name="screen_off_animation">Анимация выключения экрана</string>
-    <string name="screen_off_animation_summary">Анимировать переход к AOD</string>
+    <string name="screen_off_animation_summary">Анимация перехода на AOD</string>
     <!-- UI Features -->
     <string name="user_interface">Пользовательский интерфейс</string>
     <string name="quick_settings">Быстрые настройки</string>
-    <string name="quick_settings_description">Ползунок яркости, плитки и настройка панели</string>
+    <string name="quick_settings_description">Ползунок яркости, плитки &amp; настройка панели</string>
     <string name="status_bar">Строка состояния</string>
     <string name="status_bar_description">Часы, иконки и сетевые индикаторы</string>
     <string name="brightness_slider">Ползунок яркости</string>
@@ -141,7 +141,7 @@
     <!-- Sound Features -->
     <string name="per_app_volume">Громкость для каждого приложения</string>
     <string name="per_app_volume_summary">Управление громкостью отдельно для каждого приложения</string>
-    <string name="multi_audio_focus">Множественный аудиофокус</string>
+    <string name="multi_audio_focus">Одновременное воспроизведение звука</string>
     <string name="multi_audio_focus_summary">Разрешить нескольким приложениям воспроизводить аудио одновременно</string>
     <!-- Gestures -->
     <string name="shake_gestures">Жесты встряхивания</string>
@@ -153,8 +153,8 @@
     <string name="shake_action_summary">Действие при встряхивании устройства</string>
     <string name="three_finger_gestures">Жесты тремя пальцами</string>
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
-    <string name="three_finger_swipe">Свайп тремя пальцами</string>
-    <string name="three_finger_swipe_summary">Действие при свайпе тремя пальцами</string>
+    <string name="three_finger_swipe">Жест тремя пальцами</string>
+    <string name="three_finger_swipe_summary">Действие при жесте тремя пальцами</string>
     <string name="three_finger_long_press">Долгое нажатие тремя пальцами</string>
     <string name="three_finger_long_press_summary">Включить жест долгого нажатия тремя пальцами</string>
     <string name="disable_button_screenshot">Отключить скриншот кнопками</string>
@@ -208,8 +208,8 @@
     <string name="select_essential_apps">Выбрать важные приложения</string>
     <string name="select_apps">Выбрать приложения</string>
     <!-- App Picker -->
-    <string name="loading_apps">Загрузка приложений…</string>
-    <string name="search_apps">Поиск приложений…</string>
+    <string name="loading_apps">Загрузка приложений...</string>
+    <string name="search_apps">Поиск приложений...</string>
     <string name="show_system_apps">Показать системные приложения</string>
     <string name="selected_count">Выбрано: %1$d</string>
     <!-- GameSpace -->
@@ -230,15 +230,15 @@
     <string name="select_an_app">Выберите приложение:</string>
     <string name="select_device_profile">Выберите профиль устройства:</string>
     <string name="create_new">Создать новый</string>
-    <string name="delete_preset">Удалить предустановку</string>
-    <string name="create_preset_title">Создать предустановку</string>
-    <string name="preset_name">Название предустановки</string>
+    <string name="delete_preset">Удалить профиль</string>
+    <string name="create_preset_title">Создать профиль</string>
+    <string name="preset_name">Название профиля</string>
     <string name="property_number">Свойство %1$d</string>
     <string name="key">Ключ</string>
     <string name="value">Значение</string>
     <string name="add_property">Добавить свойство</string>
-    <string name="save_as_preset_title">Сохранить как предустановку</string>
-    <string name="preset_saved">Предустановка сохранена</string>
+    <string name="save_as_preset_title">Сохранить как профиль</string>
+    <string name="preset_saved">Профиль сохранен</string>
     <string name="edit_app">Изменить %1$s</string>
     <string name="add_app_title">Добавить приложение</string>
     <!-- Device Profiles -->
@@ -303,7 +303,7 @@
     <string name="spoof_google_photos">Подменять Google Фото</string>
     <string name="unlimited_backup">Неограниченное резервное копирование в оригинальном качестве</string>
     <string name="other_config_files">Другие файлы конфигурации</string>
-    <string name="configured_count">Настроено %1$d из %2$d</string>
+    <string name="configured_count">Настроено %1$d / %2$d</string>
     <string name="priority_note">Приоритет: custom.pif.* &gt; pif.* (используется первый найденный)</string>
     <string name="active_in_use">Активно - Используется</string>
     <string name="available_overridden">Доступно - Переопределено более высоким приоритетом</string>
@@ -535,7 +535,7 @@
     <string name="routines_mic_unblocked">Microphone unblocked</string>
     <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
     <string name="routines_sensor_blocked">Sensor Blocked</string>
-    <string name="routines_location">Location</string>
+    <string name="routines_location">Расположение</string>
     <string name="routines_location_enter">Enter area</string>
     <string name="routines_location_exit">Leave area</string>
     <string name="routines_latitude_hint">Latitude</string>
@@ -543,7 +543,7 @@
     <string name="routines_radius_hint">Radius (meters)</string>
     <string name="routines_location_near">Location Near</string>
     <string name="routines_sensor_camera">Камера</string>
-    <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_sensor_microphone">Микрофон</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
     <string name="ax_bravia_engine">AxBravia Engine</string>
