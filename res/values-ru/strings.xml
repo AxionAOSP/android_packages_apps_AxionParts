@@ -375,8 +375,8 @@
     <string name="resolution_dialog_title">Set Resolution</string>
     <string name="resolution_input_label">WidthxHeight (e.g. 1920x1080)</string>
     <string name="resolution_invalid_format">Invalid format. Use WxH.</string>
-    <string name="resolution_max_limit_error">Resolution too high. Max is 4096x4096.</string>
-    <string name="resolution_min_limit_error">Resolution too low. Min is 320x240.</string>
+    <string name="resolution_max_limit_error">Слишком высокое разрешение. Максимум 4096x4096.</string>
+    <string name="resolution_min_limit_error">Слишком низкое разрешение. Мин 320х240.</string>
     <string name="action_apply">Применить</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_reset_default">Восстановить значения по умолчанию</string>
@@ -416,7 +416,7 @@
     <string name="dynamic_bar_event_ringer">Ringer Mode</string>
     <string name="dynamic_bar_event_ringer_summary">Silent, vibrate, and ring mode changes</string>
     <string name="dynamic_bar_event_vpn">VPN</string>
-    <string name="dynamic_bar_event_vpn_summary">Active VPN connection indicator</string>
+    <string name="dynamic_bar_event_vpn_summary">Индикатор активного VPN подключения</string>
     <string name="dynamic_bar_event_clipboard">Clipboard</string>
     <string name="dynamic_bar_event_clipboard_summary">Copied text and image preview</string>
     <string name="dynamic_bar_event_torch">Фонарик</string>
