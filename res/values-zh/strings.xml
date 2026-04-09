@@ -28,22 +28,22 @@
     <string name="customize">Customize</string>
     <string name="nav_customize">Customize</string>
     <string name="nav_essentials">Essentials</string>
-    <string name="nav_performance">Performance</string>
-    <string name="nav_multitasking">Multitasking</string>
+    <string name="nav_performance">效能</string>
+    <string name="nav_multitasking">多工</string>
     <string name="personalizations">个性化定制</string>
     <!-- Customize Screen -->
-    <string name="themes">Themes</string>
-    <string name="themes_subtitle">Icons, shapes &amp; more</string>
-    <string name="lockscreen">Lockscreen</string>
+    <string name="themes">主題</string>
+    <string name="themes_subtitle">圖示、形狀及更多</string>
+    <string name="lockscreen">螢幕鎖定畫面</string>
     <string name="lockscreen_subtitle">Edge light, media &amp; visualizer</string>
-    <string name="ui_features">UI Features</string>
-    <string name="ui_features_subtitle">Status bar, QS &amp; more</string>
-    <string name="sound">Sound</string>
+    <string name="ui_features">介面功能</string>
+    <string name="ui_features_subtitle">狀態列、快速設定及更多</string>
+    <string name="sound">音效</string>
     <string name="sound_subtitle">Per-app volume &amp; multi audio</string>
-    <string name="gestures">Gestures</string>
+    <string name="gestures">手勢</string>
     <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
     <!-- Lockscreen Features -->
-    <string name="edge_light">Edge Light</string>
+    <string name="edge_light">螢幕邊緣光線</string>
     <string name="edge_light_description">Lighting effects on screen edges for notifications</string>
     <string name="enable_edge_light">Enable Edge Light</string>
     <string name="edge_light_summary">Show lighting effects on screen edges for notifications</string>
@@ -312,7 +312,7 @@
     <string name="ignore_window_secure">Ignore Window Secure</string>
     <string name="ignore_window_secure_summary">Allow taking screenshots and screen recordings in all apps</string>
     <!-- Performance Screen -->
-    <string name="performance">Performance</string>
+    <string name="performance">效能</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
     <string name="performance_mode">Performance Mode</string>
     <string name="maximum_performance_enabled">Maximum performance enabled</string>
@@ -339,12 +339,12 @@
     <string name="level_format">Level %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">Performance</string>
+    <string name="qs_tile_performance">效能</string>
     <string name="qs_tile_pc_mode">PC Mode</string>
     <string name="qs_tile_on">On</string>
     <string name="qs_tile_off">Off</string>
     <!-- Multitasking Screen -->
-    <string name="multitasking">Multitasking</string>
+    <string name="multitasking">多工</string>
     <string name="multitasking_summary">Sidebar &amp; PC mode</string>
     <string name="edge_features">Edge Features</string>
     <string name="sidebar">Sidebar</string>
