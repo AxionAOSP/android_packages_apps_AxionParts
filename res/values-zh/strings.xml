@@ -3,15 +3,15 @@
     <!-- App Name -->
     <string name="app_name">Axion Parts</string>
     <!-- Common UI Elements -->
-    <string name="back">Back</string>
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
-    <string name="delete">Delete</string>
+    <string name="back">返回</string>
+    <string name="cancel">取消</string>
+    <string name="save">儲存</string>
+    <string name="delete">刪除</string>
     <string name="remove">移除</string>
     <string name="add">新增</string>
     <string name="edit">編輯</string>
     <string name="replace">取代</string>
-    <string name="import_text">Import</string>
+    <string name="import_text">匯入</string>
     <string name="reload">重新載入</string>
     <string name="clear">清除</string>
     <string name="expand">展開</string>
@@ -298,7 +298,7 @@
     <string name="deleted_file">已刪除 %1$s</string>
     <string name="delete_file_title">刪除 %1$s？</string>
     <string name="delete_config_message">此設定檔將會被移除。</string>
-    <string name="import_text_verb">Import</string>
+    <string name="import_text_verb">匯入</string>
     <string name="active_config_title">使用中的設定</string>
     <string name="spoof_google_photos">偽裝 Google 相簿</string>
     <string name="unlimited_backup">無限量原始品質備份</string>
@@ -378,7 +378,7 @@
     <string name="resolution_max_limit_error">解析度過高，上限為 4096x4096。</string>
     <string name="resolution_min_limit_error">解析度過低，下限為 320x240。</string>
     <string name="action_apply">套用</string>
-    <string name="action_cancel">Cancel</string>
+    <string name="action_cancel">取消</string>
     <string name="action_reset_default">恢復預設值</string>
     <!-- Dynamic Bar -->
     <string name="dynamic_bar">Dynamic Bar</string>
@@ -543,7 +543,7 @@
     <string name="routines_radius_hint">半徑（公尺）</string>
     <string name="routines_location_near">靠近位置</string>
     <string name="routines_sensor_camera">相機</string>
-    <string name="routines_sensor_microphone">麦克风</string>
+    <string name="routines_sensor_microphone">麥克風</string>
     <string name="routines_block">封鎖</string>
     <string name="routines_unblock">解除封鎖</string>
     <string name="ax_bravia_engine">AxBravia Engine</string>
