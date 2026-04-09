@@ -7,8 +7,8 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
-    <string name="remove">Remove</string>
-    <string name="add">Add</string>
+    <string name="remove">移除</string>
+    <string name="add">新增</string>
     <string name="edit">編輯</string>
     <string name="replace">取代</string>
     <string name="import_text">Import</string>
@@ -16,21 +16,21 @@
     <string name="clear">清除</string>
     <string name="expand">展開</string>
     <string name="collapse">收合</string>
-    <string name="search">Search</string>
+    <string name="search">搜尋</string>
     <string name="create">建立</string>
     <string name="settings">設定</string>
     <string name="general">一般</string>
-    <string name="active">Active</string>
+    <string name="active">運作中</string>
     <string name="inactive">未啟用</string>
     <string name="disabled">已停用</string>
     <string name="custom">自訂</string>
     <!-- Navigation -->
-    <string name="customize">Customize</string>
-    <string name="nav_customize">Customize</string>
-    <string name="nav_essentials">Essentials</string>
+    <string name="customize">自訂</string>
+    <string name="nav_customize">自訂</string>
+    <string name="nav_essentials">常用項目</string>
     <string name="nav_performance">效能</string>
     <string name="nav_multitasking">多工</string>
-    <string name="personalizations">个性化定制</string>
+    <string name="personalizations">個人化設定</string>
     <!-- Customize Screen -->
     <string name="themes">主題</string>
     <string name="themes_subtitle">圖示、形狀及更多</string>
@@ -123,7 +123,7 @@
     <!-- UI Features -->
     <string name="user_interface">使用者介面</string>
     <string name="quick_settings">快速設定</string>
-    <string name="quick_settings_description">亮度滑桿、方塊與面板自訂</string>
+    <string name="quick_settings_description">亮度滑桿、快捷按鈕與面板自訂</string>
     <string name="status_bar">狀態列</string>
     <string name="status_bar_description">時鐘、圖示與網路指示器</string>
     <string name="brightness_slider">亮度滑桿</string>
@@ -175,7 +175,7 @@
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">無動作</string>
     <string name="gesture_action_app_switch">切換應用程式</string>
-    <string name="gesture_action_search">Search</string>
+    <string name="gesture_action_search">搜尋</string>
     <string name="gesture_action_voice_search">語音搜尋</string>
     <string name="gesture_action_launch_camera">啟動相機</string>
     <string name="gesture_action_sleep">休眠</string>
@@ -192,7 +192,7 @@
     <!-- Dashboard -->
     <string name="features">功能</string>
     <!-- Essentials Screen -->
-    <string name="essentials">Essentials</string>
+    <string name="essentials">常用項目</string>
     <string name="essentials_summary">通知、遊戲與安全性</string>
     <string name="essential_notifications">重要通知</string>
     <string name="quicklook">QuickLook</string>
@@ -208,8 +208,8 @@
     <string name="select_essential_apps">選取重要應用程式</string>
     <string name="select_apps">選取應用程式</string>
     <!-- App Picker -->
-    <string name="loading_apps">載入應用程式中...</string>
-    <string name="search_apps">搜尋應用程式...</string>
+    <string name="loading_apps">載入應用程式中…</string>
+    <string name="search_apps">搜尋應用程式…</string>
     <string name="show_system_apps">顯示系統應用程式</string>
     <string name="selected_count">已選取 %1$d 個</string>
     <!-- GameSpace -->
@@ -290,7 +290,7 @@
     <string name="active_config">使用中：%1$s</string>
     <string name="no_config_loaded">未載入設定</string>
     <string name="fetch_pixel_beta">擷取 Pixel Beta</string>
-    <string name="fetching">擷取中...</string>
+    <string name="fetching">擷取中…</string>
     <string name="fetched_model">已擷取：%1$s</string>
     <string name="failed_message">失敗：%1$s</string>
     <string name="failed_to_update">更新失敗：%1$s</string>
@@ -341,8 +341,8 @@
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">效能</string>
     <string name="qs_tile_pc_mode">PC 模式</string>
-    <string name="qs_tile_on">On</string>
-    <string name="qs_tile_off">Off</string>
+    <string name="qs_tile_on">開啟</string>
+    <string name="qs_tile_off">關閉</string>
     <!-- Multitasking Screen -->
     <string name="multitasking">多工</string>
     <string name="multitasking_summary">側邊欄及 PC 模式</string>
@@ -371,7 +371,7 @@
     <string name="pref_pc_mode_secondary_density_title">外部顯示器介面縮放</string>
     <string name="pref_pc_mode_secondary_density_summary">調整外部顯示器的介面縮放比例（數值越小，顯示內容越多）</string>
     <string name="resolution_override_title">解析度覆蓋</string>
-    <string name="resolution_default">Default</string>
+    <string name="resolution_default">預設</string>
     <string name="resolution_dialog_title">設定解析度</string>
     <string name="resolution_input_label">寬 x 高（例如：1920x1080）</string>
     <string name="resolution_invalid_format">格式無效，請使用 寬x高。</string>
@@ -379,7 +379,7 @@
     <string name="resolution_min_limit_error">解析度過低，下限為 320x240。</string>
     <string name="action_apply">套用</string>
     <string name="action_cancel">Cancel</string>
-    <string name="action_reset_default">恢复默认</string>
+    <string name="action_reset_default">恢復預設值</string>
     <!-- Dynamic Bar -->
     <string name="dynamic_bar">Dynamic Bar</string>
     <string name="dynamic_bar_summary">用於即時事件的智慧型狀態列小工具</string>
@@ -397,7 +397,7 @@
     <string name="dynamic_bar_event_audio_recording_summary">錄音與音訊擷取</string>
     <string name="dynamic_bar_event_media">媒體播放</string>
     <string name="dynamic_bar_event_media_summary">目前播放的音樂與音訊控制項</string>
-    <string name="dynamic_bar_event_notification">Notifications</string>
+    <string name="dynamic_bar_event_notification">通知</string>
     <string name="dynamic_bar_event_notification_summary">傳入的通知警示</string>
     <string name="dynamic_bar_compact_notifications">精簡通知</string>
     <string name="dynamic_bar_compact_notifications_summary">先以小工具顯示通知，輕觸即可展開</string>
@@ -409,9 +409,9 @@
     <string name="dynamic_bar_event_alarm_summary">響鈴中與即將到來的鬧鐘</string>
     <string name="dynamic_bar_event_charging">充電中</string>
     <string name="dynamic_bar_event_charging_summary">插電時的電池電量</string>
-    <string name="dynamic_bar_event_bluetooth">蓝牙</string>
+    <string name="dynamic_bar_event_bluetooth">藍牙</string>
     <string name="dynamic_bar_event_bluetooth_summary">裝置連線狀態</string>
-    <string name="dynamic_bar_event_hotspot">热点</string>
+    <string name="dynamic_bar_event_hotspot">熱點</string>
     <string name="dynamic_bar_event_hotspot_summary">行動無線基地台啟用指示器</string>
     <string name="dynamic_bar_event_ringer">響鈴模式</string>
     <string name="dynamic_bar_event_ringer_summary">靜音、震動和響鈴模式變更</string>
@@ -439,7 +439,7 @@
     <string name="dynamic_bar_guide_keyguard">在螢幕鎖定畫面上，小工具會顯示在底部，附有播放控制項和快速動作。</string>
     <string name="dynamic_bar_guide_chip_title">小工具外觀</string>
     <string name="dynamic_bar_guide_swipe_title">滑動以切換</string>
-    <string name="dynamic_bar_guide_expand_title">Tap to expand</string>
+    <string name="dynamic_bar_guide_expand_title">輕觸以展開</string>
     <string name="dynamic_bar_guide_dismiss_title">滑動以關閉</string>
     <string name="dynamic_bar_guide_keyguard_title">螢幕鎖定小工具</string>
     <string name="dynamic_bar_footer_title">關於 Dynamic Bar</string>
@@ -470,9 +470,9 @@
     <string name="routines_seconds">秒</string>
     <string name="routines_above">高於</string>
     <string name="routines_below">低於</string>
-    <string name="routines_silent">Silent</string>
-    <string name="routines_vibrate">Vibrate</string>
-    <string name="routines_normal">标准</string>
+    <string name="routines_silent">靜音</string>
+    <string name="routines_vibrate">震動</string>
+    <string name="routines_normal">標準</string>
     <string name="routines_next">下一步</string>
     <string name="routines_ssid_hint">Wi-Fi 網路名稱（選填）</string>
     <string name="routines_device_hint">裝置位址（選填）</string>
@@ -488,7 +488,7 @@
     <string name="routines_charging_stops">停止充電</string>
     <string name="routines_battery_level">電池電量</string>
     <string name="routines_wifi">Wi-Fi</string>
-    <string name="routines_bluetooth">蓝牙</string>
+    <string name="routines_bluetooth">藍牙</string>
     <string name="routines_connected">已連線</string>
     <string name="routines_screen">螢幕</string>
     <string name="routines_screen_on">螢幕開啟</string>
@@ -542,14 +542,14 @@
     <string name="routines_longitude_hint">經度</string>
     <string name="routines_radius_hint">半徑（公尺）</string>
     <string name="routines_location_near">靠近位置</string>
-    <string name="routines_sensor_camera">相机</string>
+    <string name="routines_sensor_camera">相機</string>
     <string name="routines_sensor_microphone">麦克风</string>
     <string name="routines_block">封鎖</string>
     <string name="routines_unblock">解除封鎖</string>
     <string name="ax_bravia_engine">AxBravia Engine</string>
     <string name="ax_bravia_engine_summary">色彩增強與銳利化</string>
     <string name="ax_bravia_engine_mode">增強模式</string>
-    <string name="ax_bravia_engine_off">Off</string>
+    <string name="ax_bravia_engine_off">關閉</string>
     <string name="ax_bravia_engine_vivid">鮮豔</string>
     <string name="ax_bravia_engine_natural">自然</string>
     <string name="ax_bravia_engine_cinema">劇院</string>
