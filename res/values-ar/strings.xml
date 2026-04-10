@@ -48,10 +48,10 @@
     <string name="enable_edge_light">تفعيل إضاءة الحواف</string>
     <string name="edge_light_summary">إظهار تأثيرات إضاءة على حواف الشاشة عند تلقي إشعارات</string>
     <string name="edge_light_appearance">المظهر</string>
-    <string name="edge_light_spread">Glow spread</string>
-    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
-    <string name="edge_light_intensity">Glow intensity</string>
-    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
+    <string name="edge_light_spread">انتشار التوهج</string>
+    <string name="edge_light_spread_summary">مدى امتداد التوهج من الحافَة</string>
+    <string name="edge_light_intensity">شدة التوهج</string>
+    <string name="edge_light_intensity_summary">ذروة سطوع تأثير التوهج</string>
     <string name="color_mode">وضع الألوان</string>
     <string name="notification_accent">لون الإشعار</string>
     <string name="custom_color">لون مخصص</string>
@@ -70,10 +70,10 @@
     <string name="appearance">المظهر</string>
     <string name="blur_level">مستوى التمويه</string>
     <string name="blur_level_summary">ضبط شدة التمويه لغلاف الألبوم</string>
-    <string name="art_style">Art Style</string>
-    <string name="art_style_summary">Choose how album art is displayed on the lockscreen</string>
-    <string name="art_style_blur">Blur Background</string>
-    <string name="art_style_concept">Art Card</string>
+    <string name="art_style">نمط الفن</string>
+    <string name="art_style_summary">اختر كيفية عرض صورة الألبوم على شاشة القفل</string>
+    <string name="art_style_blur">تمويه الخلفية</string>
+    <string name="art_style_concept">بطاقة الفن</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">مصور النبض</string>
     <string name="pulse_visualizer_description">مصور الصوت على شاشة القفل والشاشة المحيطة</string>
@@ -116,8 +116,8 @@
     <string name="screen_off">إيقاف الشاشة</string>
     <string name="screen_off_aod">الشاشة الدائمة عند إيقاف الشاشة</string>
     <string name="screen_off_aod_summary">إبقاء الشاشة الدائمة نشطة عند إيقاف الشاشة</string>
-    <string name="screen_off_aod_duration">AOD Duration</string>
-    <string name="screen_off_aod_duration_summary">How long to show AOD before entering doze</string>
+    <string name="screen_off_aod_duration">مدة الشاشة الدائمة</string>
+    <string name="screen_off_aod_duration_summary">المدة التي يتم فيها عرض الشاشة الدائمة قبل الدخول في وضع السكون</string>
     <string name="screen_off_animation">رسوم إيقاف الشاشة</string>
     <string name="screen_off_animation_summary">تحريك الانتقال إلى الشاشة الدائمة</string>
     <!-- UI Features -->
@@ -152,7 +152,7 @@
     <string name="shake_action">إجراء الهز</string>
     <string name="shake_action_summary">الإجراء الذي يتم تنفيذه عند هز الجهاز</string>
     <string name="three_finger_gestures">إيماءات الأصابع الثلاثة</string>
-    <string name="three_finger_gestures_summary">Swipe and long press actions</string>
+    <string name="three_finger_gestures_summary">إجراءات التمرير والضغط المطول</string>
     <string name="three_finger_swipe">سحب بالأصابع الثلاثة</string>
     <string name="three_finger_swipe_summary">الإجراء عند السحب بثلاثة أصابع</string>
     <string name="three_finger_long_press">ضغط مطول بالأصابع الثلاثة</string>
@@ -160,18 +160,18 @@
     <string name="disable_button_screenshot">تعطيل لقطة شاشة الأزرار</string>
     <string name="disable_button_screenshot_summary">تعطيل مزيج زر الطاقة + خفض الصوت لالتقاط الشاشة</string>
     <!-- Doze Pulse -->
-    <string name="doze_pulse_gestures">Doze Pulse</string>
-    <string name="doze_pulse_gestures_summary">Pulse screen instead of waking</string>
-    <string name="doze_pulse_notification">Notification pulse</string>
-    <string name="doze_pulse_notification_summary">Briefly show lockscreen on notifications without AOD</string>
-    <string name="doze_pulse_tap">Tap to pulse</string>
-    <string name="doze_pulse_tap_summary">Pulse screen on tap instead of waking</string>
-    <string name="doze_pulse_double_tap">Double tap to pulse</string>
-    <string name="doze_pulse_double_tap_summary">Pulse screen on double tap instead of waking</string>
-    <string name="doze_pulse_pickup">Pickup to pulse</string>
-    <string name="doze_pulse_pickup_summary">Pulse screen on pickup instead of waking</string>
-    <string name="doze_pulse_side_fps">Side fingerprint to pulse</string>
-    <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
+    <string name="doze_pulse_gestures">نبض الغفوة</string>
+    <string name="doze_pulse_gestures_summary">نبض الشاشة بدلاً من التنبيه</string>
+    <string name="doze_pulse_notification">نبضة الإشعارات</string>
+    <string name="doze_pulse_notification_summary">عرض شاشة القفل لفترة وجيزة عند تلقي الإشعارات بدون ميزة الشاشة الدائمة</string>
+    <string name="doze_pulse_tap">انقر للنبض</string>
+    <string name="doze_pulse_tap_summary">نبض الشاشة عند النقر بدلاً من التنبيه</string>
+    <string name="doze_pulse_double_tap">انقر نقرًا مزدوجًا للنبض</string>
+    <string name="doze_pulse_double_tap_summary">نبض الشاشة عند النقر المزدوج بدلاً من التنبيه</string>
+    <string name="doze_pulse_pickup">الالتقاط للنبض</string>
+    <string name="doze_pulse_pickup_summary">نبض الشاشة عند الالتقاط بدلاً من التنبيه</string>
+    <string name="doze_pulse_side_fps">بصمة الإصبع الجانبية للنبض</string>
+    <string name="doze_pulse_side_fps_summary">شاشة نبضية عند الضغط على بصمة الإصبع الجانبية بدلاً من التنبيه</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">لا شيء</string>
     <string name="gesture_action_app_switch">تبديل التطبيق</string>
