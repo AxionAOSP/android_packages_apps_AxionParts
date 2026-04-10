@@ -190,13 +190,13 @@
     <string name="gesture_action_expand_qs">توسيع لوحة الإعدادات السريعة</string>
     <string name="gesture_action_ringer_modes">أوضاع الرنين</string>
     <!-- Dashboard -->
-    <string name="features">Features</string>
+    <string name="features">الميزات</string>
     <!-- Essentials Screen -->
     <string name="essentials">الأساسيات</string>
-    <string name="essentials_summary">Notifications, gaming &amp; security</string>
+    <string name="essentials_summary">الإشعارات والألعاب &amp; الأمان</string>
     <string name="essential_notifications">الإشعارات الأساسية</string>
-    <string name="quicklook">QuickLook</string>
-    <string name="quicklook_settings_summary">Summarize what to appear on quick look</string>
+    <string name="quicklook">نظرة سريعة</string>
+    <string name="quicklook_settings_summary">تلخيص ما يظهر في النظرة السريعة</string>
     <string name="gaming">الألعاب</string>
     <string name="security">الأمان</string>
     <!-- Essential Apps -->
@@ -249,14 +249,14 @@
     <string name="device_black_shark_4">Black Shark 4</string>
     <string name="device_lenovo_y700">Lenovo Y700</string>
     <!-- Security Features -->
-    <string name="custom_rom_hide">Custom ROM Hide</string>
-    <string name="custom_rom_hide_summary">Manage per-app allowlist for custom ROM detection hiding</string>
-    <string name="custom_rom_hide_allowlist">Allowlist</string>
-    <string name="manage_allowlist_apps">Manage allowlist apps</string>
-    <string name="allowlist_apps_configured">%d apps can bypass hiding</string>
-    <string name="no_allowlist_apps">No apps configured — all apps are hidden from</string>
-    <string name="custom_rom_hide_picker_title">Select Allowlist Apps</string>
-    <string name="custom_rom_hide_picker_desc">Choose apps that should see root and custom ROM indicators. All other apps will be hidden from.</string>
+    <string name="custom_rom_hide">إخفاء ROM المخصص</string>
+    <string name="custom_rom_hide_summary">إدارة قائمة السماح لكل تطبيق لإخفاء اكتشاف ROM المخصص</string>
+    <string name="custom_rom_hide_allowlist">قائمة السماح</string>
+    <string name="manage_allowlist_apps">إدارة تطبيقات قائمة السماح</string>
+    <string name="allowlist_apps_configured">يمكن لـ %d تطبيقًا تجاوز الإخفاء</string>
+    <string name="no_allowlist_apps">لم يتم تكوين أي تطبيقات — جميع التطبيقات مخفية عن</string>
+    <string name="custom_rom_hide_picker_title">تحديد التطبيقات المسموح بها</string>
+    <string name="custom_rom_hide_picker_desc">اختر التطبيقات التي يجب أن ترى مؤشرات الجذر وROM المخصص. سيتم إخفاء جميع التطبيقات الأخرى عنها.</string>
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">إدارة صندوق المفاتيح لخداع تصديق المفاتيح</string>
     <string name="keybox_management">إدارة صندوق المفاتيح</string>
@@ -313,7 +313,7 @@
     <string name="ignore_window_secure_summary">السماح بلقطات الشاشة وتسجيل الشاشة في جميع التطبيقات</string>
     <!-- Performance Screen -->
     <string name="performance">الأداء</string>
-    <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
+    <string name="performance_summary">تعزيز وحدة المعالجة المركزية، والتحكم في التردد &amp;وحدة معالجة الرسومات</string>
     <string name="performance_mode">وضع الأداء</string>
     <string name="maximum_performance_enabled">تم تفعيل الأداء الأقصى</string>
     <string name="balanced_mode">الوضع المتوازن</string>
@@ -340,28 +340,28 @@
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">الأداء</string>
-    <string name="qs_tile_pc_mode">PC Mode</string>
+    <string name="qs_tile_pc_mode">وضع الكمبيوتر</string>
     <string name="qs_tile_on">الإعداد مفعّل</string>
     <string name="qs_tile_off">غير مفعّل</string>
     <!-- Multitasking Screen -->
     <string name="multitasking">تعدد المهام</string>
-    <string name="multitasking_summary">Sidebar &amp; PC mode</string>
+    <string name="multitasking_summary">الشريط الجانبي &amp; وضع الكمبيوتر</string>
     <string name="edge_features">ميزات الحواف</string>
     <string name="sidebar">الشريط الجانبي</string>
     <string name="sidebar_summary">وصول سريع لتطبيقاتك المفضلة من الحافة</string>
     <!-- PC Mode Settings -->
-    <string name="pc_mode">PC Mode</string>
-    <string name="pc_mode_settings">PC Mode Settings</string>
-    <string name="pc_mode_summary">Configure screen resolution and behavior</string>
-    <string name="pc_mode_title">PC Mode</string>
+    <string name="pc_mode">وضع الكمبيوتر</string>
+    <string name="pc_mode_settings">إعدادات وضع الكمبيوتر</string>
+    <string name="pc_mode_summary">تكوين دقة الشاشة وسلوكها</string>
+    <string name="pc_mode_title">وضع الكمبيوتر</string>
     <string name="pref_category_general">عام</string>
-    <string name="pref_category_display">Display</string>
-    <string name="pref_category_taskbar">Taskbar</string>
-    <string name="pref_enable_pc_mode_title">Enable PC Mode</string>
-    <string name="pref_enable_pc_mode_summary">Enable desktop-like experience</string>
-    <string name="pref_taskbar_timeout_title">Auto-hide timeout</string>
-    <string name="pref_taskbar_timeout_summary">Duration before taskbar hides automatically</string>
-    <string name="pref_pc_mode_screen_off_title">Turn off internal screen</string>
+    <string name="pref_category_display">العرض</string>
+    <string name="pref_category_taskbar">شريط المهام</string>
+    <string name="pref_enable_pc_mode_title">تفعيل وضع الكمبيوتر</string>
+    <string name="pref_enable_pc_mode_summary">تفعيل تجربة شبيهة بسطح المكتب</string>
+    <string name="pref_taskbar_timeout_title">مهلة الإخفاء التلقائي</string>
+    <string name="pref_taskbar_timeout_summary">المدة قبل إخفاء شريط المهام تلقائيًا</string>
+    <string name="pref_pc_mode_screen_off_title">إيقاف تشغيل الشاشة الداخلية</string>
     <string name="pref_pc_mode_screen_off_summary">Turn off the device screen when PC Mode is active on an external display</string>
     <string name="pref_pc_mode_secondary_only_title">Secondary display only</string>
     <string name="pref_pc_mode_secondary_only_summary">Run PC Mode only on the external display without changing the main display</string>
