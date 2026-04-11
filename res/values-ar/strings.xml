@@ -48,10 +48,10 @@
     <string name="enable_edge_light">تفعيل إضاءة الحواف</string>
     <string name="edge_light_summary">إظهار تأثيرات إضاءة على حواف الشاشة عند تلقي إشعارات</string>
     <string name="edge_light_appearance">المظهر</string>
-    <string name="edge_light_spread">Glow spread</string>
-    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
-    <string name="edge_light_intensity">Glow intensity</string>
-    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
+    <string name="edge_light_spread">انتشار التوهج</string>
+    <string name="edge_light_spread_summary">مدى امتداد التوهج من الحافَة</string>
+    <string name="edge_light_intensity">شدة التوهج</string>
+    <string name="edge_light_intensity_summary">ذروة سطوع تأثير التوهج</string>
     <string name="color_mode">وضع الألوان</string>
     <string name="notification_accent">لون الإشعار</string>
     <string name="custom_color">لون مخصص</string>
@@ -70,10 +70,10 @@
     <string name="appearance">المظهر</string>
     <string name="blur_level">مستوى التمويه</string>
     <string name="blur_level_summary">ضبط شدة التمويه لغلاف الألبوم</string>
-    <string name="art_style">Art Style</string>
-    <string name="art_style_summary">Choose how album art is displayed on the lockscreen</string>
-    <string name="art_style_blur">Blur Background</string>
-    <string name="art_style_concept">Art Card</string>
+    <string name="art_style">نمط الفن</string>
+    <string name="art_style_summary">اختر كيفية عرض صورة الألبوم على شاشة القفل</string>
+    <string name="art_style_blur">تمويه الخلفية</string>
+    <string name="art_style_concept">بطاقة الفن</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">مصور النبض</string>
     <string name="pulse_visualizer_description">مصور الصوت على شاشة القفل والشاشة المحيطة</string>
@@ -116,8 +116,8 @@
     <string name="screen_off">إيقاف الشاشة</string>
     <string name="screen_off_aod">الشاشة الدائمة عند إيقاف الشاشة</string>
     <string name="screen_off_aod_summary">إبقاء الشاشة الدائمة نشطة عند إيقاف الشاشة</string>
-    <string name="screen_off_aod_duration">AOD Duration</string>
-    <string name="screen_off_aod_duration_summary">How long to show AOD before entering doze</string>
+    <string name="screen_off_aod_duration">مدة الشاشة الدائمة</string>
+    <string name="screen_off_aod_duration_summary">المدة التي يتم فيها عرض الشاشة الدائمة قبل الدخول في وضع السكون</string>
     <string name="screen_off_animation">رسوم إيقاف الشاشة</string>
     <string name="screen_off_animation_summary">تحريك الانتقال إلى الشاشة الدائمة</string>
     <!-- UI Features -->
@@ -152,7 +152,7 @@
     <string name="shake_action">إجراء الهز</string>
     <string name="shake_action_summary">الإجراء الذي يتم تنفيذه عند هز الجهاز</string>
     <string name="three_finger_gestures">إيماءات الأصابع الثلاثة</string>
-    <string name="three_finger_gestures_summary">Swipe and long press actions</string>
+    <string name="three_finger_gestures_summary">إجراءات التمرير والضغط المطول</string>
     <string name="three_finger_swipe">سحب بالأصابع الثلاثة</string>
     <string name="three_finger_swipe_summary">الإجراء عند السحب بثلاثة أصابع</string>
     <string name="three_finger_long_press">ضغط مطول بالأصابع الثلاثة</string>
@@ -160,18 +160,18 @@
     <string name="disable_button_screenshot">تعطيل لقطة شاشة الأزرار</string>
     <string name="disable_button_screenshot_summary">تعطيل مزيج زر الطاقة + خفض الصوت لالتقاط الشاشة</string>
     <!-- Doze Pulse -->
-    <string name="doze_pulse_gestures">Doze Pulse</string>
-    <string name="doze_pulse_gestures_summary">Pulse screen instead of waking</string>
-    <string name="doze_pulse_notification">Notification pulse</string>
-    <string name="doze_pulse_notification_summary">Briefly show lockscreen on notifications without AOD</string>
-    <string name="doze_pulse_tap">Tap to pulse</string>
-    <string name="doze_pulse_tap_summary">Pulse screen on tap instead of waking</string>
-    <string name="doze_pulse_double_tap">Double tap to pulse</string>
-    <string name="doze_pulse_double_tap_summary">Pulse screen on double tap instead of waking</string>
-    <string name="doze_pulse_pickup">Pickup to pulse</string>
-    <string name="doze_pulse_pickup_summary">Pulse screen on pickup instead of waking</string>
-    <string name="doze_pulse_side_fps">Side fingerprint to pulse</string>
-    <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
+    <string name="doze_pulse_gestures">نبض الغفوة</string>
+    <string name="doze_pulse_gestures_summary">نبض الشاشة بدلاً من التنبيه</string>
+    <string name="doze_pulse_notification">نبضة الإشعارات</string>
+    <string name="doze_pulse_notification_summary">عرض شاشة القفل لفترة وجيزة عند تلقي الإشعارات بدون ميزة الشاشة الدائمة</string>
+    <string name="doze_pulse_tap">انقر للنبض</string>
+    <string name="doze_pulse_tap_summary">نبض الشاشة عند النقر بدلاً من التنبيه</string>
+    <string name="doze_pulse_double_tap">انقر نقرًا مزدوجًا للنبض</string>
+    <string name="doze_pulse_double_tap_summary">نبض الشاشة عند النقر المزدوج بدلاً من التنبيه</string>
+    <string name="doze_pulse_pickup">الالتقاط للنبض</string>
+    <string name="doze_pulse_pickup_summary">نبض الشاشة عند الالتقاط بدلاً من التنبيه</string>
+    <string name="doze_pulse_side_fps">بصمة الإصبع الجانبية للنبض</string>
+    <string name="doze_pulse_side_fps_summary">شاشة نبضية عند الضغط على بصمة الإصبع الجانبية بدلاً من التنبيه</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">لا شيء</string>
     <string name="gesture_action_app_switch">تبديل التطبيق</string>
@@ -190,13 +190,13 @@
     <string name="gesture_action_expand_qs">توسيع لوحة الإعدادات السريعة</string>
     <string name="gesture_action_ringer_modes">أوضاع الرنين</string>
     <!-- Dashboard -->
-    <string name="features">Features</string>
+    <string name="features">الميزات</string>
     <!-- Essentials Screen -->
     <string name="essentials">الأساسيات</string>
-    <string name="essentials_summary">Notifications, gaming &amp; security</string>
+    <string name="essentials_summary">الإشعارات والألعاب &amp; الأمان</string>
     <string name="essential_notifications">الإشعارات الأساسية</string>
-    <string name="quicklook">QuickLook</string>
-    <string name="quicklook_settings_summary">Summarize what to appear on quick look</string>
+    <string name="quicklook">نظرة سريعة</string>
+    <string name="quicklook_settings_summary">تلخيص ما يظهر في النظرة السريعة</string>
     <string name="gaming">الألعاب</string>
     <string name="security">الأمان</string>
     <!-- Essential Apps -->
@@ -249,14 +249,14 @@
     <string name="device_black_shark_4">Black Shark 4</string>
     <string name="device_lenovo_y700">Lenovo Y700</string>
     <!-- Security Features -->
-    <string name="custom_rom_hide">Custom ROM Hide</string>
-    <string name="custom_rom_hide_summary">Manage per-app allowlist for custom ROM detection hiding</string>
-    <string name="custom_rom_hide_allowlist">Allowlist</string>
-    <string name="manage_allowlist_apps">Manage allowlist apps</string>
-    <string name="allowlist_apps_configured">%d apps can bypass hiding</string>
-    <string name="no_allowlist_apps">No apps configured — all apps are hidden from</string>
-    <string name="custom_rom_hide_picker_title">Select Allowlist Apps</string>
-    <string name="custom_rom_hide_picker_desc">Choose apps that should see root and custom ROM indicators. All other apps will be hidden from.</string>
+    <string name="custom_rom_hide">إخفاء ROM المخصص</string>
+    <string name="custom_rom_hide_summary">إدارة قائمة السماح لكل تطبيق لإخفاء اكتشاف ROM المخصص</string>
+    <string name="custom_rom_hide_allowlist">قائمة السماح</string>
+    <string name="manage_allowlist_apps">إدارة تطبيقات قائمة السماح</string>
+    <string name="allowlist_apps_configured">يمكن لـ %d تطبيقًا تجاوز الإخفاء</string>
+    <string name="no_allowlist_apps">لم يتم تكوين أي تطبيقات — جميع التطبيقات مخفية عن</string>
+    <string name="custom_rom_hide_picker_title">تحديد التطبيقات المسموح بها</string>
+    <string name="custom_rom_hide_picker_desc">اختر التطبيقات التي يجب أن ترى مؤشرات الجذر وROM المخصص. سيتم إخفاء جميع التطبيقات الأخرى عنها.</string>
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">إدارة صندوق المفاتيح لخداع تصديق المفاتيح</string>
     <string name="keybox_management">إدارة صندوق المفاتيح</string>
@@ -313,7 +313,7 @@
     <string name="ignore_window_secure_summary">السماح بلقطات الشاشة وتسجيل الشاشة في جميع التطبيقات</string>
     <!-- Performance Screen -->
     <string name="performance">الأداء</string>
-    <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
+    <string name="performance_summary">تعزيز وحدة المعالجة المركزية، والتحكم في التردد &amp;وحدة معالجة الرسومات</string>
     <string name="performance_mode">وضع الأداء</string>
     <string name="maximum_performance_enabled">تم تفعيل الأداء الأقصى</string>
     <string name="balanced_mode">الوضع المتوازن</string>
@@ -340,28 +340,28 @@
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">الأداء</string>
-    <string name="qs_tile_pc_mode">PC Mode</string>
+    <string name="qs_tile_pc_mode">وضع الكمبيوتر</string>
     <string name="qs_tile_on">الإعداد مفعّل</string>
     <string name="qs_tile_off">غير مفعّل</string>
     <!-- Multitasking Screen -->
     <string name="multitasking">تعدد المهام</string>
-    <string name="multitasking_summary">Sidebar &amp; PC mode</string>
+    <string name="multitasking_summary">الشريط الجانبي &amp; وضع الكمبيوتر</string>
     <string name="edge_features">ميزات الحواف</string>
     <string name="sidebar">الشريط الجانبي</string>
     <string name="sidebar_summary">وصول سريع لتطبيقاتك المفضلة من الحافة</string>
     <!-- PC Mode Settings -->
-    <string name="pc_mode">PC Mode</string>
-    <string name="pc_mode_settings">PC Mode Settings</string>
-    <string name="pc_mode_summary">Configure screen resolution and behavior</string>
-    <string name="pc_mode_title">PC Mode</string>
+    <string name="pc_mode">وضع الكمبيوتر</string>
+    <string name="pc_mode_settings">إعدادات وضع الكمبيوتر</string>
+    <string name="pc_mode_summary">تكوين دقة الشاشة وسلوكها</string>
+    <string name="pc_mode_title">وضع الكمبيوتر</string>
     <string name="pref_category_general">عام</string>
-    <string name="pref_category_display">Display</string>
-    <string name="pref_category_taskbar">Taskbar</string>
-    <string name="pref_enable_pc_mode_title">Enable PC Mode</string>
-    <string name="pref_enable_pc_mode_summary">Enable desktop-like experience</string>
-    <string name="pref_taskbar_timeout_title">Auto-hide timeout</string>
-    <string name="pref_taskbar_timeout_summary">Duration before taskbar hides automatically</string>
-    <string name="pref_pc_mode_screen_off_title">Turn off internal screen</string>
+    <string name="pref_category_display">العرض</string>
+    <string name="pref_category_taskbar">شريط المهام</string>
+    <string name="pref_enable_pc_mode_title">تفعيل وضع الكمبيوتر</string>
+    <string name="pref_enable_pc_mode_summary">تفعيل تجربة شبيهة بسطح المكتب</string>
+    <string name="pref_taskbar_timeout_title">مهلة الإخفاء التلقائي</string>
+    <string name="pref_taskbar_timeout_summary">المدة قبل إخفاء شريط المهام تلقائيًا</string>
+    <string name="pref_pc_mode_screen_off_title">إيقاف تشغيل الشاشة الداخلية</string>
     <string name="pref_pc_mode_screen_off_summary">Turn off the device screen when PC Mode is active on an external display</string>
     <string name="pref_pc_mode_secondary_only_title">Secondary display only</string>
     <string name="pref_pc_mode_secondary_only_summary">Run PC Mode only on the external display without changing the main display</string>
@@ -376,7 +376,9 @@
     <string name="resolution_input_label">WidthxHeight (e.g. 1920x1080)</string>
     <string name="resolution_invalid_format">Invalid format. Use WxH.</string>
     <string name="resolution_max_limit_error">Resolution too high. Max is 4096x4096.</string>
-    <string name="resolution_min_limit_error">Resolution too low. Min is 320x240.</string>
+    <string name="resolution_min_limit_error">Resolution too low. Min is 640x480.</string>
+    <string name="resolution_odd_dimension_error">Width and height must be even numbers.</string>
+    <string name="resolution_aspect_error">Unsupported aspect ratio. Keep it between 1:2 and 3:1.</string>
     <string name="action_apply">Apply</string>
     <string name="action_cancel">يلغي</string>
     <string name="action_reset_default">Reset to Default</string>

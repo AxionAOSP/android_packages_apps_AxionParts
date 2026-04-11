@@ -376,7 +376,9 @@
     <string name="resolution_input_label">WidthxHeight (e.g. 1920x1080)</string>
     <string name="resolution_invalid_format">Invalid format. Use WxH.</string>
     <string name="resolution_max_limit_error">Resolution too high. Max is 4096x4096.</string>
-    <string name="resolution_min_limit_error">Resolution too low. Min is 320x240.</string>
+    <string name="resolution_min_limit_error">Resolution too low. Min is 640x480.</string>
+    <string name="resolution_odd_dimension_error">Width and height must be even numbers.</string>
+    <string name="resolution_aspect_error">Unsupported aspect ratio. Keep it between 1:2 and 3:1.</string>
     <string name="action_apply">Aplicar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_reset_default">Reset to Default</string>
