@@ -187,18 +187,20 @@ fun PlayIntegrityFixContent(
     }
 
     fun updateConfig(key: String, value: Any) {
-        val activeFile = configFiles.find { it.isActive } ?: return
-        val file = File(PIF_PATH, activeFile.fileName)
-        if (!file.exists()) return
+        val activeFile = configFiles.find { it.isActive }
+        val fileName = activeFile?.fileName ?: "pif.json"
+        val pifDir = File(PIF_PATH)
+        if (!pifDir.exists()) pifDir.mkdirs()
+        val file = File(pifDir, fileName)
 
         try {
-            if (activeFile.fileName.endsWith(".json")) {
-                val content = file.readText()
+            if (fileName.endsWith(".json")) {
+                val content = if (file.exists()) file.readText() else ""
                 val json = try { JSONObject(content) } catch (e: Exception) { JSONObject() }
                 json.put(key, value)
                 file.writeText(json.toString(2))
             } else {
-                val lines = file.readLines().toMutableList()
+                val lines = if (file.exists()) file.readLines().toMutableList() else mutableListOf()
                 val keyStr = "$key="
                 val idx = lines.indexOfFirst { it.trim().startsWith(keyStr) }
                 if (idx != -1) {
@@ -208,6 +210,7 @@ fun PlayIntegrityFixContent(
                 }
                 file.writeText(lines.joinToString("\n"))
             }
+            file.setReadable(true, false)
             refreshStatus()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to update config", e)
@@ -580,63 +583,61 @@ fun PlayIntegrityFixContent(
             Spacer(modifier = Modifier.height(16.dp))
         }
 
-        if (activeConfigFile != null) {
-            val isSpoofPhotos = activeConfigFile.data["spoofPhotos"]?.let { 
-                it == "true" || it == "1" 
-            } ?: false
+        val isSpoofPhotos = activeConfigFile?.data?.get("spoofPhotos")?.let {
+            it == "true" || it == "1"
+        } ?: false
 
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(24.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceBright
-                )
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(24.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceBright
+            )
+        ) {
+            Row(
+                modifier = Modifier.padding(20.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    modifier = Modifier.padding(20.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                Box(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.primary),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Box(
-                        modifier = Modifier
-                            .size(48.dp)
-                            .clip(CircleShape)
-                            .background(MaterialTheme.colorScheme.primary),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            Icons.Default.Image,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onPrimary,
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
-                    
-                    Spacer(modifier = Modifier.width(16.dp))
-                    
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(
-                            text = "Spoof Google Photos",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = "Unlimited original quality backup",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                    
-                    ExpressiveSwitch(
-                        checked = isSpoofPhotos,
-                        onCheckedChange = { checked ->
-                            updateConfig("spoofPhotos", checked.toString())
-                        }
+                    Icon(
+                        Icons.Default.Image,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.size(24.dp)
                     )
                 }
+
+                Spacer(modifier = Modifier.width(16.dp))
+
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Spoof Google Photos",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Unlimited original quality backup",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+
+                ExpressiveSwitch(
+                    checked = isSpoofPhotos,
+                    onCheckedChange = { checked ->
+                        updateConfig("spoofPhotos", checked.toString())
+                    }
+                )
             }
-            
-            Spacer(modifier = Modifier.height(16.dp))
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
         
         val inactiveConfigFiles = configFiles.filter { !it.isActive }
         var configSectionExpanded by remember { mutableStateOf(false) }
