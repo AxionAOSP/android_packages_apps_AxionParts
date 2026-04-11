@@ -158,6 +158,12 @@ private fun ResolutionPreference() {
     }
 }
 
+private const val MIN_RESOLUTION_WIDTH = 640
+private const val MIN_RESOLUTION_HEIGHT = 480
+private const val MAX_RESOLUTION_DIMENSION = 4096
+private const val MIN_ASPECT_RATIO = 0.5f
+private const val MAX_ASPECT_RATIO = 3.0f
+
 @Composable
 private fun ResolutionDialog(
     currentValue: String,
@@ -169,6 +175,8 @@ private fun ResolutionDialog(
     val invalidFormatError = stringResource(R.string.resolution_invalid_format)
     val maxLimitError = stringResource(R.string.resolution_max_limit_error)
     val minLimitError = stringResource(R.string.resolution_min_limit_error)
+    val oddDimensionError = stringResource(R.string.resolution_odd_dimension_error)
+    val aspectRatioError = stringResource(R.string.resolution_aspect_error)
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -186,9 +194,9 @@ private fun ResolutionDialog(
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
                 )
-                if (error != null) {
+                error?.let {
                     Text(
-                        text = error!!,
+                        text = it,
                         color = MaterialTheme.colorScheme.error,
                         style = MaterialTheme.typography.bodySmall,
                         modifier = Modifier.padding(start = 16.dp, top = 4.dp),
@@ -204,23 +212,24 @@ private fun ResolutionDialog(
                         return@TextButton
                     }
                     val parts = text.split("x", "X")
-                    if (parts.size == 2) {
-                        val width = parts[0].trim().toIntOrNull()
-                        val height = parts[1].trim().toIntOrNull()
-
-                        if (width != null && height != null) {
-                            if (width > 4096 || height > 4096) {
-                                error = maxLimitError
-                            } else if (width < 320 || height < 240) {
-                                error = minLimitError
-                            } else {
-                                onConfirm("${width}x${height}")
-                            }
-                        } else {
-                            error = invalidFormatError
-                        }
-                    } else {
+                    val width = parts.getOrNull(0)?.trim()?.toIntOrNull()
+                    val height = parts.getOrNull(1)?.trim()?.toIntOrNull()
+                    if (parts.size != 2 || width == null || height == null) {
                         error = invalidFormatError
+                        return@TextButton
+                    }
+                    val aspect = width.toFloat() / height.toFloat()
+                    error = when {
+                        width > MAX_RESOLUTION_DIMENSION || height > MAX_RESOLUTION_DIMENSION ->
+                            maxLimitError
+                        width < MIN_RESOLUTION_WIDTH || height < MIN_RESOLUTION_HEIGHT ->
+                            minLimitError
+                        width % 2 != 0 || height % 2 != 0 -> oddDimensionError
+                        aspect < MIN_ASPECT_RATIO || aspect > MAX_ASPECT_RATIO -> aspectRatioError
+                        else -> {
+                            onConfirm("${width}x${height}")
+                            null
+                        }
                     }
                 }
             ) {
