@@ -419,7 +419,7 @@
     <string name="dynamic_bar_event_ringer_summary">Silent, vibrate, and ring mode changes</string>
     <string name="dynamic_bar_event_vpn">VPN</string>
     <string name="dynamic_bar_event_vpn_summary">Индикатор активного VPN подключения</string>
-    <string name="dynamic_bar_event_clipboard">Clipboard</string>
+    <string name="dynamic_bar_event_clipboard"></string>
     <string name="dynamic_bar_event_clipboard_summary">Copied text and image preview</string>
     <string name="dynamic_bar_event_torch">Фонарик</string>
     <string name="dynamic_bar_event_torch_summary">Flashlight toggle and brightness</string>
