@@ -483,7 +483,8 @@
     <string name="routines_notif_text_hint">Текст уведомления</string>
     <string name="routines_setting_key_hint">Установка ключа</string>
     <string name="routines_setting_value_hint">Настроить значения</string>
-    <string name="routines_time_of_day">Время дня</string>
+    <string name="routines_time_of_day">Расписание</string>
+    <string name="routines_schedule_hint">Set time and repeat days</string>
     <string name="routines_interval">Период</string>
     <string name="routines_charging">Идет зарядка</string>
     <string name="routines_charging_starts">Зарядка началась</string>
@@ -548,6 +549,7 @@
     <string name="routines_sensor_microphone">Микрофон</string>
     <string name="routines_block">Заблокировать</string>
     <string name="routines_unblock">Разблокировать</string>
+    <string name="routines_play_sound">Play Sound</string>
     <string name="ax_bravia_engine">Движок оси</string>
     <string name="ax_bravia_engine_summary">Улучшение цвета и заточение</string>
     <string name="ax_bravia_engine_mode">Расширенный режим</string>
