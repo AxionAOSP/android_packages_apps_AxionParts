@@ -346,6 +346,11 @@ class RoutineSerializer {
                 put(KEY_SENSOR, action.sensor)
                 put(KEY_BLOCKED, action.blocked)
             }
+            is Action.PlaySound -> {
+                put(KEY_TYPE, Action.TYPE_PLAY_SOUND)
+                put(KEY_SOUND_TYPE, action.soundType)
+                action.uri?.let { put(KEY_URI, it) }
+            }
         }
     }
 
@@ -390,6 +395,10 @@ class RoutineSerializer {
             Action.TYPE_SET_SENSOR_PRIVACY -> Action.SetSensorPrivacy(
                 sensor = json.getInt(KEY_SENSOR),
                 blocked = json.getBoolean(KEY_BLOCKED),
+            )
+            Action.TYPE_PLAY_SOUND -> Action.PlaySound(
+                soundType = json.getInt(KEY_SOUND_TYPE),
+                uri = json.optString(KEY_URI, null),
             )
             else -> throw IllegalArgumentException(
                 "Unknown action type: ${json.getString(KEY_TYPE)}"
@@ -461,5 +470,7 @@ class RoutineSerializer {
         private const val KEY_LONGITUDE = "longitude"
         private const val KEY_RADIUS_METERS = "radius_meters"
         private const val KEY_ENTERING = "entering"
+        private const val KEY_SOUND_TYPE = "sound_type"
+        private const val KEY_URI = "uri"
     }
 }

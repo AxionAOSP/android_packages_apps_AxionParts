@@ -19,6 +19,7 @@ package com.android.axion.axionparts.ui.screens.routines
 import android.media.AudioManager
 import android.os.UserHandle
 import android.provider.Settings
+import java.util.Calendar
 import android.text.format.DateUtils
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
@@ -385,7 +386,7 @@ private fun buildRoutineSummary(routine: Routine): String {
 }
 
 internal fun describeTrigger(trigger: Trigger): String = when (trigger) {
-    is Trigger.TimeOfDay -> "%02d:%02d".format(trigger.hour, trigger.minute)
+    is Trigger.TimeOfDay -> describeTimeOfDay(trigger)
     is Trigger.Interval -> "Every ${trigger.intervalMinutes}m"
     is Trigger.ChargingState -> if (trigger.charging) "Charging" else "Unplugged"
     is Trigger.BatteryLevel -> "Battery ${trigger.direction.name.lowercase()} ${trigger.threshold}%"
@@ -435,5 +436,42 @@ internal fun describeAction(action: Action): String = when (action) {
     is Action.SetSensorPrivacy -> {
         val sensor = if (action.sensor == SENSOR_CAMERA) "Camera" else "Mic"
         if (action.blocked) "Block $sensor" else "Unblock $sensor"
+    }
+    is Action.PlaySound -> if (action.uri != null) {
+        "Play custom sound"
+    } else when (action.soundType) {
+        SOUND_TYPE_ALARM -> "Play alarm"
+        SOUND_TYPE_RINGTONE -> "Play ringtone"
+        else -> "Play notification"
+    }
+}
+
+private val WEEKDAYS = setOf(
+    Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY,
+    Calendar.THURSDAY, Calendar.FRIDAY,
+)
+private val WEEKENDS = setOf(Calendar.SATURDAY, Calendar.SUNDAY)
+
+private val DAY_SHORT_NAMES = mapOf(
+    Calendar.SUNDAY to "Sun", Calendar.MONDAY to "Mon",
+    Calendar.TUESDAY to "Tue", Calendar.WEDNESDAY to "Wed",
+    Calendar.THURSDAY to "Thu", Calendar.FRIDAY to "Fri",
+    Calendar.SATURDAY to "Sat",
+)
+
+private fun describeTimeOfDay(trigger: Trigger.TimeOfDay): String {
+    val time = "%02d:%02d".format(trigger.hour, trigger.minute)
+    val days = trigger.daysOfWeek
+    return when {
+        days.size >= 7 || days == Trigger.ALL_DAYS -> "Daily at $time"
+        days == WEEKDAYS -> "Weekdays at $time"
+        days == WEEKENDS -> "Weekends at $time"
+        else -> {
+            val dayStr = listOf(
+                Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY,
+                Calendar.THURSDAY, Calendar.FRIDAY, Calendar.SATURDAY, Calendar.SUNDAY,
+            ).filter { it in days }.mapNotNull { DAY_SHORT_NAMES[it] }.joinToString(", ")
+            "$dayStr at $time"
+        }
     }
 }

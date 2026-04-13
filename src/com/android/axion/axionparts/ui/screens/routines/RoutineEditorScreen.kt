@@ -16,7 +16,13 @@
 
 package com.android.axion.axionparts.ui.screens.routines
 
+import android.app.Activity
+import android.content.Intent
 import android.media.AudioManager
+import android.media.RingtoneManager
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -82,6 +88,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -131,6 +138,7 @@ private fun actionOptions() = listOf(
     TypeOption(Action.TYPE_DELAY, stringResource(R.string.routines_delay), Icons.Default.HourglassEmpty),
     TypeOption(Action.TYPE_SET_SETTING, stringResource(R.string.routines_set_setting), Icons.Default.Settings),
     TypeOption(Action.TYPE_SET_SENSOR_PRIVACY, stringResource(R.string.routines_set_sensor_privacy), Icons.Default.CameraAlt),
+    TypeOption(Action.TYPE_PLAY_SOUND, stringResource(R.string.routines_play_sound), Icons.Default.VolumeUp),
 )
 
 @Composable
@@ -168,6 +176,20 @@ fun RoutineEditorContent(
     var configuringConditionType by remember { mutableStateOf<String?>(null) }
 
     val canSave = name.isNotBlank() && triggers.isNotEmpty() && actions.isNotEmpty()
+    val context = LocalContext.current
+
+    val soundPicker = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val uri = result.data?.getParcelableExtra<Uri>(
+                RingtoneManager.EXTRA_RINGTONE_PICKED_URI
+            )
+            if (uri != null) {
+                actions = actions + Action.PlaySound(RingtoneManager.TYPE_ALL, uri.toString())
+            }
+        }
+    }
 
     Column(
         modifier = modifier
@@ -280,7 +302,16 @@ fun RoutineEditorContent(
             options = actionOptions(),
             onSelect = { type ->
                 showActionPicker = false
-                configuringActionType = type
+                if (type == Action.TYPE_PLAY_SOUND) {
+                    val intent = Intent(RingtoneManager.ACTION_RINGTONE_PICKER).apply {
+                        putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALL)
+                        putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
+                        putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false)
+                    }
+                    soundPicker.launch(intent)
+                } else {
+                    configuringActionType = type
+                }
             },
             onDismiss = { showActionPicker = false },
         )
@@ -421,11 +452,20 @@ private fun TriggerConfigDialog(
             var selectedDays by remember { mutableStateOf(Trigger.ALL_DAYS) }
             AlertDialog(
                 onDismissRequest = onDismiss,
-                title = { Text(stringResource(R.string.routines_time_of_day)) },
-                text = {
+                title = {
                     Column {
+                        Text(stringResource(R.string.routines_time_of_day))
+                        Text(
+                            stringResource(R.string.routines_schedule_hint),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                },
+                text = {
+                    Column(Modifier.verticalScroll(rememberScrollState())) {
                         TimePicker(state = timeState)
-                        Spacer(Modifier.height(8.dp))
+                        Spacer(Modifier.height(12.dp))
                         DayOfWeekSelector(
                             selectedDays = selectedDays,
                             onDaysChanged = { selectedDays = it },
@@ -927,6 +967,7 @@ private fun ActionConfigDialog(
             },
             onDismiss = onDismiss,
         )
+
     }
 }
 
@@ -1331,21 +1372,24 @@ private fun DayOfWeekSelector(
     onDaysChanged: (Set<Int>) -> Unit,
 ) {
     val dayLabels = listOf(
-        Calendar.SUNDAY to "S",
-        Calendar.MONDAY to "M",
-        Calendar.TUESDAY to "T",
-        Calendar.WEDNESDAY to "W",
-        Calendar.THURSDAY to "T",
-        Calendar.FRIDAY to "F",
-        Calendar.SATURDAY to "S",
+        Calendar.SUNDAY to "Sun",
+        Calendar.MONDAY to "Mon",
+        Calendar.TUESDAY to "Tue",
+        Calendar.WEDNESDAY to "Wed",
+        Calendar.THURSDAY to "Thu",
+        Calendar.FRIDAY to "Fri",
+        Calendar.SATURDAY to "Sat",
     )
     FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
         dayLabels.forEach { (day, label) ->
             FilterChip(
                 selected = day in selectedDays,
                 onClick = {
-                    val newDays = if (day in selectedDays) selectedDays - day
-                    else selectedDays + day
+                    val newDays = if (day in selectedDays) {
+                        if (selectedDays.size > 1) selectedDays - day else selectedDays
+                    } else {
+                        selectedDays + day
+                    }
                     onDaysChanged(newDays)
                 },
                 label = { Text(label) },

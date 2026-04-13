@@ -173,6 +173,8 @@ sealed interface Action {
 
     data class SetSensorPrivacy(val sensor: Int, val blocked: Boolean) : Action
 
+    data class PlaySound(val soundType: Int, val uri: String? = null) : Action
+
     companion object {
         const val TYPE_SET_FEATURE = "set_feature"
         const val TYPE_TOGGLE_FEATURE = "toggle_feature"
@@ -185,11 +187,16 @@ sealed interface Action {
         const val TYPE_DELAY = "delay"
         const val TYPE_SET_SETTING = "set_setting"
         const val TYPE_SET_SENSOR_PRIVACY = "set_sensor_privacy"
+        const val TYPE_PLAY_SOUND = "play_sound"
     }
 }
 
 const val SENSOR_MICROPHONE = 1
 const val SENSOR_CAMERA = 2
+
+const val SOUND_TYPE_RINGTONE = 1
+const val SOUND_TYPE_NOTIFICATION = 2
+const val SOUND_TYPE_ALARM = 4
 
 val KNOWN_FEATURES = linkedMapOf(
     "wifi" to "WiFi",
@@ -198,7 +205,6 @@ val KNOWN_FEATURES = linkedMapOf(
     "airplane_mode" to "Airplane Mode",
     "do_not_disturb" to "Do Not Disturb",
     "dark_mode" to "Dark Mode",
-    "auto_brightness" to "Auto Brightness",
     "auto_rotate" to "Auto Rotate",
     "battery_saver" to "Battery Saver",
     "data_saver" to "Data Saver",
@@ -209,5 +215,4 @@ val KNOWN_FEATURES = linkedMapOf(
     "reading_mode" to "Reading Mode",
     "ambient_display" to "Ambient Display",
     "heads_up" to "Heads Up",
-    "immersive_mode" to "Immersive Mode",
 )
