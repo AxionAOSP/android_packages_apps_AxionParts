@@ -61,7 +61,10 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material.icons.filled.ToggleOn
 import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.filled.Language
+import androidx.compose.material.icons.filled.Router
 import androidx.compose.material.icons.filled.Wifi
+import androidx.compose.material.icons.filled.WifiOff
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -123,6 +126,7 @@ private fun triggerOptions() = listOf(
     TypeOption(Trigger.TYPE_APP_CLOSE, stringResource(R.string.routines_app_close), Icons.Default.Close),
     TypeOption(Trigger.TYPE_SENSOR_PRIVACY_STATE, stringResource(R.string.routines_sensor_privacy), Icons.Default.CameraAlt),
     TypeOption(Trigger.TYPE_LOCATION, stringResource(R.string.routines_location), Icons.Default.LocationOn),
+    TypeOption(Trigger.TYPE_CAPTIVE_PORTAL, stringResource(R.string.routines_captive_portal), Icons.Default.WifiOff),
 )
 
 @Composable
@@ -139,6 +143,7 @@ private fun actionOptions() = listOf(
     TypeOption(Action.TYPE_SET_SETTING, stringResource(R.string.routines_set_setting), Icons.Default.Settings),
     TypeOption(Action.TYPE_SET_SENSOR_PRIVACY, stringResource(R.string.routines_set_sensor_privacy), Icons.Default.CameraAlt),
     TypeOption(Action.TYPE_PLAY_SOUND, stringResource(R.string.routines_play_sound), Icons.Default.VolumeUp),
+    TypeOption(Action.TYPE_HTTP_REQUEST, stringResource(R.string.routines_http_request), Icons.Default.Language),
 )
 
 @Composable
@@ -153,6 +158,7 @@ private fun conditionOptions() = listOf(
     TypeOption(Condition.TYPE_FEATURE_ACTIVE, stringResource(R.string.routines_feature_active), Icons.Default.ToggleOn),
     TypeOption(Condition.TYPE_SENSOR_BLOCKED, stringResource(R.string.routines_sensor_blocked), Icons.Default.CameraAlt),
     TypeOption(Condition.TYPE_LOCATION_NEAR, stringResource(R.string.routines_location_near), Icons.Default.LocationOn),
+    TypeOption(Condition.TYPE_IP_ADDRESS, stringResource(R.string.routines_ip_address), Icons.Default.Router),
 )
 
 @Composable
@@ -170,10 +176,13 @@ fun RoutineEditorContent(
 
     var showTriggerPicker by remember { mutableStateOf(false) }
     var configuringTriggerType by remember { mutableStateOf<String?>(null) }
+    var editingTriggerIndex by remember { mutableStateOf<Int?>(null) }
     var showActionPicker by remember { mutableStateOf(false) }
     var configuringActionType by remember { mutableStateOf<String?>(null) }
+    var editingActionIndex by remember { mutableStateOf<Int?>(null) }
     var showConditionPicker by remember { mutableStateOf(false) }
     var configuringConditionType by remember { mutableStateOf<String?>(null) }
+    var editingConditionIndex by remember { mutableStateOf<Int?>(null) }
 
     val canSave = name.isNotBlank() && triggers.isNotEmpty() && actions.isNotEmpty()
     val context = LocalContext.current
@@ -213,6 +222,10 @@ fun RoutineEditorContent(
         triggers.forEachIndexed { index, trigger ->
             ItemCard(
                 text = describeTrigger(trigger),
+                onClick = {
+                    editingTriggerIndex = index
+                    configuringTriggerType = triggerTypeOf(trigger)
+                },
                 onRemove = { triggers = triggers.toMutableList().also { it.removeAt(index) } },
             )
         }
@@ -226,6 +239,10 @@ fun RoutineEditorContent(
         conditions.forEachIndexed { index, condition ->
             ItemCard(
                 text = describeCondition(condition),
+                onClick = {
+                    editingConditionIndex = index
+                    configuringConditionType = conditionTypeOf(condition)
+                },
                 onRemove = {
                     conditions = conditions.toMutableList().also { it.removeAt(index) }
                 },
@@ -241,6 +258,11 @@ fun RoutineEditorContent(
         actions.forEachIndexed { index, action ->
             ItemCard(
                 text = describeAction(action),
+                onClick = {
+                    if (action is Action.PlaySound) return@ItemCard
+                    editingActionIndex = index
+                    configuringActionType = actionTypeOf(action)
+                },
                 onRemove = { actions = actions.toMutableList().also { it.removeAt(index) } },
             )
         }
@@ -286,13 +308,23 @@ fun RoutineEditorContent(
     }
 
     configuringTriggerType?.let { type ->
+        val editIdx = editingTriggerIndex
         TriggerConfigDialog(
             type = type,
+            initial = editIdx?.let { triggers.getOrNull(it) },
             onConfirm = { trigger ->
-                triggers = triggers + trigger
+                triggers = if (editIdx != null) {
+                    triggers.toMutableList().also { it[editIdx] = trigger }
+                } else {
+                    triggers + trigger
+                }
                 configuringTriggerType = null
+                editingTriggerIndex = null
             },
-            onDismiss = { configuringTriggerType = null },
+            onDismiss = {
+                configuringTriggerType = null
+                editingTriggerIndex = null
+            },
         )
     }
 
@@ -318,13 +350,23 @@ fun RoutineEditorContent(
     }
 
     configuringActionType?.let { type ->
+        val editIdx = editingActionIndex
         ActionConfigDialog(
             type = type,
+            initial = editIdx?.let { actions.getOrNull(it) },
             onConfirm = { action ->
-                actions = actions + action
+                actions = if (editIdx != null) {
+                    actions.toMutableList().also { it[editIdx] = action }
+                } else {
+                    actions + action
+                }
                 configuringActionType = null
+                editingActionIndex = null
             },
-            onDismiss = { configuringActionType = null },
+            onDismiss = {
+                configuringActionType = null
+                editingActionIndex = null
+            },
         )
     }
 
@@ -341,13 +383,23 @@ fun RoutineEditorContent(
     }
 
     configuringConditionType?.let { type ->
+        val editIdx = editingConditionIndex
         ConditionConfigDialog(
             type = type,
+            initial = editIdx?.let { conditions.getOrNull(it) },
             onConfirm = { condition ->
-                conditions = conditions + condition
+                conditions = if (editIdx != null) {
+                    conditions.toMutableList().also { it[editIdx] = condition }
+                } else {
+                    conditions + condition
+                }
                 configuringConditionType = null
+                editingConditionIndex = null
             },
-            onDismiss = { configuringConditionType = null },
+            onDismiss = {
+                configuringConditionType = null
+                editingConditionIndex = null
+            },
         )
     }
 }
@@ -363,11 +415,12 @@ private fun SectionHeader(title: String) {
 }
 
 @Composable
-private fun ItemCard(text: String, onRemove: () -> Unit) {
+private fun ItemCard(text: String, onClick: () -> Unit = {}, onRemove: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp),
+            .padding(vertical = 4.dp)
+            .clickable(onClick = onClick),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceBright,
         ),
@@ -443,13 +496,18 @@ private fun TypePickerDialog(
 @Composable
 private fun TriggerConfigDialog(
     type: String,
+    initial: Trigger? = null,
     onConfirm: (Trigger) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    val confirmLabel = stringResource(if (initial != null) R.string.save else R.string.add)
     when (type) {
         Trigger.TYPE_TIME_OF_DAY -> {
-            val timeState = rememberTimePickerState(8, 0, true)
-            var selectedDays by remember { mutableStateOf(Trigger.ALL_DAYS) }
+            val init = initial as? Trigger.TimeOfDay
+            val timeState = rememberTimePickerState(init?.hour ?: 8, init?.minute ?: 0, true)
+            var selectedDays by remember {
+                mutableStateOf(init?.daysOfWeek ?: Trigger.ALL_DAYS)
+            }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = {
@@ -479,7 +537,7 @@ private fun TriggerConfigDialog(
                                 timeState.hour, timeState.minute, selectedDays,
                             )
                         )
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -490,7 +548,9 @@ private fun TriggerConfigDialog(
         }
 
         Trigger.TYPE_INTERVAL -> {
-            var minutes by remember { mutableIntStateOf(30) }
+            var minutes by remember {
+                mutableIntStateOf((initial as? Trigger.Interval)?.intervalMinutes ?: 30)
+            }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_interval)) },
@@ -507,7 +567,7 @@ private fun TriggerConfigDialog(
                 confirmButton = {
                     TextButton(onClick = {
                         onConfirm(Trigger.Interval(minutes.coerceAtLeast(1)))
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -526,8 +586,12 @@ private fun TriggerConfigDialog(
         )
 
         Trigger.TYPE_BATTERY_LEVEL -> {
-            var threshold by remember { mutableFloatStateOf(20f) }
-            var isBelow by remember { mutableStateOf(true) }
+            val init = initial as? Trigger.BatteryLevel
+            var threshold by remember { mutableFloatStateOf(init?.threshold?.toFloat() ?: 20f) }
+            var isBelow by remember {
+                mutableStateOf(init?.direction == Trigger.BatteryLevel.Direction.BELOW ||
+                    init == null)
+            }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_battery_level)) },
@@ -563,7 +627,7 @@ private fun TriggerConfigDialog(
                                 else Trigger.BatteryLevel.Direction.ABOVE,
                             )
                         )
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -574,8 +638,10 @@ private fun TriggerConfigDialog(
         }
 
         Trigger.TYPE_WIFI_STATE -> {
-            var connected by remember { mutableStateOf(true) }
-            var ssid by remember { mutableStateOf("") }
+            val init = initial as? Trigger.WifiState
+            var connected by remember { mutableStateOf(init?.connected ?: true) }
+            var ssid by remember { mutableStateOf(init?.ssid ?: "") }
+            var ssidPattern by remember { mutableStateOf(init?.ssidPattern ?: "") }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_wifi)) },
@@ -592,14 +658,26 @@ private fun TriggerConfigDialog(
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
                         )
+                        Spacer(Modifier.height(8.dp))
+                        OutlinedTextField(
+                            value = ssidPattern,
+                            onValueChange = { ssidPattern = it },
+                            label = { Text(stringResource(R.string.routines_ssid_pattern_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
                     }
                 },
                 confirmButton = {
                     TextButton(onClick = {
                         onConfirm(
-                            Trigger.WifiState(connected, ssid.takeIf { it.isNotBlank() })
+                            Trigger.WifiState(
+                                connected,
+                                ssid.takeIf { it.isNotBlank() },
+                                ssidPattern.takeIf { it.isNotBlank() },
+                            )
                         )
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -610,8 +688,9 @@ private fun TriggerConfigDialog(
         }
 
         Trigger.TYPE_BLUETOOTH_STATE -> {
-            var connected by remember { mutableStateOf(true) }
-            var address by remember { mutableStateOf("") }
+            val init = initial as? Trigger.BluetoothState
+            var connected by remember { mutableStateOf(init?.connected ?: true) }
+            var address by remember { mutableStateOf(init?.deviceAddress ?: "") }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_bluetooth)) },
@@ -635,7 +714,7 @@ private fun TriggerConfigDialog(
                         onConfirm(
                             Trigger.BluetoothState(connected, address.takeIf { it.isNotBlank() })
                         )
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -656,6 +735,9 @@ private fun TriggerConfigDialog(
         Trigger.TYPE_FEATURE_STATE -> FeatureSelectDialog(
             title = stringResource(R.string.routines_feature_state),
             showToggle = true,
+            initialFeature = (initial as? Trigger.FeatureState)?.feature,
+            initialEnabled = (initial as? Trigger.FeatureState)?.active ?: true,
+            confirmLabel = confirmLabel,
             onConfirm = { feature, active ->
                 onConfirm(Trigger.FeatureState(feature, active))
             },
@@ -688,6 +770,9 @@ private fun TriggerConfigDialog(
         )
 
         Trigger.TYPE_SENSOR_PRIVACY_STATE -> SensorPrivacyTriggerDialog(
+            initialSensor = (initial as? Trigger.SensorPrivacyState)?.sensor ?: SENSOR_CAMERA,
+            initialBlocked = (initial as? Trigger.SensorPrivacyState)?.blocked ?: true,
+            confirmLabel = confirmLabel,
             onConfirm = { sensor, blocked ->
                 onConfirm(Trigger.SensorPrivacyState(sensor, blocked))
             },
@@ -695,24 +780,60 @@ private fun TriggerConfigDialog(
         )
 
         Trigger.TYPE_LOCATION -> LocationTriggerDialog(
+            initial = initial as? Trigger.Location,
+            confirmLabel = confirmLabel,
             onConfirm = { lat, lng, radius, entering ->
                 onConfirm(Trigger.Location(lat, lng, radius, entering))
             },
             onDismiss = onDismiss,
         )
+
+        Trigger.TYPE_CAPTIVE_PORTAL -> {
+            var ssid by remember {
+                mutableStateOf((initial as? Trigger.CaptivePortal)?.ssid ?: "")
+            }
+            AlertDialog(
+                onDismissRequest = onDismiss,
+                title = { Text(stringResource(R.string.routines_captive_portal)) },
+                text = {
+                    OutlinedTextField(
+                        value = ssid,
+                        onValueChange = { ssid = it },
+                        label = { Text(stringResource(R.string.routines_ssid_hint)) },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        onConfirm(Trigger.CaptivePortal(ssid.takeIf { it.isNotBlank() }))
+                    }) { Text(confirmLabel) }
+                },
+                dismissButton = {
+                    TextButton(onClick = onDismiss) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                },
+            )
+        }
     }
 }
 
 @Composable
 private fun ActionConfigDialog(
     type: String,
+    initial: Action? = null,
     onConfirm: (Action) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    val confirmLabel = stringResource(if (initial != null) R.string.save else R.string.add)
     when (type) {
         Action.TYPE_SET_FEATURE -> FeatureSelectDialog(
             title = stringResource(R.string.routines_set_feature),
             showToggle = true,
+            initialFeature = (initial as? Action.SetFeature)?.feature,
+            initialEnabled = (initial as? Action.SetFeature)?.enabled ?: true,
+            confirmLabel = confirmLabel,
             onConfirm = { feature, enabled ->
                 onConfirm(Action.SetFeature(feature, enabled))
             },
@@ -722,13 +843,18 @@ private fun ActionConfigDialog(
         Action.TYPE_TOGGLE_FEATURE -> FeatureSelectDialog(
             title = stringResource(R.string.routines_toggle_feature),
             showToggle = false,
+            initialFeature = (initial as? Action.ToggleFeature)?.feature,
+            confirmLabel = confirmLabel,
             onConfirm = { feature, _ -> onConfirm(Action.ToggleFeature(feature)) },
             onDismiss = onDismiss,
         )
 
         Action.TYPE_SET_VOLUME -> {
-            var streamType by remember { mutableIntStateOf(AudioManager.STREAM_MUSIC) }
-            var level by remember { mutableFloatStateOf(50f) }
+            val init = initial as? Action.SetVolume
+            var streamType by remember {
+                mutableIntStateOf(init?.streamType ?: AudioManager.STREAM_MUSIC)
+            }
+            var level by remember { mutableFloatStateOf(init?.level?.toFloat() ?: 50f) }
             val streams = listOf(
                 AudioManager.STREAM_MUSIC to stringResource(R.string.routines_stream_media),
                 AudioManager.STREAM_RING to stringResource(R.string.routines_stream_ring),
@@ -762,7 +888,7 @@ private fun ActionConfigDialog(
                 confirmButton = {
                     TextButton(onClick = {
                         onConfirm(Action.SetVolume(streamType, level.toInt()))
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -773,7 +899,9 @@ private fun ActionConfigDialog(
         }
 
         Action.TYPE_SET_BRIGHTNESS -> {
-            var level by remember { mutableFloatStateOf(128f) }
+            var level by remember {
+                mutableFloatStateOf((initial as? Action.SetBrightness)?.level?.toFloat() ?: 128f)
+            }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_set_brightness)) },
@@ -790,7 +918,7 @@ private fun ActionConfigDialog(
                 confirmButton = {
                     TextButton(onClick = {
                         onConfirm(Action.SetBrightness(level.toInt()))
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -812,7 +940,9 @@ private fun ActionConfigDialog(
         )
 
         Action.TYPE_SEND_BROADCAST -> {
-            var action by remember { mutableStateOf("") }
+            var action by remember {
+                mutableStateOf((initial as? Action.SendBroadcast)?.action ?: "")
+            }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_send_broadcast)) },
@@ -829,7 +959,7 @@ private fun ActionConfigDialog(
                     TextButton(
                         onClick = { onConfirm(Action.SendBroadcast(action.trim())) },
                         enabled = action.isNotBlank(),
-                    ) { Text(stringResource(R.string.add)) }
+                    ) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -840,8 +970,9 @@ private fun ActionConfigDialog(
         }
 
         Action.TYPE_SHOW_NOTIFICATION -> {
-            var title by remember { mutableStateOf("") }
-            var text by remember { mutableStateOf("") }
+            val init = initial as? Action.ShowNotification
+            var title by remember { mutableStateOf(init?.title ?: "") }
+            var text by remember { mutableStateOf(init?.text ?: "") }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_show_notification)) },
@@ -869,7 +1000,7 @@ private fun ActionConfigDialog(
                             onConfirm(Action.ShowNotification(title.trim(), text.trim()))
                         },
                         enabled = title.isNotBlank(),
-                    ) { Text(stringResource(R.string.add)) }
+                    ) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -880,7 +1011,9 @@ private fun ActionConfigDialog(
         }
 
         Action.TYPE_DELAY -> {
-            var seconds by remember { mutableIntStateOf(5) }
+            var seconds by remember {
+                mutableIntStateOf(((initial as? Action.Delay)?.durationMs?.div(1000))?.toInt() ?: 5)
+            }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_delay)) },
@@ -895,7 +1028,7 @@ private fun ActionConfigDialog(
                 confirmButton = {
                     TextButton(onClick = {
                         onConfirm(Action.Delay(seconds.coerceAtLeast(1) * 1000L))
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -906,11 +1039,12 @@ private fun ActionConfigDialog(
         }
 
         Action.TYPE_SET_SETTING -> {
+            val init = initial as? Action.SetSetting
             var table by remember {
-                mutableStateOf(Action.SetSetting.SettingsTable.SECURE)
+                mutableStateOf(init?.table ?: Action.SetSetting.SettingsTable.SECURE)
             }
-            var key by remember { mutableStateOf("") }
-            var value by remember { mutableStateOf("") }
+            var key by remember { mutableStateOf(init?.key ?: "") }
+            var value by remember { mutableStateOf(init?.value ?: "") }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_set_setting)) },
@@ -951,7 +1085,7 @@ private fun ActionConfigDialog(
                             )
                         },
                         enabled = key.isNotBlank(),
-                    ) { Text(stringResource(R.string.add)) }
+                    ) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -962,11 +1096,110 @@ private fun ActionConfigDialog(
         }
 
         Action.TYPE_SET_SENSOR_PRIVACY -> SensorPrivacyActionDialog(
+            initialSensor = (initial as? Action.SetSensorPrivacy)?.sensor ?: SENSOR_CAMERA,
+            initialBlocked = (initial as? Action.SetSensorPrivacy)?.blocked ?: true,
+            confirmLabel = confirmLabel,
             onConfirm = { sensor, blocked ->
                 onConfirm(Action.SetSensorPrivacy(sensor, blocked))
             },
             onDismiss = onDismiss,
         )
+
+        Action.TYPE_HTTP_REQUEST -> {
+            val init = initial as? Action.HttpRequest
+            var url by remember { mutableStateOf(init?.url ?: "") }
+            var method by remember { mutableStateOf(init?.method ?: Action.METHOD_GET) }
+            var headersText by remember {
+                mutableStateOf(init?.headers?.entries?.joinToString("\n") { "${it.key}: ${it.value}" } ?: "")
+            }
+            var body by remember { mutableStateOf(init?.body ?: "") }
+            var timeoutSec by remember {
+                mutableStateOf(((init?.timeoutMs ?: 15000) / 1000).toString())
+            }
+            val methods = listOf("GET", "POST", "PUT", "DELETE", "PATCH")
+            AlertDialog(
+                onDismissRequest = onDismiss,
+                title = { Text(stringResource(R.string.routines_http_request)) },
+                text = {
+                    Column {
+                        OutlinedTextField(
+                            value = url,
+                            onValueChange = { url = it },
+                            label = { Text(stringResource(R.string.routines_url_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            methods.forEach { m ->
+                                FilterChip(
+                                    selected = method == m,
+                                    onClick = { method = m },
+                                    label = { Text(m) },
+                                )
+                            }
+                        }
+                        Spacer(Modifier.height(8.dp))
+                        OutlinedTextField(
+                            value = headersText,
+                            onValueChange = { headersText = it },
+                            label = { Text("Headers (Key: Value)") },
+                            modifier = Modifier.fillMaxWidth(),
+                            minLines = 2,
+                            maxLines = 4,
+                        )
+                        if (method != "GET") {
+                            Spacer(Modifier.height(8.dp))
+                            OutlinedTextField(
+                                value = body,
+                                onValueChange = { body = it },
+                                label = { Text(stringResource(R.string.routines_body_hint)) },
+                                modifier = Modifier.fillMaxWidth(),
+                                minLines = 2,
+                                maxLines = 4,
+                            )
+                        }
+                        Spacer(Modifier.height(8.dp))
+                        OutlinedTextField(
+                            value = timeoutSec,
+                            onValueChange = { timeoutSec = it.filter { c -> c.isDigit() } },
+                            label = { Text(stringResource(R.string.routines_timeout_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            val headers = headersText.lines()
+                                .filter { it.contains(":") }
+                                .associate {
+                                    val (k, v) = it.split(":", limit = 2)
+                                    k.trim() to v.trim()
+                                }
+                            val timeout = (timeoutSec.toIntOrNull() ?: 15)
+                                .coerceIn(1, Action.MAX_HTTP_TIMEOUT_MS / 1000) * 1000
+                            onConfirm(
+                                Action.HttpRequest(
+                                    url = url.trim(),
+                                    method = method,
+                                    headers = headers,
+                                    body = body.takeIf { it.isNotBlank() },
+                                    timeoutMs = timeout,
+                                )
+                            )
+                        },
+                        enabled = url.isNotBlank(),
+                    ) { Text(confirmLabel) }
+                },
+                dismissButton = {
+                    TextButton(onClick = onDismiss) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                },
+            )
+        }
 
     }
 }
@@ -975,13 +1208,16 @@ private fun ActionConfigDialog(
 @Composable
 private fun ConditionConfigDialog(
     type: String,
+    initial: Condition? = null,
     onConfirm: (Condition) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    val confirmLabel = stringResource(if (initial != null) R.string.save else R.string.add)
     when (type) {
         Condition.TYPE_TIME_RANGE -> {
-            val startState = rememberTimePickerState(9, 0, true)
-            val endState = rememberTimePickerState(17, 0, true)
+            val init = initial as? Condition.TimeRange
+            val startState = rememberTimePickerState(init?.startHour ?: 9, init?.startMinute ?: 0, true)
+            val endState = rememberTimePickerState(init?.endHour ?: 17, init?.endMinute ?: 0, true)
             var showEnd by remember { mutableStateOf(false) }
             AlertDialog(
                 onDismissRequest = onDismiss,
@@ -1009,7 +1245,7 @@ private fun ConditionConfigDialog(
                         }
                     }) {
                         Text(
-                            if (showEnd) stringResource(R.string.add)
+                            if (showEnd) confirmLabel
                             else stringResource(R.string.routines_next)
                         )
                     }
@@ -1023,7 +1259,9 @@ private fun ConditionConfigDialog(
         }
 
         Condition.TYPE_DAY_OF_WEEK -> {
-            var selectedDays by remember { mutableStateOf(Trigger.ALL_DAYS) }
+            var selectedDays by remember {
+                mutableStateOf((initial as? Condition.DayOfWeek)?.days ?: Trigger.ALL_DAYS)
+            }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_day_of_week)) },
@@ -1037,7 +1275,7 @@ private fun ConditionConfigDialog(
                     TextButton(
                         onClick = { onConfirm(Condition.DayOfWeek(selectedDays)) },
                         enabled = selectedDays.isNotEmpty(),
-                    ) { Text(stringResource(R.string.add)) }
+                    ) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -1048,8 +1286,9 @@ private fun ConditionConfigDialog(
         }
 
         Condition.TYPE_BATTERY_RANGE -> {
-            var min by remember { mutableFloatStateOf(20f) }
-            var max by remember { mutableFloatStateOf(80f) }
+            val init = initial as? Condition.BatteryRange
+            var min by remember { mutableFloatStateOf(init?.min?.toFloat() ?: 20f) }
+            var max by remember { mutableFloatStateOf(init?.max?.toFloat() ?: 80f) }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_battery_range)) },
@@ -1072,7 +1311,7 @@ private fun ConditionConfigDialog(
                 confirmButton = {
                     TextButton(onClick = {
                         onConfirm(Condition.BatteryRange(min.toInt(), max.toInt()))
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -1091,23 +1330,40 @@ private fun ConditionConfigDialog(
         )
 
         Condition.TYPE_WIFI_CONNECTED -> {
-            var ssid by remember { mutableStateOf("") }
+            val init = initial as? Condition.WifiConnected
+            var ssid by remember { mutableStateOf(init?.ssid ?: "") }
+            var ssidPattern by remember { mutableStateOf(init?.ssidPattern ?: "") }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_wifi_connected)) },
                 text = {
-                    OutlinedTextField(
-                        value = ssid,
-                        onValueChange = { ssid = it },
-                        label = { Text(stringResource(R.string.routines_ssid_hint)) },
-                        singleLine = true,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
+                    Column {
+                        OutlinedTextField(
+                            value = ssid,
+                            onValueChange = { ssid = it },
+                            label = { Text(stringResource(R.string.routines_ssid_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        OutlinedTextField(
+                            value = ssidPattern,
+                            onValueChange = { ssidPattern = it },
+                            label = { Text(stringResource(R.string.routines_ssid_pattern_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
                 },
                 confirmButton = {
                     TextButton(onClick = {
-                        onConfirm(Condition.WifiConnected(ssid.takeIf { it.isNotBlank() }))
-                    }) { Text(stringResource(R.string.add)) }
+                        onConfirm(
+                            Condition.WifiConnected(
+                                ssid.takeIf { it.isNotBlank() },
+                                ssidPattern.takeIf { it.isNotBlank() },
+                            )
+                        )
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -1118,7 +1374,9 @@ private fun ConditionConfigDialog(
         }
 
         Condition.TYPE_BLUETOOTH_CONNECTED -> {
-            var address by remember { mutableStateOf("") }
+            var address by remember {
+                mutableStateOf((initial as? Condition.BluetoothConnected)?.deviceAddress ?: "")
+            }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_bluetooth_connected)) },
@@ -1136,7 +1394,7 @@ private fun ConditionConfigDialog(
                         onConfirm(
                             Condition.BluetoothConnected(address.takeIf { it.isNotBlank() })
                         )
-                    }) { Text(stringResource(R.string.add)) }
+                    }) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -1157,6 +1415,9 @@ private fun ConditionConfigDialog(
         Condition.TYPE_FEATURE_ACTIVE -> FeatureSelectDialog(
             title = stringResource(R.string.routines_feature_active),
             showToggle = true,
+            initialFeature = (initial as? Condition.FeatureActive)?.feature,
+            initialEnabled = (initial as? Condition.FeatureActive)?.active ?: true,
+            confirmLabel = confirmLabel,
             onConfirm = { feature, active ->
                 onConfirm(Condition.FeatureActive(feature, active))
             },
@@ -1164,6 +1425,9 @@ private fun ConditionConfigDialog(
         )
 
         Condition.TYPE_SENSOR_BLOCKED -> SensorPrivacyTriggerDialog(
+            initialSensor = (initial as? Condition.SensorBlocked)?.sensor ?: SENSOR_CAMERA,
+            initialBlocked = (initial as? Condition.SensorBlocked)?.blocked ?: true,
+            confirmLabel = confirmLabel,
             onConfirm = { sensor, blocked ->
                 onConfirm(Condition.SensorBlocked(sensor, blocked))
             },
@@ -1171,11 +1435,43 @@ private fun ConditionConfigDialog(
         )
 
         Condition.TYPE_LOCATION_NEAR -> LocationConditionDialog(
+            initial = initial as? Condition.LocationNear,
+            confirmLabel = confirmLabel,
             onConfirm = { lat, lng, radius ->
                 onConfirm(Condition.LocationNear(lat, lng, radius))
             },
             onDismiss = onDismiss,
         )
+
+        Condition.TYPE_IP_ADDRESS -> {
+            var cidr by remember {
+                mutableStateOf((initial as? Condition.IpAddress)?.cidr ?: "")
+            }
+            AlertDialog(
+                onDismissRequest = onDismiss,
+                title = { Text(stringResource(R.string.routines_ip_address)) },
+                text = {
+                    OutlinedTextField(
+                        value = cidr,
+                        onValueChange = { cidr = it },
+                        label = { Text(stringResource(R.string.routines_cidr_hint)) },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = { onConfirm(Condition.IpAddress(cidr.trim())) },
+                        enabled = cidr.isNotBlank(),
+                    ) { Text(confirmLabel) }
+                },
+                dismissButton = {
+                    TextButton(onClick = onDismiss) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                },
+            )
+        }
     }
 }
 
@@ -1216,11 +1512,14 @@ private fun BooleanTriggerDialog(
 private fun FeatureSelectDialog(
     title: String,
     showToggle: Boolean,
+    initialFeature: String? = null,
+    initialEnabled: Boolean = true,
+    confirmLabel: String = stringResource(R.string.add),
     onConfirm: (String, Boolean) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var selectedFeature by remember { mutableStateOf<String?>(null) }
-    var enabled by remember { mutableStateOf(true) }
+    var selectedFeature by remember { mutableStateOf<String?>(initialFeature) }
+    var enabled by remember { mutableStateOf(initialEnabled) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -1261,7 +1560,7 @@ private fun FeatureSelectDialog(
             TextButton(
                 onClick = { selectedFeature?.let { onConfirm(it, enabled) } },
                 enabled = selectedFeature != null,
-            ) { Text(stringResource(R.string.add)) }
+            ) { Text(confirmLabel) }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
@@ -1415,7 +1714,11 @@ private fun describeCondition(condition: Condition): String = when (condition) {
     }
     is Condition.BatteryRange -> "Battery ${condition.min}%-${condition.max}%"
     is Condition.ChargingState -> if (condition.charging) "While charging" else "While not charging"
-    is Condition.WifiConnected -> condition.ssid?.let { "WiFi: $it" } ?: "WiFi connected"
+    is Condition.WifiConnected -> {
+        condition.ssidPattern?.let { "WiFi: ~$it" }
+            ?: condition.ssid?.let { "WiFi: $it" }
+            ?: "WiFi connected"
+    }
     is Condition.BluetoothConnected ->
         condition.deviceAddress?.let { "BT: $it" } ?: "Bluetooth connected"
     is Condition.ScreenOn -> if (condition.on) "Screen on" else "Screen off"
@@ -1429,15 +1732,19 @@ private fun describeCondition(condition: Condition): String = when (condition) {
     }
     is Condition.LocationNear ->
         "Near (${String.format("%.4f", condition.latitude)}, ${String.format("%.4f", condition.longitude)}) ${condition.radiusMeters.toInt()}m"
+    is Condition.IpAddress -> "IP: ${condition.cidr}"
 }
 
 @Composable
 private fun SensorPrivacyTriggerDialog(
+    initialSensor: Int = SENSOR_CAMERA,
+    initialBlocked: Boolean = true,
+    confirmLabel: String = stringResource(R.string.add),
     onConfirm: (Int, Boolean) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var sensor by remember { mutableIntStateOf(SENSOR_CAMERA) }
-    var blocked by remember { mutableStateOf(true) }
+    var sensor by remember { mutableIntStateOf(initialSensor) }
+    var blocked by remember { mutableStateOf(initialBlocked) }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.routines_sensor_privacy)) },
@@ -1472,7 +1779,7 @@ private fun SensorPrivacyTriggerDialog(
         },
         confirmButton = {
             TextButton(onClick = { onConfirm(sensor, blocked) }) {
-                Text(stringResource(R.string.add))
+                Text(confirmLabel)
             }
         },
         dismissButton = {
@@ -1485,11 +1792,14 @@ private fun SensorPrivacyTriggerDialog(
 
 @Composable
 private fun SensorPrivacyActionDialog(
+    initialSensor: Int = SENSOR_CAMERA,
+    initialBlocked: Boolean = true,
+    confirmLabel: String = stringResource(R.string.add),
     onConfirm: (Int, Boolean) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var sensor by remember { mutableIntStateOf(SENSOR_CAMERA) }
-    var blocked by remember { mutableStateOf(true) }
+    var sensor by remember { mutableIntStateOf(initialSensor) }
+    var blocked by remember { mutableStateOf(initialBlocked) }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.routines_set_sensor_privacy)) },
@@ -1524,7 +1834,7 @@ private fun SensorPrivacyActionDialog(
         },
         confirmButton = {
             TextButton(onClick = { onConfirm(sensor, blocked) }) {
-                Text(stringResource(R.string.add))
+                Text(confirmLabel)
             }
         },
         dismissButton = {
@@ -1537,13 +1847,15 @@ private fun SensorPrivacyActionDialog(
 
 @Composable
 private fun LocationTriggerDialog(
+    initial: Trigger.Location? = null,
+    confirmLabel: String = stringResource(R.string.add),
     onConfirm: (Double, Double, Float, Boolean) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var latitude by remember { mutableStateOf("") }
-    var longitude by remember { mutableStateOf("") }
-    var radius by remember { mutableStateOf("200") }
-    var entering by remember { mutableStateOf(true) }
+    var latitude by remember { mutableStateOf(initial?.latitude?.toString() ?: "") }
+    var longitude by remember { mutableStateOf(initial?.longitude?.toString() ?: "") }
+    var radius by remember { mutableStateOf(initial?.radiusMeters?.toInt()?.toString() ?: "200") }
+    var entering by remember { mutableStateOf(initial?.entering ?: true) }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.routines_location)) },
@@ -1596,7 +1908,7 @@ private fun LocationTriggerDialog(
                     onConfirm(lat, lng, r, entering)
                 },
                 enabled = latitude.toDoubleOrNull() != null && longitude.toDoubleOrNull() != null,
-            ) { Text(stringResource(R.string.add)) }
+            ) { Text(confirmLabel) }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
@@ -1608,12 +1920,14 @@ private fun LocationTriggerDialog(
 
 @Composable
 private fun LocationConditionDialog(
+    initial: Condition.LocationNear? = null,
+    confirmLabel: String = stringResource(R.string.add),
     onConfirm: (Double, Double, Float) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var latitude by remember { mutableStateOf("") }
-    var longitude by remember { mutableStateOf("") }
-    var radius by remember { mutableStateOf("200") }
+    var latitude by remember { mutableStateOf(initial?.latitude?.toString() ?: "") }
+    var longitude by remember { mutableStateOf(initial?.longitude?.toString() ?: "") }
+    var radius by remember { mutableStateOf(initial?.radiusMeters?.toInt()?.toString() ?: "200") }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.routines_location_near)) },
@@ -1653,7 +1967,7 @@ private fun LocationConditionDialog(
                     onConfirm(lat, lng, r)
                 },
                 enabled = latitude.toDoubleOrNull() != null && longitude.toDoubleOrNull() != null,
-            ) { Text(stringResource(R.string.add)) }
+            ) { Text(confirmLabel) }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
@@ -1661,4 +1975,52 @@ private fun LocationConditionDialog(
             }
         },
     )
+}
+
+private fun triggerTypeOf(trigger: Trigger): String = when (trigger) {
+    is Trigger.TimeOfDay -> Trigger.TYPE_TIME_OF_DAY
+    is Trigger.Interval -> Trigger.TYPE_INTERVAL
+    is Trigger.ChargingState -> Trigger.TYPE_CHARGING_STATE
+    is Trigger.BatteryLevel -> Trigger.TYPE_BATTERY_LEVEL
+    is Trigger.WifiState -> Trigger.TYPE_WIFI_STATE
+    is Trigger.BluetoothState -> Trigger.TYPE_BLUETOOTH_STATE
+    is Trigger.ScreenState -> Trigger.TYPE_SCREEN_STATE
+    is Trigger.FeatureState -> Trigger.TYPE_FEATURE_STATE
+    is Trigger.HeadphonesState -> Trigger.TYPE_HEADPHONES_STATE
+    is Trigger.RingerMode -> Trigger.TYPE_RINGER_MODE
+    is Trigger.AppLaunch -> Trigger.TYPE_APP_LAUNCH
+    is Trigger.AppClose -> Trigger.TYPE_APP_CLOSE
+    is Trigger.SensorPrivacyState -> Trigger.TYPE_SENSOR_PRIVACY_STATE
+    is Trigger.Location -> Trigger.TYPE_LOCATION
+    is Trigger.CaptivePortal -> Trigger.TYPE_CAPTIVE_PORTAL
+}
+
+private fun conditionTypeOf(condition: Condition): String = when (condition) {
+    is Condition.TimeRange -> Condition.TYPE_TIME_RANGE
+    is Condition.DayOfWeek -> Condition.TYPE_DAY_OF_WEEK
+    is Condition.BatteryRange -> Condition.TYPE_BATTERY_RANGE
+    is Condition.ChargingState -> Condition.TYPE_CHARGING_STATE
+    is Condition.WifiConnected -> Condition.TYPE_WIFI_CONNECTED
+    is Condition.BluetoothConnected -> Condition.TYPE_BLUETOOTH_CONNECTED
+    is Condition.ScreenOn -> Condition.TYPE_SCREEN_ON
+    is Condition.FeatureActive -> Condition.TYPE_FEATURE_ACTIVE
+    is Condition.SensorBlocked -> Condition.TYPE_SENSOR_BLOCKED
+    is Condition.LocationNear -> Condition.TYPE_LOCATION_NEAR
+    is Condition.IpAddress -> Condition.TYPE_IP_ADDRESS
+}
+
+private fun actionTypeOf(action: Action): String = when (action) {
+    is Action.SetFeature -> Action.TYPE_SET_FEATURE
+    is Action.ToggleFeature -> Action.TYPE_TOGGLE_FEATURE
+    is Action.SetVolume -> Action.TYPE_SET_VOLUME
+    is Action.SetBrightness -> Action.TYPE_SET_BRIGHTNESS
+    is Action.SetRingerMode -> Action.TYPE_SET_RINGER_MODE
+    is Action.LaunchApp -> Action.TYPE_LAUNCH_APP
+    is Action.SendBroadcast -> Action.TYPE_SEND_BROADCAST
+    is Action.ShowNotification -> Action.TYPE_SHOW_NOTIFICATION
+    is Action.Delay -> Action.TYPE_DELAY
+    is Action.SetSetting -> Action.TYPE_SET_SETTING
+    is Action.SetSensorPrivacy -> Action.TYPE_SET_SENSOR_PRIVACY
+    is Action.PlaySound -> Action.TYPE_PLAY_SOUND
+    is Action.HttpRequest -> Action.TYPE_HTTP_REQUEST
 }

@@ -390,7 +390,11 @@ internal fun describeTrigger(trigger: Trigger): String = when (trigger) {
     is Trigger.Interval -> "Every ${trigger.intervalMinutes}m"
     is Trigger.ChargingState -> if (trigger.charging) "Charging" else "Unplugged"
     is Trigger.BatteryLevel -> "Battery ${trigger.direction.name.lowercase()} ${trigger.threshold}%"
-    is Trigger.WifiState -> if (trigger.connected) "WiFi on" else "WiFi off"
+    is Trigger.WifiState -> {
+        val suffix = trigger.ssidPattern?.let { " (~$it)" }
+            ?: trigger.ssid?.let { " ($it)" } ?: ""
+        if (trigger.connected) "WiFi on$suffix" else "WiFi off$suffix"
+    }
     is Trigger.BluetoothState -> if (trigger.connected) "BT on" else "BT off"
     is Trigger.ScreenState -> if (trigger.on) "Screen on" else "Screen off"
     is Trigger.FeatureState -> {
@@ -413,6 +417,7 @@ internal fun describeTrigger(trigger: Trigger): String = when (trigger) {
         val action = if (trigger.entering) "Enter" else "Leave"
         "$action (${String.format("%.4f", trigger.latitude)}, ${String.format("%.4f", trigger.longitude)})"
     }
+    is Trigger.CaptivePortal -> trigger.ssid?.let { "Captive portal ($it)" } ?: "Captive portal"
 }
 
 internal fun describeAction(action: Action): String = when (action) {
@@ -444,6 +449,7 @@ internal fun describeAction(action: Action): String = when (action) {
         SOUND_TYPE_RINGTONE -> "Play ringtone"
         else -> "Play notification"
     }
+    is Action.HttpRequest -> "${action.method} ${action.url.take(40)}"
 }
 
 private val WEEKDAYS = setOf(

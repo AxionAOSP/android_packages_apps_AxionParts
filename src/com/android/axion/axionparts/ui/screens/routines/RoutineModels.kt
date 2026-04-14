@@ -46,7 +46,7 @@ sealed interface Trigger {
         enum class Direction { ABOVE, BELOW }
     }
 
-    data class WifiState(val connected: Boolean, val ssid: String? = null) : Trigger
+    data class WifiState(val connected: Boolean, val ssid: String? = null, val ssidPattern: String? = null) : Trigger
 
     data class BluetoothState(val connected: Boolean, val deviceAddress: String? = null) : Trigger
 
@@ -71,6 +71,8 @@ sealed interface Trigger {
         val entering: Boolean,
     ) : Trigger
 
+    data class CaptivePortal(val ssid: String? = null) : Trigger
+
     companion object {
         val ALL_DAYS = setOf(
             Calendar.SUNDAY, Calendar.MONDAY, Calendar.TUESDAY,
@@ -92,6 +94,7 @@ sealed interface Trigger {
         const val TYPE_APP_CLOSE = "app_close"
         const val TYPE_SENSOR_PRIVACY_STATE = "sensor_privacy_state"
         const val TYPE_LOCATION = "location"
+        const val TYPE_CAPTIVE_PORTAL = "captive_portal"
     }
 }
 
@@ -110,7 +113,7 @@ sealed interface Condition {
 
     data class ChargingState(val charging: Boolean) : Condition
 
-    data class WifiConnected(val ssid: String? = null) : Condition
+    data class WifiConnected(val ssid: String? = null, val ssidPattern: String? = null) : Condition
 
     data class BluetoothConnected(val deviceAddress: String? = null) : Condition
 
@@ -126,6 +129,8 @@ sealed interface Condition {
         val radiusMeters: Float,
     ) : Condition
 
+    data class IpAddress(val cidr: String) : Condition
+
     companion object {
         const val TYPE_TIME_RANGE = "time_range"
         const val TYPE_DAY_OF_WEEK = "day_of_week"
@@ -137,6 +142,7 @@ sealed interface Condition {
         const val TYPE_FEATURE_ACTIVE = "feature_active"
         const val TYPE_SENSOR_BLOCKED = "sensor_blocked"
         const val TYPE_LOCATION_NEAR = "location_near"
+        const val TYPE_IP_ADDRESS = "ip_address"
     }
 }
 
@@ -175,6 +181,14 @@ sealed interface Action {
 
     data class PlaySound(val soundType: Int, val uri: String? = null) : Action
 
+    data class HttpRequest(
+        val url: String,
+        val method: String = METHOD_GET,
+        val headers: Map<String, String> = emptyMap(),
+        val body: String? = null,
+        val timeoutMs: Int = DEFAULT_HTTP_TIMEOUT_MS,
+    ) : Action
+
     companion object {
         const val TYPE_SET_FEATURE = "set_feature"
         const val TYPE_TOGGLE_FEATURE = "toggle_feature"
@@ -188,6 +202,10 @@ sealed interface Action {
         const val TYPE_SET_SETTING = "set_setting"
         const val TYPE_SET_SENSOR_PRIVACY = "set_sensor_privacy"
         const val TYPE_PLAY_SOUND = "play_sound"
+        const val TYPE_HTTP_REQUEST = "http_request"
+        const val METHOD_GET = "GET"
+        const val DEFAULT_HTTP_TIMEOUT_MS = 15_000
+        const val MAX_HTTP_TIMEOUT_MS = 30_000
     }
 }
 
