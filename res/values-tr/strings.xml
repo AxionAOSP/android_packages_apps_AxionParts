@@ -538,7 +538,7 @@
     <string name="routines_mic_unblocked">Microphone unblocked</string>
     <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
     <string name="routines_sensor_blocked">Sensor Blocked</string>
-    <string name="routines_location">Location</string>
+    <string name="routines_location">Konum</string>
     <string name="routines_location_enter">Enter area</string>
     <string name="routines_location_exit">Leave area</string>
     <string name="routines_latitude_hint">Latitude</string>
