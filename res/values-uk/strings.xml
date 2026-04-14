@@ -483,7 +483,8 @@
     <string name="routines_notif_text_hint">Notification text</string>
     <string name="routines_setting_key_hint">Setting key</string>
     <string name="routines_setting_value_hint">Setting value</string>
-    <string name="routines_time_of_day">Time of Day</string>
+    <string name="routines_time_of_day">Розклад</string>
+    <string name="routines_schedule_hint">Set time and repeat days</string>
     <string name="routines_interval">Interval</string>
     <string name="routines_charging">Charging</string>
     <string name="routines_charging_starts">Charging starts</string>
@@ -548,6 +549,17 @@
     <string name="routines_sensor_microphone">Microphone</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
+    <string name="routines_play_sound">Play Sound</string>
+    <string name="routines_ssid_pattern_hint">SSID regex pattern (optional)</string>
+    <string name="routines_captive_portal">Captive Portal</string>
+    <string name="routines_captive_portal_detected">Portal detected</string>
+    <string name="routines_captive_portal_cleared">Portal cleared</string>
+    <string name="routines_ip_address">IP Address</string>
+    <string name="routines_cidr_hint">CIDR (e.g. 192.168.1.0/24)</string>
+    <string name="routines_http_request">HTTP Request</string>
+    <string name="routines_url_hint">URL</string>
+    <string name="routines_body_hint">Request body (optional)</string>
+    <string name="routines_timeout_hint">Timeout (seconds)</string>
     <string name="ax_bravia_engine">AxBravia Engine</string>
     <string name="ax_bravia_engine_summary">Color enhancement and sharpening</string>
     <string name="ax_bravia_engine_mode">Enhancement mode</string>
