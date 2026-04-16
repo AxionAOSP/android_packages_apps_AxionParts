@@ -441,7 +441,7 @@
     <string name="dynamic_bar_guide_keyguard">On the lock screen, the chip appears at the bottom with playback controls and quick actions.</string>
     <string name="dynamic_bar_guide_chip_title">Chip appearance</string>
     <string name="dynamic_bar_guide_swipe_title">Swipe to cycle</string>
-    <string name="dynamic_bar_guide_expand_title">Tap to expand</string>
+    <string name="dynamic_bar_guide_expand_title">Toque para expandir</string>
     <string name="dynamic_bar_guide_dismiss_title">Swipe to dismiss</string>
     <string name="dynamic_bar_guide_keyguard_title">Lock screen chip</string>
     <string name="dynamic_bar_footer_title">About Dynamic Bar</string>
