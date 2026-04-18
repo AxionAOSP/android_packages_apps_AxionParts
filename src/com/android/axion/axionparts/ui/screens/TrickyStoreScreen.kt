@@ -91,14 +91,15 @@ import com.android.axion.axionparts.R
 import com.android.axion.compose.applist.AppFilter
 import com.android.axion.compose.applist.rememberAppList
 import com.android.axion.compose.preferences.*
+import android.provider.Settings
+import android.util.Base64
 import com.android.axion.compose.scaffold.AxionScaffold
-import java.io.File
+import java.nio.charset.StandardCharsets
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-private const val TRICKYSTORE_PATH = "/data/adb/tricky_store"
-private const val KEYBOX_FILE = "keybox.xml"
-private const val TARGET_FILE = "target.txt"
+private const val KEYBOX_KEY = "spoof_trickystore_keybox"
+private const val TARGET_KEY = "spoof_trickystore_target"
 private const val VENDING_PACKAGE = "com.android.vending"
 
 enum class TargetMode(val symbol: String) {
@@ -141,22 +142,17 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
     var targetAppCount by remember { mutableStateOf(0) }
 
     fun refreshStatus() {
-        val trickyDir = File(TRICKYSTORE_PATH)
-        keyboxExists = File(trickyDir, KEYBOX_FILE).exists()
-        val targetFile = File(trickyDir, TARGET_FILE)
-        targetExists = targetFile.exists()
-        if (targetExists) {
-            targetAppCount = targetFile.readLines().filter { it.isNotBlank() }.size
+        keyboxExists = !Settings.Secure.getString(context.contentResolver, KEYBOX_KEY).isNullOrEmpty()
+        val targetContent = Settings.Secure.getString(context.contentResolver, TARGET_KEY)
+        targetExists = !targetContent.isNullOrEmpty()
+        targetAppCount = if (targetExists) {
+            targetContent!!.lines().count { it.isNotBlank() }
         } else {
-            targetAppCount = 0
+            0
         }
     }
 
     LaunchedEffect(Unit) {
-        val trickyDir = File(TRICKYSTORE_PATH)
-        if (!trickyDir.exists()) {
-            trickyDir.mkdirs()
-        }
         refreshStatus()
     }
 
@@ -167,19 +163,10 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let { uri ->
                     try {
-                        val trickyDir = File(TRICKYSTORE_PATH)
-                        if (!trickyDir.exists()) {
-                            trickyDir.mkdirs()
-                        }
-
-                        val inputStream = context.contentResolver.openInputStream(uri)
-                        val keyboxFile = File(trickyDir, KEYBOX_FILE)
-
-                        inputStream?.use { input ->
-                            keyboxFile.outputStream().use { output -> input.copyTo(output) }
-                        }
-
-                        keyboxFile.setReadable(true, false)
+                        val bytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
+                            ?: ByteArray(0)
+                        val encoded = Base64.encodeToString(bytes, Base64.NO_WRAP)
+                        Settings.Secure.putString(context.contentResolver, KEYBOX_KEY, encoded)
 
                         val am =
                             context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
@@ -212,19 +199,10 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let { uri ->
                     try {
-                        val trickyDir = File(TRICKYSTORE_PATH)
-                        if (!trickyDir.exists()) {
-                            trickyDir.mkdirs()
-                        }
-
-                        val inputStream = context.contentResolver.openInputStream(uri)
-                        val targetFile = File(trickyDir, TARGET_FILE)
-
-                        inputStream?.use { input ->
-                            targetFile.outputStream().use { output -> input.copyTo(output) }
-                        }
-
-                        targetFile.setReadable(true, false)
+                        val text = context.contentResolver.openInputStream(uri)?.use { input ->
+                            input.readBytes().toString(StandardCharsets.UTF_8)
+                        } ?: ""
+                        Settings.Secure.putString(context.contentResolver, TARGET_KEY, text)
 
                         Toast.makeText(
                                 context,
@@ -254,10 +232,7 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
                 TextButton(
                     onClick = {
                         try {
-                            val keyboxFile = File(TRICKYSTORE_PATH, KEYBOX_FILE)
-                            if (keyboxFile.exists()) {
-                                keyboxFile.delete()
-                            }
+                            Settings.Secure.putString(context.contentResolver, KEYBOX_KEY, null)
                             Toast.makeText(
                                     context,
                                     context.getString(R.string.keybox_deleted),
@@ -382,21 +357,19 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
 
     fun loadTargetFile(): Map<String, TargetMode> {
         val result = mutableMapOf<String, TargetMode>()
-        val targetFile = File(TRICKYSTORE_PATH, TARGET_FILE)
-        if (targetFile.exists()) {
-            targetFile.readLines().forEach { line ->
-                val trimmed = line.trim()
-                if (trimmed.isNotBlank()) {
-                    when {
-                        trimmed.endsWith("?") -> {
-                            result[trimmed.dropLast(1)] = TargetMode.LEAF_HACK
-                        }
-                        trimmed.endsWith("!") -> {
-                            result[trimmed.dropLast(1)] = TargetMode.CERT_GEN
-                        }
-                        else -> {
-                            result[trimmed] = TargetMode.AUTO
-                        }
+        val content = Settings.Secure.getString(context.contentResolver, TARGET_KEY) ?: return result
+        content.lines().forEach { line ->
+            val trimmed = line.trim()
+            if (trimmed.isNotBlank()) {
+                when {
+                    trimmed.endsWith("?") -> {
+                        result[trimmed.dropLast(1)] = TargetMode.LEAF_HACK
+                    }
+                    trimmed.endsWith("!") -> {
+                        result[trimmed.dropLast(1)] = TargetMode.CERT_GEN
+                    }
+                    else -> {
+                        result[trimmed] = TargetMode.AUTO
                     }
                 }
             }
@@ -406,21 +379,18 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
 
     fun saveTargetFile() {
         try {
-            val trickyDir = File(TRICKYSTORE_PATH)
-            if (!trickyDir.exists()) {
-                trickyDir.mkdirs()
-            }
-
-            val targetFile = File(trickyDir, TARGET_FILE)
             val lines =
                 allApps
                     .filter { it.isInTarget }
                     .map { app -> app.packageName + app.targetMode.symbol }
 
-            targetFile.writeText(lines.joinToString("\n"))
-            targetFile.setReadable(true, false)
+            Settings.Secure.putString(
+                context.contentResolver,
+                TARGET_KEY,
+                lines.joinToString("\n")
+            )
         } catch (e: Exception) {
-            Log.e("TrickyStore", "Failed to save target file: ${e.message}")
+            Log.e("TrickyStore", "Failed to save target list: ${e.message}")
         }
     }
 

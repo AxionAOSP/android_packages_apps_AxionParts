@@ -47,14 +47,12 @@ import com.android.axion.compose.applist.AppFilter
 import com.android.axion.compose.applist.rememberFilteredAppList
 import com.android.axion.compose.preferences.ExpressiveSwitch
 import com.android.axion.compose.scaffold.AxionScaffold
-import java.io.File
 import kotlinx.coroutines.*
 import org.json.JSONArray
 import org.json.JSONObject
 
 private const val TAG = "GameSpoofing"
-private const val CONFIG_PATH = "/data/adb/gameprops"
-private const val CONFIG_FILE = "gameprops.json"
+private const val GAMEPROPS_CONFIG_KEY = "spoof_gameprops_config"
 
 data class GameConfig(val packageName: String, val appName: String, val props: Map<String, String>)
 
@@ -181,7 +179,7 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
 
     fun saveConfig() {
         scope.launch {
-            withContext(Dispatchers.IO) { saveGamePropsConfig(enabled, gameConfigs) }
+            withContext(Dispatchers.IO) { saveGamePropsConfig(context, enabled, gameConfigs) }
             Toast.makeText(
                     context,
                     context.getString(R.string.configuration_saved),
@@ -192,10 +190,6 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
     }
 
     LaunchedEffect(Unit) {
-        val configDir = File(CONFIG_PATH)
-        if (!configDir.exists()) {
-            configDir.mkdirs()
-        }
         loadConfig()
     }
 
@@ -925,13 +919,11 @@ fun EditGameDialog(game: GameConfig, onDismiss: () -> Unit, onGameUpdated: (Game
 }
 
 private fun loadGamePropsConfig(context: Context): Pair<Boolean, List<GameConfig>> {
-    val configFile = File(CONFIG_PATH, CONFIG_FILE)
-    if (!configFile.exists()) {
-        return Pair(false, emptyList())
-    }
+    val content = Settings.Secure.getString(context.contentResolver, GAMEPROPS_CONFIG_KEY)
+        ?: return Pair(false, emptyList())
 
     try {
-        val json = JSONObject(configFile.readText())
+        val json = JSONObject(content)
         val enabled = json.optBoolean("enabled", false)
         val games = mutableListOf<GameConfig>()
 
@@ -960,9 +952,7 @@ private fun loadGamePropsConfig(context: Context): Pair<Boolean, List<GameConfig
     }
 }
 
-private fun saveGamePropsConfig(enabled: Boolean, games: List<GameConfig>) {
-    val configFile = File(CONFIG_PATH, CONFIG_FILE)
-
+private fun saveGamePropsConfig(context: Context, enabled: Boolean, games: List<GameConfig>) {
     try {
         val json = JSONObject()
         json.put("enabled", enabled)
@@ -975,8 +965,11 @@ private fun saveGamePropsConfig(enabled: Boolean, games: List<GameConfig>) {
         }
         json.put("games", gamesObj)
 
-        configFile.writeText(json.toString(2))
-        configFile.setReadable(true, false)
+        Settings.Secure.putString(
+            context.contentResolver,
+            GAMEPROPS_CONFIG_KEY,
+            json.toString(2)
+        )
 
         Log.i(TAG, "Config saved successfully")
     } catch (e: Exception) {

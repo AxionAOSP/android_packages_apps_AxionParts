@@ -92,16 +92,16 @@ import com.android.axion.compose.scaffold.AxionScaffold
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.provider.Settings
 import org.json.JSONObject
-import java.io.File
 import java.net.URL
 import java.nio.charset.StandardCharsets
 import kotlin.random.Random
 import com.android.axion.axionparts.ui.theme.MaxContentWidth
 
 private const val TAG = "PlayIntegrityFix"
-private const val PIF_PATH = "/data/adb/playintegrityfix"
-private val PIF_FILES = listOf("custom.pif.prop", "custom.pif.json", "pif.prop", "pif.json")
+private const val PIF_CONFIG_KEY = "spoof_pif_config"
+private const val PIF_CONFIG_NAME = "pif.json"
 private const val GOOGLE_URL = "https://developer.android.com"
 private const val VENDING_PACKAGE = "com.android.vending"
 
@@ -157,60 +157,38 @@ fun PlayIntegrityFixContent(
     var deleteTargetFile by remember { mutableStateOf("") }
     var isFetching by remember { mutableStateOf(false) }
     var fetchStatus by remember { mutableStateOf("") }
-    var importTargetFile by remember { mutableStateOf("") }
-    
-    fun refreshStatus() {
-        val pifDir = File(PIF_PATH)
-        val files = mutableListOf<ConfigFileState>()
-        var foundActive = false
-        
-        for (fileName in PIF_FILES) {
-            val file = File(pifDir, fileName)
-            val exists = file.exists()
-            val isActive = exists && !foundActive
-            if (isActive) foundActive = true
-            
-            val data = if (exists) readConfigData(file) else emptyMap()
-            files.add(ConfigFileState(fileName, exists, isActive, data))
+
+    fun readCurrentConfig(): Map<String, String> {
+        val content = Settings.Secure.getString(context.contentResolver, PIF_CONFIG_KEY)
+            ?: return emptyMap()
+        return try {
+            val json = JSONObject(content)
+            val result = mutableMapOf<String, String>()
+            json.keys().forEach { key -> result[key] = json.optString(key, "") }
+            result
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to parse config: ${e.message}")
+            emptyMap()
         }
-        
-        configFiles = files
-        activeConfig = files.find { it.isActive }?.fileName ?: ""
     }
-    
+
+    fun refreshStatus() {
+        val data = readCurrentConfig()
+        val exists = data.isNotEmpty()
+        configFiles = listOf(ConfigFileState(PIF_CONFIG_NAME, exists, exists, data))
+        activeConfig = if (exists) PIF_CONFIG_NAME else ""
+    }
+
     LaunchedEffect(Unit) {
-        val pifDir = File(PIF_PATH)
-        if (!pifDir.exists()) {
-            pifDir.mkdirs()
-        }
         refreshStatus()
     }
 
     fun updateConfig(key: String, value: Any) {
-        val activeFile = configFiles.find { it.isActive }
-        val fileName = activeFile?.fileName ?: "pif.json"
-        val pifDir = File(PIF_PATH)
-        if (!pifDir.exists()) pifDir.mkdirs()
-        val file = File(pifDir, fileName)
-
         try {
-            if (fileName.endsWith(".json")) {
-                val content = if (file.exists()) file.readText() else ""
-                val json = try { JSONObject(content) } catch (e: Exception) { JSONObject() }
-                json.put(key, value)
-                file.writeText(json.toString(2))
-            } else {
-                val lines = if (file.exists()) file.readLines().toMutableList() else mutableListOf()
-                val keyStr = "$key="
-                val idx = lines.indexOfFirst { it.trim().startsWith(keyStr) }
-                if (idx != -1) {
-                    lines[idx] = "$key=$value"
-                } else {
-                    lines.add("$key=$value")
-                }
-                file.writeText(lines.joinToString("\n"))
-            }
-            file.setReadable(true, false)
+            val existing = Settings.Secure.getString(context.contentResolver, PIF_CONFIG_KEY)
+            val json = try { JSONObject(existing ?: "") } catch (e: Exception) { JSONObject() }
+            json.put(key, value)
+            Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, json.toString(2))
             refreshStatus()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to update config", e)
@@ -230,15 +208,12 @@ fun PlayIntegrityFixContent(
                 
                 when (result) {
                     is PifFetchResult.Success -> {
-                        val pifDir = File(PIF_PATH)
-                        if (!pifDir.exists()) {
-                            pifDir.mkdirs()
-                        }
-                        
-                        val targetFile = File(pifDir, "pif.json")
-                        targetFile.writeText(result.pifData.toString(2))
-                        targetFile.setReadable(true, false)
-                        
+                        Settings.Secure.putString(
+                            context.contentResolver,
+                            PIF_CONFIG_KEY,
+                            result.pifData.toString(2)
+                        )
+
                         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                         am.forceStopPackage(VENDING_PACKAGE)
                         
@@ -267,32 +242,17 @@ fun PlayIntegrityFixContent(
         if (result.resultCode == Activity.RESULT_OK) {
             result.data?.data?.let { uri ->
                 try {
-                    val pifDir = File(PIF_PATH)
-                    if (!pifDir.exists()) {
-                        pifDir.mkdirs()
-                    }
-                    
-                    val targetFileName = importTargetFile.ifEmpty {
-                        val fileName = uri.lastPathSegment?.substringAfterLast('/') ?: "pif.prop"
-                        if (fileName.endsWith(".json")) "custom.pif.json" else "custom.pif.prop"
-                    }
-                    
-                    val inputStream = context.contentResolver.openInputStream(uri)
-                    val pifFile = File(pifDir, targetFileName)
-                    
-                    inputStream?.use { input ->
-                        pifFile.outputStream().use { output ->
-                            input.copyTo(output)
-                        }
-                    }
-                    
-                    pifFile.setReadable(true, false)
-                    
+                    val raw = context.contentResolver.openInputStream(uri)?.use { input ->
+                        input.readBytes().toString(StandardCharsets.UTF_8)
+                    } ?: ""
+
+                    val normalized = normalizePifPayload(raw)
+                    Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, normalized)
+
                     val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
                     am.forceStopPackage(VENDING_PACKAGE)
-                    
-                    Toast.makeText(context, context.getString(R.string.imported_as, targetFileName), Toast.LENGTH_SHORT).show()
-                    importTargetFile = ""
+
+                    Toast.makeText(context, context.getString(R.string.imported_as, PIF_CONFIG_NAME), Toast.LENGTH_SHORT).show()
                     refreshStatus()
                 } catch (e: Exception) {
                     Log.e(TAG, "Failed to import PIF config: ${e.message}")
@@ -300,7 +260,6 @@ fun PlayIntegrityFixContent(
                 }
             }
         }
-        importTargetFile = ""
     }
     
     if (showDeleteDialog) {
@@ -312,8 +271,7 @@ fun PlayIntegrityFixContent(
                 TextButton(
                     onClick = {
                         try {
-                            val pifDir = File(PIF_PATH)
-                            File(pifDir, deleteTargetFile).delete()
+                            Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, null)
                             Toast.makeText(context, context.getString(R.string.deleted_file, deleteTargetFile), Toast.LENGTH_SHORT).show()
                             refreshStatus()
                         } catch (e: Exception) {
@@ -562,8 +520,7 @@ fun PlayIntegrityFixContent(
                         }
                         
                         FilledTonalButton(
-                            onClick = { 
-                                importTargetFile = activeConfigFile.fileName
+                            onClick = {
                                 val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                                     addCategory(Intent.CATEGORY_OPENABLE)
                                     type = "*/*"
@@ -637,269 +594,7 @@ fun PlayIntegrityFixContent(
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-        
-        val inactiveConfigFiles = configFiles.filter { !it.isActive }
-        var configSectionExpanded by remember { mutableStateOf(false) }
-        val existingInactiveCount = inactiveConfigFiles.count { it.exists }
-        
-        if (inactiveConfigFiles.isNotEmpty()) {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize(),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceBright
-                )
-            ) {
-                Column {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { configSectionExpanded = !configSectionExpanded }
-                            .padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            Icons.Default.Description,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.size(24.dp)
-                        )
-                        
-                        Spacer(modifier = Modifier.width(12.dp))
-                        
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = "Other Config Files",
-                                style = MaterialTheme.typography.titleSmall,
-                                fontWeight = FontWeight.Medium
-                            )
-                            Text(
-                                text = "$existingInactiveCount of ${inactiveConfigFiles.size} configured",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                        
-                        Icon(
-                            if (configSectionExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                            contentDescription = if (configSectionExpanded) "Collapse" else "Expand",
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                    
-                    if (configSectionExpanded) {
-                        Column(
-                            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-                        ) {
-                            Text(
-                                text = "Priority: custom.pif.* > pif.* (first found is used)",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.padding(bottom = 12.dp)
-                            )
-                            
-                            inactiveConfigFiles.forEachIndexed { index, config ->
-                                ConfigFileCard(
-                                    config = config,
-                                    isFirst = index == 0,
-                                    isLast = index == inactiveConfigFiles.lastIndex,
-                                    onImport = { fileName ->
-                                        importTargetFile = fileName
-                                        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                                            addCategory(Intent.CATEGORY_OPENABLE)
-                                            type = "*/*"
-                                        }
-                                        pifPicker.launch(intent)
-                                    },
-                                    onDelete = { fileName ->
-                                        deleteTargetFile = fileName
-                                        showDeleteDialog = true
-                                    }
-                                )
-                                
-                                if (index < inactiveConfigFiles.lastIndex) {
-                                    Spacer(modifier = Modifier.height(8.dp))
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
         Spacer(modifier = Modifier.height(24.dp))
-    }
-}
-
-@Composable
-fun ConfigFileCard(
-    config: ConfigFileState,
-    isFirst: Boolean,
-    isLast: Boolean,
-    onImport: (String) -> Unit,
-    onDelete: (String) -> Unit
-) {
-    var expanded by remember { mutableStateOf(config.isActive) }
-    
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .animateContentSize(),
-        shape = RoundedCornerShape(16.dp),
-        color = when {
-            config.isActive -> MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
-            config.exists -> MaterialTheme.colorScheme.surfaceBright.copy(alpha = 0.5f)
-            else -> MaterialTheme.colorScheme.surfaceBright.copy(alpha = 0.2f)
-        }
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { if (config.exists) expanded = !expanded },
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                StatusIcon(
-                    exists = config.exists,
-                    isActive = config.isActive
-                )
-                
-                Spacer(modifier = Modifier.width(12.dp))
-                
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = config.fileName,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = if (config.isActive) FontWeight.Bold else FontWeight.Medium
-                    )
-                    Text(
-                        text = when {
-                            config.isActive -> "Active - Currently in use"
-                            config.exists -> "Available - Overridden by higher priority"
-                            else -> "Not configured"
-                        },
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-                
-                if (config.exists) {
-                    IconButton(onClick = { expanded = !expanded }) {
-                        Icon(
-                            if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                            contentDescription = if (expanded) "Collapse" else "Expand"
-                        )
-                    }
-                }
-            }
-            
-            Spacer(modifier = Modifier.height(12.dp))
-            
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                if (config.exists) {
-                    OutlinedButton(
-                        onClick = { onDelete(config.fileName) },
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text("Delete")
-                    }
-                }
-                
-                FilledTonalButton(
-                    onClick = { onImport(config.fileName) },
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Icon(Icons.Default.Upload, contentDescription = null, modifier = Modifier.size(18.dp))
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(if (config.exists) stringResource(R.string.replace) else stringResource(R.string.import_text_verb))
-                }
-            }
-            
-            if (expanded && config.exists && config.data.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(12.dp))
-                
-                Surface(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp),
-                    color = MaterialTheme.colorScheme.surfaceBright.copy(alpha = 0.7f)
-                ) {
-                    Column(
-                        modifier = Modifier.padding(12.dp)
-                    ) {
-                        val displayKeys = listOf(
-                            "FINGERPRINT", "MODEL", "MANUFACTURER", "BRAND",
-                            "PRODUCT", "DEVICE", "SECURITY_PATCH", "DEVICE_INITIAL_SDK_INT"
-                        )
-                        
-                        displayKeys.forEach { key ->
-                            config.data[key]?.let { value ->
-                                ConfigValueRow(key, value)
-                            }
-                        }
-                        
-                        val settingKeys = config.data.keys.filter { 
-                            it.startsWith("spoof") || it == "DEBUG" 
-                        }
-                        if (settingKeys.isNotEmpty()) {
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = "Settings",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.primary,
-                                fontWeight = FontWeight.Bold
-                            )
-                            settingKeys.forEach { key ->
-                                config.data[key]?.let { value ->
-                                    ConfigValueRow(key, value)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun StatusIcon(exists: Boolean, isActive: Boolean) {
-    Box(
-        modifier = Modifier
-            .size(32.dp)
-            .clip(CircleShape)
-            .background(
-                when {
-                    isActive -> Color(0xFF10B981)
-                    exists -> MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
-                    else -> MaterialTheme.colorScheme.outline.copy(alpha = 0.2f)
-                }
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        Icon(
-            imageVector = when {
-                isActive -> Icons.Default.Check
-                exists -> Icons.Default.Description
-                else -> Icons.Default.Close
-            },
-            contentDescription = null,
-            tint = when {
-                isActive -> Color.White
-                exists -> MaterialTheme.colorScheme.onSurface
-                else -> MaterialTheme.colorScheme.outline
-            },
-            modifier = Modifier.size(18.dp)
-        )
     }
 }
 
@@ -931,37 +626,22 @@ private sealed class PifFetchResult {
     data class Error(val message: String) : PifFetchResult()
 }
 
-private fun readConfigData(file: File): Map<String, String> {
-    if (!file.exists()) return emptyMap()
-    
-    return try {
-        val content = file.readText()
-        val result = mutableMapOf<String, String>()
-        
-        if (file.name.endsWith(".json")) {
-            val json = JSONObject(content)
-            json.keys().forEach { key ->
-                result[key] = json.optString(key, "")
-            }
-        } else {
-            content.lines().forEach { line ->
-                val trimmed = line.trim()
-                if (trimmed.isNotEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//")) {
-                    val eqIndex = trimmed.indexOf('=')
-                    if (eqIndex > 0) {
-                        val key = trimmed.substring(0, eqIndex).trim()
-                        val value = trimmed.substring(eqIndex + 1).trim()
-                        result[key] = value
-                    }
-                }
-            }
+private fun normalizePifPayload(raw: String): String {
+    val trimmed = raw.trim()
+    if (trimmed.isEmpty()) return "{}"
+    if (trimmed.startsWith("{")) return trimmed
+    val json = JSONObject()
+    trimmed.lines().forEach { line ->
+        val stripped = line.trim()
+        if (stripped.isEmpty() || stripped.startsWith("#") || stripped.startsWith("//")) return@forEach
+        val eq = stripped.indexOf('=')
+        if (eq > 0) {
+            val key = stripped.substring(0, eq).trim()
+            val value = stripped.substring(eq + 1).trim().substringBefore('#').trim()
+            if (key.isNotEmpty()) json.put(key, value)
         }
-        
-        result
-    } catch (e: Exception) {
-        Log.e(TAG, "Failed to read config: ${e.message}")
-        emptyMap()
     }
+    return json.toString(2)
 }
 
 private fun fetchBetaPifFromGoogle(): PifFetchResult {
