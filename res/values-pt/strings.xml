@@ -441,7 +441,7 @@
     <string name="dynamic_bar_guide_keyguard">On the lock screen, the chip appears at the bottom with playback controls and quick actions.</string>
     <string name="dynamic_bar_guide_chip_title">Chip appearance</string>
     <string name="dynamic_bar_guide_swipe_title">Swipe to cycle</string>
-    <string name="dynamic_bar_guide_expand_title">Tap to expand</string>
+    <string name="dynamic_bar_guide_expand_title">Toque para expandir</string>
     <string name="dynamic_bar_guide_dismiss_title">Swipe to dismiss</string>
     <string name="dynamic_bar_guide_keyguard_title">Lock screen chip</string>
     <string name="dynamic_bar_footer_title">About Dynamic Bar</string>
@@ -560,6 +560,11 @@
     <string name="routines_url_hint">URL</string>
     <string name="routines_body_hint">Request body (optional)</string>
     <string name="routines_timeout_hint">Timeout (seconds)</string>
+    <string name="routines_ip_use_regex">Match by regex</string>
+    <string name="routines_ip_regex_hint">Regex (e.g. ^192\\.168\\.)</string>
+    <string name="routines_http_ignore_ssl">Ignore SSL certificate errors</string>
+    <string name="routines_http_require_validated">Require validated internet</string>
+    <string name="routines_http_require_validated_summary">Disable to allow sign-in to captive portals</string>
     <string name="ax_bravia_engine">AxBravia Engine</string>
     <string name="ax_bravia_engine_summary">Color enhancement and sharpening</string>
     <string name="ax_bravia_engine_mode">Enhancement mode</string>
