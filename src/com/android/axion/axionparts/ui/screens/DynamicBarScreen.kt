@@ -54,9 +54,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Alarm
 import androidx.compose.material.icons.filled.BatteryChargingFull
 import androidx.compose.material.icons.filled.Bluetooth
-import androidx.compose.material.icons.filled.Cast
 import androidx.compose.material.icons.filled.ContentCopy
-import androidx.compose.material.icons.filled.DensitySmall
 import androidx.compose.material.icons.filled.FiberManualRecord
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.FlashlightOn
@@ -70,7 +68,6 @@ import androidx.compose.material.icons.filled.SwipeLeft
 import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material.icons.filled.TouchApp
 import androidx.compose.material.icons.filled.Vibration
-import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material.icons.filled.VpnKey
 import androidx.compose.material.icons.filled.Wifi
 import androidx.compose.material3.Icon
@@ -139,8 +136,6 @@ private data class EventToggle(
 )
 
 private val EVENT_TOGGLES = listOf(
-    EventToggle("screen_recording", R.string.dynamic_bar_event_recording, R.string.dynamic_bar_event_recording_summary, Icons.Filled.FiberManualRecord),
-    EventToggle("privacy", R.string.dynamic_bar_event_privacy, R.string.dynamic_bar_event_privacy_summary, Icons.Filled.Videocam),
     EventToggle("audio_recording", R.string.dynamic_bar_event_audio_recording, R.string.dynamic_bar_event_audio_recording_summary, Icons.Filled.Mic),
     EventToggle("media", R.string.dynamic_bar_event_media, R.string.dynamic_bar_event_media_summary, Icons.Filled.MusicNote),
     EventToggle("notification", R.string.dynamic_bar_event_notification, R.string.dynamic_bar_event_notification_summary, Icons.Filled.Notifications),
@@ -154,7 +149,6 @@ private val EVENT_TOGGLES = listOf(
     EventToggle("vpn", R.string.dynamic_bar_event_vpn, R.string.dynamic_bar_event_vpn_summary, Icons.Filled.VpnKey),
     EventToggle("clipboard", R.string.dynamic_bar_event_clipboard, R.string.dynamic_bar_event_clipboard_summary, Icons.Filled.ContentCopy),
     EventToggle("torch", R.string.dynamic_bar_event_torch, R.string.dynamic_bar_event_torch_summary, Icons.Filled.FlashlightOn),
-    EventToggle("casting", R.string.dynamic_bar_event_casting, R.string.dynamic_bar_event_casting_summary, Icons.Filled.Cast),
     EventToggle("promoted_ongoing", R.string.dynamic_bar_event_ongoing, R.string.dynamic_bar_event_ongoing_summary, Icons.Filled.Notifications),
     EventToggle("sports", R.string.dynamic_bar_event_sports, R.string.dynamic_bar_event_sports_summary, Icons.Filled.SportsScore),
     EventToggle("app_switch", R.string.dynamic_bar_event_app_switch, R.string.dynamic_bar_event_app_switch_summary, Icons.Filled.SwapHoriz),
@@ -164,7 +158,6 @@ private val EVENT_TOGGLES = listOf(
 private const val SETTINGS_KEY_ENABLED = "ax_dynamic_bar_enabled"
 private const val SETTINGS_KEY_KEYGUARD_ENABLED = "ax_dynamic_bar_keyguard_enabled"
 private const val SETTINGS_KEY_EVENTS = "ax_dynamic_bar_events"
-private const val SETTINGS_KEY_COMPACT_NOTIFICATIONS = "ax_dynamic_bar_compact_notifications"
 
 @Composable
 fun DynamicBarScreen(onBackClick: () -> Unit) {
@@ -280,32 +273,6 @@ internal fun DynamicBarMainContent(
                                 enabled = toggle.typeId !in disabledEvents,
                                 onToggle = { toggleEvent(toggle.typeId, it) },
                             )
-                        }
-                        if (toggle.typeId == "notification" && "notification" !in disabledEvents) {
-                            item {
-                                SecureSettingSwitch(
-                                    settingKey = SETTINGS_KEY_COMPACT_NOTIFICATIONS,
-                                    title = stringResource(R.string.dynamic_bar_compact_notifications),
-                                    summary = stringResource(R.string.dynamic_bar_compact_notifications_summary),
-                                    defaultValue = true,
-                                    customIcon = {
-                                        Box(
-                                            modifier = Modifier
-                                                .size(40.dp)
-                                                .clip(CircleShape)
-                                                .background(MaterialTheme.colorScheme.primaryContainer),
-                                            contentAlignment = Alignment.Center,
-                                        ) {
-                                            Icon(
-                                                Icons.Filled.DensitySmall,
-                                                contentDescription = null,
-                                                tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                                                modifier = Modifier.size(20.dp),
-                                            )
-                                        }
-                                    },
-                                )
-                            }
                         }
                     }
                 }
