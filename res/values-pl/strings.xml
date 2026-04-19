@@ -560,6 +560,11 @@
     <string name="routines_url_hint">URL</string>
     <string name="routines_body_hint">Request body (optional)</string>
     <string name="routines_timeout_hint">Timeout (seconds)</string>
+    <string name="routines_ip_use_regex">Match by regex</string>
+    <string name="routines_ip_regex_hint">Regex (e.g. ^192\\.168\\.)</string>
+    <string name="routines_http_ignore_ssl">Ignore SSL certificate errors</string>
+    <string name="routines_http_require_validated">Require validated internet</string>
+    <string name="routines_http_require_validated_summary">Disable to allow sign-in to captive portals</string>
     <string name="ax_bravia_engine">AxBravia Engine</string>
     <string name="ax_bravia_engine_summary">Color enhancement and sharpening</string>
     <string name="ax_bravia_engine_mode">Enhancement mode</string>
