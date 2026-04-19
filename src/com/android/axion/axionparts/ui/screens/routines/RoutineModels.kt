@@ -129,7 +129,7 @@ sealed interface Condition {
         val radiusMeters: Float,
     ) : Condition
 
-    data class IpAddress(val cidr: String) : Condition
+    data class IpAddress(val cidr: String, val isRegex: Boolean = false) : Condition
 
     companion object {
         const val TYPE_TIME_RANGE = "time_range"
@@ -187,6 +187,8 @@ sealed interface Action {
         val headers: Map<String, String> = emptyMap(),
         val body: String? = null,
         val timeoutMs: Int = DEFAULT_HTTP_TIMEOUT_MS,
+        val ignoreSslErrors: Boolean = false,
+        val requireValidatedInternet: Boolean = true,
     ) : Action
 
     companion object {

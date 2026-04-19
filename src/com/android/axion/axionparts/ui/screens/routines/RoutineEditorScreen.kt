@@ -1116,6 +1116,10 @@ private fun ActionConfigDialog(
             var timeoutSec by remember {
                 mutableStateOf(((init?.timeoutMs ?: 15000) / 1000).toString())
             }
+            var ignoreSsl by remember { mutableStateOf(init?.ignoreSslErrors ?: false) }
+            var requireValidated by remember {
+                mutableStateOf(init?.requireValidatedInternet ?: true)
+            }
             val methods = listOf("GET", "POST", "PUT", "DELETE", "PATCH")
             AlertDialog(
                 onDismissRequest = onDismiss,
@@ -1167,6 +1171,30 @@ private fun ActionConfigDialog(
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
                         )
+                        Spacer(Modifier.height(8.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                stringResource(R.string.routines_http_ignore_ssl),
+                                modifier = Modifier.weight(1f),
+                            )
+                            ExpressiveSwitch(
+                                checked = ignoreSsl,
+                                onCheckedChange = { ignoreSsl = it },
+                            )
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(stringResource(R.string.routines_http_require_validated))
+                                Text(
+                                    stringResource(R.string.routines_http_require_validated_summary),
+                                    style = MaterialTheme.typography.bodySmall,
+                                )
+                            }
+                            ExpressiveSwitch(
+                                checked = requireValidated,
+                                onCheckedChange = { requireValidated = it },
+                            )
+                        }
                     }
                 },
                 confirmButton = {
@@ -1187,6 +1215,8 @@ private fun ActionConfigDialog(
                                     headers = headers,
                                     body = body.takeIf { it.isNotBlank() },
                                     timeoutMs = timeout,
+                                    ignoreSslErrors = ignoreSsl,
+                                    requireValidatedInternet = requireValidated,
                                 )
                             )
                         },
@@ -1444,24 +1474,42 @@ private fun ConditionConfigDialog(
         )
 
         Condition.TYPE_IP_ADDRESS -> {
-            var cidr by remember {
-                mutableStateOf((initial as? Condition.IpAddress)?.cidr ?: "")
-            }
+            val initIp = initial as? Condition.IpAddress
+            var cidr by remember { mutableStateOf(initIp?.cidr ?: "") }
+            var useRegex by remember { mutableStateOf(initIp?.isRegex ?: false) }
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_ip_address)) },
                 text = {
-                    OutlinedTextField(
-                        value = cidr,
-                        onValueChange = { cidr = it },
-                        label = { Text(stringResource(R.string.routines_cidr_hint)) },
-                        singleLine = true,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
+                    Column {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                stringResource(R.string.routines_ip_use_regex),
+                                modifier = Modifier.weight(1f),
+                            )
+                            ExpressiveSwitch(
+                                checked = useRegex,
+                                onCheckedChange = { useRegex = it },
+                            )
+                        }
+                        Spacer(Modifier.height(8.dp))
+                        OutlinedTextField(
+                            value = cidr,
+                            onValueChange = { cidr = it },
+                            label = {
+                                Text(stringResource(
+                                    if (useRegex) R.string.routines_ip_regex_hint
+                                    else R.string.routines_cidr_hint
+                                ))
+                            },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
                 },
                 confirmButton = {
                     TextButton(
-                        onClick = { onConfirm(Condition.IpAddress(cidr.trim())) },
+                        onClick = { onConfirm(Condition.IpAddress(cidr.trim(), useRegex)) },
                         enabled = cidr.isNotBlank(),
                     ) { Text(confirmLabel) }
                 },

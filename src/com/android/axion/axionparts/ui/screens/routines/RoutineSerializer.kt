@@ -258,6 +258,7 @@ class RoutineSerializer {
             is Condition.IpAddress -> {
                 put(KEY_TYPE, Condition.TYPE_IP_ADDRESS)
                 put(KEY_CIDR, condition.cidr)
+                put(KEY_IS_REGEX, condition.isRegex)
             }
         }
     }
@@ -305,6 +306,7 @@ class RoutineSerializer {
             )
             Condition.TYPE_IP_ADDRESS -> Condition.IpAddress(
                 cidr = json.getString(KEY_CIDR),
+                isRegex = json.optBoolean(KEY_IS_REGEX, false),
             )
             else -> throw IllegalArgumentException(
                 "Unknown condition type: ${json.getString(KEY_TYPE)}"
@@ -378,6 +380,8 @@ class RoutineSerializer {
                 }
                 action.body?.let { put(KEY_BODY, it) }
                 put(KEY_TIMEOUT_MS, action.timeoutMs)
+                put(KEY_IGNORE_SSL_ERRORS, action.ignoreSslErrors)
+                put(KEY_REQUIRE_VALIDATED_INTERNET, action.requireValidatedInternet)
             }
         }
     }
@@ -434,6 +438,8 @@ class RoutineSerializer {
                 headers = deserializeStringMap(json.optJSONObject(KEY_HEADERS)),
                 body = json.optString(KEY_BODY, null),
                 timeoutMs = json.optInt(KEY_TIMEOUT_MS, Action.DEFAULT_HTTP_TIMEOUT_MS),
+                ignoreSslErrors = json.optBoolean(KEY_IGNORE_SSL_ERRORS, false),
+                requireValidatedInternet = json.optBoolean(KEY_REQUIRE_VALIDATED_INTERNET, true),
             )
             else -> throw IllegalArgumentException(
                 "Unknown action type: ${json.getString(KEY_TYPE)}"
@@ -514,5 +520,8 @@ class RoutineSerializer {
         private const val KEY_HEADERS = "headers"
         private const val KEY_BODY = "body"
         private const val KEY_TIMEOUT_MS = "timeout_ms"
+        private const val KEY_IS_REGEX = "is_regex"
+        private const val KEY_IGNORE_SSL_ERRORS = "ignore_ssl_errors"
+        private const val KEY_REQUIRE_VALIDATED_INTERNET = "require_validated_internet"
     }
 }
