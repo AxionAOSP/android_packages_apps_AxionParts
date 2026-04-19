@@ -391,18 +391,12 @@
     <string name="dynamic_bar_keyguard_enable_summary">Kilit ekranında kontroller ve hızlı işlemlerle birlikte Dinamik Çubuk çipini göster</string>
     <string name="dynamic_bar_events">Etkinlikler</string>
     <string name="dynamic_bar_events_summary">Dinamik Çubuk\'ta hangi etkinliklerin görüneceğini seçin</string>
-    <string name="dynamic_bar_event_recording">Ekran Kaydı</string>
-    <string name="dynamic_bar_event_recording_summary">Etkin ekran kaydı göstergesi</string>
-    <string name="dynamic_bar_event_privacy">Gizlilik Göstergeleri</string>
-    <string name="dynamic_bar_event_privacy_summary">Kamera ve mikrofon erişim uyarıları</string>
     <string name="dynamic_bar_event_audio_recording">Ses Kaydı</string>
     <string name="dynamic_bar_event_audio_recording_summary">Ses kaydedici ve ses yakalama</string>
     <string name="dynamic_bar_event_media">Medya Oynatma</string>
     <string name="dynamic_bar_event_media_summary">Şu an çalınan müzik ve ses kontrolleri</string>
     <string name="dynamic_bar_event_notification">Bildirimler</string>
     <string name="dynamic_bar_event_notification_summary">Gelen bildirim uyarıları</string>
-    <string name="dynamic_bar_compact_notifications">Kompakt bildirimler</string>
-    <string name="dynamic_bar_compact_notifications_summary">Bildirimleri önce küçük bir parça olarak göster, genişletmek için dokun</string>
     <string name="dynamic_bar_event_timer">Zamanlayıcı</string>
     <string name="dynamic_bar_event_timer_summary">Saat uygulamasından geri sayım sayacı</string>
     <string name="dynamic_bar_event_stopwatch">Kronometre</string>
@@ -423,8 +417,6 @@
     <string name="dynamic_bar_event_clipboard_summary">Kopyalanan metin ve resim önizlemesi</string>
     <string name="dynamic_bar_event_torch">El feneri</string>
     <string name="dynamic_bar_event_torch_summary">El feneri anahtarı ve parlaklık</string>
-    <string name="dynamic_bar_event_casting">Ekran yansıtma</string>
-    <string name="dynamic_bar_event_casting_summary">Ekran yansıtma ve medya yansıtma durumu</string>
     <string name="dynamic_bar_event_ongoing">Devam Eden Etkinlikler</string>
     <string name="dynamic_bar_event_ongoing_summary">Navigasyon, teslimatlar ve diğer canlı etkinlikler</string>
     <string name="dynamic_bar_event_sports">Spor</string>
