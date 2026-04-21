@@ -138,7 +138,6 @@ private data class EventToggle(
 private val EVENT_TOGGLES = listOf(
     EventToggle("audio_recording", R.string.dynamic_bar_event_audio_recording, R.string.dynamic_bar_event_audio_recording_summary, Icons.Filled.Mic),
     EventToggle("media", R.string.dynamic_bar_event_media, R.string.dynamic_bar_event_media_summary, Icons.Filled.MusicNote),
-    EventToggle("notification", R.string.dynamic_bar_event_notification, R.string.dynamic_bar_event_notification_summary, Icons.Filled.Notifications),
     EventToggle("timer", R.string.dynamic_bar_event_timer, R.string.dynamic_bar_event_timer_summary, Icons.Filled.Timer),
     EventToggle("stopwatch", R.string.dynamic_bar_event_stopwatch, R.string.dynamic_bar_event_stopwatch_summary, Icons.Filled.Timer),
     EventToggle("alarm", R.string.dynamic_bar_event_alarm, R.string.dynamic_bar_event_alarm_summary, Icons.Filled.Alarm),
