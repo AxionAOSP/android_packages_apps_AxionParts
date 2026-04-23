@@ -82,8 +82,10 @@
     <string name="style">Stil</string>
     <string name="render_style">Stil redare</string>
     <string name="render_style_summary">Alege stilul vizual al vizualizatorului</string>
-    <string name="solid_lines">Linii solide</string>
-    <string name="fading_blocks">Blocuri estompate</string>
+    <string name="style_bars">Bare</string>
+    <string name="style_fading_blocks">Blocuri estompate</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Mod Culoare</string>
     <string name="visualizer_color_summary">Personalizează culoarea vizualizatorului</string>
     <string name="lava_lamp">Lampă de lavă</string>
