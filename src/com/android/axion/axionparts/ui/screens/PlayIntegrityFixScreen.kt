@@ -24,10 +24,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,27 +42,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Description
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Upload
-import com.android.axion.compose.preferences.ExpressiveSwitch
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -79,14 +68,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.android.axion.compose.preferences.ClickablePreference
+import com.android.axion.compose.preferences.LocalPreferencePosition
+import com.android.axion.compose.preferences.PreferenceGroup
+import com.android.axion.compose.preferences.PreferencePosition
+import com.android.axion.compose.preferences.SwitchPreference
+import com.android.axion.compose.preferences.preferenceShape
 import com.android.axion.axionparts.R
 import com.android.axion.compose.scaffold.AxionScaffold
 import kotlinx.coroutines.Dispatchers
@@ -378,222 +370,135 @@ fun PlayIntegrityFixContent(
         }
         
         Spacer(modifier = Modifier.height(16.dp))
-        
+
         val activeConfigFile = configFiles.find { it.isActive }
-        var activeConfigExpanded by remember { mutableStateOf(false) }
-        
-        if (activeConfigFile != null) {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize(),
-                shape = RoundedCornerShape(20.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                )
-            ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { activeConfigExpanded = !activeConfigExpanded },
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .size(40.dp)
-                                .clip(CircleShape)
-                                .background(MaterialTheme.colorScheme.primary),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                Icons.Default.Check,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onPrimary,
-                                modifier = Modifier.size(24.dp)
-                            )
-                        }
-                        
-                        Spacer(modifier = Modifier.width(12.dp))
-                        
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = "Active Config",
-                                style = MaterialTheme.typography.labelMedium,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
-                            )
-                            Text(
-                                text = activeConfigFile.fileName,
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                        
-                        Icon(
-                            if (activeConfigExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                            contentDescription = if (activeConfigExpanded) "Collapse" else "Expand",
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    }
-                    
-                    if (activeConfigFile.data.isNotEmpty()) {
-                        Spacer(modifier = Modifier.height(12.dp))
-                        
-                        val model = activeConfigFile.data["MODEL"]
-                        val securityPatch = activeConfigFile.data["SECURITY_PATCH"]
-                        val fingerprint = activeConfigFile.data["FINGERPRINT"]
-                        
-                        Surface(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { activeConfigExpanded = !activeConfigExpanded },
-                            shape = RoundedCornerShape(12.dp),
-                            color = MaterialTheme.colorScheme.surfaceBright.copy(alpha = 0.5f)
-                        ) {
-                            Column(
-                                modifier = Modifier.padding(12.dp)
-                            ) {
-                                if (model != null) {
-                                    ConfigValueRow("MODEL", model)
-                                }
-                                if (securityPatch != null) {
-                                    ConfigValueRow("SECURITY_PATCH", securityPatch)
-                                }
-                                if (fingerprint != null) {
-                                    ConfigValueRow("FINGERPRINT", fingerprint)
-                                }
-                                
-                                if (activeConfigExpanded) {
-                                    val displayKeys = listOf(
-                                        "MANUFACTURER", "BRAND", "PRODUCT", "DEVICE", "DEVICE_INITIAL_SDK_INT"
-                                    )
-                                    displayKeys.forEach { key ->
-                                        activeConfigFile.data[key]?.let { value ->
-                                            ConfigValueRow(key, value)
-                                        }
-                                    }
-                                    
-                                    val settingKeys = activeConfigFile.data.keys.filter { 
-                                        it.startsWith("spoof") || it == "DEBUG" || it == "verboseLogs"
-                                    }
-                                    
-                                    if (settingKeys.isNotEmpty()) {
-                                        Spacer(modifier = Modifier.height(8.dp))
-                                        
-                                        Text(
-                                            text = "Settings",
-                                            style = MaterialTheme.typography.labelMedium,
-                                            color = MaterialTheme.colorScheme.primary,
-                                            fontWeight = FontWeight.Bold
-                                        )
-                                        
-                                        settingKeys.forEach { key ->
-                                            activeConfigFile.data[key]?.let { value ->
-                                                ConfigValueRow(key, value)
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    
-                    Spacer(modifier = Modifier.height(12.dp))
-                    
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        OutlinedButton(
-                            onClick = { 
-                                deleteTargetFile = activeConfigFile.fileName
-                                showDeleteDialog = true 
-                            },
-                            modifier = Modifier.weight(1f),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                containerColor = MaterialTheme.colorScheme.errorContainer,
-                                contentColor = MaterialTheme.colorScheme.error
-                            )
-                        ) {
-                            Icon(Icons.Default.Delete, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text("Delete")
-                        }
-                        
-                        FilledTonalButton(
-                            onClick = {
-                                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                                    addCategory(Intent.CATEGORY_OPENABLE)
-                                    type = "*/*"
-                                }
-                                pifPicker.launch(intent)
-                            },
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Icon(Icons.Default.Upload, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text("Replace")
-                        }
-                    }
-                }
-            }
-            
-            Spacer(modifier = Modifier.height(16.dp))
-        }
 
         val isSpoofPhotos = activeConfigFile?.data?.get("spoofPhotos")?.let {
             it == "true" || it == "1"
         } ?: false
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(24.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceBright
-            )
-        ) {
-            Row(
-                modifier = Modifier.padding(20.dp),
-                verticalAlignment = Alignment.CenterVertically
+        SwitchPreference(
+            title = stringResource(R.string.spoof_google_photos),
+            summary = stringResource(R.string.unlimited_backup),
+            icon = Icons.Default.Image,
+            checked = isSpoofPhotos,
+            onCheckedChange = { checked ->
+                updateConfig("spoofPhotos", checked.toString())
+            },
+            position = PreferencePosition.Single,
+        )
+
+        if (activeConfigFile != null) {
+            Spacer(modifier = Modifier.height(16.dp))
+
+            PreferenceGroup(
+                title = stringResource(R.string.active_config_title),
+                collapsible = true,
+                initiallyExpanded = false,
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        Icons.Default.Image,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimary,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.width(16.dp))
-
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = "Spoof Google Photos",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "Unlimited original quality backup",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-
-                ExpressiveSwitch(
-                    checked = isSpoofPhotos,
-                    onCheckedChange = { checked ->
-                        updateConfig("spoofPhotos", checked.toString())
+                item {
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = preferenceShape(LocalPreferencePosition.current),
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 16.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .clip(CircleShape)
+                                    .background(MaterialTheme.colorScheme.primary),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Icon(
+                                    Icons.Default.Check,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onPrimary,
+                                    modifier = Modifier.size(20.dp),
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = activeConfigFile.fileName,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                )
+                                activeConfigFile.data["MODEL"]?.let {
+                                    Text(
+                                        text = it,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.75f),
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis,
+                                    )
+                                }
+                            }
+                        }
                     }
-                )
+                }
+
+                if (activeConfigFile.data.isNotEmpty()) {
+                    item {
+                        Surface(
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = preferenceShape(LocalPreferencePosition.current),
+                            color = MaterialTheme.colorScheme.surfaceBright,
+                        ) {
+                            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+                                val displayKeys = listOf(
+                                    "MODEL", "SECURITY_PATCH", "FINGERPRINT",
+                                    "MANUFACTURER", "BRAND", "PRODUCT", "DEVICE", "DEVICE_INITIAL_SDK_INT",
+                                )
+                                displayKeys.forEach { key ->
+                                    activeConfigFile.data[key]?.let { ConfigValueRow(key, it) }
+                                }
+
+                                val settingKeys = activeConfigFile.data.keys.filter {
+                                    it.startsWith("spoof") || it == "DEBUG" || it == "verboseLogs"
+                                }
+                                if (settingKeys.isNotEmpty()) {
+                                    Spacer(modifier = Modifier.height(8.dp))
+                                    settingKeys.forEach { key ->
+                                        activeConfigFile.data[key]?.let { ConfigValueRow(key, it) }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                item {
+                    ClickablePreference(
+                        title = stringResource(R.string.replace),
+                        summary = stringResource(R.string.import_text_verb),
+                        icon = Icons.Default.Upload,
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                                addCategory(Intent.CATEGORY_OPENABLE)
+                                type = "*/*"
+                            }
+                            pifPicker.launch(intent)
+                        },
+                    )
+                }
+
+                item {
+                    ClickablePreference(
+                        title = stringResource(R.string.delete),
+                        summary = activeConfigFile.fileName,
+                        icon = Icons.Default.Delete,
+                        iconTint = MaterialTheme.colorScheme.error,
+                        onClick = {
+                            deleteTargetFile = activeConfigFile.fileName
+                            showDeleteDialog = true
+                        },
+                    )
+                }
             }
         }
 
