@@ -82,8 +82,10 @@
     <string name="style">Στυλ</string>
     <string name="render_style">Στυλ απόδοσης</string>
     <string name="render_style_summary">Επιλογή του οπτικού στυλ του οπτικοποιητή</string>
-    <string name="solid_lines">Συμπαγείς γραμμές</string>
-    <string name="fading_blocks">Μπλοκ που εξασθενούν</string>
+    <string name="style_bars">Μπάρες</string>
+    <string name="style_fading_blocks">Μπλοκ που εξασθενούν</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Λειτουργία Χρώματος</string>
     <string name="visualizer_color_summary">Προσαρμογή του χρώματος του οπτικοποιητή</string>
     <string name="lava_lamp">Λάμπα Λάβας</string>
