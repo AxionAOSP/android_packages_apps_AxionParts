@@ -82,8 +82,10 @@
     <string name="style">Stil</string>
     <string name="render_style">Renderingsstil</string>
     <string name="render_style_summary">Välj visualiserarens visuella stil</string>
-    <string name="solid_lines">Solida linjer</string>
-    <string name="fading_blocks">Bleknande block</string>
+    <string name="style_bars">Staplar</string>
+    <string name="style_fading_blocks">Bleknande block</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Färgläge</string>
     <string name="visualizer_color_summary">Anpassa färgen på visualiseraren</string>
     <string name="lava_lamp">Lavalampa</string>
