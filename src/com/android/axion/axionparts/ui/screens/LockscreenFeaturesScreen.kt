@@ -431,7 +431,12 @@ fun PulseVisualizerContent(modifier: Modifier = Modifier) {
                     key = "pulse_view_style",
                     title = stringResource(R.string.render_style),
                     summary = stringResource(R.string.render_style_summary),
-                    options = listOf("0" to "Solid Lines", "1" to "Fading Blocks"),
+                    options = listOf(
+                        "0" to stringResource(R.string.style_bars),
+                        "1" to stringResource(R.string.style_fading_blocks),
+                        "2" to stringResource(R.string.style_solid_line),
+                        "3" to stringResource(R.string.style_center_mirror),
+                    ),
                     defaultValue = "0",
                     dependencyKey = "visualizer_pulse_enabled",
                 )

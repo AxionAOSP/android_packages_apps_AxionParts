@@ -88,8 +88,10 @@
     <string name="style">Style</string>
     <string name="render_style">Render Style</string>
     <string name="render_style_summary">Choose the visual style of the visualizer</string>
-    <string name="solid_lines">Solid Lines</string>
-    <string name="fading_blocks">Fading Blocks</string>
+    <string name="style_bars">Bars</string>
+    <string name="style_fading_blocks">Fading Blocks</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Color Mode</string>
     <string name="visualizer_color_summary">Customize the color of the visualizer</string>
     <string name="lava_lamp">Lava Lamp</string>
