@@ -82,8 +82,10 @@
     <string name="style">Styl</string>
     <string name="render_style">Styl renderowania</string>
     <string name="render_style_summary">Wybierz styl wizualny wizualizatora</string>
-    <string name="solid_lines">Linie ciągłe</string>
-    <string name="fading_blocks">Znikające bloki</string>
+    <string name="style_bars">Słupki</string>
+    <string name="style_fading_blocks">Znikające bloki</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Tryb koloru</string>
     <string name="visualizer_color_summary">Dostosuj kolor wizualizatora</string>
     <string name="lava_lamp">Lampa lawowa</string>
