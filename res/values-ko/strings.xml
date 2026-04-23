@@ -82,8 +82,10 @@
     <string name="style">스타일</string>
     <string name="render_style">렌더 스타일</string>
     <string name="render_style_summary">시각화의 시각적 스타일 선택</string>
-    <string name="solid_lines">단색 선</string>
-    <string name="fading_blocks">페이딩 블록</string>
+    <string name="style_bars">바</string>
+    <string name="style_fading_blocks">페이딩 블록</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">색상 모드</string>
     <string name="visualizer_color_summary">시각화 색상 사용자 지정</string>
     <string name="lava_lamp">용암 램프</string>
