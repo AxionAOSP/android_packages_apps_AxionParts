@@ -82,8 +82,10 @@
     <string name="style">Styl</string>
     <string name="render_style">Styl vykreslování</string>
     <string name="render_style_summary">Vyberte vizuální styl vizualizéru</string>
-    <string name="solid_lines">Plné čáry</string>
-    <string name="fading_blocks">Mizející bloky</string>
+    <string name="style_bars">Sloupce</string>
+    <string name="style_fading_blocks">Mizející bloky</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Barevný režim</string>
     <string name="visualizer_color_summary">Přizpůsobit barvu vizualizéru</string>
     <string name="lava_lamp">Lávová lampa</string>
