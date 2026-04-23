@@ -39,7 +39,6 @@ import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Gamepad
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.ScreenshotMonitor
-import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.SportsEsports
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -97,7 +96,6 @@ fun EssentialsScreen(
                         onNavigateToTrickyStore = { currentSubScreen = "trickystore" },
                         onNavigateToPlayIntegrityFix = { currentSubScreen = "playintegrityfix" },
                         onNavigateToGameSpoofing = { currentSubScreen = "gamespoofing" },
-                        onNavigateToCustomRomHide = { currentSubScreen = "customromhide" },
                     )
                 }
             }
@@ -110,9 +108,6 @@ fun EssentialsScreen(
             "gamespoofing" -> {
                 GameSpoofingScreen(onBackClick = { currentSubScreen = null })
             }
-            "customromhide" -> {
-                CustomRomHideScreen(onBackClick = { currentSubScreen = null })
-            }
         }
     }
 }
@@ -124,7 +119,6 @@ private fun EssentialsContent(
     onNavigateToTrickyStore: () -> Unit = {},
     onNavigateToPlayIntegrityFix: () -> Unit = {},
     onNavigateToGameSpoofing: () -> Unit = {},
-    onNavigateToCustomRomHide: () -> Unit = {},
 ) {
     val context = LocalContext.current
 
