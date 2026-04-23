@@ -82,8 +82,10 @@
     <string name="style">スタイル</string>
     <string name="render_style">レンダースタイル</string>
     <string name="render_style_summary">ビジュアライザーの視覚スタイルを選択</string>
-    <string name="solid_lines">ソリッドライン</string>
-    <string name="fading_blocks">フェーディングブロック</string>
+    <string name="style_bars">バー</string>
+    <string name="style_fading_blocks">フェーディングブロック</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">カラーモード</string>
     <string name="visualizer_color_summary">ビジュアライザーの色をカスタマイズ</string>
     <string name="lava_lamp">ラバランプ</string>
