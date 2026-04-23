@@ -82,8 +82,10 @@
     <string name="style">Kiểu dáng</string>
     <string name="render_style">Kiểu kết xuất</string>
     <string name="render_style_summary">Chọn kiểu hiển thị của trình hiển thị</string>
-    <string name="solid_lines">Đường kẻ liền</string>
-    <string name="fading_blocks">Khối mờ dần</string>
+    <string name="style_bars">Thanh</string>
+    <string name="style_fading_blocks">Khối mờ dần</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Chế độ màu</string>
     <string name="visualizer_color_summary">Tùy chỉnh màu của trình hiển thị</string>
     <string name="lava_lamp">Đèn dung nham</string>
