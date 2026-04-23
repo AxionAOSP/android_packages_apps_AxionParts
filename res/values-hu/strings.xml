@@ -82,8 +82,10 @@
     <string name="style">Stílus</string>
     <string name="render_style">Megjelenítési stílus</string>
     <string name="render_style_summary">A vizualizáló vizuális stílusának kiválasztása</string>
-    <string name="solid_lines">Folytonos vonalak</string>
-    <string name="fading_blocks">Elhalványuló blokkok</string>
+    <string name="style_bars">Sávok</string>
+    <string name="style_fading_blocks">Elhalványuló blokkok</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Színmód</string>
     <string name="visualizer_color_summary">A vizualizáló színének testreszabása</string>
     <string name="lava_lamp">Lávalámpa</string>
