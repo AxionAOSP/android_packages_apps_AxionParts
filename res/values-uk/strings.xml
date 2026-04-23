@@ -82,8 +82,10 @@
     <string name="style">Стиль</string>
     <string name="render_style">Стиль рендерингу</string>
     <string name="render_style_summary">Виберіть візуальний стиль візуалізатора</string>
-    <string name="solid_lines">Суцільні лінії</string>
-    <string name="fading_blocks">Блоки, що зникають</string>
+    <string name="style_bars">Смуги</string>
+    <string name="style_fading_blocks">Блоки, що зникають</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Колірний режим</string>
     <string name="visualizer_color_summary">Налаштування кольору візуалізатора</string>
     <string name="lava_lamp">Лава-лампа</string>
