@@ -82,8 +82,10 @@
     <string name="style">Stil</string>
     <string name="render_style">Darstellungsstil</string>
     <string name="render_style_summary">Visuellen Stil des Visualizers wählen</string>
-    <string name="solid_lines">Durchgehende Linien</string>
-    <string name="fading_blocks">Verblassende Blöcke</string>
+    <string name="style_bars">Balken</string>
+    <string name="style_fading_blocks">Verblassende Blöcke</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Farbmodus</string>
     <string name="visualizer_color_summary">Farbe des Visualizers anpassen</string>
     <string name="lava_lamp">Lavalamp</string>
