@@ -82,8 +82,10 @@
     <string name="style">Stile</string>
     <string name="render_style">Stile di rendering</string>
     <string name="render_style_summary">Scegli lo stile visivo del visualizzatore</string>
-    <string name="solid_lines">Linee solide</string>
-    <string name="fading_blocks">Blocchi a dissolvenza</string>
+    <string name="style_bars">Barre</string>
+    <string name="style_fading_blocks">Blocchi a dissolvenza</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Modalità Colore</string>
     <string name="visualizer_color_summary">Personalizza il colore del visualizzatore</string>
     <string name="lava_lamp">Lava Lamp</string>
