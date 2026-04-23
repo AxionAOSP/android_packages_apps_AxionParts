@@ -82,8 +82,10 @@
     <string name="style">Tarz</string>
     <string name="render_style">İşleme Tarzı</string>
     <string name="render_style_summary">Görselleştiricinin görsel tarzını seçin</string>
-    <string name="solid_lines">Düz Çizgiler</string>
-    <string name="fading_blocks">Solan Bloklar</string>
+    <string name="style_bars">Çubuklar</string>
+    <string name="style_fading_blocks">Solan Bloklar</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Renk Modu</string>
     <string name="visualizer_color_summary">Görselleştiricinin rengini özelleştir</string>
     <string name="lava_lamp">Lav Lambası</string>
