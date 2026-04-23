@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:OptIn(ExperimentalMaterial3ExpressiveApi::class)
+
 package com.android.axion.axionparts.ui.screens
 
 import android.app.Activity
@@ -56,11 +58,12 @@ import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -68,7 +71,6 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -94,6 +96,7 @@ import com.android.axion.compose.preferences.*
 import android.provider.Settings
 import android.util.Base64
 import com.android.axion.compose.scaffold.AxionScaffold
+import com.android.axion.compose.sheet.BottomSheetDialog
 import java.nio.charset.StandardCharsets
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -347,7 +350,6 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
 @Composable
 fun AppPickerBottomSheet(onDismiss: () -> Unit) {
     val context = LocalContext.current
-    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     var searchQuery by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
@@ -432,12 +434,11 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
             }
         }
 
-    ModalBottomSheet(
-        onDismissRequest = {
+    BottomSheetDialog(
+        onDismiss = {
             saveTargetFile()
             onDismiss()
         },
-        sheetState = sheetState,
         containerColor = MaterialTheme.colorScheme.surface,
     ) {
         Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
@@ -513,7 +514,7 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
                     modifier = Modifier.fillMaxWidth().height(300.dp),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(stringResource(R.string.loading_apps))
+                    LoadingIndicator()
                 }
             } else {
                 LazyColumn(modifier = Modifier.fillMaxWidth().height(400.dp)) {
