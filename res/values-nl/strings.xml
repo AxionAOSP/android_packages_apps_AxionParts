@@ -82,8 +82,10 @@
     <string name="style">Stijl</string>
     <string name="render_style">Renderstijl</string>
     <string name="render_style_summary">Kies de visuele stijl van de visualisatie</string>
-    <string name="solid_lines">Ononderbroken lijnen</string>
-    <string name="fading_blocks">Vervagende blokken</string>
+    <string name="style_bars">Balken</string>
+    <string name="style_fading_blocks">Vervagende blokken</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Kleurmodus</string>
     <string name="visualizer_color_summary">Pas de kleur van de visualisatie aan</string>
     <string name="lava_lamp">Lavalamp</string>
