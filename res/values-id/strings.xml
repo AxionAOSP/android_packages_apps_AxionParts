@@ -82,8 +82,10 @@
     <string name="style">Gaya</string>
     <string name="render_style">Gaya render</string>
     <string name="render_style_summary">Pilih gaya visual untuk visualizer</string>
-    <string name="solid_lines">Garis solid</string>
-    <string name="fading_blocks">Blok memudar</string>
+    <string name="style_bars">Batang</string>
+    <string name="style_fading_blocks">Blok memudar</string>
+    <string name="style_solid_line">Solid Line</string>
+    <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Mode warna</string>
     <string name="visualizer_color_summary">Sesuaikan warna visualizer</string>
     <string name="lava_lamp">Lampu lava</string>
