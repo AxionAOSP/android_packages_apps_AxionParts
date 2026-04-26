@@ -51,6 +51,8 @@ import androidx.compose.material.icons.filled.BrightnessHigh
 import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Headphones
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.HourglassEmpty
 import androidx.compose.material.icons.filled.Notifications
@@ -227,6 +229,12 @@ fun RoutineEditorContent(
                     configuringTriggerType = triggerTypeOf(trigger)
                 },
                 onRemove = { triggers = triggers.toMutableList().also { it.removeAt(index) } },
+                onMoveUp = if (index > 0) {
+                    { triggers = triggers.moved(index, index - 1) }
+                } else null,
+                onMoveDown = if (index < triggers.lastIndex) {
+                    { triggers = triggers.moved(index, index + 1) }
+                } else null,
             )
         }
         AddItemButton(stringResource(R.string.routines_add_trigger)) {
@@ -246,6 +254,12 @@ fun RoutineEditorContent(
                 onRemove = {
                     conditions = conditions.toMutableList().also { it.removeAt(index) }
                 },
+                onMoveUp = if (index > 0) {
+                    { conditions = conditions.moved(index, index - 1) }
+                } else null,
+                onMoveDown = if (index < conditions.lastIndex) {
+                    { conditions = conditions.moved(index, index + 1) }
+                } else null,
             )
         }
         AddItemButton(stringResource(R.string.routines_add_condition)) {
@@ -264,6 +278,12 @@ fun RoutineEditorContent(
                     configuringActionType = actionTypeOf(action)
                 },
                 onRemove = { actions = actions.toMutableList().also { it.removeAt(index) } },
+                onMoveUp = if (index > 0) {
+                    { actions = actions.moved(index, index - 1) }
+                } else null,
+                onMoveDown = if (index < actions.lastIndex) {
+                    { actions = actions.moved(index, index + 1) }
+                } else null,
             )
         }
         AddItemButton(stringResource(R.string.routines_add_action)) {
@@ -415,7 +435,13 @@ private fun SectionHeader(title: String) {
 }
 
 @Composable
-private fun ItemCard(text: String, onClick: () -> Unit = {}, onRemove: () -> Unit) {
+private fun ItemCard(
+    text: String,
+    onClick: () -> Unit = {},
+    onRemove: () -> Unit,
+    onMoveUp: (() -> Unit)? = null,
+    onMoveDown: (() -> Unit)? = null,
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -437,6 +463,24 @@ private fun ItemCard(text: String, onClick: () -> Unit = {}, onRemove: () -> Uni
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
             )
+            if (onMoveUp != null) {
+                IconButton(onClick = { onMoveUp() }, enabled = true) {
+                    Icon(
+                        Icons.Default.KeyboardArrowUp,
+                        contentDescription = stringResource(R.string.routines_move_up),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+            if (onMoveDown != null) {
+                IconButton(onClick = { onMoveDown() }, enabled = true) {
+                    Icon(
+                        Icons.Default.KeyboardArrowDown,
+                        contentDescription = stringResource(R.string.routines_move_down),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
             IconButton(onClick = onRemove) {
                 Icon(
                     Icons.Default.Close,
@@ -446,6 +490,14 @@ private fun ItemCard(text: String, onClick: () -> Unit = {}, onRemove: () -> Uni
             }
         }
     }
+}
+
+private fun <T> List<T>.moved(from: Int, to: Int): List<T> {
+    if (from == to || from !in indices || to !in indices) return this
+    val mutable = toMutableList()
+    val item = mutable.removeAt(from)
+    mutable.add(to, item)
+    return mutable.toList()
 }
 
 @Composable
@@ -940,25 +992,84 @@ private fun ActionConfigDialog(
         )
 
         Action.TYPE_SEND_BROADCAST -> {
-            var action by remember {
-                mutableStateOf((initial as? Action.SendBroadcast)?.action ?: "")
-            }
+            val init = initial as? Action.SendBroadcast
+            var action by remember { mutableStateOf(init?.action ?: "") }
+            var mode by remember { mutableStateOf(init?.mode ?: Action.SendBroadcast.Mode.BROADCAST) }
+            var componentPackage by remember { mutableStateOf(init?.componentPackage ?: "") }
+            var componentClass by remember { mutableStateOf(init?.componentClass ?: "") }
+            var extras by remember { mutableStateOf(init?.extras ?: emptyMap()) }
+            val canSave = action.isNotBlank() ||
+                (componentPackage.isNotBlank() && componentClass.isNotBlank())
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_send_broadcast)) },
                 text = {
-                    OutlinedTextField(
-                        value = action,
-                        onValueChange = { action = it },
-                        label = { Text(stringResource(R.string.routines_broadcast_hint)) },
-                        singleLine = true,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
+                    Column(
+                        modifier = Modifier.heightIn(max = 480.dp).verticalScroll(rememberScrollState()),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                            FilterChip(
+                                selected = mode == Action.SendBroadcast.Mode.BROADCAST,
+                                onClick = { mode = Action.SendBroadcast.Mode.BROADCAST },
+                                label = { Text(stringResource(R.string.routines_intent_mode_broadcast)) },
+                            )
+                            FilterChip(
+                                selected = mode == Action.SendBroadcast.Mode.START_SERVICE,
+                                onClick = { mode = Action.SendBroadcast.Mode.START_SERVICE },
+                                label = { Text(stringResource(R.string.routines_intent_mode_service)) },
+                            )
+                            FilterChip(
+                                selected = mode == Action.SendBroadcast.Mode.START_FOREGROUND_SERVICE,
+                                onClick = { mode = Action.SendBroadcast.Mode.START_FOREGROUND_SERVICE },
+                                label = { Text(stringResource(R.string.routines_intent_mode_fg_service)) },
+                            )
+                        }
+                        OutlinedTextField(
+                            value = action,
+                            onValueChange = { action = it },
+                            label = { Text(stringResource(R.string.routines_broadcast_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        OutlinedTextField(
+                            value = componentPackage,
+                            onValueChange = { componentPackage = it },
+                            label = { Text(stringResource(R.string.routines_intent_component_package)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        OutlinedTextField(
+                            value = componentClass,
+                            onValueChange = { componentClass = it },
+                            label = { Text(stringResource(R.string.routines_intent_component_class)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Text(
+                            text = stringResource(R.string.routines_intent_extras_label),
+                            style = MaterialTheme.typography.titleSmall,
+                        )
+                        IntentExtrasEditor(
+                            extras = extras,
+                            onExtrasChange = { extras = it },
+                        )
+                    }
                 },
                 confirmButton = {
                     TextButton(
-                        onClick = { onConfirm(Action.SendBroadcast(action.trim())) },
-                        enabled = action.isNotBlank(),
+                        onClick = {
+                            onConfirm(
+                                Action.SendBroadcast(
+                                    action = action.trim().takeIf { it.isNotBlank() },
+                                    mode = mode,
+                                    componentPackage = componentPackage.trim().takeIf { it.isNotBlank() },
+                                    componentClass = componentClass.trim().takeIf { it.isNotBlank() },
+                                    extras = extras,
+                                )
+                            )
+                        },
+                        enabled = canSave,
                     ) { Text(confirmLabel) }
                 },
                 dismissButton = {
@@ -2071,4 +2182,106 @@ private fun actionTypeOf(action: Action): String = when (action) {
     is Action.SetSensorPrivacy -> Action.TYPE_SET_SENSOR_PRIVACY
     is Action.PlaySound -> Action.TYPE_PLAY_SOUND
     is Action.HttpRequest -> Action.TYPE_HTTP_REQUEST
+}
+
+@Composable
+private fun IntentExtrasEditor(
+    extras: Map<String, Action.SendBroadcast.IntentExtra>,
+    onExtrasChange: (Map<String, Action.SendBroadcast.IntentExtra>) -> Unit,
+) {
+    val orderedKeys = remember(extras) { extras.keys.toList() }
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        orderedKeys.forEach { key ->
+            val extra = extras[key] ?: return@forEach
+            IntentExtraRow(
+                key = key,
+                extra = extra,
+                onChange = { newKey, newExtra ->
+                    val updated = extras.toMutableMap()
+                    updated.remove(key)
+                    if (newKey.isNotBlank()) {
+                        updated[newKey] = newExtra
+                    }
+                    onExtrasChange(updated.toMap())
+                },
+                onRemove = {
+                    onExtrasChange(extras - key)
+                },
+            )
+        }
+        TextButton(
+            onClick = {
+                val baseName = "key"
+                var index = 1
+                var candidate = baseName
+                while (extras.containsKey(candidate)) {
+                    index += 1
+                    candidate = "$baseName$index"
+                }
+                onExtrasChange(
+                    extras + (candidate to Action.SendBroadcast.IntentExtra(
+                        Action.SendBroadcast.IntentExtra.ExtraType.STRING, "",
+                    ))
+                )
+            },
+        ) {
+            Icon(Icons.Default.Add, contentDescription = null)
+            Spacer(Modifier.width(4.dp))
+            Text(stringResource(R.string.routines_intent_extras_add))
+        }
+    }
+}
+
+@Composable
+private fun IntentExtraRow(
+    key: String,
+    extra: Action.SendBroadcast.IntentExtra,
+    onChange: (newKey: String, newExtra: Action.SendBroadcast.IntentExtra) -> Unit,
+    onRemove: () -> Unit,
+) {
+    var localKey by remember(key) { mutableStateOf(key) }
+    var localValue by remember(key, extra.value) { mutableStateOf(extra.value) }
+    var localType by remember(key, extra.type) { mutableStateOf(extra.type) }
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            OutlinedTextField(
+                value = localKey,
+                onValueChange = {
+                    localKey = it
+                    onChange(it.trim(), Action.SendBroadcast.IntentExtra(localType, localValue))
+                },
+                label = { Text(stringResource(R.string.routines_intent_extras_key)) },
+                singleLine = true,
+                modifier = Modifier.weight(1f),
+            )
+            IconButton(onClick = onRemove) {
+                Icon(Icons.Default.Close, contentDescription = null)
+            }
+        }
+        OutlinedTextField(
+            value = localValue,
+            onValueChange = {
+                localValue = it
+                onChange(localKey.trim(), Action.SendBroadcast.IntentExtra(localType, it))
+            },
+            label = { Text(stringResource(R.string.routines_intent_extras_value)) },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Action.SendBroadcast.IntentExtra.ExtraType.values().forEach { type ->
+                FilterChip(
+                    selected = localType == type,
+                    onClick = {
+                        localType = type
+                        onChange(localKey.trim(), Action.SendBroadcast.IntentExtra(type, localValue))
+                    },
+                    label = { Text(type.name.lowercase()) },
+                )
+            }
+        }
+    }
 }
