@@ -383,7 +383,7 @@
     <string name="resolution_aspect_error">Unsupported aspect ratio. Keep it between 1:2 and 3:1.</string>
     <string name="action_apply">Aplicar</string>
     <string name="action_cancel">Cancelar</string>
-    <string name="action_reset_default">Reset to Default</string>
+    <string name="action_reset_default">Restaurar ao padrão</string>
     <!-- Dynamic Bar -->
     <string name="dynamic_bar">Dynamic Bar</string>
     <string name="dynamic_bar_summary">Smart status bar chip for live events</string>
