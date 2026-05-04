@@ -8,7 +8,7 @@
     <string name="save">שמירה</string>
     <string name="delete">Delete</string>
     <string name="remove">הסרה</string>
-    <string name="add">Add</string>
+    <string name="add">הוספה</string>
     <string name="edit">עריכה</string>
     <string name="replace">החלפה</string>
     <string name="import_text">ייבוא</string>
@@ -343,8 +343,8 @@
     <!-- Quick Settings Tile -->
     <string name="qs_tile_performance">ביצועים</string>
     <string name="qs_tile_pc_mode">PC Mode</string>
-    <string name="qs_tile_on">On</string>
-    <string name="qs_tile_off">Off</string>
+    <string name="qs_tile_on">מופעלות</string>
+    <string name="qs_tile_off">כבויות</string>
     <!-- Multitasking Screen -->
     <string name="multitasking">ריבוי משימות</string>
     <string name="multitasking_summary">Sidebar &amp; PC mode</string>
@@ -573,7 +573,7 @@
     <string name="ax_bravia_engine">AxBravia Engine</string>
     <string name="ax_bravia_engine_summary">Color enhancement and sharpening</string>
     <string name="ax_bravia_engine_mode">Enhancement mode</string>
-    <string name="ax_bravia_engine_off">Off</string>
+    <string name="ax_bravia_engine_off">כבויות</string>
     <string name="ax_bravia_engine_vivid">Vivid</string>
     <string name="ax_bravia_engine_natural">Natural</string>
     <string name="ax_bravia_engine_cinema">Cinema</string>
