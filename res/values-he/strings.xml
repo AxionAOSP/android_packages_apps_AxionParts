@@ -19,11 +19,11 @@
     <string name="search">Search</string>
     <string name="create">יצירה</string>
     <string name="settings">הגדרות</string>
-    <string name="general">General</string>
+    <string name="general">כללי</string>
     <string name="active">Active</string>
-    <string name="inactive">Inactive</string>
-    <string name="disabled">Disabled</string>
-    <string name="custom">Custom</string>
+    <string name="inactive">לא פעיל</string>
+    <string name="disabled">מושבת</string>
+    <string name="custom">מותאם אישית</string>
     <!-- Navigation -->
     <string name="customize">התאמה אישית</string>
     <string name="nav_customize">התאמה אישית</string>
@@ -38,7 +38,7 @@
     <string name="lockscreen_subtitle">Edge light, media &amp; visualizer</string>
     <string name="ui_features">תכונות ממשק משתמש</string>
     <string name="ui_features_subtitle">שורת המצב, ההגדרות המהירות ועוד</string>
-    <string name="sound">Sound</string>
+    <string name="sound">צליל</string>
     <string name="sound_subtitle">Per-app volume &amp; multi audio</string>
     <string name="gestures">Gestures</string>
     <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
@@ -110,7 +110,7 @@
     <string name="start_time_summary">When AOD turns on</string>
     <string name="end_time">End time</string>
     <string name="end_time_summary">When AOD turns off</string>
-    <string name="when_to_show">When to Show</string>
+    <string name="when_to_show">מתי להציג</string>
     <string name="aod_on_charge">AOD on Charge</string>
     <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
     <string name="custom_schedule">Custom Schedule</string>
@@ -184,23 +184,23 @@
     <string name="gesture_action_last_app">Last app</string>
     <string name="gesture_action_close_app">Close app</string>
     <string name="gesture_action_play_pause">Play/Pause music</string>
-    <string name="gesture_action_flashlight">Flashlight</string>
-    <string name="gesture_action_screenshot">Screenshot</string>
+    <string name="gesture_action_flashlight">פנס</string>
+    <string name="gesture_action_screenshot">צילום מסך</string>
     <string name="gesture_action_volume_panel">Volume panel</string>
     <string name="gesture_action_clear_notifications">Clear notifications</string>
     <string name="gesture_action_notifications_panel">Notifications panel</string>
-    <string name="gesture_action_expand_qs">Expand QS panel</string>
-    <string name="gesture_action_ringer_modes">Ringer modes</string>
+    <string name="gesture_action_expand_qs">הרחבת מסך ההגדרות המהירות</string>
+    <string name="gesture_action_ringer_modes">מצבי צלצול</string>
     <!-- Dashboard -->
     <string name="features">Features</string>
     <!-- Essentials Screen -->
     <string name="essentials">Essentials</string>
     <string name="essentials_summary">Notifications, gaming &amp; security</string>
-    <string name="essential_notifications">Essential Notifications</string>
+    <string name="essential_notifications">התראות חיוניות</string>
     <string name="quicklook">QuickLook</string>
     <string name="quicklook_settings_summary">Summarize what to appear on quick look</string>
-    <string name="gaming">Gaming</string>
-    <string name="security">Security</string>
+    <string name="gaming">משחקים</string>
+    <string name="security">אבטחה</string>
     <!-- Essential Apps -->
     <string name="selected_apps">Selected Apps</string>
     <string name="selected_apps_description">Filter what\'s important. These apps stay grouped at the top.</string>
@@ -215,7 +215,7 @@
     <string name="show_system_apps">Show System Apps</string>
     <string name="selected_count">%1$d selected</string>
     <!-- GameSpace -->
-    <string name="gamespace">GameSpace</string>
+    <string name="gamespace">מרחב המשחקים</string>
     <string name="gamespace_summary">Optimize your gaming experience with GameSpace features</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Game Spoofing</string>
@@ -237,11 +237,11 @@
     <string name="preset_name">Preset Name</string>
     <string name="property_number">Property %1$d</string>
     <string name="key">Key</string>
-    <string name="value">Value</string>
+    <string name="value">ערך</string>
     <string name="add_property">Add Property</string>
     <string name="save_as_preset_title">Save as Preset</string>
     <string name="preset_saved">Preset saved</string>
-    <string name="edit_app">Edit %1$s</string>
+    <string name="edit_app">עריכת %1$s</string>
     <string name="add_app_title">Add App</string>
     <!-- Device Profiles -->
     <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
@@ -316,11 +316,11 @@
     <!-- Performance Screen -->
     <string name="performance">ביצועים</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
-    <string name="performance_mode">Performance Mode</string>
+    <string name="performance_mode">מצב ביצועים</string>
     <string name="maximum_performance_enabled">Maximum performance enabled</string>
-    <string name="balanced_mode">Balanced mode</string>
-    <string name="boost_controls">BOOST CONTROLS</string>
-    <string name="frequency_control">FREQUENCY CONTROL</string>
+    <string name="balanced_mode">מצב מאוזן</string>
+    <string name="boost_controls">בקרת האצה</string>
+    <string name="frequency_control">בקרת תדירות</string>
     <string name="display_boost">Display Boost</string>
     <string name="touch_boost">Touch Boost</string>
     <string name="boost_active">Boost Active</string>
@@ -330,8 +330,8 @@
     <string name="big_cluster">Big Cluster</string>
     <string name="prime_cluster">Prime Cluster</string>
     <string name="boost_frequency">Boost Frequency</string>
-    <string name="minimum_frequency">Minimum Frequency</string>
-    <string name="maximum_frequency">Maximum Frequency</string>
+    <string name="minimum_frequency">תדירות מינימלית</string>
+    <string name="maximum_frequency">תדירות מרבית</string>
     <!-- GPU -->
     <string name="gpu">מעבד גרפי</string>
     <string name="graphics_performance">ביצועים גרפיים</string>
@@ -356,7 +356,7 @@
     <string name="pc_mode_settings">PC Mode Settings</string>
     <string name="pc_mode_summary">Configure screen resolution and behavior</string>
     <string name="pc_mode_title">PC Mode</string>
-    <string name="pref_category_general">General</string>
+    <string name="pref_category_general">כללי</string>
     <string name="pref_category_display">Display</string>
     <string name="pref_category_taskbar">Taskbar</string>
     <string name="pref_enable_pc_mode_title">Enable PC Mode</string>
@@ -417,7 +417,7 @@
     <string name="dynamic_bar_event_vpn_summary">Active VPN connection indicator</string>
     <string name="dynamic_bar_event_clipboard">Clipboard</string>
     <string name="dynamic_bar_event_clipboard_summary">Copied text and image preview</string>
-    <string name="dynamic_bar_event_torch">Flashlight</string>
+    <string name="dynamic_bar_event_torch">פנס</string>
     <string name="dynamic_bar_event_torch_summary">Flashlight toggle and brightness</string>
     <string name="dynamic_bar_event_ongoing">Ongoing Activities</string>
     <string name="dynamic_bar_event_ongoing_summary">Navigation, deliveries, and other live activities</string>
@@ -481,7 +481,7 @@
     <string name="routines_intent_extras_label">Extras</string>
     <string name="routines_intent_extras_add">Add extra</string>
     <string name="routines_intent_extras_key">Key</string>
-    <string name="routines_intent_extras_value">Value</string>
+    <string name="routines_intent_extras_value">ערך</string>
     <string name="routines_move_up">Move up</string>
     <string name="routines_move_down">Move down</string>
     <string name="routines_notif_title_hint">Notification title</string>
