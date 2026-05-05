@@ -383,7 +383,7 @@
     <string name="resolution_aspect_error">Unsupported aspect ratio. Keep it between 1:2 and 3:1.</string>
     <string name="action_apply">Aplicar</string>
     <string name="action_cancel">Cancelar</string>
-    <string name="action_reset_default">Reset to Default</string>
+    <string name="action_reset_default">Restaurar ao padrão</string>
     <!-- Dynamic Bar -->
     <string name="dynamic_bar">Dynamic Bar</string>
     <string name="dynamic_bar_summary">Smart status bar chip for live events</string>
@@ -472,7 +472,18 @@
     <string name="routines_next">Next</string>
     <string name="routines_ssid_hint">WiFi network name (optional)</string>
     <string name="routines_device_hint">Device address (optional)</string>
-    <string name="routines_broadcast_hint">Broadcast action</string>
+    <string name="routines_broadcast_hint">Intent action (e.g. android.intent.action.MAIN)</string>
+    <string name="routines_intent_mode_broadcast">Broadcast</string>
+    <string name="routines_intent_mode_service">Service</string>
+    <string name="routines_intent_mode_fg_service">FG Service</string>
+    <string name="routines_intent_component_package">Component package (optional)</string>
+    <string name="routines_intent_component_class">Component class (optional)</string>
+    <string name="routines_intent_extras_label">Extras</string>
+    <string name="routines_intent_extras_add">Add extra</string>
+    <string name="routines_intent_extras_key">Chave</string>
+    <string name="routines_intent_extras_value">Valor</string>
+    <string name="routines_move_up">Move up</string>
+    <string name="routines_move_down">Move down</string>
     <string name="routines_notif_title_hint">Notification title</string>
     <string name="routines_notif_text_hint">Notification text</string>
     <string name="routines_setting_key_hint">Setting key</string>
