@@ -119,7 +119,8 @@
     <string name="screen_off_aod">AOD vid släckt skärm</string>
     <string name="screen_off_aod_summary">Håll AOD aktiv när skärmen släcks</string>
     <string name="screen_off_aod_duration">AOD Duration</string>
-    <string name="screen_off_aod_duration_summary">How long to show AOD before entering doze</string>
+    <string name="screen_off_aod_duration_summary">How long to keep AOD visible after screen off. Set to 0 to disable</string>
+    <string name="seconds_short">s</string>
     <string name="screen_off_animation">Skärmsläckningsanimering</string>
     <string name="screen_off_animation_summary">Animera övergången till AOD</string>
     <!-- UI Features -->
@@ -317,6 +318,27 @@
     <string name="performance">Prestanda</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
     <string name="performance_mode">Prestandaläge</string>
+    <string name="background_manager">Background Manager</string>
+    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="background_manager_policy">Policy</string>
+    <string name="background_manager_apps">Apps</string>
+    <string name="background_app_policy">App policy</string>
+    <string name="background_app_policy_summary">Choose how strictly background apps are handled</string>
+    <string name="background_app_policy_normal">Normal</string>
+    <string name="background_app_policy_aggressive">Aggressive</string>
+    <string name="freezer_level">Freezer level</string>
+    <string name="freezer_level_summary">Select how the background freezer should run</string>
+    <string name="freezer_level_disabled">Inaktiverad</string>
+    <string name="freezer_level_process">Process freezer</string>
+    <string name="freezer_level_package">Package freezer</string>
+    <string name="package_freezer_apps">Package freezer apps</string>
+    <string name="package_freezer_apps_summary">Apps in this list can be frozen after moving to the background</string>
+    <string name="keep_alive_apps">Keep-alive apps</string>
+    <string name="keep_alive_apps_summary">Choose up to %1$d apps to keep resident and protected from background cleanup</string>
+    <string name="keep_alive_apps_limit_message">Keep-alive is limited to %1$d apps</string>
+    <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
+    <string name="restricted_background_apps">Restricted background apps</string>
+    <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
     <string name="maximum_performance_enabled">Maximal prestanda aktiverad</string>
     <string name="balanced_mode">Balanserat läge</string>
     <string name="boost_controls">BOOST-KONTROLLER</string>
@@ -577,4 +599,8 @@
     <string name="ax_bravia_engine_vivid">Vivid</string>
     <string name="ax_bravia_engine_natural">Natural</string>
     <string name="ax_bravia_engine_cinema">Cinema</string>
+    <plurals name="max_apps_selected">
+        <item quantity="one">You can select up to %1$d app</item>
+        <item quantity="other">You can select up to %1$d apps</item>
+    </plurals>
 </resources>
