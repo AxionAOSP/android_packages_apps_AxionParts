@@ -126,7 +126,8 @@
     <string name="screen_off_aod">Screen Off AOD</string>
     <string name="screen_off_aod_summary">Keep AOD active when screen turns off</string>
     <string name="screen_off_aod_duration">AOD Duration</string>
-    <string name="screen_off_aod_duration_summary">How long to show AOD before entering doze</string>
+    <string name="screen_off_aod_duration_summary">How long to keep AOD visible after screen off. Set to 0 to disable</string>
+    <string name="seconds_short">s</string>
     <string name="screen_off_animation">Screen Off Animation</string>
     <string name="screen_off_animation_summary">Animate the transition to AOD</string>
     

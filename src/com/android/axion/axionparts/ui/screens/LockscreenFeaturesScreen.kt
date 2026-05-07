@@ -957,8 +957,7 @@ private fun ColorPickerDialog(
 fun AodContent(modifier: Modifier = Modifier) {
     val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
     val scheduleMode by rememberSettingString("aod_schedule_mode", SettingsType.SECURE, "0")
-    val screenOffAnimation by rememberSettingInt("screen_off_aod_animation", SettingsType.SYSTEM, 1)
-    val screenOffAodEnabled by rememberSettingInt("screen_off_aod_enabled", SettingsType.SYSTEM, 0)
+    val secondsUnit = " " + stringResource(R.string.seconds_short)
 
     val tapSupported = SystemProperties.getBoolean(
         "persist.sys.ax_doze_tap_pulse_supported", false)
@@ -1010,49 +1009,17 @@ fun AodContent(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        PreferenceGroup(title = stringResource(R.string.general)) {
+        PreferenceGroup(title = stringResource(R.string.screen_off)) {
             item {
-                SystemSettingSwitch(
-                    settingKey = "screen_off_aod_animation",
-                    title = stringResource(R.string.screen_off_animation),
-                    summary = stringResource(R.string.screen_off_animation_summary),
-                    defaultValue = true,
+                SecureSettingSlider(
+                    settingKey = "screen_off_aod_duration",
+                    title = stringResource(R.string.screen_off_aod_duration),
+                    summary = stringResource(R.string.screen_off_aod_duration_summary),
+                    min = 0,
+                    max = 10,
+                    defaultValue = 0,
+                    unit = secondsUnit,
                 )
-            }
-        }
-
-        AnimatedVisibility(
-            visible = screenOffAnimation == 1,
-            enter = fadeIn() + expandVertically(),
-            exit = fadeOut() + shrinkVertically(),
-        ) {
-            Column {
-                Spacer(modifier = Modifier.height(12.dp))
-
-                PreferenceGroup(title = stringResource(R.string.screen_off)) {
-                    item {
-                        SystemSettingSwitch(
-                            settingKey = "screen_off_aod_enabled",
-                            title = stringResource(R.string.screen_off_aod),
-                            summary = stringResource(R.string.screen_off_aod_summary),
-                            defaultValue = false,
-                        )
-                    }
-                    if (screenOffAodEnabled == 1) {
-                        item {
-                            SystemSettingSlider(
-                                settingKey = "screen_off_aod_duration",
-                                title = stringResource(R.string.screen_off_aod_duration),
-                                summary = stringResource(R.string.screen_off_aod_duration_summary),
-                                min = 1000,
-                                max = 10000,
-                                interval = 500,
-                                defaultValue = 4000,
-                                formatValue = { "${it / 1000f}s" },
-                            )
-                        }
-                    }
-                }
             }
         }
 
