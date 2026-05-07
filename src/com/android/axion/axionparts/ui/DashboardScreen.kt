@@ -22,6 +22,7 @@ import android.content.ComponentName
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.provider.Settings
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
@@ -70,41 +71,66 @@ fun DashboardScreen() {
     val isExpandedLayout =
         windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
 
-    var showAppPicker by rememberSaveable { mutableStateOf(false) }
+    var appPickerTitleRes by rememberSaveable { mutableStateOf(R.string.select_apps) }
     var appPickerSelectedApps by rememberSaveable { mutableStateOf<Set<String>>(emptySet()) }
+    var appPickerSettingKey by rememberSaveable { mutableStateOf(ESSENTIAL_APP_LIST_KEY) }
+    var appPickerMaxSelection by rememberSaveable { mutableStateOf<Int?>(null) }
+    var appPickerMaxSelectionMessageRes by rememberSaveable { mutableStateOf<Int?>(null) }
+    var appPickerFilterTypeName by rememberSaveable {
+        mutableStateOf(AppFilterType.LAUNCHABLE_USER_ONLY.name)
+    }
     var currentDetailScreen by rememberSaveable { mutableStateOf<String?>(null) }
+    var detailBackStack by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
+    var detailTransitionForward by rememberSaveable { mutableStateOf(true) }
     val dashboardScrollState = rememberScrollState()
 
-    val context = LocalContext.current
-    val contentResolver = context.contentResolver
-
     fun navigateToDetail(screen: String) {
+        detailBackStack = emptyList()
+        detailTransitionForward = true
         currentDetailScreen = screen
     }
 
-    fun closeDetail() {
-        currentDetailScreen = null
+    fun navigateToNestedDetail(screen: String) {
+        currentDetailScreen?.let { detailBackStack = detailBackStack + it }
+        detailTransitionForward = true
+        currentDetailScreen = screen
     }
 
-    if (showAppPicker) {
-        BackHandler { showAppPicker = false }
-        AppPickerScreen(
-            title = stringResource(R.string.select_essential_apps),
-            selectedApps = appPickerSelectedApps,
-            onBackClick = { showAppPicker = false },
-            onAppsSelected = { apps ->
-                saveEssentialApps(contentResolver, apps)
-                showAppPicker = false
-            },
-        )
-        return
+    fun navigateToAppPicker(
+        titleRes: Int,
+        selectedApps: Set<String>,
+        settingKey: String,
+        maxSelection: Int? = null,
+        maxSelectionMessageRes: Int? = null,
+        filterType: AppFilterType = AppFilterType.LAUNCHABLE_USER_ONLY,
+    ) {
+        appPickerTitleRes = titleRes
+        appPickerSelectedApps = selectedApps
+        appPickerSettingKey = settingKey
+        appPickerMaxSelection = maxSelection
+        appPickerMaxSelectionMessageRes = maxSelectionMessageRes
+        appPickerFilterTypeName = filterType.name
+        navigateToNestedDetail("app_picker")
+    }
+
+    fun closeDetail() {
+        detailTransitionForward = false
+        if (detailBackStack.isNotEmpty()) {
+            currentDetailScreen = detailBackStack.last()
+            detailBackStack = detailBackStack.dropLast(1)
+        } else {
+            currentDetailScreen = null
+        }
     }
 
     val motionScheme = MaterialTheme.motionScheme
 
     val appPickerCallback: (Set<String>) -> Unit = { selectedApps ->
-        appPickerSelectedApps = selectedApps
-        showAppPicker = true
+        navigateToAppPicker(
+            titleRes = R.string.select_essential_apps,
+            selectedApps = selectedApps,
+            settingKey = ESSENTIAL_APP_LIST_KEY,
+        )
     }
 
     if (currentDetailScreen != null) {
@@ -130,7 +156,15 @@ fun DashboardScreen() {
                         DetailPaneContent(
                             screen = currentDetailScreen!!,
                             onClose = { closeDetail() },
+                            onNavigateToDetail = { navigateToNestedDetail(it) },
                             onNavigateToAppPicker = appPickerCallback,
+                            onNavigateToManagedAppPicker = ::navigateToAppPicker,
+                            appPickerTitleRes = appPickerTitleRes,
+                            appPickerSelectedApps = appPickerSelectedApps,
+                            appPickerSettingKey = appPickerSettingKey,
+                            appPickerMaxSelection = appPickerMaxSelection,
+                            appPickerMaxSelectionMessageRes = appPickerMaxSelectionMessageRes,
+                            appPickerFilterTypeName = appPickerFilterTypeName,
                         )
                     } else {
                         EmptyDetailPane()
@@ -144,7 +178,7 @@ fun DashboardScreen() {
         AnimatedContent(
             targetState = currentDetailScreen,
             transitionSpec = {
-                if (targetState != null) {
+                if (detailTransitionForward) {
                     (slideInHorizontally(motionScheme.defaultSpatialSpec()) { it } + fadeIn(motionScheme.defaultEffectsSpec())).togetherWith(
                         slideOutHorizontally(motionScheme.defaultSpatialSpec()) { -it / 3 } + fadeOut(motionScheme.defaultEffectsSpec())
                     )
@@ -160,7 +194,15 @@ fun DashboardScreen() {
                 DetailScreen(
                     screen = detailScreen,
                     onBackClick = { closeDetail() },
+                    onNavigateToDetail = { navigateToNestedDetail(it) },
                     onNavigateToAppPicker = appPickerCallback,
+                    onNavigateToManagedAppPicker = ::navigateToAppPicker,
+                    appPickerTitleRes = appPickerTitleRes,
+                    appPickerSelectedApps = appPickerSelectedApps,
+                    appPickerSettingKey = appPickerSettingKey,
+                    appPickerMaxSelection = appPickerMaxSelection,
+                    appPickerMaxSelectionMessageRes = appPickerMaxSelectionMessageRes,
+                    appPickerFilterTypeName = appPickerFilterTypeName,
                 )
             } else {
                 DashboardContent(
@@ -329,7 +371,15 @@ private fun DashboardContent(
 private fun DetailScreen(
     screen: String,
     onBackClick: () -> Unit,
+    onNavigateToDetail: (String) -> Unit = {},
     onNavigateToAppPicker: (Set<String>) -> Unit = {},
+    onNavigateToManagedAppPicker: (Int, Set<String>, String, Int?, Int?, AppFilterType) -> Unit = { _, _, _, _, _, _ -> },
+    appPickerTitleRes: Int = R.string.select_apps,
+    appPickerSelectedApps: Set<String> = emptySet(),
+    appPickerSettingKey: String = ESSENTIAL_APP_LIST_KEY,
+    appPickerMaxSelection: Int? = null,
+    appPickerMaxSelectionMessageRes: Int? = null,
+    appPickerFilterTypeName: String = AppFilterType.LAUNCHABLE_USER_ONLY.name,
 ) {
     when (screen) {
         "lockscreen" -> LockscreenFeaturesScreen(onBackClick = onBackClick)
@@ -341,7 +391,26 @@ private fun DetailScreen(
         "gamespoofing" -> GameSpoofingScreen(onBackClick = onBackClick)
         "pcmode" -> PcModeScreen(onBackClick = onBackClick)
         "routines" -> RoutinesScreen(onBackClick = onBackClick)
-        "performance" -> PerformanceScreen(onBackClick = onBackClick)
+        "performance" ->
+            PerformanceScreen(
+                onBackClick = onBackClick,
+                onNavigateToDetail = onNavigateToDetail,
+            )
+        "background_manager" ->
+            BackgroundManagerScreen(
+                onBackClick = onBackClick,
+                onNavigateToAppPicker = onNavigateToManagedAppPicker,
+            )
+        "app_picker" ->
+            ManagedAppPickerScreen(
+                titleRes = appPickerTitleRes,
+                selectedApps = appPickerSelectedApps,
+                settingKey = appPickerSettingKey,
+                maxSelection = appPickerMaxSelection,
+                maxSelectionMessageRes = appPickerMaxSelectionMessageRes,
+                filterTypeName = appPickerFilterTypeName,
+                onBackClick = onBackClick,
+            )
         "bravia_engine" -> AxBraviaEngineScreen(onBackClick = onBackClick)
         "dynamic_bar" -> DynamicBarScreen(onBackClick = onBackClick)
         "essentials" ->
@@ -358,7 +427,15 @@ private fun DetailScreen(
 private fun DetailPaneContent(
     screen: String,
     onClose: () -> Unit,
+    onNavigateToDetail: (String) -> Unit = {},
     onNavigateToAppPicker: (Set<String>) -> Unit = {},
+    onNavigateToManagedAppPicker: (Int, Set<String>, String, Int?, Int?, AppFilterType) -> Unit = { _, _, _, _, _, _ -> },
+    appPickerTitleRes: Int = R.string.select_apps,
+    appPickerSelectedApps: Set<String> = emptySet(),
+    appPickerSettingKey: String = ESSENTIAL_APP_LIST_KEY,
+    appPickerMaxSelection: Int? = null,
+    appPickerMaxSelectionMessageRes: Int? = null,
+    appPickerFilterTypeName: String = AppFilterType.LAUNCHABLE_USER_ONLY.name,
 ) {
     when (screen) {
         "lockscreen" -> LockscreenFeaturesScreen(onBackClick = onClose)
@@ -370,7 +447,26 @@ private fun DetailPaneContent(
         "gamespoofing" -> GameSpoofingScreen(onBackClick = onClose)
         "pcmode" -> PcModeScreen(onBackClick = onClose)
         "routines" -> RoutinesScreen(onBackClick = onClose)
-        "performance" -> PerformanceScreen(onBackClick = onClose)
+        "performance" ->
+            PerformanceScreen(
+                onBackClick = onClose,
+                onNavigateToDetail = onNavigateToDetail,
+            )
+        "background_manager" ->
+            BackgroundManagerScreen(
+                onBackClick = onClose,
+                onNavigateToAppPicker = onNavigateToManagedAppPicker,
+            )
+        "app_picker" ->
+            ManagedAppPickerScreen(
+                titleRes = appPickerTitleRes,
+                selectedApps = appPickerSelectedApps,
+                settingKey = appPickerSettingKey,
+                maxSelection = appPickerMaxSelection,
+                maxSelectionMessageRes = appPickerMaxSelectionMessageRes,
+                filterTypeName = appPickerFilterTypeName,
+                onBackClick = onClose,
+            )
         "bravia_engine" -> AxBraviaEngineScreen(onBackClick = onClose)
         "dynamic_bar" -> DynamicBarScreen(onBackClick = onClose)
         "essentials" ->
@@ -380,6 +476,39 @@ private fun DetailPaneContent(
             )
         "multitasking" -> MultitaskingScreen(onBackClick = onClose)
     }
+}
+
+@Composable
+private fun ManagedAppPickerScreen(
+    titleRes: Int,
+    selectedApps: Set<String>,
+    settingKey: String,
+    maxSelection: Int?,
+    maxSelectionMessageRes: Int?,
+    filterTypeName: String,
+    onBackClick: () -> Unit,
+) {
+    val context = LocalContext.current
+    val maxSelectionMessage =
+        maxSelectionMessageRes?.let { resId ->
+            maxSelection?.let { stringResource(resId, it) } ?: stringResource(resId)
+        }
+
+    val filterType = runCatching { AppFilterType.valueOf(filterTypeName) }
+        .getOrDefault(AppFilterType.LAUNCHABLE_USER_ONLY)
+
+    AppPickerScreen(
+        title = stringResource(titleRes),
+        selectedApps = selectedApps,
+        onBackClick = onBackClick,
+        onAppsSelected = { apps ->
+            Settings.Secure.putString(context.contentResolver, settingKey, apps.joinToString(","))
+            onBackClick()
+        },
+        maxSelection = maxSelection,
+        maxSelectionMessage = maxSelectionMessage,
+        filterType = filterType,
+    )
 }
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
