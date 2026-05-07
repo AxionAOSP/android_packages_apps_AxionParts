@@ -32,6 +32,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Sensors
+import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material.icons.outlined.Bolt
 import androidx.compose.material.icons.outlined.Layers
 import androidx.compose.material.icons.outlined.RocketLaunch
@@ -54,6 +55,7 @@ import com.android.axion.axionparts.ui.components.FrequencySlider
 import com.android.axion.axionparts.ui.components.LevelSlider
 import com.android.axion.axionparts.ui.components.PowerModeToggle
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
+import com.android.axion.compose.preferences.ClickablePreference
 import com.android.axion.compose.preferences.SettingsType
 import com.android.axion.compose.preferences.rememberSettingsFlow
 import com.android.axion.compose.scaffold.AxionScaffold
@@ -68,21 +70,34 @@ private data class ClusterConfig(
 )
 
 @Composable
-fun PerformanceScreen(onBackClick: (() -> Unit)? = null, showTopBar: Boolean = true) {
+fun PerformanceScreen(
+    onBackClick: (() -> Unit)? = null,
+    showTopBar: Boolean = true,
+    onNavigateToDetail: (String) -> Unit = {},
+) {
     if (showTopBar) {
         AxionScaffold(
             title = stringResource(R.string.performance),
             onBackClick = { onBackClick?.invoke() },
         ) { innerPadding ->
-            PerformanceContent(modifier = Modifier.padding(innerPadding))
+            PerformanceContent(
+                onBackgroundManagerClick = { onNavigateToDetail("background_manager") },
+                modifier = Modifier.padding(innerPadding),
+            )
         }
     } else {
-        PerformanceContent(modifier = Modifier)
+        PerformanceContent(
+            onBackgroundManagerClick = { onNavigateToDetail("background_manager") },
+            modifier = Modifier,
+        )
     }
 }
 
 @Composable
-fun PerformanceContent(modifier: Modifier = Modifier) {
+fun PerformanceContent(
+    onBackgroundManagerClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val flow = rememberSettingsFlow(SettingsType.SECURE)
 
     val smallAvailableFreqs = remember {
@@ -154,6 +169,15 @@ fun PerformanceContent(modifier: Modifier = Modifier) {
             modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
     ) {
         Spacer(modifier = Modifier.height(8.dp))
+
+        ClickablePreference(
+            title = stringResource(R.string.background_manager),
+            summary = stringResource(R.string.background_manager_summary),
+            icon = Icons.Outlined.Apps,
+            onClick = onBackgroundManagerClick,
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         PowerModeToggle()
 
