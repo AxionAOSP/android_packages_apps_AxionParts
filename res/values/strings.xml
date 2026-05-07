@@ -613,4 +613,8 @@
     <string name="ax_bravia_engine_natural">Natural</string>
     <string name="ax_bravia_engine_cinema">Cinema</string>
 
+    <plurals name="max_apps_selected">
+        <item quantity="one">You can select up to %1$d app</item>
+        <item quantity="other">You can select up to %1$d apps</item>
+    </plurals>
 </resources>

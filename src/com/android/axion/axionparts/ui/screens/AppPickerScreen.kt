@@ -19,7 +19,6 @@ package com.android.axion.axionparts.ui.screens
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
-import android.provider.Settings
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -48,12 +47,15 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -74,6 +76,7 @@ import com.android.axion.compose.applist.AppFilter
 import com.android.axion.compose.applist.rememberFilteredAppList
 import com.android.axion.compose.scaffold.AxionScaffold
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 data class AppInfo(val packageName: String, val label: String, val icon: Drawable)
@@ -100,16 +103,16 @@ fun AppPickerScreen(
     filterType: AppFilterType = AppFilterType.LAUNCHABLE_USER_ONLY,
     showSystemApps: Boolean = false,
     customFilter: ((ApplicationInfo) -> Boolean)? = null,
+    maxSelection: Int? = null,
+    maxSelectionMessage: String? = null,
 ) {
     val context = LocalContext.current
     val packageManager = context.packageManager
 
     var searchQuery by remember { mutableStateOf("") }
-    val savedApps = remember {
-        val saved = Settings.Secure.getString(context.contentResolver, "essential_app_list") ?: ""
-        if (saved.isEmpty()) emptySet() else saved.split(",").filter { it.isNotEmpty() }.toSet()
-    }
-    var tempSelectedApps by remember { mutableStateOf(selectedApps.ifEmpty { savedApps }) }
+    var tempSelectedApps by remember { mutableStateOf(selectedApps) }
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
     val sdkFilters: Array<AppFilter> = when (filterType) {
         AppFilterType.ALL -> arrayOf(AppFilter.ALL, AppFilter.NO_OVERLAYS)
@@ -164,7 +167,7 @@ fun AppPickerScreen(
                     value = searchQuery,
                     onValueChange = { searchQuery = it },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Search apps...") },
+                    placeholder = { Text(stringResource(R.string.search_apps)) },
                     leadingIcon = {
                         Icon(imageVector = Icons.Default.Search, contentDescription = null)
                     },
@@ -183,7 +186,7 @@ fun AppPickerScreen(
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
-                    text = "${tempSelectedApps.size} selected",
+                    text = stringResource(R.string.selected_count, tempSelectedApps.size),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Medium,
@@ -208,8 +211,20 @@ fun AppPickerScreen(
                                         tempSelectedApps =
                                             if (tempSelectedApps.contains(app.packageName)) {
                                                 tempSelectedApps - app.packageName
-                                            } else {
+                                            } else if (maxSelection == null || tempSelectedApps.size < maxSelection) {
                                                 tempSelectedApps + app.packageName
+                                            } else {
+                                                coroutineScope.launch {
+                                                    snackbarHostState.showSnackbar(
+                                                        maxSelectionMessage
+                                                            ?: context.resources.getQuantityString(
+                                                                R.plurals.max_apps_selected,
+                                                                maxSelection,
+                                                                maxSelection,
+                                                            )
+                                                    )
+                                                }
+                                                tempSelectedApps
                                             }
                                     }
                                 }
@@ -221,6 +236,11 @@ fun AppPickerScreen(
                 }
             }
 
+            SnackbarHost(
+                hostState = snackbarHostState,
+                modifier = Modifier.align(Alignment.BottomCenter).padding(16.dp),
+            )
+
             if (mode == AppPickerMode.MULTI) {
                 FloatingActionButton(
                     onClick = { onAppsSelected(tempSelectedApps) },
@@ -229,7 +249,10 @@ fun AppPickerScreen(
                     contentColor = MaterialTheme.colorScheme.onPrimary,
                     shape = ExpressiveShapes.large,
                 ) {
-                    Icon(imageVector = Icons.Default.Check, contentDescription = "Save")
+                    Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = stringResource(R.string.save),
+                    )
                 }
             }
         }
