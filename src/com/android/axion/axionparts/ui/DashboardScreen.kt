@@ -79,6 +79,7 @@ fun DashboardScreen() {
     var appPickerFilterTypeName by rememberSaveable {
         mutableStateOf(AppFilterType.LAUNCHABLE_USER_ONLY.name)
     }
+    var appPickerExcludedPackages by rememberSaveable { mutableStateOf<Set<String>>(emptySet()) }
     var currentDetailScreen by rememberSaveable { mutableStateOf<String?>(null) }
     var detailBackStack by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
     var detailTransitionForward by rememberSaveable { mutableStateOf(true) }
@@ -103,6 +104,7 @@ fun DashboardScreen() {
         maxSelection: Int? = null,
         maxSelectionMessageRes: Int? = null,
         filterType: AppFilterType = AppFilterType.LAUNCHABLE_USER_ONLY,
+        excludedPackages: Set<String> = emptySet(),
     ) {
         appPickerTitleRes = titleRes
         appPickerSelectedApps = selectedApps
@@ -110,6 +112,7 @@ fun DashboardScreen() {
         appPickerMaxSelection = maxSelection
         appPickerMaxSelectionMessageRes = maxSelectionMessageRes
         appPickerFilterTypeName = filterType.name
+        appPickerExcludedPackages = excludedPackages
         navigateToNestedDetail("app_picker")
     }
 
@@ -165,6 +168,7 @@ fun DashboardScreen() {
                             appPickerMaxSelection = appPickerMaxSelection,
                             appPickerMaxSelectionMessageRes = appPickerMaxSelectionMessageRes,
                             appPickerFilterTypeName = appPickerFilterTypeName,
+                            appPickerExcludedPackages = appPickerExcludedPackages,
                         )
                     } else {
                         EmptyDetailPane()
@@ -203,6 +207,7 @@ fun DashboardScreen() {
                     appPickerMaxSelection = appPickerMaxSelection,
                     appPickerMaxSelectionMessageRes = appPickerMaxSelectionMessageRes,
                     appPickerFilterTypeName = appPickerFilterTypeName,
+                    appPickerExcludedPackages = appPickerExcludedPackages,
                 )
             } else {
                 DashboardContent(
@@ -373,13 +378,14 @@ private fun DetailScreen(
     onBackClick: () -> Unit,
     onNavigateToDetail: (String) -> Unit = {},
     onNavigateToAppPicker: (Set<String>) -> Unit = {},
-    onNavigateToManagedAppPicker: (Int, Set<String>, String, Int?, Int?, AppFilterType) -> Unit = { _, _, _, _, _, _ -> },
+    onNavigateToManagedAppPicker: BackgroundAppPickerNavigator = { _, _, _, _, _, _, _ -> },
     appPickerTitleRes: Int = R.string.select_apps,
     appPickerSelectedApps: Set<String> = emptySet(),
     appPickerSettingKey: String = ESSENTIAL_APP_LIST_KEY,
     appPickerMaxSelection: Int? = null,
     appPickerMaxSelectionMessageRes: Int? = null,
     appPickerFilterTypeName: String = AppFilterType.LAUNCHABLE_USER_ONLY.name,
+    appPickerExcludedPackages: Set<String> = emptySet(),
 ) {
     when (screen) {
         "lockscreen" -> LockscreenFeaturesScreen(onBackClick = onBackClick)
@@ -409,6 +415,7 @@ private fun DetailScreen(
                 maxSelection = appPickerMaxSelection,
                 maxSelectionMessageRes = appPickerMaxSelectionMessageRes,
                 filterTypeName = appPickerFilterTypeName,
+                excludedPackages = appPickerExcludedPackages,
                 onBackClick = onBackClick,
             )
         "bravia_engine" -> AxBraviaEngineScreen(onBackClick = onBackClick)
@@ -429,13 +436,14 @@ private fun DetailPaneContent(
     onClose: () -> Unit,
     onNavigateToDetail: (String) -> Unit = {},
     onNavigateToAppPicker: (Set<String>) -> Unit = {},
-    onNavigateToManagedAppPicker: (Int, Set<String>, String, Int?, Int?, AppFilterType) -> Unit = { _, _, _, _, _, _ -> },
+    onNavigateToManagedAppPicker: BackgroundAppPickerNavigator = { _, _, _, _, _, _, _ -> },
     appPickerTitleRes: Int = R.string.select_apps,
     appPickerSelectedApps: Set<String> = emptySet(),
     appPickerSettingKey: String = ESSENTIAL_APP_LIST_KEY,
     appPickerMaxSelection: Int? = null,
     appPickerMaxSelectionMessageRes: Int? = null,
     appPickerFilterTypeName: String = AppFilterType.LAUNCHABLE_USER_ONLY.name,
+    appPickerExcludedPackages: Set<String> = emptySet(),
 ) {
     when (screen) {
         "lockscreen" -> LockscreenFeaturesScreen(onBackClick = onClose)
@@ -465,6 +473,7 @@ private fun DetailPaneContent(
                 maxSelection = appPickerMaxSelection,
                 maxSelectionMessageRes = appPickerMaxSelectionMessageRes,
                 filterTypeName = appPickerFilterTypeName,
+                excludedPackages = appPickerExcludedPackages,
                 onBackClick = onClose,
             )
         "bravia_engine" -> AxBraviaEngineScreen(onBackClick = onClose)
@@ -486,6 +495,7 @@ private fun ManagedAppPickerScreen(
     maxSelection: Int?,
     maxSelectionMessageRes: Int?,
     filterTypeName: String,
+    excludedPackages: Set<String>,
     onBackClick: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -508,6 +518,7 @@ private fun ManagedAppPickerScreen(
         maxSelection = maxSelection,
         maxSelectionMessage = maxSelectionMessage,
         filterType = filterType,
+        excludedPackages = excludedPackages,
     )
 }
 

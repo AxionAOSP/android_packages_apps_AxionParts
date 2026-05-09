@@ -43,6 +43,7 @@ import com.android.axion.axionparts.R
 import com.android.axion.compose.preferences.AppListPreference
 import com.android.axion.compose.preferences.ListPreference
 import com.android.axion.compose.preferences.PreferenceGroup
+import com.android.axion.compose.preferences.SettingsFlow
 import com.android.axion.compose.preferences.SettingsType
 import com.android.axion.compose.preferences.rememberSettingInt
 import com.android.axion.compose.preferences.rememberSettingString
@@ -56,12 +57,21 @@ private const val AGGRESSIVE_POLICY_KEY = "axion_perf_aggressive_policy"
 private const val FREEZER_LEVEL_KEY = "axion_perf_freezer_level"
 private const val MAX_KEEPALIVE_APPS = 4
 
+private val BACKGROUND_APP_BLACKLIST =
+    setOf(
+        "android",
+        "com.android.launcher3",
+        "com.android.systemui",
+    )
+
+typealias BackgroundAppPickerNavigator =
+    (Int, Set<String>, String, Int?, Int?, AppFilterType, Set<String>) -> Unit
+
 @Composable
 fun BackgroundManagerScreen(
     onBackClick: (() -> Unit)? = null,
     showTopBar: Boolean = true,
-    onNavigateToAppPicker: (Int, Set<String>, String, Int?, Int?, AppFilterType) -> Unit =
-        { _, _, _, _, _, _ -> },
+    onNavigateToAppPicker: BackgroundAppPickerNavigator = { _, _, _, _, _, _, _ -> },
 ) {
     if (showTopBar) {
         AxionScaffold(
@@ -83,16 +93,22 @@ fun BackgroundManagerScreen(
 
 @Composable
 private fun BackgroundManagerContent(
-    onNavigateToAppPicker: (Int, Set<String>, String, Int?, Int?, AppFilterType) -> Unit,
+    onNavigateToAppPicker: BackgroundAppPickerNavigator,
     modifier: Modifier = Modifier,
 ) {
     val flow = rememberSettingsFlow(SettingsType.SECURE)
+    val freezerPackages by rememberSettingString(PACKAGE_FREEZER_KEY, SettingsType.SECURE)
     val keepAlivePackages by rememberSettingString(KEEPALIVE_KEY, SettingsType.SECURE)
+    val restrictedPackages by rememberSettingString(RESTRICT_BACKGROUND_KEY, SettingsType.SECURE)
+
+    LaunchedEffect(freezerPackages) {
+        flow.sanitizePackageList(PACKAGE_FREEZER_KEY, freezerPackages)
+    }
     LaunchedEffect(keepAlivePackages) {
-        val packages = keepAlivePackages.toPackageList()
-        if (packages.size > MAX_KEEPALIVE_APPS) {
-            flow.putString(KEEPALIVE_KEY, packages.take(MAX_KEEPALIVE_APPS).joinToString(","))
-        }
+        flow.sanitizePackageList(KEEPALIVE_KEY, keepAlivePackages, maxPackages = MAX_KEEPALIVE_APPS)
+    }
+    LaunchedEffect(restrictedPackages) {
+        flow.sanitizePackageList(RESTRICT_BACKGROUND_KEY, restrictedPackages)
     }
 
     Column(
@@ -124,11 +140,12 @@ private fun BackgroundManagerContent(
                     onAddClicked = { packages ->
                         onNavigateToAppPicker(
                             R.string.package_freezer_apps,
-                            packages,
+                            packages.withoutBlacklistedApps(),
                             PACKAGE_FREEZER_KEY,
                             null,
                             null,
-                            AppFilterType.USER_ONLY,
+                            AppFilterType.ALL,
+                            BACKGROUND_APP_BLACKLIST,
                         )
                     },
                 )
@@ -142,11 +159,15 @@ private fun BackgroundManagerContent(
                     onAddClicked = { packages ->
                         onNavigateToAppPicker(
                             R.string.keep_alive_apps,
-                            packages.toPackageList().take(MAX_KEEPALIVE_APPS).toSet(),
+                            packages.toPackageList()
+                                .withoutBlacklistedApps()
+                                .take(MAX_KEEPALIVE_APPS)
+                                .toSet(),
                             KEEPALIVE_KEY,
                             MAX_KEEPALIVE_APPS,
                             R.string.keep_alive_apps_limit_message,
-                            AppFilterType.USER_ONLY,
+                            AppFilterType.ALL,
+                            BACKGROUND_APP_BLACKLIST,
                         )
                     },
                 )
@@ -160,11 +181,12 @@ private fun BackgroundManagerContent(
                     onAddClicked = { packages ->
                         onNavigateToAppPicker(
                             R.string.restricted_background_apps,
-                            packages,
+                            packages.withoutBlacklistedApps(),
                             RESTRICT_BACKGROUND_KEY,
                             null,
                             null,
-                            AppFilterType.USER_ONLY,
+                            AppFilterType.ALL,
+                            BACKGROUND_APP_BLACKLIST,
                         )
                     },
                 )
@@ -252,3 +274,22 @@ private fun String.toPackageList(): List<String> =
 
 private fun Set<String>.toPackageList(): List<String> =
     map { it.trim() }.filter { it.isNotEmpty() }
+
+private fun List<String>.withoutBlacklistedApps(): List<String> =
+    filterNot { it in BACKGROUND_APP_BLACKLIST }
+
+private fun Set<String>.withoutBlacklistedApps(): Set<String> =
+    filterNot { it in BACKGROUND_APP_BLACKLIST }.toSet()
+
+private fun SettingsFlow.sanitizePackageList(
+    key: String,
+    savedPackages: String,
+    maxPackages: Int? = null,
+) {
+    val packages = savedPackages.toPackageList().withoutBlacklistedApps()
+    val sanitizedPackages = maxPackages?.let(packages::take) ?: packages
+    val sanitizedValue = sanitizedPackages.joinToString(",")
+    if (sanitizedValue != savedPackages) {
+        putString(key, sanitizedValue)
+    }
+}

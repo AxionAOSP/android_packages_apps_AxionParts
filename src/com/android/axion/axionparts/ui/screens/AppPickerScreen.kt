@@ -105,12 +105,15 @@ fun AppPickerScreen(
     customFilter: ((ApplicationInfo) -> Boolean)? = null,
     maxSelection: Int? = null,
     maxSelectionMessage: String? = null,
+    excludedPackages: Set<String> = emptySet(),
 ) {
     val context = LocalContext.current
     val packageManager = context.packageManager
 
     var searchQuery by remember { mutableStateOf("") }
-    var tempSelectedApps by remember { mutableStateOf(selectedApps) }
+    var tempSelectedApps by remember(selectedApps, excludedPackages) {
+        mutableStateOf(selectedApps - excludedPackages)
+    }
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
@@ -152,13 +155,14 @@ fun AppPickerScreen(
         )
     }
 
-    val filteredApps: List<AppInfo> = if (customFilter != null) {
-        filteredCustomApps
-    } else {
-        sdkApps.value.map { entry ->
-            AppInfo(packageName = entry.packageName, label = entry.label, icon = entry.icon)
-        }
-    }
+    val filteredApps: List<AppInfo> =
+        (if (customFilter != null) {
+            filteredCustomApps
+        } else {
+            sdkApps.value.map { entry ->
+                AppInfo(packageName = entry.packageName, label = entry.label, icon = entry.icon)
+            }
+        }).filterNot { it.packageName in excludedPackages }
 
     AxionScaffold(title = title, onBackClick = onBackClick) { innerPadding ->
         Box(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
