@@ -30,7 +30,7 @@
     <string name="nav_essentials">Основне</string>
     <string name="nav_performance">Продуктивність</string>
     <string name="nav_multitasking">Багатозадачність</string>
-    <string name="personalizations">Personalize</string>
+    <string name="personalizations">Персоналізувати</string>
     <!-- Customize Screen -->
     <string name="themes">Теми</string>
     <string name="themes_subtitle">Іконки, форми та інше</string>
@@ -405,7 +405,7 @@
     <string name="resolution_aspect_error">Unsupported aspect ratio. Keep it between 1:2 and 3:1.</string>
     <string name="action_apply">Застосувати</string>
     <string name="action_cancel">Скасувати</string>
-    <string name="action_reset_default">Reset to Default</string>
+    <string name="action_reset_default">Скинути до заводських налаштувань</string>
     <!-- Dynamic Bar -->
     <string name="dynamic_bar">Dynamic Bar</string>
     <string name="dynamic_bar_summary">Smart status bar chip for live events</string>
@@ -431,7 +431,7 @@
     <string name="dynamic_bar_event_charging_summary">Battery level when plugged in</string>
     <string name="dynamic_bar_event_bluetooth">Bluetooth</string>
     <string name="dynamic_bar_event_bluetooth_summary">Device connection status</string>
-    <string name="dynamic_bar_event_hotspot">Hotspot</string>
+    <string name="dynamic_bar_event_hotspot">Точка доступу</string>
     <string name="dynamic_bar_event_hotspot_summary">Mobile hotspot active indicator</string>
     <string name="dynamic_bar_event_ringer">Ringer Mode</string>
     <string name="dynamic_bar_event_ringer_summary">Silent, vibrate, and ring mode changes</string>
@@ -572,7 +572,7 @@
     <string name="routines_longitude_hint">Longitude</string>
     <string name="routines_radius_hint">Radius (meters)</string>
     <string name="routines_location_near">Location Near</string>
-    <string name="routines_sensor_camera">Camera</string>
+    <string name="routines_sensor_camera">Камера</string>
     <string name="routines_sensor_microphone">Microphone</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
