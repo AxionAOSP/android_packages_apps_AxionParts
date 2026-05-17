@@ -41,17 +41,17 @@
     <string name="sound">Звук</string>
     <string name="sound_subtitle">Гучність для кожного додатка та мульти-аудіо</string>
     <string name="gestures">Жести</string>
-    <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
+    <string name="gestures_subtitle">Струсіть, три пальці &amp; пульсація Doze</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Підсвічування країв</string>
     <string name="edge_light_description">Світлові ефекти по краях екрана для повідомлень</string>
     <string name="enable_edge_light">Увімкнути підсвічування країв</string>
     <string name="edge_light_summary">Показувати світлові ефекти по краях екрана для повідомлень</string>
     <string name="edge_light_appearance">Зовнішній вигляд</string>
-    <string name="edge_light_spread">Glow spread</string>
-    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
-    <string name="edge_light_intensity">Glow intensity</string>
-    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
+    <string name="edge_light_spread">Поширення світіння</string>
+    <string name="edge_light_spread_summary">Як далеко всередину поширюється світіння від краю</string>
+    <string name="edge_light_intensity">Інтенсивність світіння</string>
+    <string name="edge_light_intensity_summary">Пікова яскравість ефекту світіння</string>
     <string name="color_mode">Колірний режим</string>
     <string name="notification_accent">Акцент повідомлення</string>
     <string name="custom_color">Свій колір</string>
@@ -70,10 +70,10 @@
     <string name="appearance">Зовнішній вигляд</string>
     <string name="blur_level">Рівень розмиття</string>
     <string name="blur_level_summary">Налаштування інтенсивності розмиття обкладинки альбому</string>
-    <string name="art_style">Art Style</string>
-    <string name="art_style_summary">Choose how album art is displayed on the lockscreen</string>
-    <string name="art_style_blur">Blur Background</string>
-    <string name="art_style_concept">Art Card</string>
+    <string name="art_style">Мистецький стиль</string>
+    <string name="art_style_summary">Виберіть, як відображатиметься обкладинка альбому на екрані блокування</string>
+    <string name="art_style_blur">Розмиття фону</string>
+    <string name="art_style_concept">Арт-картка</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Візуалізатор Pulse</string>
     <string name="pulse_visualizer_description">Аудіовізуалізатор на екрані блокування та ambient display</string>
@@ -84,8 +84,8 @@
     <string name="render_style_summary">Виберіть візуальний стиль візуалізатора</string>
     <string name="style_bars">Смуги</string>
     <string name="style_fading_blocks">Блоки, що зникають</string>
-    <string name="style_solid_line">Solid Line</string>
-    <string name="style_center_mirror">Center Mirror</string>
+    <string name="style_solid_line">Суцільна лінія</string>
+    <string name="style_center_mirror">Центральне дзеркало</string>
     <string name="color_mode_title">Колірний режим</string>
     <string name="visualizer_color_summary">Налаштування кольору візуалізатора</string>
     <string name="lava_lamp">Лава-лампа</string>
@@ -118,9 +118,9 @@
     <string name="screen_off">Екран вимкнено</string>
     <string name="screen_off_aod">AOD при вимкненому екрані</string>
     <string name="screen_off_aod_summary">Тримати AOD активним при вимкненні екрана</string>
-    <string name="screen_off_aod_duration">AOD Duration</string>
-    <string name="screen_off_aod_duration_summary">How long to keep AOD visible after screen off. Set to 0 to disable</string>
-    <string name="seconds_short">s</string>
+    <string name="screen_off_aod_duration">Тривалість AOD</string>
+    <string name="screen_off_aod_duration_summary">Як довго AOD має залишатися видимим після вимкнення екрана. Встановіть значення 0, щоб вимкнути</string>
+    <string name="seconds_short">сек</string>
     <string name="screen_off_animation">Анімація вимкнення екрана</string>
     <string name="screen_off_animation_summary">Анімація переходу до AOD</string>
     <!-- UI Features -->
@@ -155,7 +155,7 @@
     <string name="shake_action">Дія при струшуванні</string>
     <string name="shake_action_summary">Дія, що виконується при струшуванні пристрою</string>
     <string name="three_finger_gestures">Жести трьома пальцями</string>
-    <string name="three_finger_gestures_summary">Swipe and long press actions</string>
+    <string name="three_finger_gestures_summary">Дії з проведенням пальцем та довгим натисканням</string>
     <string name="three_finger_swipe">Свайп трьома пальцями</string>
     <string name="three_finger_swipe_summary">Дія при свайпі трьома пальцями</string>
     <string name="three_finger_long_press">Довге натискання трьома пальцями</string>
@@ -163,9 +163,9 @@
     <string name="disable_button_screenshot">Вимкнути скріншот кнопками</string>
     <string name="disable_button_screenshot_summary">Вимкнути комбінацію кнопок живлення + гучність вниз</string>
     <!-- Doze Pulse -->
-    <string name="doze_pulse_gestures">Doze Pulse</string>
-    <string name="doze_pulse_gestures_summary">Pulse screen instead of waking</string>
-    <string name="doze_pulse_notification">Notification pulse</string>
+    <string name="doze_pulse_gestures">Doze Пульс</string>
+    <string name="doze_pulse_gestures_summary">Пульсуючий екран замість пробудження</string>
+    <string name="doze_pulse_notification">Пульсування сповіщень</string>
     <string name="doze_pulse_notification_summary">Briefly show lockscreen on notifications without AOD</string>
     <string name="doze_pulse_tap">Tap to pulse</string>
     <string name="doze_pulse_tap_summary">Pulse screen on tap instead of waking</string>
@@ -376,12 +376,12 @@
     <!-- PC Mode Settings -->
     <string name="pc_mode">PC Mode</string>
     <string name="pc_mode_settings">PC Mode Settings</string>
-    <string name="pc_mode_summary">Configure screen resolution and behavior</string>
+    <string name="pc_mode_summary">Налаштування роздільної здатності та поведінки екрана</string>
     <string name="pc_mode_title">PC Mode</string>
     <string name="pref_category_general">Загальні</string>
-    <string name="pref_category_display">Display</string>
-    <string name="pref_category_taskbar">Taskbar</string>
-    <string name="pref_enable_pc_mode_title">Enable PC Mode</string>
+    <string name="pref_category_display">Дисплей</string>
+    <string name="pref_category_taskbar">Панель завдань</string>
+    <string name="pref_enable_pc_mode_title">Увімкнути режим ПК</string>
     <string name="pref_enable_pc_mode_summary">Enable desktop-like experience</string>
     <string name="pref_taskbar_timeout_title">Auto-hide timeout</string>
     <string name="pref_taskbar_timeout_summary">Duration before taskbar hides automatically</string>
@@ -435,7 +435,7 @@
     <string name="dynamic_bar_event_hotspot_summary">Mobile hotspot active indicator</string>
     <string name="dynamic_bar_event_ringer">Ringer Mode</string>
     <string name="dynamic_bar_event_ringer_summary">Silent, vibrate, and ring mode changes</string>
-    <string name="dynamic_bar_event_vpn">VPN</string>
+    <string name="dynamic_bar_event_vpn">Мережа VPN</string>
     <string name="dynamic_bar_event_vpn_summary">Active VPN connection indicator</string>
     <string name="dynamic_bar_event_clipboard">Clipboard</string>
     <string name="dynamic_bar_event_clipboard_summary">Copied text and image preview</string>
@@ -565,7 +565,7 @@
     <string name="routines_mic_unblocked">Microphone unblocked</string>
     <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
     <string name="routines_sensor_blocked">Sensor Blocked</string>
-    <string name="routines_location">Location</string>
+    <string name="routines_location">Місцезнаходження</string>
     <string name="routines_location_enter">Enter area</string>
     <string name="routines_location_exit">Leave area</string>
     <string name="routines_latitude_hint">Latitude</string>
@@ -573,7 +573,7 @@
     <string name="routines_radius_hint">Radius (meters)</string>
     <string name="routines_location_near">Location Near</string>
     <string name="routines_sensor_camera">Камера</string>
-    <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_sensor_microphone">Мікрофон</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
     <string name="routines_play_sound">Play Sound</string>
