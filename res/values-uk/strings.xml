@@ -488,8 +488,8 @@
     <string name="routines_seconds">Seconds</string>
     <string name="routines_above">Above</string>
     <string name="routines_below">Below</string>
-    <string name="routines_silent">Silent</string>
-    <string name="routines_vibrate">Vibrate</string>
+    <string name="routines_silent">Режим тиші</string>
+    <string name="routines_vibrate">Вібросигнал</string>
     <string name="routines_normal">Звичайний</string>
     <string name="routines_next">Next</string>
     <string name="routines_ssid_hint">WiFi network name (optional)</string>
