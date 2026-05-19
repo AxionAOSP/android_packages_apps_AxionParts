@@ -36,6 +36,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Fingerprint
+import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Gamepad
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.ScreenshotMonitor
@@ -209,6 +210,14 @@ private fun EssentialsContent(
                     title = stringResource(R.string.ignore_window_secure),
                     summary = stringResource(R.string.ignore_window_secure_summary),
                     icon = Icons.Default.ScreenshotMonitor,
+                )
+            }
+            item {
+                SecureSettingSwitch(
+                    settingKey = "no_storage_restrict",
+                    title = stringResource(R.string.no_storage_restrict_title),
+                    summary = stringResource(R.string.no_storage_restrict_summary),
+                    icon = Icons.Default.Folder,
                 )
             }
         }
