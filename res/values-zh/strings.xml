@@ -120,7 +120,7 @@
     <string name="screen_off_aod_summary">螢幕關閉時保持 AOD 啟用</string>
     <string name="screen_off_aod_duration">AOD 持續時間</string>
     <string name="screen_off_aod_duration_summary">How long to keep AOD visible after screen off. Set to 0 to disable</string>
-    <string name="seconds_short">s</string>
+    <string name="seconds_short">秒</string>
     <string name="screen_off_animation">螢幕關閉動畫</string>
     <string name="screen_off_animation_summary">為切換至 AOD 的過渡加上動畫</string>
     <!-- UI Features -->
