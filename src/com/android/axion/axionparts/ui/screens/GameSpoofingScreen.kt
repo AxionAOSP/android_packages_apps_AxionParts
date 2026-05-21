@@ -502,7 +502,7 @@ fun AddGameDialog(
     val pm = context.packageManager
     val scope = rememberCoroutineScope()
     var searchQuery by remember { mutableStateOf("") }
-    val filteredApps by rememberFilteredAppList(searchQuery, AppFilter.USER_ONLY)
+    val filteredApps by rememberFilteredAppList(searchQuery, AppFilter.USER_ONLY, AppFilter.NO_OVERLAYS)
     val configuredPackages = remember(configuredGames) { configuredGames.map { it.packageName }.toSet() }
     val availableApps = remember(filteredApps, configuredPackages) {
         filteredApps.filter { it.packageName !in configuredPackages }

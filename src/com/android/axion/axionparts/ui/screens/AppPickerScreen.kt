@@ -132,7 +132,7 @@ fun AppPickerScreen(
             withContext(Dispatchers.IO) {
                 customApps = packageManager
                     .getInstalledApplications(PackageManager.GET_META_DATA)
-                    .filter { appInfo -> customFilter(appInfo) }
+                    .filter { appInfo -> !appInfo.isResourceOverlay && (customFilter == null || customFilter(appInfo)) }
                     .map { appInfo ->
                         AppInfo(
                             packageName = appInfo.packageName,
