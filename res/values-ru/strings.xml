@@ -469,6 +469,8 @@
     <string name="routines_enabled_summary">Разрешить автозапуск</string>
     <string name="routines_create">Создать процедуру</string>
     <string name="routines_edit">Изменить процедуру</string>
+    <string name="routines_duplicate">Duplicate routine</string>
+    <string name="routines_duplicate_name">%1$s copy</string>
     <string name="routines_name">Название процедуры</string>
     <string name="routines_triggers">Триггеры</string>
     <string name="routines_conditions">Условия</string>
@@ -545,6 +547,7 @@
     <string name="routines_stream_notification">Уведомления</string>
     <string name="routines_stream_alarm">Будильник</string>
     <string name="routines_stream_system">Система</string>
+    <string name="routines_volume_action_summary">%1$s volume %2$d%%</string>
     <string name="routines_start_time">Время начала</string>
     <string name="routines_end_time">Время окончания</string>
     <string name="routines_time_range">Диапазон времени</string>
