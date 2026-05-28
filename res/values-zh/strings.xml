@@ -469,6 +469,8 @@
     <string name="routines_enabled_summary">允許排程工作自動執行</string>
     <string name="routines_create">建立排程工作</string>
     <string name="routines_edit">編輯排程工作</string>
+    <string name="routines_duplicate">Duplicate routine</string>
+    <string name="routines_duplicate_name">%1$s copy</string>
     <string name="routines_name">排程工作名稱</string>
     <string name="routines_triggers">觸發條件</string>
     <string name="routines_conditions">條件</string>
@@ -545,6 +547,7 @@
     <string name="routines_stream_notification">通知</string>
     <string name="routines_stream_alarm">鬧鐘</string>
     <string name="routines_stream_system">系統</string>
+    <string name="routines_volume_action_summary">%1$s volume %2$d%%</string>
     <string name="routines_start_time">開始時間</string>
     <string name="routines_end_time">結束時間</string>
     <string name="routines_time_range">時間範圍</string>
