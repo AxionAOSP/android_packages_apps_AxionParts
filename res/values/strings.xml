@@ -503,6 +503,8 @@
     <string name="routines_enabled_summary">Allow routines to run automatically</string>
     <string name="routines_create">Create Routine</string>
     <string name="routines_edit">Edit Routine</string>
+    <string name="routines_duplicate">Duplicate routine</string>
+    <string name="routines_duplicate_name">%1$s copy</string>
     <string name="routines_name">Routine name</string>
     <string name="routines_triggers">Triggers</string>
     <string name="routines_conditions">Conditions</string>
@@ -579,6 +581,7 @@
     <string name="routines_stream_notification">Notification</string>
     <string name="routines_stream_alarm">Alarm</string>
     <string name="routines_stream_system">System</string>
+    <string name="routines_volume_action_summary">%1$s volume %2$d%%</string>
     <string name="routines_start_time">Start Time</string>
     <string name="routines_end_time">End Time</string>
     <string name="routines_time_range">Time Range</string>

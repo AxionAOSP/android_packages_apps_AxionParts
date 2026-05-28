@@ -20,6 +20,7 @@ import android.media.AudioManager
 import android.os.UserHandle
 import android.provider.Settings
 import java.util.Calendar
+import java.util.UUID
 import android.text.format.DateUtils
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
@@ -50,11 +51,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AutoMode
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import com.android.axion.compose.preferences.ExpressiveSwitch
 import androidx.compose.material3.Text
@@ -161,6 +164,21 @@ fun RoutinesScreen(onBackClick: () -> Unit) {
                         currentView = "editor"
                     },
                     onDelete = { id -> save(routines.filter { it.id != id }) },
+                    onDuplicate = { id ->
+                        routines.find { it.id == id }?.let { routine ->
+                            save(
+                                routines + routine.copy(
+                                    id = UUID.randomUUID().toString(),
+                                    name = context.getString(
+                                        R.string.routines_duplicate_name,
+                                        routine.name,
+                                    ),
+                                    createdAt = System.currentTimeMillis(),
+                                    lastTriggeredAt = null,
+                                )
+                            )
+                        }
+                    },
                     onCreate = {
                         editingRoutineId = null
                         isForward = true
@@ -200,6 +218,7 @@ private fun RoutinesListContent(
     onToggle: (String, Boolean) -> Unit,
     onEdit: (String) -> Unit,
     onDelete: (String) -> Unit,
+    onDuplicate: (String) -> Unit,
     onCreate: () -> Unit,
 ) {
     var routineToDelete by remember { mutableStateOf<String?>(null) }
@@ -263,6 +282,7 @@ private fun RoutinesListContent(
                         onToggle = { onToggle(routine.id, it) },
                         onClick = { onEdit(routine.id) },
                         onLongClick = { routineToDelete = routine.id },
+                        onDuplicate = { onDuplicate(routine.id) },
                     )
                     Spacer(Modifier.height(8.dp))
                 }
@@ -308,6 +328,7 @@ private fun RoutineCard(
     onToggle: (Boolean) -> Unit,
     onClick: () -> Unit,
     onLongClick: () -> Unit,
+    onDuplicate: () -> Unit,
 ) {
     val haptic = LocalHapticFeedback.current
     val interactionSource = remember { MutableInteractionSource() }
@@ -371,6 +392,13 @@ private fun RoutineCard(
                 }
             }
             Spacer(Modifier.width(12.dp))
+            IconButton(onClick = onDuplicate) {
+                Icon(
+                    Icons.Default.ContentCopy,
+                    contentDescription = stringResource(R.string.routines_duplicate),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
             ExpressiveSwitch(
                 checked = routine.enabled,
                 onCheckedChange = onToggle,
@@ -379,9 +407,14 @@ private fun RoutineCard(
     }
 }
 
+@Composable
 private fun buildRoutineSummary(routine: Routine): String {
     val triggerText = routine.triggers.joinToString(", ") { describeTrigger(it) }
-    val actionText = routine.actions.joinToString(", ") { describeAction(it) }
+    val actionTexts = mutableListOf<String>()
+    for (action in routine.actions) {
+        actionTexts += describeAction(action)
+    }
+    val actionText = actionTexts.joinToString(", ")
     return "$triggerText → $actionText"
 }
 
@@ -420,13 +453,18 @@ internal fun describeTrigger(trigger: Trigger): String = when (trigger) {
     is Trigger.CaptivePortal -> trigger.ssid?.let { "Captive portal ($it)" } ?: "Captive portal"
 }
 
+@Composable
 internal fun describeAction(action: Action): String = when (action) {
     is Action.SetFeature -> {
         val name = KNOWN_FEATURES[action.feature] ?: action.feature
         if (action.enabled) "Enable $name" else "Disable $name"
     }
     is Action.ToggleFeature -> "Toggle ${KNOWN_FEATURES[action.feature] ?: action.feature}"
-    is Action.SetVolume -> "Volume ${action.level}%"
+    is Action.SetVolume -> stringResource(
+        R.string.routines_volume_action_summary,
+        volumeStreamLabel(action.streamType),
+        action.level,
+    )
     is Action.SetBrightness -> "Brightness ${action.level * 100 / 255}%"
     is Action.SetRingerMode -> when (action.mode) {
         AudioManager.RINGER_MODE_SILENT -> "Silent"
@@ -451,6 +489,17 @@ internal fun describeAction(action: Action): String = when (action) {
     }
     is Action.HttpRequest -> "${action.method} ${action.url.take(40)}"
 }
+
+@Composable
+private fun volumeStreamLabel(streamType: Int): String = stringResource(
+    when (streamType) {
+        AudioManager.STREAM_MUSIC -> R.string.routines_stream_media
+        AudioManager.STREAM_RING -> R.string.routines_stream_ring
+        AudioManager.STREAM_NOTIFICATION -> R.string.routines_stream_notification
+        AudioManager.STREAM_ALARM -> R.string.routines_stream_alarm
+        else -> R.string.routines_stream_system
+    }
+)
 
 private val WEEKDAYS = setOf(
     Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY,
