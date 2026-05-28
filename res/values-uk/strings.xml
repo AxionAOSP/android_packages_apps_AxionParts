@@ -30,7 +30,7 @@
     <string name="nav_essentials">Основне</string>
     <string name="nav_performance">Продуктивність</string>
     <string name="nav_multitasking">Багатозадачність</string>
-    <string name="personalizations">Personalize</string>
+    <string name="personalizations">Персоналізувати</string>
     <!-- Customize Screen -->
     <string name="themes">Теми</string>
     <string name="themes_subtitle">Іконки, форми та інше</string>
@@ -41,17 +41,17 @@
     <string name="sound">Звук</string>
     <string name="sound_subtitle">Гучність для кожного додатка та мульти-аудіо</string>
     <string name="gestures">Жести</string>
-    <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
+    <string name="gestures_subtitle">Струсіть, три пальці &amp; пульсація Doze</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Підсвічування країв</string>
     <string name="edge_light_description">Світлові ефекти по краях екрана для повідомлень</string>
     <string name="enable_edge_light">Увімкнути підсвічування країв</string>
     <string name="edge_light_summary">Показувати світлові ефекти по краях екрана для повідомлень</string>
     <string name="edge_light_appearance">Зовнішній вигляд</string>
-    <string name="edge_light_spread">Glow spread</string>
-    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
-    <string name="edge_light_intensity">Glow intensity</string>
-    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
+    <string name="edge_light_spread">Поширення світіння</string>
+    <string name="edge_light_spread_summary">Як далеко всередину поширюється світіння від краю</string>
+    <string name="edge_light_intensity">Інтенсивність світіння</string>
+    <string name="edge_light_intensity_summary">Пікова яскравість ефекту світіння</string>
     <string name="color_mode">Колірний режим</string>
     <string name="notification_accent">Акцент повідомлення</string>
     <string name="custom_color">Свій колір</string>
@@ -70,10 +70,10 @@
     <string name="appearance">Зовнішній вигляд</string>
     <string name="blur_level">Рівень розмиття</string>
     <string name="blur_level_summary">Налаштування інтенсивності розмиття обкладинки альбому</string>
-    <string name="art_style">Art Style</string>
-    <string name="art_style_summary">Choose how album art is displayed on the lockscreen</string>
-    <string name="art_style_blur">Blur Background</string>
-    <string name="art_style_concept">Art Card</string>
+    <string name="art_style">Мистецький стиль</string>
+    <string name="art_style_summary">Виберіть, як відображатиметься обкладинка альбому на екрані блокування</string>
+    <string name="art_style_blur">Розмиття фону</string>
+    <string name="art_style_concept">Арт-картка</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Візуалізатор Pulse</string>
     <string name="pulse_visualizer_description">Аудіовізуалізатор на екрані блокування та ambient display</string>
@@ -84,8 +84,8 @@
     <string name="render_style_summary">Виберіть візуальний стиль візуалізатора</string>
     <string name="style_bars">Смуги</string>
     <string name="style_fading_blocks">Блоки, що зникають</string>
-    <string name="style_solid_line">Solid Line</string>
-    <string name="style_center_mirror">Center Mirror</string>
+    <string name="style_solid_line">Суцільна лінія</string>
+    <string name="style_center_mirror">Центральне дзеркало</string>
     <string name="color_mode_title">Колірний режим</string>
     <string name="visualizer_color_summary">Налаштування кольору візуалізатора</string>
     <string name="lava_lamp">Лава-лампа</string>
@@ -118,8 +118,9 @@
     <string name="screen_off">Екран вимкнено</string>
     <string name="screen_off_aod">AOD при вимкненому екрані</string>
     <string name="screen_off_aod_summary">Тримати AOD активним при вимкненні екрана</string>
-    <string name="screen_off_aod_duration">AOD Duration</string>
-    <string name="screen_off_aod_duration_summary">How long to show AOD before entering doze</string>
+    <string name="screen_off_aod_duration">Тривалість AOD</string>
+    <string name="screen_off_aod_duration_summary">Як довго AOD має залишатися видимим після вимкнення екрана. Встановіть значення 0, щоб вимкнути</string>
+    <string name="seconds_short">сек</string>
     <string name="screen_off_animation">Анімація вимкнення екрана</string>
     <string name="screen_off_animation_summary">Анімація переходу до AOD</string>
     <!-- UI Features -->
@@ -154,7 +155,7 @@
     <string name="shake_action">Дія при струшуванні</string>
     <string name="shake_action_summary">Дія, що виконується при струшуванні пристрою</string>
     <string name="three_finger_gestures">Жести трьома пальцями</string>
-    <string name="three_finger_gestures_summary">Swipe and long press actions</string>
+    <string name="three_finger_gestures_summary">Дії з проведенням пальцем та довгим натисканням</string>
     <string name="three_finger_swipe">Свайп трьома пальцями</string>
     <string name="three_finger_swipe_summary">Дія при свайпі трьома пальцями</string>
     <string name="three_finger_long_press">Довге натискання трьома пальцями</string>
@@ -162,9 +163,9 @@
     <string name="disable_button_screenshot">Вимкнути скріншот кнопками</string>
     <string name="disable_button_screenshot_summary">Вимкнути комбінацію кнопок живлення + гучність вниз</string>
     <!-- Doze Pulse -->
-    <string name="doze_pulse_gestures">Doze Pulse</string>
-    <string name="doze_pulse_gestures_summary">Pulse screen instead of waking</string>
-    <string name="doze_pulse_notification">Notification pulse</string>
+    <string name="doze_pulse_gestures">Doze Пульс</string>
+    <string name="doze_pulse_gestures_summary">Пульсуючий екран замість пробудження</string>
+    <string name="doze_pulse_notification">Пульсування сповіщень</string>
     <string name="doze_pulse_notification_summary">Briefly show lockscreen on notifications without AOD</string>
     <string name="doze_pulse_tap">Tap to pulse</string>
     <string name="doze_pulse_tap_summary">Pulse screen on tap instead of waking</string>
@@ -317,6 +318,27 @@
     <string name="performance">Продуктивність</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
     <string name="performance_mode">Режим продуктивності</string>
+    <string name="background_manager">Background Manager</string>
+    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="background_manager_policy">Policy</string>
+    <string name="background_manager_apps">Додатки</string>
+    <string name="background_app_policy">App policy</string>
+    <string name="background_app_policy_summary">Choose how strictly background apps are handled</string>
+    <string name="background_app_policy_normal">Звичайний</string>
+    <string name="background_app_policy_aggressive">Aggressive</string>
+    <string name="freezer_level">Freezer level</string>
+    <string name="freezer_level_summary">Select how the background freezer should run</string>
+    <string name="freezer_level_disabled">Вимкнено</string>
+    <string name="freezer_level_process">Process freezer</string>
+    <string name="freezer_level_package">Package freezer</string>
+    <string name="package_freezer_apps">Package freezer apps</string>
+    <string name="package_freezer_apps_summary">Apps in this list can be frozen after moving to the background</string>
+    <string name="keep_alive_apps">Keep-alive apps</string>
+    <string name="keep_alive_apps_summary">Choose up to %1$d apps to keep resident and protected from background cleanup</string>
+    <string name="keep_alive_apps_limit_message">Keep-alive is limited to %1$d apps</string>
+    <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
+    <string name="restricted_background_apps">Restricted background apps</string>
+    <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
     <string name="maximum_performance_enabled">Максимальна продуктивність увімкнена</string>
     <string name="balanced_mode">Збалансований режим</string>
     <string name="boost_controls">КЕРУВАННЯ ПРИСКОРЕННЯМ</string>
@@ -354,12 +376,12 @@
     <!-- PC Mode Settings -->
     <string name="pc_mode">PC Mode</string>
     <string name="pc_mode_settings">PC Mode Settings</string>
-    <string name="pc_mode_summary">Configure screen resolution and behavior</string>
+    <string name="pc_mode_summary">Налаштування роздільної здатності та поведінки екрана</string>
     <string name="pc_mode_title">PC Mode</string>
     <string name="pref_category_general">Загальні</string>
-    <string name="pref_category_display">Display</string>
-    <string name="pref_category_taskbar">Taskbar</string>
-    <string name="pref_enable_pc_mode_title">Enable PC Mode</string>
+    <string name="pref_category_display">Дисплей</string>
+    <string name="pref_category_taskbar">Панель завдань</string>
+    <string name="pref_enable_pc_mode_title">Увімкнути режим ПК</string>
     <string name="pref_enable_pc_mode_summary">Enable desktop-like experience</string>
     <string name="pref_taskbar_timeout_title">Auto-hide timeout</string>
     <string name="pref_taskbar_timeout_summary">Duration before taskbar hides automatically</string>
@@ -383,7 +405,7 @@
     <string name="resolution_aspect_error">Unsupported aspect ratio. Keep it between 1:2 and 3:1.</string>
     <string name="action_apply">Застосувати</string>
     <string name="action_cancel">Скасувати</string>
-    <string name="action_reset_default">Reset to Default</string>
+    <string name="action_reset_default">Скинути до заводських налаштувань</string>
     <!-- Dynamic Bar -->
     <string name="dynamic_bar">Dynamic Bar</string>
     <string name="dynamic_bar_summary">Smart status bar chip for live events</string>
@@ -409,11 +431,11 @@
     <string name="dynamic_bar_event_charging_summary">Battery level when plugged in</string>
     <string name="dynamic_bar_event_bluetooth">Bluetooth</string>
     <string name="dynamic_bar_event_bluetooth_summary">Device connection status</string>
-    <string name="dynamic_bar_event_hotspot">Hotspot</string>
+    <string name="dynamic_bar_event_hotspot">Точка доступу</string>
     <string name="dynamic_bar_event_hotspot_summary">Mobile hotspot active indicator</string>
     <string name="dynamic_bar_event_ringer">Ringer Mode</string>
     <string name="dynamic_bar_event_ringer_summary">Silent, vibrate, and ring mode changes</string>
-    <string name="dynamic_bar_event_vpn">VPN</string>
+    <string name="dynamic_bar_event_vpn">Мережа VPN</string>
     <string name="dynamic_bar_event_vpn_summary">Active VPN connection indicator</string>
     <string name="dynamic_bar_event_clipboard">Clipboard</string>
     <string name="dynamic_bar_event_clipboard_summary">Copied text and image preview</string>
@@ -447,6 +469,8 @@
     <string name="routines_enabled_summary">Allow routines to run automatically</string>
     <string name="routines_create">Create Routine</string>
     <string name="routines_edit">Edit Routine</string>
+    <string name="routines_duplicate">Duplicate routine</string>
+    <string name="routines_duplicate_name">%1$s copy</string>
     <string name="routines_name">Routine name</string>
     <string name="routines_triggers">Triggers</string>
     <string name="routines_conditions">Conditions</string>
@@ -466,8 +490,8 @@
     <string name="routines_seconds">Seconds</string>
     <string name="routines_above">Above</string>
     <string name="routines_below">Below</string>
-    <string name="routines_silent">Silent</string>
-    <string name="routines_vibrate">Vibrate</string>
+    <string name="routines_silent">Режим тиші</string>
+    <string name="routines_vibrate">Вібросигнал</string>
     <string name="routines_normal">Звичайний</string>
     <string name="routines_next">Next</string>
     <string name="routines_ssid_hint">WiFi network name (optional)</string>
@@ -523,6 +547,7 @@
     <string name="routines_stream_notification">Notification</string>
     <string name="routines_stream_alarm">Alarm</string>
     <string name="routines_stream_system">System</string>
+    <string name="routines_volume_action_summary">%1$s volume %2$d%%</string>
     <string name="routines_start_time">Start Time</string>
     <string name="routines_end_time">End Time</string>
     <string name="routines_time_range">Time Range</string>
@@ -543,15 +568,15 @@
     <string name="routines_mic_unblocked">Microphone unblocked</string>
     <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
     <string name="routines_sensor_blocked">Sensor Blocked</string>
-    <string name="routines_location">Location</string>
+    <string name="routines_location">Місцезнаходження</string>
     <string name="routines_location_enter">Enter area</string>
     <string name="routines_location_exit">Leave area</string>
     <string name="routines_latitude_hint">Latitude</string>
     <string name="routines_longitude_hint">Longitude</string>
     <string name="routines_radius_hint">Radius (meters)</string>
     <string name="routines_location_near">Location Near</string>
-    <string name="routines_sensor_camera">Camera</string>
-    <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_sensor_camera">Камера</string>
+    <string name="routines_sensor_microphone">Мікрофон</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
     <string name="routines_play_sound">Play Sound</string>
@@ -577,4 +602,10 @@
     <string name="ax_bravia_engine_vivid">Vivid</string>
     <string name="ax_bravia_engine_natural">Natural</string>
     <string name="ax_bravia_engine_cinema">Cinema</string>
+    <plurals name="max_apps_selected">
+        <item quantity="one">You can select up to %1$d app</item>
+        <item quantity="few">You can select up to %1$d apps</item>
+        <item quantity="many">You can select up to %1$d apps</item>
+        <item quantity="other">You can select up to %1$d apps</item>
+    </plurals>
 </resources>
