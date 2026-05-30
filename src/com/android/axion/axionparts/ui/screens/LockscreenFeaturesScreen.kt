@@ -1060,7 +1060,6 @@ fun AodContent(modifier: Modifier = Modifier) {
                     settingKey = "ax_doze_notification_pulse",
                     title = stringResource(R.string.doze_pulse_notification),
                     summary = stringResource(R.string.doze_pulse_notification_summary),
-                    icon = Icons.Filled.Notifications,
                     defaultValue = false,
                 )
             }
@@ -1070,7 +1069,6 @@ fun AodContent(modifier: Modifier = Modifier) {
                         settingKey = "ax_doze_tap_pulse",
                         title = stringResource(R.string.doze_pulse_tap),
                         summary = stringResource(R.string.doze_pulse_tap_summary),
-                        icon = Icons.Filled.TouchApp,
                         defaultValue = false,
                     )
                 }
@@ -1081,7 +1079,6 @@ fun AodContent(modifier: Modifier = Modifier) {
                         settingKey = "ax_doze_double_tap_pulse",
                         title = stringResource(R.string.doze_pulse_double_tap),
                         summary = stringResource(R.string.doze_pulse_double_tap_summary),
-                        icon = Icons.Filled.TouchApp,
                         defaultValue = false,
                     )
                 }
@@ -1102,7 +1099,6 @@ fun AodContent(modifier: Modifier = Modifier) {
                         settingKey = "ax_doze_side_fps_pulse",
                         title = stringResource(R.string.doze_pulse_side_fps),
                         summary = stringResource(R.string.doze_pulse_side_fps_summary),
-                        icon = Icons.Filled.Fingerprint,
                         defaultValue = false,
                     )
                 }
