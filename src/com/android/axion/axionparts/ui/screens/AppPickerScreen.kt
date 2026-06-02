@@ -67,7 +67,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import com.android.axion.axionparts.R
@@ -193,7 +192,6 @@ fun AppPickerScreen(
                     text = stringResource(R.string.selected_count, tempSelectedApps.size),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
                 )
 

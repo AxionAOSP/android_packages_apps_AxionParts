@@ -62,9 +62,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.theme.ExpressiveShapes
 import com.android.axion.compose.preferences.SettingsType
@@ -176,11 +174,14 @@ fun PowerModeToggle(modifier: Modifier = Modifier) {
                     Text(
                         text = stringResource(R.string.performance_mode),
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
                         color = contentColor,
                     )
                     Text(
-                        text = if (isEnabled) "Maximum performance enabled" else "Balanced mode",
+                        text = if (isEnabled) {
+                            stringResource(R.string.maximum_performance_enabled)
+                        } else {
+                            stringResource(R.string.balanced_mode)
+                        },
                         style = MaterialTheme.typography.bodySmall,
                         color = contentColor.copy(alpha = 0.7f),
                     )
@@ -277,11 +278,14 @@ fun BoostToggleCard(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
                     color = contentColor,
                 )
                 Text(
-                    text = if (isEnabled) "Active" else "Inactive",
+                    text = if (isEnabled) {
+                        stringResource(R.string.active)
+                    } else {
+                        stringResource(R.string.inactive)
+                    },
                     style = MaterialTheme.typography.bodySmall,
                     color = contentColor.copy(alpha = 0.7f),
                 )
@@ -359,9 +363,8 @@ fun FrequencySlider(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Text(
-                text = "${currentValue.roundToInt() / 1000} MHz",
+                text = stringResource(R.string.mhz_format, currentValue.roundToInt() / 1000),
                 style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Bold,
                 color = accentColor,
             )
         }
@@ -453,15 +456,13 @@ fun FrequencySlider(
                 }
 
             Text(
-                text = "${minDisplay} MHz",
+                text = stringResource(R.string.mhz_format, minDisplay),
                 style = MaterialTheme.typography.labelSmall,
-                fontSize = 10.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
             )
             Text(
-                text = "${maxDisplay} MHz",
+                text = stringResource(R.string.mhz_format, maxDisplay),
                 style = MaterialTheme.typography.labelSmall,
-                fontSize = 10.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
             )
         }
@@ -516,9 +517,8 @@ fun LevelSlider(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Text(
-                text = "Level ${currentValue.roundToInt()}",
+                text = stringResource(R.string.level_format, currentValue.roundToInt()),
                 style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Bold,
                 color = accentColor,
             )
         }

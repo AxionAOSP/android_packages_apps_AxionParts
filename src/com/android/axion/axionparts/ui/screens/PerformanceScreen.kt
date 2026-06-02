@@ -47,9 +47,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.android.axion.axionparts.R
 import com.android.axion.axionparts.ui.components.FrequencySlider
 import com.android.axion.axionparts.ui.components.LevelSlider
@@ -184,11 +182,9 @@ fun PerformanceContent(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "FREQUENCY CONTROL",
+            text = stringResource(R.string.frequency_control),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.primary,
-            fontWeight = FontWeight.Bold,
-            letterSpacing = 1.sp,
             modifier = Modifier.padding(start = 4.dp, bottom = 12.dp),
         )
 
@@ -287,7 +283,6 @@ private fun ClusterHeader(
         Text(
             text = name,
             style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,
         )
     }
@@ -325,13 +320,12 @@ private fun GpuCard(maxLevels: Int) {
             }
             Column {
                 Text(
-                    text = "GPU",
+                    text = stringResource(R.string.gpu),
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
                 Text(
-                    text = "Graphics Performance",
+                    text = stringResource(R.string.graphics_performance),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

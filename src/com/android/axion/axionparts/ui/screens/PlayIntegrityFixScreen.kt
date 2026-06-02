@@ -114,7 +114,7 @@ fun PlayIntegrityFixScreen(
 ) {
     if (showTopBar) {
         AxionScaffold(
-            title = "Play Integrity Fix",
+            title = stringResource(R.string.play_integrity_fix),
             onBackClick = { onBackClick?.invoke() },
         ) { innerPadding ->
             Box(
@@ -324,18 +324,21 @@ fun PlayIntegrityFixContent(
                             modifier = Modifier.size(28.dp)
                         )
                     }
-                    
+
                     Spacer(modifier = Modifier.width(16.dp))
-                    
+
                     Column {
                         Text(
-                            text = "Fingerprint Spoofing",
+                            text = stringResource(R.string.fingerprint_spoofing),
                             style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = if (activeConfig.isNotEmpty()) "Active: $activeConfig" else "No config loaded",
+                            text = if (activeConfig.isNotEmpty()) {
+                                stringResource(R.string.active_config, activeConfig)
+                            } else {
+                                stringResource(R.string.no_config_loaded)
+                            },
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -425,7 +428,6 @@ fun PlayIntegrityFixContent(
                                 Text(
                                     text = activeConfigFile.fileName,
                                     style = MaterialTheme.typography.titleMedium,
-                                    fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                                 )
                                 activeConfigFile.data["MODEL"]?.let {
