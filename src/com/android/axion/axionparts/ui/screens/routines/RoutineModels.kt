@@ -16,8 +16,10 @@
 
 package com.android.axion.axionparts.ui.screens.routines
 
+import android.media.AudioManager
 import java.util.Calendar
 import java.util.UUID
+import kotlin.math.roundToInt
 
 data class Routine(
     val id: String = UUID.randomUUID().toString(),
@@ -58,6 +60,10 @@ sealed interface Trigger {
 
     data class RingerMode(val mode: Int) : Trigger
 
+    data class IncomingCall(val phoneNumbers: Set<String> = emptySet()) : Trigger
+
+    data class SmsMessage(val text: String, val senderNumbers: Set<String> = emptySet()) : Trigger
+
     data class AppLaunch(val packageName: String) : Trigger
 
     data class AppClose(val packageName: String) : Trigger
@@ -90,6 +96,8 @@ sealed interface Trigger {
         const val TYPE_FEATURE_STATE = "feature_state"
         const val TYPE_HEADPHONES_STATE = "headphones_state"
         const val TYPE_RINGER_MODE = "ringer_mode"
+        const val TYPE_INCOMING_CALL = "incoming_call"
+        const val TYPE_SMS_MESSAGE = "sms_message"
         const val TYPE_APP_LAUNCH = "app_launch"
         const val TYPE_APP_CLOSE = "app_close"
         const val TYPE_SENSOR_PRIVACY_STATE = "sensor_privacy_state"
@@ -190,6 +198,8 @@ sealed interface Action {
 
     data class PlaySound(val soundType: Int, val uri: String? = null) : Action
 
+    data class SendLocationSms(val phoneNumber: String? = null) : Action
+
     data class HttpRequest(
         val url: String,
         val method: String = METHOD_GET,
@@ -213,6 +223,7 @@ sealed interface Action {
         const val TYPE_SET_SETTING = "set_setting"
         const val TYPE_SET_SENSOR_PRIVACY = "set_sensor_privacy"
         const val TYPE_PLAY_SOUND = "play_sound"
+        const val TYPE_SEND_LOCATION_SMS = "send_location_sms"
         const val TYPE_HTTP_REQUEST = "http_request"
         const val METHOD_GET = "GET"
         const val DEFAULT_HTTP_TIMEOUT_MS = 15_000
@@ -226,6 +237,32 @@ const val SENSOR_CAMERA = 2
 const val SOUND_TYPE_RINGTONE = 1
 const val SOUND_TYPE_NOTIFICATION = 2
 const val SOUND_TYPE_ALARM = 4
+
+internal fun streamLevelForVolumePercent(percent: Int, minLevel: Int, maxLevel: Int): Int {
+    if (maxLevel <= minLevel) return minLevel
+    val fraction = percent.coerceIn(0, 100) / 100f
+    return (minLevel + fraction * (maxLevel - minLevel))
+        .roundToInt()
+        .coerceIn(minLevel, maxLevel)
+}
+
+internal fun volumePercentForStreamLevel(level: Int, minLevel: Int, maxLevel: Int): Int {
+    if (maxLevel <= minLevel) return 0
+    return ((level.coerceIn(minLevel, maxLevel) - minLevel) * 100f / (maxLevel - minLevel))
+        .roundToInt()
+        .coerceIn(0, 100)
+}
+
+internal fun appliedVolumePercent(audioManager: AudioManager?, streamType: Int, percent: Int): Int {
+    if (audioManager == null) return percent.coerceIn(0, 100)
+    val minLevel = audioManager.getStreamMinVolume(streamType)
+    val maxLevel = audioManager.getStreamMaxVolume(streamType)
+    return volumePercentForStreamLevel(
+        streamLevelForVolumePercent(percent, minLevel, maxLevel),
+        minLevel,
+        maxLevel,
+    )
+}
 
 val KNOWN_FEATURES = linkedMapOf(
     "wifi" to "WiFi",

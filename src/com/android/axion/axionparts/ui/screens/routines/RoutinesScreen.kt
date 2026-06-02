@@ -16,13 +16,18 @@
 
 package com.android.axion.axionparts.ui.screens.routines
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.media.AudioManager
+import android.net.Uri
 import android.os.UserHandle
 import android.provider.Settings
-import java.util.Calendar
-import java.util.UUID
 import android.text.format.DateUtils
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Spring
@@ -51,7 +56,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AutoMode
+import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.Upload
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -82,14 +89,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
+import com.android.axion.compose.preferences.ClickablePreference
 import com.android.axion.compose.preferences.PreferenceGroup
 import com.android.axion.compose.preferences.SecureSettingSwitch
 import com.android.axion.compose.scaffold.AxionScaffold
+import java.io.IOException
+import java.nio.charset.StandardCharsets
+import java.util.Calendar
+import java.util.UUID
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 private const val SETTINGS_KEY = "ax_routines_data"
+private const val ROUTINES_BACKUP_FILE_NAME = "axion-routines.json"
+private const val JSON_MIME_TYPE = "application/json"
 
 @Composable
 fun RoutinesScreen(onBackClick: () -> Unit) {
@@ -102,22 +117,76 @@ fun RoutinesScreen(onBackClick: () -> Unit) {
     val serializer = remember { RoutineSerializer() }
     var routines by remember { mutableStateOf<List<Routine>>(emptyList()) }
 
-    LaunchedEffect(Unit) {
-        withContext(Dispatchers.IO) {
-            val json = Settings.Secure.getStringForUser(
-                context.contentResolver, SETTINGS_KEY, UserHandle.USER_CURRENT,
-            ) ?: ""
-            routines = serializer.deserializeRoutines(json)
-        }
+    LaunchedEffect(context, serializer) {
+        routines = loadRoutines(context, serializer)
     }
 
     fun save(updated: List<Routine>) {
         routines = updated
-        scope.launch(Dispatchers.IO) {
-            Settings.Secure.putStringForUser(
-                context.contentResolver, SETTINGS_KEY,
-                serializer.serializeRoutines(updated), UserHandle.USER_CURRENT,
-            )
+        scope.launch {
+            persistRoutines(context, serializer, updated)
+        }
+    }
+
+    val importLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult(),
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.data?.let { uri ->
+                scope.launch {
+                    try {
+                        val imported = readRoutinesBackup(context, serializer, uri)
+                        routines = imported
+                        persistRoutines(context, serializer, imported)
+                        Toast.makeText(
+                            context,
+                            context.resources.getQuantityString(
+                                R.plurals.routines_imported_count,
+                                imported.size,
+                                imported.size,
+                            ),
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    } catch (e: Exception) {
+                        if (e is CancellationException) throw e
+                        Toast.makeText(
+                            context,
+                            R.string.routines_import_failed,
+                            Toast.LENGTH_LONG,
+                        ).show()
+                    }
+                }
+            }
+        }
+    }
+
+    val exportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult(),
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.data?.let { uri ->
+                scope.launch {
+                    try {
+                        writeRoutinesBackup(context, serializer, uri, routines)
+                        Toast.makeText(
+                            context,
+                            context.resources.getQuantityString(
+                                R.plurals.routines_exported_count,
+                                routines.size,
+                                routines.size,
+                            ),
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    } catch (e: Exception) {
+                        if (e is CancellationException) throw e
+                        Toast.makeText(
+                            context,
+                            R.string.routines_export_failed,
+                            Toast.LENGTH_LONG,
+                        ).show()
+                    }
+                }
+            }
         }
     }
 
@@ -184,6 +253,8 @@ fun RoutinesScreen(onBackClick: () -> Unit) {
                         isForward = true
                         currentView = "editor"
                     },
+                    onImport = { importLauncher.launch(createRoutinesImportIntent()) },
+                    onExport = { exportLauncher.launch(createRoutinesExportIntent()) },
                 )
                 "editor" -> key(editingRoutineId) {
                     RoutineEditorContent(
@@ -220,6 +291,8 @@ private fun RoutinesListContent(
     onDelete: (String) -> Unit,
     onDuplicate: (String) -> Unit,
     onCreate: () -> Unit,
+    onImport: () -> Unit,
+    onExport: () -> Unit,
 ) {
     var routineToDelete by remember { mutableStateOf<String?>(null) }
 
@@ -239,6 +312,32 @@ private fun RoutinesListContent(
                     summary = stringResource(R.string.routines_enabled_summary),
                     icon = Icons.Default.AutoMode,
                     defaultValue = false,
+                )
+            }
+        }
+
+        Spacer(Modifier.height(16.dp))
+
+        PreferenceGroup(title = stringResource(R.string.routines_backup_restore)) {
+            item {
+                ClickablePreference(
+                    title = stringResource(R.string.routines_export),
+                    summary = if (routines.isEmpty()) {
+                        stringResource(R.string.routines_export_empty_summary)
+                    } else {
+                        stringResource(R.string.routines_export_summary)
+                    },
+                    icon = Icons.Default.CloudDownload,
+                    enabled = routines.isNotEmpty(),
+                    onClick = onExport,
+                )
+            }
+            item {
+                ClickablePreference(
+                    title = stringResource(R.string.routines_import),
+                    summary = stringResource(R.string.routines_import_summary),
+                    icon = Icons.Default.Upload,
+                    onClick = onImport,
                 )
             }
         }
@@ -320,6 +419,65 @@ private fun RoutinesListContent(
             },
         )
     }
+}
+
+private suspend fun loadRoutines(
+    context: Context,
+    serializer: RoutineSerializer,
+): List<Routine> = withContext(Dispatchers.IO) {
+    serializer.deserializeRoutines(
+        Settings.Secure.getStringForUser(
+            context.contentResolver,
+            SETTINGS_KEY,
+            UserHandle.USER_CURRENT,
+        ) ?: ""
+    )
+}
+
+private suspend fun persistRoutines(
+    context: Context,
+    serializer: RoutineSerializer,
+    routines: List<Routine>,
+) = withContext(Dispatchers.IO) {
+    Settings.Secure.putStringForUser(
+        context.contentResolver,
+        SETTINGS_KEY,
+        serializer.serializeRoutines(routines),
+        UserHandle.USER_CURRENT,
+    )
+}
+
+private suspend fun readRoutinesBackup(
+    context: Context,
+    serializer: RoutineSerializer,
+    uri: Uri,
+): List<Routine> = withContext(Dispatchers.IO) {
+    val json = context.contentResolver.openInputStream(uri)?.use { input ->
+        input.readBytes().toString(StandardCharsets.UTF_8)
+    } ?: throw IOException()
+    serializer.deserializeRoutines(json)
+}
+
+private suspend fun writeRoutinesBackup(
+    context: Context,
+    serializer: RoutineSerializer,
+    uri: Uri,
+    routines: List<Routine>,
+) = withContext(Dispatchers.IO) {
+    context.contentResolver.openOutputStream(uri)?.use { output ->
+        output.write(serializer.serializeRoutines(routines).toByteArray(StandardCharsets.UTF_8))
+    } ?: throw IOException()
+}
+
+private fun createRoutinesImportIntent(): Intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+    addCategory(Intent.CATEGORY_OPENABLE)
+    type = JSON_MIME_TYPE
+}
+
+private fun createRoutinesExportIntent(): Intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
+    addCategory(Intent.CATEGORY_OPENABLE)
+    type = JSON_MIME_TYPE
+    putExtra(Intent.EXTRA_TITLE, ROUTINES_BACKUP_FILE_NAME)
 }
 
 @Composable
@@ -409,7 +567,11 @@ private fun RoutineCard(
 
 @Composable
 private fun buildRoutineSummary(routine: Routine): String {
-    val triggerText = routine.triggers.joinToString(", ") { describeTrigger(it) }
+    val triggerTexts = mutableListOf<String>()
+    for (trigger in routine.triggers) {
+        triggerTexts += describeTrigger(trigger)
+    }
+    val triggerText = triggerTexts.joinToString(", ")
     val actionTexts = mutableListOf<String>()
     for (action in routine.actions) {
         actionTexts += describeAction(action)
@@ -418,6 +580,7 @@ private fun buildRoutineSummary(routine: Routine): String {
     return "$triggerText → $actionText"
 }
 
+@Composable
 internal fun describeTrigger(trigger: Trigger): String = when (trigger) {
     is Trigger.TimeOfDay -> describeTimeOfDay(trigger)
     is Trigger.Interval -> "Every ${trigger.intervalMinutes}m"
@@ -440,6 +603,15 @@ internal fun describeTrigger(trigger: Trigger): String = when (trigger) {
         AudioManager.RINGER_MODE_VIBRATE -> "Vibrate mode"
         else -> "Normal mode"
     }
+    is Trigger.IncomingCall -> if (trigger.phoneNumbers.isEmpty()) {
+        stringResource(R.string.routines_incoming_call_any_summary)
+    } else {
+        stringResource(
+            R.string.routines_incoming_call_numbers_summary,
+            trigger.phoneNumbers.joinToString(", "),
+        )
+    }
+    is Trigger.SmsMessage -> stringResource(R.string.routines_sms_message_summary, trigger.text)
     is Trigger.AppLaunch -> "Open ${trigger.packageName.substringAfterLast('.')}"
     is Trigger.AppClose -> "Close ${trigger.packageName.substringAfterLast('.')}"
     is Trigger.SensorPrivacyState -> {
@@ -460,11 +632,14 @@ internal fun describeAction(action: Action): String = when (action) {
         if (action.enabled) "Enable $name" else "Disable $name"
     }
     is Action.ToggleFeature -> "Toggle ${KNOWN_FEATURES[action.feature] ?: action.feature}"
-    is Action.SetVolume -> stringResource(
-        R.string.routines_volume_action_summary,
-        volumeStreamLabel(action.streamType),
-        action.level,
-    )
+    is Action.SetVolume -> {
+        val audioManager = LocalContext.current.getSystemService(AudioManager::class.java)
+        stringResource(
+            R.string.routines_volume_action_summary,
+            volumeStreamLabel(action.streamType),
+            appliedVolumePercent(audioManager, action.streamType, action.level),
+        )
+    }
     is Action.SetBrightness -> "Brightness ${action.level * 100 / 255}%"
     is Action.SetRingerMode -> when (action.mode) {
         AudioManager.RINGER_MODE_SILENT -> "Silent"
@@ -487,6 +662,9 @@ internal fun describeAction(action: Action): String = when (action) {
         SOUND_TYPE_RINGTONE -> "Play ringtone"
         else -> "Play notification"
     }
+    is Action.SendLocationSms -> action.phoneNumber?.takeIf { it.isNotBlank() }?.let {
+        stringResource(R.string.routines_send_location_sms_number_summary, it)
+    } ?: stringResource(R.string.routines_send_location_sms_summary)
     is Action.HttpRequest -> "${action.method} ${action.url.take(40)}"
 }
 

@@ -105,6 +105,7 @@ import com.android.axion.compose.applist.AppFilter
 import com.android.axion.compose.applist.rememberFilteredAppList
 import java.util.Calendar
 import java.util.UUID
+import kotlin.math.roundToInt
 
 private data class TypeOption(
     val type: String,
@@ -124,6 +125,8 @@ private fun triggerOptions() = listOf(
     TypeOption(Trigger.TYPE_FEATURE_STATE, stringResource(R.string.routines_feature_state), Icons.Default.ToggleOn),
     TypeOption(Trigger.TYPE_HEADPHONES_STATE, stringResource(R.string.routines_headphones), Icons.Default.Headphones),
     TypeOption(Trigger.TYPE_RINGER_MODE, stringResource(R.string.routines_ringer_mode), Icons.Default.VolumeUp),
+    TypeOption(Trigger.TYPE_INCOMING_CALL, stringResource(R.string.routines_incoming_call), Icons.Default.PhoneAndroid),
+    TypeOption(Trigger.TYPE_SMS_MESSAGE, stringResource(R.string.routines_sms_message), Icons.Default.Send),
     TypeOption(Trigger.TYPE_APP_LAUNCH, stringResource(R.string.routines_app_launch), Icons.Default.OpenInNew),
     TypeOption(Trigger.TYPE_APP_CLOSE, stringResource(R.string.routines_app_close), Icons.Default.Close),
     TypeOption(Trigger.TYPE_SENSOR_PRIVACY_STATE, stringResource(R.string.routines_sensor_privacy), Icons.Default.CameraAlt),
@@ -145,6 +148,7 @@ private fun actionOptions() = listOf(
     TypeOption(Action.TYPE_SET_SETTING, stringResource(R.string.routines_set_setting), Icons.Default.Settings),
     TypeOption(Action.TYPE_SET_SENSOR_PRIVACY, stringResource(R.string.routines_set_sensor_privacy), Icons.Default.CameraAlt),
     TypeOption(Action.TYPE_PLAY_SOUND, stringResource(R.string.routines_play_sound), Icons.Default.VolumeUp),
+    TypeOption(Action.TYPE_SEND_LOCATION_SMS, stringResource(R.string.routines_send_location_sms), Icons.Default.LocationOn),
     TypeOption(Action.TYPE_HTTP_REQUEST, stringResource(R.string.routines_http_request), Icons.Default.Language),
 )
 
@@ -809,6 +813,97 @@ private fun TriggerConfigDialog(
             onDismiss = onDismiss,
         )
 
+        Trigger.TYPE_INCOMING_CALL -> {
+            val init = initial as? Trigger.IncomingCall
+            var phoneNumbers by remember {
+                mutableStateOf(init?.phoneNumbers?.joinToString(", ") ?: "")
+            }
+            AlertDialog(
+                onDismissRequest = onDismiss,
+                title = { Text(stringResource(R.string.routines_incoming_call)) },
+                text = {
+                    Column {
+                        OutlinedTextField(
+                            value = phoneNumbers,
+                            onValueChange = { phoneNumbers = it },
+                            label = { Text(stringResource(R.string.routines_phone_numbers_hint)) },
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            stringResource(R.string.routines_phone_numbers_optional_summary),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        onConfirm(Trigger.IncomingCall(parsePhoneNumbers(phoneNumbers)))
+                    }) { Text(confirmLabel) }
+                },
+                dismissButton = {
+                    TextButton(onClick = onDismiss) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                },
+            )
+        }
+
+        Trigger.TYPE_SMS_MESSAGE -> {
+            val init = initial as? Trigger.SmsMessage
+            var text by remember { mutableStateOf(init?.text ?: "") }
+            var senderNumbers by remember {
+                mutableStateOf(init?.senderNumbers?.joinToString(", ") ?: "")
+            }
+            AlertDialog(
+                onDismissRequest = onDismiss,
+                title = { Text(stringResource(R.string.routines_sms_message)) },
+                text = {
+                    Column {
+                        OutlinedTextField(
+                            value = text,
+                            onValueChange = { text = it },
+                            label = { Text(stringResource(R.string.routines_sms_phrase_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        OutlinedTextField(
+                            value = senderNumbers,
+                            onValueChange = { senderNumbers = it },
+                            label = { Text(stringResource(R.string.routines_sms_senders_hint)) },
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            stringResource(R.string.routines_sms_senders_optional_summary),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            onConfirm(
+                                Trigger.SmsMessage(
+                                    text.trim(),
+                                    parsePhoneNumbers(senderNumbers),
+                                )
+                            )
+                        },
+                        enabled = text.isNotBlank(),
+                    ) { Text(confirmLabel) }
+                },
+                dismissButton = {
+                    TextButton(onClick = onDismiss) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                },
+            )
+        }
+
         Trigger.TYPE_APP_LAUNCH -> AppPickerDialog(
             title = stringResource(R.string.routines_app_launch),
             onConfirm = { onConfirm(Trigger.AppLaunch(it)) },
@@ -903,10 +998,14 @@ private fun ActionConfigDialog(
 
         Action.TYPE_SET_VOLUME -> {
             val init = initial as? Action.SetVolume
+            val context = LocalContext.current
+            val audioManager = remember(context) {
+                context.getSystemService(AudioManager::class.java)
+            }
             var streamType by remember {
                 mutableIntStateOf(init?.streamType ?: AudioManager.STREAM_MUSIC)
             }
-            var level by remember { mutableFloatStateOf(init?.level?.toFloat() ?: 50f) }
+            var level by remember { mutableIntStateOf(init?.level ?: 50) }
             val streams = listOf(
                 AudioManager.STREAM_MUSIC to stringResource(R.string.routines_stream_media),
                 AudioManager.STREAM_RING to stringResource(R.string.routines_stream_ring),
@@ -914,6 +1013,11 @@ private fun ActionConfigDialog(
                 AudioManager.STREAM_ALARM to stringResource(R.string.routines_stream_alarm),
                 AudioManager.STREAM_SYSTEM to stringResource(R.string.routines_stream_system),
             )
+            val minLevel = audioManager?.getStreamMinVolume(streamType) ?: 0
+            val maxLevel = audioManager?.getStreamMaxVolume(streamType) ?: 100
+            val streamLevel = streamLevelForVolumePercent(level, minLevel, maxLevel)
+            val displayPercent = volumePercentForStreamLevel(streamLevel, minLevel, maxLevel)
+            val streamSteps = (maxLevel - minLevel - 1).coerceAtLeast(0)
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_set_volume)) },
@@ -929,17 +1033,24 @@ private fun ActionConfigDialog(
                             }
                         }
                         Spacer(Modifier.height(8.dp))
-                        Text("${level.toInt()}%")
+                        Text("$displayPercent%")
                         Slider(
-                            value = level,
-                            onValueChange = { level = it },
-                            valueRange = 0f..100f,
+                            value = streamLevel.toFloat(),
+                            onValueChange = {
+                                level = volumePercentForStreamLevel(
+                                    it.roundToInt(),
+                                    minLevel,
+                                    maxLevel,
+                                )
+                            },
+                            valueRange = minLevel.toFloat()..maxLevel.toFloat(),
+                            steps = streamSteps,
                         )
                     }
                 },
                 confirmButton = {
                     TextButton(onClick = {
-                        onConfirm(Action.SetVolume(streamType, level.toInt()))
+                        onConfirm(Action.SetVolume(streamType, displayPercent))
                     }) { Text(confirmLabel) }
                 },
                 dismissButton = {
@@ -1215,6 +1326,46 @@ private fun ActionConfigDialog(
             },
             onDismiss = onDismiss,
         )
+
+        Action.TYPE_SEND_LOCATION_SMS -> {
+            val init = initial as? Action.SendLocationSms
+            var phoneNumber by remember { mutableStateOf(init?.phoneNumber ?: "") }
+            AlertDialog(
+                onDismissRequest = onDismiss,
+                title = { Text(stringResource(R.string.routines_send_location_sms)) },
+                text = {
+                    Column {
+                        OutlinedTextField(
+                            value = phoneNumber,
+                            onValueChange = { phoneNumber = it },
+                            label = { Text(stringResource(R.string.routines_phone_number_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            stringResource(R.string.routines_send_location_sms_target_summary),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        onConfirm(
+                            Action.SendLocationSms(
+                                phoneNumber.trim().takeIf { it.isNotBlank() }
+                            )
+                        )
+                    }) { Text(confirmLabel) }
+                },
+                dismissButton = {
+                    TextButton(onClick = onDismiss) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                },
+            )
+        }
 
         Action.TYPE_HTTP_REQUEST -> {
             val init = initial as? Action.HttpRequest
@@ -2147,6 +2298,8 @@ private fun triggerTypeOf(trigger: Trigger): String = when (trigger) {
     is Trigger.FeatureState -> Trigger.TYPE_FEATURE_STATE
     is Trigger.HeadphonesState -> Trigger.TYPE_HEADPHONES_STATE
     is Trigger.RingerMode -> Trigger.TYPE_RINGER_MODE
+    is Trigger.IncomingCall -> Trigger.TYPE_INCOMING_CALL
+    is Trigger.SmsMessage -> Trigger.TYPE_SMS_MESSAGE
     is Trigger.AppLaunch -> Trigger.TYPE_APP_LAUNCH
     is Trigger.AppClose -> Trigger.TYPE_APP_CLOSE
     is Trigger.SensorPrivacyState -> Trigger.TYPE_SENSOR_PRIVACY_STATE
@@ -2181,8 +2334,15 @@ private fun actionTypeOf(action: Action): String = when (action) {
     is Action.SetSetting -> Action.TYPE_SET_SETTING
     is Action.SetSensorPrivacy -> Action.TYPE_SET_SENSOR_PRIVACY
     is Action.PlaySound -> Action.TYPE_PLAY_SOUND
+    is Action.SendLocationSms -> Action.TYPE_SEND_LOCATION_SMS
     is Action.HttpRequest -> Action.TYPE_HTTP_REQUEST
 }
+
+private fun parsePhoneNumbers(value: String): Set<String> =
+    value.split(",", "\n")
+        .map { it.trim() }
+        .filter { it.isNotBlank() }
+        .toSet()
 
 @Composable
 private fun IntentExtrasEditor(
