@@ -224,7 +224,7 @@
     <string name="app_spoofing">应用欺骗</string>
     <string name="apps_configured">已配置%1$d 应用</string>
     <string name="no_apps_configured">未配置应用</string>
-    <string name="configured_apps">配置应用</string>
+    <string name="configured_apps">Configured apps</string>
     <string name="no_apps_configured_empty">未配置应用</string>
     <string name="add_apps_to_spoof">添加应用以启动伪装设备属性</string>
     <string name="configuration_saved">配置已保存</string>
@@ -341,8 +341,8 @@
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
     <string name="maximum_performance_enabled">最高性能已启用</string>
     <string name="balanced_mode">平衡模式</string>
-    <string name="boost_controls">性能控制</string>
-    <string name="frequency_control">频率控制</string>
+    <string name="boost_controls">Boost controls</string>
+    <string name="frequency_control">Frequency control</string>
     <string name="display_boost">显示加速</string>
     <string name="touch_boost">触摸加速</string>
     <string name="boost_active">激活加速</string>
@@ -483,6 +483,14 @@
     <string name="routines_select_condition">选择条件</string>
     <string name="routines_no_routines">尚未有任何例程</string>
     <string name="routines_no_routines_desc">创建您的第一个自动化程序</string>
+    <string name="routines_backup_restore">Backup &amp; restore</string>
+    <string name="routines_import">Import routines</string>
+    <string name="routines_import_summary">Restore routines from a JSON backup</string>
+    <string name="routines_export">Export routines</string>
+    <string name="routines_export_summary">Save current routines to a JSON backup</string>
+    <string name="routines_export_empty_summary">Create a routine before exporting a backup</string>
+    <string name="routines_import_failed">Unable to import routines</string>
+    <string name="routines_export_failed">Unable to export routines</string>
     <string name="routines_delete_title">删除任务？</string>
     <string name="routines_delete_message">此例行将被永久移除。</string>
     <string name="routines_optional">可选项</string>
@@ -530,6 +538,8 @@
     <string name="routines_headphones_connected">耳机已连接</string>
     <string name="routines_headphones_disconnected">耳机已断开</string>
     <string name="routines_ringer_mode">响铃模式</string>
+    <string name="routines_incoming_call">Incoming Call</string>
+    <string name="routines_sms_message">SMS Message</string>
     <string name="routines_app_launch">应用启动</string>
     <string name="routines_app_close">应用关闭</string>
     <string name="routines_set_feature">设置功能</string>
@@ -569,6 +579,19 @@
     <string name="routines_set_sensor_privacy">设置传感器隐私</string>
     <string name="routines_sensor_blocked">传感器已禁用</string>
     <string name="routines_location">位置</string>
+    <string name="routines_phone_number_hint">Phone number</string>
+    <string name="routines_phone_numbers_hint">Phone numbers, separated by commas</string>
+    <string name="routines_phone_numbers_optional_summary">Leave blank to run for any caller.</string>
+    <string name="routines_sms_phrase_hint">Exact phrase</string>
+    <string name="routines_sms_senders_hint">Sender phone numbers, separated by commas</string>
+    <string name="routines_sms_senders_optional_summary">Leave blank to run for any sender.</string>
+    <string name="routines_incoming_call_any_summary">Incoming call</string>
+    <string name="routines_incoming_call_numbers_summary">Incoming call from %1$s</string>
+    <string name="routines_sms_message_summary">SMS contains %1$s</string>
+    <string name="routines_send_location_sms">Send Location SMS</string>
+    <string name="routines_send_location_sms_target_summary">Leave blank to reply to the triggering SMS or call.</string>
+    <string name="routines_send_location_sms_summary">Reply with current location</string>
+    <string name="routines_send_location_sms_number_summary">Send current location to %1$s</string>
     <string name="routines_location_enter">进入区域</string>
     <string name="routines_location_exit">退出区域</string>
     <string name="routines_latitude_hint">纬度</string>
@@ -595,6 +618,12 @@
     <string name="routines_http_ignore_ssl">Ignore SSL certificate errors</string>
     <string name="routines_http_require_validated">Require validated internet</string>
     <string name="routines_http_require_validated_summary">Disable to allow sign-in to captive portals</string>
+    <plurals name="routines_imported_count">
+        <item quantity="other">Imported %1$d routines</item>
+    </plurals>
+    <plurals name="routines_exported_count">
+        <item quantity="other">Exported %1$d routines</item>
+    </plurals>
     <string name="ax_bravia_engine">AxBravia 引擎</string>
     <string name="ax_bravia_engine_summary">色彩增强和锐化</string>
     <string name="ax_bravia_engine_mode">增强模式</string>

@@ -224,7 +224,7 @@
     <string name="app_spoofing">App Spoofing</string>
     <string name="apps_configured">%1$d aplicații configurate</string>
     <string name="no_apps_configured">Nicio aplicație configurată</string>
-    <string name="configured_apps">APLICAȚII CONFIGURATE</string>
+    <string name="configured_apps">Configured apps</string>
     <string name="no_apps_configured_empty">Nicio aplicație configurată</string>
     <string name="add_apps_to_spoof">Adaugă aplicații pentru a începe simularea proprietăților dispozitivului</string>
     <string name="configuration_saved">Configurație salvată</string>
@@ -341,8 +341,8 @@
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
     <string name="maximum_performance_enabled">Performanță maximă activată</string>
     <string name="balanced_mode">Mod echilibrat</string>
-    <string name="boost_controls">CONTROALE BOOST</string>
-    <string name="frequency_control">CONTROL FRECVENȚĂ</string>
+    <string name="boost_controls">Boost controls</string>
+    <string name="frequency_control">Frequency control</string>
     <string name="display_boost">Display Boost</string>
     <string name="touch_boost">Touch Boost</string>
     <string name="boost_active">Boost Activ</string>
@@ -483,6 +483,14 @@
     <string name="routines_select_condition">Select condition</string>
     <string name="routines_no_routines">No routines yet</string>
     <string name="routines_no_routines_desc">Create your first automation routine</string>
+    <string name="routines_backup_restore">Backup &amp; restore</string>
+    <string name="routines_import">Import routines</string>
+    <string name="routines_import_summary">Restore routines from a JSON backup</string>
+    <string name="routines_export">Export routines</string>
+    <string name="routines_export_summary">Save current routines to a JSON backup</string>
+    <string name="routines_export_empty_summary">Create a routine before exporting a backup</string>
+    <string name="routines_import_failed">Unable to import routines</string>
+    <string name="routines_export_failed">Unable to export routines</string>
     <string name="routines_delete_title">Delete routine?</string>
     <string name="routines_delete_message">This routine will be permanently removed.</string>
     <string name="routines_optional">optional</string>
@@ -530,6 +538,8 @@
     <string name="routines_headphones_connected">Headphones connected</string>
     <string name="routines_headphones_disconnected">Headphones disconnected</string>
     <string name="routines_ringer_mode">Ringer Mode</string>
+    <string name="routines_incoming_call">Incoming Call</string>
+    <string name="routines_sms_message">SMS Message</string>
     <string name="routines_app_launch">App Launch</string>
     <string name="routines_app_close">App Close</string>
     <string name="routines_set_feature">Set Feature</string>
@@ -569,6 +579,19 @@
     <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
     <string name="routines_sensor_blocked">Sensor Blocked</string>
     <string name="routines_location">Location</string>
+    <string name="routines_phone_number_hint">Phone number</string>
+    <string name="routines_phone_numbers_hint">Phone numbers, separated by commas</string>
+    <string name="routines_phone_numbers_optional_summary">Leave blank to run for any caller.</string>
+    <string name="routines_sms_phrase_hint">Exact phrase</string>
+    <string name="routines_sms_senders_hint">Sender phone numbers, separated by commas</string>
+    <string name="routines_sms_senders_optional_summary">Leave blank to run for any sender.</string>
+    <string name="routines_incoming_call_any_summary">Incoming call</string>
+    <string name="routines_incoming_call_numbers_summary">Incoming call from %1$s</string>
+    <string name="routines_sms_message_summary">SMS contains %1$s</string>
+    <string name="routines_send_location_sms">Send Location SMS</string>
+    <string name="routines_send_location_sms_target_summary">Leave blank to reply to the triggering SMS or call.</string>
+    <string name="routines_send_location_sms_summary">Reply with current location</string>
+    <string name="routines_send_location_sms_number_summary">Send current location to %1$s</string>
     <string name="routines_location_enter">Enter area</string>
     <string name="routines_location_exit">Leave area</string>
     <string name="routines_latitude_hint">Latitude</string>
@@ -595,6 +618,16 @@
     <string name="routines_http_ignore_ssl">Ignore SSL certificate errors</string>
     <string name="routines_http_require_validated">Require validated internet</string>
     <string name="routines_http_require_validated_summary">Disable to allow sign-in to captive portals</string>
+    <plurals name="routines_imported_count">
+        <item quantity="one">Imported %1$d routine</item>
+        <item quantity="few">Imported %1$d routines</item>
+        <item quantity="other">Imported %1$d routines</item>
+    </plurals>
+    <plurals name="routines_exported_count">
+        <item quantity="one">Exported %1$d routine</item>
+        <item quantity="few">Exported %1$d routines</item>
+        <item quantity="other">Exported %1$d routines</item>
+    </plurals>
     <string name="ax_bravia_engine">AxBravia Engine</string>
     <string name="ax_bravia_engine_summary">Color enhancement and sharpening</string>
     <string name="ax_bravia_engine_mode">Enhancement mode</string>
