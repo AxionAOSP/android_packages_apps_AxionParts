@@ -66,7 +66,7 @@ import com.android.axion.compose.scaffold.AxionScaffold
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun DashboardScreen() {
+fun DashboardScreen(initialDetailScreen: String? = null) {
     val windowSizeClass = rememberWindowSizeClass()
     val isExpandedLayout =
         windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
@@ -80,7 +80,7 @@ fun DashboardScreen() {
         mutableStateOf(AppFilterType.LAUNCHABLE_USER_ONLY.name)
     }
     var appPickerExcludedPackages by rememberSaveable { mutableStateOf<Set<String>>(emptySet()) }
-    var currentDetailScreen by rememberSaveable { mutableStateOf<String?>(null) }
+    var currentDetailScreen by rememberSaveable { mutableStateOf<String?>(initialDetailScreen) }
     var detailBackStack by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
     var detailTransitionForward by rememberSaveable { mutableStateOf(true) }
     val dashboardScrollState = rememberScrollState()

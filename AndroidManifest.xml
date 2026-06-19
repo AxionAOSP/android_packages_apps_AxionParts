@@ -21,7 +21,37 @@
             android:name=".DashboardActivity"
             android:exported="true"
             android:taskAffinity="com.android.settings">
+            <intent-filter>
+                <action android:name="com.android.axion.axionparts.action.LOCKSCREEN" />
+                <action android:name="com.android.axion.axionparts.action.UI_FEATURES" />
+                <action android:name="com.android.axion.axionparts.action.SOUND" />
+                <action android:name="com.android.axion.axionparts.action.GESTURES" />
+                <action android:name="com.android.axion.axionparts.action.PCMODE" />
+                <action android:name="com.android.axion.axionparts.action.PERFORMANCE" />
+                <action android:name="com.android.axion.axionparts.action.TRICKYSTORE" />
+                <action android:name="com.android.axion.axionparts.action.PLAYINTEGRITYFIX" />
+                <action android:name="com.android.axion.axionparts.action.GAMESPOOFING" />
+                <action android:name="com.android.axion.axionparts.action.ROUTINES" />
+                <action android:name="com.android.axion.axionparts.action.BACKGROUND_MANAGER" />
+                <action android:name="com.android.axion.axionparts.action.BRAVIA" />
+                <action android:name="com.android.axion.axionparts.action.DYNAMIC_BAR" />
+                <action android:name="com.android.axion.axionparts.action.ESSENTIALS" />
+                <action android:name="com.android.axion.axionparts.action.MULTITASKING" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
+
+        <provider
+            android:name=".search.PartsSearchIndexablesProvider"
+            android:authorities="com.android.axion.axionparts.search"
+            android:multiprocess="false"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.READ_SEARCH_INDEXABLES"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
+            </intent-filter>
+        </provider>
         
         <service
             android:name=".tiles.PerformanceModeTileService"

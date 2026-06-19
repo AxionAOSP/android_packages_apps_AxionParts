@@ -35,13 +35,32 @@ class DashboardActivity : ComponentActivity() {
         DynamicColors.applyToActivityIfAvailable(this)
         enableEdgeToEdge()
 
+        val initialScreen = when (intent?.action) {
+            "com.android.axion.axionparts.action.LOCKSCREEN" -> "lockscreen"
+            "com.android.axion.axionparts.action.UI_FEATURES" -> "ui_features"
+            "com.android.axion.axionparts.action.SOUND" -> "sound"
+            "com.android.axion.axionparts.action.GESTURES" -> "gestures"
+            "com.android.axion.axionparts.action.PCMODE" -> "pcmode"
+            "com.android.axion.axionparts.action.PERFORMANCE" -> "performance"
+            "com.android.axion.axionparts.action.TRICKYSTORE" -> "trickystore"
+            "com.android.axion.axionparts.action.PLAYINTEGRITYFIX" -> "playintegrityfix"
+            "com.android.axion.axionparts.action.GAMESPOOFING" -> "gamespoofing"
+            "com.android.axion.axionparts.action.ROUTINES" -> "routines"
+            "com.android.axion.axionparts.action.BACKGROUND_MANAGER" -> "background_manager"
+            "com.android.axion.axionparts.action.BRAVIA" -> "bravia_engine"
+            "com.android.axion.axionparts.action.DYNAMIC_BAR" -> "dynamic_bar"
+            "com.android.axion.axionparts.action.ESSENTIALS" -> "essentials"
+            "com.android.axion.axionparts.action.MULTITASKING" -> "multitasking"
+            else -> null
+        }
+
         setContent {
             AxionPartsTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.surfaceContainer,
                 ) {
-                    DashboardScreen()
+                    DashboardScreen(initialDetailScreen = initialScreen)
                 }
             }
         }
