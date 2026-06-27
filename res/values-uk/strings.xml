@@ -172,9 +172,9 @@
     <string name="doze_pulse_double_tap">Подвійне натискання для пульсації</string>
     <string name="doze_pulse_double_tap_summary">Пульсуючий екран при подвійному торканні замість пробудження</string>
     <string name="doze_pulse_pickup">Підібрати до пульсації</string>
-    <string name="doze_pulse_pickup_summary">Pulse screen on pickup instead of waking</string>
-    <string name="doze_pulse_side_fps">Side fingerprint to pulse</string>
-    <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
+    <string name="doze_pulse_pickup_summary">Пульсація екрана при піднятті замість пробудження</string>
+    <string name="doze_pulse_side_fps">Бічний відбиток пальця для пульсації</string>
+    <string name="doze_pulse_side_fps_summary">Пульсація екрана при натисканні на бічний сканер відбитків замість пробудження</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Нічого</string>
     <string name="gesture_action_app_switch">Перемикання додатків</string>
@@ -193,13 +193,13 @@
     <string name="gesture_action_expand_qs">Розгорнути панель QS</string>
     <string name="gesture_action_ringer_modes">Режими дзвінка</string>
     <!-- Dashboard -->
-    <string name="features">Features</string>
+    <string name="features">Особливості</string>
     <!-- Essentials Screen -->
     <string name="essentials">Основне</string>
-    <string name="essentials_summary">Notifications, gaming &amp; security</string>
+    <string name="essentials_summary">Сповіщення, ігри та безпека</string>
     <string name="essential_notifications">Важливі повідомлення</string>
-    <string name="quicklook">QuickLook</string>
-    <string name="quicklook_settings_summary">Summarize what to appear on quick look</string>
+    <string name="quicklook">Швидкий перегляд</string>
+    <string name="quicklook_settings_summary">Підсумок під час швидкого перегляду</string>
     <string name="gaming">Ігри</string>
     <string name="security">Безпека</string>
     <!-- Essential Apps -->
@@ -224,7 +224,7 @@
     <string name="app_spoofing">Підміна додатка</string>
     <string name="apps_configured">Налаштовано додатків: %1$d</string>
     <string name="no_apps_configured">Додатки не налаштовані</string>
-    <string name="configured_apps">Configured apps</string>
+    <string name="configured_apps">Налаштовані застосунки</string>
     <string name="no_apps_configured_empty">Додатки не налаштовані</string>
     <string name="add_apps_to_spoof">Додайте додатки, щоб почати підміну властивостей пристрою</string>
     <string name="configuration_saved">Конфігурацію збережено</string>
@@ -252,14 +252,14 @@
     <string name="device_black_shark_4">Black Shark 4</string>
     <string name="device_lenovo_y700">Lenovo Y700</string>
     <!-- Security Features -->
-    <string name="custom_rom_hide">Custom ROM Hide</string>
-    <string name="custom_rom_hide_summary">Manage per-app allowlist for custom ROM detection hiding</string>
-    <string name="custom_rom_hide_allowlist">Allowlist</string>
-    <string name="manage_allowlist_apps">Manage allowlist apps</string>
-    <string name="allowlist_apps_configured">%d apps can bypass hiding</string>
-    <string name="no_allowlist_apps">No apps configured — all apps are hidden from</string>
-    <string name="custom_rom_hide_picker_title">Select Allowlist Apps</string>
-    <string name="custom_rom_hide_picker_desc">Choose apps that should see root and custom ROM indicators. All other apps will be hidden from.</string>
+    <string name="custom_rom_hide">Приховати сторонню прошивку</string>
+    <string name="custom_rom_hide_summary">Керування білим списком для окремих застосунків для приховування сторонніх прошивок</string>
+    <string name="custom_rom_hide_allowlist">Білий список</string>
+    <string name="manage_allowlist_apps">Керування білим списком застосунків</string>
+    <string name="allowlist_apps_configured">%d застосунків можуть обходити приховування</string>
+    <string name="no_allowlist_apps">Застосунки не налаштовані, тому всі вони приховані з</string>
+    <string name="custom_rom_hide_picker_title">Оберіть застосунки з білого списку</string>
+    <string name="custom_rom_hide_picker_desc">Виберіть застосунки, які бачитимуть індикатори root-доступу та сторонніх прошивок. Для всіх інших застосунків ці дані будуть приховані.</string>
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Керування keybox для підміни атестації ключів</string>
     <string name="keybox_management">Керування Keybox</string>
