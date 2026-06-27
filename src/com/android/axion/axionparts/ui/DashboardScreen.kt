@@ -24,7 +24,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.provider.Settings
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,11 +31,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
@@ -61,12 +60,15 @@ import com.android.axion.axionparts.ui.components.*
 import com.android.axion.axionparts.ui.screens.*
 import com.android.axion.axionparts.ui.screens.routines.RoutinesScreen
 import com.android.axion.axionparts.ui.theme.MaxContentWidth
+import com.android.axion.compose.navigation.AxRouteAnimatedContent
+import com.android.axion.compose.navigation.rememberAxRouteNavigator
 import com.android.axion.compose.preferences.*
 import com.android.axion.compose.scaffold.AxionScaffold
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun DashboardScreen(initialDetailScreen: String? = null) {
+    val activity = LocalContext.current as? Activity
     val windowSizeClass = rememberWindowSizeClass()
     val isExpandedLayout =
         windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
@@ -80,21 +82,16 @@ fun DashboardScreen(initialDetailScreen: String? = null) {
         mutableStateOf(AppFilterType.LAUNCHABLE_USER_ONLY.name)
     }
     var appPickerExcludedPackages by rememberSaveable { mutableStateOf<Set<String>>(emptySet()) }
-    var currentDetailScreen by rememberSaveable { mutableStateOf<String?>(initialDetailScreen) }
-    var detailBackStack by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
-    var detailTransitionForward by rememberSaveable { mutableStateOf(true) }
-    val dashboardScrollState = rememberScrollState()
+    val detailNavigator = rememberAxRouteNavigator(initialRoute = initialDetailScreen)
+    val currentDetailScreen = detailNavigator.route
+    val dashboardScrollState = rememberLazyListState()
 
     fun navigateToDetail(screen: String) {
-        detailBackStack = emptyList()
-        detailTransitionForward = true
-        currentDetailScreen = screen
+        detailNavigator.navigateTo(screen)
     }
 
     fun navigateToNestedDetail(screen: String) {
-        currentDetailScreen?.let { detailBackStack = detailBackStack + it }
-        detailTransitionForward = true
-        currentDetailScreen = screen
+        detailNavigator.navigateToNested(screen)
     }
 
     fun navigateToAppPicker(
@@ -117,16 +114,10 @@ fun DashboardScreen(initialDetailScreen: String? = null) {
     }
 
     fun closeDetail() {
-        detailTransitionForward = false
-        if (detailBackStack.isNotEmpty()) {
-            currentDetailScreen = detailBackStack.last()
-            detailBackStack = detailBackStack.dropLast(1)
-        } else {
-            currentDetailScreen = null
+        if (!detailNavigator.goBack()) {
+            activity?.finish()
         }
     }
-
-    val motionScheme = MaterialTheme.motionScheme
 
     val appPickerCallback: (Set<String>) -> Unit = { selectedApps ->
         navigateToAppPicker(
@@ -179,19 +170,9 @@ fun DashboardScreen(initialDetailScreen: String? = null) {
             modifier = Modifier.fillMaxSize(),
         )
     } else {
-        AnimatedContent(
-            targetState = currentDetailScreen,
-            transitionSpec = {
-                if (detailTransitionForward) {
-                    (slideInHorizontally(motionScheme.defaultSpatialSpec()) { it } + fadeIn(motionScheme.defaultEffectsSpec())).togetherWith(
-                        slideOutHorizontally(motionScheme.defaultSpatialSpec()) { -it / 3 } + fadeOut(motionScheme.defaultEffectsSpec())
-                    )
-                } else {
-                    (slideInHorizontally(motionScheme.defaultSpatialSpec()) { -it / 3 } + fadeIn(motionScheme.defaultEffectsSpec())).togetherWith(
-                        slideOutHorizontally(motionScheme.defaultSpatialSpec()) { it } + fadeOut(motionScheme.defaultEffectsSpec())
-                    )
-                }
-            },
+        AxRouteAnimatedContent(
+            targetRoute = currentDetailScreen,
+            isForward = detailNavigator.isForward,
             label = "detailTransition",
         ) { detailScreen ->
             if (detailScreen != null) {
@@ -221,7 +202,7 @@ fun DashboardScreen(initialDetailScreen: String? = null) {
 
 @Composable
 private fun DashboardContent(
-    scrollState: ScrollState,
+    scrollState: LazyListState,
     onNavigateToDetail: (String) -> Unit,
 ) {
     val context = LocalContext.current
@@ -235,154 +216,172 @@ private fun DashboardContent(
             modifier = Modifier.fillMaxSize().padding(innerPadding),
             contentAlignment = Alignment.TopCenter,
         ) {
-            Column(
+            var revealPlayed by rememberSaveable { mutableStateOf(false) }
+            val scaleIn = remember { Animatable(if (revealPlayed) 1f else 0.85f) }
+            val alphaIn = remember { Animatable(if (revealPlayed) 1f else 0f) }
+            LaunchedEffect(revealPlayed) {
+                if (!revealPlayed) {
+                    val scaleJob = launch {
+                        scaleIn.animateTo(1f, tween(500, easing = FastOutSlowInEasing))
+                    }
+                    val alphaJob = launch {
+                        alphaIn.animateTo(1f, tween(350, easing = FastOutSlowInEasing))
+                    }
+                    scaleJob.join()
+                    alphaJob.join()
+                    revealPlayed = true
+                }
+            }
+            val revealModifier = Modifier.graphicsLayer {
+                scaleX = scaleIn.value
+                scaleY = scaleIn.value
+                alpha = alphaIn.value
+            }
+
+            LazyColumn(
+                state = scrollState,
                 modifier =
                     Modifier.widthIn(max = MaxContentWidth)
                         .fillMaxWidth()
-                        .verticalScroll(scrollState)
-                        .padding(horizontal = 24.dp),
+                        .fillMaxHeight(),
+                contentPadding = PaddingValues(horizontal = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                val scaleIn = remember { Animatable(0.85f) }
-                val alphaIn = remember { Animatable(0f) }
-                LaunchedEffect(Unit) {
-                    launch { scaleIn.animateTo(1f, tween(500, easing = FastOutSlowInEasing)) }
-                    launch { alphaIn.animateTo(1f, tween(350, easing = FastOutSlowInEasing)) }
-                }
-                val revealModifier = Modifier.graphicsLayer {
-                    scaleX = scaleIn.value
-                    scaleY = scaleIn.value
-                    alpha = alphaIn.value
+                item(key = "hero") {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().height(372.dp).then(revealModifier),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        WallpaperCard(
+                            title = stringResource(R.string.lockscreen),
+                            onClick = { onNavigateToDetail("lockscreen") },
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                        )
+                        Column(
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                            verticalArrangement = Arrangement.spacedBy(12.dp),
+                        ) {
+                            VisualCard(
+                                title = stringResource(R.string.themes),
+                                onClick = {
+                                    val intent =
+                                        Intent().apply {
+                                            component =
+                                                ComponentName(
+                                                    "com.android.axion.axthemestore",
+                                                    "com.android.axion.axthemestore.MainActivity",
+                                                )
+                                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                        }
+                                    context.startActivity(intent)
+                                },
+                                modifier = Modifier.fillMaxWidth().weight(1f),
+                            ) {
+                                ThemesIllustration()
+                            }
+                            VisualCard(
+                                title = stringResource(R.string.ui_features),
+                                onClick = { onNavigateToDetail("ui_features") },
+                                modifier = Modifier.fillMaxWidth().weight(1f),
+                            ) {
+                                UIFeaturesIllustration()
+                            }
+                        }
+                    }
                 }
 
-                Row(
-                    modifier = Modifier.fillMaxWidth().height(372.dp).then(revealModifier),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    WallpaperCard(
-                        title = stringResource(R.string.lockscreen),
-                        onClick = { onNavigateToDetail("lockscreen") },
-                        modifier = Modifier.weight(1f).fillMaxHeight(),
-                    )
-                    Column(
-                        modifier = Modifier.weight(1f).fillMaxHeight(),
-                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                item(key = "visuals") {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().height(148.dp).then(revealModifier),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
                         VisualCard(
-                            title = stringResource(R.string.themes),
+                            title = stringResource(R.string.sound),
+                            onClick = { onNavigateToDetail("sound") },
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                        ) {
+                            SoundIllustration()
+                        }
+                        VisualCard(
+                            title = stringResource(R.string.gestures),
+                            onClick = { onNavigateToDetail("gestures") },
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                        ) {
+                            GesturesIllustration()
+                        }
+                    }
+                }
+
+                item(key = "features") {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().height(118.dp).then(revealModifier),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        DashboardCard(
+                            title = stringResource(R.string.routines),
+                            icon = Icons.Filled.AutoMode,
+                            onClick = { onNavigateToDetail("routines") },
+                            modifier = Modifier.weight(1f),
+                        )
+                        DashboardCard(
+                            title = stringResource(R.string.essentials),
+                            icon = Icons.Filled.Workspaces,
+                            onClick = { onNavigateToDetail("essentials") },
+                            modifier = Modifier.weight(1f),
+                        )
+                        DashboardCard(
+                            title = stringResource(R.string.performance),
+                            icon = Icons.Filled.Bolt,
+                            onClick = { onNavigateToDetail("performance") },
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                }
+
+                item(key = "extraFeatures") {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().height(118.dp).then(revealModifier),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    ) {
+                        DashboardCard(
+                            title = stringResource(R.string.multitasking),
+                            icon = Icons.Filled.Splitscreen,
+                            onClick = { onNavigateToDetail("multitasking") },
+                            modifier = Modifier.weight(1f),
+                        )
+                        DashboardCard(
+                            title = stringResource(R.string.ax_bravia_engine),
+                            icon = Icons.Filled.Palette,
+                            onClick = { onNavigateToDetail("bravia_engine") },
+                            modifier = Modifier.weight(1f),
+                        )
+                        DashboardCard(
+                            title = stringResource(R.string.diagnostics),
+                            icon = Icons.Filled.Analytics,
                             onClick = {
                                 val intent =
                                     Intent().apply {
                                         component =
                                             ComponentName(
-                                                "com.android.axion.axthemestore",
-                                                "com.android.axion.axthemestore.MainActivity",
+                                                "com.axion.diagnostics",
+                                                "com.axion.diagnostics.DiagnosticsActivity",
                                             )
                                         flags = Intent.FLAG_ACTIVITY_NEW_TASK
                                     }
                                 context.startActivity(intent)
                             },
-                            modifier = Modifier.fillMaxWidth().weight(1f),
-                        ) {
-                            ThemesIllustration()
-                        }
-                        VisualCard(
-                            title = stringResource(R.string.ui_features),
-                            onClick = { onNavigateToDetail("ui_features") },
-                            modifier = Modifier.fillMaxWidth().weight(1f),
-                        ) {
-                            UIFeaturesIllustration()
-                        }
+                            modifier = Modifier.weight(1f),
+                        )
                     }
                 }
 
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth().height(148.dp).then(revealModifier),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    VisualCard(
-                        title = stringResource(R.string.sound),
-                        onClick = { onNavigateToDetail("sound") },
-                        modifier = Modifier.weight(1f).fillMaxHeight(),
-                    ) {
-                        SoundIllustration()
-                    }
-                    VisualCard(
-                        title = stringResource(R.string.gestures),
-                        onClick = { onNavigateToDetail("gestures") },
-                        modifier = Modifier.weight(1f).fillMaxHeight(),
-                    ) {
-                        GesturesIllustration()
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth().height(118.dp).then(revealModifier),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    DashboardCard(
-                        title = stringResource(R.string.routines),
-                        icon = Icons.Filled.AutoMode,
-                        onClick = { onNavigateToDetail("routines") },
-                        modifier = Modifier.weight(1f),
-                    )
-                    DashboardCard(
-                        title = stringResource(R.string.essentials),
-                        icon = Icons.Filled.Workspaces,
-                        onClick = { onNavigateToDetail("essentials") },
-                        modifier = Modifier.weight(1f),
-                    )
-                    DashboardCard(
-                        title = stringResource(R.string.performance),
-                        icon = Icons.Filled.Bolt,
-                        onClick = { onNavigateToDetail("performance") },
-                        modifier = Modifier.weight(1f),
+                item(key = "navigationBars") {
+                    Spacer(
+                        modifier =
+                            Modifier.height(20.dp)
+                                .windowInsetsPadding(WindowInsets.navigationBars)
                     )
                 }
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth().height(118.dp).then(revealModifier),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    DashboardCard(
-                        title = stringResource(R.string.multitasking),
-                        icon = Icons.Filled.Splitscreen,
-                        onClick = { onNavigateToDetail("multitasking") },
-                        modifier = Modifier.weight(1f),
-                    )
-                    DashboardCard(
-                        title = stringResource(R.string.ax_bravia_engine),
-                        icon = Icons.Filled.Palette,
-                        onClick = { onNavigateToDetail("bravia_engine") },
-                        modifier = Modifier.weight(1f),
-                    )
-                    DashboardCard(
-                        title = stringResource(R.string.diagnostics),
-                        icon = Icons.Filled.Analytics,
-                        onClick = {
-                            val intent =
-                                Intent().apply {
-                                    component =
-                                        ComponentName(
-                                            "com.axion.diagnostics",
-                                            "com.axion.diagnostics.DiagnosticsActivity",
-                                        )
-                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                }
-                            context.startActivity(intent)
-                        },
-                        modifier = Modifier.weight(1f),
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(32.dp))
-
-                Spacer(modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars))
             }
         }
     }
