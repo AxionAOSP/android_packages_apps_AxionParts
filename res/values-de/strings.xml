@@ -314,6 +314,9 @@
     <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Window Secure ignorieren</string>
     <string name="ignore_window_secure_summary">Screenshots und Bildschirmaufzeichnungen in allen Apps erlauben</string>
+    <!-- No storage restrict -->
+    <string name="no_storage_restrict_title">No storage restrict</string>
+    <string name="no_storage_restrict_summary">Remove the restriction when selecting folders through Storage Access Framework. Can be convenient in some cases but may lead to privacy leaks.</string>
     <!-- Performance Screen -->
     <string name="performance">Leistung</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
@@ -637,4 +640,25 @@
         <item quantity="one">You can select up to %1$d app</item>
         <item quantity="other">You can select up to %1$d apps</item>
     </plurals>
+    <!-- Search Keywords -->
+    <string name="keywords_edge_light">edge, light, notifications, glow, pulse</string>
+    <string name="keywords_media_art">media art, lockscreen, album, cover, blur</string>
+    <string name="keywords_pulse">pulse, audio, visualizer, navbar</string>
+    <string name="keywords_aod">aod, always-on, doze, schedule</string>
+    <string name="keywords_ui_features">status bar, dynamic bar</string>
+    <string name="keywords_sound">per app, volume, multi audio</string>
+    <string name="keywords_gestures">gestures, shake gestures, three finger</string>
+    <string name="keywords_pcmode">pc mode, desktop</string>
+    <string name="keywords_performance">performance mode, boost, frequency control</string>
+    <string name="keywords_trickystore">trickystore, keybox, attestation, spoofing, bootloader spoof</string>
+    <string name="keywords_playintegrityfix">play integrity fix, safety net, fingerprint, pif,  gphoto spoof, certification</string>
+    <string name="keywords_gamespoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
+    <string name="keywords_routines">routines, automation, automation trigger, auto action, tasker</string>
+    <string name="keywords_background_manager">background manager, freeze, app freezer, limits</string>
+    <string name="keywords_bravia">bravia engine, display engine, color enhancement, image, video quality, sharpening, vivid</string>
+    <string name="keywords_dynamic_bar">dynamic bar, dynamic island, status bar chip, live activities, events, notification chip</string>
+    <string name="keywords_essentials">essentials, quicklook, lockscreen quick look, essential notifications, disable window secure flag</string>
+    <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
+    <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
+    <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
 </resources>
