@@ -603,6 +603,9 @@
     <string name="routines_location_near">Location Near</string>
     <string name="routines_sensor_camera">Camera</string>
     <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_nfc_tag">NFC Tag</string>
+    <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
+    <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
     <string name="routines_play_sound">Play Sound</string>
