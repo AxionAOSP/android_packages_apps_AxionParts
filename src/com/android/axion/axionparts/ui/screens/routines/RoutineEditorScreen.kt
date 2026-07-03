@@ -63,6 +63,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material.icons.filled.ToggleOn
 import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.filled.Nfc
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Router
 import androidx.compose.material.icons.filled.Wifi
@@ -114,25 +115,34 @@ private data class TypeOption(
 )
 
 @Composable
-private fun triggerOptions() = listOf(
-    TypeOption(Trigger.TYPE_TIME_OF_DAY, stringResource(R.string.routines_time_of_day), Icons.Default.AccessTime),
-    TypeOption(Trigger.TYPE_INTERVAL, stringResource(R.string.routines_interval), Icons.Default.Timer),
-    TypeOption(Trigger.TYPE_CHARGING_STATE, stringResource(R.string.routines_charging), Icons.Default.BatteryChargingFull),
-    TypeOption(Trigger.TYPE_BATTERY_LEVEL, stringResource(R.string.routines_battery_level), Icons.Default.BatteryStd),
-    TypeOption(Trigger.TYPE_WIFI_STATE, stringResource(R.string.routines_wifi), Icons.Default.Wifi),
-    TypeOption(Trigger.TYPE_BLUETOOTH_STATE, stringResource(R.string.routines_bluetooth), Icons.Default.Bluetooth),
-    TypeOption(Trigger.TYPE_SCREEN_STATE, stringResource(R.string.routines_screen), Icons.Default.PhoneAndroid),
-    TypeOption(Trigger.TYPE_FEATURE_STATE, stringResource(R.string.routines_feature_state), Icons.Default.ToggleOn),
-    TypeOption(Trigger.TYPE_HEADPHONES_STATE, stringResource(R.string.routines_headphones), Icons.Default.Headphones),
-    TypeOption(Trigger.TYPE_RINGER_MODE, stringResource(R.string.routines_ringer_mode), Icons.Default.VolumeUp),
-    TypeOption(Trigger.TYPE_INCOMING_CALL, stringResource(R.string.routines_incoming_call), Icons.Default.PhoneAndroid),
-    TypeOption(Trigger.TYPE_SMS_MESSAGE, stringResource(R.string.routines_sms_message), Icons.Default.Send),
-    TypeOption(Trigger.TYPE_APP_LAUNCH, stringResource(R.string.routines_app_launch), Icons.Default.OpenInNew),
-    TypeOption(Trigger.TYPE_APP_CLOSE, stringResource(R.string.routines_app_close), Icons.Default.Close),
-    TypeOption(Trigger.TYPE_SENSOR_PRIVACY_STATE, stringResource(R.string.routines_sensor_privacy), Icons.Default.CameraAlt),
-    TypeOption(Trigger.TYPE_LOCATION, stringResource(R.string.routines_location), Icons.Default.LocationOn),
-    TypeOption(Trigger.TYPE_CAPTIVE_PORTAL, stringResource(R.string.routines_captive_portal), Icons.Default.WifiOff),
-)
+private fun triggerOptions(): List<TypeOption> {
+    val context = LocalContext.current
+    val hasNfc = remember {
+        context.packageManager.hasSystemFeature(android.content.pm.PackageManager.FEATURE_NFC)
+    }
+    return listOfNotNull(
+        TypeOption(Trigger.TYPE_TIME_OF_DAY, stringResource(R.string.routines_time_of_day), Icons.Default.AccessTime),
+        TypeOption(Trigger.TYPE_INTERVAL, stringResource(R.string.routines_interval), Icons.Default.Timer),
+        TypeOption(Trigger.TYPE_CHARGING_STATE, stringResource(R.string.routines_charging), Icons.Default.BatteryChargingFull),
+        TypeOption(Trigger.TYPE_BATTERY_LEVEL, stringResource(R.string.routines_battery_level), Icons.Default.BatteryStd),
+        TypeOption(Trigger.TYPE_WIFI_STATE, stringResource(R.string.routines_wifi), Icons.Default.Wifi),
+        TypeOption(Trigger.TYPE_BLUETOOTH_STATE, stringResource(R.string.routines_bluetooth), Icons.Default.Bluetooth),
+        TypeOption(Trigger.TYPE_SCREEN_STATE, stringResource(R.string.routines_screen), Icons.Default.PhoneAndroid),
+        TypeOption(Trigger.TYPE_FEATURE_STATE, stringResource(R.string.routines_feature_state), Icons.Default.ToggleOn),
+        TypeOption(Trigger.TYPE_HEADPHONES_STATE, stringResource(R.string.routines_headphones), Icons.Default.Headphones),
+        TypeOption(Trigger.TYPE_RINGER_MODE, stringResource(R.string.routines_ringer_mode), Icons.Default.VolumeUp),
+        TypeOption(Trigger.TYPE_INCOMING_CALL, stringResource(R.string.routines_incoming_call), Icons.Default.PhoneAndroid),
+        TypeOption(Trigger.TYPE_SMS_MESSAGE, stringResource(R.string.routines_sms_message), Icons.Default.Send),
+        TypeOption(Trigger.TYPE_APP_LAUNCH, stringResource(R.string.routines_app_launch), Icons.Default.OpenInNew),
+        TypeOption(Trigger.TYPE_APP_CLOSE, stringResource(R.string.routines_app_close), Icons.Default.Close),
+        TypeOption(Trigger.TYPE_SENSOR_PRIVACY_STATE, stringResource(R.string.routines_sensor_privacy), Icons.Default.CameraAlt),
+        TypeOption(Trigger.TYPE_LOCATION, stringResource(R.string.routines_location), Icons.Default.LocationOn),
+        TypeOption(Trigger.TYPE_CAPTIVE_PORTAL, stringResource(R.string.routines_captive_portal), Icons.Default.WifiOff),
+        if (hasNfc) {
+            TypeOption(Trigger.TYPE_NFC_TAG, stringResource(R.string.routines_nfc_tag), Icons.Default.Nfc)
+        } else null
+    )
+}
 
 @Composable
 private fun actionOptions() = listOf(
@@ -955,6 +965,48 @@ private fun TriggerConfigDialog(
                     TextButton(onClick = {
                         onConfirm(Trigger.CaptivePortal(ssid.takeIf { it.isNotBlank() }))
                     }) { Text(confirmLabel) }
+                },
+                dismissButton = {
+                    TextButton(onClick = onDismiss) {
+                        Text(stringResource(R.string.cancel))
+                    }
+                },
+            )
+        }
+
+        Trigger.TYPE_NFC_TAG -> {
+            val init = initial as? Trigger.NfcTag
+            var tagId by remember { mutableStateOf(init?.tagId ?: "") }
+            var tagName by remember { mutableStateOf(init?.tagName ?: "") }
+            AlertDialog(
+                onDismissRequest = onDismiss,
+                title = { Text(stringResource(R.string.routines_nfc_tag)) },
+                text = {
+                    Column {
+                        OutlinedTextField(
+                            value = tagName,
+                            onValueChange = { tagName = it },
+                            label = { Text(stringResource(R.string.routines_nfc_tag_name_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        OutlinedTextField(
+                            value = tagId,
+                            onValueChange = { tagId = it },
+                            label = { Text(stringResource(R.string.routines_nfc_tag_id_hint)) },
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            onConfirm(Trigger.NfcTag(tagId, tagName.takeIf { it.isNotBlank() }))
+                        },
+                        enabled = tagId.isNotBlank(),
+                    ) { Text(confirmLabel) }
                 },
                 dismissButton = {
                     TextButton(onClick = onDismiss) {
@@ -2305,6 +2357,7 @@ private fun triggerTypeOf(trigger: Trigger): String = when (trigger) {
     is Trigger.SensorPrivacyState -> Trigger.TYPE_SENSOR_PRIVACY_STATE
     is Trigger.Location -> Trigger.TYPE_LOCATION
     is Trigger.CaptivePortal -> Trigger.TYPE_CAPTIVE_PORTAL
+    is Trigger.NfcTag -> Trigger.TYPE_NFC_TAG
 }
 
 private fun conditionTypeOf(condition: Condition): String = when (condition) {

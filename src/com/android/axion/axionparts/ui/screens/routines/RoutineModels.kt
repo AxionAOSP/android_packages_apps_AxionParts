@@ -79,6 +79,8 @@ sealed interface Trigger {
 
     data class CaptivePortal(val ssid: String? = null) : Trigger
 
+    data class NfcTag(val tagId: String, val tagName: String? = null) : Trigger
+
     companion object {
         val ALL_DAYS = setOf(
             Calendar.SUNDAY, Calendar.MONDAY, Calendar.TUESDAY,
@@ -103,6 +105,7 @@ sealed interface Trigger {
         const val TYPE_SENSOR_PRIVACY_STATE = "sensor_privacy_state"
         const val TYPE_LOCATION = "location"
         const val TYPE_CAPTIVE_PORTAL = "captive_portal"
+        const val TYPE_NFC_TAG = "nfc_tag"
     }
 }
 

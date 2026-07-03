@@ -623,6 +623,10 @@ internal fun describeTrigger(trigger: Trigger): String = when (trigger) {
         "$action (${String.format("%.4f", trigger.latitude)}, ${String.format("%.4f", trigger.longitude)})"
     }
     is Trigger.CaptivePortal -> trigger.ssid?.let { "Captive portal ($it)" } ?: "Captive portal"
+    is Trigger.NfcTag -> {
+        val name = trigger.tagName?.takeIf { it.isNotBlank() } ?: trigger.tagId
+        "Tap NFC \"$name\""
+    }
 }
 
 @Composable
