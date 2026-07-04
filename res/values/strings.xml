@@ -641,6 +641,10 @@
     <string name="routines_nfc_tag">NFC Tag</string>
     <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
     <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
+    <string name="routines_nfc_scan_button">Scan Tag</string>
+    <string name="routines_nfc_scanning_status">Scanning… Place your NFC Tag against the back of your phone.</string>
+    <string name="routines_nfc_scan_success">Scanned tag: %1$s</string>
+    <string name="routines_nfc_disabled">NFC is disabled. Please enable it in Settings.</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
     <string name="routines_play_sound">Play Sound</string>

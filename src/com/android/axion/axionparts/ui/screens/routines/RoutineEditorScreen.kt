@@ -64,6 +64,11 @@ import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material.icons.filled.ToggleOn
 import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material.icons.filled.Nfc
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import android.content.Context
+import android.nfc.NfcAdapter
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Router
 import androidx.compose.material.icons.filled.Wifi
@@ -978,6 +983,40 @@ private fun TriggerConfigDialog(
             val init = initial as? Trigger.NfcTag
             var tagId by remember { mutableStateOf(init?.tagId ?: "") }
             var tagName by remember { mutableStateOf(init?.tagName ?: "") }
+            var isScanning by remember { mutableStateOf(false) }
+
+            val context = LocalContext.current
+            val haptic = LocalHapticFeedback.current
+            val nfcAdapter = remember(context) { NfcAdapter.getDefaultAdapter(context) }
+
+            if (isScanning && nfcAdapter?.isEnabled == true) {
+                DisposableEffect(Unit) {
+                    val activity = context.findActivity()
+                    if (activity != null) {
+                        val flags = NfcAdapter.FLAG_READER_NFC_A or
+                                    NfcAdapter.FLAG_READER_NFC_B or
+                                    NfcAdapter.FLAG_READER_NFC_F or
+                                    NfcAdapter.FLAG_READER_NFC_V or
+                                    NfcAdapter.FLAG_READER_NO_PLATFORM_SOUNDS
+                        nfcAdapter.enableReaderMode(activity, { tag ->
+                            val rawId = tag.id
+                            val hexId = rawId.joinToString(":") { "%02X".format(it) }
+                            activity.runOnUiThread {
+                                tagId = hexId
+                                isScanning = false
+                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                            }
+                        }, flags, null)
+                    }
+                    onDispose {
+                        val activity = context.findActivity()
+                        if (activity != null) {
+                            runCatching { nfcAdapter.disableReaderMode(activity) }
+                        }
+                    }
+                }
+            }
+
             AlertDialog(
                 onDismissRequest = onDismiss,
                 title = { Text(stringResource(R.string.routines_nfc_tag)) },
@@ -998,6 +1037,34 @@ private fun TriggerConfigDialog(
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
                         )
+                        Spacer(Modifier.height(16.dp))
+
+                        if (nfcAdapter == null) {
+                            Text(
+                                text = "NFC is not supported on this device.",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.error,
+                            )
+                        } else if (!nfcAdapter.isEnabled) {
+                            Text(
+                                text = stringResource(R.string.routines_nfc_disabled),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.error,
+                            )
+                        } else if (isScanning) {
+                            Text(
+                                text = stringResource(R.string.routines_nfc_scanning_status),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.primary,
+                            )
+                        } else {
+                            Button(
+                                onClick = { isScanning = true },
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text(stringResource(R.string.routines_nfc_scan_button))
+                            }
+                        }
                     }
                 },
                 confirmButton = {
@@ -2497,4 +2564,13 @@ private fun IntentExtraRow(
             }
         }
     }
+}
+
+private fun Context.findActivity(): Activity? {
+    var context = this
+    while (context is android.content.ContextWrapper) {
+        if (context is Activity) return context
+        context = context.baseContext
+    }
+    return null
 }
