@@ -16,7 +16,7 @@
     <string name="clear">ניקוי</string>
     <string name="expand">הרחבה</string>
     <string name="collapse">צמצום</string>
-    <string name="search">Search</string>
+    <string name="search">חיפוש</string>
     <string name="create">יצירה</string>
     <string name="settings">הגדרות</string>
     <string name="general">כללי</string>
@@ -27,7 +27,7 @@
     <!-- Navigation -->
     <string name="customize">התאמה אישית</string>
     <string name="nav_customize">התאמה אישית</string>
-    <string name="nav_essentials">Essentials</string>
+    <string name="nav_essentials">חיוניים</string>
     <string name="nav_performance">ביצועים</string>
     <string name="nav_multitasking">ריבוי משימות</string>
     <string name="personalizations">Personalize</string>
@@ -178,7 +178,7 @@
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
     <string name="gesture_action_app_switch">App switch</string>
-    <string name="gesture_action_search">Search</string>
+    <string name="gesture_action_search">חיפוש</string>
     <string name="gesture_action_voice_search">Voice search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
@@ -195,7 +195,7 @@
     <!-- Dashboard -->
     <string name="features">Features</string>
     <!-- Essentials Screen -->
-    <string name="essentials">Essentials</string>
+    <string name="essentials">חיוניים</string>
     <string name="essentials_summary">Notifications, gaming &amp; security</string>
     <string name="essential_notifications">התראות חיוניות</string>
     <string name="quicklook">QuickLook</string>
