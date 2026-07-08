@@ -173,6 +173,15 @@ object FeatureRegistry {
             action = "android.intent.action.MAIN",
             targetPackage = "io.chaldeaprjkt.gamespace",
             targetClass = "io.chaldeaprjkt.gamespace.settings.SettingsActivity"
+        ),
+        PartFeature(
+            key = "diagnostics_settings",
+            titleRes = R.string.diagnostics,
+            summaryRes = R.string.diagnostics_summary,
+            keywordsRes = R.string.keywords_diagnostics,
+            action = "android.intent.action.MAIN",
+            targetPackage = "com.axion.diagnostics",
+            targetClass = "com.axion.diagnostics.DiagnosticsActivity"
         )
     )
 }

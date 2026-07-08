@@ -361,7 +361,23 @@ private fun DashboardContent(
                         onClick = { onNavigateToDetail("bravia_engine") },
                         modifier = Modifier.weight(1f),
                     )
-                    Spacer(modifier = Modifier.weight(1f))
+                    DashboardCard(
+                        title = stringResource(R.string.diagnostics),
+                        icon = Icons.Filled.Analytics,
+                        onClick = {
+                            val intent =
+                                Intent().apply {
+                                    component =
+                                        ComponentName(
+                                            "com.axion.diagnostics",
+                                            "com.axion.diagnostics.DiagnosticsActivity",
+                                        )
+                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                }
+                            context.startActivity(intent)
+                        },
+                        modifier = Modifier.weight(1f),
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))
