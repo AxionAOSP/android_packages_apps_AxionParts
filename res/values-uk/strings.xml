@@ -218,6 +218,9 @@
     <!-- GameSpace -->
     <string name="gamespace">Ігровий простір</string>
     <string name="gamespace_summary">Оптимізація ігрового досвіду з функціями GameSpace</string>
+    <!-- AxDiagnostics -->
+    <string name="diagnostics">AxDiagnostics</string>
+    <string name="diagnostics_summary">System information and hardware diagnostics</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Підміна пристрою для ігор</string>
     <string name="game_spoofing_summary">Підміна властивостей пристрою для конкретних ігор</string>
@@ -674,4 +677,5 @@
     <string name="keywords_multitasking">багатозадачність, бічна панель, режим ПК</string>
     <string name="keywords_themes">теми, магазин тем, значки, фігури, стилі, форми хвиль</string>
     <string name="keywords_gamespace">ігровий простір, ігровий режим, ігрове накладення, прискорювач ігор</string>
+    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>
