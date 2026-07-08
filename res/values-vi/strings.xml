@@ -218,6 +218,9 @@
     <!-- GameSpace -->
     <string name="gamespace">Không gian trò chơi</string>
     <string name="gamespace_summary">Cải thiện trải nghiệm chơi game với các tính năng của không gian trò chơi</string>
+    <!-- AxDiagnostics -->
+    <string name="diagnostics">AxDiagnostics</string>
+    <string name="diagnostics_summary">System information and hardware diagnostics</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Giả mạo trò chơi</string>
     <string name="game_spoofing_summary">Giả mạo các thuộc tính thiết bị cho các trò chơi cụ thể</string>
@@ -665,4 +668,5 @@
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
+    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>
