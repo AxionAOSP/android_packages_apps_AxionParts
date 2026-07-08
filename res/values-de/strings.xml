@@ -218,6 +218,9 @@
     <!-- GameSpace -->
     <string name="gamespace">Gamespace</string>
     <string name="gamespace_summary">Verbessere dein Gaming-Erlebnis mit Gamespace-Funktionen</string>
+    <!-- AxDiagnostics -->
+    <string name="diagnostics">AxDiagnostics</string>
+    <string name="diagnostics_summary">System information and hardware diagnostics</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Spiel-Spoofing</string>
     <string name="game_spoofing_summary">Geräteeigenschaften für bestimmte Spiele spoofen</string>
@@ -668,4 +671,5 @@
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
+    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>
