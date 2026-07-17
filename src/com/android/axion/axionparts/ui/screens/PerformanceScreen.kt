@@ -90,20 +90,21 @@ private fun PerformanceContent(
         Spacer(modifier = Modifier.height(8.dp))
 
         Row(
+            modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Box(
-                modifier =
-                    Modifier.size(40.dp)
-                        .clip(ExpressiveShapes.small)
-                        .background(gpuColor.copy(alpha = 0.2f)),
-                contentAlignment = Alignment.Center,
+            FeatureCard(
+                title = stringResource(R.string.background_manager),
+                summary = stringResource(R.string.background_manager_summary),
+                onClick = onBackgroundManagerClick,
+                modifier = Modifier.weight(1f),
+                illustrationColor = MaterialTheme.colorScheme.primaryContainer,
             ) {
                 Icon(
-                    imageVector = Icons.Default.Sensors,
+                    imageVector = Icons.Outlined.Apps,
                     contentDescription = null,
-                    tint = gpuColor,
-                    modifier = Modifier.size(24.dp),
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.size(36.dp),
                 )
             }
             FeatureCard(

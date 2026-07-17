@@ -321,7 +321,7 @@
     <string name="performance">Teljesítmény</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
     <string name="background_manager">Background Manager</string>
-    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="background_manager_summary">Manage app freezing and background start limits</string>
     <string name="background_manager_policy">Policy</string>
     <string name="background_manager_apps">Apps</string>
     <string name="background_app_policy">App policy</string>
@@ -335,10 +335,6 @@
     <string name="freezer_level_package">Package freezer</string>
     <string name="package_freezer_apps">Package freezer apps</string>
     <string name="package_freezer_apps_summary">Apps in this list can be frozen after moving to the background</string>
-    <string name="keep_alive_apps">Keep-alive apps</string>
-    <string name="keep_alive_apps_summary">Choose up to %1$d apps to keep resident and protected from background cleanup</string>
-    <string name="keep_alive_apps_limit_message">Keep-alive is limited to %1$d apps</string>
-    <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
     <string name="frequency_control">Frequency control</string>

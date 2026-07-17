@@ -321,7 +321,7 @@
     <string name="performance">Продуктивність</string>
     <string name="performance_summary">Розгін ЦП, керування частотою та ГП</string>
     <string name="background_manager">Менеджер фонового режиму</string>
-    <string name="background_manager_summary">Керує заморожуванням застосунків, підтримкою активності та обмеженнями на запуск у фоновому режимі</string>
+    <string name="background_manager_summary">Manage app freezing and background start limits</string>
     <string name="background_manager_policy">Політика</string>
     <string name="background_manager_apps">Додатки</string>
     <string name="background_app_policy">Політика застосунку</string>
@@ -335,10 +335,6 @@
     <string name="freezer_level_package">Заморожування пакета</string>
     <string name="package_freezer_apps">Замороження пакетів застосунків</string>
     <string name="package_freezer_apps_summary">Застосунки з цього списку можна заморозити після переходу у фоновий режим</string>
-    <string name="keep_alive_apps">Застосунки для фонової роботи</string>
-    <string name="keep_alive_apps_summary">Виберіть до %1$d застосунків, які залишатимуться в пам’яті та будуть захищені від фонового очищення</string>
-    <string name="keep_alive_apps_limit_message">Робота у фоні обмежена до %1$d застосунків</string>
-    <string name="keep_alive_apps_disclaimer">Примусове закривання застосунку або його змахування з екрана нещодавніх може зупинити процес, попри наявність у списку застосунків для фонової роботи.</string>
     <string name="restricted_background_apps">Застосунки з обмеженням фонової роботи</string>
     <string name="restricted_background_apps_summary">Застосунки у цьому списку не зможуть автоматично запускатися у фоновому режимі, поки ви їх не відкриєте</string>
     <string name="frequency_control">Керування частотою</string>

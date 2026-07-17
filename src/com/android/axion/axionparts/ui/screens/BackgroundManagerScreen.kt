@@ -16,27 +16,21 @@
 
 package com.android.axion.axionparts.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
@@ -51,11 +45,9 @@ import com.android.axion.compose.preferences.rememberSettingsFlow
 import com.android.axion.compose.scaffold.AxionScaffold
 
 private const val PACKAGE_FREEZER_KEY = "axion_perf_package_freezer"
-private const val KEEPALIVE_KEY = "axion_perf_keepalive"
 private const val RESTRICT_BACKGROUND_KEY = "axion_perf_restrict_bg_auto_start"
 private const val AGGRESSIVE_POLICY_KEY = "axion_perf_aggressive_policy"
 private const val FREEZER_LEVEL_KEY = "axion_perf_freezer_level"
-private const val MAX_KEEPALIVE_APPS = 4
 
 private val BACKGROUND_APP_BLACKLIST =
     setOf(
@@ -98,14 +90,10 @@ private fun BackgroundManagerContent(
 ) {
     val flow = rememberSettingsFlow(SettingsType.SECURE)
     val freezerPackages by rememberSettingString(PACKAGE_FREEZER_KEY, SettingsType.SECURE)
-    val keepAlivePackages by rememberSettingString(KEEPALIVE_KEY, SettingsType.SECURE)
     val restrictedPackages by rememberSettingString(RESTRICT_BACKGROUND_KEY, SettingsType.SECURE)
 
     LaunchedEffect(freezerPackages) {
         flow.sanitizePackageList(PACKAGE_FREEZER_KEY, freezerPackages)
-    }
-    LaunchedEffect(keepAlivePackages) {
-        flow.sanitizePackageList(KEEPALIVE_KEY, keepAlivePackages, maxPackages = MAX_KEEPALIVE_APPS)
     }
     LaunchedEffect(restrictedPackages) {
         flow.sanitizePackageList(RESTRICT_BACKGROUND_KEY, restrictedPackages)
@@ -149,29 +137,6 @@ private fun BackgroundManagerContent(
                         )
                     },
                 )
-            }
-            item {
-                BackgroundAppListPreference(
-                    settingKey = KEEPALIVE_KEY,
-                    title = stringResource(R.string.keep_alive_apps),
-                    description =
-                        stringResource(R.string.keep_alive_apps_summary, MAX_KEEPALIVE_APPS),
-                    onAddClicked = { packages ->
-                        onNavigateToAppPicker(
-                            R.string.keep_alive_apps,
-                            packages.toPackageList()
-                                .withoutBlacklistedApps()
-                                .take(MAX_KEEPALIVE_APPS)
-                                .toSet(),
-                            KEEPALIVE_KEY,
-                            MAX_KEEPALIVE_APPS,
-                            R.string.keep_alive_apps_limit_message,
-                            AppFilterType.ALL,
-                            BACKGROUND_APP_BLACKLIST,
-                        )
-                    },
-                )
-                KeepAliveDisclaimer()
             }
             item {
                 BackgroundAppListPreference(
@@ -253,27 +218,8 @@ private fun BackgroundAppListPreference(
     )
 }
 
-@Composable
-private fun KeepAliveDisclaimer() {
-    Text(
-        text = stringResource(R.string.keep_alive_apps_disclaimer),
-        style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .heightIn(min = 48.dp)
-                .clip(RoundedCornerShape(4.dp))
-                .background(MaterialTheme.colorScheme.surfaceBright)
-                .padding(horizontal = 16.dp, vertical = 12.dp),
-    )
-}
-
 private fun String.toPackageList(): List<String> =
     split(',').map { it.trim() }.filter { it.isNotEmpty() }
-
-private fun Set<String>.toPackageList(): List<String> =
-    map { it.trim() }.filter { it.isNotEmpty() }
 
 private fun List<String>.withoutBlacklistedApps(): List<String> =
     filterNot { it in BACKGROUND_APP_BLACKLIST }
@@ -284,11 +230,9 @@ private fun Set<String>.withoutBlacklistedApps(): Set<String> =
 private fun SettingsFlow.sanitizePackageList(
     key: String,
     savedPackages: String,
-    maxPackages: Int? = null,
 ) {
     val packages = savedPackages.toPackageList().withoutBlacklistedApps()
-    val sanitizedPackages = maxPackages?.let(packages::take) ?: packages
-    val sanitizedValue = sanitizedPackages.joinToString(",")
+    val sanitizedValue = packages.joinToString(",")
     if (sanitizedValue != savedPackages) {
         putString(key, sanitizedValue)
     }
