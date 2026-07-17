@@ -960,13 +960,13 @@ fun AodContent(modifier: Modifier = Modifier) {
     val secondsUnit = " " + stringResource(R.string.seconds_short)
 
     val tapSupported = SystemProperties.getBoolean(
-        "persist.sys.ax_doze_tap_pulse_supported", false)
+        "persist.sys.ax_doze_tap", false)
     val doubleTapSupported = SystemProperties.getBoolean(
-        "persist.sys.ax_doze_double_tap_pulse_supported", false)
+        "persist.sys.ax_doze_dt2p", false)
     val pickupSupported = SystemProperties.getBoolean(
-        "persist.sys.ax_doze_pickup_pulse_supported", false)
+        "persist.sys.ax_doze_pickup", false)
     val sideFpsSupported = SystemProperties.getBoolean(
-        "persist.sys.ax_doze_side_fps_pulse_supported", false)
+        "persist.sys.ax_doze_fps", false)
 
     LaunchedEffect(scheduleMode) {
         val modeInt = scheduleMode.toIntOrNull() ?: 0
