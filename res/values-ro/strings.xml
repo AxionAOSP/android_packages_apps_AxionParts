@@ -323,9 +323,29 @@
     <!-- Performance Screen -->
     <string name="performance">Performanță</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
-    <string name="performance_mode">Mod Performanță</string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="kernel_manager">Kernel Manager</string>
+    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="ram_plus">RAM Plus</string>
+    <string name="ram_plus_summary">Extend available memory with internal storage</string>
+    <string name="ram_plus_configuration">Configuration</string>
+    <string name="ram_plus_size">RAM Plus size</string>
+    <string name="ram_plus_off">Dezactivate</string>
+    <string name="ram_plus_size_gb">%1$d GB</string>
+    <string name="ram_plus_status">Current status</string>
+    <string name="ram_plus_active_size">Active: %1$d GB</string>
+    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_unsupported">Not supported on this device</string>
+    <string name="ram_plus_encryption_required">Storage encryption is required</string>
+    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
+    <string name="ram_plus_insufficient_space">Not enough free storage</string>
+    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
+    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
+    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_restart_title">Restart required</string>
+    <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
+    <string name="ram_plus_restart_confirm">OK</string>
     <string name="background_manager_policy">Policy</string>
     <string name="background_manager_apps">Apps</string>
     <string name="background_app_policy">App policy</string>
@@ -339,37 +359,25 @@
     <string name="freezer_level_package">Package freezer</string>
     <string name="package_freezer_apps">Package freezer apps</string>
     <string name="package_freezer_apps_summary">Apps in this list can be frozen after moving to the background</string>
-    <string name="keep_alive_apps">Keep-alive apps</string>
-    <string name="keep_alive_apps_summary">Choose up to %1$d apps to keep resident and protected from background cleanup</string>
-    <string name="keep_alive_apps_limit_message">Keep-alive is limited to %1$d apps</string>
-    <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
-    <string name="maximum_performance_enabled">Performanță maximă activată</string>
-    <string name="balanced_mode">Mod echilibrat</string>
-    <string name="boost_controls">Boost controls</string>
     <string name="frequency_control">Frequency control</string>
-    <string name="display_boost">Display Boost</string>
-    <string name="touch_boost">Touch Boost</string>
     <string name="boost_active">Boost Activ</string>
     <string name="boost_disabled">Boost Dezactivat</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Cluster Mic</string>
     <string name="big_cluster">Cluster Mare</string>
+    <string name="cpu_cluster">CPU Cluster %1$d</string>
     <string name="prime_cluster">Cluster Prime</string>
-    <string name="boost_frequency">Frecvență Boost</string>
     <string name="minimum_frequency">Frecvență minimă</string>
     <string name="maximum_frequency">Frecvență maximă</string>
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Performanță grafică</string>
-    <string name="game_gpu_boost">Game GPU Boost</string>
-    <string name="system_gpu_boost">System GPU Boost</string>
+    <string name="cpu_governor">CPU governor</string>
     <!-- Performance Formats -->
-    <string name="level_format">Nivel %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">Performanță</string>
     <string name="qs_tile_pc_mode">PC Mode</string>
     <string name="qs_tile_on">Activate</string>
     <string name="qs_tile_off">Dezactivate</string>
