@@ -323,9 +323,29 @@
     <!-- Performance Screen -->
     <string name="performance">Продуктивність</string>
     <string name="performance_summary">Розгін ЦП, керування частотою та ГП</string>
-    <string name="performance_mode">Режим продуктивності</string>
     <string name="background_manager">Менеджер фонового режиму</string>
     <string name="background_manager_summary">Керує заморожуванням застосунків, підтримкою активності та обмеженнями на запуск у фоновому режимі</string>
+    <string name="kernel_manager">Kernel Manager</string>
+    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="ram_plus">RAM Plus</string>
+    <string name="ram_plus_summary">Extend available memory with internal storage</string>
+    <string name="ram_plus_configuration">Configuration</string>
+    <string name="ram_plus_size">RAM Plus size</string>
+    <string name="ram_plus_off">Вимкнено</string>
+    <string name="ram_plus_size_gb">%1$d GB</string>
+    <string name="ram_plus_status">Current status</string>
+    <string name="ram_plus_active_size">Active: %1$d GB</string>
+    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_unsupported">Not supported on this device</string>
+    <string name="ram_plus_encryption_required">Storage encryption is required</string>
+    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
+    <string name="ram_plus_insufficient_space">Not enough free storage</string>
+    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
+    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
+    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_restart_title">Restart required</string>
+    <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
+    <string name="ram_plus_restart_confirm">OK</string>
     <string name="background_manager_policy">Політика</string>
     <string name="background_manager_apps">Додатки</string>
     <string name="background_app_policy">Політика застосунку</string>
@@ -339,37 +359,25 @@
     <string name="freezer_level_package">Заморожування пакета</string>
     <string name="package_freezer_apps">Замороження пакетів застосунків</string>
     <string name="package_freezer_apps_summary">Застосунки з цього списку можна заморозити після переходу у фоновий режим</string>
-    <string name="keep_alive_apps">Застосунки для фонової роботи</string>
-    <string name="keep_alive_apps_summary">Виберіть до %1$d застосунків, які залишатимуться в пам’яті та будуть захищені від фонового очищення</string>
-    <string name="keep_alive_apps_limit_message">Робота у фоні обмежена до %1$d застосунків</string>
-    <string name="keep_alive_apps_disclaimer">Примусове закривання застосунку або його змахування з екрана нещодавніх може зупинити процес, попри наявність у списку застосунків для фонової роботи.</string>
     <string name="restricted_background_apps">Застосунки з обмеженням фонової роботи</string>
     <string name="restricted_background_apps_summary">Застосунки у цьому списку не зможуть автоматично запускатися у фоновому режимі, поки ви їх не відкриєте</string>
-    <string name="maximum_performance_enabled">Максимальна продуктивність увімкнена</string>
-    <string name="balanced_mode">Збалансований режим</string>
-    <string name="boost_controls">Керування прискоренням</string>
     <string name="frequency_control">Керування частотою</string>
-    <string name="display_boost">Прискорення дисплея</string>
-    <string name="touch_boost">Прискорення дотиків</string>
     <string name="boost_active">Прискорення активне</string>
     <string name="boost_disabled">Прискорення вимкнено</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Малий кластер</string>
     <string name="big_cluster">Великий кластер</string>
+    <string name="cpu_cluster">CPU Cluster %1$d</string>
     <string name="prime_cluster">Головний кластер</string>
-    <string name="boost_frequency">Частота прискорення</string>
     <string name="minimum_frequency">Мінімальна частота</string>
     <string name="maximum_frequency">Максимальна частота</string>
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Графічна продуктивність</string>
-    <string name="game_gpu_boost">Прискорення GPU для ігор</string>
-    <string name="system_gpu_boost">Системне прискорення GPU</string>
+    <string name="cpu_governor">CPU governor</string>
     <!-- Performance Formats -->
-    <string name="level_format">Рівень %1$d</string>
     <string name="mhz_format">%1$d МГц</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">Продуктивність</string>
     <string name="qs_tile_pc_mode">Режим ПК</string>
     <string name="qs_tile_on">Увімкнено</string>
     <string name="qs_tile_off">Вимкнено</string>
