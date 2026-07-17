@@ -353,8 +353,6 @@
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Graphics Performance</string>
-    <string name="game_gpu_boost">Game GPU Boost</string>
-    <string name="system_gpu_boost">System GPU Boost</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->

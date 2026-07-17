@@ -353,8 +353,6 @@
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Grafický výkon</string>
-    <string name="game_gpu_boost">Herní GPU boost</string>
-    <string name="system_gpu_boost">Systémový GPU boost</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->

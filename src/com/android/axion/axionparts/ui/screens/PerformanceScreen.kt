@@ -32,6 +32,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Sensors
 import androidx.compose.material.icons.outlined.Apps
+import androidx.compose.material.icons.outlined.Memory
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -57,6 +58,7 @@ fun PerformanceScreen(
             PerformanceContent(
                 onBackgroundManagerClick = { onNavigateToDetail("background_manager") },
                 onKernelManagerClick = { onNavigateToDetail("kernel_manager") },
+                onRamPlusClick = { onNavigateToDetail("ram_plus") },
                 modifier = Modifier.padding(innerPadding),
             )
         }
@@ -64,6 +66,7 @@ fun PerformanceScreen(
         PerformanceContent(
             onBackgroundManagerClick = { onNavigateToDetail("background_manager") },
             onKernelManagerClick = { onNavigateToDetail("kernel_manager") },
+            onRamPlusClick = { onNavigateToDetail("ram_plus") },
             modifier = Modifier,
         )
     }
@@ -73,8 +76,11 @@ fun PerformanceScreen(
 private fun PerformanceContent(
     onBackgroundManagerClick: () -> Unit,
     onKernelManagerClick: () -> Unit,
+    onRamPlusClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val ramPlusSupported = remember {
+        SystemProperties.getBoolean("persist.sys.ax_rp_supp", false)
     }
 
     Column(
@@ -116,27 +122,24 @@ private fun PerformanceContent(
             }
         }
 
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            LevelSlider(
-                settingKey = "axion_game_gpu_boost_level",
-                label = stringResource(R.string.game_gpu_boost),
-                min = 0,
-                max = maxLevels,
-                defaultValue = 1,
-                accentColor = gpuColor,
-            )
-
-            LevelSlider(
-                settingKey = "axion_sys_gpu_boost_level",
-                label = stringResource(R.string.system_gpu_boost),
-                min = 0,
-                max = maxLevels,
-                defaultValue = 1,
-                accentColor = MaterialTheme.colorScheme.secondary,
-            )
+        if (ramPlusSupported) {
+            Spacer(modifier = Modifier.height(12.dp))
+            FeatureCard(
+                title = stringResource(R.string.ram_plus),
+                summary = stringResource(R.string.ram_plus_summary),
+                onClick = onRamPlusClick,
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                illustrationColor = MaterialTheme.colorScheme.tertiaryContainer,
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Memory,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                    modifier = Modifier.size(36.dp),
+                )
+            }
         }
+
+        Spacer(modifier = Modifier.height(32.dp))
     }
 }

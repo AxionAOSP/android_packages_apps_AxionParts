@@ -353,8 +353,6 @@
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Графічна продуктивність</string>
-    <string name="game_gpu_boost">Прискорення GPU для ігор</string>
-    <string name="system_gpu_boost">Системне прискорення GPU</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d МГц</string>
     <!-- Quick Settings Tile -->

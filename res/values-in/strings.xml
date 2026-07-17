@@ -303,8 +303,6 @@
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Performa Grafis</string>
-    <string name="game_gpu_boost">Boost GPU Game</string>
-    <string name="system_gpu_boost">Boost GPU Sistem</string>
     
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>

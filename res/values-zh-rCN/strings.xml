@@ -329,8 +329,6 @@
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">图形性能</string>
-    <string name="game_gpu_boost">游戏 GPU 加速</string>
-    <string name="system_gpu_boost">系统 GPU 加速</string>
     
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>

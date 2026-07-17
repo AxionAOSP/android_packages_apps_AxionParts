@@ -303,8 +303,6 @@
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">ग्राफिक्स प्रदर्शन</string>
-    <string name="game_gpu_boost">गेम GPU बूस्ट</string>
-    <string name="system_gpu_boost">सिस्टम GPU बूस्ट</string>
     
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>
