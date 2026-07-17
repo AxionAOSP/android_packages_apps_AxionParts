@@ -323,9 +323,29 @@
     <!-- Performance Screen -->
     <string name="performance">ביצועים</string>
     <string name="performance_summary">האצת מעבד, בקרת תדירות ומעבד גרפי</string>
-    <string name="performance_mode">מצב ביצועים</string>
     <string name="background_manager">מנהל רקע</string>
-    <string name="background_manager_summary">ניהול הקפאת אפליקציות, השארת פעילות, ומגבלות התחלה ברקע</string>
+    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="kernel_manager">Kernel Manager</string>
+    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="ram_plus">RAM Plus</string>
+    <string name="ram_plus_summary">Extend available memory with internal storage</string>
+    <string name="ram_plus_configuration">Configuration</string>
+    <string name="ram_plus_size">RAM Plus size</string>
+    <string name="ram_plus_off">כבויות</string>
+    <string name="ram_plus_size_gb">%1$d GB</string>
+    <string name="ram_plus_status">Current status</string>
+    <string name="ram_plus_active_size">Active: %1$d GB</string>
+    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_unsupported">Not supported on this device</string>
+    <string name="ram_plus_encryption_required">Storage encryption is required</string>
+    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
+    <string name="ram_plus_insufficient_space">Not enough free storage</string>
+    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
+    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
+    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_restart_title">Restart required</string>
+    <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
+    <string name="ram_plus_restart_confirm">אישור</string>
     <string name="background_manager_policy">מדיניות</string>
     <string name="background_manager_apps">אפליקציות</string>
     <string name="background_app_policy">מדיניות אפליקציה</string>
@@ -339,37 +359,25 @@
     <string name="freezer_level_package">מקפיא חבילות</string>
     <string name="package_freezer_apps">Package freezer apps</string>
     <string name="package_freezer_apps_summary">Apps in this list can be frozen after moving to the background</string>
-    <string name="keep_alive_apps">Keep-alive apps</string>
-    <string name="keep_alive_apps_summary">Choose up to %1$d apps to keep resident and protected from background cleanup</string>
-    <string name="keep_alive_apps_limit_message">Keep-alive is limited to %1$d apps</string>
-    <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
-    <string name="maximum_performance_enabled">Maximum performance enabled</string>
-    <string name="balanced_mode">מצב מאוזן</string>
-    <string name="boost_controls">בקרי האצה</string>
     <string name="frequency_control">בקרת תדירות</string>
-    <string name="display_boost">Display Boost</string>
-    <string name="touch_boost">Touch Boost</string>
     <string name="boost_active">Boost Active</string>
     <string name="boost_disabled">Boost Disabled</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Little Cluster</string>
     <string name="big_cluster">Big Cluster</string>
+    <string name="cpu_cluster">CPU Cluster %1$d</string>
     <string name="prime_cluster">Prime Cluster</string>
-    <string name="boost_frequency">Boost Frequency</string>
     <string name="minimum_frequency">תדירות מינימלית</string>
     <string name="maximum_frequency">תדירות מרבית</string>
     <!-- GPU -->
     <string name="gpu">מעבד גרפי</string>
     <string name="graphics_performance">ביצועים גרפיים</string>
-    <string name="game_gpu_boost">Game GPU Boost</string>
-    <string name="system_gpu_boost">System GPU Boost</string>
+    <string name="cpu_governor">CPU governor</string>
     <!-- Performance Formats -->
-    <string name="level_format">Level %1$d</string>
     <string name="mhz_format">%1$d מגה־הרץ</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">ביצועים</string>
     <string name="qs_tile_pc_mode">מצב מחשב שולחני</string>
     <string name="qs_tile_on">מופעלות</string>
     <string name="qs_tile_off">כבויות</string>
