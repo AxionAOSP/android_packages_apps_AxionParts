@@ -315,13 +315,7 @@
     
     <!-- Performance Screen -->
     <string name="performance">性能</string>
-    <string name="performance_mode">性能模式</string>
-    <string name="maximum_performance_enabled">已启用最大性能</string>
-    <string name="balanced_mode">平衡模式</string>
-    <string name="boost_controls">加速控制</string>
     <string name="frequency_control">频率控制</string>
-    <string name="display_boost">显示加速</string>
-    <string name="touch_boost">触控加速</string>
     <string name="boost_active">加速已启用</string>
     <string name="boost_disabled">加速已禁用</string>
     
@@ -329,7 +323,6 @@
     <string name="little_cluster">小核</string>
     <string name="big_cluster">大核</string>
     <string name="prime_cluster">超大核</string>
-    <string name="boost_frequency">加速频率</string>
     <string name="minimum_frequency">最小频率</string>
     <string name="maximum_frequency">最大频率</string>
     
@@ -340,11 +333,9 @@
     <string name="system_gpu_boost">系统 GPU 加速</string>
     
     <!-- Performance Formats -->
-    <string name="level_format">级别 %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">性能</string>
     <string name="qs_tile_on">开</string>
     <string name="qs_tile_off">关</string>
     

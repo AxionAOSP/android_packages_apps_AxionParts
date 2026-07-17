@@ -289,13 +289,7 @@
     
     <!-- Performance Screen -->
     <string name="performance">Performa</string>
-    <string name="performance_mode">Mode Performa</string>
-    <string name="maximum_performance_enabled">Performa maksimum aktif</string>
-    <string name="balanced_mode">Mode seimbang</string>
-    <string name="boost_controls">KONTROL BOOST</string>
     <string name="frequency_control">KONTROL FREKUENSI</string>
-    <string name="display_boost">Boost Layar</string>
-    <string name="touch_boost">Boost Sentuh</string>
     <string name="boost_active">Boost Aktif</string>
     <string name="boost_disabled">Boost Nonaktif</string>
     
@@ -303,7 +297,6 @@
     <string name="little_cluster">Kluster Kecil</string>
     <string name="big_cluster">Kluster Besar</string>
     <string name="prime_cluster">Kluster Prime</string>
-    <string name="boost_frequency">Frekuensi Boost</string>
     <string name="minimum_frequency">Frekuensi Minimum</string>
     <string name="maximum_frequency">Frekuensi Maksimum</string>
     
@@ -314,11 +307,9 @@
     <string name="system_gpu_boost">Boost GPU Sistem</string>
     
     <!-- Performance Formats -->
-    <string name="level_format">Level %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">Performa</string>
     <string name="qs_tile_on">Aktif</string>
     <string name="qs_tile_off">Mati</string>
     

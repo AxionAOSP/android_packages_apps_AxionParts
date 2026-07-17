@@ -320,7 +320,6 @@
     <!-- Performance Screen -->
     <string name="performance">Výkon</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
-    <string name="performance_mode">Režim výkonu</string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
     <string name="background_manager_policy">Policy</string>
@@ -342,19 +341,13 @@
     <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
-    <string name="maximum_performance_enabled">Maximální výkon povolen</string>
-    <string name="balanced_mode">Vyvážený režim</string>
-    <string name="boost_controls">Boost controls</string>
     <string name="frequency_control">Frequency control</string>
-    <string name="display_boost">Boost displeje</string>
-    <string name="touch_boost">Boost dotyku</string>
     <string name="boost_active">Boost aktivní</string>
     <string name="boost_disabled">Boost zakázán</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Malý cluster</string>
     <string name="big_cluster">Velký cluster</string>
     <string name="prime_cluster">Hlavní cluster</string>
-    <string name="boost_frequency">Frekvence boostu</string>
     <string name="minimum_frequency">Minimální frekvence</string>
     <string name="maximum_frequency">Maximální frekvence</string>
     <!-- GPU -->
@@ -363,10 +356,8 @@
     <string name="game_gpu_boost">Herní GPU boost</string>
     <string name="system_gpu_boost">Systémový GPU boost</string>
     <!-- Performance Formats -->
-    <string name="level_format">Úroveň %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">Výkon</string>
     <string name="qs_tile_pc_mode">PC Mode</string>
     <string name="qs_tile_on">Zapnuto</string>
     <string name="qs_tile_off">Vypnuto</string>

@@ -289,13 +289,7 @@
     
     <!-- Performance Screen -->
     <string name="performance">प्रदर्शन</string>
-    <string name="performance_mode">प्रदर्शन मोड</string>
-    <string name="maximum_performance_enabled">अधिकतम प्रदर्शन सक्षम</string>
-    <string name="balanced_mode">संतुलित मोड</string>
-    <string name="boost_controls">बूस्ट नियंत्रण</string>
     <string name="frequency_control">आवृत्ति नियंत्रण</string>
-    <string name="display_boost">डिस्प्ले बूस्ट</string>
-    <string name="touch_boost">टच बूस्ट</string>
     <string name="boost_active">बूस्ट सक्रिय</string>
     <string name="boost_disabled">बूस्ट अक्षम</string>
     
@@ -303,7 +297,6 @@
     <string name="little_cluster">लिटिल क्लस्टर</string>
     <string name="big_cluster">बिग क्लस्टर</string>
     <string name="prime_cluster">प्राइम क्लस्टर</string>
-    <string name="boost_frequency">बूस्ट फ्रीक्वेंसी</string>
     <string name="minimum_frequency">न्यूनतम फ्रीक्वेंसी</string>
     <string name="maximum_frequency">अधिकतम फ्रीक्वेंसी</string>
     
@@ -314,11 +307,9 @@
     <string name="system_gpu_boost">सिस्टम GPU बूस्ट</string>
     
     <!-- Performance Formats -->
-    <string name="level_format">स्तर %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">प्रदर्शन</string>
     <string name="qs_tile_on">चालू</string>
     <string name="qs_tile_off">बंद</string>
     

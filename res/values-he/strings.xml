@@ -320,7 +320,6 @@
     <!-- Performance Screen -->
     <string name="performance">ביצועים</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
-    <string name="performance_mode">מצב ביצועים</string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
     <string name="background_manager_policy">Policy</string>
@@ -342,19 +341,13 @@
     <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
-    <string name="maximum_performance_enabled">Maximum performance enabled</string>
-    <string name="balanced_mode">מצב מאוזן</string>
-    <string name="boost_controls">Boost controls</string>
     <string name="frequency_control">Frequency control</string>
-    <string name="display_boost">Display Boost</string>
-    <string name="touch_boost">Touch Boost</string>
     <string name="boost_active">Boost Active</string>
     <string name="boost_disabled">Boost Disabled</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Little Cluster</string>
     <string name="big_cluster">Big Cluster</string>
     <string name="prime_cluster">Prime Cluster</string>
-    <string name="boost_frequency">Boost Frequency</string>
     <string name="minimum_frequency">תדירות מינימלית</string>
     <string name="maximum_frequency">תדירות מרבית</string>
     <!-- GPU -->
@@ -363,10 +356,8 @@
     <string name="game_gpu_boost">Game GPU Boost</string>
     <string name="system_gpu_boost">System GPU Boost</string>
     <!-- Performance Formats -->
-    <string name="level_format">Level %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">ביצועים</string>
     <string name="qs_tile_pc_mode">PC Mode</string>
     <string name="qs_tile_on">מופעלות</string>
     <string name="qs_tile_off">כבויות</string>

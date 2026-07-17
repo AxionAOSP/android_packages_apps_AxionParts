@@ -320,7 +320,6 @@
     <!-- Performance Screen -->
     <string name="performance">パフォーマンス</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
-    <string name="performance_mode">パフォーマンスモード</string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
     <string name="background_manager_policy">Policy</string>
@@ -342,19 +341,13 @@
     <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
-    <string name="maximum_performance_enabled">最大パフォーマンスが有効</string>
-    <string name="balanced_mode">バランスモード</string>
-    <string name="boost_controls">Boost controls</string>
     <string name="frequency_control">Frequency control</string>
-    <string name="display_boost">ディスプレイブースト</string>
-    <string name="touch_boost">タッチブースト</string>
     <string name="boost_active">ブーストアクティブ</string>
     <string name="boost_disabled">ブースト無効</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">リトルクラスター</string>
     <string name="big_cluster">ビッグクラスター</string>
     <string name="prime_cluster">プライムクラスター</string>
-    <string name="boost_frequency">ブースト周波数</string>
     <string name="minimum_frequency">最小周波数</string>
     <string name="maximum_frequency">最大周波数</string>
     <!-- GPU -->
@@ -363,10 +356,8 @@
     <string name="game_gpu_boost">ゲームGPUブースト</string>
     <string name="system_gpu_boost">システムGPUブースト</string>
     <!-- Performance Formats -->
-    <string name="level_format">レベル %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">パフォーマンス</string>
     <string name="qs_tile_pc_mode">PC Mode</string>
     <string name="qs_tile_on">ON</string>
     <string name="qs_tile_off">OFF</string>

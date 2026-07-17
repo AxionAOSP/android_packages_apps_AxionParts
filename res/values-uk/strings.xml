@@ -320,7 +320,6 @@
     <!-- Performance Screen -->
     <string name="performance">Продуктивність</string>
     <string name="performance_summary">Розгін ЦП, керування частотою та ГП</string>
-    <string name="performance_mode">Режим продуктивності</string>
     <string name="background_manager">Менеджер фонового режиму</string>
     <string name="background_manager_summary">Керує заморожуванням застосунків, підтримкою активності та обмеженнями на запуск у фоновому режимі</string>
     <string name="background_manager_policy">Політика</string>
@@ -342,19 +341,13 @@
     <string name="keep_alive_apps_disclaimer">Примусове закривання застосунку або його змахування з екрана нещодавніх може зупинити процес, попри наявність у списку застосунків для фонової роботи.</string>
     <string name="restricted_background_apps">Застосунки з обмеженням фонової роботи</string>
     <string name="restricted_background_apps_summary">Застосунки у цьому списку не зможуть автоматично запускатися у фоновому режимі, поки ви їх не відкриєте</string>
-    <string name="maximum_performance_enabled">Максимальна продуктивність увімкнена</string>
-    <string name="balanced_mode">Збалансований режим</string>
-    <string name="boost_controls">Керування прискоренням</string>
     <string name="frequency_control">Керування частотою</string>
-    <string name="display_boost">Прискорення дисплея</string>
-    <string name="touch_boost">Прискорення дотиків</string>
     <string name="boost_active">Прискорення активне</string>
     <string name="boost_disabled">Прискорення вимкнено</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">Малий кластер</string>
     <string name="big_cluster">Великий кластер</string>
     <string name="prime_cluster">Головний кластер</string>
-    <string name="boost_frequency">Частота прискорення</string>
     <string name="minimum_frequency">Мінімальна частота</string>
     <string name="maximum_frequency">Максимальна частота</string>
     <!-- GPU -->
@@ -363,10 +356,8 @@
     <string name="game_gpu_boost">Прискорення GPU для ігор</string>
     <string name="system_gpu_boost">Системне прискорення GPU</string>
     <!-- Performance Formats -->
-    <string name="level_format">Рівень %1$d</string>
     <string name="mhz_format">%1$d МГц</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">Продуктивність</string>
     <string name="qs_tile_pc_mode">Режим ПК</string>
     <string name="qs_tile_on">Увімкнено</string>
     <string name="qs_tile_off">Вимкнено</string>

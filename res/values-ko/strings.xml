@@ -320,7 +320,6 @@
     <!-- Performance Screen -->
     <string name="performance">성능</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
-    <string name="performance_mode">성능 모드</string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
     <string name="background_manager_policy">Policy</string>
@@ -342,19 +341,13 @@
     <string name="keep_alive_apps_disclaimer">Force closing an app or swiping it away from recents can still kill it, even when it is in the keep-alive list.</string>
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
-    <string name="maximum_performance_enabled">최대 성능 활성화</string>
-    <string name="balanced_mode">균형 모드</string>
-    <string name="boost_controls">Boost controls</string>
     <string name="frequency_control">Frequency control</string>
-    <string name="display_boost">디스플레이 부스트</string>
-    <string name="touch_boost">터치 부스트</string>
     <string name="boost_active">부스트 활성</string>
     <string name="boost_disabled">부스트 비활성</string>
     <!-- CPU Clusters -->
     <string name="little_cluster">리틀 클러스터</string>
     <string name="big_cluster">빅 클러스터</string>
     <string name="prime_cluster">프라임 클러스터</string>
-    <string name="boost_frequency">부스트 주파수</string>
     <string name="minimum_frequency">최소 주파수</string>
     <string name="maximum_frequency">최대 주파수</string>
     <!-- GPU -->
@@ -363,10 +356,8 @@
     <string name="game_gpu_boost">게임 GPU 부스트</string>
     <string name="system_gpu_boost">시스템 GPU 부스트</string>
     <!-- Performance Formats -->
-    <string name="level_format">레벨 %1$d</string>
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
-    <string name="qs_tile_performance">성능</string>
     <string name="qs_tile_pc_mode">PC Mode</string>
     <string name="qs_tile_on">사용</string>
     <string name="qs_tile_off">사용 안함</string>

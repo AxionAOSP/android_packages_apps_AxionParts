@@ -17,10 +17,9 @@
 package com.android.axion.axionparts.ui.screens
 
 import android.os.SystemProperties
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -33,39 +32,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Sensors
 import androidx.compose.material.icons.outlined.Apps
-import androidx.compose.material.icons.outlined.Bolt
-import androidx.compose.material.icons.outlined.Layers
-import androidx.compose.material.icons.outlined.RocketLaunch
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
-import com.android.axion.axionparts.ui.components.FrequencySlider
-import com.android.axion.axionparts.ui.components.LevelSlider
-import com.android.axion.axionparts.ui.components.PowerModeToggle
-import com.android.axion.axionparts.ui.theme.ExpressiveShapes
-import com.android.axion.compose.preferences.ClickablePreference
-import com.android.axion.compose.preferences.SettingsType
-import com.android.axion.compose.preferences.rememberSettingsFlow
+import com.android.axion.compose.preferences.FeatureCard
 import com.android.axion.compose.scaffold.AxionScaffold
-
-private data class ClusterConfig(
-    val name: String,
-    val maxFreq: Int,
-    val availableFreqs: List<Int>,
-    val minFreqKey: String,
-    val maxFreqKey: String,
-    val accentColor: Color,
-)
 
 @Composable
 fun PerformanceScreen(
@@ -80,87 +56,26 @@ fun PerformanceScreen(
         ) { innerPadding ->
             PerformanceContent(
                 onBackgroundManagerClick = { onNavigateToDetail("background_manager") },
+                onKernelManagerClick = { onNavigateToDetail("kernel_manager") },
                 modifier = Modifier.padding(innerPadding),
             )
         }
     } else {
         PerformanceContent(
             onBackgroundManagerClick = { onNavigateToDetail("background_manager") },
+            onKernelManagerClick = { onNavigateToDetail("kernel_manager") },
             modifier = Modifier,
         )
     }
 }
 
 @Composable
-fun PerformanceContent(
+private fun PerformanceContent(
     onBackgroundManagerClick: () -> Unit,
+    onKernelManagerClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val flow = rememberSettingsFlow(SettingsType.SECURE)
-
-    val smallAvailableFreqs = remember {
-        flow.getString("ax_cpu_small_freqs").split(",").mapNotNull { it.toIntOrNull() }
     }
-
-    val bigAvailableFreqs = remember {
-        flow.getString("ax_cpu_big_freqs").split(",").mapNotNull { it.toIntOrNull() }
-    }
-
-    val primeAvailableFreqs = remember {
-        flow.getString("ax_cpu_prime_freqs").split(",").mapNotNull { it.toIntOrNull() }
-    }
-
-    val gpuFreqsPath = remember { SystemProperties.get("persist.sys.axion_gpu_freqs_path", "") }
-    val gpuMinFreqFile = remember { SystemProperties.get("persist.sys.axion_gpu_minfreq_file", "") }
-    val gpuMaxLevels = remember { SystemProperties.getInt("persist.sys.axion_gpu_levels", 0) }
-    val showGpu = gpuFreqsPath.isNotEmpty() && gpuMinFreqFile.isNotEmpty() && gpuMaxLevels > 0
-
-    val littleClusterName = stringResource(R.string.little_cluster)
-    val bigClusterName = stringResource(R.string.big_cluster)
-    val primeClusterName = stringResource(R.string.prime_cluster)
-    val primaryColor = MaterialTheme.colorScheme.primary
-    val tertiaryColor = MaterialTheme.colorScheme.tertiary
-    val secondaryColor = MaterialTheme.colorScheme.secondary
-
-    val clusters =
-        remember(
-            littleClusterName,
-            bigClusterName,
-            primeClusterName,
-            smallAvailableFreqs,
-            bigAvailableFreqs,
-            primeAvailableFreqs,
-            primaryColor,
-            tertiaryColor,
-            secondaryColor,
-        ) {
-            listOf(
-                ClusterConfig(
-                    name = littleClusterName,
-                    maxFreq = smallAvailableFreqs.maxOrNull() ?: 0,
-                    availableFreqs = smallAvailableFreqs,
-                    minFreqKey = "axion_min_freq",
-                    maxFreqKey = "axion_max_freq",
-                    accentColor = primaryColor,
-                ),
-                ClusterConfig(
-                    name = bigClusterName,
-                    maxFreq = bigAvailableFreqs.maxOrNull() ?: 0,
-                    availableFreqs = bigAvailableFreqs,
-                    minFreqKey = "axion_min_freq_big",
-                    maxFreqKey = "axion_max_freq_big",
-                    accentColor = tertiaryColor,
-                ),
-                ClusterConfig(
-                    name = primeClusterName,
-                    maxFreq = primeAvailableFreqs.maxOrNull() ?: 0,
-                    availableFreqs = primeAvailableFreqs,
-                    minFreqKey = "axion_min_freq_prime",
-                    maxFreqKey = "axion_max_freq_prime",
-                    accentColor = secondaryColor,
-                ),
-            )
-        }
 
     Column(
         modifier =
@@ -168,140 +83,7 @@ fun PerformanceContent(
     ) {
         Spacer(modifier = Modifier.height(8.dp))
 
-        ClickablePreference(
-            title = stringResource(R.string.background_manager),
-            summary = stringResource(R.string.background_manager_summary),
-            icon = Icons.Outlined.Apps,
-            onClick = onBackgroundManagerClick,
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        PowerModeToggle()
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Text(
-            text = stringResource(R.string.frequency_control),
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(start = 4.dp, bottom = 12.dp),
-        )
-
-        clusters.forEach { cluster ->
-            if (cluster.maxFreq > 0) {
-                ClusterCard(cluster = cluster)
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-        }
-
-        if (showGpu) {
-            GpuCard(maxLevels = gpuMaxLevels)
-            Spacer(modifier = Modifier.height(16.dp))
-        }
-
-        Spacer(modifier = Modifier.height(32.dp))
-    }
-}
-
-@Composable
-private fun ClusterCard(cluster: ClusterConfig) {
-    val icon =
-        when {
-            cluster.name.contains("Little") -> Icons.Outlined.Bolt
-            cluster.name.contains("Big") -> Icons.Outlined.RocketLaunch
-            else -> Icons.Outlined.Layers
-        }
-
-    Column(
-        modifier =
-            Modifier.fillMaxWidth()
-                .clip(ExpressiveShapes.large)
-                .background(MaterialTheme.colorScheme.surfaceBright)
-    ) {
-        ClusterHeader(
-            name = cluster.name,
-            icon = icon,
-            accentColor = cluster.accentColor,
-        )
-
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            FrequencySlider(
-                settingKey = cluster.minFreqKey,
-                label = stringResource(R.string.minimum_frequency),
-                availableFrequencies = cluster.availableFreqs.takeIf { it.isNotEmpty() },
-                min = 0,
-                max = cluster.maxFreq,
-                interval = 100000,
-                defaultValue = 0,
-                accentColor = cluster.accentColor,
-            )
-
-            FrequencySlider(
-                settingKey = cluster.maxFreqKey,
-                label = stringResource(R.string.maximum_frequency),
-                availableFrequencies = cluster.availableFreqs.takeIf { it.isNotEmpty() },
-                min = 0,
-                max = cluster.maxFreq,
-                interval = 100000,
-                defaultValue = cluster.maxFreq,
-                accentColor = cluster.accentColor,
-            )
-        }
-    }
-}
-
-@Composable
-private fun ClusterHeader(
-    name: String,
-    icon: ImageVector,
-    accentColor: Color,
-) {
-    Row(
-        modifier =
-            Modifier.fillMaxWidth().background(accentColor.copy(alpha = 0.25f)).padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Box(
-            modifier =
-                Modifier.size(40.dp)
-                    .clip(ExpressiveShapes.small)
-                    .background(accentColor.copy(alpha = 0.2f)),
-            contentAlignment = Alignment.Center,
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                tint = accentColor,
-                modifier = Modifier.size(24.dp),
-            )
-        }
-        Text(
-            text = name,
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onSurface,
-        )
-    }
-}
-
-@Composable
-private fun GpuCard(maxLevels: Int) {
-    val gpuColor = MaterialTheme.colorScheme.tertiary
-
-    Column(
-        modifier =
-            Modifier.fillMaxWidth()
-                .clip(ExpressiveShapes.large)
-                .background(MaterialTheme.colorScheme.surfaceBright)
-    ) {
         Row(
-            modifier =
-                Modifier.fillMaxWidth().background(gpuColor.copy(alpha = 0.08f)).padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Box(
@@ -318,16 +100,18 @@ private fun GpuCard(maxLevels: Int) {
                     modifier = Modifier.size(24.dp),
                 )
             }
-            Column {
-                Text(
-                    text = stringResource(R.string.gpu),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-                Text(
-                    text = stringResource(R.string.graphics_performance),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+            FeatureCard(
+                title = stringResource(R.string.kernel_manager),
+                summary = stringResource(R.string.kernel_manager_summary),
+                onClick = onKernelManagerClick,
+                modifier = Modifier.weight(1f),
+                illustrationColor = MaterialTheme.colorScheme.secondaryContainer,
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Sensors,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                    modifier = Modifier.size(36.dp),
                 )
             }
         }

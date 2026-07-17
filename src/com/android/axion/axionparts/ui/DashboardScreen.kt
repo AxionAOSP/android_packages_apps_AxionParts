@@ -422,6 +422,7 @@ private fun DetailScreen(
                 onBackClick = onBackClick,
                 onNavigateToAppPicker = onNavigateToManagedAppPicker,
             )
+        "kernel_manager" -> KernelManagerScreen(onBackClick = onBackClick)
         "app_picker" ->
             ManagedAppPickerScreen(
                 titleRes = appPickerTitleRes,
@@ -480,6 +481,7 @@ private fun DetailPaneContent(
                 onBackClick = onClose,
                 onNavigateToAppPicker = onNavigateToManagedAppPicker,
             )
+        "kernel_manager" -> KernelManagerScreen(onBackClick = onClose)
         "app_picker" ->
             ManagedAppPickerScreen(
                 titleRes = appPickerTitleRes,
