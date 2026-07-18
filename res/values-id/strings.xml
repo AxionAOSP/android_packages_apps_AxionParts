@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Usap Tiga Jari</string>
     <string name="three_finger_swipe_summary">Tindakan saat mengusap dengan tiga jari</string>
-    <string name="three_finger_long_press"></string>
-    <string name="three_finger_long_press_summary">Aktifkan gerakan tekan lama tiga jari</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Nonaktifkan Tombol Tangkapan Layar</string>
     <string name="disable_button_screenshot_summary">Nonaktifkan kombinasi tombol daya + volume bawah untuk tangkapan layar</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Putar/Jeda musik</string>
     <string name="gesture_action_flashlight">Senter</string>
     <string name="gesture_action_screenshot">Tangkapan layar</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Panel volume</string>
     <string name="gesture_action_clear_notifications">Bersihkan notifikasi</string>
     <string name="gesture_action_notifications_panel">Panel notifikasi</string>
