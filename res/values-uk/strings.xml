@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Дії з проведенням пальцем та довгим натисканням</string>
     <string name="three_finger_swipe">Свайп трьома пальцями</string>
     <string name="three_finger_swipe_summary">Дія при свайпі трьома пальцями</string>
-    <string name="three_finger_long_press">Довге натискання трьома пальцями</string>
-    <string name="three_finger_long_press_summary">Увімкнути жест довгого натискання трьома пальцями</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Вимкнути скріншот кнопками</string>
     <string name="disable_button_screenshot_summary">Вимкнути комбінацію кнопок живлення + гучність вниз</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Відтворення/Пауза</string>
     <string name="gesture_action_flashlight">Ліхтарик</string>
     <string name="gesture_action_screenshot">Скріншот</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Панель гучності</string>
     <string name="gesture_action_clear_notifications">Очистити повідомлення</string>
     <string name="gesture_action_notifications_panel">Панель повідомлень</string>
