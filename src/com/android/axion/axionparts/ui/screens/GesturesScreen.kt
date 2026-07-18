@@ -141,13 +141,14 @@ private fun ShakeGesturesContent(modifier: Modifier = Modifier) {
             "8" to stringResource(R.string.gesture_action_last_app),
             "10" to stringResource(R.string.gesture_action_close_app),
             "11" to stringResource(R.string.gesture_action_play_pause),
-            "12" to stringResource(R.string.gesture_action_flashlight),
-            "13" to stringResource(R.string.gesture_action_screenshot),
-            "14" to stringResource(R.string.gesture_action_volume_panel),
-            "15" to stringResource(R.string.gesture_action_clear_notifications),
-            "16" to stringResource(R.string.gesture_action_notifications_panel),
-            "17" to stringResource(R.string.gesture_action_expand_qs),
-            "18" to stringResource(R.string.gesture_action_ringer_modes),
+            "12" to stringResource(R.string.gesture_action_screenshot),
+            "13" to stringResource(R.string.gesture_action_partial_screenshot),
+            "14" to stringResource(R.string.gesture_action_flashlight),
+            "15" to stringResource(R.string.gesture_action_volume_panel),
+            "16" to stringResource(R.string.gesture_action_clear_notifications),
+            "17" to stringResource(R.string.gesture_action_notifications_panel),
+            "18" to stringResource(R.string.gesture_action_expand_qs),
+            "19" to stringResource(R.string.gesture_action_ringer_modes),
         )
 
     Column(
@@ -206,13 +207,14 @@ private fun ThreeFingerGesturesContent(modifier: Modifier = Modifier) {
             "8" to stringResource(R.string.gesture_action_last_app),
             "10" to stringResource(R.string.gesture_action_close_app),
             "11" to stringResource(R.string.gesture_action_play_pause),
-            "12" to stringResource(R.string.gesture_action_flashlight),
-            "13" to stringResource(R.string.gesture_action_screenshot),
-            "14" to stringResource(R.string.gesture_action_volume_panel),
-            "15" to stringResource(R.string.gesture_action_clear_notifications),
-            "16" to stringResource(R.string.gesture_action_notifications_panel),
-            "17" to stringResource(R.string.gesture_action_expand_qs),
-            "18" to stringResource(R.string.gesture_action_ringer_modes),
+            "12" to stringResource(R.string.gesture_action_screenshot),
+            "13" to stringResource(R.string.gesture_action_partial_screenshot),
+            "14" to stringResource(R.string.gesture_action_flashlight),
+            "15" to stringResource(R.string.gesture_action_volume_panel),
+            "16" to stringResource(R.string.gesture_action_clear_notifications),
+            "17" to stringResource(R.string.gesture_action_notifications_panel),
+            "18" to stringResource(R.string.gesture_action_expand_qs),
+            "19" to stringResource(R.string.gesture_action_ringer_modes),
         )
 
     Column(
