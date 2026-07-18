@@ -16,6 +16,8 @@
 
 package com.android.axion.axionparts.ui.screens
 
+import android.content.Context
+import android.os.PowerManager
 import android.os.SystemProperties
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -38,6 +40,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
@@ -130,13 +133,25 @@ private fun RamPlusContent(modifier: Modifier = Modifier) {
     }
 
     if (showRestartDialog) {
+        val context = LocalContext.current
         AlertDialog(
             onDismissRequest = { showRestartDialog = false },
             title = { Text(stringResource(R.string.ram_plus_restart_title)) },
             text = { Text(stringResource(R.string.ram_plus_restart_message)) },
             confirmButton = {
+                TextButton(
+                    onClick = {
+                        showRestartDialog = false
+                        val pm = context.getSystemService(Context.POWER_SERVICE) as? PowerManager
+                        pm?.reboot(null)
+                    }
+                ) {
+                    Text(stringResource(R.string.ram_plus_restart_now))
+                }
+            },
+            dismissButton = {
                 TextButton(onClick = { showRestartDialog = false }) {
-                    Text(stringResource(R.string.ram_plus_restart_confirm))
+                    Text(stringResource(R.string.ram_plus_restart_later))
                 }
             },
         )

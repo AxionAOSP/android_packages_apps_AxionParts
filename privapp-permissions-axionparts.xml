@@ -20,5 +20,6 @@
         <permission name="android.permission.WRITE_SETTINGS" />
         <permission name="android.permission.WRITE_SECURE_SETTINGS" />
         <permission name="android.permission.FORCE_STOP_PACKAGES" />
+        <permission name="android.permission.REBOOT" />
     </privapp-permissions>
 </permissions>
