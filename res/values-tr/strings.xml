@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Kaydırma ve uzun basma eylemleri</string>
     <string name="three_finger_swipe">Üç Parmakla Kaydırma</string>
     <string name="three_finger_swipe_summary">Üç parmakla kaydırırken yapılacak eylem</string>
-    <string name="three_finger_long_press">Üç Parmakla Uzun Basma</string>
-    <string name="three_finger_long_press_summary">Üç parmakla uzun basma hareketini etkinleştir</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Düğme Ekran Görüntüsünü Devre Dışı Bırak</string>
     <string name="disable_button_screenshot_summary">Güç + ses kısma ekran görüntüsü kombinasyonunu devre dışı bırak</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Oynat/Duraklat</string>
     <string name="gesture_action_flashlight">El feneri</string>
     <string name="gesture_action_screenshot">Ekran görüntüsü</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Ses paneli</string>
     <string name="gesture_action_clear_notifications">Bildirimleri temizle</string>
     <string name="gesture_action_notifications_panel">Bildirimler paneli</string>
