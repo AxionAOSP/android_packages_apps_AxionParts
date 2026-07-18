@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Scorrimento a tre dita</string>
     <string name="three_finger_swipe_summary">Azione allo scorrimento con tre dita</string>
-    <string name="three_finger_long_press">Pressione prolungata a tre dita</string>
-    <string name="three_finger_long_press_summary">Abilita il gesto di pressione prolungata con tre dita</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Disabilita screenshot con tasti</string>
     <string name="disable_button_screenshot_summary">Disabilita la combinazione Power + Volume Giù per lo screenshot</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Riproduci/Pausa musica</string>
     <string name="gesture_action_flashlight">Torcia</string>
     <string name="gesture_action_screenshot">Screenshot</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Pannello volume</string>
     <string name="gesture_action_clear_notifications">Cancella notifiche</string>
     <string name="gesture_action_notifications_panel">Pannello notifiche</string>
