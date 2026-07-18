@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Balayage à trois doigts</string>
     <string name="three_finger_swipe_summary">Action lors du balayage avec trois doigts</string>
-    <string name="three_finger_long_press">Appui long à trois doigts</string>
-    <string name="three_finger_long_press_summary">Activer le geste d\'appui long à trois doigts</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Désactiver la capture d\'écran par boutons</string>
     <string name="disable_button_screenshot_summary">Désactiver la combinaison power + volume bas pour la capture d\'écran</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Lecture/Pause musique</string>
     <string name="gesture_action_flashlight">Lampe torche</string>
     <string name="gesture_action_screenshot">Capture d\'écran</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Panneau de volume</string>
     <string name="gesture_action_clear_notifications">Effacer les notifications</string>
     <string name="gesture_action_notifications_panel">Panneau de notifications</string>
