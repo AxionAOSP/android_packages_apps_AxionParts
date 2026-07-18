@@ -138,9 +138,12 @@ private fun KernelManagerContent(modifier: Modifier = Modifier) {
         (0 until resolvedClusterCount).map { index ->
             val role = clusterRole(index, resolvedClusterCount)
             val availableFreqs = clusterAvailableFreqs.getOrNull(index).orEmpty()
+            val coresStr = flow.getString(clusterCoresKey(index))
+            val coreLabel = if (coresStr.isNotEmpty()) formatCoresLabel(coresStr) else ""
             ClusterConfig(
                 name =
-                    when (role) {
+                    if (coreLabel.isNotEmpty()) coreLabel
+                    else when (role) {
                         ClusterRole.LITTLE -> littleClusterName
                         ClusterRole.BIG -> bigClusterName
                         ClusterRole.PRIME -> primeClusterName
@@ -204,7 +207,7 @@ private fun ClusterGroup(
                 label = stringResource(R.string.minimum_frequency),
                 availableFreqs = cluster.availableFreqs,
                 maxFreq = cluster.maxFreq,
-                defaultValue = 0,
+                defaultValue = cluster.availableFreqs.minOrNull() ?: 0,
                 value = cluster.minControl?.currentValue,
                 onCommit =
                     cluster.minControl?.let { control ->
@@ -279,6 +282,25 @@ private fun String.toFrequencyList(): List<Int> =
 
 private fun clusterFreqsKey(index: Int): String =
     "$CPU_CLUSTER_FREQS_PREFIX$index$CPU_CLUSTER_FREQS_SUFFIX"
+
+private fun clusterCoresKey(index: Int): String = when (index) {
+    0 -> "ax_cpu_small_cores"
+    1 -> "ax_cpu_big_cores"
+    2 -> "ax_cpu_prime_cores"
+    else -> "ax_cpu_cluster_${index}_cores"
+}
+
+private fun formatCoresLabel(cores: String): String {
+    val parts = cores.split(",").mapNotNull { it.trim().toIntOrNull() }.sorted()
+    if (parts.isEmpty()) return ""
+    if (parts.size == 1) return "cpu ${parts[0]}"
+    val consecutive = (1 until parts.size).all { parts[it] == parts[it - 1] + 1 }
+    return if (consecutive) {
+        "cpu ${parts.first()}-${parts.last()}"
+    } else {
+        "cpu ${parts.joinToString(",")}"
+    }
+}
 
 private fun clusterRole(index: Int, clusterCount: Int): ClusterRole =
     when {
