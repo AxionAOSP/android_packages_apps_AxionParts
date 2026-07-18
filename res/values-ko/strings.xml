@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">세 손가락 스와이프</string>
     <string name="three_finger_swipe_summary">세 손가락으로 스와이프했을 때의 작업</string>
-    <string name="three_finger_long_press">세 손가락 길게 누르기</string>
-    <string name="three_finger_long_press_summary">세 손가락 길게 누르기 제스처 사용</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">버튼 스크린샷 사용 안 함</string>
     <string name="disable_button_screenshot_summary">전원 + 볼륨 다운 스크린샷 조합 사용 안 함</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">음악 재생/일시정지</string>
     <string name="gesture_action_flashlight">손전등</string>
     <string name="gesture_action_screenshot">스크린샷</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">볼륨 패널</string>
     <string name="gesture_action_clear_notifications">알림 지우기</string>
     <string name="gesture_action_notifications_panel">알림 패널</string>
