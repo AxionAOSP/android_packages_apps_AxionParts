@@ -345,7 +345,8 @@
     <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
     <string name="ram_plus_restart_title">Restart required</string>
     <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
-    <string name="ram_plus_restart_confirm">حسنا</string>
+    <string name="ram_plus_restart_now">Restart</string>
+    <string name="ram_plus_restart_later">Later</string>
     <string name="background_manager_policy">Policy</string>
     <string name="background_manager_apps">التطبيقات</string>
     <string name="background_app_policy">App policy</string>
