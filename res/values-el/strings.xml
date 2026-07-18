@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Σύρσιμο Τριών Δακτύλων</string>
     <string name="three_finger_swipe_summary">Ενέργεια κατά το σύρσιμο με τρία δάκτυλα</string>
-    <string name="three_finger_long_press">Παρατεταμένο Πάτημα Τριών Δακτύλων</string>
-    <string name="three_finger_long_press_summary">Ενεργοποίηση χειρονομίας παρατεταμένου πατήματος με τρία δάκτυλα</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Απενεργοποίηση Στιγμιότυπου με Κουμπιά</string>
     <string name="disable_button_screenshot_summary">Απενεργοποίηση του συνδυασμού κουμπιών Power + Volume Down για στιγμιότυπο οθόνης</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Αναπαραγωγή/Παύση μουσικής</string>
     <string name="gesture_action_flashlight">Φακός</string>
     <string name="gesture_action_screenshot">Στιγμιότυπο οθόνης</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Πάνελ έντασης ήχου</string>
     <string name="gesture_action_clear_notifications">Εκκαθάριση ειδοποιήσεων</string>
     <string name="gesture_action_notifications_panel">Πάνελ ειδοποιήσεων</string>
