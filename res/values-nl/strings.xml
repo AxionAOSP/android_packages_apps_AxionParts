@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Vegen met drie vingers</string>
     <string name="three_finger_swipe_summary">Actie bij vegen met drie vingers</string>
-    <string name="three_finger_long_press">Lang drukken met drie vingers</string>
-    <string name="three_finger_long_press_summary">Schakel gebaar voor lang drukken met drie vingers in</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Knopscreenshot uitschakelen</string>
     <string name="disable_button_screenshot_summary">Schakel Power + Volume omlaag screenshot-combinatie uit</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Muziek afspelen/pauzeren</string>
     <string name="gesture_action_flashlight">Zaklamp</string>
     <string name="gesture_action_screenshot">Screenshot</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Volumepaneel</string>
     <string name="gesture_action_clear_notifications">Meldingen wissen</string>
     <string name="gesture_action_notifications_panel">Meldingspaneel</string>
