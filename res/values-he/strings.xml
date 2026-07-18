@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">פעולות החלקה ולחיצה ארוכה</string>
     <string name="three_finger_swipe">Three Finger Swipe</string>
     <string name="three_finger_swipe_summary">Action when swiping with three fingers</string>
-    <string name="three_finger_long_press">Three Finger Long Press</string>
-    <string name="three_finger_long_press_summary">Enable three finger long press gesture</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Disable Button Screenshot</string>
     <string name="disable_button_screenshot_summary">Disable power + volume down screenshot combo</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Play/Pause music</string>
     <string name="gesture_action_flashlight">פנס</string>
     <string name="gesture_action_screenshot">צילום מסך</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Volume panel</string>
     <string name="gesture_action_clear_notifications">Clear notifications</string>
     <string name="gesture_action_notifications_panel">Notifications panel</string>
