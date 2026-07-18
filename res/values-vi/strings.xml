@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Vuốt ba ngón tay</string>
     <string name="three_finger_swipe_summary">Hành động cần thực hiện khi vuốt bằng ba ngón tay</string>
-    <string name="three_finger_long_press">Nhấn giữ ba ngón tay</string>
-    <string name="three_finger_long_press_summary">Bật cử chỉ nhấn giữ bằng ba ngón tay</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Tắt chụp màn hình bằng nút</string>
     <string name="disable_button_screenshot_summary">Tắt tổ hợp phím Nguồn + Giảm âm lượng để chụp màn hình</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Phát/Tạm dừng nhạc</string>
     <string name="gesture_action_flashlight">Đèn pin</string>
     <string name="gesture_action_screenshot">Chụp ảnh màn hình</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Bảng âm lượng</string>
     <string name="gesture_action_clear_notifications">Xóa thông báo</string>
     <string name="gesture_action_notifications_panel">Bảng thông báo</string>
