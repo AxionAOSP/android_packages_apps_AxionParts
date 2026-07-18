@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Drei-Finger-Wischen</string>
     <string name="three_finger_swipe_summary">Aktion beim Wischen mit drei Fingern</string>
-    <string name="three_finger_long_press">Drei-Finger-Langdruck</string>
-    <string name="three_finger_long_press_summary">Drei-Finger-Langdruck-Geste aktivieren</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Tasten-Screenshot deaktivieren</string>
     <string name="disable_button_screenshot_summary">Power + Lautstärke leiser Screenshot-Kombination deaktivieren</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Musik Wiedergabe/Pause</string>
     <string name="gesture_action_flashlight">Taschenlampe</string>
     <string name="gesture_action_screenshot">Screenshot</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Lautstärke-Panel</string>
     <string name="gesture_action_clear_notifications">Benachrichtigungen löschen</string>
     <string name="gesture_action_notifications_panel">Benachrichtigungs-Panel</string>
