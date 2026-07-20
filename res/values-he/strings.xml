@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Axion Parts</string>
+    <string name="app_name">רכיבי Axion</string>
     <!-- Common UI Elements -->
     <string name="back">חזרה</string>
     <string name="cancel">ביטול</string>
@@ -53,7 +53,7 @@
     <string name="edge_light_intensity">Glow intensity</string>
     <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
     <string name="color_mode">מצב צבע</string>
-    <string name="notification_accent">Notification accent</string>
+    <string name="notification_accent">צבע נושא להתראות</string>
     <string name="custom_color">צבע מותאם אישית</string>
     <string name="customization">התאמה אישית</string>
     <string name="custom_color_summary">#%1$06X</string>
@@ -80,7 +80,7 @@
     <string name="enable_pulse">Enable Pulse</string>
     <string name="pulse_summary">Show audio visualizer on lockscreen and ambient display</string>
     <string name="style">סגנון</string>
-    <string name="render_style">Render Style</string>
+    <string name="render_style">סגנון תצוגה</string>
     <string name="render_style_summary">Choose the visual style of the visualizer</string>
     <string name="style_bars">Bars</string>
     <string name="style_fading_blocks">Fading Blocks</string>
@@ -99,14 +99,14 @@
     <!-- Always On Display -->
     <string name="always_on_display">Always On Display</string>
     <string name="always_on_display_description">Manage scheduled AOD and screen off behavior</string>
-    <string name="mode">Mode</string>
+    <string name="mode">מצב</string>
     <string name="aod_schedule">AOD Schedule</string>
-    <string name="always_on">Always on</string>
-    <string name="scheduled">Scheduled</string>
-    <string name="aod_charge_only">Charge only</string>
-    <string name="aod_scheduled_charge">Scheduled + Charge</string>
-    <string name="schedule">Schedule</string>
-    <string name="start_time">Start time</string>
+    <string name="always_on">תמיד מופעל</string>
+    <string name="scheduled">לפי לוח זמנים</string>
+    <string name="aod_charge_only">בטעינה בלבד</string>
+    <string name="aod_scheduled_charge">לפי לוח זמנים + בטעינה</string>
+    <string name="schedule">לוח זמנים</string>
+    <string name="start_time">שעת התחלה</string>
     <string name="start_time_summary">When AOD turns on</string>
     <string name="end_time">End time</string>
     <string name="end_time_summary">When AOD turns off</string>
@@ -138,7 +138,7 @@
     <string name="brightness_always_visible">Always Visible</string>
     <string name="position_bottom">Bottom</string>
     <string name="position_top">Top</string>
-    <string name="status_bar_icons">Status Bar Icons</string>
+    <string name="status_bar_icons">סמלים לשורת המצב</string>
     <string name="status_bar_tuner">Status Bar Tuner</string>
     <string name="status_bar_tuner_summary">Show or hide status bar icons</string>
     <!-- Sound Features -->
@@ -147,16 +147,16 @@
     <string name="multi_audio_focus">Multi Audio Focus</string>
     <string name="multi_audio_focus_summary">Allow multiple apps to play audio simultaneously</string>
     <!-- Gestures -->
-    <string name="shake_gestures">Shake Gestures</string>
-    <string name="enable_shake_gestures">Enable Shake Gestures</string>
+    <string name="shake_gestures">תנועות ניעור</string>
+    <string name="enable_shake_gestures">הפעלת תנועות ניעור לביצוע פעולות</string>
     <string name="shake_gestures_summary">Trigger actions by shaking your device</string>
     <string name="shake_gesture_intensity">Shake Gesture Intensity</string>
     <string name="shake_intensity_summary">Intensity needed to trigger shake gesure</string>
-    <string name="shake_action">Shake Action</string>
+    <string name="shake_action">פעולה בניעור</string>
     <string name="shake_action_summary">Action to perform when device is shaken</string>
-    <string name="three_finger_gestures">Three Finger Gestures</string>
+    <string name="three_finger_gestures">תנועות עם שלוש אצבעות</string>
     <string name="three_finger_gestures_summary">פעולות החלקה ולחיצה ארוכה</string>
-    <string name="three_finger_swipe">Three Finger Swipe</string>
+    <string name="three_finger_swipe">החלקה עם שלוש אצבעות</string>
     <string name="three_finger_swipe_summary">Action when swiping with three fingers</string>
     <string name="three_finger_long_press">Three finger long press</string>
     <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
@@ -207,15 +207,15 @@
     <string name="selected_apps">Selected Apps</string>
     <string name="selected_apps_description">Filter what\'s important. These apps stay grouped at the top.</string>
     <string name="no_apps_selected">לא נבחרו אפליקציות</string>
-    <string name="add_apps">Add apps</string>
-    <string name="add_app">Add App</string>
-    <string name="select_essential_apps">Select Essential Apps</string>
-    <string name="select_apps">Select Apps</string>
+    <string name="add_apps">הוספת אפליקציות</string>
+    <string name="add_app">הוספת אפליקציה</string>
+    <string name="select_essential_apps">בחירת אפליקציות חיוניות</string>
+    <string name="select_apps">בחירת אפליקציות</string>
     <!-- App Picker -->
     <string name="loading_apps">האפליקציות נטענות...</string>
     <string name="search_apps">חיפוש אפליקציות...</string>
     <string name="show_system_apps">הצגת אפליקציות מערכת</string>
-    <string name="selected_count">%1$d selected</string>
+    <string name="selected_count">נבחרו %1$d</string>
     <!-- GameSpace -->
     <string name="gamespace">מרחב המשחקים</string>
     <string name="gamespace_summary">Optimize your gaming experience with GameSpace features</string>
@@ -232,7 +232,7 @@
     <string name="no_apps_configured_empty">No apps configured</string>
     <string name="add_apps_to_spoof">Add apps to start spoofing device properties</string>
     <string name="configuration_saved">Configuration saved</string>
-    <string name="remove_game_title">Remove Game?</string>
+    <string name="remove_game_title">להסיר את המשחק?</string>
     <string name="remove_game_message">This will remove the spoofing configuration for this game.</string>
     <string name="select_an_app">Select an app:</string>
     <string name="select_device_profile">Select device profile:</string>
@@ -247,7 +247,7 @@
     <string name="save_as_preset_title">Save as Preset</string>
     <string name="preset_saved">המערך נשמר</string>
     <string name="edit_app">עריכת %1$s</string>
-    <string name="add_app_title">Add App</string>
+    <string name="add_app_title">הוספת אפליקציה</string>
     <!-- Device Profiles -->
     <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
     <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
@@ -364,13 +364,13 @@
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
     <string name="frequency_control">בקרת תדירות</string>
-    <string name="boost_active">Boost Active</string>
-    <string name="boost_disabled">Boost Disabled</string>
+    <string name="boost_active">ההאצה פעילה</string>
+    <string name="boost_disabled">ההאצה כבויה</string>
     <!-- CPU Clusters -->
-    <string name="little_cluster">Little Cluster</string>
-    <string name="big_cluster">Big Cluster</string>
+    <string name="little_cluster">האשכול הקטן</string>
+    <string name="big_cluster">האשכון הגדול</string>
     <string name="cpu_cluster">CPU Cluster %1$d</string>
-    <string name="prime_cluster">Prime Cluster</string>
+    <string name="prime_cluster">האשכול הראשי</string>
     <string name="minimum_frequency">תדירות מינימלית</string>
     <string name="maximum_frequency">תדירות מרבית</string>
     <!-- GPU -->
@@ -536,7 +536,7 @@
     <string name="routines_notif_text_hint">טקסט התראה</string>
     <string name="routines_setting_key_hint">מפתח הגדרה</string>
     <string name="routines_setting_value_hint">ערך הגדרה</string>
-    <string name="routines_time_of_day">Schedule</string>
+    <string name="routines_time_of_day">לוח זמנים</string>
     <string name="routines_schedule_hint">Set time and repeat days</string>
     <string name="routines_interval">מרווח זמן</string>
     <string name="routines_charging">בטעינה</string>
