@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Дії з проведенням пальцем та довгим натисканням</string>
     <string name="three_finger_swipe">Свайп трьома пальцями</string>
     <string name="three_finger_swipe_summary">Дія при свайпі трьома пальцями</string>
-    <string name="three_finger_long_press">Three finger long press</string>
-    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
+    <string name="three_finger_long_press">Довге натискання трьома пальцями</string>
+    <string name="three_finger_long_press_summary">Торкніться екрана трьома пальцями й утримуйте їх, щоб зробити знімок вибраної області</string>
     <string name="disable_button_screenshot">Вимкнути скріншот кнопками</string>
     <string name="disable_button_screenshot_summary">Вимкнути комбінацію кнопок живлення + гучність вниз</string>
     <!-- Doze Pulse -->
@@ -187,7 +187,7 @@
     <string name="gesture_action_play_pause">Відтворення/Пауза</string>
     <string name="gesture_action_flashlight">Ліхтарик</string>
     <string name="gesture_action_screenshot">Скріншот</string>
-    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
+    <string name="gesture_action_partial_screenshot">Частковий знімок екрана</string>
     <string name="gesture_action_volume_panel">Панель гучності</string>
     <string name="gesture_action_clear_notifications">Очистити повідомлення</string>
     <string name="gesture_action_notifications_panel">Панель повідомлень</string>
@@ -221,7 +221,7 @@
     <string name="gamespace_summary">Оптимізація ігрового досвіду з функціями GameSpace</string>
     <!-- AxDiagnostics -->
     <string name="diagnostics">AxDiagnostics</string>
-    <string name="diagnostics_summary">System information and hardware diagnostics</string>
+    <string name="diagnostics_summary">Системна інформація та діагностика апаратного забезпечення</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Підміна пристрою для ігор</string>
     <string name="game_spoofing_summary">Підміна властивостей пристрою для конкретних ігор</string>
@@ -326,9 +326,9 @@
     <string name="performance_summary">Розгін ЦП, керування частотою та ГП</string>
     <string name="background_manager">Менеджер фонового режиму</string>
     <string name="background_manager_summary">Керує заморожуванням застосунків, підтримкою активності та обмеженнями на запуск у фоновому режимі</string>
-    <string name="kernel_manager">Kernel Manager</string>
-    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
-    <string name="ram_plus">RAM Plus</string>
+    <string name="kernel_manager">Керування ядром</string>
+    <string name="kernel_manager_summary">Налаштування лімітів частоти ЦП та ГП</string>
+    <string name="ram_plus">Розширення ОЗП</string>
     <string name="ram_plus_summary">Extend available memory with internal storage</string>
     <string name="ram_plus_configuration">Configuration</string>
     <string name="ram_plus_size">RAM Plus size</string>
