@@ -49,6 +49,7 @@ import androidx.compose.material.icons.filled.BatteryStd
 import androidx.compose.material.icons.filled.Bluetooth
 import androidx.compose.material.icons.filled.BrightnessHigh
 import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.material.icons.filled.ChatBubble
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -1215,11 +1216,79 @@ private fun ActionConfigDialog(
             onDismiss = onDismiss,
         )
 
-        Action.TYPE_LAUNCH_APP -> AppPickerDialog(
-            title = stringResource(R.string.routines_launch_app),
-            onConfirm = { onConfirm(Action.LaunchApp(it)) },
-            onDismiss = onDismiss,
-        )
+        Action.TYPE_LAUNCH_APP -> {
+            var selectedPackageName by remember { mutableStateOf<String?>(null) }
+            val init = initial as? Action.LaunchApp
+            var launchMode by remember { mutableStateOf(init?.launchMode ?: Action.LaunchApp.LaunchMode.FULLSCREEN) }
+
+            if (selectedPackageName == null && init == null) {
+                AppPickerDialog(
+                    title = stringResource(R.string.routines_launch_app),
+                    onConfirm = { selectedPackageName = it },
+                    onDismiss = onDismiss,
+                )
+            } else {
+                val pkgName = selectedPackageName ?: init?.packageName ?: ""
+                AlertDialog(
+                    onDismissRequest = onDismiss,
+                    title = { Text(stringResource(R.string.routines_launch_app)) },
+                    text = {
+                        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                            Text("Selected app: $pkgName")
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text("Choose launch mode:")
+                            Column(
+                                modifier = Modifier.fillMaxWidth(),
+                                verticalArrangement = Arrangement.spacedBy(8.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    FilterChip(
+                                        selected = launchMode == Action.LaunchApp.LaunchMode.FULLSCREEN,
+                                        onClick = { launchMode = Action.LaunchApp.LaunchMode.FULLSCREEN },
+                                        label = { Text("Fullscreen") },
+                                    )
+                                }
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterHorizontally)
+                                ) {
+                                    FilterChip(
+                                        selected = launchMode == Action.LaunchApp.LaunchMode.BUBBLE,
+                                        onClick = { launchMode = Action.LaunchApp.LaunchMode.BUBBLE },
+                                        label = { Text("Bubble") },
+                                    )
+                                    FilterChip(
+                                        selected = launchMode == Action.LaunchApp.LaunchMode.FREEFORM,
+                                        onClick = { launchMode = Action.LaunchApp.LaunchMode.FREEFORM },
+                                        label = { Text("Freeform") },
+                                    )
+                                }
+                            }
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(onClick = {
+                            onConfirm(Action.LaunchApp(pkgName, launchMode))
+                        }) { Text(confirmLabel) }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = {
+                            if (init == null) {
+                                selectedPackageName = null
+                            } else {
+                                onDismiss()
+                            }
+                        }) {
+                            Text(stringResource(R.string.cancel))
+                        }
+                    },
+                )
+            }
+        }
 
         Action.TYPE_SEND_BROADCAST -> {
             val init = initial as? Action.SendBroadcast

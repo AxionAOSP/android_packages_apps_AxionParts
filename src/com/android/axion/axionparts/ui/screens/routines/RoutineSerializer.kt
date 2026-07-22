@@ -365,6 +365,7 @@ class RoutineSerializer {
             is Action.LaunchApp -> {
                 put(KEY_TYPE, Action.TYPE_LAUNCH_APP)
                 put(KEY_PACKAGE_NAME, action.packageName)
+                put(KEY_LAUNCH_MODE, action.launchMode.name)
             }
             is Action.SendBroadcast -> {
                 put(KEY_TYPE, Action.TYPE_SEND_BROADCAST)
@@ -446,6 +447,11 @@ class RoutineSerializer {
             )
             Action.TYPE_LAUNCH_APP -> Action.LaunchApp(
                 packageName = json.getString(KEY_PACKAGE_NAME),
+                launchMode = runCatching {
+                    Action.LaunchApp.LaunchMode.valueOf(
+                        json.optString(KEY_LAUNCH_MODE, Action.LaunchApp.LaunchMode.FULLSCREEN.name)
+                    )
+                }.getOrDefault(Action.LaunchApp.LaunchMode.FULLSCREEN),
             )
             Action.TYPE_SEND_BROADCAST -> Action.SendBroadcast(
                 action = json.optString(KEY_ACTION, null),
@@ -576,6 +582,7 @@ class RoutineSerializer {
         private const val KEY_STREAM_TYPE = "stream_type"
         private const val KEY_LEVEL = "level"
         private const val KEY_PACKAGE_NAME = "package_name"
+        private const val KEY_LAUNCH_MODE = "launch_mode"
         private const val KEY_ACTION = "action"
         private const val KEY_EXTRAS = "extras"
         private const val KEY_TITLE = "title"

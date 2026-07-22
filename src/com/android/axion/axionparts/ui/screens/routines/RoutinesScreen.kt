@@ -650,7 +650,14 @@ internal fun describeAction(action: Action): String = when (action) {
         AudioManager.RINGER_MODE_VIBRATE -> "Vibrate"
         else -> "Normal ringer"
     }
-    is Action.LaunchApp -> "Open ${action.packageName.substringAfterLast('.')}"
+    is Action.LaunchApp -> {
+        val appName = action.packageName.substringAfterLast('.')
+        when (action.launchMode) {
+            Action.LaunchApp.LaunchMode.FREEFORM -> "Open $appName (Freeform)"
+            Action.LaunchApp.LaunchMode.BUBBLE -> "Open $appName (Bubble)"
+            else -> "Open $appName"
+        }
+    }
     is Action.SendBroadcast -> "Broadcast"
     is Action.ShowNotification -> "Notify: ${action.title}"
     is Action.Delay -> "Wait ${action.durationMs / 1000}s"
