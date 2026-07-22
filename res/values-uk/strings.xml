@@ -329,24 +329,24 @@
     <string name="kernel_manager">Керування ядром</string>
     <string name="kernel_manager_summary">Налаштування лімітів частоти ЦП та ГП</string>
     <string name="ram_plus">Розширення ОЗП</string>
-    <string name="ram_plus_summary">Extend available memory with internal storage</string>
-    <string name="ram_plus_configuration">Configuration</string>
-    <string name="ram_plus_size">RAM Plus size</string>
+    <string name="ram_plus_summary">Розширення доступної пам’яті за допомогою внутрішнього сховища</string>
+    <string name="ram_plus_configuration">Конфігурація</string>
+    <string name="ram_plus_size">Розмір розширення ОЗП</string>
     <string name="ram_plus_off">Вимкнено</string>
-    <string name="ram_plus_size_gb">%1$d GB</string>
-    <string name="ram_plus_status">Current status</string>
-    <string name="ram_plus_active_size">Active: %1$d GB</string>
-    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
-    <string name="ram_plus_unsupported">Not supported on this device</string>
-    <string name="ram_plus_encryption_required">Storage encryption is required</string>
-    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
-    <string name="ram_plus_insufficient_space">Not enough free storage</string>
-    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
-    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
-    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
-    <string name="ram_plus_restart_title">Restart required</string>
-    <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
-    <string name="ram_plus_restart_now">Restart</string>
+    <string name="ram_plus_size_gb">%1$d ГБ</string>
+    <string name="ram_plus_status">Поточний стан</string>
+    <string name="ram_plus_active_size">Активно: %1$d ГБ</string>
+    <string name="ram_plus_restart_pending">Вибраний розмір буде застосовано після перезапуску</string>
+    <string name="ram_plus_unsupported">Не підтримується на цьому пристрої</string>
+    <string name="ram_plus_encryption_required">Потрібне шифрування сховища</string>
+    <string name="ram_plus_zram_not_ready">Zram не був готовий під час налаштування</string>
+    <string name="ram_plus_insufficient_space">Недостатньо вільного місця</string>
+    <string name="ram_plus_priority_error">Не вдалося розмістити розширення ОЗП після zram</string>
+    <string name="ram_plus_setup_failed">Не вдалося налаштувати розширення ОЗП</string>
+    <string name="ram_plus_warning">Розширення ОЗП використовує файл підвантаження на накопичувачі, щоби зберігати більше неактивних застосунків доступними. Внутрішня пам’ять повільніша за фізичну оперативну пам’ять і отримує додаткові цикли запису.</string>
+    <string name="ram_plus_restart_title">Необхідне перезаванатаження</string>
+    <string name="ram_plus_restart_message">Перезавантажте пристрій, щоб застосувати новий розмір розширення ОЗП.</string>
+    <string name="ram_plus_restart_now">Перезавантажити</string>
     <string name="ram_plus_restart_later">Пізніше</string>
     <string name="background_manager_policy">Політика</string>
     <string name="background_manager_apps">Додатки</string>
@@ -369,14 +369,14 @@
     <!-- CPU Clusters -->
     <string name="little_cluster">Малий кластер</string>
     <string name="big_cluster">Великий кластер</string>
-    <string name="cpu_cluster">CPU Cluster %1$d</string>
+    <string name="cpu_cluster">Кластер ЦП %1$d</string>
     <string name="prime_cluster">Головний кластер</string>
     <string name="minimum_frequency">Мінімальна частота</string>
     <string name="maximum_frequency">Максимальна частота</string>
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Графічна продуктивність</string>
-    <string name="cpu_governor">CPU governor</string>
+    <string name="cpu_governor">Регулятор частоти ЦП</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d МГц</string>
     <!-- Quick Settings Tile -->
@@ -616,13 +616,13 @@
     <string name="routines_location_near">Розташування поруч</string>
     <string name="routines_sensor_camera">Камера</string>
     <string name="routines_sensor_microphone">Мікрофон</string>
-    <string name="routines_nfc_tag">NFC Tag</string>
-    <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
-    <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
-    <string name="routines_nfc_scan_button">Scan Tag</string>
-    <string name="routines_nfc_scanning_status">Scanning… Place your NFC Tag against the back of your phone.</string>
-    <string name="routines_nfc_scan_success">Scanned tag: %1$s</string>
-    <string name="routines_nfc_disabled">NFC is disabled. Please enable it in Settings.</string>
+    <string name="routines_nfc_tag">NFC-мітка</string>
+    <string name="routines_nfc_tag_id_hint">ID мітки / UID (напр., 04:A1:B2:C3:D4)</string>
+    <string name="routines_nfc_tag_name_hint">Назва мітки (напр., Біля ліжка)</string>
+    <string name="routines_nfc_scan_button">Сканувати мітку</string>
+    <string name="routines_nfc_scanning_status">Сканування… Прикладіть NFC-мітку до задньої панелі телефону.</string>
+    <string name="routines_nfc_scan_success">Відсканована мітка: %1$s</string>
+    <string name="routines_nfc_disabled">NFC вимкнено. Увімкніть його в Налаштуваннях.</string>
     <string name="routines_block">Заблокувати</string>
     <string name="routines_unblock">Розблокувати</string>
     <string name="routines_play_sound">Відтворити звук</string>
@@ -687,5 +687,5 @@
     <string name="keywords_multitasking">багатозадачність, бічна панель, режим ПК</string>
     <string name="keywords_themes">теми, магазин тем, значки, фігури, стилі, форми хвиль</string>
     <string name="keywords_gamespace">ігровий простір, ігровий режим, ігрове накладення, прискорювач ігор</string>
-    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
+    <string name="keywords_diagnostics">діагностика, інформація про обладнання, статистика акумулятора, моніторинг акумулятора, інформація про процесор, інформація про пам’ять, axdiagnostics</string>
 </resources>
