@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Partes Axion</string>
+    <string name="app_name">Axion Parts</string>
     <!-- Common UI Elements -->
     <string name="back">Atrás</string>
     <string name="cancel">Cancelar</string>
-    <string name="save">Ahorrar</string>
+    <string name="save">Guardar</string>
     <string name="delete">Borrar</string>
     <string name="remove">Quitar</string>
     <string name="add">Añadir</string>
@@ -473,7 +473,7 @@
     <string name="dynamic_bar_guide_keyguard">On the lock screen, the chip appears at the bottom with playback controls and quick actions.</string>
     <string name="dynamic_bar_guide_chip_title">Chip appearance</string>
     <string name="dynamic_bar_guide_swipe_title">Swipe to cycle</string>
-    <string name="dynamic_bar_guide_expand_title">Tap to expand</string>
+    <string name="dynamic_bar_guide_expand_title">Toca para expandir</string>
     <string name="dynamic_bar_guide_dismiss_title">Swipe to dismiss</string>
     <string name="dynamic_bar_guide_keyguard_title">Lock screen chip</string>
     <string name="dynamic_bar_footer_title">About Dynamic Bar</string>
@@ -594,7 +594,7 @@
     <string name="routines_mic_unblocked">Microphone unblocked</string>
     <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
     <string name="routines_sensor_blocked">Sensor Blocked</string>
-    <string name="routines_location">Location</string>
+    <string name="routines_location">Ubicación</string>
     <string name="routines_phone_number_hint">Phone number</string>
     <string name="routines_phone_numbers_hint">Phone numbers, separated by commas</string>
     <string name="routines_phone_numbers_optional_summary">Leave blank to run for any caller.</string>
@@ -615,7 +615,7 @@
     <string name="routines_radius_hint">Radius (meters)</string>
     <string name="routines_location_near">Location Near</string>
     <string name="routines_sensor_camera">Cámara</string>
-    <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_sensor_microphone">Micrófono</string>
     <string name="routines_nfc_tag">NFC Tag</string>
     <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
     <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
