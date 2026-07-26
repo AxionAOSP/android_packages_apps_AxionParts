@@ -261,7 +261,7 @@
     <string name="custom_rom_hide_allowlist">Allowlist</string>
     <string name="manage_allowlist_apps">Manage allowlist apps</string>
     <string name="allowlist_apps_configured">%d apps can bypass hiding</string>
-    <string name="no_allowlist_apps">No apps configured — all apps are hidden from</string>
+    <string name="no_allowlist_apps">Sin aplicaciones configuradas - todas las aplicaciones están ocultas de</string>
     <string name="custom_rom_hide_picker_title">Select Allowlist Apps</string>
     <string name="custom_rom_hide_picker_desc">Choose apps that should see root and custom ROM indicators. All other apps will be hidden from.</string>
     <string name="trickystore">TrickyStore</string>
