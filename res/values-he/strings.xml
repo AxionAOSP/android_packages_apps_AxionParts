@@ -564,6 +564,8 @@
     <string name="routines_set_brightness">קביעת עוצמת הבהירות</string>
     <string name="routines_set_ringer_mode">קביעת מצב הצלצול</string>
     <string name="routines_launch_app">הפעלת אפליקציה</string>
+    <string name="routines_launch_app_freeform">Launch App in Freeform</string>
+    <string name="routines_launch_app_bubble">Launch App in Bubble</string>
     <string name="routines_send_broadcast">Send Broadcast</string>
     <string name="routines_show_notification">הצגת התראה</string>
     <string name="routines_delay">Delay</string>
