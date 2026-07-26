@@ -564,6 +564,8 @@
     <string name="routines_set_brightness">Set Brightness</string>
     <string name="routines_set_ringer_mode">Set Ringer Mode</string>
     <string name="routines_launch_app">Launch App</string>
+    <string name="routines_launch_app_freeform">Launch App in Freeform</string>
+    <string name="routines_launch_app_bubble">Launch App in Bubble</string>
     <string name="routines_send_broadcast">Send Broadcast</string>
     <string name="routines_show_notification">Show Notification</string>
     <string name="routines_delay">Delay</string>
