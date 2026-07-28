@@ -136,8 +136,8 @@
     <string name="brightness_hidden">מוסתר</string>
     <string name="brightness_show_expanded">Show when quick settings is expanded</string>
     <string name="brightness_always_visible">Always Visible</string>
-    <string name="position_bottom">Bottom</string>
-    <string name="position_top">Top</string>
+    <string name="position_bottom">למטה</string>
+    <string name="position_top">למעלה</string>
     <string name="status_bar_icons">סמלים לשורת המצב</string>
     <string name="status_bar_tuner">Status Bar Tuner</string>
     <string name="status_bar_tuner_summary">Show or hide status bar icons</string>
