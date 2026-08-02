@@ -479,14 +479,14 @@
     <string name="dynamic_bar_footer_title">关于动态栏</string>
     <string name="dynamic_bar_footer_body">动态栏将状态栏转换为活动中心。 计时器、媒体、录制和系统事件发生在你需要它们的右侧——不需要通知阴影。\n\n每个事件类型都有自己的主题色和扩展卡，可以快速操作。</string>
     <!-- Routines -->
-    <string name="routines">任务</string>
+    <string name="routines">自动任务</string>
     <string name="routines_summary">使用触发器和动作自动化任务</string>
     <string name="routines_enabled">开启任务</string>
     <string name="routines_enabled_summary">允许任务自动运行</string>
     <string name="routines_create">创建任务</string>
     <string name="routines_edit">编辑日常</string>
-    <string name="routines_duplicate">Duplicate routine</string>
-    <string name="routines_duplicate_name">%1$s copy</string>
+    <string name="routines_duplicate">创建副本</string>
+    <string name="routines_duplicate_name">%1$s 的副本</string>
     <string name="routines_name">任务名称</string>
     <string name="routines_triggers">触发条件</string>
     <string name="routines_conditions">条件</string>
@@ -499,10 +499,10 @@
     <string name="routines_select_condition">选择条件</string>
     <string name="routines_no_routines">尚未有任何例程</string>
     <string name="routines_no_routines_desc">创建您的第一个自动化程序</string>
-    <string name="routines_backup_restore">Backup &amp; restore</string>
-    <string name="routines_import">Import routines</string>
-    <string name="routines_import_summary">Restore routines from a JSON backup</string>
-    <string name="routines_export">Export routines</string>
+    <string name="routines_backup_restore">备份 &amp; 恢复</string>
+    <string name="routines_import">导入自动化任务</string>
+    <string name="routines_import_summary">从 JSON 备份恢复自动化任务</string>
+    <string name="routines_export">导出自动化任务</string>
     <string name="routines_export_summary">Save current routines to a JSON backup</string>
     <string name="routines_export_empty_summary">Create a routine before exporting a backup</string>
     <string name="routines_import_failed">Unable to import routines</string>
@@ -606,10 +606,10 @@
     <string name="routines_incoming_call_any_summary">Incoming call</string>
     <string name="routines_incoming_call_numbers_summary">Incoming call from %1$s</string>
     <string name="routines_sms_message_summary">SMS contains %1$s</string>
-    <string name="routines_send_location_sms">Send Location SMS</string>
-    <string name="routines_send_location_sms_target_summary">Leave blank to reply to the triggering SMS or call.</string>
-    <string name="routines_send_location_sms_summary">Reply with current location</string>
-    <string name="routines_send_location_sms_number_summary">Send current location to %1$s</string>
+    <string name="routines_send_location_sms">通过短信发送位置</string>
+    <string name="routines_send_location_sms_target_summary">若留空，将自动回复触发该操作的短信或电话。</string>
+    <string name="routines_send_location_sms_summary">回复当前位置</string>
+    <string name="routines_send_location_sms_number_summary">将当前位置发送给 %1$s</string>
     <string name="routines_location_enter">进入区域</string>
     <string name="routines_location_exit">退出区域</string>
     <string name="routines_latitude_hint">纬度</string>
@@ -670,7 +670,7 @@
     <string name="keywords_pcmode">pc mode, desktop</string>
     <string name="keywords_performance">performance mode, boost, frequency control</string>
     <string name="keywords_trickystore">trickystore, keybox, attestation, spoofing, bootloader spoof</string>
-    <string name="keywords_playintegrityfix">play integrity fix, safety net, fingerprint, pif,  gphoto spoof, certification</string>
+    <string name="keywords_playintegrityfix">Play Integrity 修复, SafetyNet, 指纹, PIF, gphoto 伪装, 认证</string>
     <string name="keywords_gamespoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
     <string name="keywords_routines">routines, automation, automation trigger, auto action, tasker</string>
     <string name="keywords_background_manager">background manager, freeze, app freezer, limits</string>
@@ -680,5 +680,5 @@
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">主题、 主题商店、 图标、 形状、 样式、 波形</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
-    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
+    <string name="keywords_diagnostics">诊断, 硬件信息, 电池状态, 电池监控, CPU信息, 内存信息, Ax诊断</string>
 </resources>
