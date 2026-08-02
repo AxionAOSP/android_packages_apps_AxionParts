@@ -159,7 +159,7 @@
     <string name="three_finger_swipe">三指滑动</string>
     <string name="three_finger_swipe_summary">三指滑动时的操作</string>
     <string name="three_finger_long_press">Three finger long press</string>
-    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
+    <string name="three_finger_long_press_summary">三指长按屏幕可截取选定区域</string>
     <string name="disable_button_screenshot">禁用按钮截图</string>
     <string name="disable_button_screenshot_summary">禁用 电源+音量下 屏幕截图</string>
     <!-- Doze Pulse -->
@@ -205,7 +205,7 @@
     <string name="security">安全性</string>
     <!-- Essential Apps -->
     <string name="selected_apps">选择应用</string>
-    <string name="selected_apps_description">过滤什么是重要的。这些应用仍然在顶部分组。</string>
+    <string name="selected_apps_description">筛选重要应用，它们将置顶分组。</string>
     <string name="no_apps_selected">未选择任何应用</string>
     <string name="add_apps">添加应用</string>
     <string name="add_app">添加应用</string>
@@ -223,12 +223,12 @@
     <string name="diagnostics">AxDiagnostics</string>
     <string name="diagnostics_summary">System information and hardware diagnostics</string>
     <!-- Game Spoofing -->
-    <string name="game_spoofing">游戏欺骗</string>
+    <string name="game_spoofing">游戏伪装</string>
     <string name="game_spoofing_summary">为特定游戏伪装设备属性</string>
-    <string name="app_spoofing">应用欺骗</string>
+    <string name="app_spoofing">应用伪装</string>
     <string name="apps_configured">已配置%1$d 应用</string>
     <string name="no_apps_configured">未配置应用</string>
-    <string name="configured_apps">Configured apps</string>
+    <string name="configured_apps">配置应用</string>
     <string name="no_apps_configured_empty">未配置应用</string>
     <string name="add_apps_to_spoof">添加应用以启动伪装设备属性</string>
     <string name="configuration_saved">配置已保存</string>
@@ -288,8 +288,8 @@
     <string name="select_target_apps">选择目标应用</string>
     <string name="choose_apps_for_attestation">选择要启用认证伪装的应用</string>
     <string name="target_mode_auto">自动</string>
-    <string name="target_mode_leaf_hack">末端？</string>
-    <string name="target_mode_cert_gen">启动 ！</string>
+    <string name="target_mode_leaf_hack">leaf ?</string>
+    <string name="target_mode_cert_gen">Gen !</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play 完整性修复</string>
     <string name="play_integrity_fix_summary">配置构建指纹伪装</string>
@@ -320,7 +320,7 @@
     <string name="ignore_window_secure_summary">允许在所有应用中截取屏幕和录制屏幕</string>
     <!-- No storage restrict -->
     <string name="no_storage_restrict_title">No storage restrict</string>
-    <string name="no_storage_restrict_summary">Remove the restriction when selecting folders through Storage Access Framework. Can be convenient in some cases but may lead to privacy leaks.</string>
+    <string name="no_storage_restrict_summary">通过存储访问框架选择文件夹时移除限制。在某些情况下可能更便捷，但可能导致隐私泄露。</string>
     <!-- Performance Screen -->
     <string name="performance">性能</string>
     <string name="performance_summary">CPU 增强，频率控制 &amp; GPU</string>
@@ -334,24 +334,24 @@
     <string name="ram_plus_size">RAM Plus size</string>
     <string name="ram_plus_off">关闭</string>
     <string name="ram_plus_size_gb">%1$d GB</string>
-    <string name="ram_plus_status">Current status</string>
+    <string name="ram_plus_status">当前状态</string>
     <string name="ram_plus_active_size">Active: %1$d GB</string>
-    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_restart_pending">所选大小将在重启后生效</string>
     <string name="ram_plus_unsupported">Not supported on this device</string>
     <string name="ram_plus_encryption_required">Storage encryption is required</string>
     <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
     <string name="ram_plus_insufficient_space">Not enough free storage</string>
     <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
     <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
-    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_warning">RAM Plus 使用存储空间作为交换分区，以保持更多不活跃应用可用。内部存储的速度慢于物理内存，并且会承受额外的写入操作。</string>
     <string name="ram_plus_restart_title">Restart required</string>
     <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
-    <string name="ram_plus_restart_now">Restart</string>
+    <string name="ram_plus_restart_now">重启</string>
     <string name="ram_plus_restart_later">稍后</string>
     <string name="background_manager_policy">Policy</string>
     <string name="background_manager_apps">应用</string>
     <string name="background_app_policy">App policy</string>
-    <string name="background_app_policy_summary">Choose how strictly background apps are handled</string>
+    <string name="background_app_policy_summary">选择后台应用的管理严格程度</string>
     <string name="background_app_policy_normal">标准</string>
     <string name="background_app_policy_aggressive">Aggressive</string>
     <string name="freezer_level">Freezer level</string>
@@ -362,7 +362,7 @@
     <string name="package_freezer_apps">Package freezer apps</string>
     <string name="package_freezer_apps_summary">Apps in this list can be frozen after moving to the background</string>
     <string name="restricted_background_apps">Restricted background apps</string>
-    <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
+    <string name="restricted_background_apps_summary">此列表中的应用在打开前会被阻止后台自启动</string>
     <string name="frequency_control">Frequency control</string>
     <string name="boost_active">激活加速</string>
     <string name="boost_disabled">禁用加速</string>
@@ -660,25 +660,25 @@
         <item quantity="other">您最多可选择 %1$d 应用程序</item>
     </plurals>
     <!-- Search Keywords -->
-    <string name="keywords_edge_light">edge, light, notifications, glow, pulse</string>
+    <string name="keywords_edge_light">边缘, 光效, 通知, 发光, 脉冲</string>
     <string name="keywords_media_art">锁屏背景, 锁屏, 专辑, 封面, 模糊</string>
     <string name="keywords_pulse">脉冲, 音频, 可视化, 导航栏</string>
     <string name="keywords_aod">息屏显示, 始终显示, 休眠, 时间表</string>
-    <string name="keywords_ui_features">status bar, dynamic bar</string>
-    <string name="keywords_sound">per app, volume, multi audio</string>
-    <string name="keywords_gestures">gestures, shake gestures, three finger</string>
-    <string name="keywords_pcmode">pc mode, desktop</string>
-    <string name="keywords_performance">performance mode, boost, frequency control</string>
-    <string name="keywords_trickystore">trickystore, keybox, attestation, spoofing, bootloader spoof</string>
+    <string name="keywords_ui_features">状态栏，动态栏</string>
+    <string name="keywords_sound">应用独立音量  多音频</string>
+    <string name="keywords_gestures">手势, 摇动手势, 三指</string>
+    <string name="keywords_pcmode">pc 模式，桌面</string>
+    <string name="keywords_performance">性能模式，增强，频率控制</string>
+    <string name="keywords_trickystore">TrickyStore, keybox, 认证, 伪装, bl状态伪装</string>
     <string name="keywords_playintegrityfix">Play Integrity 修复, SafetyNet, 指纹, PIF, gphoto 伪装, 认证</string>
-    <string name="keywords_gamespoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
+    <string name="keywords_gamespoofing">应用伪装, 游戏伪装, 游戏, 高帧率, 解锁, 设备伪装</string>
     <string name="keywords_routines">自动化任务, 自动化, 自动化触发, 自动操作, Tasker</string>
-    <string name="keywords_background_manager">background manager, freeze, app freezer, limits</string>
-    <string name="keywords_bravia">bravia engine, display engine, color enhancement, image, video quality, sharpening, vivid</string>
+    <string name="keywords_background_manager">后台管理, 冻结, 应用冻结, 限制</string>
+    <string name="keywords_bravia">BRAVIA引擎, 显示引擎, 色彩增强, 图像, 视频质量, 锐化, 鲜艳</string>
     <string name="keywords_dynamic_bar">dynamic bar, dynamic island, status bar chip, live activities, events, notification chip</string>
     <string name="keywords_essentials">基础功能, 快速查看, 锁屏快速查看, 重要通知, 禁用窗口安全标志</string>
-    <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
+    <string name="keywords_multitasking">多任务, 侧边栏, PC模式</string>
     <string name="keywords_themes">主题、 主题商店、 图标、 形状、 样式、 波形</string>
-    <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
+    <string name="keywords_gamespace">游戏空间, 游戏模式, 游戏叠加层, 游戏加速</string>
     <string name="keywords_diagnostics">诊断, 硬件信息, 电池状态, 电池监控, CPU信息, 内存信息, Ax诊断</string>
 </resources>
