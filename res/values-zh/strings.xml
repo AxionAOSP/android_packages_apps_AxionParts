@@ -158,7 +158,7 @@
     <string name="three_finger_gestures_summary">滑动和长按操作</string>
     <string name="three_finger_swipe">三指滑动</string>
     <string name="three_finger_swipe_summary">三指滑动时的操作</string>
-    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press">三指长按</string>
     <string name="three_finger_long_press_summary">三指长按屏幕可截取选定区域</string>
     <string name="disable_button_screenshot">禁用按钮截图</string>
     <string name="disable_button_screenshot_summary">禁用 电源+音量下 屏幕截图</string>
@@ -187,7 +187,7 @@
     <string name="gesture_action_play_pause">播放/暂停 音乐</string>
     <string name="gesture_action_flashlight">闪光灯</string>
     <string name="gesture_action_screenshot">截图</string>
-    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
+    <string name="gesture_action_partial_screenshot">局部截屏</string>
     <string name="gesture_action_volume_panel">音量面板</string>
     <string name="gesture_action_clear_notifications">清空通知</string>
     <string name="gesture_action_notifications_panel">通知面板</string>
@@ -221,7 +221,7 @@
     <string name="gamespace_summary">使用游戏空间功能优化您的游戏体验</string>
     <!-- AxDiagnostics -->
     <string name="diagnostics">AxDiagnostics</string>
-    <string name="diagnostics_summary">System information and hardware diagnostics</string>
+    <string name="diagnostics_summary">系统信息与硬件诊断</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">游戏伪装</string>
     <string name="game_spoofing_summary">为特定游戏伪装设备属性</string>
@@ -319,49 +319,49 @@
     <string name="ignore_window_secure">忽略窗口保护</string>
     <string name="ignore_window_secure_summary">允许在所有应用中截取屏幕和录制屏幕</string>
     <!-- No storage restrict -->
-    <string name="no_storage_restrict_title">No storage restrict</string>
+    <string name="no_storage_restrict_title">无存储限制</string>
     <string name="no_storage_restrict_summary">通过存储访问框架选择文件夹时移除限制。在某些情况下可能更便捷，但可能导致隐私泄露。</string>
     <!-- Performance Screen -->
     <string name="performance">性能</string>
     <string name="performance_summary">CPU 增强，频率控制 &amp; GPU</string>
-    <string name="background_manager">Background Manager</string>
-    <string name="background_manager_summary">Manage app freezing and background start limits</string>
-    <string name="kernel_manager">Kernel Manager</string>
-    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="background_manager">后台管理</string>
+    <string name="background_manager_summary">应用冻结与后台启动管理</string>
+    <string name="kernel_manager">内核管理</string>
+    <string name="kernel_manager_summary">调整 CPU 和 GPU 频率限制</string>
     <string name="ram_plus">RAM Plus</string>
-    <string name="ram_plus_summary">Extend available memory with internal storage</string>
-    <string name="ram_plus_configuration">Configuration</string>
-    <string name="ram_plus_size">RAM Plus size</string>
+    <string name="ram_plus_summary">使用内部存储扩展可用内存</string>
+    <string name="ram_plus_configuration">配置</string>
+    <string name="ram_plus_size">RAM Plus 大小</string>
     <string name="ram_plus_off">关闭</string>
     <string name="ram_plus_size_gb">%1$d GB</string>
     <string name="ram_plus_status">当前状态</string>
-    <string name="ram_plus_active_size">Active: %1$d GB</string>
+    <string name="ram_plus_active_size">当前大小：%1$d GB</string>
     <string name="ram_plus_restart_pending">所选大小将在重启后生效</string>
-    <string name="ram_plus_unsupported">Not supported on this device</string>
-    <string name="ram_plus_encryption_required">Storage encryption is required</string>
-    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
-    <string name="ram_plus_insufficient_space">Not enough free storage</string>
-    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
-    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
+    <string name="ram_plus_unsupported">此设备不支持</string>
+    <string name="ram_plus_encryption_required">需要存储加密</string>
+    <string name="ram_plus_zram_not_ready">设置时 Zram 尚未就绪</string>
+    <string name="ram_plus_insufficient_space">设备上的可用内存不足</string>
+    <string name="ram_plus_priority_error">无法将 RAM Plus 置于 zram 之后</string>
+    <string name="ram_plus_setup_failed">RAM Plus 设置失败</string>
     <string name="ram_plus_warning">RAM Plus 使用存储空间作为交换分区，以保持更多不活跃应用可用。内部存储的速度慢于物理内存，并且会承受额外的写入操作。</string>
-    <string name="ram_plus_restart_title">Restart required</string>
-    <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
+    <string name="ram_plus_restart_title">需要重启</string>
+    <string name="ram_plus_restart_message">重新启动您的设备以应用新的 RAM Plus 大小。</string>
     <string name="ram_plus_restart_now">重启</string>
     <string name="ram_plus_restart_later">稍后</string>
-    <string name="background_manager_policy">Policy</string>
+    <string name="background_manager_policy">策略</string>
     <string name="background_manager_apps">应用</string>
-    <string name="background_app_policy">App policy</string>
+    <string name="background_app_policy">应用策略</string>
     <string name="background_app_policy_summary">选择后台应用的管理严格程度</string>
     <string name="background_app_policy_normal">标准</string>
-    <string name="background_app_policy_aggressive">Aggressive</string>
-    <string name="freezer_level">Freezer level</string>
-    <string name="freezer_level_summary">Select how the background freezer should run</string>
+    <string name="background_app_policy_aggressive">激进</string>
+    <string name="freezer_level">冻结级别</string>
+    <string name="freezer_level_summary">选择后台冻结器的运行方式</string>
     <string name="freezer_level_disabled">已禁用</string>
-    <string name="freezer_level_process">Process freezer</string>
-    <string name="freezer_level_package">Package freezer</string>
-    <string name="package_freezer_apps">Package freezer apps</string>
-    <string name="package_freezer_apps_summary">Apps in this list can be frozen after moving to the background</string>
-    <string name="restricted_background_apps">Restricted background apps</string>
+    <string name="freezer_level_process">进程冻结</string>
+    <string name="freezer_level_package">应用冻结</string>
+    <string name="package_freezer_apps">可冻结的应用</string>
+    <string name="package_freezer_apps_summary">此列表中的应用在进入后台后会被冻结</string>
+    <string name="restricted_background_apps">受限的后台应用</string>
     <string name="restricted_background_apps_summary">此列表中的应用在打开前会被阻止后台自启动</string>
     <string name="frequency_control">Frequency control</string>
     <string name="boost_active">激活加速</string>
@@ -369,14 +369,14 @@
     <!-- CPU Clusters -->
     <string name="little_cluster">小核</string>
     <string name="big_cluster">大核</string>
-    <string name="cpu_cluster">CPU Cluster %1$d</string>
+    <string name="cpu_cluster">CPU 集群 %1$d</string>
     <string name="prime_cluster">超大核</string>
     <string name="minimum_frequency">最小频率</string>
     <string name="maximum_frequency">最大频率</string>
     <!-- GPU -->
     <string name="gpu">显卡</string>
     <string name="graphics_performance">图形性能</string>
-    <string name="cpu_governor">CPU governor</string>
+    <string name="cpu_governor">CPU调节器</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
@@ -398,7 +398,7 @@
     <string name="pref_category_display">界面设置</string>
     <string name="pref_category_taskbar">任务栏</string>
     <string name="pref_enable_pc_mode_title">启用 PC 模式</string>
-    <string name="pref_enable_pc_mode_summary">启用桌面式体验</string>
+    <string name="pref_enable_pc_mode_summary">启用桌面式模式</string>
     <string name="pref_taskbar_timeout_title">自动隐藏超时</string>
     <string name="pref_taskbar_timeout_summary">任务栏自动隐藏时长</string>
     <string name="pref_pc_mode_screen_off_title">关闭内部画面</string>
