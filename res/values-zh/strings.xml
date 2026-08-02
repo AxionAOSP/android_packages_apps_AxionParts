@@ -363,7 +363,7 @@
     <string name="package_freezer_apps_summary">此列表中的应用在进入后台后会被冻结</string>
     <string name="restricted_background_apps">受限的后台应用</string>
     <string name="restricted_background_apps_summary">此列表中的应用在打开前会被阻止后台自启动</string>
-    <string name="frequency_control">Frequency control</string>
+    <string name="frequency_control">频率控制</string>
     <string name="boost_active">激活加速</string>
     <string name="boost_disabled">禁用加速</string>
     <!-- CPU Clusters -->
