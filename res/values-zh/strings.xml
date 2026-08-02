@@ -605,7 +605,7 @@
     <string name="routines_sms_senders_optional_summary">不填写时，对所有发件人生效。</string>
     <string name="routines_incoming_call_any_summary">来电</string>
     <string name="routines_incoming_call_numbers_summary">来自 %1$s 的来电</string>
-    <string name="routines_sms_message_summary">SMS contains %1$s</string>
+    <string name="routines_sms_message_summary">短信包含 %1$s</string>
     <string name="routines_send_location_sms">通过短信发送位置</string>
     <string name="routines_send_location_sms_target_summary">若留空，将自动回复触发该操作的短信或电话。</string>
     <string name="routines_send_location_sms_summary">回复当前位置</string>
@@ -618,13 +618,13 @@
     <string name="routines_location_near">位置近点</string>
     <string name="routines_sensor_camera">相机</string>
     <string name="routines_sensor_microphone">麦克风</string>
-    <string name="routines_nfc_tag">NFC Tag</string>
-    <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
-    <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
-    <string name="routines_nfc_scan_button">Scan Tag</string>
-    <string name="routines_nfc_scanning_status">Scanning… Place your NFC Tag against the back of your phone.</string>
-    <string name="routines_nfc_scan_success">Scanned tag: %1$s</string>
-    <string name="routines_nfc_disabled">NFC is disabled. Please enable it in Settings.</string>
+    <string name="routines_nfc_tag">NFC 标签</string>
+    <string name="routines_nfc_tag_id_hint">标签 ID / UID (e.g. 04:A1:B2:C3:D4)</string>
+    <string name="routines_nfc_tag_name_hint">标签名称(例如床边)</string>
+    <string name="routines_nfc_scan_button">扫描标签</string>
+    <string name="routines_nfc_scanning_status">扫描中… 请将 NFC 标签靠近手机背面。</string>
+    <string name="routines_nfc_scan_success">已扫描标签：%1$s</string>
+    <string name="routines_nfc_disabled">NFC 已禁用，请在设置中启用</string>
     <string name="routines_block">禁用</string>
     <string name="routines_unblock">解禁</string>
     <string name="routines_play_sound">播放声音</string>
@@ -638,16 +638,16 @@
     <string name="routines_url_hint">链接</string>
     <string name="routines_body_hint">请求体 (可选)</string>
     <string name="routines_timeout_hint">超时 (秒)</string>
-    <string name="routines_ip_use_regex">Match by regex</string>
-    <string name="routines_ip_regex_hint">Regex (e.g. ^192\\.168\\.)</string>
-    <string name="routines_http_ignore_ssl">Ignore SSL certificate errors</string>
-    <string name="routines_http_require_validated">Require validated internet</string>
-    <string name="routines_http_require_validated_summary">Disable to allow sign-in to captive portals</string>
+    <string name="routines_ip_use_regex">按正则表达式匹配</string>
+    <string name="routines_ip_regex_hint">正则表达式（例如 ^192\.168\.）</string>
+    <string name="routines_http_ignore_ssl">忽略 SSL 证书错误</string>
+    <string name="routines_http_require_validated">要求已验证网络</string>
+    <string name="routines_http_require_validated_summary">禁用后可登录强制门户</string>
     <plurals name="routines_imported_count">
-        <item quantity="other">Imported %1$d routines</item>
+        <item quantity="other">已导入 %1$d 个自动化任务</item>
     </plurals>
     <plurals name="routines_exported_count">
-        <item quantity="other">Exported %1$d routines</item>
+        <item quantity="other">已导出 %1$d 个自动化任务</item>
     </plurals>
     <string name="ax_bravia_engine">AxBravia 引擎</string>
     <string name="ax_bravia_engine_summary">色彩增强和锐化</string>
@@ -672,11 +672,11 @@
     <string name="keywords_trickystore">trickystore, keybox, attestation, spoofing, bootloader spoof</string>
     <string name="keywords_playintegrityfix">Play Integrity 修复, SafetyNet, 指纹, PIF, gphoto 伪装, 认证</string>
     <string name="keywords_gamespoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
-    <string name="keywords_routines">routines, automation, automation trigger, auto action, tasker</string>
+    <string name="keywords_routines">自动化任务, 自动化, 自动化触发, 自动操作, Tasker</string>
     <string name="keywords_background_manager">background manager, freeze, app freezer, limits</string>
     <string name="keywords_bravia">bravia engine, display engine, color enhancement, image, video quality, sharpening, vivid</string>
     <string name="keywords_dynamic_bar">dynamic bar, dynamic island, status bar chip, live activities, events, notification chip</string>
-    <string name="keywords_essentials">essentials, quicklook, lockscreen quick look, essential notifications, disable window secure flag</string>
+    <string name="keywords_essentials">基础功能, 快速查看, 锁屏快速查看, 重要通知, 禁用窗口安全标志</string>
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">主题、 主题商店、 图标、 形状、 样式、 波形</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
