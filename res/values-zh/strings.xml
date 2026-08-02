@@ -63,22 +63,22 @@
     <string name="select_uppercase">选择</string>
     <string name="select_item">选择项目</string>
     <!-- Media Art -->
-    <string name="media_art">媒体艺术</string>
-    <string name="media_art_description">媒体播放时锁屏界面的专辑封面</string>
-    <string name="enable_media_art">启用媒体艺人</string>
-    <string name="media_art_summary">媒体播放时在锁屏界面显示专辑封面</string>
+    <string name="media_art">锁屏背景</string>
+    <string name="media_art_description">播放媒体时在锁屏显示专辑封面</string>
+    <string name="enable_media_art">启用锁屏背景</string>
+    <string name="media_art_summary">播放媒体时在锁屏显示专辑封面</string>
     <string name="appearance">外观</string>
     <string name="blur_level">模糊级别</string>
     <string name="blur_level_summary">调整专辑封面模糊强度</string>
-    <string name="art_style">艺术样式</string>
-    <string name="art_style_summary">选择专辑封面显示方式</string>
-    <string name="art_style_blur">背景模糊</string>
-    <string name="art_style_concept">美术卡片</string>
+    <string name="art_style">锁屏背景样式</string>
+    <string name="art_style_summary">选择锁屏专辑封面显示方式</string>
+    <string name="art_style_blur">模糊背景</string>
+    <string name="art_style_concept">以卡片样式展示专辑封面</string>
     <!-- Pulse Visualizer -->
-    <string name="pulse_visualizer">脉冲均衡器</string>
-    <string name="pulse_visualizer_description">锁屏和环境显示时的音频可视化</string>
+    <string name="pulse_visualizer">脉冲视觉效果</string>
+    <string name="pulse_visualizer_description">在锁屏和息屏时显示音乐律动效果</string>
     <string name="enable_pulse">启用脉冲模式</string>
-    <string name="pulse_summary">在锁屏界面和环境显示时显示音频可视化</string>
+    <string name="pulse_summary">在锁屏和息屏时显示音乐律动效果</string>
     <string name="style">样式</string>
     <string name="render_style">渲染样式</string>
     <string name="render_style_summary">选择可视化器的视觉样式</string>
@@ -92,7 +92,7 @@
     <string name="album_art">专辑封面</string>
     <string name="system_accent">系统强调色</string>
     <string name="bars">条</string>
-    <string name="bar_count">条形数</string>
+    <string name="bar_count">条数</string>
     <string name="bar_count_summary">可视化条数</string>
     <string name="rounded_bars">圆形条</string>
     <string name="rounded_bars_summary">使用圆角作为可视化器栏</string>
@@ -102,14 +102,14 @@
     <string name="mode">模式</string>
     <string name="aod_schedule">息屏时间表</string>
     <string name="always_on">始终显示</string>
-    <string name="scheduled">已计划</string>
+    <string name="scheduled">时间表</string>
     <string name="aod_charge_only">仅充电</string>
-    <string name="aod_scheduled_charge">计划 + 充电</string>
+    <string name="aod_scheduled_charge">时间表+充电</string>
     <string name="schedule">计划</string>
     <string name="start_time">开始时间</string>
-    <string name="start_time_summary">AOD 开启时</string>
+    <string name="start_time_summary">AOD 开启时间</string>
     <string name="end_time">结束时间</string>
-    <string name="end_time_summary">AOD 关闭时</string>
+    <string name="end_time_summary">AOD 关闭时间</string>
     <string name="when_to_show">显示时间</string>
     <string name="aod_on_charge">充电时息屏显示</string>
     <string name="aod_on_charge_summary">仅在设备充电时显示 AOD</string>
@@ -119,7 +119,7 @@
     <string name="screen_off_aod">关闭屏幕 AOD</string>
     <string name="screen_off_aod_summary">屏幕关闭时保持 AOD 激活</string>
     <string name="screen_off_aod_duration">AOD 持续时间</string>
-    <string name="screen_off_aod_duration_summary">How long to keep AOD visible after screen off. Set to 0 to disable</string>
+    <string name="screen_off_aod_duration_summary">息屏显示持续时长，设为 0 则禁用</string>
     <string name="seconds_short">s</string>
     <string name="screen_off_animation">锁屏动画</string>
     <string name="screen_off_animation_summary">动画过渡到 AOD</string>
@@ -661,9 +661,9 @@
     </plurals>
     <!-- Search Keywords -->
     <string name="keywords_edge_light">edge, light, notifications, glow, pulse</string>
-    <string name="keywords_media_art">media art, lockscreen, album, cover, blur</string>
-    <string name="keywords_pulse">pulse, audio, visualizer, navbar</string>
-    <string name="keywords_aod">aod, always-on, doze, schedule</string>
+    <string name="keywords_media_art">锁屏背景, 锁屏, 专辑, 封面, 模糊</string>
+    <string name="keywords_pulse">脉冲, 音频, 可视化, 导航栏</string>
+    <string name="keywords_aod">息屏显示, 始终显示, 休眠, 时间表</string>
     <string name="keywords_ui_features">status bar, dynamic bar</string>
     <string name="keywords_sound">per app, volume, multi audio</string>
     <string name="keywords_gestures">gestures, shake gestures, three finger</string>
@@ -678,7 +678,7 @@
     <string name="keywords_dynamic_bar">dynamic bar, dynamic island, status bar chip, live activities, events, notification chip</string>
     <string name="keywords_essentials">essentials, quicklook, lockscreen quick look, essential notifications, disable window secure flag</string>
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
-    <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
+    <string name="keywords_themes">主题、 主题商店、 图标、 形状、 样式、 波形</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
     <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>
