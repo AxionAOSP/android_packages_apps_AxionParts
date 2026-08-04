@@ -180,10 +180,10 @@
     <string name="gesture_action_app_switch">App switch</string>
     <string name="gesture_action_search">חיפוש</string>
     <string name="gesture_action_voice_search">Voice search</string>
-    <string name="gesture_action_launch_camera">Launch camera</string>
-    <string name="gesture_action_sleep">Sleep</string>
-    <string name="gesture_action_last_app">Last app</string>
-    <string name="gesture_action_close_app">Close app</string>
+    <string name="gesture_action_launch_camera">הפעלת המצלמה</string>
+    <string name="gesture_action_sleep">שינה</string>
+    <string name="gesture_action_last_app">האפליקציה האחרונה</string>
+    <string name="gesture_action_close_app">סגירת אפליקציה</string>
     <string name="gesture_action_play_pause">Play/Pause music</string>
     <string name="gesture_action_flashlight">פנס</string>
     <string name="gesture_action_screenshot">צילום מסך</string>
@@ -241,7 +241,7 @@
     <string name="create_preset_title">Create Preset</string>
     <string name="preset_name">Preset Name</string>
     <string name="property_number">Property %1$d</string>
-    <string name="key">Key</string>
+    <string name="key">מפתח</string>
     <string name="value">ערך</string>
     <string name="add_property">Add Property</string>
     <string name="save_as_preset_title">Save as Preset</string>
@@ -287,7 +287,7 @@
     <string name="target_list_import_failed">Failed to import target list: %1$s</string>
     <string name="select_target_apps">Select Target Apps</string>
     <string name="choose_apps_for_attestation">Choose apps to enable attestation spoofing</string>
-    <string name="target_mode_auto">Auto</string>
+    <string name="target_mode_auto">אוטומטי</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
     <!-- Play Integrity Fix -->
@@ -528,7 +528,7 @@
     <string name="routines_intent_component_class">Component class (optional)</string>
     <string name="routines_intent_extras_label">Extras</string>
     <string name="routines_intent_extras_add">Add extra</string>
-    <string name="routines_intent_extras_key">Key</string>
+    <string name="routines_intent_extras_key">מפתח</string>
     <string name="routines_intent_extras_value">ערך</string>
     <string name="routines_move_up">הגבהה</string>
     <string name="routines_move_down">הנמכה</string>
