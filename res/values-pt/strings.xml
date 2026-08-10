@@ -41,17 +41,17 @@
     <string name="sound">Som</string>
     <string name="sound_subtitle">Volume por aplicativo e multi áudio</string>
     <string name="gestures">Gestos</string>
-    <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
+    <string name="gestures_subtitle">Agitar, três dedos de mão em &amp; doze</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Luz das bordas</string>
     <string name="edge_light_description">Efeitos de iluminação nas bordas da tela para notificações</string>
     <string name="enable_edge_light">Ativar luz das bordas</string>
     <string name="edge_light_summary">Mostrar efeitos de iluminação nas bordas da tela para notificações</string>
     <string name="edge_light_appearance">Aparência</string>
-    <string name="edge_light_spread">Glow spread</string>
-    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
-    <string name="edge_light_intensity">Glow intensity</string>
-    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
+    <string name="edge_light_spread">Propagação de brilho</string>
+    <string name="edge_light_spread_summary">O quão longe o brilho se estende da borda</string>
+    <string name="edge_light_intensity">Intensidade de Brilho</string>
+    <string name="edge_light_intensity_summary">Pico de brilho do efeito brilho</string>
     <string name="color_mode">Modo de cor</string>
     <string name="notification_accent">Cor de destaque da notificação</string>
     <string name="custom_color">Cor personalizada</string>
@@ -70,10 +70,10 @@
     <string name="appearance">Aparência</string>
     <string name="blur_level">Nível de desfoque</string>
     <string name="blur_level_summary">Ajustar a intensidade do desfoque da capa do álbum</string>
-    <string name="art_style">Art Style</string>
-    <string name="art_style_summary">Choose how album art is displayed on the lockscreen</string>
-    <string name="art_style_blur">Blur Background</string>
-    <string name="art_style_concept">Art Card</string>
+    <string name="art_style">Estilo de Arte</string>
+    <string name="art_style_summary">Escolha como a arte do álbum é exibida na tela de bloqueio</string>
+    <string name="art_style_blur">Desfoque de fundo</string>
+    <string name="art_style_concept">Cartão de Arte</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Visualizador Pulse</string>
     <string name="pulse_visualizer_description">Visualizador de áudio na tela de bloqueio e tela ambiente</string>
@@ -84,8 +84,8 @@
     <string name="render_style_summary">Escolher o estilo visual do visualizador</string>
     <string name="style_bars">Barras</string>
     <string name="style_fading_blocks">Blocos desbotados</string>
-    <string name="style_solid_line">Solid Line</string>
-    <string name="style_center_mirror">Center Mirror</string>
+    <string name="style_solid_line">Linha sólida</string>
+    <string name="style_center_mirror">Espelho Central</string>
     <string name="color_mode_title">Modo de cor</string>
     <string name="visualizer_color_summary">Personalizar a cor do visualizador</string>
     <string name="lava_lamp">Lâmpada de lava</string>
@@ -118,8 +118,8 @@
     <string name="screen_off">Tela desligada</string>
     <string name="screen_off_aod">AOD com tela desligada</string>
     <string name="screen_off_aod_summary">Manter AOD ativo quando a tela desligar</string>
-    <string name="screen_off_aod_duration">AOD Duration</string>
-    <string name="screen_off_aod_duration_summary">How long to keep AOD visible after screen off. Set to 0 to disable</string>
+    <string name="screen_off_aod_duration">Duração do AOD</string>
+    <string name="screen_off_aod_duration_summary">Por quanto tempo manter o AOD visível após a tela desligada. Defina como 0 para desativar</string>
     <string name="seconds_short">s</string>
     <string name="screen_off_animation">Animação de tela desligada</string>
     <string name="screen_off_animation_summary">Animar a transição para AOD</string>
@@ -155,26 +155,26 @@
     <string name="shake_action">Ação de agitar</string>
     <string name="shake_action_summary">Ação a ser executada quando o dispositivo for agitado</string>
     <string name="three_finger_gestures">Gestos de três dedos</string>
-    <string name="three_finger_gestures_summary">Swipe and long press actions</string>
+    <string name="three_finger_gestures_summary">Ações de deslize e toque longo</string>
     <string name="three_finger_swipe">Deslizar com três dedos</string>
     <string name="three_finger_swipe_summary">Ação ao deslizar com três dedos</string>
-    <string name="three_finger_long_press">Three finger long press</string>
-    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
+    <string name="three_finger_long_press">Pressionamento longo com três dedos</string>
+    <string name="three_finger_long_press_summary">Toque e segure três dedos na tela para capturar a região selecionada</string>
     <string name="disable_button_screenshot">Desativar captura por botões</string>
     <string name="disable_button_screenshot_summary">Desativar combinação ligar + diminuir volume para captura</string>
     <!-- Doze Pulse -->
-    <string name="doze_pulse_gestures">Doze Pulse</string>
-    <string name="doze_pulse_gestures_summary">Pulse screen instead of waking</string>
-    <string name="doze_pulse_notification">Notification pulse</string>
-    <string name="doze_pulse_notification_summary">Briefly show lockscreen on notifications without AOD</string>
-    <string name="doze_pulse_tap">Tap to pulse</string>
-    <string name="doze_pulse_tap_summary">Pulse screen on tap instead of waking</string>
-    <string name="doze_pulse_double_tap">Double tap to pulse</string>
-    <string name="doze_pulse_double_tap_summary">Pulse screen on double tap instead of waking</string>
-    <string name="doze_pulse_pickup">Pickup to pulse</string>
-    <string name="doze_pulse_pickup_summary">Pulse screen on pickup instead of waking</string>
-    <string name="doze_pulse_side_fps">Side fingerprint to pulse</string>
-    <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
+    <string name="doze_pulse_gestures">Pulso Doze</string>
+    <string name="doze_pulse_gestures_summary">Pulsar tela ao invés de acordar</string>
+    <string name="doze_pulse_notification">Pulso de notificação</string>
+    <string name="doze_pulse_notification_summary">Mostrar a tela de bloqueio em notificações sem AOD</string>
+    <string name="doze_pulse_tap">Toque para pulsar</string>
+    <string name="doze_pulse_tap_summary">Pulsar tela quando tocar em vez de acordar</string>
+    <string name="doze_pulse_double_tap">Toque duas vezes para pulsar</string>
+    <string name="doze_pulse_double_tap_summary">Pulsar tela no toque duplo em vez de ativar a tela</string>
+    <string name="doze_pulse_pickup">Pegar para pulsar</string>
+    <string name="doze_pulse_pickup_summary">Pulsar a tela ao pegar ao invés de acordar</string>
+    <string name="doze_pulse_side_fps">Sensor de impressão digital lateral</string>
+    <string name="doze_pulse_side_fps_summary">Pulsar tela ao pressionar a impressão digital ao invés de ativar</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nada</string>
     <string name="gesture_action_app_switch">Alternar aplicativo</string>
@@ -187,20 +187,20 @@
     <string name="gesture_action_play_pause">Reproduzir/Pausar música</string>
     <string name="gesture_action_flashlight">Lanterna</string>
     <string name="gesture_action_screenshot">Captura de tela</string>
-    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
+    <string name="gesture_action_partial_screenshot">Captura de tela parcial</string>
     <string name="gesture_action_volume_panel">Painel de volume</string>
     <string name="gesture_action_clear_notifications">Limpar notificações</string>
     <string name="gesture_action_notifications_panel">Painel de notificações</string>
     <string name="gesture_action_expand_qs">Expandir painel QS</string>
     <string name="gesture_action_ringer_modes">Modos de toque</string>
     <!-- Dashboard -->
-    <string name="features">Features</string>
+    <string name="features">Recursos</string>
     <!-- Essentials Screen -->
     <string name="essentials">Essenciais</string>
-    <string name="essentials_summary">Notifications, gaming &amp; security</string>
+    <string name="essentials_summary">Notificações, jogos &amp; segurança</string>
     <string name="essential_notifications">Notificações essenciais</string>
-    <string name="quicklook">QuickLook</string>
-    <string name="quicklook_settings_summary">Summarize what to appear on quick look</string>
+    <string name="quicklook">Olhar rápido</string>
+    <string name="quicklook_settings_summary">Resumir o que aparecer no olhar rápido</string>
     <string name="gaming">Jogos</string>
     <string name="security">Segurança</string>
     <!-- Essential Apps -->
@@ -220,15 +220,15 @@
     <string name="gamespace">Espaço de Jogos</string>
     <string name="gamespace_summary">Otimize sua experiência de jogo com recursos do GameSpace</string>
     <!-- AxDiagnostics -->
-    <string name="diagnostics">AxDiagnostics</string>
-    <string name="diagnostics_summary">System information and hardware diagnostics</string>
+    <string name="diagnostics">AxDiagnóstico</string>
+    <string name="diagnostics_summary">Informações do sistema e diagnósticos de hardware</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Falsificação de jogos</string>
     <string name="game_spoofing_summary">Falsificar propriedades do dispositivo para jogos específicos</string>
     <string name="app_spoofing">Falsificação de aplicativos</string>
     <string name="apps_configured">%1$d aplicativos configurados</string>
     <string name="no_apps_configured">Nenhum aplicativo configurado</string>
-    <string name="configured_apps">Configured apps</string>
+    <string name="configured_apps">Aplicativos configurados</string>
     <string name="no_apps_configured_empty">Nenhum aplicativo configurado</string>
     <string name="add_apps_to_spoof">Adicione aplicativos para começar a falsificar propriedades do dispositivo</string>
     <string name="configuration_saved">Configuração salva</string>
@@ -250,19 +250,19 @@
     <string name="add_app_title">Adicionar aplicativo</string>
     <!-- Device Profiles -->
     <string name="device_rog_phone_8_pro">ROG Phone 8 Pro</string>
-    <string name="device_galaxy_s24_ultra">Galaxy S24 Ultra</string>
+    <string name="device_galaxy_s24_ultra">Galáxia S24 Ultra</string>
     <string name="device_xiaomi_13_pro">Xiaomi 13 Pro</string>
     <string name="device_oneplus_9_pro">OnePlus 9 Pro</string>
     <string name="device_black_shark_4">Black Shark 4</string>
     <string name="device_lenovo_y700">Lenovo Y700</string>
     <!-- Security Features -->
-    <string name="custom_rom_hide">Custom ROM Hide</string>
-    <string name="custom_rom_hide_summary">Manage per-app allowlist for custom ROM detection hiding</string>
-    <string name="custom_rom_hide_allowlist">Allowlist</string>
-    <string name="manage_allowlist_apps">Manage allowlist apps</string>
-    <string name="allowlist_apps_configured">%d apps can bypass hiding</string>
-    <string name="no_allowlist_apps">No apps configured — all apps are hidden from</string>
-    <string name="custom_rom_hide_picker_title">Select Allowlist Apps</string>
+    <string name="custom_rom_hide">Ocultar ROM Personalizada</string>
+    <string name="custom_rom_hide_summary">Gerenciar permissão por aplicativo para esconder ROM personalizada</string>
+    <string name="custom_rom_hide_allowlist">Lista de permissão</string>
+    <string name="manage_allowlist_apps">Gerenciar aplicativos permitidos</string>
+    <string name="allowlist_apps_configured">Apps %d podem ignorar o ocultamento</string>
+    <string name="no_allowlist_apps">Nenhum aplicativo configurado — todos os aplicativos estão ocultos de</string>
+    <string name="custom_rom_hide_picker_title">Selecionar Aplicativos Permitidos</string>
     <string name="custom_rom_hide_picker_desc">Choose apps that should see root and custom ROM indicators. All other apps will be hidden from.</string>
     <string name="trickystore">Tricky Store</string>
     <string name="trickystore_summary">Gerenciar keybox para falsificação de attestation</string>
