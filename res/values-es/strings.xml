@@ -323,7 +323,7 @@
     <string name="no_storage_restrict_summary">Remove the restriction when selecting folders through Storage Access Framework. Can be convenient in some cases but may lead to privacy leaks.</string>
     <!-- Performance Screen -->
     <string name="performance">Rendimiento</string>
-    <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
+    <string name="performance_summary"></string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
     <string name="kernel_manager">Kernel Manager</string>
