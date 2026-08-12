@@ -349,7 +349,7 @@
     <string name="ram_plus_restart_now">Restart</string>
     <string name="ram_plus_restart_later">Depois</string>
     <string name="background_manager_policy">Policy</string>
-    <string name="background_manager_apps">Apps</string>
+    <string name="background_manager_apps">Aplicativos</string>
     <string name="background_app_policy">App policy</string>
     <string name="background_app_policy_summary">Choose how strictly background apps are handled</string>
     <string name="background_app_policy_normal">Normal</string>
@@ -596,7 +596,7 @@
     <string name="routines_mic_unblocked">Microphone unblocked</string>
     <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
     <string name="routines_sensor_blocked">Sensor Blocked</string>
-    <string name="routines_location">Location</string>
+    <string name="routines_location">Localização</string>
     <string name="routines_phone_number_hint">Phone number</string>
     <string name="routines_phone_numbers_hint">Phone numbers, separated by commas</string>
     <string name="routines_phone_numbers_optional_summary">Leave blank to run for any caller.</string>
@@ -617,7 +617,7 @@
     <string name="routines_radius_hint">Radius (meters)</string>
     <string name="routines_location_near">Location Near</string>
     <string name="routines_sensor_camera">Câmera</string>
-    <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_sensor_microphone">Microfone</string>
     <string name="routines_nfc_tag">NFC Tag</string>
     <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
     <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
@@ -651,7 +651,7 @@
         <item quantity="one">Rotina %1$d exportada</item>
         <item quantity="other">Rotinas %1$d exportadas</item>
     </plurals>
-    <string name="ax_bravia_engine">AxBravia Engine</string>
+    <string name="ax_bravia_engine">Motor AxBravia</string>
     <string name="ax_bravia_engine_summary">Color enhancement and sharpening</string>
     <string name="ax_bravia_engine_mode">Enhancement mode</string>
     <string name="ax_bravia_engine_off">Desativado</string>
