@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Přejetí třemi prsty</string>
     <string name="three_finger_swipe_summary">Akce při přejetí třemi prsty</string>
-    <string name="three_finger_long_press">Dlouhé stisknutí třemi prsty</string>
-    <string name="three_finger_long_press_summary">Povolit gesto dlouhého stisknutí třemi prsty</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Zakázat snímek obrazovky tlačítky</string>
     <string name="disable_button_screenshot_summary">Zakázat kombinaci tlačítek Napájení + Snížení hlasitosti pro snímek obrazovky</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Přehrát/Pozastavit hudbu</string>
     <string name="gesture_action_flashlight">Svítilna</string>
     <string name="gesture_action_screenshot">Snímek obrazovky</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Panel hlasitosti</string>
     <string name="gesture_action_clear_notifications">Vymazat oznámení</string>
     <string name="gesture_action_notifications_panel">Panel oznámení</string>
@@ -218,6 +219,9 @@
     <!-- GameSpace -->
     <string name="gamespace">Herní prostor</string>
     <string name="gamespace_summary">Optimalizujte svůj herní zážitek pomocí funkcí Gamespace</string>
+    <!-- AxDiagnostics -->
+    <string name="diagnostics">AxDiagnostics</string>
+    <string name="diagnostics_summary">System information and hardware diagnostics</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Simulace zařízení pro hry</string>
     <string name="game_spoofing_summary">Simulovat vlastnosti zařízení pro konkrétní hry</string>
@@ -321,7 +325,29 @@
     <string name="performance">Výkon</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
     <string name="background_manager">Background Manager</string>
-    <string name="background_manager_summary">Manage app freezing and background start limits</string>
+    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="kernel_manager">Kernel Manager</string>
+    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="ram_plus">RAM Plus</string>
+    <string name="ram_plus_summary">Extend available memory with internal storage</string>
+    <string name="ram_plus_configuration">Configuration</string>
+    <string name="ram_plus_size">RAM Plus size</string>
+    <string name="ram_plus_off">Vypnuto</string>
+    <string name="ram_plus_size_gb">%1$d GB</string>
+    <string name="ram_plus_status">Current status</string>
+    <string name="ram_plus_active_size">Active: %1$d GB</string>
+    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_unsupported">Not supported on this device</string>
+    <string name="ram_plus_encryption_required">Storage encryption is required</string>
+    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
+    <string name="ram_plus_insufficient_space">Not enough free storage</string>
+    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
+    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
+    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_restart_title">Restart required</string>
+    <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
+    <string name="ram_plus_restart_now">Restart</string>
+    <string name="ram_plus_restart_later">Later</string>
     <string name="background_manager_policy">Policy</string>
     <string name="background_manager_apps">Apps</string>
     <string name="background_app_policy">App policy</string>
@@ -343,12 +369,14 @@
     <!-- CPU Clusters -->
     <string name="little_cluster">Malý cluster</string>
     <string name="big_cluster">Velký cluster</string>
+    <string name="cpu_cluster">CPU Cluster %1$d</string>
     <string name="prime_cluster">Hlavní cluster</string>
     <string name="minimum_frequency">Minimální frekvence</string>
     <string name="maximum_frequency">Maximální frekvence</string>
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Grafický výkon</string>
+    <string name="cpu_governor">CPU governor</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
@@ -536,6 +564,8 @@
     <string name="routines_set_brightness">Set Brightness</string>
     <string name="routines_set_ringer_mode">Set Ringer Mode</string>
     <string name="routines_launch_app">Launch App</string>
+    <string name="routines_launch_app_freeform">Launch App in Freeform</string>
+    <string name="routines_launch_app_bubble">Launch App in Bubble</string>
     <string name="routines_send_broadcast">Send Broadcast</string>
     <string name="routines_show_notification">Show Notification</string>
     <string name="routines_delay">Delay</string>
@@ -588,6 +618,13 @@
     <string name="routines_location_near">Location Near</string>
     <string name="routines_sensor_camera">Camera</string>
     <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_nfc_tag">NFC Tag</string>
+    <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
+    <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
+    <string name="routines_nfc_scan_button">Scan Tag</string>
+    <string name="routines_nfc_scanning_status">Scanning… Place your NFC Tag against the back of your phone.</string>
+    <string name="routines_nfc_scan_success">Scanned tag: %1$s</string>
+    <string name="routines_nfc_disabled">NFC is disabled. Please enable it in Settings.</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
     <string name="routines_play_sound">Play Sound</string>
@@ -652,4 +689,5 @@
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
+    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>
