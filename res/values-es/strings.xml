@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Name -->
-    <string name="app_name">Partes Axion</string>
+    <string name="app_name">Axion Parts</string>
     <!-- Common UI Elements -->
     <string name="back">Atrás</string>
     <string name="cancel">Cancelar</string>
-    <string name="save">Ahorrar</string>
+    <string name="save">Guardar</string>
     <string name="delete">Borrar</string>
     <string name="remove">Quitar</string>
     <string name="add">Añadir</string>
@@ -41,17 +41,17 @@
     <string name="sound">Sonido</string>
     <string name="sound_subtitle">Volumen por aplicación y multi audio</string>
     <string name="gestures">Gestos</string>
-    <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
+    <string name="gestures_subtitle">Agitar, tres dedos &amp; pantalla ambiente</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Luz de bordes</string>
     <string name="edge_light_description">Efectos de iluminación en los bordes de la pantalla para notificaciones</string>
     <string name="enable_edge_light">Activar luz de bordes</string>
     <string name="edge_light_summary">Mostrar efectos de iluminación en los bordes de la pantalla para notificaciones</string>
     <string name="edge_light_appearance">Apariencia</string>
-    <string name="edge_light_spread">Glow spread</string>
-    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
-    <string name="edge_light_intensity">Glow intensity</string>
-    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
+    <string name="edge_light_spread">Expansión del brillo</string>
+    <string name="edge_light_spread_summary">Qué tan lejos es el brillo que se extiende desde el borde</string>
+    <string name="edge_light_intensity">Intensidad del brillo</string>
+    <string name="edge_light_intensity_summary">Brillo máximo del efecto de brillo</string>
     <string name="color_mode">Modo de color</string>
     <string name="notification_accent">Acento de notificación</string>
     <string name="custom_color">Color personalizado</string>
@@ -70,10 +70,10 @@
     <string name="appearance">Apariencia</string>
     <string name="blur_level">Nivel de desenfoque</string>
     <string name="blur_level_summary">Ajustar la intensidad del desenfoque de la carátula del álbum</string>
-    <string name="art_style">Art Style</string>
-    <string name="art_style_summary">Choose how album art is displayed on the lockscreen</string>
-    <string name="art_style_blur">Blur Background</string>
-    <string name="art_style_concept">Art Card</string>
+    <string name="art_style">Estilo de arte</string>
+    <string name="art_style_summary">Elegir cómo se muestra la imagen del álbum en la pantalla de bloqueo</string>
+    <string name="art_style_blur">Desenfoque de fondo</string>
+    <string name="art_style_concept">Arte de tarjeta</string>
     <!-- Pulse Visualizer -->
     <string name="pulse_visualizer">Visualizador Pulse</string>
     <string name="pulse_visualizer_description">Visualizador de audio en pantalla de bloqueo y pantalla ambiente</string>
@@ -84,8 +84,8 @@
     <string name="render_style_summary">Elegir el estilo visual del visualizador</string>
     <string name="style_bars">Barras</string>
     <string name="style_fading_blocks">Bloques difuminados</string>
-    <string name="style_solid_line">Solid Line</string>
-    <string name="style_center_mirror">Center Mirror</string>
+    <string name="style_solid_line">Línea Sólida</string>
+    <string name="style_center_mirror">Espejo centrado</string>
     <string name="color_mode_title">Modo de color</string>
     <string name="visualizer_color_summary">Personalizar el color del visualizador</string>
     <string name="lava_lamp">Lámpara de lava</string>
@@ -118,8 +118,8 @@
     <string name="screen_off">Pantalla apagada</string>
     <string name="screen_off_aod">AOD con pantalla apagada</string>
     <string name="screen_off_aod_summary">Mantener AOD activo cuando se apaga la pantalla</string>
-    <string name="screen_off_aod_duration">AOD Duration</string>
-    <string name="screen_off_aod_duration_summary">How long to keep AOD visible after screen off. Set to 0 to disable</string>
+    <string name="screen_off_aod_duration">Duración de AOD</string>
+    <string name="screen_off_aod_duration_summary">Cuánto tiempo a mantener el AOD visible después de apagar la pantalla. Establecer en 0 para desactivar</string>
     <string name="seconds_short">s</string>
     <string name="screen_off_animation">Animación de pantalla apagada</string>
     <string name="screen_off_animation_summary">Animar la transición a AOD</string>
@@ -155,23 +155,23 @@
     <string name="shake_action">Acción de sacudida</string>
     <string name="shake_action_summary">Acción a realizar cuando se sacude el dispositivo</string>
     <string name="three_finger_gestures">Gestos de tres dedos</string>
-    <string name="three_finger_gestures_summary">Swipe and long press actions</string>
+    <string name="three_finger_gestures_summary">Acciones de Deslizar y pulsar</string>
     <string name="three_finger_swipe">Deslizar con tres dedos</string>
     <string name="three_finger_swipe_summary">Acción al deslizar con tres dedos</string>
     <string name="three_finger_long_press">Pulsación larga con tres dedos</string>
-    <string name="three_finger_long_press_summary">Activar gesto de pulsación larga con tres dedos</string>
+    <string name="three_finger_long_press_summary">Mantén pulsados tres dedos sobre la pantalla para capturar una región seleccionada</string>
     <string name="disable_button_screenshot">Desactivar captura por botones</string>
     <string name="disable_button_screenshot_summary">Desactivar combinación de encendido + bajar volumen para captura</string>
     <!-- Doze Pulse -->
-    <string name="doze_pulse_gestures">Doze Pulse</string>
-    <string name="doze_pulse_gestures_summary">Pulse screen instead of waking</string>
-    <string name="doze_pulse_notification">Notification pulse</string>
-    <string name="doze_pulse_notification_summary">Briefly show lockscreen on notifications without AOD</string>
-    <string name="doze_pulse_tap">Tap to pulse</string>
-    <string name="doze_pulse_tap_summary">Pulse screen on tap instead of waking</string>
-    <string name="doze_pulse_double_tap">Double tap to pulse</string>
-    <string name="doze_pulse_double_tap_summary">Pulse screen on double tap instead of waking</string>
-    <string name="doze_pulse_pickup">Pickup to pulse</string>
+    <string name="doze_pulse_gestures">Reposo En Pulse</string>
+    <string name="doze_pulse_gestures_summary">Pantalla Pulse en lugar de apagarse al despertar</string>
+    <string name="doze_pulse_notification">Pulso de Notificaciones</string>
+    <string name="doze_pulse_notification_summary">Mostrar brevemente la pantalla de bloqueo en las notificaciones sin AOD</string>
+    <string name="doze_pulse_tap">Pulsa para despertar</string>
+    <string name="doze_pulse_tap_summary">Pulsar la Pantalla Para activarla</string>
+    <string name="doze_pulse_double_tap">Doble Toque Para Despertar</string>
+    <string name="doze_pulse_double_tap_summary">Tocar la pantalla Dos Veces Para activarla</string>
+    <string name="doze_pulse_pickup">Recoger el pulso</string>
     <string name="doze_pulse_pickup_summary">Pulse screen on pickup instead of waking</string>
     <string name="doze_pulse_side_fps">Side fingerprint to pulse</string>
     <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Reproducir/Pausar música</string>
     <string name="gesture_action_flashlight">Linterna</string>
     <string name="gesture_action_screenshot">Captura de pantalla</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Panel de volumen</string>
     <string name="gesture_action_clear_notifications">Borrar notificaciones</string>
     <string name="gesture_action_notifications_panel">Panel de notificaciones</string>
@@ -218,13 +219,16 @@
     <!-- GameSpace -->
     <string name="gamespace">Espacios de Juegos</string>
     <string name="gamespace_summary">Optimiza tu experiencia de juego con las funciones de GameSpace</string>
+    <!-- AxDiagnostics -->
+    <string name="diagnostics">AxDiagnostics</string>
+    <string name="diagnostics_summary">Información del sistema y diagnóstico de hardware</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Falsificación de juegos</string>
     <string name="game_spoofing_summary">Falsificar propiedades del dispositivo para juegos específicos</string>
     <string name="app_spoofing">Falsificación de aplicaciones</string>
     <string name="apps_configured">%1$d aplicaciones configuradas</string>
     <string name="no_apps_configured">No hay aplicaciones configuradas</string>
-    <string name="configured_apps">Configured apps</string>
+    <string name="configured_apps">Aplicaciones configuradas</string>
     <string name="no_apps_configured_empty">No hay aplicaciones configuradas</string>
     <string name="add_apps_to_spoof">Añade aplicaciones para comenzar a falsificar propiedades del dispositivo</string>
     <string name="configuration_saved">Configuración guardada</string>
@@ -252,12 +256,12 @@
     <string name="device_black_shark_4">Black Shark 4</string>
     <string name="device_lenovo_y700">Lenovo Y700</string>
     <!-- Security Features -->
-    <string name="custom_rom_hide">Custom ROM Hide</string>
+    <string name="custom_rom_hide">Ocultamiento de ROM Personalizada</string>
     <string name="custom_rom_hide_summary">Manage per-app allowlist for custom ROM detection hiding</string>
     <string name="custom_rom_hide_allowlist">Allowlist</string>
     <string name="manage_allowlist_apps">Manage allowlist apps</string>
     <string name="allowlist_apps_configured">%d apps can bypass hiding</string>
-    <string name="no_allowlist_apps">No apps configured — all apps are hidden from</string>
+    <string name="no_allowlist_apps">Sin aplicaciones configuradas — todas las aplicaciones están ocultas de</string>
     <string name="custom_rom_hide_picker_title">Select Allowlist Apps</string>
     <string name="custom_rom_hide_picker_desc">Choose apps that should see root and custom ROM indicators. All other apps will be hidden from.</string>
     <string name="trickystore">TrickyStore</string>
@@ -315,16 +319,38 @@
     <string name="ignore_window_secure">Ignorar Window Secure</string>
     <string name="ignore_window_secure_summary">Permitir capturas y grabaciones de pantalla en todas las aplicaciones</string>
     <!-- No storage restrict -->
-    <string name="no_storage_restrict_title">No storage restrict</string>
+    <string name="no_storage_restrict_title">Sin Restricción de Almacenamiento</string>
     <string name="no_storage_restrict_summary">Remove the restriction when selecting folders through Storage Access Framework. Can be convenient in some cases but may lead to privacy leaks.</string>
     <!-- Performance Screen -->
     <string name="performance">Rendimiento</string>
-    <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
+    <string name="performance_summary"></string>
     <string name="background_manager">Background Manager</string>
-    <string name="background_manager_summary">Manage app freezing and background start limits</string>
-    <string name="background_manager_policy">Policy</string>
+    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="kernel_manager">Kernel Manager</string>
+    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="ram_plus">RAM Plus</string>
+    <string name="ram_plus_summary">Extiende Memoria virtual Usando El Almacenamiento</string>
+    <string name="ram_plus_configuration">Configuración</string>
+    <string name="ram_plus_size">Tamaño De RAM Virtual</string>
+    <string name="ram_plus_off">Desactivadas</string>
+    <string name="ram_plus_size_gb">%1$d GB</string>
+    <string name="ram_plus_status">Estado Actual</string>
+    <string name="ram_plus_active_size">Activa %1$d GB</string>
+    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_unsupported">No Soportado En este Dispositivo</string>
+    <string name="ram_plus_encryption_required">Storage encryption is required</string>
+    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
+    <string name="ram_plus_insufficient_space">No Tienes Suficiente Almacenamiento</string>
+    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
+    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
+    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_restart_title">Requiere Reiniciar</string>
+    <string name="ram_plus_restart_message">Reinicia Tu Dispositivo Para Aplicar El Tamaño De RAM Plus.</string>
+    <string name="ram_plus_restart_now">Reiniciar</string>
+    <string name="ram_plus_restart_later">Después</string>
+    <string name="background_manager_policy">Políticas</string>
     <string name="background_manager_apps">Apps</string>
-    <string name="background_app_policy">App policy</string>
+    <string name="background_app_policy">Políticas De La Aplicación</string>
     <string name="background_app_policy_summary">Choose how strictly background apps are handled</string>
     <string name="background_app_policy_normal">Normal</string>
     <string name="background_app_policy_aggressive">Aggressive</string>
@@ -343,12 +369,14 @@
     <!-- CPU Clusters -->
     <string name="little_cluster">Clúster pequeño</string>
     <string name="big_cluster">Clúster grande</string>
+    <string name="cpu_cluster">CPU Cluster %1$d</string>
     <string name="prime_cluster">Clúster prime</string>
     <string name="minimum_frequency">Frecuencia mínima</string>
     <string name="maximum_frequency">Frecuencia máxima</string>
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Rendimiento gráfico</string>
+    <string name="cpu_governor">CPU governor</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
@@ -445,7 +473,7 @@
     <string name="dynamic_bar_guide_keyguard">On the lock screen, the chip appears at the bottom with playback controls and quick actions.</string>
     <string name="dynamic_bar_guide_chip_title">Chip appearance</string>
     <string name="dynamic_bar_guide_swipe_title">Swipe to cycle</string>
-    <string name="dynamic_bar_guide_expand_title">Tap to expand</string>
+    <string name="dynamic_bar_guide_expand_title">Toca para expandir</string>
     <string name="dynamic_bar_guide_dismiss_title">Swipe to dismiss</string>
     <string name="dynamic_bar_guide_keyguard_title">Lock screen chip</string>
     <string name="dynamic_bar_footer_title">About Dynamic Bar</string>
@@ -536,6 +564,8 @@
     <string name="routines_set_brightness">Set Brightness</string>
     <string name="routines_set_ringer_mode">Set Ringer Mode</string>
     <string name="routines_launch_app">Launch App</string>
+    <string name="routines_launch_app_freeform">Launch App in Freeform</string>
+    <string name="routines_launch_app_bubble">Launch App in Bubble</string>
     <string name="routines_send_broadcast">Send Broadcast</string>
     <string name="routines_show_notification">Show Notification</string>
     <string name="routines_delay">Delay</string>
@@ -566,7 +596,7 @@
     <string name="routines_mic_unblocked">Microphone unblocked</string>
     <string name="routines_set_sensor_privacy">Set Sensor Privacy</string>
     <string name="routines_sensor_blocked">Sensor Blocked</string>
-    <string name="routines_location">Location</string>
+    <string name="routines_location">Ubicación</string>
     <string name="routines_phone_number_hint">Phone number</string>
     <string name="routines_phone_numbers_hint">Phone numbers, separated by commas</string>
     <string name="routines_phone_numbers_optional_summary">Leave blank to run for any caller.</string>
@@ -587,7 +617,14 @@
     <string name="routines_radius_hint">Radius (meters)</string>
     <string name="routines_location_near">Location Near</string>
     <string name="routines_sensor_camera">Cámara</string>
-    <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_sensor_microphone">Micrófono</string>
+    <string name="routines_nfc_tag">NFC Tag</string>
+    <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
+    <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
+    <string name="routines_nfc_scan_button">Scan Tag</string>
+    <string name="routines_nfc_scanning_status">Scanning… Place your NFC Tag against the back of your phone.</string>
+    <string name="routines_nfc_scan_success">Scanned tag: %1$s</string>
+    <string name="routines_nfc_disabled">NFC is disabled. Please enable it in Settings.</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
     <string name="routines_play_sound">Play Sound</string>
@@ -646,4 +683,5 @@
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
+    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>
