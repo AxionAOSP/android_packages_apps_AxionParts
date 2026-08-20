@@ -564,8 +564,8 @@
     <string name="routines_set_brightness">Встановити яскравість</string>
     <string name="routines_set_ringer_mode">Встановити режим дзвінка</string>
     <string name="routines_launch_app">Запустити застосунок</string>
-    <string name="routines_launch_app_freeform">Launch App in Freeform</string>
-    <string name="routines_launch_app_bubble">Launch App in Bubble</string>
+    <string name="routines_launch_app_freeform">Запустити застосунок у вільному режимі</string>
+    <string name="routines_launch_app_bubble">Запустити застосунок у бульбашці</string>
     <string name="routines_send_broadcast">Надіслати трансляцію</string>
     <string name="routines_show_notification">Показувати сповіщення</string>
     <string name="routines_delay">Затримка</string>
