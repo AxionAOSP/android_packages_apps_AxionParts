@@ -39,7 +39,7 @@
     <string name="ui_features">Функції інтерфейсу</string>
     <string name="ui_features_subtitle">Рядок стану, швидкі налаштування та інше</string>
     <string name="sound">Звук</string>
-    <string name="sound_subtitle">Гучність для кожного додатка та мульти-аудіо</string>
+    <string name="sound_subtitle">Гучність для окремих застосунків та мульти-аудіо</string>
     <string name="gestures">Жести</string>
     <string name="gestures_subtitle">Струшування, три пальці, пульсація Doze</string>
     <!-- Lockscreen Features -->
@@ -53,7 +53,7 @@
     <string name="edge_light_intensity">Інтенсивність світіння</string>
     <string name="edge_light_intensity_summary">Максимальна яскравість світіння</string>
     <string name="color_mode">Колірний режим</string>
-    <string name="notification_accent">Акцент повідомлення</string>
+    <string name="notification_accent">Акцент сповіщень</string>
     <string name="custom_color">Власний колір</string>
     <string name="customization">Персоналізація</string>
     <string name="custom_color_summary">#%1$06X</string>
@@ -63,9 +63,9 @@
     <string name="select_uppercase">Вибрати</string>
     <string name="select_item">Виберіть елемент</string>
     <!-- Media Art -->
-    <string name="media_art">Медіа-арт</string>
+    <string name="media_art">Обкладинка альбому</string>
     <string name="media_art_description">Обкладинка альбому на екрані блокування під час відтворення</string>
-    <string name="enable_media_art">Увімкнути медіа-арт</string>
+    <string name="enable_media_art">Увімкнути обкладинку альбому</string>
     <string name="media_art_summary">Показувати обкладинку альбому на екрані блокування</string>
     <string name="appearance">Оформлення</string>
     <string name="blur_level">Рівень розмиття</string>
@@ -324,7 +324,7 @@
     <!-- Performance Screen -->
     <string name="performance">Продуктивність</string>
     <string name="performance_summary">Розгін ЦП, керування частотою та ГП</string>
-    <string name="background_manager">Менеджер фонового режиму</string>
+    <string name="background_manager">Керування фоновими процесами</string>
     <string name="background_manager_summary">Керує заморожуванням застосунків, підтримкою активності та обмеженнями на запуск у фоновому режимі</string>
     <string name="kernel_manager">Керування ядром</string>
     <string name="kernel_manager_summary">Налаштування лімітів частоти ЦП та ГП</string>
@@ -410,9 +410,9 @@
     <string name="pref_pc_mode_density_summary">Налаштовує масштаб інтерфейсу для режиму ПК</string>
     <string name="pref_pc_mode_secondary_density_title">Щільність зовнішнього дисплея</string>
     <string name="pref_pc_mode_secondary_density_summary">Налаштовує масштаб інтерфейсу для зовнішнього дисплея (менше значення = більше вмісту)</string>
-    <string name="resolution_override_title">Примусова зміна роздільності</string>
+    <string name="resolution_override_title">Перевизначення роздільної здатності</string>
     <string name="resolution_default">За замовчуванням</string>
-    <string name="resolution_dialog_title">Встановити роздільність</string>
+    <string name="resolution_dialog_title">Встановити роздільну здатність</string>
     <string name="resolution_input_label">Ширина-висота (напр., 1920х1080)</string>
     <string name="resolution_invalid_format">Некоректний формат. Використовуйте ШxВ.</string>
     <string name="resolution_max_limit_error">Зависока роздільність. Максимум — 4096x4096.</string>
@@ -424,9 +424,9 @@
     <string name="action_reset_default">Скинути до заводських налаштувань</string>
     <!-- Dynamic Bar -->
     <string name="dynamic_bar">Динамічна панель</string>
-    <string name="dynamic_bar_summary">Розумна плашка в рядку стану для подій наживо</string>
+    <string name="dynamic_bar_summary">Розумна плашка в рядку стану для подій у реальному часі</string>
     <string name="dynamic_bar_enable">Увімкнути динамічну панель</string>
-    <string name="dynamic_bar_enable_summary">Показує динамічну плашку в рядку стану для подій наживо</string>
+    <string name="dynamic_bar_enable_summary">Показує динамічну плашку в рядку стану для подій у реальному часі</string>
     <string name="dynamic_bar_keyguard_enable">Плашка на екрані блокування</string>
     <string name="dynamic_bar_keyguard_enable_summary">Показувати плашку динамічної панелі на заблокованому екрані з кнопками керування та швидкими діями</string>
     <string name="dynamic_bar_events">Події</string>
@@ -436,7 +436,7 @@
     <string name="dynamic_bar_event_media">Відтворення медіа</string>
     <string name="dynamic_bar_event_media_summary">Елементи керування відтворенням музики та аудіо</string>
     <string name="dynamic_bar_event_notification">Сповіщення</string>
-    <string name="dynamic_bar_event_notification_summary">Сповіщення про вхідні сповіщення</string>
+    <string name="dynamic_bar_event_notification_summary">Сповіщення про вхідні повідомлення</string>
     <string name="dynamic_bar_event_timer">Таймер</string>
     <string name="dynamic_bar_event_timer_summary">Таймер зворотного відліку із застосунку годинника</string>
     <string name="dynamic_bar_event_stopwatch">Секундомір</string>
@@ -444,21 +444,21 @@
     <string name="dynamic_bar_event_alarm">Будильник</string>
     <string name="dynamic_bar_event_alarm_summary">Виклики та майбутні будильники</string>
     <string name="dynamic_bar_event_charging">Заряджання</string>
-    <string name="dynamic_bar_event_charging_summary">Рівень заряду під час заряджання</string>
+    <string name="dynamic_bar_event_charging_summary">Рівень заряду батареї під час підключення до зарядки</string>
     <string name="dynamic_bar_event_bluetooth">Bluetooth</string>
     <string name="dynamic_bar_event_bluetooth_summary">Стан з’єднання пристрою</string>
     <string name="dynamic_bar_event_hotspot">Точка доступу</string>
     <string name="dynamic_bar_event_hotspot_summary">Індикатор мобільної точки доступу</string>
-    <string name="dynamic_bar_event_ringer">Дзвінок</string>
-    <string name="dynamic_bar_event_ringer_summary">Режими: тихий, вібрація та дзвінок</string>
+    <string name="dynamic_bar_event_ringer">Режим дзвінка</string>
+    <string name="dynamic_bar_event_ringer_summary">Перемикання між беззвучним режимом, вібрацією та дзвінком</string>
     <string name="dynamic_bar_event_vpn">VPN</string>
-    <string name="dynamic_bar_event_vpn_summary">Активний індикатор з’єднання з VPN</string>
+    <string name="dynamic_bar_event_vpn_summary">Індикатор активного VPN з’єднання</string>
     <string name="dynamic_bar_event_clipboard">Буфер обміну</string>
-    <string name="dynamic_bar_event_clipboard_summary">Скопійований текст і передперегляд зображення</string>
+    <string name="dynamic_bar_event_clipboard_summary">Попередній перегляд скопійованого тексту та зображення</string>
     <string name="dynamic_bar_event_torch">Ліхтарик</string>
-    <string name="dynamic_bar_event_torch_summary">Ліхтарик: увімк./вимк. і яскравість</string>
+    <string name="dynamic_bar_event_torch_summary">Перемикач і яскравість ліхтарика</string>
     <string name="dynamic_bar_event_ongoing">Поточні активності</string>
-    <string name="dynamic_bar_event_ongoing_summary">Навігація, доставлення та інші події наживо</string>
+    <string name="dynamic_bar_event_ongoing_summary">Навігація, доставка та інші види активності</string>
     <string name="dynamic_bar_event_sports">Спорт</string>
     <string name="dynamic_bar_event_sports_summary">Результати наживо та оновлення гри</string>
     <string name="dynamic_bar_event_app_switch">Перемикання між нещодавніми застосунками</string>
@@ -553,7 +553,7 @@
     <string name="routines_headphones">Навушники</string>
     <string name="routines_headphones_connected">Навушники під’єднано</string>
     <string name="routines_headphones_disconnected">Навушники від’єднано</string>
-    <string name="routines_ringer_mode">Дзвінок</string>
+    <string name="routines_ringer_mode">Режим дзвінка</string>
     <string name="routines_incoming_call">Вхідний виклик</string>
     <string name="routines_sms_message">SMS-повідомлення</string>
     <string name="routines_app_launch">Запуск застосунку</string>
@@ -607,7 +607,7 @@
     <string name="routines_incoming_call_numbers_summary">Вхідний виклик від %1$s</string>
     <string name="routines_sms_message_summary">SMS містить %1$s</string>
     <string name="routines_send_location_sms">Надіслати SMS із розташуванням</string>
-    <string name="routines_send_location_sms_target_summary">Залиште порожнім, щоб відповісти на вхідне SMS або дзвінок.</string>
+    <string name="routines_send_location_sms_target_summary">Залиште порожнім, щоб відповісти на SMS або дзвінок.</string>
     <string name="routines_send_location_sms_summary">Відповісти з поточним розташуванням</string>
     <string name="routines_send_location_sms_number_summary">Відправити поточне розташування %1$s</string>
     <string name="routines_location_enter">Увійти в зону</string>
