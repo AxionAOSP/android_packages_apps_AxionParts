@@ -41,7 +41,7 @@
     <string name="sound">Звук</string>
     <string name="sound_subtitle">Гучність для кожного додатка та мульти-аудіо</string>
     <string name="gestures">Жести</string>
-    <string name="gestures_subtitle">Струсіть, три пальці &amp; пульсація Doze</string>
+    <string name="gestures_subtitle">Струшування, три пальці, пульсація Doze</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Підсвічування країв</string>
     <string name="edge_light_description">Світлові ефекти по краях екрана для повідомлень</string>
@@ -164,17 +164,17 @@
     <string name="disable_button_screenshot_summary">Вимкнути комбінацію кнопок живлення + гучність вниз</string>
     <!-- Doze Pulse -->
     <string name="doze_pulse_gestures">Doze пульсація</string>
-    <string name="doze_pulse_gestures_summary">Пульсуючий екран замість пробудження</string>
-    <string name="doze_pulse_notification">Пульсування сповіщень</string>
-    <string name="doze_pulse_notification_summary">Короткочасно показувати екран блокування на сповіщеннях без AOD</string>
-    <string name="doze_pulse_tap">Торкніться, щоб пульсувати</string>
-    <string name="doze_pulse_tap_summary">Пульсуючий екран при дотику замість пробудження</string>
-    <string name="doze_pulse_double_tap">Подвійне натискання для пульсації</string>
-    <string name="doze_pulse_double_tap_summary">Пульсуючий екран при подвійному торканні замість пробудження</string>
-    <string name="doze_pulse_pickup">Підібрати до пульсації</string>
-    <string name="doze_pulse_pickup_summary">Пульсація екрана при піднятті замість пробудження</string>
-    <string name="doze_pulse_side_fps">Бічний відбиток пальця для пульсації</string>
-    <string name="doze_pulse_side_fps_summary">Пульсація екрана при натисканні на бічний сканер відбитків замість пробудження</string>
+    <string name="doze_pulse_gestures_summary">Пульсувати екраном замість повного увімкнення</string>
+    <string name="doze_pulse_notification">Пульсація сповіщень</string>
+    <string name="doze_pulse_notification_summary">Ненадовго вмикати екран блокування при сповіщеннях, якщо AOD вимкнено</string>
+    <string name="doze_pulse_tap">Дотик для пульсації</string>
+    <string name="doze_pulse_tap_summary">Пульсація екрана при дотику замість увімкнення</string>
+    <string name="doze_pulse_double_tap">Подвійний дотик для пульсації</string>
+    <string name="doze_pulse_double_tap_summary">Пульсація екрана при подвійному дотику замість увімкнення</string>
+    <string name="doze_pulse_pickup">Підняти для пульсації</string>
+    <string name="doze_pulse_pickup_summary">Пульсація екрана при піднятті замість увімкнення</string>
+    <string name="doze_pulse_side_fps">Дотик до бічного сканера для пульсації</string>
+    <string name="doze_pulse_side_fps_summary">Пульсувати екраном при натисканні бічного сканера відбитка замість увімкнення</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Нічого</string>
     <string name="gesture_action_app_switch">Перемикання додатків</string>
@@ -221,7 +221,7 @@
     <string name="gamespace_summary">Оптимізація ігрового досвіду з функціями GameSpace</string>
     <!-- AxDiagnostics -->
     <string name="diagnostics">AxDiagnostics</string>
-    <string name="diagnostics_summary">Системна інформація та діагностика апаратного забезпечення</string>
+    <string name="diagnostics_summary">Інформація про систему та діагностика апаратного забезпечення</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Підміна пристрою для ігор</string>
     <string name="game_spoofing_summary">Підміна властивостей пристрою для конкретних ігор</string>
@@ -257,7 +257,7 @@
     <string name="device_lenovo_y700">Lenovo Y700</string>
     <!-- Security Features -->
     <string name="custom_rom_hide">Приховати сторонню прошивку</string>
-    <string name="custom_rom_hide_summary">Керування білим списком для окремих застосунків для приховування сторонніх прошивок</string>
+    <string name="custom_rom_hide_summary">Керування переліком дозволених застосунків для приховування сторонніх прошивок</string>
     <string name="custom_rom_hide_allowlist">Білий список</string>
     <string name="manage_allowlist_apps">Керування білим списком застосунків</string>
     <string name="allowlist_apps_configured">%d застосунків можуть обходити приховування</string>
