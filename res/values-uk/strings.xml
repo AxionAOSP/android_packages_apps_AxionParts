@@ -80,7 +80,7 @@
     <string name="enable_pulse">Увімкнути Pulse</string>
     <string name="pulse_summary">Показувати аудіовізуалізатор на екрані блокування</string>
     <string name="style">Стиль</string>
-    <string name="render_style">Стиль рендерингу</string>
+    <string name="render_style">Стиль візуалізації</string>
     <string name="render_style_summary">Виберіть візуальний стиль візуалізатора</string>
     <string name="style_bars">Смуги</string>
     <string name="style_fading_blocks">Блоки, що зникають</string>
@@ -88,7 +88,7 @@
     <string name="style_center_mirror">Симетрія відносно центру</string>
     <string name="color_mode_title">Колірний режим</string>
     <string name="visualizer_color_summary">Налаштування кольору візуалізатора</string>
-    <string name="lava_lamp">Лава-лампа</string>
+    <string name="lava_lamp">Лавова лампа</string>
     <string name="album_art">Обкладинка альбому</string>
     <string name="system_accent">Системний акцент</string>
     <string name="bars">Смуги</string>
@@ -97,7 +97,7 @@
     <string name="rounded_bars">Заокруглені смуги</string>
     <string name="rounded_bars_summary">Заокруглені кути для смуг візуалізатора</string>
     <!-- Always On Display -->
-    <string name="always_on_display">Завжди увімкнений дисплей</string>
+    <string name="always_on_display">Завжди Активний Дисплей (AOD)</string>
     <string name="always_on_display_description">Керування розкладом AOD та поведінкою при вимкненні екрана</string>
     <string name="mode">Режим</string>
     <string name="aod_schedule">Розклад AOD</string>
@@ -117,7 +117,7 @@
     <string name="custom_schedule_summary">Увімкнути розклад AOD за часом</string>
     <string name="screen_off">Екран вимкнено</string>
     <string name="screen_off_aod">AOD при вимкненому екрані</string>
-    <string name="screen_off_aod_summary">Тримати AOD активним при вимкненні екрана</string>
+    <string name="screen_off_aod_summary">Тримати AOD активним після вимкнення екрана</string>
     <string name="screen_off_aod_duration">Тривалість AOD</string>
     <string name="screen_off_aod_duration_summary">Скільки часу тримати AOD видимим після вимкнення екрана. Встановіть 0, щоб вимкнути</string>
     <string name="seconds_short">сек</string>
@@ -132,10 +132,10 @@
     <string name="brightness_slider">Повзунок яскравості</string>
     <string name="brightness_slider_summary">Показувати повзунок яскравості на панелі швидких налаштувань</string>
     <string name="brightness_slider_position">Позиція повзунка яскравості</string>
-    <string name="brightness_slider_position_summary">Положення повзунка яскравості в QS</string>
+    <string name="brightness_slider_position_summary">Положення повзунка яскравості в панелі швидких налаштувань</string>
     <string name="brightness_hidden">Приховано</string>
     <string name="brightness_show_expanded">Показувати при розгорнутих швидких налаштуваннях</string>
-    <string name="brightness_always_visible">Завжди видимо</string>
+    <string name="brightness_always_visible">Завжди видимий</string>
     <string name="position_bottom">Знизу</string>
     <string name="position_top">Зверху</string>
     <string name="status_bar_icons">Іконки рядка стану</string>
@@ -191,7 +191,7 @@
     <string name="gesture_action_volume_panel">Панель гучності</string>
     <string name="gesture_action_clear_notifications">Очистити повідомлення</string>
     <string name="gesture_action_notifications_panel">Панель повідомлень</string>
-    <string name="gesture_action_expand_qs">Розгорнути панель QS</string>
+    <string name="gesture_action_expand_qs">Розгорнути панель швидких налаштувань</string>
     <string name="gesture_action_ringer_modes">Режими дзвінка</string>
     <!-- Dashboard -->
     <string name="features">Особливості</string>
@@ -218,7 +218,7 @@
     <string name="selected_count">Вибрано: %1$d</string>
     <!-- GameSpace -->
     <string name="gamespace">Ігровий простір</string>
-    <string name="gamespace_summary">Оптимізація ігрового досвіду з функціями GameSpace</string>
+    <string name="gamespace_summary">Покращуйте ігровий досвід за допомогою функцій ігрового простору</string>
     <!-- AxDiagnostics -->
     <string name="diagnostics">AxDiagnostics</string>
     <string name="diagnostics_summary">Інформація про систему та діагностика апаратного забезпечення</string>
@@ -265,13 +265,13 @@
     <string name="custom_rom_hide_picker_title">Оберіть застосунки з білого списку</string>
     <string name="custom_rom_hide_picker_desc">Виберіть застосунки, які бачитимуть індикатори root-доступу та сторонніх прошивок. Для всіх інших застосунків ці дані будуть приховані.</string>
     <string name="trickystore">TrickyStore</string>
-    <string name="trickystore_summary">Керування keybox для підміни атестації ключів</string>
+    <string name="trickystore_summary">Керування Keybox для підміни атестації ключів</string>
     <string name="keybox_management">Керування Keybox</string>
     <string name="import_keybox">Імпортувати Keybox</string>
     <string name="keybox_installed">Keybox встановлено</string>
     <string name="no_keybox_found">Keybox не знайдено - натисніть для імпорту</string>
     <string name="delete_keybox">Видалити Keybox</string>
-    <string name="remove_keybox_file">Видалити поточний файл keybox</string>
+    <string name="remove_keybox_file">Видалити поточний файл Keybox</string>
     <string name="delete_keybox_title">Видалити Keybox?</string>
     <string name="delete_keybox_message">Це видалить файл keybox.xml. Підміна сертифіката буде вимкнена до імпорту нового keybox.</string>
     <string name="keybox_imported_success">Keybox успішно імпортовано</string>
@@ -659,7 +659,7 @@
     <string name="ax_bravia_engine_summary">Покращення кольору та підвищення різкості</string>
     <string name="ax_bravia_engine_mode">Режим покращення</string>
     <string name="ax_bravia_engine_off">Вимкнено</string>
-    <string name="ax_bravia_engine_vivid">Яскравий</string>
+    <string name="ax_bravia_engine_vivid">Насичений</string>
     <string name="ax_bravia_engine_natural">Натуральний</string>
     <string name="ax_bravia_engine_cinema">Кінематографічний</string>
     <plurals name="max_apps_selected">
@@ -678,9 +678,9 @@
     <string name="keywords_gestures">жести, струшування, жест трьома пальцями</string>
     <string name="keywords_pcmode">режим пк, стільниця</string>
     <string name="keywords_performance">режим продуктивності, прискорення, контроль частоти</string>
-    <string name="keywords_trickystore">trickystore, сховище ключів, сертифікація, фальсифікація, підробка статусу завантажувача</string>
-    <string name="keywords_playintegrityfix">виправлення play integrity, safety net, цифровий відбиток, pif, підміна gphoto, сертифікація</string>
-    <string name="keywords_gamespoofing">імітація застосунків, підміна ігрових даних, геймінг, підвищена частота кадрів, анлок, маскування пристрою</string>
+    <string name="keywords_trickystore">trickystore, keybox, сертифікація, підміна даних, підміна bootloader</string>
+    <string name="keywords_playintegrityfix">play integrity fix, safetynet, відбиток, pif, підміна gphoto, сертифікація</string>
+    <string name="keywords_gamespoofing">підміна додатків та ігор, геймінг, збільшення fps, розблокування, підміна пристрою</string>
     <string name="keywords_routines">процедури, автоматизація, тригер автоматизації, автодія, планувальник завдань</string>
     <string name="keywords_background_manager">фоновий менеджер, заморожування, заморожувач застосунків, ліміти</string>
     <string name="keywords_bravia">bravia engine, рушій дисплея, покращення кольорів, картинка, якість відео, чіткість, яскравість</string>
