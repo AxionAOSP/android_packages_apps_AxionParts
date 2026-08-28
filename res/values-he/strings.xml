@@ -646,13 +646,11 @@
     <plurals name="routines_imported_count">
         <item quantity="one">יובאה שגרה אחת</item>
         <item quantity="two">יובאו שתי שגרות</item>
-        <item quantity="many">יובאו %1$d שגרות</item>
         <item quantity="other">יובאו %1$d שגרות</item>
     </plurals>
     <plurals name="routines_exported_count">
         <item quantity="one">יוצאה שגרה אחת</item>
         <item quantity="two">יוצאו שתי שגרות</item>
-        <item quantity="many">יוצאו %1$d שגרות</item>
         <item quantity="other">יוצאו %1$d שגרות</item>
     </plurals>
     <string name="ax_bravia_engine">מנוע AxBravia</string>
@@ -665,7 +663,6 @@
     <plurals name="max_apps_selected">
         <item quantity="one">אפשר לבחור רק אפליקציה אחת</item>
         <item quantity="two">אפשר לבחור עד שתי אפליקציות</item>
-        <item quantity="many">אפשר לבחור עד %1$d אפליקציות</item>
         <item quantity="other">אפשר לבחור עד %1$d אפליקציות</item>
     </plurals>
     <!-- Search Keywords -->
