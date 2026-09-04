@@ -173,7 +173,7 @@
     <string name="doze_pulse_double_tap_summary">두번 탭하여 깨우는 대신 Pulse 스크린을 켜세요</string>
     <string name="doze_pulse_pickup">들어서 Pulse</string>
     <string name="doze_pulse_pickup_summary">들어서 깨우는 대신 Pulse 스크린을 켜세요</string>
-    <string name="doze_pulse_side_fps">측면 지문인식으로 Pulse</string>
+    <string name="doze_pulse_side_fps">측면 지문 인식으로 Pulse</string>
     <string name="doze_pulse_side_fps_summary">측면 지문인식으로 깨우는 대신 Pulse 스크린을 켜세요</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">없음</string>
