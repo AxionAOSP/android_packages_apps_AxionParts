@@ -157,6 +157,7 @@ private val EVENT_TOGGLES = listOf(
 private const val SETTINGS_KEY_ENABLED = "ax_dynamic_bar_enabled"
 private const val SETTINGS_KEY_KEYGUARD_ENABLED = "ax_dynamic_bar_keyguard_enabled"
 private const val SETTINGS_KEY_EVENTS = "ax_dynamic_bar_events"
+private const val SETTINGS_KEY_KEYGUARD_HIDE_MEDIA = "ax_dynamic_bar_keyguard_hide_media_player"
 
 @Composable
 fun DynamicBarScreen(onBackClick: () -> Unit) {
@@ -208,6 +209,7 @@ internal fun DynamicBarMainContent(
     onNavigateToGuide: () -> Unit,
 ) {
     val isEnabled by rememberSettingBoolean(SETTINGS_KEY_ENABLED, SettingsType.SECURE, false)
+    val isKeyguardEnabled by rememberSettingBoolean(SETTINGS_KEY_KEYGUARD_ENABLED, SettingsType.SECURE, true)
     val disabledEventsJson by rememberSettingString(SETTINGS_KEY_EVENTS, SettingsType.SECURE, "")
     val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
     val disabledEvents = remember(disabledEventsJson) {
@@ -252,6 +254,15 @@ internal fun DynamicBarMainContent(
                     summary = stringResource(R.string.dynamic_bar_keyguard_enable_summary),
                     defaultValue = true,
                     enabled = isEnabled,
+                )
+            }
+            item {
+                SecureSettingSwitch(
+                    settingKey = SETTINGS_KEY_KEYGUARD_HIDE_MEDIA,
+                    title = stringResource(R.string.dynamic_bar_keyguard_hide_media),
+                    summary = stringResource(R.string.dynamic_bar_keyguard_hide_media_summary),
+                    defaultValue = true,
+                    enabled = isEnabled && isKeyguardEnabled,
                 )
             }
         }
