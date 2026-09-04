@@ -464,6 +464,8 @@
     <string name="dynamic_bar_enable_summary">Show a dynamic chip on the status bar for live events</string>
     <string name="dynamic_bar_keyguard_enable">Lock screen chip</string>
     <string name="dynamic_bar_keyguard_enable_summary">Show the Dynamic Bar chip on the lock screen with controls and quick actions</string>
+    <string name="dynamic_bar_keyguard_hide_media">Hide lock screen media player</string>
+    <string name="dynamic_bar_keyguard_hide_media_summary">Hide the default lock screen media player when the Dynamic Bar chip is active</string>
     <string name="dynamic_bar_events">Events</string>
     <string name="dynamic_bar_events_summary">Choose which events appear in the Dynamic Bar</string>
     <string name="dynamic_bar_event_audio_recording">Audio Recording</string>
