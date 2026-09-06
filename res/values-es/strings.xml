@@ -172,7 +172,7 @@
     <string name="doze_pulse_double_tap">Doble Toque Para Despertar</string>
     <string name="doze_pulse_double_tap_summary">Tocar la pantalla Dos Veces Para activarla</string>
     <string name="doze_pulse_pickup">Recoger el pulso</string>
-    <string name="doze_pulse_pickup_summary">Pulse screen on pickup instead of waking</string>
+    <string name="doze_pulse_pickup_summary">Tocar la pantalla Dos Veces Para activarla</string>
     <string name="doze_pulse_side_fps">Side fingerprint to pulse</string>
     <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
     <!-- Gesture Actions -->
@@ -187,19 +187,19 @@
     <string name="gesture_action_play_pause">Reproducir/Pausar música</string>
     <string name="gesture_action_flashlight">Linterna</string>
     <string name="gesture_action_screenshot">Captura de pantalla</string>
-    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
+    <string name="gesture_action_partial_screenshot">Captura de pantalla parcial</string>
     <string name="gesture_action_volume_panel">Panel de volumen</string>
     <string name="gesture_action_clear_notifications">Borrar notificaciones</string>
     <string name="gesture_action_notifications_panel">Panel de notificaciones</string>
     <string name="gesture_action_expand_qs">Expandir panel QS</string>
     <string name="gesture_action_ringer_modes">Modos de timbre</string>
     <!-- Dashboard -->
-    <string name="features">Features</string>
+    <string name="features">Caracteristicas</string>
     <!-- Essentials Screen -->
     <string name="essentials">Imprescindibles</string>
-    <string name="essentials_summary">Notifications, gaming &amp; security</string>
+    <string name="essentials_summary">Notificaciones, juego &amp; seguridad</string>
     <string name="essential_notifications">Notificaciones esenciales</string>
-    <string name="quicklook">QuickLook</string>
+    <string name="quicklook">Vistazo Rápido</string>
     <string name="quicklook_settings_summary">Summarize what to appear on quick look</string>
     <string name="gaming">Juegos</string>
     <string name="security">Seguridad</string>
@@ -257,13 +257,13 @@
     <string name="device_lenovo_y700">Lenovo Y700</string>
     <!-- Security Features -->
     <string name="custom_rom_hide">Ocultamiento de ROM Personalizada</string>
-    <string name="custom_rom_hide_summary">Manage per-app allowlist for custom ROM detection hiding</string>
-    <string name="custom_rom_hide_allowlist">Allowlist</string>
-    <string name="manage_allowlist_apps">Manage allowlist apps</string>
-    <string name="allowlist_apps_configured">%d apps can bypass hiding</string>
+    <string name="custom_rom_hide_summary">Gestionar lista permitida por aplicación para ocultar la detección de ROM personalizada</string>
+    <string name="custom_rom_hide_allowlist">Lista blanca</string>
+    <string name="manage_allowlist_apps">Administrar aplicaciones permitidas</string>
+    <string name="allowlist_apps_configured">%d aplicaciones pueden omitir la ocultación</string>
     <string name="no_allowlist_apps">Sin aplicaciones configuradas — todas las aplicaciones están ocultas de</string>
-    <string name="custom_rom_hide_picker_title">Select Allowlist Apps</string>
-    <string name="custom_rom_hide_picker_desc">Choose apps that should see root and custom ROM indicators. All other apps will be hidden from.</string>
+    <string name="custom_rom_hide_picker_title">Seleccionar Apps permitidas</string>
+    <string name="custom_rom_hide_picker_desc">Elegir aplicaciones que deberían ver indicadores de raíz e ROM personalizados. Todas las demás aplicaciones se ocultarán.</string>
     <string name="trickystore">TrickyStore</string>
     <string name="trickystore_summary">Gestionar keybox para falsificación de attestation</string>
     <string name="keybox_management">Gestión de Keybox</string>
@@ -320,14 +320,14 @@
     <string name="ignore_window_secure_summary">Permitir capturas y grabaciones de pantalla en todas las aplicaciones</string>
     <!-- No storage restrict -->
     <string name="no_storage_restrict_title">Sin Restricción de Almacenamiento</string>
-    <string name="no_storage_restrict_summary">Remove the restriction when selecting folders through Storage Access Framework. Can be convenient in some cases but may lead to privacy leaks.</string>
+    <string name="no_storage_restrict_summary">Elimina la restricción al seleccionar carpetas desde el Storage Access Framework. Puede ser conveniente en algunos casos pero podría llevar a filtraciones de datos.</string>
     <!-- Performance Screen -->
     <string name="performance">Rendimiento</string>
     <string name="performance_summary"></string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
-    <string name="kernel_manager">Kernel Manager</string>
-    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="kernel_manager">Gestor de Kernel</string>
+    <string name="kernel_manager_summary">Ajustar límites de frecuencia de CPU y GPU</string>
     <string name="ram_plus">RAM Plus</string>
     <string name="ram_plus_summary">Extiende Memoria virtual Usando El Almacenamiento</string>
     <string name="ram_plus_configuration">Configuración</string>
@@ -336,14 +336,14 @@
     <string name="ram_plus_size_gb">%1$d GB</string>
     <string name="ram_plus_status">Estado Actual</string>
     <string name="ram_plus_active_size">Activa %1$d GB</string>
-    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_restart_pending">El tamaño seleccionado se aplicará después de reiniciar</string>
     <string name="ram_plus_unsupported">No Soportado En este Dispositivo</string>
-    <string name="ram_plus_encryption_required">Storage encryption is required</string>
-    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
+    <string name="ram_plus_encryption_required">El cifrado de almacenamiento es requerido</string>
+    <string name="ram_plus_zram_not_ready">Zram no estaba listo durante la configuración</string>
     <string name="ram_plus_insufficient_space">No Tienes Suficiente Almacenamiento</string>
-    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
-    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
-    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_priority_error">RAM Plus no se pudo colocar después del zram</string>
+    <string name="ram_plus_setup_failed">Error en la configuración de RAM Plus</string>
+    <string name="ram_plus_warning">RAM Plus utiliza el swap respaldado por el almacenamiento para mantener más aplicaciones inactivas disponibles. El almacenamiento interno es más lento que la RAM física y recibe escrituras adicionales.</string>
     <string name="ram_plus_restart_title">Requiere Reiniciar</string>
     <string name="ram_plus_restart_message">Reinicia Tu Dispositivo Para Aplicar El Tamaño De RAM Plus.</string>
     <string name="ram_plus_restart_now">Reiniciar</string>
@@ -351,16 +351,16 @@
     <string name="background_manager_policy">Políticas</string>
     <string name="background_manager_apps">Apps</string>
     <string name="background_app_policy">Políticas De La Aplicación</string>
-    <string name="background_app_policy_summary">Choose how strictly background apps are handled</string>
+    <string name="background_app_policy_summary">Elegir cómo se manejan estrictamente las aplicaciones en segundo plano</string>
     <string name="background_app_policy_normal">Normal</string>
-    <string name="background_app_policy_aggressive">Aggressive</string>
-    <string name="freezer_level">Freezer level</string>
+    <string name="background_app_policy_aggressive">Agresivo</string>
+    <string name="freezer_level">Nivel de congelación</string>
     <string name="freezer_level_summary">Select how the background freezer should run</string>
     <string name="freezer_level_disabled">Deshabilitado</string>
-    <string name="freezer_level_process">Process freezer</string>
-    <string name="freezer_level_package">Package freezer</string>
+    <string name="freezer_level_process">Congelador de procesos</string>
+    <string name="freezer_level_package">Congelador de paquetes</string>
     <string name="package_freezer_apps">Package freezer apps</string>
-    <string name="package_freezer_apps_summary">Apps in this list can be frozen after moving to the background</string>
+    <string name="package_freezer_apps_summary">Las aplicaciones de esta lista pueden ser congeladas después de moverse al fondo</string>
     <string name="restricted_background_apps">Restricted background apps</string>
     <string name="restricted_background_apps_summary">Apps in this list are blocked from background auto-starts until opened</string>
     <string name="frequency_control">Frequency control</string>
