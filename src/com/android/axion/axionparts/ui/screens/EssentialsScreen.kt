@@ -40,6 +40,7 @@ import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Gamepad
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.ScreenshotMonitor
+import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.SportsEsports
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -97,6 +98,7 @@ fun EssentialsScreen(
                         onNavigateToTrickyStore = { currentSubScreen = "trickystore" },
                         onNavigateToPlayIntegrityFix = { currentSubScreen = "playintegrityfix" },
                         onNavigateToGameSpoofing = { currentSubScreen = "gamespoofing" },
+                        onNavigateToAdBlock = { currentSubScreen = "system_adblock" },
                     )
                 }
             }
@@ -109,6 +111,9 @@ fun EssentialsScreen(
             "gamespoofing" -> {
                 GameSpoofingScreen(onBackClick = { currentSubScreen = null })
             }
+            "system_adblock" -> {
+                AdBlockScreen(onBackClick = { currentSubScreen = null })
+            }
         }
     }
 }
@@ -120,6 +125,7 @@ private fun EssentialsContent(
     onNavigateToTrickyStore: () -> Unit = {},
     onNavigateToPlayIntegrityFix: () -> Unit = {},
     onNavigateToGameSpoofing: () -> Unit = {},
+    onNavigateToAdBlock: () -> Unit = {},
 ) {
     val context = LocalContext.current
 
@@ -218,6 +224,14 @@ private fun EssentialsContent(
                     title = stringResource(R.string.no_storage_restrict_title),
                     summary = stringResource(R.string.no_storage_restrict_summary),
                     icon = Icons.Default.Folder,
+                )
+            }
+            item {
+                ClickablePreference(
+                    title = stringResource(R.string.system_adblock_title),
+                    summary = stringResource(R.string.system_adblock_summary),
+                    icon = Icons.Default.Shield,
+                    onClick = onNavigateToAdBlock,
                 )
             }
         }
