@@ -171,8 +171,8 @@ object FeatureRegistry {
             summaryRes = R.string.gamespace_summary,
             keywordsRes = R.string.keywords_gamespace,
             action = "android.intent.action.MAIN",
-            targetPackage = "io.chaldeaprjkt.gamespace",
-            targetClass = "io.chaldeaprjkt.gamespace.settings.SettingsActivity"
+            targetPackage = "com.android.axion.gamespace",
+            targetClass = "com.android.axion.gamespace.settings.SettingsActivity"
         ),
         PartFeature(
             key = "diagnostics_settings",
