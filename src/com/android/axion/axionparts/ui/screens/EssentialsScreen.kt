@@ -171,8 +171,8 @@ private fun EssentialsContent(
                             Intent().apply {
                                 component =
                                     ComponentName(
-                                        "io.chaldeaprjkt.gamespace",
-                                        "io.chaldeaprjkt.gamespace.settings.SettingsActivity",
+                                        "com.android.axion.gamespace",
+                                        "com.android.axion.gamespace.settings.SettingsActivity",
                                     )
                                 flags =
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
