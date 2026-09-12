@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">滑动和长按操作</string>
     <string name="three_finger_swipe">三指滑動</string>
     <string name="three_finger_swipe_summary">三指滑動時執行的動作</string>
-    <string name="three_finger_long_press">三指長按</string>
-    <string name="three_finger_long_press_summary">啟用三指長按手勢</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">停用按鈕截圖</string>
     <string name="disable_button_screenshot_summary">停用電源鍵 + 音量減鍵的截圖組合</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">播放/暫停音樂</string>
     <string name="gesture_action_flashlight">手電筒</string>
     <string name="gesture_action_screenshot">螢幕截圖</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">音量面板</string>
     <string name="gesture_action_clear_notifications">清除通知</string>
     <string name="gesture_action_notifications_panel">通知面板</string>
@@ -218,6 +219,9 @@
     <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">透過 GameSpace 功能最佳化你的遊戲體驗</string>
+    <!-- AxDiagnostics -->
+    <string name="diagnostics">AxDiagnostics</string>
+    <string name="diagnostics_summary">System information and hardware diagnostics</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">遊戲偽裝</string>
     <string name="game_spoofing_summary">針對特定遊戲偽裝裝置屬性</string>
@@ -286,6 +290,9 @@
     <string name="target_mode_auto">自動</string>
     <string name="target_mode_leaf_hack">Leaf？</string>
     <string name="target_mode_cert_gen">Gen！</string>
+    <!-- System AdBlock -->
+    <string name="system_adblock_title">System AdBlock</string>
+    <string name="system_adblock_summary">Block ads and trackers system-wide using high-performance local DNS filtering</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">設定建構指紋偽裝</string>
@@ -321,7 +328,29 @@
     <string name="performance">效能</string>
     <string name="performance_summary">CPU 增强，频率控制 &amp; GPU</string>
     <string name="background_manager">Background Manager</string>
-    <string name="background_manager_summary">Manage app freezing and background start limits</string>
+    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="kernel_manager">Kernel Manager</string>
+    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="ram_plus">RAM Plus</string>
+    <string name="ram_plus_summary">Extend available memory with internal storage</string>
+    <string name="ram_plus_configuration">Configuration</string>
+    <string name="ram_plus_size">RAM Plus size</string>
+    <string name="ram_plus_off">關閉</string>
+    <string name="ram_plus_size_gb">%1$d GB</string>
+    <string name="ram_plus_status">Current status</string>
+    <string name="ram_plus_active_size">Active: %1$d GB</string>
+    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_unsupported">Not supported on this device</string>
+    <string name="ram_plus_encryption_required">Storage encryption is required</string>
+    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
+    <string name="ram_plus_insufficient_space">Not enough free storage</string>
+    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
+    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
+    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_restart_title">Restart required</string>
+    <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
+    <string name="ram_plus_restart_now">Restart</string>
+    <string name="ram_plus_restart_later">稍後</string>
     <string name="background_manager_policy">Policy</string>
     <string name="background_manager_apps">應用程式</string>
     <string name="background_app_policy">App policy</string>
@@ -343,12 +372,14 @@
     <!-- CPU Clusters -->
     <string name="little_cluster">小核心叢集</string>
     <string name="big_cluster">大核心叢集</string>
+    <string name="cpu_cluster">CPU Cluster %1$d</string>
     <string name="prime_cluster">超大核心叢集</string>
     <string name="minimum_frequency">最低頻率</string>
     <string name="maximum_frequency">最高頻率</string>
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">圖形效能</string>
+    <string name="cpu_governor">CPU governor</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
@@ -536,6 +567,8 @@
     <string name="routines_set_brightness">设置亮度</string>
     <string name="routines_set_ringer_mode">设置响铃模式</string>
     <string name="routines_launch_app">启动应用</string>
+    <string name="routines_launch_app_freeform">Launch App in Freeform</string>
+    <string name="routines_launch_app_bubble">Launch App in Bubble</string>
     <string name="routines_send_broadcast">发布广播</string>
     <string name="routines_show_notification">显示通知</string>
     <string name="routines_delay">延迟</string>
@@ -588,6 +621,13 @@
     <string name="routines_location_near">位置近点</string>
     <string name="routines_sensor_camera">相機</string>
     <string name="routines_sensor_microphone">麥克風</string>
+    <string name="routines_nfc_tag">NFC Tag</string>
+    <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
+    <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
+    <string name="routines_nfc_scan_button">Scan Tag</string>
+    <string name="routines_nfc_scanning_status">Scanning… Place your NFC Tag against the back of your phone.</string>
+    <string name="routines_nfc_scan_success">Scanned tag: %1$s</string>
+    <string name="routines_nfc_disabled">NFC is disabled. Please enable it in Settings.</string>
     <string name="routines_block">禁用</string>
     <string name="routines_unblock">解禁</string>
     <string name="routines_play_sound">播放声音</string>
@@ -643,4 +683,5 @@
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
+    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>

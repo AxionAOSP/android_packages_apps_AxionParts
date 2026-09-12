@@ -84,7 +84,7 @@
     <string name="render_style_summary">Выберите визуальный стиль визуализатора</string>
     <string name="style_bars">Полосы</string>
     <string name="style_fading_blocks">Затухающие блоки</string>
-    <string name="style_solid_line">Solid Line</string>
+    <string name="style_solid_line"></string>
     <string name="style_center_mirror">Center Mirror</string>
     <string name="color_mode_title">Режим цвета</string>
     <string name="visualizer_color_summary">Настройка цвета визуализатора</string>
@@ -120,7 +120,7 @@
     <string name="screen_off_aod_summary">Оставить AOD активным при выключении экрана</string>
     <string name="screen_off_aod_duration">Длительность работы активного экрана</string>
     <string name="screen_off_aod_duration_summary">How long to keep AOD visible after screen off. Set to 0 to disable</string>
-    <string name="seconds_short">s</string>
+    <string name="seconds_short">с</string>
     <string name="screen_off_animation">Анимация выключения экрана</string>
     <string name="screen_off_animation_summary">Анимация перехода на AOD</string>
     <!-- UI Features -->
@@ -159,7 +159,7 @@
     <string name="three_finger_swipe">Жест тремя пальцами</string>
     <string name="three_finger_swipe_summary">Действие при жесте тремя пальцами</string>
     <string name="three_finger_long_press">Долгое нажатие тремя пальцами</string>
-    <string name="three_finger_long_press_summary">Включить жест долгого нажатия тремя пальцами</string>
+    <string name="three_finger_long_press_summary">Коснитесь и удерживайте три пальца на экране, чтобы сделать скриншот выбранной области</string>
     <string name="disable_button_screenshot">Отключить скриншот кнопками</string>
     <string name="disable_button_screenshot_summary">Отключить комбинацию кнопок питания + громкость вниз</string>
     <!-- Doze Pulse -->
@@ -187,6 +187,7 @@
     <string name="gesture_action_play_pause">Воспроизведение/Пауза</string>
     <string name="gesture_action_flashlight">Фонарик</string>
     <string name="gesture_action_screenshot">Скриншот</string>
+    <string name="gesture_action_partial_screenshot">Скриншот выбранной области</string>
     <string name="gesture_action_volume_panel">Панель громкости</string>
     <string name="gesture_action_clear_notifications">Очистить уведомления</string>
     <string name="gesture_action_notifications_panel">Панель уведомлений</string>
@@ -218,13 +219,16 @@
     <!-- GameSpace -->
     <string name="gamespace">Игровое пространство</string>
     <string name="gamespace_summary">Оптимизация игрового опыта с функциями GameSpace</string>
+    <!-- AxDiagnostics -->
+    <string name="diagnostics">Диагностика</string>
+    <string name="diagnostics_summary">Информация о системе и аппаратная диагностика</string>
     <!-- Game Spoofing -->
     <string name="game_spoofing">Подмена устройства для игр</string>
     <string name="game_spoofing_summary">Подмена свойств устройства для конкретных игр</string>
     <string name="app_spoofing">Подмена приложения</string>
     <string name="apps_configured">Настроено приложений: %1$d</string>
     <string name="no_apps_configured">Приложения не настроены</string>
-    <string name="configured_apps">Configured apps</string>
+    <string name="configured_apps">Настроенные приложения</string>
     <string name="no_apps_configured_empty">Приложения не настроены</string>
     <string name="add_apps_to_spoof">Добавьте приложения для подмены свойств устройства</string>
     <string name="configuration_saved">Конфигурация сохранена</string>
@@ -286,6 +290,9 @@
     <string name="target_mode_auto">Авто</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- System AdBlock -->
+    <string name="system_adblock_title">System AdBlock</string>
+    <string name="system_adblock_summary">Block ads and trackers system-wide using high-performance local DNS filtering</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Исправление Play Integrity</string>
     <string name="play_integrity_fix_summary">Настройка подмены отпечатка сборки</string>
@@ -315,16 +322,38 @@
     <string name="ignore_window_secure">Игнорировать защиту окна</string>
     <string name="ignore_window_secure_summary">Разрешить скриншоты и запись экрана во всех приложениях</string>
     <!-- No storage restrict -->
-    <string name="no_storage_restrict_title">No storage restrict</string>
-    <string name="no_storage_restrict_summary">Remove the restriction when selecting folders through Storage Access Framework. Can be convenient in some cases but may lead to privacy leaks.</string>
+    <string name="no_storage_restrict_title">Убрать ограничения хранилища</string>
+    <string name="no_storage_restrict_summary">Убрать ограничение на выбор папок через Storage Access Framework. Это может быть удобно в некоторых случаях, но может привести к утечке конфиденциальной информации.</string>
     <!-- Performance Screen -->
     <string name="performance">Производительность</string>
     <string name="performance_summary">Ускорение ЦП, контроль частоты &amp; GPU</string>
     <string name="background_manager">Background Manager</string>
-    <string name="background_manager_summary">Manage app freezing and background start limits</string>
-    <string name="background_manager_policy">Policy</string>
+    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="kernel_manager">Менеджер ядра</string>
+    <string name="kernel_manager_summary">Настроить лимиты частоты CPU и GPU</string>
+    <string name="ram_plus">RAM Plus</string>
+    <string name="ram_plus_summary">Расширить Ram за счет внутренний памяти</string>
+    <string name="ram_plus_configuration">Конфигурация</string>
+    <string name="ram_plus_size">Размер RAM Plus</string>
+    <string name="ram_plus_off">Отключены</string>
+    <string name="ram_plus_size_gb">%1$d ГБ</string>
+    <string name="ram_plus_status">Текущее состояние</string>
+    <string name="ram_plus_active_size">Активно: %1$d ГБ</string>
+    <string name="ram_plus_restart_pending">Выбранный размер будет применен после перезапуска</string>
+    <string name="ram_plus_unsupported">Не поддерживается на этом устройстве</string>
+    <string name="ram_plus_encryption_required">Требуется шифрование хранилища</string>
+    <string name="ram_plus_zram_not_ready">Zram не был готов во время установки</string>
+    <string name="ram_plus_insufficient_space">Недостаточно свободного места</string>
+    <string name="ram_plus_priority_error">RAM Plus не может быть помещен после zram</string>
+    <string name="ram_plus_setup_failed">Сбой установки RAM Plus</string>
+    <string name="ram_plus_warning">RAM Plus использует файл подкачки в памяти устройства. Внутреннее хранилище медленнее, чем физическая ОЗУ и получает дополнительные записи.</string>
+    <string name="ram_plus_restart_title">Требуется перезагрузка</string>
+    <string name="ram_plus_restart_message">Перезапустите устройство, чтобы применить размер RAM Plus.</string>
+    <string name="ram_plus_restart_now">Перезагрузка</string>
+    <string name="ram_plus_restart_later">Позже</string>
+    <string name="background_manager_policy">Правила</string>
     <string name="background_manager_apps">Приложения</string>
-    <string name="background_app_policy">App policy</string>
+    <string name="background_app_policy">Политика приложений</string>
     <string name="background_app_policy_summary">Choose how strictly background apps are handled</string>
     <string name="background_app_policy_normal">Нормальный</string>
     <string name="background_app_policy_aggressive">Aggressive</string>
@@ -343,12 +372,14 @@
     <!-- CPU Clusters -->
     <string name="little_cluster">Малый кластер</string>
     <string name="big_cluster">Большой кластер</string>
+    <string name="cpu_cluster">CPU Cluster %1$d</string>
     <string name="prime_cluster">Главный кластер</string>
     <string name="minimum_frequency">Минимальная частота</string>
     <string name="maximum_frequency">Максимальная частота</string>
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Графическая производительность</string>
+    <string name="cpu_governor">CPU governor</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d МГц</string>
     <!-- Quick Settings Tile -->
@@ -536,6 +567,8 @@
     <string name="routines_set_brightness">Настройка яркости</string>
     <string name="routines_set_ringer_mode">Задать режим звонка</string>
     <string name="routines_launch_app">Запустить приложение</string>
+    <string name="routines_launch_app_freeform">Launch App in Freeform</string>
+    <string name="routines_launch_app_bubble">Launch App in Bubble</string>
     <string name="routines_send_broadcast">Отправить трансляцию</string>
     <string name="routines_show_notification">Показывать уведомления</string>
     <string name="routines_delay">Задержка</string>
@@ -588,6 +621,13 @@
     <string name="routines_location_near">Расположение рядом</string>
     <string name="routines_sensor_camera">Камера</string>
     <string name="routines_sensor_microphone">Микрофон</string>
+    <string name="routines_nfc_tag">NFC Tag</string>
+    <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
+    <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
+    <string name="routines_nfc_scan_button">Scan Tag</string>
+    <string name="routines_nfc_scanning_status">Scanning… Place your NFC Tag against the back of your phone.</string>
+    <string name="routines_nfc_scan_success">Scanned tag: %1$s</string>
+    <string name="routines_nfc_disabled">NFC is disabled. Please enable it in Settings.</string>
     <string name="routines_block">Заблокировать</string>
     <string name="routines_unblock">Разблокировать</string>
     <string name="routines_play_sound">Play Sound</string>
@@ -652,4 +692,5 @@
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
+    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>
