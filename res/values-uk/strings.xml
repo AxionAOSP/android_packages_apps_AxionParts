@@ -7,7 +7,7 @@
     <string name="cancel">Скасувати</string>
     <string name="save">Зберегти</string>
     <string name="delete">Видалити</string>
-    <string name="remove">Видалити</string>
+    <string name="remove">Вилучити</string>
     <string name="add">Додати</string>
     <string name="edit">Редагувати</string>
     <string name="replace">Замінити</string>
@@ -290,6 +290,9 @@
     <string name="target_mode_auto">Авто</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <!-- System AdBlock -->
+    <string name="system_adblock_title">System AdBlock</string>
+    <string name="system_adblock_summary">Block ads and trackers system-wide using high-performance local DNS filtering</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Налаштування підміни відбитка збірки</string>
