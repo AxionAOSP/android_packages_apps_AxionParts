@@ -290,6 +290,9 @@
     <string name="target_mode_auto">Otomatis</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Cert Gen !</string>
+    <!-- System AdBlock -->
+    <string name="system_adblock_title">System AdBlock</string>
+    <string name="system_adblock_summary">Block ads and trackers system-wide using high-performance local DNS filtering</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Konfigurasi pemalsuan identitas</string>
