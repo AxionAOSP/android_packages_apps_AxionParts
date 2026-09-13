@@ -48,10 +48,10 @@
     <string name="enable_edge_light">Abilita Edge Light</string>
     <string name="edge_light_summary">Mostra effetti di luce sui bordi dello schermo quando ricevi notifiche</string>
     <string name="edge_light_appearance">Aspetto</string>
-    <string name="edge_light_spread">Glow spread</string>
-    <string name="edge_light_spread_summary">How far inward the glow extends from the edge</string>
-    <string name="edge_light_intensity">Glow intensity</string>
-    <string name="edge_light_intensity_summary">Peak brightness of the glow effect</string>
+    <string name="edge_light_spread">Estensione del bagliore</string>
+    <string name="edge_light_spread_summary">Quanto si estende verso l\'interno l\'effetto luminoso dal bordo</string>
+    <string name="edge_light_intensity">Intensità del bagliore</string>
+    <string name="edge_light_intensity_summary">Luminosità massima dell\'effetto</string>
     <string name="color_mode">Modalità colore</string>
     <string name="notification_accent">Accento notifica</string>
     <string name="custom_color">Colore personalizzato</string>
