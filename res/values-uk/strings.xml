@@ -290,9 +290,6 @@
     <string name="target_mode_auto">Авто</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
-    <!-- System AdBlock -->
-    <string name="system_adblock_title">System AdBlock</string>
-    <string name="system_adblock_summary">Block ads and trackers system-wide using high-performance local DNS filtering</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Налаштування підміни відбитка збірки</string>
@@ -432,6 +429,8 @@
     <string name="dynamic_bar_enable_summary">Показує динамічну плашку в рядку стану для подій у реальному часі</string>
     <string name="dynamic_bar_keyguard_enable">Плашка на екрані блокування</string>
     <string name="dynamic_bar_keyguard_enable_summary">Показувати плашку динамічної панелі на заблокованому екрані з кнопками керування та швидкими діями</string>
+    <string name="dynamic_bar_keyguard_hide_media">Hide lock screen media player</string>
+    <string name="dynamic_bar_keyguard_hide_media_summary">Hide the default lock screen media player when the Dynamic Bar chip is active</string>
     <string name="dynamic_bar_events">Події</string>
     <string name="dynamic_bar_events_summary">Виберіть, які події з’являтимуться в динамічній панелі</string>
     <string name="dynamic_bar_event_audio_recording">Аудіозапис</string>
