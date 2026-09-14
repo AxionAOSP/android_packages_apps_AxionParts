@@ -290,9 +290,6 @@
     <string name="target_mode_auto">자동</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
-    <!-- System AdBlock -->
-    <string name="system_adblock_title">System AdBlock</string>
-    <string name="system_adblock_summary">Block ads and trackers system-wide using high-performance local DNS filtering</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity 수정</string>
     <string name="play_integrity_fix_summary">빌드 지문 스푸핑 구성</string>
@@ -432,6 +429,8 @@
     <string name="dynamic_bar_enable_summary">실시간 이벤트 발생 시 상태 표시줄에 다이나믹 칩을 표시합니다</string>
     <string name="dynamic_bar_keyguard_enable">잠금 화면 칩</string>
     <string name="dynamic_bar_keyguard_enable_summary">제어 기능과 빠른 동작이 포함된 Dynamic Bar 칩을 잠금 화면에 표시합니다</string>
+    <string name="dynamic_bar_keyguard_hide_media">Hide lock screen media player</string>
+    <string name="dynamic_bar_keyguard_hide_media_summary">Hide the default lock screen media player when the Dynamic Bar chip is active</string>
     <string name="dynamic_bar_events">이벤트</string>
     <string name="dynamic_bar_events_summary">Dynamic Bar에 나타날 이벤트를 선택하세요</string>
     <string name="dynamic_bar_event_audio_recording">오디오 녹음</string>
