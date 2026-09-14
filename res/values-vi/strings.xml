@@ -290,9 +290,6 @@
     <string name="target_mode_auto">Tự động</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
-    <!-- System AdBlock -->
-    <string name="system_adblock_title">System AdBlock</string>
-    <string name="system_adblock_summary">Block ads and trackers system-wide using high-performance local DNS filtering</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Sửa lỗi Play Integrity</string>
     <string name="play_integrity_fix_summary">Cấu hình giả lập vân tay bản dựng (build fingerprint)</string>
@@ -432,6 +429,8 @@
     <string name="dynamic_bar_enable_summary">Show a dynamic chip on the status bar for live events</string>
     <string name="dynamic_bar_keyguard_enable">Lock screen chip</string>
     <string name="dynamic_bar_keyguard_enable_summary">Show the Dynamic Bar chip on the lock screen with controls and quick actions</string>
+    <string name="dynamic_bar_keyguard_hide_media">Hide lock screen media player</string>
+    <string name="dynamic_bar_keyguard_hide_media_summary">Hide the default lock screen media player when the Dynamic Bar chip is active</string>
     <string name="dynamic_bar_events">Events</string>
     <string name="dynamic_bar_events_summary">Choose which events appear in the Dynamic Bar</string>
     <string name="dynamic_bar_event_audio_recording">Audio Recording</string>
