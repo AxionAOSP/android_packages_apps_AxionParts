@@ -429,8 +429,8 @@
     <string name="dynamic_bar_enable_summary">Mostrar um chip dinâmico na barra de status para eventos ao vivo</string>
     <string name="dynamic_bar_keyguard_enable">Chip de tela de bloqueio</string>
     <string name="dynamic_bar_keyguard_enable_summary">Mostrar o chip de barra dinâmica na tela de bloqueio com controles e ações rápidas</string>
-    <string name="dynamic_bar_keyguard_hide_media">Hide lock screen media player</string>
-    <string name="dynamic_bar_keyguard_hide_media_summary">Hide the default lock screen media player when the Dynamic Bar chip is active</string>
+    <string name="dynamic_bar_keyguard_hide_media">Ocultar reprodutor de mídia de tela de bloqueio</string>
+    <string name="dynamic_bar_keyguard_hide_media_summary">Esconder o player de mídia de tela de bloqueio padrão quando o chip de barra dinâmica estiver ativo</string>
     <string name="dynamic_bar_events">Eventos</string>
     <string name="dynamic_bar_events_summary">Escolha quais eventos aparecem na Barra Dinâmica</string>
     <string name="dynamic_bar_event_audio_recording">Gravação de Áudio</string>
