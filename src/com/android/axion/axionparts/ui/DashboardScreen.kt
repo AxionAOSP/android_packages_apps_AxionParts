@@ -443,6 +443,7 @@ private fun DetailScreen(
                 onNavigateToAppPicker = onNavigateToAppPicker,
             )
         "multitasking" -> MultitaskingScreen(onBackClick = onBackClick)
+        "dual_apps" -> DualAppsScreen(onBackClick = onBackClick)
     }
 }
 
@@ -503,6 +504,7 @@ private fun DetailPaneContent(
                 onNavigateToAppPicker = onNavigateToAppPicker,
             )
         "multitasking" -> MultitaskingScreen(onBackClick = onClose)
+        "dual_apps" -> DualAppsScreen(onBackClick = onClose)
     }
 }
 

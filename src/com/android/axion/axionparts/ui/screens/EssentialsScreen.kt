@@ -35,6 +35,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CopyAll
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Gamepad
@@ -97,6 +98,7 @@ fun EssentialsScreen(
                         onNavigateToTrickyStore = { currentSubScreen = "trickystore" },
                         onNavigateToPlayIntegrityFix = { currentSubScreen = "playintegrityfix" },
                         onNavigateToGameSpoofing = { currentSubScreen = "gamespoofing" },
+                        onNavigateToDualApps = { currentSubScreen = "dual_apps" },
                     )
                 }
             }
@@ -109,6 +111,9 @@ fun EssentialsScreen(
             "gamespoofing" -> {
                 GameSpoofingScreen(onBackClick = { currentSubScreen = null })
             }
+            "dual_apps" -> {
+                DualAppsScreen(onBackClick = { currentSubScreen = null })
+            }
         }
     }
 }
@@ -120,14 +125,29 @@ private fun EssentialsContent(
     onNavigateToTrickyStore: () -> Unit = {},
     onNavigateToPlayIntegrityFix: () -> Unit = {},
     onNavigateToGameSpoofing: () -> Unit = {},
+    onNavigateToDualApps: () -> Unit = {},
 ) {
     val context = LocalContext.current
+    val icons = Icons.Default
 
     Column(
         modifier =
             modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp)
     ) {
         Spacer(modifier = Modifier.height(8.dp))
+
+        PreferenceGroup(title = stringResource(R.string.dual_apps)) {
+            item {
+                ClickablePreference(
+                    title = stringResource(R.string.dual_apps),
+                    summary = stringResource(R.string.dual_apps_summary),
+                    icon = icons.CopyAll,
+                    onClick = onNavigateToDualApps,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
 
         PreferenceGroup(title = stringResource(R.string.essential_notifications)) {
             item { EssentialAppsPreference(onNavigateToAppPicker = onNavigateToAppPicker) }

@@ -421,6 +421,20 @@
     <string name="edge_features">Edge Features</string>
     <string name="sidebar">Sidebar</string>
     <string name="sidebar_summary">Quick access to your favorite apps from the edge</string>
+
+    <!-- Dual Apps Screen -->
+    <string name="dual_apps">Dual Apps</string>
+    <string name="dual_apps_summary">Clone apps to use multiple accounts simultaneously</string>
+    <string name="dual_apps_recommended">Recommended apps</string>
+    <string name="dual_apps_all_apps">Available apps</string>
+    <string name="dual_apps_no_apps">No cloneable apps found</string>
+    <string name="dual_apps_delete_dialog_title">Delete cloned app?</string>
+    <string name="dual_apps_delete_dialog_message">All data and accounts for this cloned app will be permanently deleted.</string>
+    <string name="dual_apps_delete_space_dialog_title">Delete Dual Space?</string>
+    <string name="dual_apps_delete_space_dialog_message">This will remove all cloned apps and erase all Dual Apps data.</string>
+    <string name="dual_apps_clear_all">Clear Dual Space</string>
+    <string name="dual_apps_creating">Setting up Dual Space…</string>
+    <string name="dual_apps_search_hint">Search apps</string>
     
     <!-- PC Mode Settings -->
     <string name="pc_mode">PC Mode</string>
