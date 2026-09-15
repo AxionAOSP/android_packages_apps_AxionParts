@@ -16,8 +16,8 @@
 
 package com.android.axion.axionparts.ui.screens
 
-import android.os.AxKernelControl
-import android.os.AxKernelManager
+import com.android.internal.kernel.AxKernelControl
+import com.android.internal.kernel.AxKernelManager
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -48,6 +48,8 @@ import com.android.axion.compose.preferences.LocalPreferencePosition
 import com.android.axion.compose.preferences.PreferenceGroup
 import com.android.axion.compose.preferences.SettingsType
 import com.android.axion.compose.preferences.preferenceShape
+import com.android.axion.compose.preferences.rememberSettingInt
+import com.android.axion.compose.preferences.rememberSettingString
 import com.android.axion.compose.preferences.rememberSettingsFlow
 import com.android.axion.compose.scaffold.AxionScaffold
 
@@ -104,20 +106,23 @@ private fun KernelManagerContent(modifier: Modifier = Modifier) {
     val kernelManager = remember { AxKernelManager() }
     var kernelControls by remember { mutableStateOf<List<AxKernelControl>>(emptyList()) }
     val refreshKernelControls = {
-        kernelControls = kernelManager.getControls()
+        kernelControls = AxKernelManager.getControls()
     }
 
-    LaunchedEffect(kernelManager) {
+    LaunchedEffect(Unit) {
         refreshKernelControls()
     }
 
-    val clusterCount = remember(flow) { flow.getInt(CPU_CLUSTER_COUNT_KEY, 0) }
+    val clusterCount by rememberSettingInt(CPU_CLUSTER_COUNT_KEY, SettingsType.SECURE, 0)
+    val smallFreqs by rememberSettingString("ax_cpu_small_freqs", SettingsType.SECURE, "")
+    val bigFreqs by rememberSettingString("ax_cpu_big_freqs", SettingsType.SECURE, "")
+    val primeFreqs by rememberSettingString("ax_cpu_prime_freqs", SettingsType.SECURE, "")
     val legacyAvailableFreqs =
-        remember(flow) {
+        remember(smallFreqs, bigFreqs, primeFreqs) {
             listOf(
-                flow.getString("ax_cpu_small_freqs").toFrequencyList(),
-                flow.getString("ax_cpu_big_freqs").toFrequencyList(),
-                flow.getString("ax_cpu_prime_freqs").toFrequencyList(),
+                smallFreqs.toFrequencyList(),
+                bigFreqs.toFrequencyList(),
+                primeFreqs.toFrequencyList(),
             )
         }
     val dynamicAvailableFreqs =
@@ -207,8 +212,7 @@ private fun ClusterGroup(
                 label = stringResource(R.string.minimum_frequency),
                 availableFreqs = cluster.availableFreqs,
                 maxFreq = cluster.maxFreq,
-                defaultValue = cluster.availableFreqs.minOrNull() ?: 0,
-                value = cluster.minControl?.currentValue,
+                defaultValue = cluster.availableFreqs.firstOrNull() ?: 0,
                 onCommit =
                     cluster.minControl?.let { control ->
                         { value: Int ->
@@ -224,7 +228,6 @@ private fun ClusterGroup(
                 availableFreqs = cluster.availableFreqs,
                 maxFreq = cluster.maxFreq,
                 defaultValue = cluster.maxFreq,
-                value = cluster.maxControl?.currentValue,
                 onCommit =
                     cluster.maxControl?.let { control ->
                         { value: Int ->
@@ -253,9 +256,11 @@ private fun KernelFrequencyPreference(
     availableFreqs: List<Int>,
     maxFreq: Int,
     defaultValue: Int,
-    value: Int?,
     onCommit: ((Int) -> Unit)?,
 ) {
+    val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
+    val persistedValue by rememberSettingInt(settingKey, SettingsType.SECURE, defaultValue)
+
     Column(
         modifier =
             Modifier.fillMaxWidth()
@@ -271,8 +276,11 @@ private fun KernelFrequencyPreference(
             max = maxFreq,
             interval = 100000,
             defaultValue = defaultValue,
-            value = value,
-            onValueCommitted = onCommit,
+            value = persistedValue,
+            onValueCommitted = { selectedValue ->
+                secureFlow.putInt(settingKey, selectedValue)
+                onCommit?.invoke(selectedValue)
+            },
         )
     }
 }
@@ -365,7 +373,7 @@ private fun setKernelControl(
     value: Int,
     onKernelControlsChanged: () -> Unit,
 ) {
-    if (kernelManager.setControlValue(control.id, value)) {
+    if (AxKernelManager.setControlValue(control.id, value)) {
         onKernelControlsChanged()
     }
 }
@@ -388,10 +396,7 @@ private fun GpuGroup(
                 availableFreqs = availableFreqs,
                 maxFreq = maxFreq,
                 defaultValue = minControl.defaultValue,
-                value = minControl.currentValue,
-                onCommit = { value ->
-                    setKernelControl(kernelManager, minControl, value, onKernelControlsChanged)
-                },
+                onCommit = { setKernelControl(kernelManager, minControl, it, onKernelControlsChanged) },
             )
         }
         item {
@@ -401,10 +406,7 @@ private fun GpuGroup(
                 availableFreqs = availableFreqs,
                 maxFreq = maxFreq,
                 defaultValue = maxControl.defaultValue,
-                value = maxControl.currentValue,
-                onCommit = { value ->
-                    setKernelControl(kernelManager, maxControl, value, onKernelControlsChanged)
-                },
+                onCommit = { setKernelControl(kernelManager, maxControl, it, onKernelControlsChanged) },
             )
         }
     }
@@ -421,7 +423,10 @@ private fun GovernorPreference(
     if (values.isEmpty() || labels.isEmpty()) {
         return
     }
-    val currentLabel = labels.getOrNull(values.indexOf(control.currentValue)) ?: labels.first()
+    val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
+    val savedGov by rememberSettingInt(control.id, SettingsType.SECURE, control.defaultValue)
+    val currentGov = if (savedGov in values) savedGov else control.defaultValue
+    val currentLabel = labels.getOrNull(values.indexOf(currentGov)) ?: labels.first()
     ListPreference(
         title = stringResource(R.string.cpu_governor),
         summary = currentLabel,
@@ -429,9 +434,11 @@ private fun GovernorPreference(
             values.mapIndexed { index, value ->
                 value.toString() to (labels.getOrNull(index) ?: value.toString())
             },
-        value = control.currentValue.toString(),
+        value = currentGov.toString(),
         onValueChange = { value ->
-            setKernelControl(kernelManager, control, value.toInt(), onKernelControlsChanged)
+            val govIndex = value.toInt()
+            secureFlow.putInt(control.id, govIndex)
+            setKernelControl(kernelManager, control, govIndex, onKernelControlsChanged)
         },
     )
 }
