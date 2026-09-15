@@ -36,6 +36,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CopyAll
+import androidx.compose.material.icons.filled.FilterDrama
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Gamepad
@@ -160,6 +161,7 @@ private fun EssentialsContent(
                 ClickablePreference(
                     title = stringResource(R.string.quicklook),
                     summary = stringResource(R.string.quicklook_settings_summary),
+                    icon = icons.FilterDrama,
                     showExternalIcon = true,
                     onClick = {
                         val intent = Intent("com.android.axion.quicklook.SETTINGS").apply {
