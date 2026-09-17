@@ -324,6 +324,16 @@
     <!-- Performance Screen -->
     <string name="performance">성능</string>
     <string name="performance_summary">CPU 부스트, 주파수 제어 및 GPU</string>
+    <string name="app_optimization_title">App Optimization</string>
+    <string name="app_optimization_summary">Compile and optimize applications for faster launch speed and smoother performance</string>
+    <string name="app_optimization_desc_idle">Application compilation makes apps launch faster. The system automatically optimizes apps while charging idle.</string>
+    <string name="app_optimization_desc_running">App Optimization (AOT Pre-compile) compiles apps to native code. Your device may get warm and experience minor lag during compilation.</string>
+    <string name="app_optimization_desc_done">Application optimization complete. All eligible apps have been compiled for faster performance.</string>
+    <string name="app_optimization_start">Start Optimization</string>
+    <string name="app_optimization_optimizing">Optimizing…</string>
+    <string name="app_optimization_completed">Optimization Complete</string>
+    <string name="app_optimization_no_apps">No applications need optimization</string>
+    <string name="app_optimization_pending_apps">%1$d apps to optimize</string>
     <string name="background_manager">백그라운드 관리자</string>
     <string name="background_manager_summary">앱 멈춤, 유지, 백그라운드 시작 제한 관리하기</string>
     <string name="kernel_manager">커널 관리자</string>
@@ -389,6 +399,19 @@
     <string name="edge_features">가장자리 기능</string>
     <string name="sidebar">사이드바</string>
     <string name="sidebar_summary">가장자리에서 즐겨찾는 앱에 빠르게 접근</string>
+    <!-- Dual Apps Screen -->
+    <string name="dual_apps">Dual Apps</string>
+    <string name="dual_apps_summary">Clone apps to use multiple accounts simultaneously</string>
+    <string name="dual_apps_recommended">Recommended apps</string>
+    <string name="dual_apps_all_apps">Available apps</string>
+    <string name="dual_apps_no_apps">No cloneable apps found</string>
+    <string name="dual_apps_delete_dialog_title">Delete cloned app?</string>
+    <string name="dual_apps_delete_dialog_message">All data and accounts for this cloned app will be permanently deleted.</string>
+    <string name="dual_apps_delete_space_dialog_title">Delete Dual Space?</string>
+    <string name="dual_apps_delete_space_dialog_message">This will remove all cloned apps and erase all Dual Apps data.</string>
+    <string name="dual_apps_clear_all">Clear Dual Space</string>
+    <string name="dual_apps_creating">Setting up Dual Space…</string>
+    <string name="dual_apps_search_hint">앱 검색</string>
     <!-- PC Mode Settings -->
     <string name="pc_mode">PC 모드</string>
     <string name="pc_mode_settings">PC 모드 설정</string>
