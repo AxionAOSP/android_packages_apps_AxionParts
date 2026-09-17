@@ -324,16 +324,16 @@
     <!-- Performance Screen -->
     <string name="performance">Desempenho</string>
     <string name="performance_summary">Otimização de CPU, controle de frequência &amp; GPU</string>
-    <string name="app_optimization_title">App Optimization</string>
-    <string name="app_optimization_summary">Compile and optimize applications for faster launch speed and smoother performance</string>
-    <string name="app_optimization_desc_idle">Application compilation makes apps launch faster. The system automatically optimizes apps while charging idle.</string>
-    <string name="app_optimization_desc_running">App Optimization (AOT Pre-compile) compiles apps to native code. Your device may get warm and experience minor lag during compilation.</string>
-    <string name="app_optimization_desc_done">Application optimization complete. All eligible apps have been compiled for faster performance.</string>
-    <string name="app_optimization_start">Start Optimization</string>
-    <string name="app_optimization_optimizing">Optimizing…</string>
-    <string name="app_optimization_completed">Optimization Complete</string>
-    <string name="app_optimization_no_apps">No applications need optimization</string>
-    <string name="app_optimization_pending_apps">%1$d apps to optimize</string>
+    <string name="app_optimization_title">Otimização de aplicativos</string>
+    <string name="app_optimization_summary">Compilar e otimizar aplicativos para uma velocidade de lançamento mais rápida e desempenho mais suave</string>
+    <string name="app_optimization_desc_idle">A compilação do aplicativo faz com que os aplicativos sejam iniciados mais rapidamente. O sistema automaticamente otimiza aplicativos durante o carregamento do sistema.</string>
+    <string name="app_optimization_desc_running">A Otimização de aplicativos (AOT Pré-compilado) compila aplicativos para código nativo. Seu dispositivo pode aquecer e experimentar um pequeno lag durante a compilação.</string>
+    <string name="app_optimization_desc_done">Otimização do aplicativo concluída. Todos os aplicativos elegíveis foram compilados para um desempenho mais rápido.</string>
+    <string name="app_optimization_start">Iniciar Otimização</string>
+    <string name="app_optimization_optimizing">Otimizando…</string>
+    <string name="app_optimization_completed">Otimização Completa</string>
+    <string name="app_optimization_no_apps">Nenhum aplicativo precisa de otimização</string>
+    <string name="app_optimization_pending_apps">Apps %1$d para otimizar</string>
     <string name="background_manager">Gerenciador de processos em segundo plano</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
     <string name="kernel_manager">Gerenciador de Kernel</string>
@@ -400,17 +400,17 @@
     <string name="sidebar">Barra lateral</string>
     <string name="sidebar_summary">Acesso rápido aos seus aplicativos favoritos pela borda</string>
     <!-- Dual Apps Screen -->
-    <string name="dual_apps">Dual Apps</string>
-    <string name="dual_apps_summary">Clone apps to use multiple accounts simultaneously</string>
-    <string name="dual_apps_recommended">Recommended apps</string>
-    <string name="dual_apps_all_apps">Available apps</string>
-    <string name="dual_apps_no_apps">No cloneable apps found</string>
-    <string name="dual_apps_delete_dialog_title">Delete cloned app?</string>
-    <string name="dual_apps_delete_dialog_message">All data and accounts for this cloned app will be permanently deleted.</string>
-    <string name="dual_apps_delete_space_dialog_title">Delete Dual Space?</string>
-    <string name="dual_apps_delete_space_dialog_message">This will remove all cloned apps and erase all Dual Apps data.</string>
-    <string name="dual_apps_clear_all">Clear Dual Space</string>
-    <string name="dual_apps_creating">Setting up Dual Space…</string>
+    <string name="dual_apps">Apps clonados</string>
+    <string name="dual_apps_summary">Clonar apps para usar várias contas simultaneamente</string>
+    <string name="dual_apps_recommended">Aplicativos recomendados</string>
+    <string name="dual_apps_all_apps">Aplicativos disponíveis</string>
+    <string name="dual_apps_no_apps">Nenhum aplicativo clonável encontrado</string>
+    <string name="dual_apps_delete_dialog_title">Excluir o aplicativo clonado?</string>
+    <string name="dual_apps_delete_dialog_message">Todos os dados e contas deste app clonado serão excluídos permanentemente.</string>
+    <string name="dual_apps_delete_space_dialog_title">Excluir Espaço Duplo?</string>
+    <string name="dual_apps_delete_space_dialog_message">Isto removerá todos os apps clonados e apagará todos os dados dos dual apps.</string>
+    <string name="dual_apps_clear_all">Limpar Espaço Duplo</string>
+    <string name="dual_apps_creating">Configurando o Espaço Duplo…</string>
     <string name="dual_apps_search_hint">Pesquisar apps</string>
     <!-- PC Mode Settings -->
     <string name="pc_mode">Modo PC</string>
