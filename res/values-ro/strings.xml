@@ -324,6 +324,16 @@
     <!-- Performance Screen -->
     <string name="performance">Performanță</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
+    <string name="app_optimization_title">App Optimization</string>
+    <string name="app_optimization_summary">Compile and optimize applications for faster launch speed and smoother performance</string>
+    <string name="app_optimization_desc_idle">Application compilation makes apps launch faster. The system automatically optimizes apps while charging idle.</string>
+    <string name="app_optimization_desc_running">App Optimization (AOT Pre-compile) compiles apps to native code. Your device may get warm and experience minor lag during compilation.</string>
+    <string name="app_optimization_desc_done">Application optimization complete. All eligible apps have been compiled for faster performance.</string>
+    <string name="app_optimization_start">Start Optimization</string>
+    <string name="app_optimization_optimizing">Optimizing…</string>
+    <string name="app_optimization_completed">Optimization Complete</string>
+    <string name="app_optimization_no_apps">No applications need optimization</string>
+    <string name="app_optimization_pending_apps">%1$d apps to optimize</string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
     <string name="kernel_manager">Kernel Manager</string>
@@ -389,6 +399,19 @@
     <string name="edge_features">Funcții Edge</string>
     <string name="sidebar">Bară laterală</string>
     <string name="sidebar_summary">Acces rapid la aplicațiile preferate de pe margine</string>
+    <!-- Dual Apps Screen -->
+    <string name="dual_apps">Dual Apps</string>
+    <string name="dual_apps_summary">Clone apps to use multiple accounts simultaneously</string>
+    <string name="dual_apps_recommended">Recommended apps</string>
+    <string name="dual_apps_all_apps">Available apps</string>
+    <string name="dual_apps_no_apps">No cloneable apps found</string>
+    <string name="dual_apps_delete_dialog_title">Delete cloned app?</string>
+    <string name="dual_apps_delete_dialog_message">All data and accounts for this cloned app will be permanently deleted.</string>
+    <string name="dual_apps_delete_space_dialog_title">Delete Dual Space?</string>
+    <string name="dual_apps_delete_space_dialog_message">This will remove all cloned apps and erase all Dual Apps data.</string>
+    <string name="dual_apps_clear_all">Clear Dual Space</string>
+    <string name="dual_apps_creating">Setting up Dual Space…</string>
+    <string name="dual_apps_search_hint">Caută aplicații</string>
     <!-- PC Mode Settings -->
     <string name="pc_mode">PC Mode</string>
     <string name="pc_mode_settings">PC Mode Settings</string>
