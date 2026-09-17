@@ -189,12 +189,15 @@
 
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
+    <string name="gesture_action_menu">Menu</string>
     <string name="gesture_action_app_switch">App switch</string>
     <string name="gesture_action_search">Search</string>
     <string name="gesture_action_voice_search">Voice search</string>
+    <string name="gesture_action_in_app_search">In-app search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
     <string name="gesture_action_last_app">Last app</string>
+    <string name="gesture_action_split_screen">Split screen</string>
     <string name="gesture_action_close_app">Close app</string>
     <string name="gesture_action_play_pause">Play/Pause music</string>
     <string name="gesture_action_flashlight">Flashlight</string>

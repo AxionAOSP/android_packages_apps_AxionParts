@@ -129,27 +129,33 @@ private fun GesturesMainContent(
 }
 
 @Composable
+private fun getGestureActions(): List<Pair<String, String>> =
+    listOf(
+        "0" to stringResource(R.string.gesture_action_nothing),
+        "1" to stringResource(R.string.gesture_action_menu),
+        "2" to stringResource(R.string.gesture_action_app_switch),
+        "3" to stringResource(R.string.gesture_action_search),
+        "4" to stringResource(R.string.gesture_action_voice_search),
+        "5" to stringResource(R.string.gesture_action_in_app_search),
+        "6" to stringResource(R.string.gesture_action_launch_camera),
+        "7" to stringResource(R.string.gesture_action_sleep),
+        "8" to stringResource(R.string.gesture_action_last_app),
+        "9" to stringResource(R.string.gesture_action_split_screen),
+        "10" to stringResource(R.string.gesture_action_close_app),
+        "11" to stringResource(R.string.gesture_action_play_pause),
+        "12" to stringResource(R.string.gesture_action_screenshot),
+        "13" to stringResource(R.string.gesture_action_partial_screenshot),
+        "14" to stringResource(R.string.gesture_action_flashlight),
+        "15" to stringResource(R.string.gesture_action_volume_panel),
+        "16" to stringResource(R.string.gesture_action_clear_notifications),
+        "17" to stringResource(R.string.gesture_action_notifications_panel),
+        "18" to stringResource(R.string.gesture_action_expand_qs),
+        "19" to stringResource(R.string.gesture_action_ringer_modes),
+    )
+
+@Composable
 private fun ShakeGesturesContent(modifier: Modifier = Modifier) {
-    val gestureActions =
-        listOf(
-            "0" to stringResource(R.string.gesture_action_nothing),
-            "2" to stringResource(R.string.gesture_action_app_switch),
-            "3" to stringResource(R.string.gesture_action_search),
-            "4" to stringResource(R.string.gesture_action_voice_search),
-            "6" to stringResource(R.string.gesture_action_launch_camera),
-            "7" to stringResource(R.string.gesture_action_sleep),
-            "8" to stringResource(R.string.gesture_action_last_app),
-            "10" to stringResource(R.string.gesture_action_close_app),
-            "11" to stringResource(R.string.gesture_action_play_pause),
-            "12" to stringResource(R.string.gesture_action_screenshot),
-            "13" to stringResource(R.string.gesture_action_partial_screenshot),
-            "14" to stringResource(R.string.gesture_action_flashlight),
-            "15" to stringResource(R.string.gesture_action_volume_panel),
-            "16" to stringResource(R.string.gesture_action_clear_notifications),
-            "17" to stringResource(R.string.gesture_action_notifications_panel),
-            "18" to stringResource(R.string.gesture_action_expand_qs),
-            "19" to stringResource(R.string.gesture_action_ringer_modes),
-        )
+    val gestureActions = getGestureActions()
 
     Column(
         modifier =
@@ -195,26 +201,7 @@ private fun ShakeGesturesContent(modifier: Modifier = Modifier) {
 
 @Composable
 private fun ThreeFingerGesturesContent(modifier: Modifier = Modifier) {
-    val gestureActions =
-        listOf(
-            "0" to stringResource(R.string.gesture_action_nothing),
-            "2" to stringResource(R.string.gesture_action_app_switch),
-            "3" to stringResource(R.string.gesture_action_search),
-            "4" to stringResource(R.string.gesture_action_voice_search),
-            "6" to stringResource(R.string.gesture_action_launch_camera),
-            "7" to stringResource(R.string.gesture_action_sleep),
-            "8" to stringResource(R.string.gesture_action_last_app),
-            "10" to stringResource(R.string.gesture_action_close_app),
-            "11" to stringResource(R.string.gesture_action_play_pause),
-            "12" to stringResource(R.string.gesture_action_screenshot),
-            "13" to stringResource(R.string.gesture_action_partial_screenshot),
-            "14" to stringResource(R.string.gesture_action_flashlight),
-            "15" to stringResource(R.string.gesture_action_volume_panel),
-            "16" to stringResource(R.string.gesture_action_clear_notifications),
-            "17" to stringResource(R.string.gesture_action_notifications_panel),
-            "18" to stringResource(R.string.gesture_action_expand_qs),
-            "19" to stringResource(R.string.gesture_action_ringer_modes),
-        )
+    val gestureActions = getGestureActions()
 
     Column(
         modifier =
