@@ -52,6 +52,7 @@ class DashboardActivity : ComponentActivity() {
             "com.android.axion.axionparts.action.ESSENTIALS" -> "essentials"
             "com.android.axion.axionparts.action.MULTITASKING" -> "multitasking"
             "com.android.axion.axionparts.action.DUAL_APPS" -> "dual_apps"
+            "com.android.axion.axionparts.ACTION_APP_OPTIMIZATION" -> "app_optimization"
             else -> null
         }
 

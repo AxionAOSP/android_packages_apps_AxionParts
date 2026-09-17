@@ -31,6 +31,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Sensors
+import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material.icons.outlined.Memory
 import androidx.compose.material3.Icon
@@ -56,6 +57,7 @@ fun PerformanceScreen(
             onBackClick = { onBackClick?.invoke() },
         ) { innerPadding ->
             PerformanceContent(
+                onAppOptimizationClick = { onNavigateToDetail("app_optimization") },
                 onBackgroundManagerClick = { onNavigateToDetail("background_manager") },
                 onKernelManagerClick = { onNavigateToDetail("kernel_manager") },
                 onRamPlusClick = { onNavigateToDetail("ram_plus") },
@@ -64,6 +66,7 @@ fun PerformanceScreen(
         }
     } else {
         PerformanceContent(
+            onAppOptimizationClick = { onNavigateToDetail("app_optimization") },
             onBackgroundManagerClick = { onNavigateToDetail("background_manager") },
             onKernelManagerClick = { onNavigateToDetail("kernel_manager") },
             onRamPlusClick = { onNavigateToDetail("ram_plus") },
@@ -74,6 +77,7 @@ fun PerformanceScreen(
 
 @Composable
 private fun PerformanceContent(
+    onAppOptimizationClick: () -> Unit,
     onBackgroundManagerClick: () -> Unit,
     onKernelManagerClick: () -> Unit,
     onRamPlusClick: () -> Unit,
@@ -89,33 +93,35 @@ private fun PerformanceContent(
     ) {
         Spacer(modifier = Modifier.height(8.dp))
 
+        val icons = Icons.Default
+        val outlinedIcons = Icons.Outlined
         Row(
             modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             FeatureCard(
-                title = stringResource(R.string.background_manager),
-                summary = stringResource(R.string.background_manager_summary),
-                onClick = onBackgroundManagerClick,
+                title = stringResource(R.string.app_optimization_title),
+                summary = stringResource(R.string.app_optimization_summary),
+                onClick = onAppOptimizationClick,
                 modifier = Modifier.weight(1f),
                 illustrationColor = MaterialTheme.colorScheme.primaryContainer,
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Apps,
+                    imageVector = icons.Speed,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onPrimaryContainer,
                     modifier = Modifier.size(36.dp),
                 )
             }
             FeatureCard(
-                title = stringResource(R.string.kernel_manager),
-                summary = stringResource(R.string.kernel_manager_summary),
-                onClick = onKernelManagerClick,
+                title = stringResource(R.string.background_manager),
+                summary = stringResource(R.string.background_manager_summary),
+                onClick = onBackgroundManagerClick,
                 modifier = Modifier.weight(1f),
                 illustrationColor = MaterialTheme.colorScheme.secondaryContainer,
             ) {
                 Icon(
-                    imageVector = Icons.Filled.Sensors,
+                    imageVector = outlinedIcons.Apps,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onSecondaryContainer,
                     modifier = Modifier.size(36.dp),
@@ -123,21 +129,43 @@ private fun PerformanceContent(
             }
         }
 
-        if (ramPlusSupported) {
-            Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
             FeatureCard(
-                title = stringResource(R.string.ram_plus),
-                summary = stringResource(R.string.ram_plus_summary),
-                onClick = onRamPlusClick,
-                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                title = stringResource(R.string.kernel_manager),
+                summary = stringResource(R.string.kernel_manager_summary),
+                onClick = onKernelManagerClick,
+                modifier = Modifier.weight(1f),
                 illustrationColor = MaterialTheme.colorScheme.tertiaryContainer,
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Memory,
+                    imageVector = icons.Sensors,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onTertiaryContainer,
                     modifier = Modifier.size(36.dp),
                 )
+            }
+            if (ramPlusSupported) {
+                FeatureCard(
+                    title = stringResource(R.string.ram_plus),
+                    summary = stringResource(R.string.ram_plus_summary),
+                    onClick = onRamPlusClick,
+                    modifier = Modifier.weight(1f),
+                    illustrationColor = MaterialTheme.colorScheme.primaryContainer,
+                ) {
+                    Icon(
+                        imageVector = outlinedIcons.Memory,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.size(36.dp),
+                    )
+                }
+            } else {
+                Spacer(modifier = Modifier.weight(1f))
             }
         }
 

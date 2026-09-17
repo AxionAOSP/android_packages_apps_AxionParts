@@ -424,6 +424,7 @@ private fun DetailScreen(
             )
         "kernel_manager" -> KernelManagerScreen(onBackClick = onBackClick)
         "ram_plus" -> RamPlusScreen(onBackClick = onBackClick)
+        "app_optimization" -> AppOptimizationScreen(onBackClick = onBackClick)
         "app_picker" ->
             ManagedAppPickerScreen(
                 titleRes = appPickerTitleRes,
