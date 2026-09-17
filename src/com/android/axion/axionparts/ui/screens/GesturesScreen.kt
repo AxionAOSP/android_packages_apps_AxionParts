@@ -163,7 +163,6 @@ private fun ShakeGesturesContent(modifier: Modifier = Modifier) {
                     settingKey = "shake_gestures_enabled",
                     title = stringResource(R.string.enable_shake_gestures),
                     summary = stringResource(R.string.shake_gestures_summary),
-                    icon = Icons.Filled.Vibration,
                     defaultValue = false,
                 )
             }
