@@ -225,18 +225,19 @@
     <!-- AxDiagnostics -->
     <string name="diagnostics">AxDiagnostics</string>
     <string name="diagnostics_summary">Інформація про систему та діагностика апаратного забезпечення</string>
-    <!-- Game Spoofing -->
-    <string name="game_spoofing">Підміна пристрою для ігор</string>
-    <string name="game_spoofing_summary">Підміна властивостей пристрою для конкретних ігор</string>
+    <!-- App Spoofing -->
+    <string name="game_spoofing">Підміна додатка</string>
+    <string name="game_spoofing_summary">Spoof device properties for specific apps</string>
     <string name="app_spoofing">Підміна додатка</string>
+    <string name="app_spoofing_summary">Spoof device properties for specific apps</string>
     <string name="apps_configured">Налаштовано додатків: %1$d</string>
     <string name="no_apps_configured">Додатки не налаштовані</string>
     <string name="configured_apps">Налаштовані застосунки</string>
     <string name="no_apps_configured_empty">Додатки не налаштовані</string>
     <string name="add_apps_to_spoof">Додайте додатки, щоб почати підміну властивостей пристрою</string>
     <string name="configuration_saved">Конфігурацію збережено</string>
-    <string name="remove_game_title">Видалити гру?</string>
-    <string name="remove_game_message">Це видалить конфігурацію підміни для цієї гри.</string>
+    <string name="remove_game_title">Remove App?</string>
+    <string name="remove_game_message">This will remove the spoofing configuration for this app.</string>
     <string name="select_an_app">Виберіть додаток:</string>
     <string name="select_device_profile">Виберіть профіль пристрою:</string>
     <string name="create_new">Створити новий</string>
@@ -710,6 +711,7 @@
     <string name="keywords_trickystore">trickystore, keybox, сертифікація, підміна даних, підміна bootloader</string>
     <string name="keywords_playintegrityfix">play integrity fix, safetynet, відбиток, pif, підміна gphoto, сертифікація</string>
     <string name="keywords_gamespoofing">підміна додатків та ігор, геймінг, збільшення fps, розблокування, підміна пристрою</string>
+    <string name="keywords_appspoofing">підміна додатків та ігор, геймінг, збільшення fps, розблокування, підміна пристрою</string>
     <string name="keywords_routines">процедури, автоматизація, тригер автоматизації, автодія, планувальник завдань</string>
     <string name="keywords_background_manager">фоновий менеджер, заморожування, заморожувач застосунків, ліміти</string>
     <string name="keywords_bravia">bravia engine, рушій дисплея, покращення кольорів, картинка, якість відео, чіткість, яскравість</string>
