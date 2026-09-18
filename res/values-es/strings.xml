@@ -225,18 +225,19 @@
     <!-- AxDiagnostics -->
     <string name="diagnostics">AxDiagnostics</string>
     <string name="diagnostics_summary">Información del sistema y diagnóstico de hardware</string>
-    <!-- Game Spoofing -->
-    <string name="game_spoofing">Falsificación de juegos</string>
-    <string name="game_spoofing_summary">Falsificar propiedades del dispositivo para juegos específicos</string>
+    <!-- App Spoofing -->
+    <string name="game_spoofing">Falsificación de aplicaciones</string>
+    <string name="game_spoofing_summary">Spoof device properties for specific apps</string>
     <string name="app_spoofing">Falsificación de aplicaciones</string>
+    <string name="app_spoofing_summary">Spoof device properties for specific apps</string>
     <string name="apps_configured">%1$d aplicaciones configuradas</string>
     <string name="no_apps_configured">No hay aplicaciones configuradas</string>
     <string name="configured_apps">Aplicaciones configuradas</string>
     <string name="no_apps_configured_empty">No hay aplicaciones configuradas</string>
     <string name="add_apps_to_spoof">Añade aplicaciones para comenzar a falsificar propiedades del dispositivo</string>
     <string name="configuration_saved">Configuración guardada</string>
-    <string name="remove_game_title">¿Eliminar juego?</string>
-    <string name="remove_game_message">Esto eliminará la configuración de falsificación para este juego.</string>
+    <string name="remove_game_title">Remove App?</string>
+    <string name="remove_game_message">This will remove the spoofing configuration for this app.</string>
     <string name="select_an_app">Selecciona una aplicación:</string>
     <string name="select_device_profile">Selecciona perfil de dispositivo:</string>
     <string name="create_new">Crear nuevo</string>
@@ -704,6 +705,7 @@
     <string name="keywords_trickystore">trickystore, keybox, attestation, spoofing, bootloader spoof</string>
     <string name="keywords_playintegrityfix">play integrity fix, safety net, fingerprint, pif,  gphoto spoof, certification</string>
     <string name="keywords_gamespoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
+    <string name="keywords_appspoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
     <string name="keywords_routines">routines, automation, automation trigger, auto action, tasker</string>
     <string name="keywords_background_manager">background manager, freeze, app freezer, limits</string>
     <string name="keywords_bravia">bravia engine, display engine, color enhancement, image, video quality, sharpening, vivid</string>
