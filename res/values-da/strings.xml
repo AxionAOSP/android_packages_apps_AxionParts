@@ -158,8 +158,8 @@
     <string name="three_finger_gestures_summary">Swipe and long press actions</string>
     <string name="three_finger_swipe">Three Finger Swipe</string>
     <string name="three_finger_swipe_summary">Action when swiping with three fingers</string>
-    <string name="three_finger_long_press">Three Finger Long Press</string>
-    <string name="three_finger_long_press_summary">Enable three finger long press gesture</string>
+    <string name="three_finger_long_press">Three finger long press</string>
+    <string name="three_finger_long_press_summary">Touch and hold three fingers on the screen to capture a selected region</string>
     <string name="disable_button_screenshot">Disable Button Screenshot</string>
     <string name="disable_button_screenshot_summary">Disable power + volume down screenshot combo</string>
     <!-- Doze Pulse -->
@@ -177,16 +177,20 @@
     <string name="doze_pulse_side_fps_summary">Pulse screen on side fingerprint press instead of waking</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Nothing</string>
+    <string name="gesture_action_menu">Menu</string>
     <string name="gesture_action_app_switch">App switch</string>
     <string name="gesture_action_search">Søg</string>
     <string name="gesture_action_voice_search">Voice search</string>
+    <string name="gesture_action_in_app_search">In-app search</string>
     <string name="gesture_action_launch_camera">Launch camera</string>
     <string name="gesture_action_sleep">Sleep</string>
     <string name="gesture_action_last_app">Last app</string>
+    <string name="gesture_action_split_screen">Opdel skærm</string>
     <string name="gesture_action_close_app">Close app</string>
     <string name="gesture_action_play_pause">Play/Pause music</string>
     <string name="gesture_action_flashlight">Flashlight</string>
     <string name="gesture_action_screenshot">Screenshot</string>
+    <string name="gesture_action_partial_screenshot">Partial screenshot</string>
     <string name="gesture_action_volume_panel">Volume panel</string>
     <string name="gesture_action_clear_notifications">Clear notifications</string>
     <string name="gesture_action_notifications_panel">Notifications panel</string>
@@ -218,18 +222,22 @@
     <!-- GameSpace -->
     <string name="gamespace">GameSpace</string>
     <string name="gamespace_summary">Optimize your gaming experience with GameSpace features</string>
-    <!-- Game Spoofing -->
-    <string name="game_spoofing">Game Spoofing</string>
-    <string name="game_spoofing_summary">Spoof device properties for specific games</string>
+    <!-- AxDiagnostics -->
+    <string name="diagnostics">AxDiagnostics</string>
+    <string name="diagnostics_summary">System information and hardware diagnostics</string>
+    <!-- App Spoofing -->
+    <string name="game_spoofing">App Spoofing</string>
+    <string name="game_spoofing_summary">Spoof device properties for specific apps</string>
     <string name="app_spoofing">App Spoofing</string>
+    <string name="app_spoofing_summary">Spoof device properties for specific apps</string>
     <string name="apps_configured">%1$d apps configured</string>
     <string name="no_apps_configured">No apps configured</string>
     <string name="configured_apps">Configured apps</string>
     <string name="no_apps_configured_empty">No apps configured</string>
     <string name="add_apps_to_spoof">Add apps to start spoofing device properties</string>
     <string name="configuration_saved">Configuration saved</string>
-    <string name="remove_game_title">Remove Game?</string>
-    <string name="remove_game_message">This will remove the spoofing configuration for this game.</string>
+    <string name="remove_game_title">Remove App?</string>
+    <string name="remove_game_message">This will remove the spoofing configuration for this app.</string>
     <string name="select_an_app">Select an app:</string>
     <string name="select_device_profile">Select device profile:</string>
     <string name="create_new">Create New</string>
@@ -320,8 +328,41 @@
     <!-- Performance Screen -->
     <string name="performance">Performance</string>
     <string name="performance_summary">CPU boost, frequency control &amp; GPU</string>
+    <string name="app_optimization_title">App optimisation</string>
+    <string name="app_optimization_summary">ODEX optimisation makes applications launch faster</string>
+    <string name="app_optimization_desc_idle">ODEX optimisation makes applications launch faster. The system automatically optimised while idle.</string>
+    <string name="app_optimization_desc_running">App Optimisation (ODEX Pre-compile) makes applications launch faster. Your device might get warm and lag during the process, but it will recover afterward.</string>
+    <string name="app_optimization_desc_done">ODEX optimisation makes applications launch faster. Manual optimisation complete.</string>
+    <string name="app_optimization_start">Start Optimisation</string>
+    <string name="app_optimization_optimizing">Optimising…</string>
+    <string name="app_optimization_completed">Optimisation complete</string>
+    <string name="app_optimization_no_apps">Nothing to optimise</string>
+    <string name="app_optimization_no_apps_summary">All applications are already optimised</string>
+    <string name="app_optimization_pending_apps">%1$d apps to optimise</string>
     <string name="background_manager">Background Manager</string>
-    <string name="background_manager_summary">Manage app freezing and background start limits</string>
+    <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
+    <string name="kernel_manager">Kernel Manager</string>
+    <string name="kernel_manager_summary">Tune CPU and GPU frequency limits</string>
+    <string name="ram_plus">RAM Plus</string>
+    <string name="ram_plus_summary">Extend available memory with internal storage</string>
+    <string name="ram_plus_configuration">Configuration</string>
+    <string name="ram_plus_size">RAM Plus size</string>
+    <string name="ram_plus_off">Fra</string>
+    <string name="ram_plus_size_gb">%1$d GB</string>
+    <string name="ram_plus_status">Current status</string>
+    <string name="ram_plus_active_size">Active: %1$d GB</string>
+    <string name="ram_plus_restart_pending">Selected size will apply after restart</string>
+    <string name="ram_plus_unsupported">Not supported on this device</string>
+    <string name="ram_plus_encryption_required">Storage encryption is required</string>
+    <string name="ram_plus_zram_not_ready">Zram was not ready during setup</string>
+    <string name="ram_plus_insufficient_space">Not enough free storage</string>
+    <string name="ram_plus_priority_error">RAM Plus could not be placed after zram</string>
+    <string name="ram_plus_setup_failed">RAM Plus setup failed</string>
+    <string name="ram_plus_warning">RAM Plus uses storage-backed swap to keep more inactive apps available. Internal storage is slower than physical RAM and receives additional writes.</string>
+    <string name="ram_plus_restart_title">Restart required</string>
+    <string name="ram_plus_restart_message">Restart your device to apply the new RAM Plus size.</string>
+    <string name="ram_plus_restart_now">Restart</string>
+    <string name="ram_plus_restart_later">Later</string>
     <string name="background_manager_policy">Policy</string>
     <string name="background_manager_apps">Apps</string>
     <string name="background_app_policy">App policy</string>
@@ -343,12 +384,14 @@
     <!-- CPU Clusters -->
     <string name="little_cluster">Little Cluster</string>
     <string name="big_cluster">Big Cluster</string>
+    <string name="cpu_cluster">CPU Cluster %1$d</string>
     <string name="prime_cluster">Prime Cluster</string>
     <string name="minimum_frequency">Minimum Frequency</string>
     <string name="maximum_frequency">Maximum Frequency</string>
     <!-- GPU -->
     <string name="gpu">GPU</string>
     <string name="graphics_performance">Graphics Performance</string>
+    <string name="cpu_governor">CPU governor</string>
     <!-- Performance Formats -->
     <string name="mhz_format">%1$d MHz</string>
     <!-- Quick Settings Tile -->
@@ -361,6 +404,19 @@
     <string name="edge_features">Edge Features</string>
     <string name="sidebar">Sidebar</string>
     <string name="sidebar_summary">Quick access to your favorite apps from the edge</string>
+    <!-- Dual Apps Screen -->
+    <string name="dual_apps">Dual Apps</string>
+    <string name="dual_apps_summary">Clone apps to use multiple accounts simultaneously</string>
+    <string name="dual_apps_recommended">Recommended apps</string>
+    <string name="dual_apps_all_apps">Available apps</string>
+    <string name="dual_apps_no_apps">No cloneable apps found</string>
+    <string name="dual_apps_delete_dialog_title">Delete cloned app?</string>
+    <string name="dual_apps_delete_dialog_message">All data and accounts for this cloned app will be permanently deleted.</string>
+    <string name="dual_apps_delete_space_dialog_title">Delete Dual Space?</string>
+    <string name="dual_apps_delete_space_dialog_message">This will remove all cloned apps and erase all Dual Apps data.</string>
+    <string name="dual_apps_clear_all">Clear Dual Space</string>
+    <string name="dual_apps_creating">Setting up Dual Space…</string>
+    <string name="dual_apps_search_hint">Søg efter apps</string>
     <!-- PC Mode Settings -->
     <string name="pc_mode">PC Mode</string>
     <string name="pc_mode_settings">PC Mode Settings</string>
@@ -401,6 +457,8 @@
     <string name="dynamic_bar_enable_summary">Show a dynamic chip on the status bar for live events</string>
     <string name="dynamic_bar_keyguard_enable">Lock screen chip</string>
     <string name="dynamic_bar_keyguard_enable_summary">Show the Dynamic Bar chip on the lock screen with controls and quick actions</string>
+    <string name="dynamic_bar_keyguard_hide_media">Hide lock screen media player</string>
+    <string name="dynamic_bar_keyguard_hide_media_summary">Hide the default lock screen media player when the Dynamic Bar chip is active</string>
     <string name="dynamic_bar_events">Events</string>
     <string name="dynamic_bar_events_summary">Choose which events appear in the Dynamic Bar</string>
     <string name="dynamic_bar_event_audio_recording">Audio Recording</string>
@@ -536,6 +594,8 @@
     <string name="routines_set_brightness">Set Brightness</string>
     <string name="routines_set_ringer_mode">Set Ringer Mode</string>
     <string name="routines_launch_app">Launch App</string>
+    <string name="routines_launch_app_freeform">Launch App in Freeform</string>
+    <string name="routines_launch_app_bubble">Launch App in Bubble</string>
     <string name="routines_send_broadcast">Send Broadcast</string>
     <string name="routines_show_notification">Show Notification</string>
     <string name="routines_delay">Delay</string>
@@ -588,6 +648,13 @@
     <string name="routines_location_near">Location Near</string>
     <string name="routines_sensor_camera">Camera</string>
     <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_nfc_tag">NFC Tag</string>
+    <string name="routines_nfc_tag_id_hint">Tag ID / UID (e.g. 04:A1:B2:C3:D4)</string>
+    <string name="routines_nfc_tag_name_hint">Tag Name (e.g. Bedside)</string>
+    <string name="routines_nfc_scan_button">Scan Tag</string>
+    <string name="routines_nfc_scanning_status">Scanning… Place your NFC Tag against the back of your phone.</string>
+    <string name="routines_nfc_scan_success">Scanned tag: %1$s</string>
+    <string name="routines_nfc_disabled">NFC is disabled. Please enable it in Settings.</string>
     <string name="routines_block">Block</string>
     <string name="routines_unblock">Unblock</string>
     <string name="routines_play_sound">Play Sound</string>
@@ -638,6 +705,7 @@
     <string name="keywords_trickystore">trickystore, keybox, attestation, spoofing, bootloader spoof</string>
     <string name="keywords_playintegrityfix">play integrity fix, safety net, fingerprint, pif,  gphoto spoof, certification</string>
     <string name="keywords_gamespoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
+    <string name="keywords_appspoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
     <string name="keywords_routines">routines, automation, automation trigger, auto action, tasker</string>
     <string name="keywords_background_manager">background manager, freeze, app freezer, limits</string>
     <string name="keywords_bravia">bravia engine, display engine, color enhancement, image, video quality, sharpening, vivid</string>
@@ -646,4 +714,5 @@
     <string name="keywords_multitasking">multitasking, sidebar, pc mode</string>
     <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
+    <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
 </resources>
