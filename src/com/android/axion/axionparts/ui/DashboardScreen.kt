@@ -409,7 +409,7 @@ private fun DetailScreen(
         "gestures" -> GesturesScreen(onBackClick = onBackClick)
         "trickystore" -> TrickyStoreScreen(onBackClick = onBackClick)
         "playintegrityfix" -> PlayIntegrityFixScreen(onBackClick = onBackClick)
-        "gamespoofing" -> GameSpoofingScreen(onBackClick = onBackClick)
+        "appspoofing", "gamespoofing" -> AppSpoofingScreen(onBackClick = onBackClick)
         "pcmode" -> PcModeScreen(onBackClick = onBackClick)
         "routines" -> RoutinesScreen(onBackClick = onBackClick)
         "performance" ->
@@ -471,7 +471,7 @@ private fun DetailPaneContent(
         "gestures" -> GesturesScreen(onBackClick = onClose)
         "trickystore" -> TrickyStoreScreen(onBackClick = onClose)
         "playintegrityfix" -> PlayIntegrityFixScreen(onBackClick = onClose)
-        "gamespoofing" -> GameSpoofingScreen(onBackClick = onClose)
+        "appspoofing", "gamespoofing" -> AppSpoofingScreen(onBackClick = onClose)
         "pcmode" -> PcModeScreen(onBackClick = onClose)
         "routines" -> RoutinesScreen(onBackClick = onClose)
         "performance" ->

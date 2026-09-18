@@ -98,7 +98,7 @@ fun EssentialsScreen(
                         onNavigateToAppPicker = onNavigateToAppPicker,
                         onNavigateToTrickyStore = { currentSubScreen = "trickystore" },
                         onNavigateToPlayIntegrityFix = { currentSubScreen = "playintegrityfix" },
-                        onNavigateToGameSpoofing = { currentSubScreen = "gamespoofing" },
+                        onNavigateToAppSpoofing = { currentSubScreen = "appspoofing" },
                         onNavigateToDualApps = { currentSubScreen = "dual_apps" },
                     )
                 }
@@ -109,8 +109,8 @@ fun EssentialsScreen(
             "playintegrityfix" -> {
                 PlayIntegrityFixScreen(onBackClick = { currentSubScreen = null })
             }
-            "gamespoofing" -> {
-                GameSpoofingScreen(onBackClick = { currentSubScreen = null })
+            "appspoofing", "gamespoofing" -> {
+                AppSpoofingScreen(onBackClick = { currentSubScreen = null })
             }
             "dual_apps" -> {
                 DualAppsScreen(onBackClick = { currentSubScreen = null })
@@ -125,7 +125,7 @@ private fun EssentialsContent(
     onNavigateToAppPicker: (selectedApps: Set<String>) -> Unit = {},
     onNavigateToTrickyStore: () -> Unit = {},
     onNavigateToPlayIntegrityFix: () -> Unit = {},
-    onNavigateToGameSpoofing: () -> Unit = {},
+    onNavigateToAppSpoofing: () -> Unit = {},
     onNavigateToDualApps: () -> Unit = {},
 ) {
     val context = LocalContext.current
@@ -199,10 +199,10 @@ private fun EssentialsContent(
             }
             item {
                 ClickablePreference(
-                    title = stringResource(R.string.game_spoofing),
-                    summary = stringResource(R.string.game_spoofing_summary),
+                    title = stringResource(R.string.app_spoofing),
+                    summary = stringResource(R.string.app_spoofing_summary),
                     icon = Icons.Default.Gamepad,
-                    onClick = onNavigateToGameSpoofing,
+                    onClick = onNavigateToAppSpoofing,
                 )
             }
         }

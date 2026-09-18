@@ -108,11 +108,11 @@ object FeatureRegistry {
             action = "com.android.axion.axionparts.action.PLAYINTEGRITYFIX"
         ),
         PartFeature(
-            key = "gamespoofing_settings",
-            titleRes = R.string.game_spoofing,
-            summaryRes = R.string.game_spoofing_summary,
-            keywordsRes = R.string.keywords_gamespoofing,
-            action = "com.android.axion.axionparts.action.GAMESPOOFING"
+            key = "appspoofing_settings",
+            titleRes = R.string.app_spoofing,
+            summaryRes = R.string.app_spoofing_summary,
+            keywordsRes = R.string.keywords_appspoofing,
+            action = "com.android.axion.axionparts.action.APPSPOOFING"
         ),
         PartFeature(
             key = "routines_settings",

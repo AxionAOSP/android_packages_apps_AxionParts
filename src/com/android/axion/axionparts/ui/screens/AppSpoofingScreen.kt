@@ -51,10 +51,10 @@ import kotlinx.coroutines.*
 import org.json.JSONArray
 import org.json.JSONObject
 
-private const val TAG = "GameSpoofing"
-private const val GAMEPROPS_CONFIG_KEY = "spoof_gameprops_config"
+private const val TAG = "AppSpoofing"
+private const val SPOOF_CONFIG_KEY = "spoof_gameprops_config"
 
-data class GameConfig(val packageName: String, val appName: String, val props: Map<String, String>)
+data class AppSpoofConfig(val packageName: String, val appName: String, val props: Map<String, String>)
 
 data class DeviceProfile(
     val name: String,
@@ -144,42 +144,42 @@ private fun deleteCustomPreset(context: Context, profileName: String) {
 }
 
 @Composable
-fun GameSpoofingScreen(onBackClick: (() -> Unit)? = null, showTopBar: Boolean = true) {
+fun AppSpoofingScreen(onBackClick: (() -> Unit)? = null, showTopBar: Boolean = true) {
     if (showTopBar) {
         AxionScaffold(
             title = stringResource(R.string.app_spoofing),
             onBackClick = { onBackClick?.invoke() },
         ) { innerPadding ->
-            GameSpoofingContent(modifier = Modifier.padding(innerPadding))
+            AppSpoofingContent(modifier = Modifier.padding(innerPadding))
         }
     } else {
-        GameSpoofingContent(modifier = Modifier)
+        AppSpoofingContent(modifier = Modifier)
     }
 }
 
 @Composable
-fun GameSpoofingContent(modifier: Modifier = Modifier) {
+fun AppSpoofingContent(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var enabled by remember { mutableStateOf(false) }
-    var gameConfigs by remember { mutableStateOf(listOf<GameConfig>()) }
-    var showAddGameDialog by remember { mutableStateOf(false) }
+    var spoofedApps by remember { mutableStateOf(listOf<AppSpoofConfig>()) }
+    var showAddAppDialog by remember { mutableStateOf(false) }
     var showEditDialog by remember { mutableStateOf(false) }
-    var editingGame by remember { mutableStateOf<GameConfig?>(null) }
+    var editingApp by remember { mutableStateOf<AppSpoofConfig?>(null) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var deleteTarget by remember { mutableStateOf<String?>(null) }
 
     fun loadConfig() {
         scope.launch {
-            val result = withContext(Dispatchers.IO) { loadGamePropsConfig(context) }
+            val result = withContext(Dispatchers.IO) { loadSpoofedAppsConfig(context) }
             enabled = result.first
-            gameConfigs = result.second
+            spoofedApps = result.second
         }
     }
 
     fun saveConfig() {
         scope.launch {
-            withContext(Dispatchers.IO) { saveGamePropsConfig(context, enabled, gameConfigs) }
+            withContext(Dispatchers.IO) { saveSpoofedAppsConfig(context, enabled, spoofedApps) }
             Toast.makeText(
                     context,
                     context.getString(R.string.configuration_saved),
@@ -193,33 +193,33 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
         loadConfig()
     }
 
-    if (showAddGameDialog) {
-        AddGameDialog(
-            configuredGames = gameConfigs,
-            onDismiss = { showAddGameDialog = false },
-            onGameAdded = { newGame ->
-                gameConfigs = gameConfigs + newGame
+    if (showAddAppDialog) {
+        AddSpoofAppDialog(
+            configuredApps = spoofedApps,
+            onDismiss = { showAddAppDialog = false },
+            onAppAdded = { newApp ->
+                spoofedApps = spoofedApps + newApp
                 saveConfig()
-                showAddGameDialog = false
+                showAddAppDialog = false
             },
         )
     }
 
-    if (showEditDialog && editingGame != null) {
-        EditGameDialog(
-            game = editingGame!!,
+    if (showEditDialog && editingApp != null) {
+        EditSpoofAppDialog(
+            app = editingApp!!,
             onDismiss = {
                 showEditDialog = false
-                editingGame = null
+                editingApp = null
             },
-            onGameUpdated = { updatedGame ->
-                gameConfigs =
-                    gameConfigs.map {
-                        if (it.packageName == updatedGame.packageName) updatedGame else it
+            onAppUpdated = { updatedApp ->
+                spoofedApps =
+                    spoofedApps.map {
+                        if (it.packageName == updatedApp.packageName) updatedApp else it
                     }
                 saveConfig()
                 showEditDialog = false
-                editingGame = null
+                editingApp = null
             },
         )
     }
@@ -232,7 +232,7 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
             confirmButton = {
                 TextButton(
                     onClick = {
-                        gameConfigs = gameConfigs.filter { it.packageName != deleteTarget }
+                        spoofedApps = spoofedApps.filter { it.packageName != deleteTarget }
                         saveConfig()
                         showDeleteDialog = false
                         deleteTarget = null
@@ -296,7 +296,7 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
                         )
                         Text(
                             text =
-                                if (enabled) stringResource(R.string.apps_configured, gameConfigs.size)
+                                if (enabled) stringResource(R.string.apps_configured, spoofedApps.size)
                                 else stringResource(R.string.disabled),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -321,7 +321,7 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Button(
-                onClick = { showAddGameDialog = true },
+                onClick = { showAddAppDialog = true },
                 modifier = Modifier.weight(1f),
             ) {
                 Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
@@ -342,7 +342,7 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        if (gameConfigs.isNotEmpty()) {
+        if (spoofedApps.isNotEmpty()) {
             Text(
                 text = stringResource(R.string.configured_apps),
                 style = MaterialTheme.typography.labelMediumEmphasized,
@@ -350,15 +350,15 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(start = 4.dp, bottom = 8.dp),
             )
 
-            gameConfigs.forEach { game ->
-                GameConfigCard(
-                    game = game,
+            spoofedApps.forEach { app ->
+                AppSpoofCard(
+                    app = app,
                     onEdit = {
-                        editingGame = game
+                        editingApp = app
                         showEditDialog = true
                     },
                     onDelete = {
-                        deleteTarget = game.packageName
+                        deleteTarget = app.packageName
                         showDeleteDialog = true
                     },
                 )
@@ -400,7 +400,7 @@ fun GameSpoofingContent(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun GameConfigCard(game: GameConfig, onEdit: () -> Unit, onDelete: () -> Unit) {
+fun AppSpoofCard(app: AppSpoofConfig, onEdit: () -> Unit, onDelete: () -> Unit) {
     var expanded by remember { mutableStateOf(false) }
 
     Surface(
@@ -429,11 +429,11 @@ fun GameConfigCard(game: GameConfig, onEdit: () -> Unit, onDelete: () -> Unit) {
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = game.appName,
+                        text = app.appName,
                         style = MaterialTheme.typography.titleMediumEmphasized,
                     )
                     Text(
-                        text = game.packageName,
+                        text = app.packageName,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
@@ -448,7 +448,7 @@ fun GameConfigCard(game: GameConfig, onEdit: () -> Unit, onDelete: () -> Unit) {
                 )
             }
 
-            if (expanded && game.props.isNotEmpty()) {
+            if (expanded && app.props.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Surface(
@@ -457,7 +457,7 @@ fun GameConfigCard(game: GameConfig, onEdit: () -> Unit, onDelete: () -> Unit) {
                     color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
                 ) {
                     Column(modifier = Modifier.padding(12.dp)) {
-                        game.props.forEach { (key, value) -> ConfigValueRow(key, value) }
+                        app.props.forEach { (key, value) -> ConfigValueRow(key, value) }
                     }
                 }
             }
@@ -493,17 +493,17 @@ fun GameConfigCard(game: GameConfig, onEdit: () -> Unit, onDelete: () -> Unit) {
 }
 
 @Composable
-fun AddGameDialog(
-    configuredGames: List<GameConfig>,
+fun AddSpoofAppDialog(
+    configuredApps: List<AppSpoofConfig>,
     onDismiss: () -> Unit,
-    onGameAdded: (GameConfig) -> Unit,
+    onAppAdded: (AppSpoofConfig) -> Unit,
 ) {
     val context = LocalContext.current
     val pm = context.packageManager
     val scope = rememberCoroutineScope()
     var searchQuery by remember { mutableStateOf("") }
-    val filteredApps by rememberFilteredAppList(searchQuery, AppFilter.USER_ONLY, AppFilter.NO_OVERLAYS)
-    val configuredPackages = remember(configuredGames) { configuredGames.map { it.packageName }.toSet() }
+    val filteredApps by rememberFilteredAppList(searchQuery, AppFilter.ALL, AppFilter.NO_OVERLAYS)
+    val configuredPackages = remember(configuredApps) { configuredApps.map { it.packageName }.toSet() }
     val availableApps = remember(filteredApps, configuredPackages) {
         filteredApps.filter { it.packageName !in configuredPackages }
     }
@@ -677,8 +677,8 @@ fun AddGameDialog(
                         val props = mutableMapOf<String, String>()
                         props.putAll(selectedProfile!!.props)
 
-                        onGameAdded(
-                            GameConfig(
+                        onAppAdded(
+                            AppSpoofConfig(
                                 packageName = selectedApp!!.packageName,
                                 appName = selectedApp!!.label,
                                 props = props,
@@ -815,10 +815,10 @@ fun CreatePresetDialog(onDismiss: () -> Unit, onPresetCreated: (DeviceProfile) -
 }
 
 @Composable
-fun EditGameDialog(game: GameConfig, onDismiss: () -> Unit, onGameUpdated: (GameConfig) -> Unit) {
+fun EditSpoofAppDialog(app: AppSpoofConfig, onDismiss: () -> Unit, onAppUpdated: (AppSpoofConfig) -> Unit) {
     val propsList = remember {
         mutableListOf<Pair<String, String>>().apply {
-            game.props.forEach { add(it.toPair()) }
+            app.props.forEach { add(it.toPair()) }
             if (isEmpty()) {
                 add("MODEL" to "")
                 add("MANUFACTURER" to "")
@@ -881,7 +881,7 @@ fun EditGameDialog(game: GameConfig, onDismiss: () -> Unit, onGameUpdated: (Game
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(text = stringResource(R.string.edit_app, game.appName), textAlign = TextAlign.Center) },
+        title = { Text(text = stringResource(R.string.edit_app, app.appName), textAlign = TextAlign.Center) },
         text = {
             Column(
                 modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()),
@@ -906,7 +906,7 @@ fun EditGameDialog(game: GameConfig, onDismiss: () -> Unit, onGameUpdated: (Game
                             newProps[key.trim()] = value.trim()
                         }
                     }
-                    onGameUpdated(game.copy(props = newProps))
+                    onAppUpdated(app.copy(props = newProps))
                 }
             ) {
                 Text(stringResource(R.string.save))
@@ -918,21 +918,21 @@ fun EditGameDialog(game: GameConfig, onDismiss: () -> Unit, onGameUpdated: (Game
     )
 }
 
-private fun loadGamePropsConfig(context: Context): Pair<Boolean, List<GameConfig>> {
-    val content = Settings.Secure.getString(context.contentResolver, GAMEPROPS_CONFIG_KEY)
+private fun loadSpoofedAppsConfig(context: Context): Pair<Boolean, List<AppSpoofConfig>> {
+    val content = Settings.Secure.getString(context.contentResolver, SPOOF_CONFIG_KEY)
         ?: return Pair(false, emptyList())
 
     try {
         val json = JSONObject(content)
         val enabled = json.optBoolean("enabled", false)
-        val games = mutableListOf<GameConfig>()
+        val apps = mutableListOf<AppSpoofConfig>()
 
         if (json.has("games")) {
-            val gamesObj = json.getJSONObject("games")
-            gamesObj.keys().forEach { packageName ->
-                val gameProps = gamesObj.getJSONObject(packageName)
+            val appsObj = json.getJSONObject("games")
+            appsObj.keys().forEach { packageName ->
+                val appProps = appsObj.getJSONObject(packageName)
                 val props = mutableMapOf<String, String>()
-                gameProps.keys().forEach { key -> props[key] = gameProps.getString(key) }
+                appProps.keys().forEach { key -> props[key] = appProps.getString(key) }
                 val appName =
                     try {
                         val pm = context.packageManager
@@ -941,33 +941,33 @@ private fun loadGamePropsConfig(context: Context): Pair<Boolean, List<GameConfig
                     } catch (e: PackageManager.NameNotFoundException) {
                         packageName
                     }
-                games.add(GameConfig(packageName, appName, props))
+                apps.add(AppSpoofConfig(packageName, appName, props))
             }
         }
 
-        return Pair(enabled, games)
+        return Pair(enabled, apps)
     } catch (e: Exception) {
         Log.e(TAG, "Failed to load config", e)
         return Pair(false, emptyList())
     }
 }
 
-private fun saveGamePropsConfig(context: Context, enabled: Boolean, games: List<GameConfig>) {
+private fun saveSpoofedAppsConfig(context: Context, enabled: Boolean, apps: List<AppSpoofConfig>) {
     try {
         val json = JSONObject()
         json.put("enabled", enabled)
 
-        val gamesObj = JSONObject()
-        games.forEach { game ->
-            val gameProps = JSONObject()
-            game.props.forEach { (key, value) -> gameProps.put(key, value) }
-            gamesObj.put(game.packageName, gameProps)
+        val appsObj = JSONObject()
+        apps.forEach { app ->
+            val appProps = JSONObject()
+            app.props.forEach { (key, value) -> appProps.put(key, value) }
+            appsObj.put(app.packageName, appProps)
         }
-        json.put("games", gamesObj)
+        json.put("games", appsObj)
 
         Settings.Secure.putString(
             context.contentResolver,
-            GAMEPROPS_CONFIG_KEY,
+            SPOOF_CONFIG_KEY,
             json.toString(2)
         )
 

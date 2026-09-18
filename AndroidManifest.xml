@@ -34,6 +34,7 @@
                 <action android:name="com.android.axion.axionparts.action.PERFORMANCE" />
                 <action android:name="com.android.axion.axionparts.action.TRICKYSTORE" />
                 <action android:name="com.android.axion.axionparts.action.PLAYINTEGRITYFIX" />
+                <action android:name="com.android.axion.axionparts.action.APPSPOOFING" />
                 <action android:name="com.android.axion.axionparts.action.GAMESPOOFING" />
                 <action android:name="com.android.axion.axionparts.action.ROUTINES" />
                 <action android:name="com.android.axion.axionparts.action.BACKGROUND_MANAGER" />
