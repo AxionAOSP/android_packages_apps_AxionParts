@@ -181,7 +181,7 @@
     <string name="gesture_action_app_switch">Перемикання додатків</string>
     <string name="gesture_action_search">Пошук</string>
     <string name="gesture_action_voice_search">Голосовий пошук</string>
-    <string name="gesture_action_in_app_search">In-app search</string>
+    <string name="gesture_action_in_app_search">Пошук у застосунку</string>
     <string name="gesture_action_launch_camera">Запустити камеру</string>
     <string name="gesture_action_sleep">Режим сну</string>
     <string name="gesture_action_last_app">Останній додаток</string>
@@ -327,7 +327,7 @@
     <!-- Performance Screen -->
     <string name="performance">Продуктивність</string>
     <string name="performance_summary">Розгін ЦП, керування частотою та ГП</string>
-    <string name="app_optimization_title">App optimisation</string>
+    <string name="app_optimization_title">Оптимізація застосунку</string>
     <string name="app_optimization_summary">ODEX optimisation makes applications launch faster</string>
     <string name="app_optimization_desc_idle">ODEX optimisation makes applications launch faster. The system automatically optimised while idle.</string>
     <string name="app_optimization_desc_running">App Optimisation (ODEX Pre-compile) makes applications launch faster. Your device might get warm and lag during the process, but it will recover afterward.</string>
