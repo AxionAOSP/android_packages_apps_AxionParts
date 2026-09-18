@@ -177,12 +177,15 @@
     <string name="doze_pulse_side_fps_summary">Ekranı uyandırmak yerine yan parmak izine basıldığında nabız efekti ver</string>
     <!-- Gesture Actions -->
     <string name="gesture_action_nothing">Hiçbir şey</string>
+    <string name="gesture_action_menu">Menü</string>
     <string name="gesture_action_app_switch">Uygulama değiştir</string>
     <string name="gesture_action_search">Ara</string>
     <string name="gesture_action_voice_search">Sesli arama</string>
+    <string name="gesture_action_in_app_search">In-app search</string>
     <string name="gesture_action_launch_camera">Kamerayı başlat</string>
     <string name="gesture_action_sleep">Uyku</string>
     <string name="gesture_action_last_app">Son uygulama</string>
+    <string name="gesture_action_split_screen">Bölünmüş ekran</string>
     <string name="gesture_action_close_app">Uygulamayı kapat</string>
     <string name="gesture_action_play_pause">Oynat/Duraklat</string>
     <string name="gesture_action_flashlight">El feneri</string>
@@ -324,16 +327,17 @@
     <!-- Performance Screen -->
     <string name="performance">Performans</string>
     <string name="performance_summary">İşlemci artırma, frekans kontrolü &amp; Grafik İşlemci</string>
-    <string name="app_optimization_title">App Optimization</string>
-    <string name="app_optimization_summary">Compile and optimize applications for faster launch speed and smoother performance</string>
-    <string name="app_optimization_desc_idle">Application compilation makes apps launch faster. The system automatically optimizes apps while charging idle.</string>
-    <string name="app_optimization_desc_running">App Optimization (AOT Pre-compile) compiles apps to native code. Your device may get warm and experience minor lag during compilation.</string>
-    <string name="app_optimization_desc_done">Application optimization complete. All eligible apps have been compiled for faster performance.</string>
-    <string name="app_optimization_start">Start Optimization</string>
-    <string name="app_optimization_optimizing">Optimizing…</string>
-    <string name="app_optimization_completed">Optimization Complete</string>
-    <string name="app_optimization_no_apps">No applications need optimization</string>
-    <string name="app_optimization_pending_apps">%1$d apps to optimize</string>
+    <string name="app_optimization_title">App optimisation</string>
+    <string name="app_optimization_summary">ODEX optimisation makes applications launch faster</string>
+    <string name="app_optimization_desc_idle">ODEX optimisation makes applications launch faster. The system automatically optimised while idle.</string>
+    <string name="app_optimization_desc_running">App Optimisation (ODEX Pre-compile) makes applications launch faster. Your device might get warm and lag during the process, but it will recover afterward.</string>
+    <string name="app_optimization_desc_done">ODEX optimisation makes applications launch faster. Manual optimisation complete.</string>
+    <string name="app_optimization_start">Start Optimisation</string>
+    <string name="app_optimization_optimizing">Optimising…</string>
+    <string name="app_optimization_completed">Optimisation complete</string>
+    <string name="app_optimization_no_apps">Nothing to optimise</string>
+    <string name="app_optimization_no_apps_summary">All applications are already optimised</string>
+    <string name="app_optimization_pending_apps">%1$d apps to optimise</string>
     <string name="background_manager">Background Manager</string>
     <string name="background_manager_summary">Manage app freezing, keep-alive, and background start limits</string>
     <string name="kernel_manager">Kernel Manager</string>
