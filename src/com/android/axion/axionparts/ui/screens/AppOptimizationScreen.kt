@@ -4,7 +4,6 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.UserHandle
 import android.util.Log
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -44,6 +43,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -206,6 +206,8 @@ private fun AppOptimizationContent(
                     textColor = gaugeTextColor,
                 )
 
+                Spacer(modifier = Modifier.height(12.dp))
+
                 val descRes = when (state) {
                     2 -> R.string.app_optimization_desc_running
                     3, 4 -> R.string.app_optimization_desc_done
@@ -215,13 +217,16 @@ private fun AppOptimizationContent(
                     text = stringResource(descRes),
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontSize = 12.sp,
+                        lineHeight = 17.sp,
                         letterSpacing = 0.015.em,
+                        textAlign = TextAlign.Center,
                     ),
                     color = descriptionColor,
-                    modifier = Modifier.padding(horizontal = 42.dp, vertical = 12.dp),
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 36.dp),
                 )
 
-                AnimatedVisibility(visible = state == 1) {
+                if (state == 1) {
+                    Spacer(modifier = Modifier.height(16.dp))
                     Button(
                         onClick = onStartClick,
                         modifier = Modifier.padding(horizontal = 48.dp).fillMaxWidth().height(48.dp),
@@ -242,7 +247,36 @@ private fun AppOptimizationContent(
             }
         }
 
-        if (appEntries.isNotEmpty() && state != 3 && state != 4) {
+        if (appEntries.isEmpty() || state == 3 || state == 4) {
+            item {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Icon(
+                        imageVector = icons.CheckCircle,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(36.dp),
+                    )
+                    Text(
+                        text = stringResource(R.string.app_optimization_no_apps),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                    Text(
+                        text = stringResource(R.string.app_optimization_no_apps_summary),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center,
+                    )
+                }
+            }
+        } else {
             item {
                 PreferenceGroup(
                     modifier = Modifier.padding(horizontal = 16.dp),
