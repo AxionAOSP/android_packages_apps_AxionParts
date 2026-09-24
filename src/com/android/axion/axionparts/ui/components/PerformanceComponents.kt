@@ -81,7 +81,7 @@ fun FrequencySlider(
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
-                text = stringResource(R.string.mhz_format, currentValue.roundToInt() / 1000),
+                text = stringResource(R.string.mhz_format, currentValue.roundToInt().toMhz()),
                 style = MaterialTheme.typography.labelLarge,
                 color = accentColor,
             )
@@ -106,7 +106,8 @@ fun FrequencySlider(
                     val index = newValue.roundToInt().coerceIn(0, sortedFreqs.size - 1)
                     currentValue = sortedFreqs[index].toFloat()
                 } else {
-                    val steppedValue = ((newValue - min) / interval).roundToInt() * interval + min
+                    val effectiveInterval = if (max >= HZ_THRESHOLD && interval < 1_000_000) interval * 1000 else interval
+                    val steppedValue = ((newValue - min) / effectiveInterval).roundToInt() * effectiveInterval + min
                     currentValue = steppedValue.coerceIn(min, max).toFloat()
                 }
             },
@@ -128,7 +129,8 @@ fun FrequencySlider(
                 if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
                     (availableFrequencies.size - 2).coerceAtLeast(0)
                 } else {
-                    if (interval > 0) ((max - min) / interval) - 1 else 0
+                    val effectiveInterval = if (max >= HZ_THRESHOLD && interval < 1_000_000) interval * 1000 else interval
+                    if (effectiveInterval > 0) ((max - min) / effectiveInterval) - 1 else 0
                 },
             enabled = enabled,
             colors =
@@ -144,15 +146,15 @@ fun FrequencySlider(
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             val minDisplay =
                 if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
-                    availableFrequencies.minOrNull()?.div(1000) ?: 0
+                    availableFrequencies.minOrNull()?.toMhz() ?: 0
                 } else {
-                    min / 1000
+                    min.toMhz()
                 }
             val maxDisplay =
                 if (availableFrequencies != null && availableFrequencies.isNotEmpty()) {
-                    availableFrequencies.maxOrNull()?.div(1000) ?: 0
+                    availableFrequencies.maxOrNull()?.toMhz() ?: 0
                 } else {
-                    max / 1000
+                    max.toMhz()
                 }
 
             Text(
@@ -168,6 +170,11 @@ fun FrequencySlider(
         }
     }
 }
+
+private const val HZ_THRESHOLD = 10_000_000
+
+private fun Int.toMhz(): Int =
+    if (this >= HZ_THRESHOLD) this / 1_000_000 else this / 1_000
 
 private fun Int.coerceFrequencyValue(
     availableFrequencies: List<Int>?,
