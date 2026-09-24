@@ -33,7 +33,9 @@ import androidx.compose.material.icons.filled.MultipleStop
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.android.axion.axionparts.R
@@ -47,9 +49,19 @@ import com.android.axion.compose.scaffold.AxionScaffold
 fun SoundFeaturesScreen(onBackClick: () -> Unit) {
     AxionScaffold(title = stringResource(R.string.sound), onBackClick = onBackClick) { innerPadding
         ->
+        val context = LocalContext.current
+        val defaultMultiAudio = remember {
+            context.resources.getBoolean(
+                com.android.internal.R.bool.config_multi_audio_focus_enabled_default
+            )
+        }
         val flow = rememberSettingsFlow(SettingsType.SYSTEM)
         val appVolumeEnabled by rememberSettingBoolean("show_app_volume", SettingsType.SYSTEM)
-        val multiAudioEnabled by rememberSettingBoolean("multi_audio_focus_enabled", SettingsType.SYSTEM)
+        val multiAudioEnabled by rememberSettingBoolean(
+            "multi_audio_focus_enabled",
+            SettingsType.SYSTEM,
+            default = defaultMultiAudio,
+        )
 
         Column(
             modifier =
