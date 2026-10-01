@@ -17,6 +17,12 @@
 package com.android.axion.axionparts.ui.screens
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -31,6 +37,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Swipe
 import androidx.compose.material.icons.filled.Vibration
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -51,6 +58,7 @@ private enum class GesturesSubScreen {
     THREE_FINGER,
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun GesturesScreen(onBackClick: () -> Unit) {
     var currentScreen by rememberSaveable { mutableStateOf(GesturesSubScreen.MAIN) }
@@ -73,17 +81,50 @@ fun GesturesScreen(onBackClick: () -> Unit) {
     BackHandler(enabled = currentScreen != GesturesSubScreen.MAIN, onBack = handleBack)
 
     AxionScaffold(title = screenTitle, onBackClick = handleBack) { innerPadding ->
-        when (currentScreen) {
-            GesturesSubScreen.MAIN ->
-                GesturesMainContent(
-                    modifier = Modifier.padding(innerPadding),
-                    onNavigateToShake = { currentScreen = GesturesSubScreen.SHAKE },
-                    onNavigateToThreeFinger = { currentScreen = GesturesSubScreen.THREE_FINGER },
-                )
-            GesturesSubScreen.SHAKE ->
-                ShakeGesturesContent(modifier = Modifier.padding(innerPadding))
-            GesturesSubScreen.THREE_FINGER ->
-                ThreeFingerGesturesContent(modifier = Modifier.padding(innerPadding))
+        val motionScheme = MaterialTheme.motionScheme
+        AnimatedContent(
+            targetState = currentScreen,
+            transitionSpec = {
+                val isNavigatingForward = targetState != GesturesSubScreen.MAIN
+
+                if (isNavigatingForward) {
+                    (slideInHorizontally(
+                            animationSpec = motionScheme.defaultSpatialSpec(),
+                            initialOffsetX = { fullWidth -> fullWidth },
+                        ) + fadeIn(animationSpec = motionScheme.defaultEffectsSpec()))
+                        .togetherWith(
+                            slideOutHorizontally(
+                                animationSpec = motionScheme.defaultSpatialSpec(),
+                                targetOffsetX = { fullWidth -> -fullWidth / 3 },
+                            ) + fadeOut(animationSpec = motionScheme.defaultEffectsSpec())
+                        )
+                } else {
+                    (slideInHorizontally(
+                            animationSpec = motionScheme.defaultSpatialSpec(),
+                            initialOffsetX = { fullWidth -> -fullWidth / 3 },
+                        ) + fadeIn(animationSpec = motionScheme.defaultEffectsSpec()))
+                        .togetherWith(
+                            slideOutHorizontally(
+                                animationSpec = motionScheme.defaultSpatialSpec(),
+                                targetOffsetX = { fullWidth -> fullWidth },
+                            ) + fadeOut(animationSpec = motionScheme.defaultEffectsSpec())
+                        )
+                }
+            },
+            label = "gesturesScreenTransition",
+        ) { screen ->
+            when (screen) {
+                GesturesSubScreen.MAIN ->
+                    GesturesMainContent(
+                        modifier = Modifier.padding(innerPadding),
+                        onNavigateToShake = { currentScreen = GesturesSubScreen.SHAKE },
+                        onNavigateToThreeFinger = { currentScreen = GesturesSubScreen.THREE_FINGER },
+                    )
+                GesturesSubScreen.SHAKE ->
+                    ShakeGesturesContent(modifier = Modifier.padding(innerPadding))
+                GesturesSubScreen.THREE_FINGER ->
+                    ThreeFingerGesturesContent(modifier = Modifier.padding(innerPadding))
+            }
         }
     }
 }
