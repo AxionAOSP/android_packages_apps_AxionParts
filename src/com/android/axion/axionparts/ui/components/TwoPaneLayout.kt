@@ -43,6 +43,14 @@ fun rememberWindowSizeClass(): WindowSizeClass {
 }
 
 @Composable
+fun rememberIsDualPane(): Boolean {
+    val configuration = LocalConfiguration.current
+    val screenWidthDp = configuration.screenWidthDp
+    val screenHeightDp = configuration.screenHeightDp
+    return screenWidthDp >= 840 || (screenWidthDp >= 600 && screenHeightDp >= 480)
+}
+
+@Composable
 fun TwoPaneLayout(
     windowSizeClass: WindowSizeClass,
     listPane: @Composable () -> Unit,
@@ -50,25 +58,40 @@ fun TwoPaneLayout(
     showDetailPane: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    val isExpandedOrMedium =
-        windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
+    val configuration = LocalConfiguration.current
+    val screenWidthDp = configuration.screenWidthDp
+    val screenHeightDp = configuration.screenHeightDp
+    val isDualPane = screenWidthDp >= 840 || (screenWidthDp >= 600 && screenHeightDp >= 480)
 
-    if (isExpandedOrMedium) {
+    if (isDualPane) {
         Row(
             modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.surfaceContainer)
         ) {
-            Box(modifier = Modifier.fillMaxHeight().weight(0.5f)) { listPane() }
+            val listPaneModifier =
+                when {
+                    screenWidthDp >= 1000 -> Modifier.width(380.dp).fillMaxHeight()
+                    screenWidthDp >= 840 -> Modifier.fillMaxHeight().weight(0.40f)
+                    else -> Modifier.fillMaxHeight().weight(0.45f)
+                }
+
+            Box(modifier = listPaneModifier) { listPane() }
 
             VerticalDivider(
                 modifier = Modifier.fillMaxHeight(),
                 thickness = 1.dp,
-                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f),
+                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.35f),
             )
 
-            Box(modifier = Modifier.fillMaxHeight().weight(0.5f)) { detailPane() }
+            val detailWeight =
+                when {
+                    screenWidthDp >= 1000 -> 1f
+                    screenWidthDp >= 840 -> 0.60f
+                    else -> 0.55f
+                }
+            Box(modifier = Modifier.fillMaxHeight().weight(detailWeight)) { detailPane() }
         }
     } else {
-        Box(modifier = modifier.fillMaxSize()) {
+        Box(modifier = modifier.fillMaxSize().background(MaterialTheme.colorScheme.surfaceContainer)) {
             if (showDetailPane) {
                 detailPane()
             } else {
@@ -84,25 +107,27 @@ fun AdaptiveDetailContainer(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    val isExpandedOrMedium =
-        windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
+    val configuration = LocalConfiguration.current
+    val screenWidthDp = configuration.screenWidthDp
+    val screenHeightDp = configuration.screenHeightDp
+    val isDualPane = screenWidthDp >= 840 || (screenWidthDp >= 600 && screenHeightDp >= 480)
 
     Box(
         modifier =
             modifier
                 .fillMaxSize()
                 .then(
-                    if (isExpandedOrMedium) {
+                    if (isDualPane) {
                         Modifier.padding(horizontal = 16.dp)
                     } else {
                         Modifier
                     }
                 ),
-        contentAlignment = if (isExpandedOrMedium) Alignment.TopCenter else Alignment.TopStart,
+        contentAlignment = if (isDualPane) Alignment.TopCenter else Alignment.TopStart,
     ) {
         Box(
             modifier =
-                if (isExpandedOrMedium) {
+                if (isDualPane) {
                     Modifier.widthIn(max = 600.dp).fillMaxWidth()
                 } else {
                     Modifier.fillMaxWidth()

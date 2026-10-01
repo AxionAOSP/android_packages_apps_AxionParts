@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+@file:OptIn(
+    ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3ExpressiveApi::class,
+)
+
 package com.android.axion.axionparts.ui
 
 import android.app.Activity
@@ -38,8 +43,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.*
@@ -65,13 +73,11 @@ import com.android.axion.compose.navigation.rememberAxRouteNavigator
 import com.android.axion.compose.preferences.*
 import com.android.axion.compose.scaffold.AxionScaffold
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun DashboardScreen(initialDetailScreen: String? = null) {
     val activity = LocalContext.current as? Activity
     val windowSizeClass = rememberWindowSizeClass()
-    val isExpandedLayout =
-        windowSizeClass == WindowSizeClass.EXPANDED || windowSizeClass == WindowSizeClass.MEDIUM
+    val isDualPane = rememberIsDualPane()
 
     var appPickerTitleRes by rememberSaveable { mutableStateOf(R.string.select_apps) }
     var appPickerSelectedApps by rememberSaveable { mutableStateOf<Set<String>>(emptySet()) }
@@ -131,7 +137,7 @@ fun DashboardScreen(initialDetailScreen: String? = null) {
         BackHandler { closeDetail() }
     }
 
-    if (isExpandedLayout) {
+    if (isDualPane) {
         TwoPaneLayout(
             windowSizeClass = windowSizeClass,
             listPane = {
@@ -212,10 +218,47 @@ private fun DashboardContent(
         title = stringResource(R.string.personalizations),
         onBackClick = { activity?.finish() },
     ) { innerPadding ->
-        Box(
+        BoxWithConstraints(
             modifier = Modifier.fillMaxSize().padding(innerPadding),
             contentAlignment = Alignment.TopCenter,
         ) {
+            val containerWidth = maxWidth
+            val containerHeight = maxHeight
+
+            val isCompactWidth = containerWidth < 360.dp
+            val isCompactHeight = containerHeight < 480.dp
+
+            val horizontalPadding =
+                when {
+                    isCompactWidth -> 16.dp
+                    containerWidth < 600.dp -> 20.dp
+                    else -> 24.dp
+                }
+
+            val cardSpacing = if (isCompactWidth) 8.dp else 12.dp
+
+            val heroHeight =
+                when {
+                    isCompactHeight -> (containerHeight * 0.55f).coerceIn(200.dp, 240.dp)
+                    isCompactWidth -> 280.dp
+                    containerWidth < 420.dp -> 320.dp
+                    else -> 356.dp
+                }
+
+            val visualsHeight =
+                when {
+                    isCompactHeight -> 96.dp
+                    isCompactWidth -> 106.dp
+                    else -> 120.dp
+                }
+
+            val featuresHeight =
+                when {
+                    isCompactHeight -> 108.dp
+                    isCompactWidth -> 116.dp
+                    else -> 122.dp
+                }
+
             var revealPlayed by rememberSaveable { mutableStateOf(false) }
             val scaleIn = remember { Animatable(if (revealPlayed) 1f else 0.85f) }
             val alphaIn = remember { Animatable(if (revealPlayed) 1f else 0f) }
@@ -244,13 +287,13 @@ private fun DashboardContent(
                     Modifier.widthIn(max = MaxContentWidth)
                         .fillMaxWidth()
                         .fillMaxHeight(),
-                contentPadding = PaddingValues(horizontal = 24.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = PaddingValues(horizontal = horizontalPadding, vertical = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(cardSpacing),
             ) {
                 item(key = "hero") {
                     Row(
-                        modifier = Modifier.fillMaxWidth().height(372.dp).then(revealModifier),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxWidth().height(heroHeight).then(revealModifier),
+                        horizontalArrangement = Arrangement.spacedBy(cardSpacing),
                     ) {
                         WallpaperCard(
                             title = stringResource(R.string.lockscreen),
@@ -259,7 +302,7 @@ private fun DashboardContent(
                         )
                         Column(
                             modifier = Modifier.weight(1f).fillMaxHeight(),
-                            verticalArrangement = Arrangement.spacedBy(12.dp),
+                            verticalArrangement = Arrangement.spacedBy(cardSpacing),
                         ) {
                             VisualCard(
                                 title = stringResource(R.string.themes),
@@ -292,8 +335,8 @@ private fun DashboardContent(
 
                 item(key = "visuals") {
                     Row(
-                        modifier = Modifier.fillMaxWidth().height(148.dp).then(revealModifier),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxWidth().height(visualsHeight).then(revealModifier),
+                        horizontalArrangement = Arrangement.spacedBy(cardSpacing),
                     ) {
                         VisualCard(
                             title = stringResource(R.string.sound),
@@ -314,8 +357,8 @@ private fun DashboardContent(
 
                 item(key = "features") {
                     Row(
-                        modifier = Modifier.fillMaxWidth().height(118.dp).then(revealModifier),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxWidth().height(featuresHeight).then(revealModifier),
+                        horizontalArrangement = Arrangement.spacedBy(cardSpacing),
                     ) {
                         DashboardCard(
                             title = stringResource(R.string.routines),
@@ -340,8 +383,8 @@ private fun DashboardContent(
 
                 item(key = "extraFeatures") {
                     Row(
-                        modifier = Modifier.fillMaxWidth().height(118.dp).then(revealModifier),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxWidth().height(featuresHeight).then(revealModifier),
+                        horizontalArrangement = Arrangement.spacedBy(cardSpacing),
                     ) {
                         DashboardCard(
                             title = stringResource(R.string.multitasking),
@@ -448,7 +491,6 @@ private fun DetailScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DetailPaneContent(
     screen: String,
@@ -544,7 +586,6 @@ private fun ManagedAppPickerScreen(
     )
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun WallpaperCard(
     title: String,
@@ -624,23 +665,38 @@ private fun WallpaperCard(
 
         Box(
             modifier =
-                Modifier.fillMaxWidth()
-                    .height(72.dp)
-                    .align(Alignment.BottomCenter)
+                Modifier.fillMaxSize()
                     .background(
                         Brush.verticalGradient(
-                            listOf(Color.Transparent, Color.Black.copy(alpha = 0.6f))
+                            colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.75f)),
+                            startY = 100f,
                         )
                     )
         )
 
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleSmall,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.BottomStart).padding(18.dp),
-        )
+        Surface(
+            color = Color.Black.copy(alpha = 0.45f),
+            shape = RoundedCornerShape(16.dp),
+            modifier = Modifier.align(Alignment.BottomStart).padding(14.dp),
+        ) {
+            Row(
+                modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleSmallEmphasized,
+                    color = Color.White,
+                )
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color.White.copy(alpha = 0.85f),
+                    modifier = Modifier.size(16.dp),
+                )
+            }
+        }
     }
 }
 
@@ -649,25 +705,25 @@ private fun ThemesIllustration() {
     val colors = MaterialTheme.colorScheme
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Box(
-            modifier = Modifier
-                .size(56.dp)
-                .offset(x = (-14).dp)
-                .clip(CircleShape)
-                .background(colors.primary.copy(alpha = 0.7f)),
+            modifier =
+                Modifier.size(56.dp)
+                    .offset(x = (-14).dp)
+                    .clip(CircleShape)
+                    .background(colors.primary.copy(alpha = 0.7f)),
         )
         Box(
-            modifier = Modifier
-                .size(56.dp)
-                .offset(x = 14.dp)
-                .clip(CircleShape)
-                .background(colors.tertiary.copy(alpha = 0.7f)),
+            modifier =
+                Modifier.size(56.dp)
+                    .offset(x = 14.dp)
+                    .clip(CircleShape)
+                    .background(colors.tertiary.copy(alpha = 0.7f)),
         )
         Box(
-            modifier = Modifier
-                .size(56.dp)
-                .offset(y = 14.dp)
-                .clip(CircleShape)
-                .background(colors.secondary.copy(alpha = 0.7f)),
+            modifier =
+                Modifier.size(56.dp)
+                    .offset(y = 14.dp)
+                    .clip(CircleShape)
+                    .background(colors.secondary.copy(alpha = 0.7f)),
         )
     }
 }
@@ -682,30 +738,30 @@ private fun UIFeaturesIllustration() {
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 Box(
-                    modifier = Modifier
-                        .size(28.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(colors.primary),
+                    modifier =
+                        Modifier.size(28.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(colors.primary),
                 )
                 Box(
-                    modifier = Modifier
-                        .size(28.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(colors.primaryContainer),
+                    modifier =
+                        Modifier.size(28.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(colors.primaryContainer),
                 )
             }
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 Box(
-                    modifier = Modifier
-                        .size(28.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(colors.tertiaryContainer),
+                    modifier =
+                        Modifier.size(28.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(colors.tertiaryContainer),
                 )
                 Box(
-                    modifier = Modifier
-                        .size(28.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(colors.secondaryContainer),
+                    modifier =
+                        Modifier.size(28.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(colors.secondaryContainer),
                 )
             }
         }
@@ -723,11 +779,11 @@ private fun SoundIllustration() {
             val heights = listOf(20f, 32f, 44f, 56f, 44f, 32f, 20f)
             heights.forEach { h ->
                 Box(
-                    modifier = Modifier
-                        .width(8.dp)
-                        .height(h.dp)
-                        .clip(RoundedCornerShape(4.dp))
-                        .background(colors.tertiary),
+                    modifier =
+                        Modifier.width(8.dp)
+                            .height(h.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(colors.tertiary),
                 )
             }
         }
@@ -739,10 +795,10 @@ private fun GesturesIllustration() {
     val colors = MaterialTheme.colorScheme
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Box(
-            modifier = Modifier
-                .size(60.dp)
-                .clip(CircleShape)
-                .background(colors.primaryContainer),
+            modifier =
+                Modifier.size(60.dp)
+                    .clip(CircleShape)
+                    .background(colors.primaryContainer),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
@@ -757,22 +813,40 @@ private fun GesturesIllustration() {
 
 @Composable
 private fun EmptyDetailPane() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    val colors = MaterialTheme.colorScheme
+    Box(
+        modifier = Modifier.fillMaxSize().padding(32.dp),
+        contentAlignment = Alignment.Center,
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
-            Icon(
-                imageVector = Icons.Default.TouchApp,
-                contentDescription = null,
-                modifier = Modifier.size(64.dp),
-                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
-            )
-            Spacer(modifier = Modifier.height(16.dp))
+            Box(
+                modifier =
+                    Modifier.size(72.dp)
+                        .clip(CircleShape)
+                        .background(colors.primaryContainer.copy(alpha = 0.5f)),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    imageVector = Icons.Default.TouchApp,
+                    contentDescription = null,
+                    modifier = Modifier.size(36.dp),
+                    tint = colors.primary,
+                )
+            }
+            Spacer(modifier = Modifier.height(20.dp))
             Text(
-                text = "Select an item",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
+                text = stringResource(R.string.personalizations),
+                style = MaterialTheme.typography.titleMediumEmphasized,
+                color = colors.onSurface,
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Select a feature to configure",
+                style = MaterialTheme.typography.bodyMedium,
+                color = colors.onSurfaceVariant.copy(alpha = 0.8f),
             )
         }
     }

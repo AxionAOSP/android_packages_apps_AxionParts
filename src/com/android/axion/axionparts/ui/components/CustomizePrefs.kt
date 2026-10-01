@@ -27,7 +27,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -786,7 +785,7 @@ fun VisualCard(
                 content = illustration,
             )
             Row(
-                modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 16.dp, bottom = 16.dp),
+                modifier = Modifier.fillMaxWidth().padding(start = 18.dp, end = 14.dp, bottom = 14.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
@@ -820,7 +819,7 @@ fun DashboardCard(
     val motionScheme = MaterialTheme.motionScheme
     val scale by
         animateFloatAsState(
-            targetValue = if (isPressed) 0.97f else 1f,
+            targetValue = if (isPressed) 0.95f else 1f,
             animationSpec = motionScheme.defaultSpatialSpec(),
             label = "scale",
         )
@@ -833,30 +832,40 @@ fun DashboardCard(
                     scaleX = scale
                     scaleY = scale
                 }
-                .clip(RoundedCornerShape(28.dp))
+                .clip(RoundedCornerShape(24.dp))
                 .background(colors.surfaceBright)
                 .clickable(
                     interactionSource = interactionSource,
                     indication = ripple(),
                     onClick = onClick,
-                ),
+                )
+                .padding(horizontal = 4.dp, vertical = 6.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
             Icon(
                 imageVector = icon,
                 contentDescription = null,
                 tint = colors.onSurface,
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier.size(28.dp),
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleMedium.copy(fontSize = 12.sp),
+                style =
+                    MaterialTheme.typography.titleSmallEmphasized.copy(
+                        fontSize = 11.5.sp,
+                        lineHeight = 14.sp,
+                    ),
                 color = colors.onSurface,
                 maxLines = 2,
+                softWrap = true,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 2.dp),
             )
         }
     }
