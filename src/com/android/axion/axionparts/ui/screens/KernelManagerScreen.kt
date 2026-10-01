@@ -205,6 +205,23 @@ private fun ClusterGroup(
     kernelManager: AxKernelManager,
     onKernelControlsChanged: () -> Unit,
 ) {
+    val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
+    val minDefault = cluster.availableFreqs.firstOrNull() ?: 0
+    val maxDefault = cluster.maxFreq
+    val currentMinFreq by rememberSettingInt(cluster.minFreqKey, SettingsType.SECURE, minDefault)
+    val currentMaxFreq by rememberSettingInt(cluster.maxFreqKey, SettingsType.SECURE, maxDefault)
+
+    LaunchedEffect(currentMinFreq, currentMaxFreq) {
+        if (currentMinFreq > currentMaxFreq && cluster.minControl != null) {
+            secureFlow.putInt(cluster.minFreqKey, currentMaxFreq)
+            AxKernelManager.setControlValue(cluster.minControl.id, currentMaxFreq)
+            onKernelControlsChanged()
+        }
+    }
+
+    val effectiveMaxForMin = maxOf(currentMinFreq, currentMaxFreq)
+    val effectiveMinForMax = minOf(currentMinFreq, currentMaxFreq)
+
     PreferenceGroup(title = cluster.name) {
         item {
             KernelFrequencyPreference(
@@ -212,7 +229,8 @@ private fun ClusterGroup(
                 label = stringResource(R.string.minimum_frequency),
                 availableFreqs = cluster.availableFreqs,
                 maxFreq = cluster.maxFreq,
-                defaultValue = cluster.availableFreqs.firstOrNull() ?: 0,
+                defaultValue = minDefault,
+                maxSelectableFreq = effectiveMaxForMin,
                 onCommit =
                     cluster.minControl?.let { control ->
                         { value: Int ->
@@ -227,7 +245,8 @@ private fun ClusterGroup(
                 label = stringResource(R.string.maximum_frequency),
                 availableFreqs = cluster.availableFreqs,
                 maxFreq = cluster.maxFreq,
-                defaultValue = cluster.maxFreq,
+                defaultValue = maxDefault,
+                minSelectableFreq = effectiveMinForMax,
                 onCommit =
                     cluster.maxControl?.let { control ->
                         { value: Int ->
@@ -256,6 +275,8 @@ private fun KernelFrequencyPreference(
     availableFreqs: List<Int>,
     maxFreq: Int,
     defaultValue: Int,
+    minSelectableFreq: Int? = null,
+    maxSelectableFreq: Int? = null,
     onCommit: ((Int) -> Unit)?,
 ) {
     val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
@@ -277,9 +298,15 @@ private fun KernelFrequencyPreference(
             interval = 100000,
             defaultValue = defaultValue,
             value = persistedValue,
+            minSelectableFreq = minSelectableFreq,
+            maxSelectableFreq = maxSelectableFreq,
             onValueCommitted = { selectedValue ->
-                secureFlow.putInt(settingKey, selectedValue)
-                onCommit?.invoke(selectedValue)
+                val clamped = selectedValue.coerceIn(
+                    minSelectableFreq ?: Int.MIN_VALUE,
+                    maxSelectableFreq ?: Int.MAX_VALUE,
+                )
+                secureFlow.putInt(settingKey, clamped)
+                onCommit?.invoke(clamped)
             },
         )
     }
@@ -388,6 +415,21 @@ private fun GpuGroup(
     val availableFreqs = minControl.availableValues.toList()
     val maxFreq = availableFreqs.maxOrNull() ?: maxControl.defaultValue
 
+    val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
+    val currentMinFreq by rememberSettingInt(minControl.id, SettingsType.SECURE, minControl.defaultValue)
+    val currentMaxFreq by rememberSettingInt(maxControl.id, SettingsType.SECURE, maxControl.defaultValue)
+
+    LaunchedEffect(currentMinFreq, currentMaxFreq) {
+        if (currentMinFreq > currentMaxFreq) {
+            secureFlow.putInt(minControl.id, currentMaxFreq)
+            AxKernelManager.setControlValue(minControl.id, currentMaxFreq)
+            onKernelControlsChanged()
+        }
+    }
+
+    val effectiveMaxForMin = maxOf(currentMinFreq, currentMaxFreq)
+    val effectiveMinForMax = minOf(currentMinFreq, currentMaxFreq)
+
     PreferenceGroup(title = stringResource(R.string.gpu)) {
         item {
             KernelFrequencyPreference(
@@ -396,6 +438,7 @@ private fun GpuGroup(
                 availableFreqs = availableFreqs,
                 maxFreq = maxFreq,
                 defaultValue = minControl.defaultValue,
+                maxSelectableFreq = effectiveMaxForMin,
                 onCommit = { setKernelControl(kernelManager, minControl, it, onKernelControlsChanged) },
             )
         }
@@ -406,6 +449,7 @@ private fun GpuGroup(
                 availableFreqs = availableFreqs,
                 maxFreq = maxFreq,
                 defaultValue = maxControl.defaultValue,
+                minSelectableFreq = effectiveMinForMax,
                 onCommit = { setKernelControl(kernelManager, maxControl, it, onKernelControlsChanged) },
             )
         }
