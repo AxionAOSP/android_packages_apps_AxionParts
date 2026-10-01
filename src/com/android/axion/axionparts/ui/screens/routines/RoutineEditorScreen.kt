@@ -37,43 +37,17 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import android.content.Context
+import android.nfc.NfcAdapter
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.AppShortcut
-import androidx.compose.material.icons.filled.BatteryChargingFull
-import androidx.compose.material.icons.filled.BatteryStd
-import androidx.compose.material.icons.filled.Bluetooth
-import androidx.compose.material.icons.filled.BrightnessHigh
-import androidx.compose.material.icons.filled.CameraAlt
-import androidx.compose.material.icons.filled.ChatBubble
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Headphones
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.HourglassEmpty
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.OpenInNew
-import androidx.compose.material.icons.filled.PhoneAndroid
-import androidx.compose.material.icons.filled.Send
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Timer
-import androidx.compose.material.icons.filled.ToggleOn
-import androidx.compose.material.icons.filled.VolumeUp
-import androidx.compose.material.icons.filled.Nfc
+import androidx.compose.material.icons.automirrored.filled.*
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import android.content.Context
-import android.nfc.NfcAdapter
-import androidx.compose.material.icons.filled.Language
-import androidx.compose.material.icons.filled.Router
-import androidx.compose.material.icons.filled.Wifi
-import androidx.compose.material.icons.filled.WifiOff
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -136,10 +110,10 @@ private fun triggerOptions(): List<TypeOption> {
         TypeOption(Trigger.TYPE_SCREEN_STATE, stringResource(R.string.routines_screen), Icons.Default.PhoneAndroid),
         TypeOption(Trigger.TYPE_FEATURE_STATE, stringResource(R.string.routines_feature_state), Icons.Default.ToggleOn),
         TypeOption(Trigger.TYPE_HEADPHONES_STATE, stringResource(R.string.routines_headphones), Icons.Default.Headphones),
-        TypeOption(Trigger.TYPE_RINGER_MODE, stringResource(R.string.routines_ringer_mode), Icons.Default.VolumeUp),
+        TypeOption(Trigger.TYPE_RINGER_MODE, stringResource(R.string.routines_ringer_mode), Icons.AutoMirrored.Filled.VolumeUp),
         TypeOption(Trigger.TYPE_INCOMING_CALL, stringResource(R.string.routines_incoming_call), Icons.Default.PhoneAndroid),
-        TypeOption(Trigger.TYPE_SMS_MESSAGE, stringResource(R.string.routines_sms_message), Icons.Default.Send),
-        TypeOption(Trigger.TYPE_APP_LAUNCH, stringResource(R.string.routines_app_launch), Icons.Default.OpenInNew),
+        TypeOption(Trigger.TYPE_SMS_MESSAGE, stringResource(R.string.routines_sms_message), Icons.AutoMirrored.Filled.Send),
+        TypeOption(Trigger.TYPE_APP_LAUNCH, stringResource(R.string.routines_app_launch), Icons.AutoMirrored.Filled.OpenInNew),
         TypeOption(Trigger.TYPE_APP_CLOSE, stringResource(R.string.routines_app_close), Icons.Default.Close),
         TypeOption(Trigger.TYPE_SENSOR_PRIVACY_STATE, stringResource(R.string.routines_sensor_privacy), Icons.Default.CameraAlt),
         TypeOption(Trigger.TYPE_LOCATION, stringResource(R.string.routines_location), Icons.Default.LocationOn),
@@ -154,16 +128,16 @@ private fun triggerOptions(): List<TypeOption> {
 private fun actionOptions() = listOf(
     TypeOption(Action.TYPE_SET_FEATURE, stringResource(R.string.routines_set_feature), Icons.Default.ToggleOn),
     TypeOption(Action.TYPE_TOGGLE_FEATURE, stringResource(R.string.routines_toggle_feature), Icons.Default.ToggleOn),
-    TypeOption(Action.TYPE_SET_VOLUME, stringResource(R.string.routines_set_volume), Icons.Default.VolumeUp),
+    TypeOption(Action.TYPE_SET_VOLUME, stringResource(R.string.routines_set_volume), Icons.AutoMirrored.Filled.VolumeUp),
     TypeOption(Action.TYPE_SET_BRIGHTNESS, stringResource(R.string.routines_set_brightness), Icons.Default.BrightnessHigh),
-    TypeOption(Action.TYPE_SET_RINGER_MODE, stringResource(R.string.routines_set_ringer_mode), Icons.Default.VolumeUp),
-    TypeOption(Action.TYPE_LAUNCH_APP, stringResource(R.string.routines_launch_app), Icons.Default.OpenInNew),
-    TypeOption(Action.TYPE_SEND_BROADCAST, stringResource(R.string.routines_send_broadcast), Icons.Default.Send),
+    TypeOption(Action.TYPE_SET_RINGER_MODE, stringResource(R.string.routines_set_ringer_mode), Icons.AutoMirrored.Filled.VolumeUp),
+    TypeOption(Action.TYPE_LAUNCH_APP, stringResource(R.string.routines_launch_app), Icons.AutoMirrored.Filled.OpenInNew),
+    TypeOption(Action.TYPE_SEND_BROADCAST, stringResource(R.string.routines_send_broadcast), Icons.AutoMirrored.Filled.Send),
     TypeOption(Action.TYPE_SHOW_NOTIFICATION, stringResource(R.string.routines_show_notification), Icons.Default.Notifications),
     TypeOption(Action.TYPE_DELAY, stringResource(R.string.routines_delay), Icons.Default.HourglassEmpty),
     TypeOption(Action.TYPE_SET_SETTING, stringResource(R.string.routines_set_setting), Icons.Default.Settings),
     TypeOption(Action.TYPE_SET_SENSOR_PRIVACY, stringResource(R.string.routines_set_sensor_privacy), Icons.Default.CameraAlt),
-    TypeOption(Action.TYPE_PLAY_SOUND, stringResource(R.string.routines_play_sound), Icons.Default.VolumeUp),
+    TypeOption(Action.TYPE_PLAY_SOUND, stringResource(R.string.routines_play_sound), Icons.AutoMirrored.Filled.VolumeUp),
     TypeOption(Action.TYPE_SEND_LOCATION_SMS, stringResource(R.string.routines_send_location_sms), Icons.Default.LocationOn),
     TypeOption(Action.TYPE_HTTP_REQUEST, stringResource(R.string.routines_http_request), Icons.Default.Language),
 )
@@ -213,8 +187,9 @@ fun RoutineEditorContent(
         contract = ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val uri = result.data?.getParcelableExtra<Uri>(
-                RingtoneManager.EXTRA_RINGTONE_PICKED_URI
+            val uri = result.data?.getParcelableExtra(
+                RingtoneManager.EXTRA_RINGTONE_PICKED_URI,
+                Uri::class.java,
             )
             if (uri != null) {
                 actions = actions + Action.PlaySound(RingtoneManager.TYPE_ALL, uri.toString())

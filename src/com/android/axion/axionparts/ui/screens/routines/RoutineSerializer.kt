@@ -174,12 +174,12 @@ class RoutineSerializer {
             )
             Trigger.TYPE_WIFI_STATE -> Trigger.WifiState(
                 connected = json.getBoolean(KEY_CONNECTED),
-                ssid = json.optString(KEY_SSID, null),
-                ssidPattern = json.optString(KEY_SSID_PATTERN, null),
+                ssid = json.optStringOrNull(KEY_SSID),
+                ssidPattern = json.optStringOrNull(KEY_SSID_PATTERN),
             )
             Trigger.TYPE_BLUETOOTH_STATE -> Trigger.BluetoothState(
                 connected = json.getBoolean(KEY_CONNECTED),
-                deviceAddress = json.optString(KEY_DEVICE_ADDRESS, null),
+                deviceAddress = json.optStringOrNull(KEY_DEVICE_ADDRESS),
             )
             Trigger.TYPE_SCREEN_STATE -> Trigger.ScreenState(
                 on = json.getBoolean(KEY_ON),
@@ -218,11 +218,11 @@ class RoutineSerializer {
                 entering = json.getBoolean(KEY_ENTERING),
             )
             Trigger.TYPE_CAPTIVE_PORTAL -> Trigger.CaptivePortal(
-                ssid = json.optString(KEY_SSID, null),
+                ssid = json.optStringOrNull(KEY_SSID),
             )
             Trigger.TYPE_NFC_TAG -> Trigger.NfcTag(
                 tagId = json.getString(KEY_TAG_ID),
-                tagName = json.optString(KEY_TAG_NAME, null),
+                tagName = json.optStringOrNull(KEY_TAG_NAME),
             )
             else -> throw IllegalArgumentException(
                 "Unknown trigger type: ${json.getString(KEY_TYPE)}"
@@ -307,11 +307,11 @@ class RoutineSerializer {
                 charging = json.getBoolean(KEY_CHARGING),
             )
             Condition.TYPE_WIFI_CONNECTED -> Condition.WifiConnected(
-                ssid = json.optString(KEY_SSID, null),
-                ssidPattern = json.optString(KEY_SSID_PATTERN, null),
+                ssid = json.optStringOrNull(KEY_SSID),
+                ssidPattern = json.optStringOrNull(KEY_SSID_PATTERN),
             )
             Condition.TYPE_BLUETOOTH_CONNECTED -> Condition.BluetoothConnected(
-                deviceAddress = json.optString(KEY_DEVICE_ADDRESS, null),
+                deviceAddress = json.optStringOrNull(KEY_DEVICE_ADDRESS),
             )
             Condition.TYPE_SCREEN_ON -> Condition.ScreenOn(
                 on = json.getBoolean(KEY_ON),
@@ -454,14 +454,14 @@ class RoutineSerializer {
                 }.getOrDefault(Action.LaunchApp.LaunchMode.FULLSCREEN),
             )
             Action.TYPE_SEND_BROADCAST -> Action.SendBroadcast(
-                action = json.optString(KEY_ACTION, null),
+                action = json.optStringOrNull(KEY_ACTION),
                 mode = runCatching {
                     Action.SendBroadcast.Mode.valueOf(
                         json.optString(KEY_INTENT_MODE, Action.SendBroadcast.Mode.BROADCAST.name)
                     )
                 }.getOrDefault(Action.SendBroadcast.Mode.BROADCAST),
-                componentPackage = json.optString(KEY_COMPONENT_PACKAGE, null),
-                componentClass = json.optString(KEY_COMPONENT_CLASS, null),
+                componentPackage = json.optStringOrNull(KEY_COMPONENT_PACKAGE),
+                componentClass = json.optStringOrNull(KEY_COMPONENT_CLASS),
                 extras = deserializeIntentExtras(json.optJSONObject(KEY_EXTRAS)),
             )
             Action.TYPE_SHOW_NOTIFICATION -> Action.ShowNotification(
@@ -482,16 +482,16 @@ class RoutineSerializer {
             )
             Action.TYPE_PLAY_SOUND -> Action.PlaySound(
                 soundType = json.getInt(KEY_SOUND_TYPE),
-                uri = json.optString(KEY_URI, null),
+                uri = json.optStringOrNull(KEY_URI),
             )
             Action.TYPE_SEND_LOCATION_SMS -> Action.SendLocationSms(
-                phoneNumber = json.optString(KEY_PHONE_NUMBER, null),
+                phoneNumber = json.optStringOrNull(KEY_PHONE_NUMBER),
             )
             Action.TYPE_HTTP_REQUEST -> Action.HttpRequest(
                 url = json.getString(KEY_URL),
                 method = json.optString(KEY_METHOD, Action.METHOD_GET),
                 headers = deserializeStringMap(json.optJSONObject(KEY_HEADERS)),
-                body = json.optString(KEY_BODY, null),
+                body = json.optStringOrNull(KEY_BODY),
                 timeoutMs = json.optInt(KEY_TIMEOUT_MS, Action.DEFAULT_HTTP_TIMEOUT_MS),
                 ignoreSslErrors = json.optBoolean(KEY_IGNORE_SSL_ERRORS, false),
                 requireValidatedInternet = json.optBoolean(KEY_REQUIRE_VALIDATED_INTERNET, true),
@@ -551,6 +551,9 @@ class RoutineSerializer {
             }
         }
     }
+
+    private fun JSONObject.optStringOrNull(name: String): String? =
+        if (isNull(name)) null else optString(name)
 
     companion object {
         private const val KEY_ID = "id"
