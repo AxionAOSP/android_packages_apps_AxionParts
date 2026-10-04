@@ -41,7 +41,7 @@
     <string name="sound">Suara</string>
     <string name="sound_subtitle">Volume per aplikasi &amp; audio ganda</string>
     <string name="gestures">Gestur</string>
-    <string name="gestures_subtitle">Shake, three finger &amp; doze pulse</string>
+    <string name="gestures_subtitle">&amp;</string>
     <!-- Lockscreen Features -->
     <string name="edge_light">Cahaya Tepi</string>
     <string name="edge_light_description">Efek pencahayaan di tepi layar untuk notifikasi</string>
