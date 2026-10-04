@@ -206,8 +206,10 @@ private fun ClusterGroup(
     onKernelControlsChanged: () -> Unit,
 ) {
     val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
-    val minDefault = cluster.availableFreqs.firstOrNull() ?: 0
-    val maxDefault = cluster.maxFreq
+    val minDefault = cluster.minControl?.currentValue
+        ?: cluster.availableFreqs.firstOrNull()
+        ?: 0
+    val maxDefault = cluster.maxControl?.currentValue ?: cluster.maxFreq
     val currentMinFreq by rememberSettingInt(cluster.minFreqKey, SettingsType.SECURE, minDefault)
     val currentMaxFreq by rememberSettingInt(cluster.maxFreqKey, SettingsType.SECURE, maxDefault)
 
@@ -416,8 +418,8 @@ private fun GpuGroup(
     val maxFreq = availableFreqs.maxOrNull() ?: maxControl.defaultValue
 
     val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
-    val currentMinFreq by rememberSettingInt(minControl.id, SettingsType.SECURE, minControl.defaultValue)
-    val currentMaxFreq by rememberSettingInt(maxControl.id, SettingsType.SECURE, maxControl.defaultValue)
+    val currentMinFreq by rememberSettingInt(minControl.id, SettingsType.SECURE, minControl.currentValue)
+    val currentMaxFreq by rememberSettingInt(maxControl.id, SettingsType.SECURE, maxControl.currentValue)
 
     LaunchedEffect(currentMinFreq, currentMaxFreq) {
         if (currentMinFreq > currentMaxFreq) {
@@ -437,7 +439,7 @@ private fun GpuGroup(
                 label = stringResource(R.string.minimum_frequency),
                 availableFreqs = availableFreqs,
                 maxFreq = maxFreq,
-                defaultValue = minControl.defaultValue,
+                defaultValue = minControl.currentValue,
                 maxSelectableFreq = effectiveMaxForMin,
                 onCommit = { setKernelControl(kernelManager, minControl, it, onKernelControlsChanged) },
             )
@@ -448,7 +450,7 @@ private fun GpuGroup(
                 label = stringResource(R.string.maximum_frequency),
                 availableFreqs = availableFreqs,
                 maxFreq = maxFreq,
-                defaultValue = maxControl.defaultValue,
+                defaultValue = maxControl.currentValue,
                 minSelectableFreq = effectiveMinForMax,
                 onCommit = { setKernelControl(kernelManager, maxControl, it, onKernelControlsChanged) },
             )
@@ -468,8 +470,8 @@ private fun GovernorPreference(
         return
     }
     val secureFlow = rememberSettingsFlow(SettingsType.SECURE)
-    val savedGov by rememberSettingInt(control.id, SettingsType.SECURE, control.defaultValue)
-    val currentGov = if (savedGov in values) savedGov else control.defaultValue
+    val savedGov by rememberSettingInt(control.id, SettingsType.SECURE, control.currentValue)
+    val currentGov = if (savedGov in values) savedGov else control.currentValue
     val currentLabel = labels.getOrNull(values.indexOf(currentGov)) ?: labels.first()
     ListPreference(
         title = stringResource(R.string.cpu_governor),
