@@ -227,17 +227,17 @@
     <string name="diagnostics_summary">Інформація про систему та діагностика апаратного забезпечення</string>
     <!-- App Spoofing -->
     <string name="game_spoofing">Підміна додатка</string>
-    <string name="game_spoofing_summary">Spoof device properties for specific apps</string>
+    <string name="game_spoofing_summary">Підміняти властивості пристрою для певних застосунків</string>
     <string name="app_spoofing">Підміна додатка</string>
-    <string name="app_spoofing_summary">Spoof device properties for specific apps</string>
+    <string name="app_spoofing_summary">Підміняти властивості пристрою для певних застосунків</string>
     <string name="apps_configured">Налаштовано додатків: %1$d</string>
     <string name="no_apps_configured">Додатки не налаштовані</string>
     <string name="configured_apps">Налаштовані застосунки</string>
     <string name="no_apps_configured_empty">Додатки не налаштовані</string>
     <string name="add_apps_to_spoof">Додайте додатки, щоб почати підміну властивостей пристрою</string>
     <string name="configuration_saved">Конфігурацію збережено</string>
-    <string name="remove_game_title">Remove App?</string>
-    <string name="remove_game_message">This will remove the spoofing configuration for this app.</string>
+    <string name="remove_game_title">Видалити застосунок?</string>
+    <string name="remove_game_message">Це видалить конфігурацію підміни для цього застосунку.</string>
     <string name="select_an_app">Виберіть додаток:</string>
     <string name="select_device_profile">Виберіть профіль пристрою:</string>
     <string name="create_new">Створити новий</string>
