@@ -43,6 +43,9 @@
                 <action android:name="com.android.axion.axionparts.action.ESSENTIALS" />
                 <action android:name="com.android.axion.axionparts.action.MULTITASKING" />
                 <action android:name="com.android.axion.axionparts.action.DUAL_APPS" />
+                <action android:name="com.android.axion.axionparts.action.KERNEL_MANAGER" />
+                <action android:name="com.android.axion.axionparts.action.RAM_PLUS" />
+                <action android:name="com.android.axion.axionparts.ACTION_APP_OPTIMIZATION" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

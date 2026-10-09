@@ -115,6 +115,13 @@ object FeatureRegistry {
             action = "com.android.axion.axionparts.action.APPSPOOFING"
         ),
         PartFeature(
+            key = "gamespoofing_settings",
+            titleRes = R.string.game_spoofing,
+            summaryRes = R.string.game_spoofing_summary,
+            keywordsRes = R.string.keywords_gamespoofing,
+            action = "com.android.axion.axionparts.action.GAMESPOOFING"
+        ),
+        PartFeature(
             key = "routines_settings",
             titleRes = R.string.routines,
             summaryRes = R.string.routines_summary,
@@ -155,6 +162,34 @@ object FeatureRegistry {
             summaryRes = R.string.multitasking_summary,
             keywordsRes = R.string.keywords_multitasking,
             action = "com.android.axion.axionparts.action.MULTITASKING"
+        ),
+        PartFeature(
+            key = "dual_apps_settings",
+            titleRes = R.string.dual_apps,
+            summaryRes = R.string.dual_apps_summary,
+            keywordsRes = R.string.keywords_dual_apps,
+            action = "com.android.axion.axionparts.action.DUAL_APPS"
+        ),
+        PartFeature(
+            key = "kernel_manager_settings",
+            titleRes = R.string.kernel_manager,
+            summaryRes = R.string.kernel_manager_summary,
+            keywordsRes = R.string.keywords_kernel_manager,
+            action = "com.android.axion.axionparts.action.KERNEL_MANAGER"
+        ),
+        PartFeature(
+            key = "ram_plus_settings",
+            titleRes = R.string.ram_plus,
+            summaryRes = R.string.ram_plus_summary,
+            keywordsRes = R.string.keywords_ram_plus,
+            action = "com.android.axion.axionparts.action.RAM_PLUS"
+        ),
+        PartFeature(
+            key = "app_optimization_settings",
+            titleRes = R.string.app_optimization_title,
+            summaryRes = R.string.app_optimization_summary,
+            keywordsRes = R.string.keywords_app_optimization,
+            action = "com.android.axion.axionparts.ACTION_APP_OPTIMIZATION"
         ),
         PartFeature(
             key = "themes_settings",
