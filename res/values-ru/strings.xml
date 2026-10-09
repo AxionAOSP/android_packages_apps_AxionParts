@@ -515,8 +515,8 @@
     <string name="routines_enabled_summary">Разрешить автозапуск</string>
     <string name="routines_create">Создать процедуру</string>
     <string name="routines_edit">Изменить процедуру</string>
-    <string name="routines_duplicate">Duplicate routine</string>
-    <string name="routines_duplicate_name">%1$s copy</string>
+    <string name="routines_duplicate">Дублировать программу</string>
+    <string name="routines_duplicate_name">Копирование %1$s</string>
     <string name="routines_name">Название процедуры</string>
     <string name="routines_triggers">Триггеры</string>
     <string name="routines_conditions">Условия</string>
@@ -532,7 +532,7 @@
     <string name="routines_backup_restore">Резервное копирование и восстановление</string>
     <string name="routines_import">Импортировать</string>
     <string name="routines_import_summary">Восстановить из резервной копии JSON</string>
-    <string name="routines_export">Export routines</string>
+    <string name="routines_export">Экспорт</string>
     <string name="routines_export_summary">Save current routines to a JSON backup</string>
     <string name="routines_export_empty_summary">Create a routine before exporting a backup</string>
     <string name="routines_import_failed">Unable to import routines</string>
@@ -556,7 +556,7 @@
     <string name="routines_intent_mode_fg_service">FG Service</string>
     <string name="routines_intent_component_package">Component package (optional)</string>
     <string name="routines_intent_component_class">Component class (optional)</string>
-    <string name="routines_intent_extras_label">Extras</string>
+    <string name="routines_intent_extras_label">Дополнительно</string>
     <string name="routines_intent_extras_add">Add extra</string>
     <string name="routines_intent_extras_key">Ключ</string>
     <string name="routines_intent_extras_value">Значение</string>
@@ -693,21 +693,21 @@
     <string name="ax_bravia_engine_natural">Естественный</string>
     <string name="ax_bravia_engine_cinema">Кинематографический</string>
     <plurals name="max_apps_selected">
-        <item quantity="one">You can select up to %1$d app</item>
+        <item quantity="one">Вы можете выбрать до %1$d приложения</item>
         <item quantity="few">You can select up to %1$d apps</item>
         <item quantity="many">You can select up to %1$d apps</item>
         <item quantity="other">You can select up to %1$d apps</item>
     </plurals>
     <!-- Search Keywords -->
     <string name="keywords_edge_light">edge, light, notifications, glow, pulse</string>
-    <string name="keywords_media_art">media art, lockscreen, album, cover, blur</string>
-    <string name="keywords_pulse">pulse, audio, visualizer, navbar</string>
+    <string name="keywords_media_art">медиа-арт, экран блокировки, альбом, обложка, размытие</string>
+    <string name="keywords_pulse">пульс, аудио, визуализатор, панель навигации</string>
     <string name="keywords_aod">aod, always-on, doze, schedule</string>
-    <string name="keywords_ui_features">status bar, dynamic bar</string>
-    <string name="keywords_sound">per app, volume, multi audio</string>
+    <string name="keywords_ui_features">строка состояния, динамическая панель</string>
+    <string name="keywords_sound">громкость для каждого приложения</string>
     <string name="keywords_gestures">gestures, shake gestures, three finger</string>
-    <string name="keywords_pcmode">pc mode, desktop</string>
-    <string name="keywords_performance">performance mode, boost, frequency control</string>
+    <string name="keywords_pcmode">ПК режим, рабочий стол</string>
+    <string name="keywords_performance">режим производительности, ускорение, управление частотой</string>
     <string name="keywords_trickystore">trickystore, keybox, attestation, spoofing, bootloader spoof</string>
     <string name="keywords_playintegrityfix">play integrity fix, safety net, fingerprint, pif,  gphoto spoof, certification</string>
     <string name="keywords_gamespoofing">app spoofing, game spoofing, gaming, high fps, unlock, device spoof</string>
@@ -722,7 +722,7 @@
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
     <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
     <string name="keywords_dual_apps">dual apps, clone, parallel space, second space, accounts, clone app, app cloner</string>
-    <string name="keywords_kernel_manager">kernel manager, cpu frequency, gpu frequency, governor, tuning, overclock, underclock</string>
+    <string name="keywords_kernel_manager">диспетчер ядра, частота cpu, частота gpu, режим, настройка, overclock, underclock</string>
     <string name="keywords_ram_plus">ram plus, swap, zram, virtual ram, virtual memory, memory expansion</string>
-    <string name="keywords_app_optimization">app optimization, odex, speed up, dexopt, launch speed, pre-compile</string>
+    <string name="keywords_app_optimization">оптимизация приложений, odex, ускорение, dexopt, скорость запуска, предварительная компиляция</string>
 </resources>
