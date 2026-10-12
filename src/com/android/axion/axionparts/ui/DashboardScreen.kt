@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2025 AxionOS Project
+ * Copyright (C) 2025-2026 AxionOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,12 +72,17 @@ import com.android.axion.compose.navigation.AxRouteAnimatedContent
 import com.android.axion.compose.navigation.rememberAxRouteNavigator
 import com.android.axion.compose.preferences.*
 import com.android.axion.compose.scaffold.AxionScaffold
+import com.android.axion.compose.scaffold.LocalScaffoldEmbedded
 
 @Composable
-fun DashboardScreen(initialDetailScreen: String? = null) {
+fun DashboardScreen(
+    initialDetailScreen: String? = null,
+    showTopBar: Boolean = true,
+) {
     val activity = LocalContext.current as? Activity
     val windowSizeClass = rememberWindowSizeClass()
     val isDualPane = rememberIsDualPane()
+    val effectiveDualPane = isDualPane && !LocalScaffoldEmbedded.current
 
     var appPickerTitleRes by rememberSaveable { mutableStateOf(R.string.select_apps) }
     var appPickerSelectedApps by rememberSaveable { mutableStateOf<Set<String>>(emptySet()) }
@@ -137,7 +142,7 @@ fun DashboardScreen(initialDetailScreen: String? = null) {
         BackHandler { closeDetail() }
     }
 
-    if (isDualPane) {
+    if (effectiveDualPane) {
         TwoPaneLayout(
             windowSizeClass = windowSizeClass,
             listPane = {
@@ -200,6 +205,7 @@ fun DashboardScreen(initialDetailScreen: String? = null) {
                 DashboardContent(
                     scrollState = dashboardScrollState,
                     onNavigateToDetail = { navigateToDetail(it) },
+                    showTopBar = showTopBar,
                 )
             }
         }
@@ -210,6 +216,7 @@ fun DashboardScreen(initialDetailScreen: String? = null) {
 private fun DashboardContent(
     scrollState: LazyListState,
     onNavigateToDetail: (String) -> Unit,
+    showTopBar: Boolean = true,
 ) {
     val context = LocalContext.current
     val activity = context as? Activity
@@ -217,6 +224,7 @@ private fun DashboardContent(
     AxionScaffold(
         title = stringResource(R.string.personalizations),
         onBackClick = { activity?.finish() },
+        showTopBar = showTopBar,
     ) { innerPadding ->
         BoxWithConstraints(
             modifier = Modifier.fillMaxSize().padding(innerPadding),
