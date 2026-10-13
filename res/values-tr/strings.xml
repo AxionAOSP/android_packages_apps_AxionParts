@@ -540,7 +540,7 @@
     <string name="routines_delete_title">Delete routine?</string>
     <string name="routines_delete_message">This routine will be permanently removed.</string>
     <string name="routines_optional">optional</string>
-    <string name="routines_minutes">Minutes</string>
+    <string name="routines_minutes">Dakikalar</string>
     <string name="routines_seconds">Saniyeler</string>
     <string name="routines_above">Above</string>
     <string name="routines_below">Below</string>
