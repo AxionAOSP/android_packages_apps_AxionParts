@@ -99,6 +99,8 @@ private const val FLASH_URL = "https://flash.android.com"
 private const val FLASH_API = "https://content-flashstation-pa.googleapis.com/v1/builds"
 private const val PIXEL_BULLETIN_URL = "https://source.android.com/docs/security/bulletin/pixel"
 private const val VENDING_PACKAGE = "com.android.vending"
+private const val GMS_PACKAGE = "com.google.android.gms"
+private const val GPHOTOS_PACKAGE = "com.google.android.apps.photos"
 
 data class ConfigFileState(
     val fileName: String,
@@ -178,12 +180,26 @@ fun PlayIntegrityFixContent(
         refreshStatus()
     }
 
+    fun restartTargetPackages(includePhotos: Boolean = false) {
+        try {
+            val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            am.forceStopPackage(GMS_PACKAGE)
+            am.forceStopPackage(VENDING_PACKAGE)
+            if (includePhotos) {
+                am.forceStopPackage(GPHOTOS_PACKAGE)
+            }
+        } catch (e: Exception) {
+            Log.w(TAG, "Failed to restart target packages: ${e.message}")
+        }
+    }
+
     fun updateConfig(key: String, value: Any) {
         try {
             val existing = Settings.Secure.getString(context.contentResolver, PIF_CONFIG_KEY)
             val json = try { JSONObject(existing ?: "") } catch (e: Exception) { JSONObject() }
             json.put(key, value)
             Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, json.toString(2))
+            restartTargetPackages(includePhotos = key == "spoofPhotos")
             refreshStatus()
         } catch (e: Exception) {
             Log.e(TAG, "Failed to update config", e)
@@ -203,15 +219,24 @@ fun PlayIntegrityFixContent(
                 
                 when (result) {
                     is PifFetchResult.Success -> {
+                        val existing = readCurrentConfig()
+                        val preservedKeys = listOf(
+                            "spoofBuild", "spoofProps", "spoofProvider", "spoofSignature",
+                            "spoofVendingBuild", "spoofVendingSdk", "spoofPhotos", "DEBUG", "verboseLogs"
+                        )
+                        preservedKeys.forEach { key ->
+                            existing[key]?.let { value ->
+                                if (!result.pifData.has(key)) {
+                                    result.pifData.put(key, value)
+                                }
+                            }
+                        }
                         Settings.Secure.putString(
                             context.contentResolver,
                             PIF_CONFIG_KEY,
                             result.pifData.toString(2)
                         )
-
-                        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-                        am.forceStopPackage(VENDING_PACKAGE)
-
+                        restartTargetPackages()
                         Toast.makeText(context, context.getString(R.string.fetched_model, result.model), Toast.LENGTH_SHORT).show()
                         fetchStatus = ""
                         refreshStatus()
@@ -244,9 +269,7 @@ fun PlayIntegrityFixContent(
                     val normalized = normalizePifPayload(raw)
                     Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, normalized)
 
-                    val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-                    am.forceStopPackage(VENDING_PACKAGE)
-
+                    restartTargetPackages()
                     Toast.makeText(context, context.getString(R.string.imported_as, PIF_CONFIG_NAME), Toast.LENGTH_SHORT).show()
                     refreshStatus()
                 } catch (e: Exception) {
@@ -267,6 +290,7 @@ fun PlayIntegrityFixContent(
                     onClick = {
                         try {
                             Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, null)
+                            restartTargetPackages(includePhotos = true)
                             Toast.makeText(context, context.getString(R.string.deleted_file, deleteTargetFile), Toast.LENGTH_SHORT).show()
                             refreshStatus()
                         } catch (e: Exception) {
@@ -559,7 +583,7 @@ private fun fetchPifFromGoogle(): PifFetchResult {
         Log.d(TAG, "Fetching Pixel Canary metadata...")
 
         val versionsHtml = URL("$GOOGLE_URL/about/versions").readText(StandardCharsets.UTF_8)
-        val latestVersion = Regex("""https://developer\.android\.com/about/versions/(\d+)""")
+        val latestVersion = Regex("""(?:https://developer\.android\.com)?/about/versions/(\d+)""")
             .findAll(versionsHtml)
             .map { it.groupValues[1].toInt() }
             .toSortedSet()
@@ -650,6 +674,16 @@ private fun fetchPifFromGoogle(): PifFetchResult {
 
         Log.d(TAG, "Security Patch: $securityPatch")
 
+        val initialSdkInt = when (device) {
+            "bluejay" -> "32"
+            "panther", "cheetah", "lynx", "felix", "tangorpro" -> "33"
+            "shiba", "husky", "akita", "tokay", "caiman", "komodo", "comet" -> "34"
+            "tegu", "stallion" -> "35"
+            "frankel", "blazer", "mustang", "rango" -> "36"
+            "cubs", "grizzly", "kodiak", "yogi" -> "37"
+            else -> "37"
+        }
+
         val pifJson = JSONObject().apply {
             put("MANUFACTURER", "Google")
             put("MODEL", model)
@@ -657,7 +691,13 @@ private fun fetchPifFromGoogle(): PifFetchResult {
             put("DEVICE", device)
             put("FINGERPRINT", fingerprint)
             put("SECURITY_PATCH", securityPatch)
-            put("DEVICE_INITIAL_SDK_INT", "32")
+            put("DEVICE_INITIAL_SDK_INT", initialSdkInt)
+            put("spoofBuild", "true")
+            put("spoofProps", "true")
+            put("spoofProvider", "false")
+            put("spoofSignature", "false")
+            put("spoofVendingBuild", "true")
+            put("spoofVendingSdk", "false")
         }
 
         PifFetchResult.Success(model, pifJson)
