@@ -721,4 +721,8 @@
     <string name="keywords_themes">themes, theme store, icons, shapes, styles, waveforms</string>
     <string name="keywords_gamespace">gamespace, gaming mode, gaming overlay, game booster</string>
     <string name="keywords_diagnostics">diagnostics, hardware info, battery stats, battery monitoring, cpu info, memory info, axdiagnostics</string>
+    <string name="keywords_dual_apps">dual apps, clone, parallel space, second space, accounts, clone app, app cloner</string>
+    <string name="keywords_kernel_manager">kernel manager, cpu frequency, gpu frequency, governor, tuning, overclock, underclock</string>
+    <string name="keywords_ram_plus">ram plus, swap, zram, virtual ram, virtual memory, memory expansion</string>
+    <string name="keywords_app_optimization">app optimization, odex, speed up, dexopt, launch speed, pre-compile</string>
 </resources>

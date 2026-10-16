@@ -721,4 +721,8 @@
     <string name="keywords_themes">теми, магазин тем, значки, фігури, стилі, форми хвиль</string>
     <string name="keywords_gamespace">ігровий простір, ігровий режим, ігрове накладення, прискорювач ігор</string>
     <string name="keywords_diagnostics">діагностика, інформація про обладнання, статистика акумулятора, моніторинг акумулятора, інформація про процесор, інформація про пам’ять, axdiagnostics</string>
+    <string name="keywords_dual_apps">dual apps, clone, parallel space, second space, accounts, clone app, app cloner</string>
+    <string name="keywords_kernel_manager">kernel manager, cpu frequency, gpu frequency, governor, tuning, overclock, underclock</string>
+    <string name="keywords_ram_plus">ram plus, swap, zram, virtual ram, virtual memory, memory expansion</string>
+    <string name="keywords_app_optimization">app optimization, odex, speed up, dexopt, launch speed, pre-compile</string>
 </resources>
