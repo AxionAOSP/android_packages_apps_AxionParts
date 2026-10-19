@@ -4,8 +4,10 @@ import android.R as AndroidR
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -41,7 +44,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
@@ -71,13 +73,23 @@ fun DualAppsScreen(
 ) {
     val manager = remember { AxDualAppsManager.getInstance() }
     val showDeleteSpaceDialogState = remember { mutableStateOf(false) }
+    val dualSpaceExistsState = remember { mutableStateOf(manager.isDualSpaceExists) }
+
+    LaunchedEffect(Unit) {
+        withContext(Dispatchers.IO) {
+            val exists = manager.isDualSpaceExists
+            withContext(Dispatchers.Main) {
+                dualSpaceExistsState.value = exists
+            }
+        }
+    }
 
     if (showTopBar) {
         AxionScaffold(
             title = stringResource(R.string.dual_apps),
             onBackClick = { onBackClick?.invoke() },
             actions = {
-                if (manager.isDualSpaceExists) {
+                if (dualSpaceExistsState.value) {
                     val icons = Icons.Default
                     IconButton(onClick = { showDeleteSpaceDialogState.value = true }) {
                         Icon(
@@ -91,11 +103,13 @@ fun DualAppsScreen(
             DualAppsContent(
                 modifier = Modifier.padding(innerPadding),
                 showDeleteSpaceDialogState = showDeleteSpaceDialogState,
+                onDualSpaceExistsChanged = { dualSpaceExistsState.value = it },
             )
         }
     } else {
         DualAppsContent(
             showDeleteSpaceDialogState = showDeleteSpaceDialogState,
+            onDualSpaceExistsChanged = { dualSpaceExistsState.value = it },
         )
     }
 }
@@ -104,8 +118,8 @@ fun DualAppsScreen(
 private fun DualAppsContent(
     modifier: Modifier = Modifier,
     showDeleteSpaceDialogState: MutableState<Boolean>,
+    onDualSpaceExistsChanged: (Boolean) -> Unit = {},
 ) {
-    val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val manager = remember { AxDualAppsManager.getInstance() }
 
@@ -118,17 +132,27 @@ private fun DualAppsContent(
     val availableListState = remember { mutableStateOf<List<DualAppEntry>>(emptyList()) }
     val pendingDeleteAppState = remember { mutableStateOf<DualAppEntry?>(null) }
 
+    val busyPackagesState = remember { mutableStateOf<Set<String>>(emptySet()) }
+    val enablingPackagesState = remember { mutableStateOf<Set<String>>(emptySet()) }
+    val isPreparingSpaceState = remember { mutableStateOf(false) }
+    val isClearingSpaceState = remember { mutableStateOf(false) }
+
     val isLoading = isLoadingState.value
     val searchQuery = searchQueryState.value
     val recommendedList = recommendedListState.value
     val availableList = availableListState.value
     val pendingDeleteApp = pendingDeleteAppState.value
+    val busyPackages = busyPackagesState.value
+    val enablingPackages = enablingPackagesState.value
+    val isPreparingSpace = isPreparingSpaceState.value
+    val isClearingSpace = isClearingSpaceState.value
+    val controlsLocked = isPreparingSpace || isClearingSpace
 
     fun refreshAppLists() {
         scope.launch(Dispatchers.IO) {
-            val pm = context.packageManager
             val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER)
             val allowedSet = manager.queryAllowPackages().toSet()
+            val spaceExists = manager.isDualSpaceExists
 
             val rawRecommended = manager.queryRecommendedAppList(intent, 0)
             val rawAvailable = manager.queryAvailableAppList(intent, 0)
@@ -154,7 +178,59 @@ private fun DualAppsContent(
                 recommendedListState.value = mappedRecommended
                 availableListState.value = mappedAvailable
                 isLoadingState.value = false
+                onDualSpaceExistsChanged(spaceExists)
             }
+        }
+    }
+
+    fun handleEnable(app: DualAppEntry) {
+        if (busyPackagesState.value.contains(app.packageName)) return
+        if (isPreparingSpaceState.value || isClearingSpaceState.value) return
+        busyPackagesState.value = busyPackagesState.value + app.packageName
+        enablingPackagesState.value = enablingPackagesState.value + app.packageName
+
+        if (manager.isDualSpaceInitialized) {
+            scope.launch(Dispatchers.IO) {
+                manager.installApp(app.packageName, app.uid)
+                withContext(Dispatchers.Main) {
+                    busyPackagesState.value = busyPackagesState.value - app.packageName
+                    enablingPackagesState.value = enablingPackagesState.value - app.packageName
+                    refreshAppLists()
+                }
+            }
+            return
+        }
+
+        isPreparingSpaceState.value = true
+        manager.prepareDualSpace(object : AxDualAppsManager.DualSpaceCreationCallback() {
+            override fun onPrepareDone() {
+                scope.launch(Dispatchers.IO) {
+                    manager.installApp(app.packageName, app.uid)
+                    withContext(Dispatchers.Main) {
+                        busyPackagesState.value = busyPackagesState.value - app.packageName
+                        enablingPackagesState.value = enablingPackagesState.value - app.packageName
+                        isPreparingSpaceState.value = false
+                        refreshAppLists()
+                    }
+                }
+            }
+
+            override fun onFailure(errorCode: Int) {
+                busyPackagesState.value = busyPackagesState.value - app.packageName
+                enablingPackagesState.value = enablingPackagesState.value - app.packageName
+                isPreparingSpaceState.value = false
+                refreshAppLists()
+            }
+        })
+    }
+
+    fun handleToggle(app: DualAppEntry, enabled: Boolean) {
+        if (busyPackagesState.value.contains(app.packageName)) return
+        if (isPreparingSpaceState.value || isClearingSpaceState.value) return
+        if (enabled) {
+            handleEnable(app)
+        } else {
+            pendingDeleteAppState.value = app
         }
     }
 
@@ -213,35 +289,35 @@ private fun DualAppsContent(
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            if (isPreparingSpace) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center,
+                ) {
+                    CircularProgressIndicator(modifier = Modifier.size(20.dp))
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text(
+                        text = stringResource(R.string.dual_apps_creating),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
             if (filteredRecommended.isNotEmpty()) {
                 PreferenceGroup(title = stringResource(R.string.dual_apps_recommended)) {
                     filteredRecommended.forEach { app ->
                         item {
                             DualAppPreferenceItem(
                                 app = app,
-                                onToggle = { enabled ->
-                                    if (enabled) {
-                                        if (!manager.isDualSpaceInitialized) {
-                                            manager.prepareDualSpace(object : AxDualAppsManager.DualSpaceCreationCallback() {
-                                                override fun onPrepareDone() {
-                                                    manager.installApp(app.packageName, app.uid)
-                                                    refreshAppLists()
-                                                }
-
-                                                override fun onFailure(errorCode: Int) {
-                                                    refreshAppLists()
-                                                }
-                                            })
-                                        } else {
-                                            scope.launch(Dispatchers.IO) {
-                                                manager.installApp(app.packageName, app.uid)
-                                                refreshAppLists()
-                                            }
-                                        }
-                                    } else {
-                                        pendingDeleteAppState.value = app
-                                    }
-                                },
+                                isBusy = busyPackages.contains(app.packageName),
+                                isEnabling = enablingPackages.contains(app.packageName),
+                                inputEnabled = !controlsLocked,
+                                onToggle = { enabled -> handleToggle(app, enabled) },
                             )
                         }
                     }
@@ -256,29 +332,10 @@ private fun DualAppsContent(
                         item {
                             DualAppPreferenceItem(
                                 app = app,
-                                onToggle = { enabled ->
-                                    if (enabled) {
-                                        if (!manager.isDualSpaceInitialized) {
-                                            manager.prepareDualSpace(object : AxDualAppsManager.DualSpaceCreationCallback() {
-                                                override fun onPrepareDone() {
-                                                    manager.installApp(app.packageName, app.uid)
-                                                    refreshAppLists()
-                                                }
-
-                                                override fun onFailure(errorCode: Int) {
-                                                    refreshAppLists()
-                                                }
-                                            })
-                                        } else {
-                                            scope.launch(Dispatchers.IO) {
-                                                manager.installApp(app.packageName, app.uid)
-                                                refreshAppLists()
-                                            }
-                                        }
-                                    } else {
-                                        pendingDeleteAppState.value = app
-                                    }
-                                },
+                                isBusy = busyPackages.contains(app.packageName),
+                                isEnabling = enablingPackages.contains(app.packageName),
+                                inputEnabled = !controlsLocked,
+                                onToggle = { enabled -> handleToggle(app, enabled) },
                             )
                         }
                     }
@@ -315,8 +372,11 @@ private fun DualAppsContent(
                     onClick = {
                         val target = app
                         pendingDeleteAppState.value = null
+                        if (busyPackagesState.value.contains(target.packageName)) return@TextButton
+                        busyPackagesState.value = busyPackagesState.value + target.packageName
                         manager.uninstallApp(target.packageName, target.uid, object : AxDualAppsManager.DualAppDeletionCallback() {
                             override fun onAppDeleted(packageName: String, code: Int) {
+                                busyPackagesState.value = busyPackagesState.value - target.packageName
                                 refreshAppLists()
                             }
                         })
@@ -342,12 +402,18 @@ private fun DualAppsContent(
                 TextButton(
                     onClick = {
                         showDeleteSpaceDialogState.value = false
+                        if (isClearingSpaceState.value || isPreparingSpaceState.value) return@TextButton
+                        isClearingSpaceState.value = true
                         manager.clearDualSpace(object : AxDualAppsManager.DualSpaceDeletionCallback() {
                             override fun onDeleteDone() {
+                                isClearingSpaceState.value = false
+                                busyPackagesState.value = emptySet()
+                                enablingPackagesState.value = emptySet()
                                 refreshAppLists()
                             }
 
                             override fun onFailure() {
+                                isClearingSpaceState.value = false
                                 refreshAppLists()
                             }
                         })
@@ -369,11 +435,21 @@ private fun DualAppsContent(
 private fun DualAppPreferenceItem(
     app: DualAppEntry,
     onToggle: (Boolean) -> Unit,
+    isBusy: Boolean = false,
+    isEnabling: Boolean = false,
+    inputEnabled: Boolean = true,
 ) {
+    val checked = if (isBusy) isEnabling else app.isCloned
+    val summary = if (isBusy && isEnabling) {
+        stringResource(R.string.dual_apps_creating)
+    } else {
+        app.packageName
+    }
     SwitchPreference(
         title = app.label,
-        summary = app.packageName,
-        checked = app.isCloned,
+        summary = summary,
+        checked = checked,
+        enabled = inputEnabled && !isBusy,
         onCheckedChange = onToggle,
         customIcon = {
             if (app.icon != null) {
