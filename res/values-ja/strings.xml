@@ -110,11 +110,11 @@
     <string name="start_time_summary">AODがオンになる時刻</string>
     <string name="end_time">終了時刻</string>
     <string name="end_time_summary">AODがオフになる時刻</string>
-    <string name="when_to_show">When to Show</string>
-    <string name="aod_on_charge">AOD on Charge</string>
-    <string name="aod_on_charge_summary">Show AOD only when device is charging</string>
+    <string name="when_to_show">表示するタイミング</string>
+    <string name="aod_on_charge">充電時の AOD</string>
+    <string name="aod_on_charge_summary">端末の充電時にのみAODを表示する</string>
     <string name="custom_schedule">カスタムスケジュール</string>
-    <string name="custom_schedule_summary">Enable time-based AOD schedule</string>
+    <string name="custom_schedule_summary">時間ベースのAODスケジュールを有効にする</string>
     <string name="screen_off">画面オフ</string>
     <string name="screen_off_aod">画面オフ時のAOD</string>
     <string name="screen_off_aod_summary">画面がオフになってもAODをアクティブに保つ</string>
@@ -503,7 +503,7 @@
     <string name="dynamic_bar_guide_keyguard">ロック画面では、チップは再生コントロールとクイックアクションで下部に表示されます。</string>
     <string name="dynamic_bar_guide_chip_title">チップの表示</string>
     <string name="dynamic_bar_guide_swipe_title">スワイプして回転</string>
-    <string name="dynamic_bar_guide_expand_title">Tap to expand</string>
+    <string name="dynamic_bar_guide_expand_title">タップして展開</string>
     <string name="dynamic_bar_guide_dismiss_title">スワイプして閉じる</string>
     <string name="dynamic_bar_guide_keyguard_title">ロック画面のチップ</string>
     <string name="dynamic_bar_footer_title">ダイナミックバーについて</string>
@@ -626,7 +626,7 @@
     <string name="routines_mic_unblocked">マイクをミュート解除</string>
     <string name="routines_set_sensor_privacy">センサー プライバシー</string>
     <string name="routines_sensor_blocked">センサーがブロックされています</string>
-    <string name="routines_location">Location</string>
+    <string name="routines_location">位置</string>
     <string name="routines_phone_number_hint">電話番号</string>
     <string name="routines_phone_numbers_hint">電話番号はカンマで区切られています</string>
     <string name="routines_phone_numbers_optional_summary">任意の発信者に実行するには空白のままにしてください。</string>
@@ -647,7 +647,7 @@
     <string name="routines_radius_hint">半径（メートル）</string>
     <string name="routines_location_near">近くの場所</string>
     <string name="routines_sensor_camera">カメラ</string>
-    <string name="routines_sensor_microphone">Microphone</string>
+    <string name="routines_sensor_microphone">マイク</string>
     <string name="routines_nfc_tag">NFC タグ</string>
     <string name="routines_nfc_tag_id_hint">タグ ID / UID (例 04:A1:B2:C3:D4)</string>
     <string name="routines_nfc_tag_name_hint">タグ名（例：ベッドサイド）</string>
