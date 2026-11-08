@@ -17,8 +17,6 @@
 package com.android.axion.axionparts.ui.screens
 
 import android.app.Activity
-import android.app.ActivityManager
-import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
@@ -74,9 +72,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.android.axion.compose.preferences.ClickablePreference
+import com.android.axion.compose.preferences.ListPreference
 import com.android.axion.compose.preferences.LocalPreferencePosition
 import com.android.axion.compose.preferences.PreferenceGroup
 import com.android.axion.compose.preferences.PreferencePosition
+import com.android.axion.compose.preferences.SecureSettingSwitch
 import com.android.axion.compose.preferences.SwitchPreference
 import com.android.axion.compose.preferences.preferenceShape
 import com.android.axion.axionparts.R
@@ -93,14 +93,44 @@ import com.android.axion.axionparts.ui.theme.MaxContentWidth
 
 private const val TAG = "PlayIntegrityFix"
 private const val PIF_CONFIG_KEY = "spoof_pif_config"
+private const val PIF_PHOTOS_KEY = "spoof_pif_photos"
 private const val PIF_CONFIG_NAME = "pif.json"
 private const val GOOGLE_URL = "https://developer.android.com"
 private const val FLASH_URL = "https://flash.android.com"
 private const val FLASH_API = "https://content-flashstation-pa.googleapis.com/v1/builds"
 private const val PIXEL_BULLETIN_URL = "https://source.android.com/docs/security/bulletin/pixel"
-private const val VENDING_PACKAGE = "com.android.vending"
-private const val GMS_PACKAGE = "com.google.android.gms"
-private const val GPHOTOS_PACKAGE = "com.google.android.apps.photos"
+private const val KEY_VENDING_BUILD = "spoofVendingBuild"
+private const val KEY_VERBOSE_LOGS = "verboseLogs"
+private const val DEFAULT_VERBOSE_LOGS = "0"
+
+private val VERSIONS_REGEX =
+    Regex("""(?:https://developer\.android\.com)?/about/versions/(\d+)""")
+private val DEVICE_ROW_REGEX = Regex(
+    """<tr id="([^"]+)">\s*<td[^>]*>([^<]+)</td>""",
+    RegexOption.DOT_MATCHES_ALL
+)
+private val API_KEY_REGEX = Regex("""AIza[0-9A-Za-z_-]{35}""")
+
+private val PRESERVED_KEYS = listOf(
+    "spoofBuild", "spoofProps", "spoofProvider", "spoofSignature",
+    KEY_VENDING_BUILD, "spoofVendingSdk", "DEBUG", KEY_VERBOSE_LOGS
+)
+
+private val DEFAULT_SPOOF_FLAGS = linkedMapOf(
+    "spoofBuild" to "true",
+    "spoofProps" to "true",
+    "spoofProvider" to "false",
+    "spoofSignature" to "false",
+    KEY_VENDING_BUILD to "true",
+    "spoofVendingSdk" to "false",
+    "DEBUG" to "false"
+)
+
+private fun JSONObject.putDefaultSpoofFlags(): JSONObject = apply {
+    DEFAULT_SPOOF_FLAGS.forEach { (key, value) -> if (!has(key)) put(key, value) }
+}
+
+private fun isTrue(value: String) = value == "1" || value.equals("true", ignoreCase = true)
 
 data class ConfigFileState(
     val fileName: String,
@@ -159,9 +189,24 @@ fun PlayIntegrityFixContent(
         val content = Settings.Secure.getString(context.contentResolver, PIF_CONFIG_KEY)
             ?: return emptyMap()
         return try {
-            val json = JSONObject(content)
+            val trimmed = content.trim()
+            if (trimmed.isEmpty()) return emptyMap()
             val result = mutableMapOf<String, String>()
-            json.keys().forEach { key -> result[key] = json.optString(key, "") }
+            if (trimmed.startsWith("{")) {
+                val json = JSONObject(trimmed)
+                json.keys().forEach { key -> result[key] = json.optString(key, "") }
+            } else {
+                trimmed.lines().forEach { line ->
+                    val l = line.trim()
+                    if (l.isNotEmpty() && !l.startsWith("#") && !l.startsWith("//")) {
+                        val eq = l.indexOf('=')
+                        if (eq > 0) {
+                            result[l.substring(0, eq).trim()] =
+                                l.substring(eq + 1).substringBefore('#').trim()
+                        }
+                    }
+                }
+            }
             result
         } catch (e: Exception) {
             Log.e(TAG, "Failed to parse config: ${e.message}")
@@ -180,29 +225,19 @@ fun PlayIntegrityFixContent(
         refreshStatus()
     }
 
-    fun restartTargetPackages(includePhotos: Boolean = false) {
-        try {
-            val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-            am.forceStopPackage(GMS_PACKAGE)
-            am.forceStopPackage(VENDING_PACKAGE)
-            if (includePhotos) {
-                am.forceStopPackage(GPHOTOS_PACKAGE)
-            }
-        } catch (e: Exception) {
-            Log.w(TAG, "Failed to restart target packages: ${e.message}")
-        }
-    }
-
-    fun updateConfig(key: String, value: Any) {
+    fun updateConfigFlag(key: String, value: String) {
         try {
             val existing = Settings.Secure.getString(context.contentResolver, PIF_CONFIG_KEY)
-            val json = try { JSONObject(existing ?: "") } catch (e: Exception) { JSONObject() }
+            if (existing.isNullOrBlank()) {
+                Toast.makeText(context, context.getString(R.string.no_config_loaded), Toast.LENGTH_SHORT).show()
+                return
+            }
+            val json = JSONObject(normalizePifPayload(existing))
             json.put(key, value)
             Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, json.toString(2))
-            restartTargetPackages(includePhotos = key == "spoofPhotos")
             refreshStatus()
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to update config", e)
+            Log.e(TAG, "Failed to update $key", e)
             Toast.makeText(context, context.getString(R.string.failed_to_update, e.message ?: ""), Toast.LENGTH_SHORT).show()
         }
     }
@@ -220,23 +255,15 @@ fun PlayIntegrityFixContent(
                 when (result) {
                     is PifFetchResult.Success -> {
                         val existing = readCurrentConfig()
-                        val preservedKeys = listOf(
-                            "spoofBuild", "spoofProps", "spoofProvider", "spoofSignature",
-                            "spoofVendingBuild", "spoofVendingSdk", "spoofPhotos", "DEBUG", "verboseLogs"
-                        )
-                        preservedKeys.forEach { key ->
-                            existing[key]?.let { value ->
-                                if (!result.pifData.has(key)) {
-                                    result.pifData.put(key, value)
-                                }
-                            }
+                        PRESERVED_KEYS.forEach { key ->
+                            existing[key]?.let { value -> result.pifData.put(key, value) }
                         }
+                        result.pifData.putDefaultSpoofFlags()
                         Settings.Secure.putString(
                             context.contentResolver,
                             PIF_CONFIG_KEY,
                             result.pifData.toString(2)
                         )
-                        restartTargetPackages()
                         Toast.makeText(context, context.getString(R.string.fetched_model, result.model), Toast.LENGTH_SHORT).show()
                         fetchStatus = ""
                         refreshStatus()
@@ -268,8 +295,6 @@ fun PlayIntegrityFixContent(
 
                     val normalized = normalizePifPayload(raw)
                     Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, normalized)
-
-                    restartTargetPackages()
                     Toast.makeText(context, context.getString(R.string.imported_as, PIF_CONFIG_NAME), Toast.LENGTH_SHORT).show()
                     refreshStatus()
                 } catch (e: Exception) {
@@ -290,7 +315,6 @@ fun PlayIntegrityFixContent(
                     onClick = {
                         try {
                             Settings.Secure.putString(context.contentResolver, PIF_CONFIG_KEY, null)
-                            restartTargetPackages(includePhotos = true)
                             Toast.makeText(context, context.getString(R.string.deleted_file, deleteTargetFile), Toast.LENGTH_SHORT).show()
                             refreshStatus()
                         } catch (e: Exception) {
@@ -400,22 +424,101 @@ fun PlayIntegrityFixContent(
 
         val activeConfigFile = configFiles.find { it.isActive }
 
-        val isSpoofPhotos = activeConfigFile?.data?.get("spoofPhotos")?.let {
-            it == "true" || it == "1"
-        } ?: false
-
-        SwitchPreference(
+        SecureSettingSwitch(
+            settingKey = PIF_PHOTOS_KEY,
             title = stringResource(R.string.spoof_google_photos),
             summary = stringResource(R.string.unlimited_backup),
             icon = Icons.Default.Image,
-            checked = isSpoofPhotos,
-            onCheckedChange = { checked ->
-                updateConfig("spoofPhotos", checked.toString())
-            },
+            defaultValue = true,
             position = PreferencePosition.Single,
         )
 
         if (activeConfigFile != null) {
+            fun flagValue(key: String): Boolean =
+                isTrue(activeConfigFile.data[key] ?: DEFAULT_SPOOF_FLAGS[key] ?: "false")
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            PreferenceGroup(
+                title = stringResource(R.string.pif_flags_title),
+                collapsible = true,
+                initiallyExpanded = false,
+            ) {
+                item {
+                    SwitchPreference(
+                        title = stringResource(R.string.pif_flag_spoof_build_title),
+                        summary = stringResource(R.string.pif_flag_spoof_build_summary),
+                        checked = flagValue("spoofBuild"),
+                        onCheckedChange = { updateConfigFlag("spoofBuild", it.toString()) },
+                    )
+                }
+                item {
+                    SwitchPreference(
+                        title = stringResource(R.string.pif_flag_spoof_props_title),
+                        summary = stringResource(R.string.pif_flag_spoof_props_summary),
+                        checked = flagValue("spoofProps"),
+                        onCheckedChange = { updateConfigFlag("spoofProps", it.toString()) },
+                    )
+                }
+                item {
+                    SwitchPreference(
+                        title = stringResource(R.string.pif_flag_spoof_provider_title),
+                        summary = stringResource(R.string.pif_flag_spoof_provider_summary),
+                        checked = flagValue("spoofProvider"),
+                        onCheckedChange = { updateConfigFlag("spoofProvider", it.toString()) },
+                    )
+                }
+                item {
+                    SwitchPreference(
+                        title = stringResource(R.string.pif_flag_spoof_signature_title),
+                        summary = stringResource(R.string.pif_flag_spoof_signature_summary),
+                        checked = flagValue("spoofSignature"),
+                        onCheckedChange = { updateConfigFlag("spoofSignature", it.toString()) },
+                    )
+                }
+                item {
+                    SwitchPreference(
+                        title = stringResource(R.string.pif_flag_spoof_vending_build_title),
+                        summary = stringResource(R.string.pif_flag_spoof_vending_build_summary),
+                        checked = flagValue(KEY_VENDING_BUILD),
+                        onCheckedChange = { updateConfigFlag(KEY_VENDING_BUILD, it.toString()) },
+                    )
+                }
+                item {
+                    SwitchPreference(
+                        title = stringResource(R.string.pif_flag_spoof_vending_sdk_title),
+                        summary = stringResource(R.string.pif_flag_spoof_vending_sdk_summary),
+                        checked = flagValue("spoofVendingSdk"),
+                        enabled = !flagValue(KEY_VENDING_BUILD),
+                        onCheckedChange = { updateConfigFlag("spoofVendingSdk", it.toString()) },
+                    )
+                }
+                item {
+                    SwitchPreference(
+                        title = stringResource(R.string.pif_flag_debug_title),
+                        summary = stringResource(R.string.pif_flag_debug_summary),
+                        checked = flagValue("DEBUG"),
+                        onCheckedChange = { updateConfigFlag("DEBUG", it.toString()) },
+                    )
+                }
+                item {
+                    val verboseOptions = listOf(
+                        "0" to stringResource(R.string.pif_verbose_logs_off),
+                        "1" to stringResource(R.string.pif_verbose_logs_basic),
+                        "2" to stringResource(R.string.pif_verbose_logs_detailed),
+                        "3" to stringResource(R.string.pif_verbose_logs_full),
+                    )
+                    val storedVerbose = activeConfigFile.data[KEY_VERBOSE_LOGS] ?: DEFAULT_VERBOSE_LOGS
+                    val verboseVal = if (verboseOptions.any { it.first == storedVerbose }) storedVerbose else DEFAULT_VERBOSE_LOGS
+                    ListPreference(
+                        title = stringResource(R.string.pif_flag_verbose_logs_title),
+                        options = verboseOptions,
+                        value = verboseVal,
+                        onValueChange = { updateConfigFlag(KEY_VERBOSE_LOGS, it) },
+                    )
+                }
+            }
+
             Spacer(modifier = Modifier.height(16.dp))
 
             PreferenceGroup(
@@ -562,20 +665,45 @@ private sealed class PifFetchResult {
 
 private fun normalizePifPayload(raw: String): String {
     val trimmed = raw.trim()
-    if (trimmed.isEmpty()) return "{}"
-    if (trimmed.startsWith("{")) return trimmed
-    val json = JSONObject()
-    trimmed.lines().forEach { line ->
-        val stripped = line.trim()
-        if (stripped.isEmpty() || stripped.startsWith("#") || stripped.startsWith("//")) return@forEach
-        val eq = stripped.indexOf('=')
-        if (eq > 0) {
-            val key = stripped.substring(0, eq).trim()
-            val value = stripped.substring(eq + 1).trim().substringBefore('#').trim()
-            if (key.isNotEmpty()) json.put(key, value)
+    require(trimmed.isNotEmpty()) { "Config file is empty" }
+
+    val json = if (trimmed.startsWith("{")) {
+        JSONObject(trimmed)
+    } else {
+        JSONObject().apply {
+            trimmed.lines().forEach { line ->
+                val stripped = line.trim()
+                if (stripped.isEmpty() || stripped.startsWith("#") || stripped.startsWith("//")) return@forEach
+                val eq = stripped.indexOf('=')
+                if (eq > 0) {
+                    val key = stripped.substring(0, eq).trim()
+                    val value = stripped.substring(eq + 1).trim().substringBefore('#').trim()
+                    if (key.isNotEmpty()) put(key, value)
+                }
+            }
         }
     }
+
+    require(json.length() > 0) { "Config file has no valid entries" }
     return json.toString(2)
+}
+
+private fun parseDeviceTable(html: String): List<Triple<String, String, String>> {
+    val devices = mutableListOf<Triple<String, String, String>>()
+    val seen = mutableSetOf<String>()
+    DEVICE_ROW_REGEX.findAll(html).forEach { match ->
+        val device = match.groupValues[1]
+        if (!seen.add(device)) return@forEach
+        val model = match.groupValues[2].trim().ifEmpty { device }
+        devices.add(Triple(model, "${device}_beta", device))
+    }
+    return devices
+}
+
+private fun extractFlashApiKey(html: String): String? {
+    val clientConfig = Regex("""data-client-config="([^"]*)"""").find(html)?.groupValues?.get(1)
+    return clientConfig?.let { API_KEY_REGEX.find(it)?.value }
+        ?: API_KEY_REGEX.find(html)?.value
 }
 
 private fun fetchPifFromGoogle(): PifFetchResult {
@@ -583,29 +711,47 @@ private fun fetchPifFromGoogle(): PifFetchResult {
         Log.d(TAG, "Fetching Pixel Canary metadata...")
 
         val versionsHtml = URL("$GOOGLE_URL/about/versions").readText(StandardCharsets.UTF_8)
-        val latestVersion = Regex("""(?:https://developer\.android\.com)?/about/versions/(\d+)""")
-            .findAll(versionsHtml)
+        val knownVersions = VERSIONS_REGEX.findAll(versionsHtml)
             .map { it.groupValues[1].toInt() }
-            .toSortedSet()
-            .maxOrNull()
+            .toSet()
+            .sortedDescending()
+        val maxVersion = knownVersions.firstOrNull()
             ?: return PifFetchResult.Error("No Android version pages found")
+        val versions = listOf(maxVersion + 1) + knownVersions
 
-        val latestHtml = URL("$GOOGLE_URL/about/versions/$latestVersion").readText(StandardCharsets.UTF_8)
-        val qprPath = Regex("""href="(/about/versions/$latestVersion/qpr(\d+)/download-ota)"""")
-            .findAll(latestHtml)
-            .map { it.groupValues[2].toInt() to it.groupValues[1] }
-            .maxByOrNull { it.first }
-            ?.second
-            ?: return PifFetchResult.Error("No QPR download page found")
+        var devices: List<Triple<String, String, String>> = emptyList()
+        for (version in versions) {
+            try {
+                val latestHtml = URL("$GOOGLE_URL/about/versions/$version").readText(StandardCharsets.UTF_8)
+                val pages = Regex(
+                    """href="(/about/versions/$version(?:/qpr(\d+))?/download(?:-ota)?)""""
+                ).findAll(latestHtml)
+                    .map { it.groupValues[1] to (it.groupValues[2].toIntOrNull() ?: 0) }
+                    .toList()
+                if (pages.isEmpty()) continue
 
-        val fiHtml = URL("$GOOGLE_URL$qprPath").readText(StandardCharsets.UTF_8)
-        val rowPattern = Regex(
-            """<tr id="([^"]+)">\s*<td[^>]*>([^<]+)</td>""",
-            RegexOption.DOT_MATCHES_ALL
-        )
-        val devices = rowPattern.findAll(fiHtml)
-            .map { Triple(it.groupValues[2].trim(), "${it.groupValues[1]}_beta", it.groupValues[1]) }
-            .toList()
+                val newestQpr = pages.maxOf { it.second }
+                val found = pages.filter { it.second == newestQpr }
+                    .map { it.first }
+                    .distinct()
+                    .mapNotNull { path ->
+                        try {
+                            parseDeviceTable(URL("$GOOGLE_URL$path").readText(StandardCharsets.UTF_8))
+                        } catch (e: Exception) {
+                            Log.d(TAG, "Failed to read $path: ${e.message}")
+                            null
+                        }
+                    }
+                    .maxByOrNull { it.size }
+                    .orEmpty()
+                if (found.isNotEmpty()) {
+                    devices = found
+                    break
+                }
+            } catch (_: Exception) {
+                continue
+            }
+        }
 
         if (devices.isEmpty()) return PifFetchResult.Error("No beta devices found")
 
@@ -613,7 +759,7 @@ private fun fetchPifFromGoogle(): PifFetchResult {
         Log.d(TAG, "Selected device: $model ($product)")
 
         val flashHtml = URL(FLASH_URL).readText(StandardCharsets.UTF_8)
-        val apiKey = Regex("""AIza[0-9A-Za-z_-]{35}""").find(flashHtml)?.value
+        val apiKey = extractFlashApiKey(flashHtml)
             ?: return PifFetchResult.Error("Failed to extract Flash Tool API key")
 
         val buildsUrl = "$FLASH_API?product=$product&key=$apiKey"
@@ -675,11 +821,12 @@ private fun fetchPifFromGoogle(): PifFetchResult {
         Log.d(TAG, "Security Patch: $securityPatch")
 
         val initialSdkInt = when (device) {
+            "oriole", "raven" -> "31"
             "bluejay" -> "32"
             "panther", "cheetah", "lynx", "felix", "tangorpro" -> "33"
             "shiba", "husky", "akita", "tokay", "caiman", "komodo", "comet" -> "34"
-            "tegu", "stallion" -> "35"
-            "frankel", "blazer", "mustang", "rango" -> "36"
+            "tegu" -> "35"
+            "stallion", "frankel", "blazer", "mustang", "rango" -> "36"
             "cubs", "grizzly", "kodiak", "yogi" -> "37"
             else -> "37"
         }
@@ -692,12 +839,6 @@ private fun fetchPifFromGoogle(): PifFetchResult {
             put("FINGERPRINT", fingerprint)
             put("SECURITY_PATCH", securityPatch)
             put("DEVICE_INITIAL_SDK_INT", initialSdkInt)
-            put("spoofBuild", "true")
-            put("spoofProps", "true")
-            put("spoofProvider", "false")
-            put("spoofSignature", "false")
-            put("spoofVendingBuild", "true")
-            put("spoofVendingSdk", "false")
         }
 
         PifFetchResult.Success(model, pifJson)
