@@ -22,7 +22,10 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.security.trickystore.KeyBoxManager
+import android.security.trickystore.TrickyStoreService
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -99,11 +102,107 @@ import com.android.axion.compose.sheet.BottomSheetDialog
 import java.nio.charset.StandardCharsets
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
+import org.json.JSONObject
 
 private const val KEYBOX_KEY = "spoof_trickystore_keybox"
 private const val TARGET_KEY = "spoof_trickystore_target"
 private const val VENDING_PACKAGE = "com.android.vending"
 
+private val PACKAGE_REGEX = Regex("""^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$""")
+private val VALID_TARGET_MODES = setOf("AUTO", "LEAF_HACK", "GENERATE", "SKIP")
+
+private val DEFAULT_TARGET_MAP: Map<String, TargetMode> by lazy {
+    parseTargetList(TrickyStoreService.DEFAULT_TARGET_LIST)
+}
+
+private fun isPackageInstalled(pm: PackageManager, pkg: String): Boolean {
+    if (pkg == "android") return true
+    return try {
+        pm.getApplicationInfo(pkg, 0)
+        true
+    } catch (_: PackageManager.NameNotFoundException) {
+        false
+    }
+}
+
+private fun installedTargets(pm: PackageManager, targets: Map<String, TargetMode>): Map<String, TargetMode> =
+    targets.filterKeys { isPackageInstalled(pm, it) }
+
+private fun parseTargetList(list: String?): Map<String, TargetMode> {
+    val result = LinkedHashMap<String, TargetMode>()
+    if (list.isNullOrEmpty()) return result
+    val trimmed = list.trim()
+    if (trimmed.startsWith("[")) {
+        try {
+            val array = JSONArray(trimmed)
+            for (i in 0 until array.length()) {
+                val obj = array.optJSONObject(i) ?: continue
+                val pkg = obj.optString("package").trim()
+                if (pkg.isEmpty()) continue
+                when (obj.optString("mode", "AUTO").uppercase()) {
+                    "LEAF_HACK" -> result[pkg] = TargetMode.LEAF_HACK
+                    "GENERATE" -> result[pkg] = TargetMode.CERT_GEN
+                    "SKIP" -> continue
+                    else -> result[pkg] = TargetMode.AUTO
+                }
+            }
+            return result
+        } catch (_: Exception) {
+        }
+    }
+    trimmed.lines().forEach { raw ->
+        val t = raw.trim()
+        if (t.isEmpty() || t.startsWith("#")) return@forEach
+        when {
+            t.endsWith("?") -> result[t.dropLast(1).trim()] = TargetMode.LEAF_HACK
+            t.endsWith("!") -> result[t.dropLast(1).trim()] = TargetMode.CERT_GEN
+            t.endsWith("-") -> return@forEach
+            else -> result[t] = TargetMode.AUTO
+        }
+    }
+    return result
+}
+
+private fun validateTargetListPayload(raw: String): String {
+    val text = raw.trim()
+    require(text.isNotEmpty()) { "Target list is empty" }
+    if (text.startsWith("[")) {
+        val array = JSONArray(text)
+        require(array.length() > 0) { "Target list is empty" }
+        for (i in 0 until array.length()) {
+            val obj = array.get(i) as JSONObject
+            val pkg = obj.getString("package")
+            require(PACKAGE_REGEX.matches(pkg)) { pkg }
+            obj.optString("mode").takeIf { it.isNotEmpty() }?.let { mode ->
+                require(mode.uppercase() in VALID_TARGET_MODES) { "mode: $mode" }
+            }
+        }
+        return text
+    }
+    val parsed = parseTargetList(text)
+    require(parsed.isNotEmpty()) { "Target list has no valid packages" }
+    parsed.keys.forEach { pkg ->
+        require(pkg == "android" || PACKAGE_REGEX.matches(pkg)) { pkg }
+    }
+    return text
+}
+
+private fun decodeKeyboxPayload(bytes: ByteArray): String? {
+    if (bytes.isEmpty()) return null
+    val text = bytes.toString(StandardCharsets.UTF_8).removePrefix("\uFEFF").trim()
+    if (text.isEmpty()) return null
+    if (text.startsWith("<")) return text
+    return try {
+        val decoded = Base64.decode(text, Base64.DEFAULT)
+            .toString(StandardCharsets.UTF_8)
+            .removePrefix("\uFEFF")
+            .trim()
+        if (decoded.startsWith("<")) decoded else null
+    } catch (_: Exception) {
+        null
+    }
+}
 enum class TargetMode(val symbol: String) {
     AUTO(""),
     LEAF_HACK("?"),
@@ -146,12 +245,9 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
     fun refreshStatus() {
         keyboxExists = !Settings.Secure.getString(context.contentResolver, KEYBOX_KEY).isNullOrEmpty()
         val targetContent = Settings.Secure.getString(context.contentResolver, TARGET_KEY)
-        targetExists = !targetContent.isNullOrEmpty()
-        targetAppCount = if (targetExists) {
-            targetContent!!.lines().count { it.isNotBlank() }
-        } else {
-            0
-        }
+        val parsedTargets = parseTargetList(targetContent)
+        targetExists = parsedTargets.isNotEmpty()
+        targetAppCount = installedTargets(context.packageManager, parsedTargets).size
     }
 
     LaunchedEffect(Unit) {
@@ -167,7 +263,12 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
                     try {
                         val bytes = context.contentResolver.openInputStream(uri)?.use { it.readBytes() }
                             ?: ByteArray(0)
-                        val encoded = Base64.encodeToString(bytes, Base64.NO_WRAP)
+                        val xml = decodeKeyboxPayload(bytes)
+                            ?: throw IllegalArgumentException("File is not a valid XML keybox")
+                        KeyBoxManager.validate(xml)?.let { problem ->
+                            throw IllegalArgumentException(problem)
+                        }
+                        val encoded = Base64.encodeToString(xml.toByteArray(StandardCharsets.UTF_8), Base64.NO_WRAP)
                         Settings.Secure.putString(context.contentResolver, KEYBOX_KEY, encoded)
 
                         val am =
@@ -204,7 +305,8 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
                         val text = context.contentResolver.openInputStream(uri)?.use { input ->
                             input.readBytes().toString(StandardCharsets.UTF_8)
                         } ?: ""
-                        Settings.Secure.putString(context.contentResolver, TARGET_KEY, text)
+                        val validated = validateTargetListPayload(text)
+                        Settings.Secure.putString(context.contentResolver, TARGET_KEY, validated)
 
                         Toast.makeText(
                                 context,
@@ -353,42 +455,24 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
     var searchQuery by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
     var showSystemApps by remember { mutableStateOf(false) }
+    var hiddenTargets by remember { mutableStateOf<Map<String, TargetMode>>(emptyMap()) }
+    var hiddenInstalledCount by remember { mutableStateOf(0) }
     val allApps = remember { mutableStateListOf<AppEntry>() }
     val sdkApps = rememberAppList(AppFilter.ALL, AppFilter.NO_OVERLAYS)
 
-    fun loadTargetFile(): Map<String, TargetMode> {
-        val result = mutableMapOf<String, TargetMode>()
-        val content = Settings.Secure.getString(context.contentResolver, TARGET_KEY) ?: return result
-        content.lines().forEach { line ->
-            val trimmed = line.trim()
-            if (trimmed.isNotBlank()) {
-                when {
-                    trimmed.endsWith("?") -> {
-                        result[trimmed.dropLast(1)] = TargetMode.LEAF_HACK
-                    }
-                    trimmed.endsWith("!") -> {
-                        result[trimmed.dropLast(1)] = TargetMode.CERT_GEN
-                    }
-                    else -> {
-                        result[trimmed] = TargetMode.AUTO
-                    }
-                }
-            }
-        }
-        return result
-    }
-
-    fun saveTargetFile() {
+    fun saveTargetFile(extraHidden: Map<String, TargetMode> = hiddenTargets) {
         try {
-            val lines =
+            val visibleLines =
                 allApps
                     .filter { it.isInTarget }
                     .map { app -> app.packageName + app.targetMode.symbol }
+            val hiddenLines =
+                extraHidden.map { (pkg, mode) -> pkg + mode.symbol }
 
             Settings.Secure.putString(
                 context.contentResolver,
                 TARGET_KEY,
-                lines.joinToString("\n")
+                (visibleLines + hiddenLines).joinToString("\n")
             )
         } catch (e: Exception) {
             Log.e("TrickyStore", "Failed to save target list: ${e.message}")
@@ -399,8 +483,11 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
         val sourceApps = sdkApps.value
         if (sourceApps.isEmpty()) return@LaunchedEffect
         withContext(Dispatchers.IO) {
-            val targetMap = loadTargetFile()
+            val targetMap = parseTargetList(
+                Settings.Secure.getString(context.contentResolver, TARGET_KEY)
+            )
             val installedApps = sourceApps
+                .filter { it.packageName !in TrickyStoreService.XPOSED_PACKAGES }
                 .map { entry ->
                     AppEntry(
                         packageName = entry.packageName,
@@ -411,13 +498,17 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
                     ) to entry.isSystem
                 }
                 .sortedWith(compareBy({ !(it.first.isInTarget) }, { it.first.label.lowercase() }))
+            val visibleList = installedApps
+                .filter { !it.second || showSystemApps || it.first.isInTarget }
+                .map { it.first }
+            val visiblePkgs = visibleList.map { it.packageName }.toSet()
+            val hiddenMap = targetMap.filterKeys { it !in visiblePkgs }
+            val hiddenInst = installedTargets(context.packageManager, hiddenMap).size
             withContext(Dispatchers.Main) {
+                hiddenTargets = hiddenMap
+                hiddenInstalledCount = hiddenInst
                 allApps.clear()
-                allApps.addAll(
-                    installedApps
-                        .filter { !it.second || showSystemApps || it.first.isInTarget }
-                        .map { it.first }
-                )
+                allApps.addAll(visibleList)
                 isLoading = false
             }
         }
@@ -483,26 +574,53 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                FilterChip(
-                    selected = showSystemApps,
-                    onClick = {
-                        showSystemApps = !showSystemApps
-                    },
-                    label = { Text(stringResource(R.string.show_system_apps)) },
-                    leadingIcon =
-                        if (showSystemApps) {
-                            {
-                                Icon(
-                                    Icons.Default.Check,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(18.dp),
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = showSystemApps,
+                        onClick = {
+                            showSystemApps = !showSystemApps
+                        },
+                        label = { Text(stringResource(R.string.show_system_apps)) },
+                        leadingIcon =
+                            if (showSystemApps) {
+                                {
+                                    Icon(
+                                        Icons.Default.Check,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(18.dp),
+                                    )
+                                }
+                            } else null,
+                    )
+
+                    FilterChip(
+                        selected = false,
+                        onClick = {
+                            val defaults = DEFAULT_TARGET_MAP
+                            for (i in allApps.indices) {
+                                val pkg = allApps[i].packageName
+                                val defMode = defaults[pkg]
+                                allApps[i] = allApps[i].copy(
+                                    isInTarget = defMode != null,
+                                    targetMode = defMode ?: TargetMode.AUTO,
                                 )
                             }
-                        } else null,
-                )
+                            val visiblePkgs = allApps.map { it.packageName }.toSet()
+                            val newHidden = defaults.filterKeys { it !in visiblePkgs }
+                            hiddenTargets = newHidden
+                            hiddenInstalledCount =
+                                installedTargets(context.packageManager, newHidden).size
+                            saveTargetFile(newHidden)
+                        },
+                        label = { Text(stringResource(R.string.auto_select)) },
+                    )
+                }
 
                 Text(
-                    text = stringResource(R.string.selected_count, allApps.count { it.isInTarget }),
+                    text = stringResource(
+                        R.string.selected_count,
+                        allApps.count { it.isInTarget } + hiddenInstalledCount
+                    ),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.primary,
                 )

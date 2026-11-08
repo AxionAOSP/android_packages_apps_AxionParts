@@ -316,6 +316,7 @@
     <string name="target_mode_auto">Auto</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <string name="auto_select">Auto-select</string>
     
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
