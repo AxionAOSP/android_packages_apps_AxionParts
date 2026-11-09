@@ -325,6 +325,14 @@
     <string name="active_config">Active: %1$s</string>
     <string name="no_config_loaded">No config loaded</string>
     <string name="fetch_pixel_beta">Fetch Pixel Beta</string>
+    <string name="fetch_pixel_beta_series">Fetch Pixel Beta · %1$s</string>
+    <string name="select_pixel_series">Select Pixel series</string>
+    <string name="pixel_series_all">All (Random)</string>
+    <string name="pixel_series_6">Pixel 6 series</string>
+    <string name="pixel_series_7">Pixel 7 series</string>
+    <string name="pixel_series_8">Pixel 8 series</string>
+    <string name="pixel_series_9">Pixel 9 series</string>
+    <string name="pixel_series_10">Pixel 10 series</string>
     <string name="fetching">Fetching…</string>
     <string name="fetched_model">Fetched: %1$s</string>
     <string name="failed_message">Failed: %1$s</string>

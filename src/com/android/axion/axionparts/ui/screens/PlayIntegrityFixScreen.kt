@@ -22,9 +22,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,10 +39,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.Delete
@@ -51,8 +58,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -68,6 +77,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -94,6 +104,7 @@ import com.android.axion.axionparts.ui.theme.MaxContentWidth
 private const val TAG = "PlayIntegrityFix"
 private const val PIF_CONFIG_KEY = "spoof_pif_config"
 private const val PIF_PHOTOS_KEY = "spoof_pif_photos"
+private const val PIF_SERIES_KEY = "spoof_pif_series"
 private const val PIF_CONFIG_NAME = "pif.json"
 private const val GOOGLE_URL = "https://developer.android.com"
 private const val FLASH_URL = "https://flash.android.com"
@@ -132,6 +143,89 @@ private fun JSONObject.putDefaultSpoofFlags(): JSONObject = apply {
 
 private fun isTrue(value: String) = value == "1" || value.equals("true", ignoreCase = true)
 
+enum class PixelSeries(
+    val id: String,
+    val badge: String,
+    val chipLabel: String,
+    val titleRes: Int,
+    val devices: List<String>
+) {
+    ALL(
+        id = "all",
+        badge = "All",
+        chipLabel = "",
+        titleRes = R.string.pixel_series_all,
+        devices = emptyList()
+    ),
+    PIXEL_6(
+        id = "6",
+        badge = "6",
+        chipLabel = "Pixel 6",
+        titleRes = R.string.pixel_series_6,
+        devices = listOf("oriole", "raven", "bluejay")
+    ),
+    PIXEL_7(
+        id = "7",
+        badge = "7",
+        chipLabel = "Pixel 7",
+        titleRes = R.string.pixel_series_7,
+        devices = listOf("panther", "cheetah", "lynx", "felix", "tangorpro")
+    ),
+    PIXEL_8(
+        id = "8",
+        badge = "8",
+        chipLabel = "Pixel 8",
+        titleRes = R.string.pixel_series_8,
+        devices = listOf("shiba", "husky", "akita")
+    ),
+    PIXEL_9(
+        id = "9",
+        badge = "9",
+        chipLabel = "Pixel 9",
+        titleRes = R.string.pixel_series_9,
+        devices = listOf("tokay", "caiman", "komodo", "comet", "tegu")
+    ),
+    PIXEL_10(
+        id = "10",
+        badge = "10",
+        chipLabel = "Pixel 10",
+        titleRes = R.string.pixel_series_10,
+        devices = listOf("frankel", "blazer", "mustang", "rango", "stallion")
+    );
+
+    companion object {
+        fun fromId(id: String?): PixelSeries =
+            entries.firstOrNull { it.id == id } ?: ALL
+    }
+}
+
+private val DEVICE_MODEL_MAP = mapOf(
+    "oriole" to "Pixel 6",
+    "raven" to "Pixel 6 Pro",
+    "bluejay" to "Pixel 6a",
+    "panther" to "Pixel 7",
+    "cheetah" to "Pixel 7 Pro",
+    "lynx" to "Pixel 7a",
+    "felix" to "Pixel Fold",
+    "tangorpro" to "Pixel Tablet",
+    "shiba" to "Pixel 8",
+    "husky" to "Pixel 8 Pro",
+    "akita" to "Pixel 8a",
+    "tokay" to "Pixel 9",
+    "caiman" to "Pixel 9 Pro",
+    "komodo" to "Pixel 9 Pro XL",
+    "comet" to "Pixel 9 Pro Fold",
+    "tegu" to "Pixel 9a",
+    "frankel" to "Pixel 10",
+    "blazer" to "Pixel 10 Pro",
+    "mustang" to "Pixel 10 Pro XL",
+    "rango" to "Pixel 10 Pro Fold",
+    "stallion" to "Pixel 10a",
+    "cubs" to "Pixel 11",
+    "grizzly" to "Pixel 11 Pro",
+    "kodiak" to "Pixel 11 Pro XL",
+    "yogi" to "Pixel 11 Pro Fold",
+)
 data class ConfigFileState(
     val fileName: String,
     val exists: Boolean,
@@ -181,10 +275,15 @@ fun PlayIntegrityFixContent(
     var configFiles by remember { mutableStateOf(listOf<ConfigFileState>()) }
     var activeConfig by remember { mutableStateOf("") }
     var showDeleteDialog by remember { mutableStateOf(false) }
+    var showSeriesDialog by remember { mutableStateOf(false) }
+    var selectedSeries by remember {
+        mutableStateOf(
+            PixelSeries.fromId(Settings.Secure.getString(context.contentResolver, PIF_SERIES_KEY))
+        )
+    }
     var deleteTargetFile by remember { mutableStateOf("") }
     var isFetching by remember { mutableStateOf(false) }
     var fetchStatus by remember { mutableStateOf("") }
-
     fun readCurrentConfig(): Map<String, String> {
         val content = Settings.Secure.getString(context.contentResolver, PIF_CONFIG_KEY)
             ?: return emptyMap()
@@ -242,16 +341,15 @@ fun PlayIntegrityFixContent(
         }
     }
     
-    fun fetchPixelBetaPif() {
+    fun fetchPixelBetaPif(series: PixelSeries = selectedSeries) {
         scope.launch {
             isFetching = true
             fetchStatus = context.getString(R.string.fetching)
             
             try {
                 val result = withContext(Dispatchers.IO) {
-                    fetchPifFromGoogle()
+                    fetchPifFromGoogle(series)
                 }
-                
                 when (result) {
                     is PifFetchResult.Success -> {
                         val existing = readCurrentConfig()
@@ -334,6 +432,52 @@ fun PlayIntegrityFixContent(
             }
         )
     }
+    if (showSeriesDialog) {
+        AlertDialog(
+            onDismissRequest = { showSeriesDialog = false },
+            title = { Text(stringResource(R.string.select_pixel_series)) },
+            text = {
+                Column(modifier = Modifier.selectableGroup()) {
+                    PixelSeries.entries.forEach { series ->
+                        val isSelected = series == selectedSeries
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(12.dp))
+                                .selectable(
+                                    selected = isSelected,
+                                    onClick = {
+                                        selectedSeries = series
+                                        Settings.Secure.putString(
+                                            context.contentResolver,
+                                            PIF_SERIES_KEY,
+                                            series.id
+                                        )
+                                        showSeriesDialog = false
+                                    },
+                                    role = Role.RadioButton
+                                )
+                                .padding(horizontal = 8.dp, vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(selected = isSelected, onClick = null)
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = stringResource(series.titleRes),
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showSeriesDialog = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            }
+        )
+    }
     
     Column(
         modifier = modifier
@@ -395,26 +539,63 @@ fun PlayIntegrityFixContent(
                 
                 Spacer(modifier = Modifier.height(16.dp))
                 
-                Button(
-                    onClick = { fetchPixelBetaPif() },
-                    enabled = !isFetching,
+                Row(
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
-                    )
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    if (isFetching) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(20.dp),
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            strokeWidth = 2.dp
+                    Button(
+                        onClick = { fetchPixelBetaPif(selectedSeries) },
+                        enabled = !isFetching,
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(fetchStatus.ifEmpty { stringResource(R.string.fetching) })
-                    } else {
-                        Icon(Icons.Default.CloudDownload, contentDescription = null)
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(stringResource(R.string.fetch_pixel_beta))
+                    ) {
+                        if (isFetching) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(20.dp),
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                strokeWidth = 2.dp
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(fetchStatus.ifEmpty { stringResource(R.string.fetching) })
+                        } else {
+                            Icon(Icons.Default.CloudDownload, contentDescription = null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = if (selectedSeries == PixelSeries.ALL) {
+                                    stringResource(R.string.fetch_pixel_beta)
+                                } else {
+                                    stringResource(R.string.fetch_pixel_beta_series, selectedSeries.chipLabel)
+                                },
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+
+                    FilledTonalButton(
+                        onClick = { showSeriesDialog = true },
+                        enabled = !isFetching,
+                        shape = CircleShape,
+                        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 10.dp),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)),
+                        colors = ButtonDefaults.filledTonalButtonColors(
+                            containerColor = MaterialTheme.colorScheme.primaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    ) {
+                        Text(
+                            text = selectedSeries.badge,
+                            style = MaterialTheme.typography.labelLarge,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Icon(
+                            Icons.Default.ArrowDropDown,
+                            contentDescription = stringResource(R.string.select_pixel_series),
+                            modifier = Modifier.size(18.dp)
+                        )
                     }
                 }
             }
@@ -706,62 +887,25 @@ private fun extractFlashApiKey(html: String): String? {
         ?: API_KEY_REGEX.find(html)?.value
 }
 
-private fun fetchPifFromGoogle(): PifFetchResult {
+private data class CandidateBuild(
+    val model: String,
+    val product: String,
+    val device: String,
+    val id: String,
+    val incremental: String,
+    val release: String,
+    val trackId: String,
+    val isCanary: Boolean,
+    val isActive: Boolean
+)
+
+private fun fetchDeviceBuilds(
+    model: String,
+    product: String,
+    device: String,
+    apiKey: String
+): List<CandidateBuild> {
     return try {
-        Log.d(TAG, "Fetching Pixel Canary metadata...")
-
-        val versionsHtml = URL("$GOOGLE_URL/about/versions").readText(StandardCharsets.UTF_8)
-        val knownVersions = VERSIONS_REGEX.findAll(versionsHtml)
-            .map { it.groupValues[1].toInt() }
-            .toSet()
-            .sortedDescending()
-        val maxVersion = knownVersions.firstOrNull()
-            ?: return PifFetchResult.Error("No Android version pages found")
-        val versions = listOf(maxVersion + 1) + knownVersions
-
-        var devices: List<Triple<String, String, String>> = emptyList()
-        for (version in versions) {
-            try {
-                val latestHtml = URL("$GOOGLE_URL/about/versions/$version").readText(StandardCharsets.UTF_8)
-                val pages = Regex(
-                    """href="(/about/versions/$version(?:/qpr(\d+))?/download(?:-ota)?)""""
-                ).findAll(latestHtml)
-                    .map { it.groupValues[1] to (it.groupValues[2].toIntOrNull() ?: 0) }
-                    .toList()
-                if (pages.isEmpty()) continue
-
-                val newestQpr = pages.maxOf { it.second }
-                val found = pages.filter { it.second == newestQpr }
-                    .map { it.first }
-                    .distinct()
-                    .mapNotNull { path ->
-                        try {
-                            parseDeviceTable(URL("$GOOGLE_URL$path").readText(StandardCharsets.UTF_8))
-                        } catch (e: Exception) {
-                            Log.d(TAG, "Failed to read $path: ${e.message}")
-                            null
-                        }
-                    }
-                    .maxByOrNull { it.size }
-                    .orEmpty()
-                if (found.isNotEmpty()) {
-                    devices = found
-                    break
-                }
-            } catch (_: Exception) {
-                continue
-            }
-        }
-
-        if (devices.isEmpty()) return PifFetchResult.Error("No beta devices found")
-
-        val (model, product, device) = devices[Random.nextInt(devices.size)]
-        Log.d(TAG, "Selected device: $model ($product)")
-
-        val flashHtml = URL(FLASH_URL).readText(StandardCharsets.UTF_8)
-        val apiKey = extractFlashApiKey(flashHtml)
-            ?: return PifFetchResult.Error("Failed to extract Flash Tool API key")
-
         val buildsUrl = "$FLASH_API?product=$product&key=$apiKey"
         val buildsConn = URL(buildsUrl).openConnection().apply {
             setRequestProperty("Referer", FLASH_URL)
@@ -770,57 +914,191 @@ private fun fetchPifFromGoogle(): PifFetchResult {
             readTimeout = 15000
         }
         val buildsJson = buildsConn.getInputStream().use { it.readBytes().toString(StandardCharsets.UTF_8) }
-
         val root = JSONObject(buildsJson)
-        val buildsArray = root.optJSONArray("flashstationBuild")
-            ?: return PifFetchResult.Error("No flashstationBuild array in Flash Tool response")
+        val buildsArray = root.optJSONArray("flashstationBuild") ?: return emptyList()
 
-        var id: String? = null
-        var incremental: String? = null
-        var androidVersion = ""
-        var canaryId: String? = null
-
+        val result = mutableListOf<CandidateBuild>()
         for (i in buildsArray.length() - 1 downTo 0) {
             val b = buildsArray.optJSONObject(i) ?: continue
             val meta = b.optJSONObject("previewMetadata") ?: continue
-            if (!meta.optBoolean("canary")) continue
-
             val rc = b.optString("releaseCandidateName")
             val bid = b.optString("buildId")
             if (rc.isEmpty() || bid.isEmpty()) continue
 
-            id = rc
-            incremental = bid
-            androidVersion = meta.optString("releaseTrackVersionName")
-            canaryId = meta.optString("id").takeIf { it.contains("canary-") }
-            break
-        }
-
-        if (id == null || incremental == null) {
-            return PifFetchResult.Error("No canary build found for $product")
-        }
-
-        val fingerprint = "google/$product/$device:CANARY/$id/$incremental:user/release-keys"
-        Log.d(TAG, "Fingerprint: $fingerprint (Android $androidVersion)")
-
-        val canaryMonth = canaryId?.let {
-            Regex("""canary-(\d{4})(\d{2})""").find(it)?.let { m ->
-                "${m.groupValues[1]}-${m.groupValues[2]}"
+            val isCanary = meta.optBoolean("canary", false)
+            val isActive = meta.optBoolean("active", true)
+            val trackId = meta.optString("id")
+            val trackName = meta.optString("releaseTrackName")
+            val release = if (isCanary) {
+                "CANARY"
+            } else {
+                Regex("""Android\s+(\d+)""").find(trackName)?.groupValues?.get(1) ?: "CANARY"
             }
-        } ?: return PifFetchResult.Error("Failed to derive canary month id")
+            result.add(
+                CandidateBuild(
+                    model = model,
+                    product = product,
+                    device = device,
+                    id = rc,
+                    incremental = bid,
+                    release = release,
+                    trackId = trackId,
+                    isCanary = isCanary,
+                    isActive = isActive
+                )
+            )
+        }
+        result
+    } catch (e: Exception) {
+        Log.w(TAG, "Failed to query FlashStation for $product: ${e.message}")
+        emptyList()
+    }
+}
 
-        val securityPatch = try {
-            val bulletinHtml = URL(PIXEL_BULLETIN_URL).readText(StandardCharsets.UTF_8)
-            Regex("""<td>($canaryMonth-\d{2})</td>""").find(bulletinHtml)?.groupValues?.get(1)
-                ?: "$canaryMonth-05"
-        } catch (e: Exception) {
-            Log.d(TAG, "Bulletin fetch failed, using estimated patch: ${e.message}")
-            "$canaryMonth-05"
+private fun selectBestBuildForDevices(
+    candidates: List<Triple<String, String, String>>,
+    apiKey: String
+): CandidateBuild? {
+    val shuffled = candidates.shuffled()
+    var fallbackNewestCanary: CandidateBuild? = null
+    var fallbackActiveBeta: CandidateBuild? = null
+
+    for ((model, product, device) in shuffled) {
+        val builds = fetchDeviceBuilds(model, product, device, apiKey)
+        if (builds.isEmpty()) continue
+
+        // Priority 1: Active Canary build (e.g. bluejay_beta canary-202611)
+        builds.firstOrNull { it.isCanary && it.isActive }?.let { return it }
+
+        // Priority 2: Newest Canary build across the series even if marked inactive
+        builds.firstOrNull { it.isCanary }?.let { candidate ->
+            val currentBest = fallbackNewestCanary?.incremental?.toLongOrNull() ?: -1L
+            val nextVal = candidate.incremental.toLongOrNull() ?: 0L
+            if (nextVal > currentBest) {
+                fallbackNewestCanary = candidate
+            }
         }
 
-        Log.d(TAG, "Security Patch: $securityPatch")
+        // Priority 3: Active Beta / QPR build if no Canary build exists at all
+        if (fallbackActiveBeta == null) {
+            fallbackActiveBeta = builds.firstOrNull { it.isActive }
+        }
+    }
 
-        val initialSdkInt = when (device) {
+    return fallbackNewestCanary ?: fallbackActiveBeta
+}
+
+private fun derivePatchMonth(build: CandidateBuild): String? {
+    Regex("""canary-(\d{4})(\d{2})""").find(build.trackId)?.let { m ->
+        return "${m.groupValues[1]}-${m.groupValues[2]}"
+    }
+    Regex("""\.(\d{2})(\d{2})\d{2}\.""").find(build.id)?.let { m ->
+        return "20${m.groupValues[1]}-${m.groupValues[2]}"
+    }
+    return null
+}
+
+private fun fetchPifFromGoogle(selectedSeries: PixelSeries = PixelSeries.ALL): PifFetchResult {
+    return try {
+        Log.d(TAG, "Fetching Pixel Beta/Canary metadata (series=${selectedSeries.id})...")
+
+        val flashHtml = URL(FLASH_URL).readText(StandardCharsets.UTF_8)
+        val apiKey = extractFlashApiKey(flashHtml)
+            ?: return PifFetchResult.Error("Failed to extract Flash Tool API key")
+
+        // Discover devices from Google's version pages across all QPRs/versions
+        val discoveredByDevice = LinkedHashMap<String, Triple<String, String, String>>()
+        try {
+            val versionsHtml = URL("$GOOGLE_URL/about/versions").readText(StandardCharsets.UTF_8)
+            val knownVersions = VERSIONS_REGEX.findAll(versionsHtml)
+                .map { it.groupValues[1].toInt() }
+                .toSet()
+                .sortedDescending()
+            val maxVersion = knownVersions.firstOrNull()
+            val versions = if (maxVersion != null) listOf(maxVersion + 1) + knownVersions else emptyList()
+
+            for (version in versions) {
+                try {
+                    val latestHtml = URL("$GOOGLE_URL/about/versions/$version").readText(StandardCharsets.UTF_8)
+                    val pages = Regex(
+                        """href="(/about/versions/$version(?:/qpr(\d+))?/download(?:-ota)?)""""
+                    ).findAll(latestHtml)
+                        .map { it.groupValues[1] to (it.groupValues[2].toIntOrNull() ?: 0) }
+                        .toList()
+                    if (pages.isEmpty()) continue
+
+                    val newestQpr = pages.maxOf { it.second }
+                    val found = pages.filter { it.second == newestQpr }
+                        .map { it.first }
+                        .distinct()
+                        .mapNotNull { path ->
+                            try {
+                                parseDeviceTable(URL("$GOOGLE_URL$path").readText(StandardCharsets.UTF_8))
+                            } catch (e: Exception) {
+                                null
+                            }
+                        }
+                        .maxByOrNull { it.size }
+                        .orEmpty()
+                    found.forEach { triple ->
+                        discoveredByDevice.putIfAbsent(triple.third, triple)
+                    }
+                    if (discoveredByDevice.isNotEmpty() &&
+                        (selectedSeries == PixelSeries.ALL ||
+                            selectedSeries.devices.any { it in discoveredByDevice })
+                    ) {
+                        break
+                    }
+                } catch (_: Exception) {
+                    continue
+                }
+            }
+        } catch (e: Exception) {
+            Log.w(TAG, "Version page scrape failed, using known Pixel catalog fallback: ${e.message}")
+        }
+
+        // Supplement with known Pixel catalog so older series remain available even if dropped from a new QPR page
+        DEVICE_MODEL_MAP.forEach { (dev, model) ->
+            discoveredByDevice.putIfAbsent(dev, Triple(model, "${dev}_beta", dev))
+        }
+
+        val primaryPool: List<Triple<String, String, String>> =
+            if (selectedSeries == PixelSeries.ALL) {
+                discoveredByDevice.values.toList()
+            } else {
+                selectedSeries.devices.mapNotNull { discoveredByDevice[it] }
+            }
+
+        var chosenBuild = selectBestBuildForDevices(primaryPool, apiKey)
+
+        // Cross-series fallback if the entire selected series was sunset on FlashStation
+        if (chosenBuild == null && selectedSeries != PixelSeries.ALL) {
+            Log.w(TAG, "No builds found for series ${selectedSeries.id}, falling back to other Pixel series")
+            val fallbackPool = discoveredByDevice.values.filter { it.third !in selectedSeries.devices }
+            chosenBuild = selectBestBuildForDevices(fallbackPool, apiKey)
+        }
+
+        val build = chosenBuild
+            ?: return PifFetchResult.Error("No active beta/canary build found")
+
+        val fingerprint =
+            "google/${build.product}/${build.device}:${build.release}/${build.id}/${build.incremental}:user/release-keys"
+        Log.d(TAG, "Selected: ${build.model} ($fingerprint)")
+
+        val patchMonth = derivePatchMonth(build)
+        val securityPatch = if (patchMonth != null) {
+            try {
+                val bulletinHtml = URL(PIXEL_BULLETIN_URL).readText(StandardCharsets.UTF_8)
+                Regex("""<td>($patchMonth-\d{2})</td>""").find(bulletinHtml)?.groupValues?.get(1)
+                    ?: "$patchMonth-05"
+            } catch (e: Exception) {
+                "$patchMonth-05"
+            }
+        } else {
+            "2026-11-05"
+        }
+
+        val initialSdkInt = when (build.device) {
             "oriole", "raven" -> "31"
             "bluejay" -> "32"
             "panther", "cheetah", "lynx", "felix", "tangorpro" -> "33"
@@ -833,15 +1111,15 @@ private fun fetchPifFromGoogle(): PifFetchResult {
 
         val pifJson = JSONObject().apply {
             put("MANUFACTURER", "Google")
-            put("MODEL", model)
-            put("PRODUCT", product)
-            put("DEVICE", device)
+            put("MODEL", build.model)
+            put("PRODUCT", build.product)
+            put("DEVICE", build.device)
             put("FINGERPRINT", fingerprint)
             put("SECURITY_PATCH", securityPatch)
             put("DEVICE_INITIAL_SDK_INT", initialSdkInt)
         }
 
-        PifFetchResult.Success(model, pifJson)
+        PifFetchResult.Success(build.model, pifJson)
     } catch (e: Exception) {
         Log.e(TAG, "Canary fetch failed", e)
         PifFetchResult.Error("Failed to fetch canary PIF: ${e.message}")
