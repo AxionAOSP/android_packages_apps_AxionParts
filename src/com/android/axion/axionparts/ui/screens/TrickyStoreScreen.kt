@@ -25,7 +25,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.security.trickystore.KeyBoxManager
-import android.security.trickystore.TrickyStoreService
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -112,9 +111,43 @@ private const val VENDING_PACKAGE = "com.android.vending"
 private val PACKAGE_REGEX = Regex("""^[a-zA-Z][a-zA-Z0-9_]*(\.[a-zA-Z][a-zA-Z0-9_]*)+$""")
 private val VALID_TARGET_MODES = setOf("AUTO", "LEAF_HACK", "GENERATE", "SKIP")
 
-private val DEFAULT_TARGET_MAP: Map<String, TargetMode> by lazy {
-    parseTargetList(TrickyStoreService.DEFAULT_TARGET_LIST)
-}
+private val DEFAULT_TARGET_MAP: Map<String, TargetMode> = mapOf(
+    "android" to TargetMode.AUTO,
+    VENDING_PACKAGE to TargetMode.AUTO,
+    "com.google.android.gsf" to TargetMode.AUTO,
+    "com.google.android.gms" to TargetMode.AUTO,
+    "com.google.android.contactkeys" to TargetMode.AUTO,
+    "com.google.android.ims" to TargetMode.AUTO,
+    "com.google.android.safetycore" to TargetMode.AUTO,
+    "com.google.android.apps.walletnfcrel" to TargetMode.AUTO,
+    "com.google.android.apps.nbu.paisa.user" to TargetMode.AUTO,
+    "com.revolut.revolut" to TargetMode.CERT_GEN,
+    "io.github.qwq233.keyattestation" to TargetMode.LEAF_HACK,
+    "io.github.vvb2060.keyattestation" to TargetMode.LEAF_HACK,
+    "io.github.vvb2060.mahoshojo" to TargetMode.LEAF_HACK,
+    "icu.nullptr.nativetest" to TargetMode.LEAF_HACK,
+    "com.reveny.nativecheck" to TargetMode.LEAF_HACK,
+    "com.zhenxi.hunter" to TargetMode.LEAF_HACK,
+    "com.android.nativetest" to TargetMode.LEAF_HACK,
+    "io.liankong.riskdetector" to TargetMode.LEAF_HACK,
+    "luna.safe.luna" to TargetMode.LEAF_HACK,
+    "com.eltavine.duckdetector" to TargetMode.LEAF_HACK,
+    "com.rem01gaming.disclosure" to TargetMode.LEAF_HACK,
+    "wu.keyChain.test" to TargetMode.LEAF_HACK,
+    "com.kikyps.crackme" to TargetMode.LEAF_HACK,
+    "com.chunqiunativecheck" to TargetMode.LEAF_HACK,
+)
+
+private val XPOSED_PACKAGES = setOf(
+    "org.lsposed.manager",
+    "io.github.lsposed.manager",
+    "de.robv.android.xposed.installer",
+    "org.meowcat.edxposed.manager",
+    "com.solohsu.android.edxp.manager",
+    "io.va.exposed",
+    "com.topjohnwu.lsplant.manager",
+    "me.weishu.exposed",
+)
 
 private fun isPackageInstalled(pm: PackageManager, pkg: String): Boolean {
     if (pkg == "android") return true
@@ -265,8 +298,10 @@ fun TrickyStoreContent(modifier: Modifier = Modifier) {
                             ?: ByteArray(0)
                         val xml = decodeKeyboxPayload(bytes)
                             ?: throw IllegalArgumentException("File is not a valid XML keybox")
-                        KeyBoxManager.validate(xml)?.let { problem ->
-                            throw IllegalArgumentException(problem)
+                        if (!KeyBoxManager().apply { parseKeybox(xml) }.hasKeyboxes()) {
+                            throw IllegalArgumentException(
+                                "Keybox is incomplete or contains invalid key material"
+                            )
                         }
                         val encoded = Base64.encodeToString(xml.toByteArray(StandardCharsets.UTF_8), Base64.NO_WRAP)
                         Settings.Secure.putString(context.contentResolver, KEYBOX_KEY, encoded)
@@ -487,7 +522,7 @@ fun AppPickerBottomSheet(onDismiss: () -> Unit) {
                 Settings.Secure.getString(context.contentResolver, TARGET_KEY)
             )
             val installedApps = sourceApps
-                .filter { it.packageName !in TrickyStoreService.XPOSED_PACKAGES }
+                .filter { it.packageName !in XPOSED_PACKAGES }
                 .map { entry ->
                     AppEntry(
                         packageName = entry.packageName,
