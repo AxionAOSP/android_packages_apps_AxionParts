@@ -294,6 +294,7 @@
     <string name="target_mode_auto">自动</string>
     <string name="target_mode_leaf_hack">leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <string name="auto_select">Auto-select</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play 完整性修复</string>
     <string name="play_integrity_fix_summary">配置构建指纹伪装</string>
@@ -301,6 +302,14 @@
     <string name="active_config">活动: %1$s</string>
     <string name="no_config_loaded">未载入配置</string>
     <string name="fetch_pixel_beta">获取 Pixel 测试版</string>
+    <string name="fetch_pixel_beta_series">Fetch Pixel Beta · %1$s</string>
+    <string name="select_pixel_series">Select Pixel series</string>
+    <string name="pixel_series_all">All (Random)</string>
+    <string name="pixel_series_6">Pixel 6 series</string>
+    <string name="pixel_series_7">Pixel 7 series</string>
+    <string name="pixel_series_8">Pixel 8 series</string>
+    <string name="pixel_series_9">Pixel 9 series</string>
+    <string name="pixel_series_10">Pixel 10 series</string>
     <string name="fetching">获取中…</string>
     <string name="fetched_model">已获取： %1$s</string>
     <string name="failed_message">失败: %1$s</string>
@@ -319,6 +328,26 @@
     <string name="active_in_use">活动中 - 目前使用</string>
     <string name="available_overridden">可用 - 被较高优先级覆盖</string>
     <string name="not_configured">未配置</string>
+    <string name="pif_flags_title">Spoofing options</string>
+    <string name="pif_flag_spoof_build_title">Spoof build fields</string>
+    <string name="pif_flag_spoof_build_summary">Apply the config\'s Build fields to DroidGuard</string>
+    <string name="pif_flag_spoof_props_title">Spoof system properties</string>
+    <string name="pif_flag_spoof_props_summary">Override fingerprint, security patch and other ro.* properties for DroidGuard</string>
+    <string name="pif_flag_spoof_provider_title">Spoof keystore provider</string>
+    <string name="pif_flag_spoof_provider_summary">Block DroidGuard from reading key attestation certificates. Usually left off when a valid keybox is installed</string>
+    <string name="pif_flag_spoof_signature_title">Spoof ROM signature</string>
+    <string name="pif_flag_spoof_signature_summary">Report a stock platform signature for the android package</string>
+    <string name="pif_flag_spoof_vending_build_title">Spoof Play Store build</string>
+    <string name="pif_flag_spoof_vending_build_summary">Apply the config\'s Build fields to the Play Store</string>
+    <string name="pif_flag_spoof_vending_sdk_title">Spoof Play Store SDK level</string>
+    <string name="pif_flag_spoof_vending_sdk_summary">Report SDK 32 to the Play Store. Only used when Play Store build spoofing is off</string>
+    <string name="pif_flag_debug_title">Debug logging</string>
+    <string name="pif_flag_debug_summary">Log every spoofed field to logcat</string>
+    <string name="pif_flag_verbose_logs_title">Verbose logs</string>
+    <string name="pif_verbose_logs_off">关闭</string>
+    <string name="pif_verbose_logs_basic">Basic</string>
+    <string name="pif_verbose_logs_detailed">Detailed</string>
+    <string name="pif_verbose_logs_full">Full</string>
     <!-- Security - Window Secure -->
     <string name="ignore_window_secure">忽略窗口保护</string>
     <string name="ignore_window_secure_summary">允许在所有应用中截取屏幕和录制屏幕</string>
