@@ -294,6 +294,7 @@
     <string name="target_mode_auto">Auto</string>
     <string name="target_mode_leaf_hack">Leaf ?</string>
     <string name="target_mode_cert_gen">Gen !</string>
+    <string name="auto_select">Auto-select</string>
     <!-- Play Integrity Fix -->
     <string name="play_integrity_fix">Play Integrity Fix</string>
     <string name="play_integrity_fix_summary">Configure build fingerprint spoofing</string>
@@ -301,6 +302,14 @@
     <string name="active_config">Active: %1$s</string>
     <string name="no_config_loaded">No config loaded</string>
     <string name="fetch_pixel_beta">Fetch Pixel Beta</string>
+    <string name="fetch_pixel_beta_series">Fetch Pixel Beta · %1$s</string>
+    <string name="select_pixel_series">Select Pixel series</string>
+    <string name="pixel_series_all">All (Random)</string>
+    <string name="pixel_series_6">Pixel 6 series</string>
+    <string name="pixel_series_7">Pixel 7 series</string>
+    <string name="pixel_series_8">Pixel 8 series</string>
+    <string name="pixel_series_9">Pixel 9 series</string>
+    <string name="pixel_series_10">Pixel 10 series</string>
     <string name="fetching">Fetching…</string>
     <string name="fetched_model">Fetched: %1$s</string>
     <string name="failed_message">Failed: %1$s</string>
@@ -319,6 +328,26 @@
     <string name="active_in_use">Active - Currently in use</string>
     <string name="available_overridden">Available - Overridden by higher priority</string>
     <string name="not_configured">Not configured</string>
+    <string name="pif_flags_title">Spoofing options</string>
+    <string name="pif_flag_spoof_build_title">Spoof build fields</string>
+    <string name="pif_flag_spoof_build_summary">Apply the config\'s Build fields to DroidGuard</string>
+    <string name="pif_flag_spoof_props_title">Spoof system properties</string>
+    <string name="pif_flag_spoof_props_summary">Override fingerprint, security patch and other ro.* properties for DroidGuard</string>
+    <string name="pif_flag_spoof_provider_title">Spoof keystore provider</string>
+    <string name="pif_flag_spoof_provider_summary">Block DroidGuard from reading key attestation certificates. Usually left off when a valid keybox is installed</string>
+    <string name="pif_flag_spoof_signature_title">Spoof ROM signature</string>
+    <string name="pif_flag_spoof_signature_summary">Report a stock platform signature for the android package</string>
+    <string name="pif_flag_spoof_vending_build_title">Spoof Play Store build</string>
+    <string name="pif_flag_spoof_vending_build_summary">Apply the config\'s Build fields to the Play Store</string>
+    <string name="pif_flag_spoof_vending_sdk_title">Spoof Play Store SDK level</string>
+    <string name="pif_flag_spoof_vending_sdk_summary">Report SDK 32 to the Play Store. Only used when Play Store build spoofing is off</string>
+    <string name="pif_flag_debug_title">Debug logging</string>
+    <string name="pif_flag_debug_summary">Log every spoofed field to logcat</string>
+    <string name="pif_flag_verbose_logs_title">Verbose logs</string>
+    <string name="pif_verbose_logs_off">Fra</string>
+    <string name="pif_verbose_logs_basic">Basic</string>
+    <string name="pif_verbose_logs_detailed">Detailed</string>
+    <string name="pif_verbose_logs_full">Full</string>
     <!-- Security - Window Secure -->
     <string name="ignore_window_secure">Ignore Window Secure</string>
     <string name="ignore_window_secure_summary">Allow taking screenshots and screen recordings in all apps</string>
